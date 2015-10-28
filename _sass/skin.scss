@@ -7,10 +7,25 @@ header.site-header {
   nav a, h1 a {
     color: $paper;
   }
-  h1 a {
-    text-decoration:none;
+  h1 {
+    font-size: $f4;
+    a {
+      text-decoration:none;
+    }
   }
-
+  h2 {
+    font-size: $f5;
+  }
+}
+@media (min-width: 40em) {
+  header.site-header {
+    h1 {
+      font-size: $f2;
+    }
+    h2 {
+      font-size: $f3;
+    }
+  }
 }
 div.highlight {
   background: lighten($ink,5%);
@@ -63,14 +78,3 @@ hr {
     background: lighten($ink,87%);
   }
 }
-
-/*
-.section-break:after, .article-break:after {
-  width: 100%;
-  text-align: center;
-  //content: "— § —";
-  content: "⋯";
-  display: block;
-  margin-bottom: $sz2;
-}
-*/

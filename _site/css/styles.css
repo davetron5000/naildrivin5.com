@@ -46,11 +46,15 @@ header nav ul {
 
 header li {
   list-style: none;
-  display: inline-block;
+  display: block;
+  text-align: center;
   font-size: 24.722px;
-  padding-right: 25.2px;
   font-family: "futura-pt", "Futura", "Avenir", "Helvetica", sans-serif; }
 
+@media (min-width: 40em) {
+  header li {
+    display: inline-block;
+    padding-right: 25.2px; } }
 h1, h2, h3, h4, h5, h6 {
   font-family: "futura-pt", "Futura", "Avenir", "Helvetica", sans-serif;
   font-weight: 500;
@@ -87,11 +91,15 @@ h4, h5, h6 {
 
 body, p, li, td {
   font-family: "kepler-std", "Baskerville", serif;
-  font-size: 18px;
-  line-height: 1.4;
+  font-size: 24.722px;
+  line-height: 1.5;
   text-rendering: optimizeLegibility;
   font-weight: 300; }
 
+@media (min-width: 40em) {
+  body, p, li, td {
+    font-size: 18px;
+    line-height: 1.4; } }
 body {
   padding: 0;
   margin: 0; }
@@ -106,10 +114,15 @@ blockquote {
   border-left: 4px solid #d3c9d3; }
 
 main {
-  width: 720px;
+  width: 90%;
   margin: 0 auto;
   overflow-x: hidden; }
 
+@media (min-width: 40em) {
+  main {
+    width: 720px;
+    margin: 0 auto;
+    overflow-x: hidden; } }
 pre, code {
   font-family: "anonymous-pro", monospace; }
 
@@ -218,9 +231,18 @@ header.site-header {
   color: #fffeff; }
   header.site-header nav a, header.site-header h1 a {
     color: #fffeff; }
-  header.site-header h1 a {
-    text-decoration: none; }
+  header.site-header h1 {
+    font-size: 29.124px; }
+    header.site-header h1 a {
+      text-decoration: none; }
+  header.site-header h2 {
+    font-size: 24.722px; }
 
+@media (min-width: 40em) {
+  header.site-header h1 {
+    font-size: 47.123px; }
+  header.site-header h2 {
+    font-size: 40px; } }
 div.highlight {
   background: #1e181e;
   color: #fffeff;
@@ -262,16 +284,6 @@ hr {
   .pill:hover {
     background: #eeeaee; }
 
-/*
-.section-break:after, .article-break:after {
-  width: 100%;
-  text-align: center;
-  //content: "— § —";
-  content: "⋯";
-  display: block;
-  margin-bottom: $sz2;
-}
-*/
 .highlight .hll {
   background-color: #222; }
 

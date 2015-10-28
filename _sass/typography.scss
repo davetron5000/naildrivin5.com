@@ -39,9 +39,6 @@ $body-font-bold-weight: $serif-bold-weight;
 $header-font-normal-weight: $sans-normal-weight;
 $header-font-bold-weight: $sans-bold-weight;
 
-// Sizing
-$chars-per-line: 80;
-
 // Modular Font Scale
 /*
 $f-2:  123.364px;
@@ -65,7 +62,10 @@ $f12: 4.250px;
 */
 
 $line-height: 1.4;
-$text-width: $body-font-size * $chars-per-line / 2;
+$desktop-chars-per-line: 80;
+$desktop-text-width: $body-font-size * $desktop-chars-per-line / 2;
+
+$text-width: 90%;
 
 // Some sizes
 $sz1: $body-font-size * $line-height * 2;
@@ -96,10 +96,16 @@ header nav ul {
 }
 header li {
   list-style: none;
-  display: inline-block;
+  display: block;
+  text-align: center;
   font-size: $f5;
-  padding-right: $sz2;
   font-family: $header-font;
+}
+@media (min-width: 40em) {
+  header li {
+    display: inline-block;
+    padding-right: $sz2;
+  }
 }
 h1, h2, h3, h4, h5, h6 {
   font-family: $header-font;
@@ -145,10 +151,16 @@ h4, h5, h6 {
 
 body, p, li, td {
   font-family: $body-font;
-  font-size: $body-font-size;
-  line-height: $line-height;
+  font-size: $f5;
+  line-height: $line-height + .1;
   text-rendering: optimizeLegibility;
   font-weight: $body-font-normal-weight;
+}
+@media (min-width: 40em) {
+  body, p, li, td {
+    font-size: $body-font-size;
+    line-height: $line-height;
+  }
 }
 body {
   padding: 0;
@@ -170,6 +182,13 @@ main {
   width: $text-width;
   margin: 0 auto;
   overflow-x: hidden;
+}
+@media (min-width: 40em) {
+  main {
+    width: $desktop-text-width;
+    margin: 0 auto;
+    overflow-x: hidden;
+  }
 }
 
 pre,code {
