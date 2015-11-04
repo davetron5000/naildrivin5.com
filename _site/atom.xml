@@ -4,7 +4,7 @@
   <title><![CDATA[naildrivin5.com - David Bryant Copeland's Website]]></title>
   <link href="http://naildrivin5.com/atom.xml" rel="self"/>
   <link href="http://naildrivin5.com/"/>
-  <updated>2015-10-30T08:14:14-04:00</updated>
+  <updated>2015-11-04T07:31:03-05:00</updated>
   <id>http://naildrivin5.com/</id>
   <author>
     <name><![CDATA[David Bryant Copeland]]></name>
@@ -15,18 +15,15 @@
   <entry>
     <title type="html"><![CDATA[My New Book]]></title>
     
-    <link href="https://pragprog.com/book/dcbang/rails-angular-postgres-and-bootstrap"/>
+    <link href="http://multithreaded.stitchfix.com/blog/2015/11/04/simple-rails-apis-with-stitches/"/>
     
     <updated>2015-07-29T10:56:00-04:00</updated>
     <id>http://naildrivin5.com/blog/2015/07/29/my-new-book</id>
-    <content type="html"><![CDATA[<p>My new Book, <a href="https://pragprog.com/book/dcbang/rails-angular-postgres-and-bootstrap">Rails, Angular, Postgres, and Bootstrap: Powerful, Effective, and Efficient Full-Stack Web Development</a> is in beta:</p>
+    <content type="html"><![CDATA[<p>New post on the <a href="http://multithreaded.stitchfix.com/blog">Stitch Fix Tech Blog</a> about how we create Rails-based HTTP APIs using a simple gem called <a href="https://github.com/stitchfix/stitches">stitches</a>:</p>
 
 <blockquote>
-<p>As a Rails developer, you care about user experience and performance, but you also want simple and maintainable code. Achieve all that by embracing the full stack of web development, from styling with Twitter Bootstrap, building an interactive user interface with AngularJS, to storing data quickly and reliably in PostgreSQL. Take a holistic view of full-stack development to create usable, high-performing applications, and learn to use these technologies effectively in a Ruby on Rails environment.</p>
+<p>With this set of conventions, it was important that developers not feel these were optional features they could leave out to cut corners, so it seemed logical to make it as painless as possible to follow them. The result is stitches, which works as a generator and backing library. It&#39;s not an engine or a DSL or anything complex. It&#39;s just a bit of Rails configuration, designed to be explicit and obvious.</p>
 </blockquote>
-
-<p>I&#39;ve been working on this for quite a while, and pretty excited about it.  If you want to <em>really</em> level
-up your abilities as a Rails developer, this is the book for you.</p>
 ]]></content>
   </entry>
   

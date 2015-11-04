@@ -2,12 +2,13 @@
 layout: post
 title: "My New Book"
 date: 2015-07-29 10:56
-link: https://pragprog.com/book/dcbang/rails-angular-postgres-and-bootstrap
+link: http://multithreaded.stitchfix.com/blog/2015/11/04/simple-rails-apis-with-stitches/
 ---
 
-My new Book, [Rails, Angular, Postgres, and Bootstrap: Powerful, Effective, and Efficient Full-Stack Web Development](https://pragprog.com/book/dcbang/rails-angular-postgres-and-bootstrap) is in beta:
+New post on the [Stitch Fix Tech Blog][blog] about how we create Rails-based HTTP APIs using a simple gem called [stitches]:
 
-> As a Rails developer, you care about user experience and performance, but you also want simple and maintainable code. Achieve all that by embracing the full stack of web development, from styling with Twitter Bootstrap, building an interactive user interface with AngularJS, to storing data quickly and reliably in PostgreSQL. Take a holistic view of full-stack development to create usable, high-performing applications, and learn to use these technologies effectively in a Ruby on Rails environment.
+> With this set of conventions, it was important that developers not feel these were optional features they could leave out to cut corners, so it seemed logical to make it as painless as possible to follow them. The result is stitches, which works as a generator and backing library. It's not an engine or a DSL or anything complex. It's just a bit of Rails configuration, designed to be explicit and obvious.
 
-I've been working on this for quite a while, and pretty excited about it.  If you want to *really* level
-up your abilities as a Rails developer, this is the book for you.
+[post]: http://multithreaded.stitchfix.com/blog/2015/11/04/simple-rails-apis-with-stitches/
+[blog]: http://multithreaded.stitchfix.com/blog
+[stitches]: https://github.com/stitchfix/stitches
