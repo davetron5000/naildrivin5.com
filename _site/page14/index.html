@@ -30,11 +30,13 @@
     
       
         
-        Java Annotations - Java's love of configuration over convention
+        Git Workflow with SVN
         
-        March 11, 2009
+        April 28, 2009
       
-     ...">
+      
+        
+          The best way to get s...">
   
 
   
@@ -65,6 +67,174 @@
     <section>
       <div class="blog-index">
   
+  
+  
+    <article>
+      <header>
+        
+        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2009/04/28/git-workflow-with-svn.html">Git Workflow with SVN</a></h1>
+        
+        <h2 class="f6 mtneg">April 28, 2009</h2>
+      </header>
+      
+        <section class="mb1">
+          <div class="excerpt"><p>The best way to get started with Git <b>and</b> have a better experience at work if you have to use SVN is to use <tt>git svn</tt> as a client to Subversion.  You can take advantage of <a href="http://whygitisbetterthanx.com/">Git's awesomeness</a> while not requiring your team or infrastructure to change immediately.
+</p>
+<h3>Setup</h3>
+<tt>git svn clone -t tags -T trunk -b branches svn+ssh://your.svn.com/path/to/svn/root</tt>
+(This may take a while for a large or old svn repo)
+<h3>Working on Trunk</h3>
+The initial clone should leave you on git's <tt>master</tt> branch, which is connected to svn's trunk.
+<ol>
+<li><tt>git svn rebase</tt> <i># Optional: only if you want to get work from svn; you don't have to</i></li>
+<li>Hack some code</li>
+<li><tt>git add any new files you created.txt</tt></li>
+<li><tt>git commit -a</tt></li>
+<li>Repeat from step 2 until done</li>
+</ol>
+<h3>Sharing Your Changes</h3>
+You will rebase your changes against's SVN's (this means git will pretend you made all your changes from SVN's current HEAD, not the HEAD you started with [you do this to avoid conflicts and merges, which SVN cannot handle]).
+<ol>
+<li><tt>git svn rebase</tt></li>
+<li><tt>git svn dcommit</tt></li>
+</ol>
+<h4>If you got Conflicts</h4>
+<ol>
+<li>Git will tell you about them, so go and resolve them</li>
+<li>For each file you had to resolve, <tt>git add the_filename</tt>
+<li><tt>git rebase --continue</tt></li>
+<li>Repeat until done</li>
+</ol>
+<h3>Working with SVN's branches</h3>
+Suppose you need to do some work on a branch called <tt>1.3.x</tt> in your SVN repo:
+<ol>
+<li><tt>git svn fetch</tt> <i># This updates your local copy of remote branches</i></li>
+<li><tt>git checkout 1.3.x</tt># This checks out a remote branch, which you shouldn't work directly on</i></li>
+<li><tt>git checkout -b 1.3.x-branch</tt> <i># This creates a local branch you can work on, based on the remote 1.3.x branch</i></li>
+<li>Hack some code</li>
+<li><tt>git add</tt> and <tt>git commit -a</tt> as needed</li>
+<li>Follow same procedure as above for Sharing Your Changes.  Git will send your changes to the 1.3.x branch in SVN and not the trunk</li>
+</ol>
+<h3>Merging the Changes You Made</h3>
+Due to the way git interacts with SVN, you shouldn't automatically just merge your branch work onto the trunk.  This may create strange histories in SVN.
+<h3>So What?</h3>
+So, this isn't buying you much more than you get with SVN.  Yes, when you <tt>git checkout 1.3.x-branch</tt> it's lightning fast, and you can work offline.  Here's a few things that happen to me all the time that would be difficult or impossible to do without Git.
+<h4>Gotta Fix a Bug Real Quicklike</h4>
+You are in the middle of working on a new feature and you need to to push out a bugfix in production code.  Your in-development code can't be checked into trunk:
+<ol>
+<li><tt>git stash</tt></li>
+<li><tt>git checkout production-branch-name</tt></li>
+<li><tt>git checkout -b bugfix-xyz</tt></li>
+<li>Fix bugs</li>
+<li><tt>git commit -a</tt></li>
+<li><tt>git svn dcommit</tt></li>
+<li><tt>git checkout master</tt></li>
+<li><tt>git stash apply</tt></li>
+</ol>
+You are now back where you started, without a fake revision just to hold your code and you didn't have to go checkout the branch elsewhere.
+<h4>Can't commit to SVN due to a release</h4>
+Often, teams restrict commit access to SVN while a release is being prepared.  If the team is releasing version 1.5 and I'm working on 1.6 features, there can be some period of time where I'm not supposed to commit, because the 1.5 release is being prepared and under feature freeze.
+<ol>
+<li><tt>git commit -a</tt></li>
+<li>Continuing working</li>
+</ol>
+When feature freeze is over, then I'll <tt>git svn dcommit</tt> to send my changes to the SVN server
+<h4>Blocked on Feature X, Want to work on Feature Y</h4>
+This happens to me quite frequently:  I'm slated to work on a few features that aren't interdependent.  I start hacking away on Feature X and hit a roadblock and can't continue working.  I've got a half-implemented feature and I can't make any forward motion until a meeting next week.  Feature Y, on the other hand, is ready to go.  This requires some planning ahead:
+<ol>
+<li><tt>git checkout master</tt></li>
+<li><tt>git checkout -b feature-X</tt></li>
+<li>Work on Feature X</li>
+<li><tt>git commit -a</tt> etc. as I work</li>
+<li>Get blocked; meeting next week.  D'oh!</li>
+<li><tt>git checkout master</tt></li>
+<li><tt>git checkout -b feature-Y</tt></li>
+<li>Work on Feature Y</li>
+</ol>
+
+At this point, X and Y are on two local branches and I can switch back and forth as needed.  Don't underestimate how powerful this is, especially when you have certain features that are priorities, but can become blocked frequently.  I can now easily put aside Feature Y once I have my meeting and start back up on Feature X.  When I'm done, I <tt>git merge</tt> everything back to master and <tt>dcommit</tt> to SVN.
+<h4>Type your log message, save it, realize you forgot to reference a bug ticket #</h4>
+You have a bug tracker set up that links tickets and revisions; all you have to do is put the ticket # in your log message.  It's a nice feature, but I forget to do it frequently.  As long as you haven't done <tt>git svn dcommit</tt>, you can fix this:
+<ol>
+<li><tt>git commit --amend</tt></li>
+</ol>
+Your editor will pop up and you can change the log message!  Awesome.
+<h3>Advanced Stuff</h3>
+
+Once you get used to this, you will feel more comfortable doing some more advanced things.  
+
+<h4>Topic Branches</h4>
+The most obviously beneficial was touched on above, but it boils down to: <b>make every new feature on its own branch</b>.  This means you <b>never work on master</b> and you <b>never work on an SVN branch</b>.  Those are only for assembling what you will send to SVN.  This gives incredible flexibility to work on code when its convenient and not worry about checking in bad things.  Git calls this <i>topic branches</i>.
+
+<h4>Save your Experiments</h4>
+If you do everything on a branch, you don't have to delete your work, ever.  You can go back and revisit experiments, or work on low-priority features over a long period of time with all the advantages of version control, but without the baggage of remote branches you have to share with the world.
+
+<h4>Cherry Pick</h4>
+With Git, you typically commit frequently and you restrict the scope of each revision.  A commit in git is more like a checkpoint, and a push in  Git is more like a commit in SVN.  So, commit in git like crazy.  What this lets you do is move diffs around.  On several occasions, I've had some code on a branch that I needed to use, but didn't want to pull in the entire branch.  <tt>git cherry-pick</tt> lets me do that.
+
+<h4>Mindlessly Backup Your Repo</h4>
+
+<ol>
+<li><tt>ssh your_user@some.other.box.com</tt></li>
+<li><tt>mkdir awesome_project</tt></li>
+<li><tt>cd awesome_project</tt></li>
+<li><tt>git init</tt></li>
+<li><tt>exit</tt></li>
+<li><tt>git remote add other-box your_user@some.other.box.com:/home/chrisb/awesome_project</tt></li>
+<li><tt>git push --all other-box</tt></li>
+<li><tt>echo "git push --force --all other-box" > .git/hooks/post-commit && chmod +x .git/hooks/post-commit</tt></li>
+</ol>
+You now will back up your repository on every commit to the other box.  Or, use <a href="http://www.github.com">GitHub</a>!
+
+
+
+</div>
+          <footer class="mb2 text-l">
+            <a rel="full-article" class="no-ul pill" href="/blog/2009/04/28/git-workflow-with-svn.html">Read More…</a>
+          </footer>
+        </section>
+      
+    </article>
+  
+  
+    <article>
+      <header>
+        
+        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2009/03/17/mustbecompliant.html">REST Compliance Officer</a></h1>
+        
+        <h2 class="f6 mtneg">March 17, 2009</h2>
+      </header>
+      
+        <section class="mb1">
+          <div class="excerpt"><p>With regard to <a href="http://www.jroller.com/Solomon/entry/the_road_to_real_rest">this blog on REST compliance</a>
+<p>
+<blockquote>
+<b>Me:</b> The Gliffy API is RESTFul<br />
+<b>REST Compliance Officer:</b> Does a "PUT" update the data at the given URL?<br />
+<b>Me:</b> Yes.<br />
+<b>RCO:</b> Trick Question!  It's "URI".  Is the only way to create a new resource done with a "POST"?<br />
+<b>Me:</b> Yes.<br />
+<b>RCO:</b> Is there exactly one endpoint, from which any and all resource locators are discoverable?<br />
+<b>Me:</b> Um, no, that puts undue burden on the client libraries, and over-complicates what we were trying to accomp....<br />
+<b>RCO:</b> <i>YOU ARE NOT RESTFUL!  READ FIELDING'S DISSERTATION, THE HTTP SPEC AND IMPLEMENT AN RFC-COMPLIANT URI  PARSER IN THREE DIFFERENT LANGUAGES.  NEXT!</i>
+</blockquote>
+</p>
+<p>
+Thank GODS that REST doesn't have a spec.  If it did, it would still be in development.
+</p>
+<hr />
+<p>
+P.S. If you are going to coin a term and you want to <a href="http://roy.gbiv.com/untangled/2008/rest-apis-must-be-hypertext-driven">bitch about it being misused</a>, maybe calling it a "style" isn't the best idea.
+</p>
+
+
+</div>
+          <footer class="mb2 text-l">
+            <a rel="full-article" class="no-ul pill" href="/blog/2009/03/17/mustbecompliant.html">Read More…</a>
+          </footer>
+        </section>
+      
+    </article>
   
   
     <article>
@@ -315,93 +485,6 @@ Specifically, I worked on the folder organization system that they added to repl
 </div>
           <footer class="mb2 text-l">
             <a rel="full-article" class="no-ul pill" href="/blog/2008/12/09/gliffy-updated-their-site.html">Read More…</a>
-          </footer>
-        </section>
-      
-    </article>
-  
-  
-    <article>
-      <header>
-        
-        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2008/12/07/emma-and-testng-for-simple-java-code-coverage.html">EMMA and TestNG for Simple Java Code Coverage</a></h1>
-        
-        <h2 class="f6 mtneg">December 07, 2008</h2>
-      </header>
-      
-        <section class="mb1">
-          <div class="excerpt"><p>
-Although <a href="http://www.naildrivin5.com/daveblog5000/?p=48">RCov makes code coverage in Ruby dead simple</a>, I wasn't sure how easy this would be to achieve with Java.  The first free tool I found is called <a href="http://emma.sourceforge.net/">EMMA</a> and it was surprisingly easy to setup, especially since the documentation isn't geared toward getting coverage during tests (but getting it during execution).
-</p>
-<p>
-EMMA works by instrumenting the classfiles to analyze coverage.  Although it can do just-in-time instrumentation, that didn't seem to work for recording coverage via TestNG.  The offline instrumentation makes is pretty easy to use with anything.  Basically, you want your ANT file to:
-<ol>
-<li>Compile your code</li>
-<li>Use EMMA to instrument your classes to a different directory</li>
-<li>Run your tests, using the instrumented classes <b>first</b> in your classpath</li> and passing a few system properties to your running code</li>
-<li>Run EMMA's report generator on the output</li>
-</ol>
-At first, I was getting some runtime errors because interfaces are not instrumented (and don't show up in the location you tell EMMA to put them).  The solution is to put <b>both</b> your instrumented classes directory and your regular, non-instrumented classes directory in the classpath, making sure the <b>instrumented</b> ones are first.</p>
-<p>
-<a href="http://github.com/davetron5000/importscrubber/tree/master/src/ant/test.xml">Here's my <tt>test.xml</tt></a> I'm using in <a href="https://github.com/davetron5000/importscour/tree">my fork of ImportScrubber</a> that shows it all working together.  All in all, it only took about 15 minutes to set up and debug.  Of course, now, the tests that came with ImportScrubber provide almost <b>no</b> coverage, but that's another story....
-</p>
-
-
-</div>
-          <footer class="mb2 text-l">
-            <a rel="full-article" class="no-ul pill" href="/blog/2008/12/07/emma-and-testng-for-simple-java-code-coverage.html">Read More…</a>
-          </footer>
-        </section>
-      
-    </article>
-  
-  
-    <article>
-      <header>
-        
-        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2008/12/01/i-can-haz-job.html">I can haz job</a></h1>
-        
-        <h2 class="f6 mtneg">December 01, 2008</h2>
-      </header>
-      
-        <section class="mb1">
-          <div class="excerpt"><p>
-So, I am finally employed and I didn't even have to settle.  After a refreshingly protracted and detailed interview process, I'm finally schlepping myself to a job that I'm more or less excited about.  That's saying something, since I've spent the last 8 months at home (6.5 of them working for Gliffy) in my perfect environment: waking up whenever, using my dual-monitor mac, <a href="http://www.flickr.com/photos/davetron5000/tags/rudy">Rudy</a> close by.  My first day was a net win, despite having to bring in my own computer, and overall I'm not complaining because I get to use a Mac at work <B>thank GOD</b>.
-</p>
-<p>
-Pluses so far:
-<ul>
-<li>Smart people I can have a conversation with</li>
-<li>Meaningful product (i.e. not another CRUD app for a government agency [not that there's anything wrong with it])</li>
-<li>Not only have they heard of javadoc, they use it!</li>
-<li>Database migrations!</li>
-<li>Clean looking code and tests that actually pass on a fresh checkout!</li>
-<li>No M$ exchange server or other shitbox mail system (they use Google Apps)</li>
-<li>Damn close to home; I should be biking in real soon</li>
-<li>Relaxed environment</li>
-<li>I'm one person away from a bonafide window with the shades open!</li>
-</ul>
-Honestly, it's almost a 100% on my <a href="http://www.naildrivin5.com/daveblog5000/?p=47">interview rubric</a> (which I took down for a while, because some HR person read it and gave me shit about not liking having a dress code.  I mean, does <b>anyone</b> <b>really</b> like putting on a suit and tie to site and write code?  Or to do anything?  We're talking levels of tolerance, and mine is low, mostly because I believe dress codes indicate a deeper organizational problem of priority management).  
-</p>
-<p>
-Negatives so far:
-<ul>
-<li>Kinda noisy office (fortunately few people seem to have phones)</li>
-<li>Subversion (it looks like they aren't going nuts with branches, so <tt>git-svn</tt> should preserve my sanity in this regard)</li>
-</ul>
-</p>
-<p>
-On the fence so far:
-<ul>
-<li>Maven - The only reason this isn't a negative is that it's better than the pile of shit ant script everyone else uses, and the build <b>does</b> work pretty painlessly.</li>
-<li>Spring - I haven't used Spring for anything real, and I can't say it gets me excited (nor have I ever thought it sounded all that great), but I'm optimistic about it.  I figure if it, in fact, is great, I'm happy. If it sucks, I have fodder for ranting.  It's a win/win.  I <b>do</b> fear the XML situps tho.</li> 
-</ul>
-</p>
-
-
-</div>
-          <footer class="mb2 text-l">
-            <a rel="full-article" class="no-ul pill" href="/blog/2008/12/01/i-can-haz-job.html">Read More…</a>
           </footer>
         </section>
       

@@ -30,13 +30,10 @@
     
       
         
-        Imports considered annoying and pointless
+        Distributed version control with Git for code quality and team organization
         
-        December 01, 2007
-      
-      
-        
-        ...">
+        April 15, 2008
+...">
   
 
   
@@ -67,6 +64,132 @@
     <section>
       <div class="blog-index">
   
+  
+  
+    <article>
+      <header>
+        
+        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2008/04/15/distributed-version-control-with-git-for-code-quality-and-team-organization.html">Distributed version control with Git for code quality and team organization</a></h1>
+        
+        <h2 class="f6 mtneg">April 15, 2008</h2>
+      </header>
+      
+        <section class="mb1">
+          <div class="excerpt">In <a href="http://www.naildrivin5.com/daveblog5000/?p=31">my previous post</a>, I outlined a code review process I've been using with reasonably effectiveness.  It's supported, in my case, by <a href="http://git.or.cz">the Git</a> source code management tool (most known for it's use in managing the Linux kernel).  Git or, more generally, distributed development, can encourage some good quality control procedures in teams working on enterprise software.  The lessons learned from the open source world (and the Linux kernel, in particular) can be applied outside the world of OSS and to the consultant-heavy world of enterprise/in-house software development.
+
+The project I've been working on for the past several months has undergone what I believe to be a common change on in-house/enterprise software, which is that several new developers are being added to the project.  Outside of the learning curve required with any new system, many of them are not seasoned Java developers, or are otherwise missing experience in some key technologies in use.   While <a href="http://www.naildrivin5.com/daveblog5000/?p=31">code reviews</a> are a great way to ensure these developers are doing things the right way, there is still concern that their ability to commit to source control could be problematic for the entire team.
+
+Consider a developer breaking the build, or incorrectly refactoring a key piece of shared code.  A review of their commit and some continuous integration can help identify these problems, but, once identified, they must be removed from the codebase.  In the meantime, the development team could be stuck with an unusable build.  This can lead to two bad practices:
+<ul>
+<li>Commit very rarely</li>
+<li>Get new changes from the repository only when absolutely  needed</li>
+</ul>
+These "anti-practices" result in unreadable commit logs, difficult (or skipped) code reviews, duplication of code, and a general discoherence of the system.  This is primarily due to the way most common version control systems work. 
+
+In reserved-checkout systems (e.g. PVCS, StarTeam) <strong>and</strong> concurrent systems (CVS, Subversion), there is the concept of the <b>one true repository of code</b> that is a bottleneck for all code on the project.  The only way Aaron can use Bill's code is for Bill to commit it to the repository and for Aaron to check it out (along with anything else committed since the last time he did so).  The only way Carl can effectively review Dan's code, or for the automated build to run his test cases, is to checkout code from the repository and examine/run it.  <b>This</b> reality often leads to situations where each developer is operating on his own branch.  The problem here is that CVS and Subversion suck at merging.  This makes the branching solution effectively useless.
+
+Enter Git.  With Git, there is no central repository.  Each developer is on his own branch (or his own copy of someone's branch) and can commit to their heart's content, whenever <b>they</b> feel they have reached a commit point.  Their changes will <b>never</b> be forced upon the rest of the team.  So, how does the code get integrated?
+
+Developer's submit their code to the team lead/integrator (who is the ultimate authority on what code goes to QA/production/the customer), who then reviews it and either accepts or rejects it.  If code is rejected, the team lead works with the developer to get it accepted (either via a simple email of the issues, or more in-depth mentoring as needed).  Git makes this painless and fast, because it handles merging so well.
+
+Consider how effective this is, especially when managing a large (greater than, say, five) team of developers working concurrently.  The only code that gets into the production build will have been vetted through the team lead; he is responsible for physically applying each developer's patches (an action that takes a few minutes or even seconds in Git).  Further, developers get instant feedback on their code quality.  In most cases, bad commits are the result of ignorance and lack of experience.  A code review, with instant feedback, is a great way to address both of those issues, resulting in a better developer and a better team, based on open, honest, and immediate communication.
+
+Here's how to set this up:
+<ol>
+<li><b>Assign a team lead to integrate the code</b> - this is a senior <i>developers</i> who can assess code quality, provide mentoring and guidance and can be trusted to put code into the repository destined for QA and production</li>
+<li><b>Each developer clones the team lead's repository</b> - This is done to baseline the start of their work</li>
+<li><b>Developers commit, branch, merge, and pull as necessary</b> - Since Git makes merging simple, developer's can have full use of all features of version control and can do so in their environment without the possibility of polluting the main line of development.  They can also share code amongst themselves, as well as get updates from the team lead's repository of "blessed" code<sup><a href="#1">1</a></sup></li>
+<li><b>Developer's inform the lead of completion</b></li>
+<li><b>Lead pulls from their repository</b> - The lead reviews the developer's changes and applies the patch to his repository.  He can then exercise whatever quality control mechanisms he wishes, including automated tests, manual tests, reviews, etc<sup><a href="#2">2</a></sup>.
+<li><b>Lead rejects patches he doesn't agree with</b> - If the patch is wrong, buggy, or just not appropriate in some way, the lead rejects the patch and provides the developer with information on the correct approach</li>
+<li><B>Lead accepts patches he does agree with</b> - If the lead agrees with the patch, he applies it to his repository, where it is now cleared for QA</li>
+</ol>
+
+This may seem convoluted, but it actually carries little overhead compared to a junior developer performing a "nuclear bomb" commit that must then be rolled back.  For much larger teams, the approach can be layered, with the primary team lead accepting patches only from lieutenants, who accept patches from the primary developers.
+
+Unlike a lot of hand-wavy processes and practices, this model has been demonstrated effective on virtually <b>every open source project</b>.  Even though the Linux kernel is one of the few to use technology to support this process (Git), every other large OSS project has the concept of "committers" who are the people allowed to actually commit.  Anyone else wishing to contribute must submit patches to a committer, who then reviews and approves of their patch (or not).
+
+I belive this would be highly effective in a professional environment developing in-house or enterprise software (especially given the typical love of process in those environments; <b>this</b> process might actually help!).  I have been on at least three such projects where it would've been an enormous boon to quality (not to mention that the natural mentoring and feedback built into the process would've been hugely helpful for the more junior developers).
+
+<hr />
+<a name="1"><b>1</b></a> <i>Git even allows a developer to merge certain <b>commits</b> from one branch to another.  Suppose Frank is working on a large feature, and happens to notice a bug in common code.  He can address that bug and commit it.  Gary can then merge only that commit into his codebase to get the bugfix, without having to also take all of Frank's in-progress work on the large feature.  Good luck doing that with StarTeam.</i><br />
+<a name="2"><b>2</b></a> <i> A CI system could be set up in a variety of ways:  it could run only against the lead's "blessed" repository, or it could run against an intermediate repository created by the lead (who then blesses patches that pass), or it could be totally on its own and allow developers to submit against it prior to submitting to the lead.
+</i>
+
+
+</div>
+          <footer class="mb2 text-l">
+            <a rel="full-article" class="no-ul pill" href="/blog/2008/04/15/distributed-version-control-with-git-for-code-quality-and-team-organization.html">Read More…</a>
+          </footer>
+        </section>
+      
+    </article>
+  
+  
+    <article>
+      <header>
+        
+        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2008/04/03/quick-and-dirty-code-reviews-check-commit-logs.html">Quick and Dirty Code Reviews: Check commit logs</a></h1>
+        
+        <h2 class="f6 mtneg">April 03, 2008</h2>
+      </header>
+      
+        <section class="mb1">
+          <div class="excerpt"><blockquote><pre>             Large maintenance 
++          aggressive schedule 
++       lots of new developers 
++ minimal system documentation
+______________________________
+ Need for highly efficient and 
+       effective QA procedures</pre></blockquote>
+
+Where I've been working for the past few months, we've been under the gun to meet an aggressive deadline.  As management is want to do, they've added several new developers to the project.  One of the many reasons why adding developers is ultimately a bad thing is that, in addition to the complexity in communication, there is a risk of innocent well-developed code being added to the codebase that is Just Plain Wrong.  Our system has been in development for many years and contains a wide variety of coding styles, implementation patterns and idioms.  Some of them should Never Be Followed Again, and some are the Correct Way of Doing Things.   There's really no easy way for a new developer to know what is what.
+
+Now, outside of going back in time, creating pedantic test cases, gathering requirements and incessantly refactoring, we need an option to make sure bad code doesn't get into the codebase.  By "bad" I don't mean poorly written or buggy code, I mean code that does not fit into the system as a whole.  For example, a developer was writing some code to generate printable reports.  His implementation resulted in a very nice report popping up in a Swing window in our application (our application is a Swing front-end to a JEE back-end).  It was very well-implemented and looked great.  However, everywhere else in the application, reports are generated by writing a PDF to disk and asking Windows (via JDIC) to "view" the file.  This is the code I'm talking about.
+
+<h3>Finding bad code</h3>
+At the start of the project, we went through the arduous process of identifying each bit of work in an MS-Project file and assigning developers to it.  New developers were given tasks that didn't touch core components, while experienced developers got tasks involving major refacotrings or database changes.  Our project lead suggested that each module undergo a code review.  It sounds reasonable, however all of us let out a collective groan at the thought of wrangling together 3-4 developers once a week for an hour or two to go over printouts or screenfulls of code, much of which was simply being modified.
+
+One of the senior developers proposed the solution we ultimately went with: senior developers get emailed the diffs of all commits and make sure to spend some time reading and reviewing those commits.  Coupled with our policy of "commit early, commit often", this has worked out great.
+
+<h3>Diff-based code review</h3>
+
+Here's what you need:
+
+<ul>
+<li>A concurrent version control system developers trust.  Recommed <a href="http://git.or.cs">Git</a> or <a href="http://subversion.tigris.org">Subversion</a> if you must.</li>
+<li>A simple script to email diffs on <b>every</b> commit.  Usually included as an example hook for must version control systems.</li>
+<li>IM clients (Google talk within GMail works in even the most oppressive environment)</li>
+<li>A sane version control policy: committed code must:
+    <ul>
+    <li>Compile</li>
+    <li>Not prevent application deployment/startup</li>
+    <li>Not horribly break someone else's code (optional)</li>
+    </ul>
+    Developers should commit as frequently as they want (and preferably frequently).  I typically commit code I feel is "done" but that might not add up to an actual feature.  This requires accepting that <b>head is not a real verison</b>.  Most real version control systems have the ability to tag, branch, etc.  These features are for "real working versions".  The head of the trunk is not.</li>
+<li>A sane coding style policy: if you must re-indent or change bracing style, do it in its own commit, outside of actual code changes.  Better yet, don't do it at all.  Formatting changes can obscure the history of a piece of code and should be made minimally, if at all. </li>
+</ul>
+
+The "process" (if you want to even call it that) is:
+
+<ol>
+<li>Diffs get emailed to the senior developers as soon as they happen</li>
+<li>Senior Developers read the diffs, using IM to discuss any issues</li>
+<li>If code does have issues, the diff is forwarded to the developer who committed, with comments on what to change and why (senior developers decide amongst themselves who will send the feedback, or a "lead developer" can, if one is identified)</li>
+</ol>
+
+Part of this requires some level of diplomacy, however a plain, to-the-point email on what the issues are with a piece of code, why the changes should be made, and a suggestion on how to make them should be digestible by anyone.
+
+I've had great success with this, having caught a wide variety of problems (even in my code, by others) without having to have <b>one</b> meeting or to print out <b>one</b> sheet of code.  The fact is, on a maintenance project, you aren't reviewing the codebase, but <b>changes</b> to that codebase.  Diffs are the way to understand what changes are being made.
+
+
+</div>
+          <footer class="mb2 text-l">
+            <a rel="full-article" class="no-ul pill" href="/blog/2008/04/03/quick-and-dirty-code-reviews-check-commit-logs.html">Read More…</a>
+          </footer>
+        </section>
+      
+    </article>
   
   
     <article>

@@ -4,7 +4,7 @@
   <title><![CDATA[naildrivin5.com - David Bryant Copeland's Website]]></title>
   <link href="http://naildrivin5.com/atom.xml" rel="self"/>
   <link href="http://naildrivin5.com/"/>
-  <updated>2015-11-04T07:31:03-05:00</updated>
+  <updated>2015-11-05T07:49:47-05:00</updated>
   <id>http://naildrivin5.com/</id>
   <author>
     <name><![CDATA[David Bryant Copeland]]></name>
@@ -13,17 +13,53 @@
 
   
   <entry>
-    <title type="html"><![CDATA[My New Book]]></title>
+    <title type="html"><![CDATA[Embrace the Full Stack]]></title>
+    
+    <link href="http://theprosegarden.com/contents-of-recent-issues/#11-15"/>
+    
+    <updated>2015-11-05T00:00:00-05:00</updated>
+    <id>http://naildrivin5.com/blog/2015/11/05/embrace-the-stack</id>
+    <content type="html"><![CDATA[<p>The latest edition of <a href="http://theprosegarden.com/store/">PragPub</a> is out, featuring an article I wrote on embracing the full stack.  This is more of a motivator for why
+you should be more well-rounded as a developer (which then should motivate you to <a href="https://pragprog.com/book/dcbang/rails-angular-postgres-and-bootstrap">buy my new book</a> :).  I cover things from grid-based design to database indexes.</p>
+
+<blockquote>
+<p>This may seem like an immense amount of learning and work, but it hopefully feels more achievable now.  You could get a cursory understanding of these topics in a week.  What happens when you do is that you start to take a more holistic view of your application and of how to build features.</p>
+</blockquote>
+
+<p>Pick up your copy <a href="http://theprosegarden.com/contents-of-recent-issues/#11-15">here</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Simple Rails Apis With Stitches]]></title>
     
     <link href="http://multithreaded.stitchfix.com/blog/2015/11/04/simple-rails-apis-with-stitches/"/>
     
-    <updated>2015-07-29T10:56:00-04:00</updated>
-    <id>http://naildrivin5.com/blog/2015/07/29/my-new-book</id>
+    <updated>2015-11-04T10:56:00-05:00</updated>
+    <id>http://naildrivin5.com/blog/2015/11/04/rails-apis-with-stitches</id>
     <content type="html"><![CDATA[<p>New post on the <a href="http://multithreaded.stitchfix.com/blog">Stitch Fix Tech Blog</a> about how we create Rails-based HTTP APIs using a simple gem called <a href="https://github.com/stitchfix/stitches">stitches</a>:</p>
 
 <blockquote>
 <p>With this set of conventions, it was important that developers not feel these were optional features they could leave out to cut corners, so it seemed logical to make it as painless as possible to follow them. The result is stitches, which works as a generator and backing library. It&#39;s not an engine or a DSL or anything complex. It&#39;s just a bit of Rails configuration, designed to be explicit and obvious.</p>
 </blockquote>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[My New Book]]></title>
+    
+    <link href="https://pragprog.com/book/dcbang/rails-angular-postgres-and-bootstrap"/>
+    
+    <updated>2015-07-29T10:56:00-04:00</updated>
+    <id>http://naildrivin5.com/blog/2015/07/29/my-new-book</id>
+    <content type="html"><![CDATA[<p>My new Book, <a href="https://pragprog.com/book/dcbang/rails-angular-postgres-and-bootstrap">Rails, Angular, Postgres, and Bootstrap: Powerful, Effective, and Efficient Full-Stack Web Development</a> is in beta:</p>
+
+<blockquote>
+<p>As a Rails developer, you care about user experience and performance, but you also want simple and maintainable code. Achieve all that by embracing the full stack of web development, from styling with Twitter Bootstrap, building an interactive user interface with AngularJS, to storing data quickly and reliably in PostgreSQL. Take a holistic view of full-stack development to create usable, high-performing applications, and learn to use these technologies effectively in a Ruby on Rails environment.</p>
+</blockquote>
+
+<p>I&#39;ve been working on this for quite a while, and pretty excited about it.  If you want to <em>really</em> level
+up your abilities as a Rails developer, this is the book for you.</p>
 ]]></content>
   </entry>
   
@@ -433,292 +469,6 @@ a great user experience.  It seems logical that Rails would want to continue to 
 <sup>3</sup>This isn't <strong>entirely</strong> true, as shit like HAML exists.  You all know we could've gotten to the moon five years earlier if we hadn't been arguing about HAML, right?<a href='#back-3'>↩</a>
 </li>
 </ol></footer>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[What Makes Code Hard to Understand?]]></title>
-    
-    <link href="http://arxiv.org/pdf/1304.5257.pdf"/>
-    
-    <updated>2014-07-13T14:33:00-04:00</updated>
-    <id>http://naildrivin5.com/blog/2014/07/13/what-makes-code-hard-to-understand</id>
-    <content type="html"><![CDATA[<p><a href="http://twitter.com/garybernhardt">@garybernhardt</a> linked to a short academic paper on code readability, called <a href="http://arxiv.org/pdf/1304.5257.pdf">&quot;What Makes Code Hard to Understand?&quot;</a>.  It&#39;s a quick read that details an experiment where researchers showed severals versions of the same program to a bunch of programmers and asked them to guess the output.  Each version had the same <a href="http://en.wikipedia.org/wiki/Cyclomatic_complexity">cyclomatic complexity</a> and lines of code, but differed only in formatting, variable naming, and use of types.</p>
-
-<p>Choice quote:</p>
-
-<blockquote>
-<p>The physical aspects of notation, often considered superficial, can have a profound impact on performance [of programmers to understand what code will
-do]</p>
-</blockquote>
-
-<p>In particular, in a program that relied on order of operations, two versions were given, one in which one space was used around operators (<code>zigzag</code>) and
-another where the operators were all vertically aligned (<code>linedup</code>):</p>
-
-<blockquote>
-<p>Programmers were more likely to respect the order of mathematical operations in the <code>linedup</code> version of <code>whitespace</code>, showing how horizontal space can emphasize the common structure between related calculations.</p>
-</blockquote>
-
-<p>Also, they presented three versions of code to calculate the area of a rectangle, using free variables, tuples, and a <code>Rectangle</code> class:</p>
-
-<blockquote>
-<p>Programmers took longer to respond to the <code>tuples</code> version of <code>rectangle</code> despite it having fewer lines than the <code>class</code> version. It is not uncommon in Python to use tuples for (x, y) coordinates, but the syntactic &quot;noise&quot; that is present in the tuples version for variable names (e.g., <code>r1_xy_1</code>) and calculations (e.g., <code>width = xy_2[0] - xy_1[0]</code>) likely gave programmers pause when verifying the code&#39;s operation.</p>
-</blockquote>
-
-<p>This was not something that was initially obvious to me as I learned programming, but I have come to realize the importance of typography in writing
-  code.  From <a href="http://www.naildrivin5.com/blog/2013/05/17/source-code-typography.html">my post</a> on the subject over a year ago:</p>
-
-<blockquote>
-<p>But, it&#39;s not just the content - the code itself - that affects readability. How it&#39;s presented matters and if we&#39;re going to talk about presentation, we have to talk about typography.</p>
-</blockquote>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[The Complexity of Object-Oriented Design]]></title>
-    
-    <link href="http://naildrivin5.com/blog/2014/07/11/the-complexity-of-object-oriented-design.html"/>
-    
-    <updated>2014-07-11T09:17:00-04:00</updated>
-    <id>http://naildrivin5.com/blog/2014/07/11/the-complexity-of-object-oriented-design</id>
-    <content type="html"><![CDATA[<p>I can&#39;t say what a codebase designed to Alan Kay&#39;s idea of &quot;object-oriented&quot; might look like.
-I <em>can</em> say what your average developer (including myself) actually creates using object-oriented languages, tools, and techniques.
-The result is a constant battle to tame complexity.
-I&#39;m going to lay out one source of that complexity, because it&#39;s baked-in to object-orientation, and I debate that it provides any utility in making programs easy to understand or change.</p>
-
-<!-- more -->
-
-<p>Consider a procedural language in which no global symbols are possible:</p>
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">salutation</span><span class="p">(</span><span class="n">first_name</span><span class="p">,</span><span class="n">last_name</span><span class="p">)</span>
-  <span class="k">if</span> <span class="n">first_name</span> <span class="o">!=</span> <span class="kp">nil</span>
-    <span class="s2">&quot;Hey </span><span class="si">#{</span><span class="n">first_name</span><span class="si">}</span><span class="s2">!&quot;</span>
-  <span class="k">else</span>
-    <span class="s2">&quot;Hello, </span><span class="si">#{</span><span class="n">last_name</span><span class="si">}</span><span class="s2">&quot;</span>
-  <span class="k">end</span>
-<span class="k">end</span>
-
-<span class="n">salutation</span><span class="p">(</span><span class="s2">&quot;Dave&quot;</span><span class="p">,</span><span class="s2">&quot;Copeland&quot;</span><span class="p">)</span> <span class="c1"># =&gt; Hey Dave</span>
-<span class="n">salutation</span><span class="p">(</span><span class="kp">nil</span><span class="p">,</span><span class="s2">&quot;Jones&quot;</span><span class="p">)</span>       <span class="c1"># =&gt; Hello, Jones</span>
-</code></pre></div>
-<p>Because there are no global symbols, we can easily (and totally) understand this routine.
-Everything it requires to do its job is passed as parameter, and every affect it has is part of its return value.</p>
-
-<p>Such a language would be unusable at any real complexity, because we could not decompose logic into smaller re-usable routines.
-Consider if we are creating a message for someone:</p>
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">create_message</span><span class="p">(</span><span class="n">first_name</span><span class="p">,</span><span class="n">last_name</span><span class="p">,</span><span class="n">message</span><span class="p">,</span><span class="n">from</span><span class="p">)</span>
-  <span class="n">salutation</span> <span class="o">=</span> <span class="k">if</span> <span class="n">first_name</span> <span class="o">!=</span> <span class="kp">nil</span>
-                 <span class="s2">&quot;Hey </span><span class="si">#{</span><span class="n">first_name</span><span class="si">}</span><span class="s2">!&quot;</span>
-               <span class="k">else</span>
-                 <span class="s2">&quot;Hello, </span><span class="si">#{</span><span class="n">last_name</span><span class="si">}</span><span class="s2">&quot;</span>
-               <span class="k">end</span>
-  <span class="sx">%{</span>
-<span class="si">#{</span><span class="n">salutation</span><span class="si">}</span><span class="sx">,</span>
-
-<span class="si">#{</span><span class="n">message</span><span class="si">}</span><span class="sx"></span>
-
-<span class="sx">           Sincerely,</span>
-
-<span class="sx">           </span><span class="si">#{</span><span class="n">from</span><span class="si">}</span><span class="sx"></span>
-<span class="sx">}</span>
-<span class="k">end</span>
-</code></pre></div>
-<p>This routine, like <code>salutation</code>, is still simple to understand.
-Everything it needs to do its job is passed as a parameter and its entire affect is described in its return value.</p>
-
-<p>But, since we don&#39;t have global symbols (or any other obvious way to share logic), we&#39;ve had to duplicate <code>salutation</code>.
-Although our hypothetical language encourages simple design, it&#39;s not usable in its current state.</p>
-
-<p>If we could wrap up the salutation logic, along with the data it needed, into a single package, that could allow re-use.</p>
-
-<h2>Objects: Data &amp; Functionality?</h2>
-
-<p>In an object-oriented language, we have the ability to associate functionality with data, so we might logically have the <code>first_name</code> and <code>last_name</code> in some sort of object, and that object will implement the <code>salutation</code> method.</p>
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Person</span>
-  <span class="k">def</span> <span class="nf">salutation</span>
-    <span class="k">if</span> <span class="n">first_name</span> <span class="o">!=</span> <span class="kp">nil</span>
-      <span class="s2">&quot;Hey </span><span class="si">#{</span><span class="n">first_name</span><span class="si">}</span><span class="s2">!&quot;</span>
-    <span class="k">else</span>
-      <span class="s2">&quot;Hello, </span><span class="si">#{</span><span class="n">last_name</span><span class="si">}</span><span class="s2">&quot;</span>
-    <span class="k">end</span>
-  <span class="k">end</span>
-<span class="k">end</span>
-</code></pre></div>
-<p>Now, our <code>create_message</code> doesn&#39;t need to reproduce the <code>salutation</code> logic, but can use it from the new <code>person</code> object:</p>
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">create_message</span><span class="p">(</span><span class="n">person</span><span class="p">,</span><span class="n">message</span><span class="p">,</span><span class="n">from</span><span class="p">)</span>
-  <span class="sx">%{</span>
-<span class="si">#{</span><span class="n">person</span><span class="o">.</span><span class="n">salutation</span><span class="si">}</span><span class="sx">,</span>
-
-<span class="si">#{</span><span class="n">message</span><span class="si">}</span><span class="sx"></span>
-
-<span class="sx">           Sincerely,</span>
-
-<span class="sx">           </span><span class="si">#{</span><span class="n">from</span><span class="si">}</span><span class="sx"></span>
-<span class="sx">}</span>
-<span class="k">end</span>
-</code></pre></div>
-<p>This seems good, right?  We still don&#39;t need global symbols, and we&#39;ve found a way to encapsulate and re-use logic.</p>
-
-<h2>Why are global symbols bad?</h2>
-
-<p>Suppose that instead of creating objects, we had the ability to define a global symbol.
-We could re-use <code>salutation</code> by making in global, meaning that <code>create_message</code> could be implemented as follows:</p>
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">create_message</span><span class="p">(</span><span class="n">first_name</span><span class="p">,</span><span class="n">last_name</span><span class="p">,</span><span class="n">message</span><span class="p">,</span><span class="n">from</span><span class="p">)</span>
-  <span class="sx">%{</span>
-<span class="si">#{</span><span class="n">salutation</span><span class="p">(</span><span class="n">first_name</span><span class="p">,</span><span class="n">last_name</span><span class="si">}</span><span class="sx">,</span>
-
-<span class="si">#{</span><span class="n">message</span><span class="si">}</span><span class="sx"></span>
-
-<span class="sx">           Sincerely,</span>
-
-<span class="sx">           </span><span class="si">#{</span><span class="n">from</span><span class="si">}</span><span class="sx"></span>
-<span class="sx">}</span>
-<span class="k">end</span>
-</code></pre></div>
-<p>We&#39;ve successfully re-used <code>salutation</code>, but look at how complex <code>create_message</code> has become!  Before, <strong>all</strong> input to <code>create_message</code> was in its parameter list.
-<em>Now</em>, its inputs are the parameter list and <strong>every global symbol</strong>.</p>
-
-<p>Consider how we might send a message:</p>
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">send_message</span><span class="p">(</span><span class="n">email_addresses</span><span class="p">,</span><span class="n">message</span><span class="p">)</span>
-  <span class="k">for</span> <span class="n">email_address</span> <span class="k">in</span> <span class="n">email_addresses</span>
-    <span class="n">email</span><span class="p">(</span><span class="n">email_address</span><span class="p">,</span><span class="n">message</span><span class="p">)</span>
-  <span class="k">end</span>
-<span class="k">end</span>
-</code></pre></div>
-<p>In addition to having all global state as its input, <code>send_message</code>&#39;s <em>output</em> is also anything available in global state.
-<code>send_message</code> returns nothing, but has an affect on the outside world nontheless.</p>
-
-<p>All this means that any routine that has access to a shared global state is going to be more complex than one that doesn&#39;t, and that, without discipline, a program making use of shared global state will be harder to understand, test, and modify.</p>
-
-<p>This gives us a new insight into our object-oriented solution.  Although <code>send_message</code> retained its simplicity, we&#39;ve actually created a miniature global state in our <code>Person</code> class.</p>
-
-<h2>Objects Are Their Own Shared Global State</h2>
-
-<p>Our <code>Person</code> class from above omitted a few details, namely where <code>first_name</code> and <code>last_name</code> came from.
-In most OO languages, you&#39;d assume they are instance variables, so let&#39;s add a bit more code to make this a Ruby class.</p>
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Person</span>
-  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">first_name</span><span class="p">,</span><span class="n">last_name</span><span class="p">)</span>
-    <span class="vi">@first_name</span> <span class="o">=</span> <span class="n">first_name</span>
-    <span class="vi">@last_name</span>  <span class="o">=</span> <span class="n">last_name</span>
-  <span class="k">end</span>
-
-  <span class="k">def</span> <span class="nf">salutation</span>
-    <span class="k">if</span> <span class="vi">@first_name</span> <span class="o">!=</span> <span class="kp">nil</span>
-      <span class="s2">&quot;Hey </span><span class="si">#{</span><span class="vi">@first_name</span><span class="si">}</span><span class="s2">!&quot;</span>
-    <span class="k">else</span>
-      <span class="s2">&quot;Hello, </span><span class="si">#{</span><span class="vi">@last_name</span><span class="si">}</span><span class="s2">&quot;</span>
-    <span class="k">end</span>
-  <span class="k">end</span>
-<span class="k">end</span>
-</code></pre></div>
-<p>This is now a working Ruby implementation of our <code>Person</code> class.
-Look again at <code>salutation</code>.
-What are its inputs?
-It takes no parameters, but is freely able to reference instance variables.
-So, its inputs are <strong>every instance variable of the object</strong>.
-Currently, there are only two, but it&#39;s entirely possible, and likely, that we&#39;ll have objects with many more instance variables, and more functionality.</p>
-
-<p>Let&#39;s add the ability to change a person&#39;s name, which is a reasonable operation to provide (I&#39;m showing the entire class instead just of the changes):</p>
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Person</span>
-  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">first_name</span><span class="p">,</span><span class="n">last_name</span><span class="p">)</span>
-    <span class="vi">@first_name</span> <span class="o">=</span> <span class="n">first_name</span>
-    <span class="vi">@last_name</span>  <span class="o">=</span> <span class="n">last_name</span>
-  <span class="k">end</span>
-
-  <span class="k">def</span> <span class="nf">salutation</span>
-    <span class="k">if</span> <span class="vi">@first_name</span> <span class="o">!=</span> <span class="kp">nil</span>
-      <span class="s2">&quot;Hey </span><span class="si">#{</span><span class="vi">@first_name</span><span class="si">}</span><span class="s2">!&quot;</span>
-    <span class="k">else</span>
-      <span class="s2">&quot;Hello, </span><span class="si">#{</span><span class="vi">@last_name</span><span class="si">}</span><span class="s2">&quot;</span>
-    <span class="k">end</span>
-  <span class="k">end</span>
-
-  <span class="k">def</span> <span class="nf">first_name</span><span class="o">=</span><span class="p">(</span><span class="n">new_first_name</span><span class="p">)</span>
-    <span class="vi">@first_name</span> <span class="o">=</span> <span class="n">new_first_name</span>
-  <span class="k">end</span>
-
-  <span class="k">def</span> <span class="nf">last_name</span><span class="o">=</span><span class="p">(</span><span class="n">new_last_name</span><span class="p">)</span>
-    <span class="vi">@last_name</span> <span class="o">=</span> <span class="n">new_last_name</span>
-  <span class="k">end</span>
-<span class="k">end</span>
-</code></pre></div>
-<p><code>first_name=</code> and <code>last_name=</code> take a parameter, but they don&#39;t return a (useful) value.
-The point of those methods is to change the internal state of the object, meaning that their affects are <em>not</em> part of their return value.</p>
-
-<p>This is the same problem we had with global variables!
-Certainly, instance variables, due to their natural proximity to the code that can access them, create <em>less</em> of a mess, but they still create the same type of complexity.</p>
-
-<p>Now add inheritance and mixins to your toolbelt, and you have <em>even more</em> inputs and outputs to each routine.</p>
-
-<p>This means that object-oriented designs encourage the creation of routines that have multiple, implicit inputs and have multiple, implicit outputs.
-Object-oriented design, by its very nature, encourages writing complex routines.</p>
-
-<p>To combat this complexity, we have had to develop a lot of &quot;rules&quot;, &quot;laws&quot;, and &quot;principles&quot;, and their application is a source of constant debate.
-Even for someone with years of experience, it can be difficult to know how to best-factor an object-oriented codebase.</p>
-
-<p>Let&#39;s go back to the problem we were originally trying to solve.</p>
-
-<h2>Remove All Implicit State</h2>
-
-<p>I&#39;ve been using &quot;global&quot; a lot, but what we really mean is &quot;implicit&quot;.
-It&#39;s the ability of a routine to access symbols outside its scope that is the source of complexity here.
-So let&#39;s go back to our original routines and see how else we could solve the problem of sharing code, but without introducing implicit state.</p>
-
-<p>Here are the two routines again:</p>
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">salutation</span><span class="p">(</span><span class="n">first_name</span><span class="p">,</span><span class="n">last_name</span><span class="p">)</span>
-  <span class="k">if</span> <span class="n">first_name</span> <span class="o">!=</span> <span class="kp">nil</span>
-    <span class="s2">&quot;Hey </span><span class="si">#{</span><span class="n">first_name</span><span class="si">}</span><span class="s2">!&quot;</span>
-  <span class="k">else</span>
-    <span class="s2">&quot;Hello, </span><span class="si">#{</span><span class="n">last_name</span><span class="si">}</span><span class="s2">&quot;</span>
-  <span class="k">end</span>
-<span class="k">end</span>
-
-<span class="k">def</span> <span class="nf">create_message</span><span class="p">(</span><span class="n">first_name</span><span class="p">,</span><span class="n">last_name</span><span class="p">,</span><span class="n">message</span><span class="p">,</span><span class="n">from</span><span class="p">)</span>
-  <span class="n">salutation</span> <span class="o">=</span> <span class="k">if</span> <span class="n">first_name</span> <span class="o">!=</span> <span class="kp">nil</span>
-                 <span class="s2">&quot;Hey </span><span class="si">#{</span><span class="n">first_name</span><span class="si">}</span><span class="s2">!&quot;</span>
-               <span class="k">else</span>
-                 <span class="s2">&quot;Hello, </span><span class="si">#{</span><span class="n">last_name</span><span class="si">}</span><span class="s2">&quot;</span>
-               <span class="k">end</span>
-  <span class="sx">%{</span>
-<span class="si">#{</span><span class="n">salutation</span><span class="si">}</span><span class="sx">,</span>
-
-<span class="si">#{</span><span class="n">message</span><span class="si">}</span><span class="sx"></span>
-
-<span class="sx">           Sincerely,</span>
-
-<span class="sx">           </span><span class="si">#{</span><span class="n">from</span><span class="si">}</span><span class="sx"></span>
-<span class="sx">}</span>
-<span class="k">end</span>
-</code></pre></div>
-<p>Clearly, <code>create_message</code> needs to access the logic in <code>salutation</code>, so let&#39;s allow that.
-I&#39;ll do this using valid Ruby syntax, where <code>&amp;foo</code> as a parameter denotes a passed function and <code>&amp;method(:foo)</code> turns a function into a passable function.</p>
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">salutation</span><span class="p">(</span><span class="n">first_name</span><span class="p">,</span><span class="n">last_name</span><span class="p">)</span>
-  <span class="k">if</span> <span class="n">first_name</span> <span class="o">!=</span> <span class="kp">nil</span>
-    <span class="s2">&quot;Hey </span><span class="si">#{</span><span class="n">first_name</span><span class="si">}</span><span class="s2">!&quot;</span>
-  <span class="k">else</span>
-    <span class="s2">&quot;Hello, </span><span class="si">#{</span><span class="n">last_name</span><span class="si">}</span><span class="s2">&quot;</span>
-  <span class="k">end</span>
-<span class="k">end</span>
-
-<span class="k">def</span> <span class="nf">create_message</span><span class="p">(</span><span class="n">first_name</span><span class="p">,</span><span class="n">last_name</span><span class="p">,</span><span class="n">message</span><span class="p">,</span><span class="n">from</span><span class="p">,</span><span class="o">&amp;</span><span class="n">salutation</span><span class="p">)</span>
-  <span class="sx">%{</span>
-<span class="si">#{</span><span class="n">salutation</span><span class="o">.</span><span class="p">(</span><span class="n">first_name</span><span class="p">,</span><span class="n">last_name</span><span class="si">}</span><span class="sx">,</span>
-
-<span class="si">#{</span><span class="n">message</span><span class="si">}</span><span class="sx"></span>
-
-<span class="sx">           Sincerely,</span>
-
-<span class="sx">           </span><span class="si">#{</span><span class="n">from</span><span class="si">}</span><span class="sx"></span>
-<span class="sx">}</span>
-<span class="k">end</span>
-
-<span class="n">create_message</span><span class="p">(</span><span class="s2">&quot;Dave&quot;</span><span class="p">,</span><span class="s2">&quot;Copeland&quot;</span><span class="p">,</span><span class="s2">&quot;Nice blog post!&quot;</span><span class="p">,</span><span class="s2">&quot;Yourself&quot;</span><span class="p">,</span><span class="nb">method</span><span class="p">(</span><span class="o">&amp;</span><span class="n">salutation</span><span class="p">))</span>
-</code></pre></div>
-<p>Now, we&#39;ve re-used our logic, and all the routines in question still maintain a single source of input and a single destination for output.
-<code>create_message</code> has gotten slightly more complex, due to the additional parameter, but it&#39;s also lost complexity due to being able to re-use <code>salutation</code>.</p>
-
-<p>Can we build an entire system like this?
-The functional programmers say we can (and they have certainly proved this).
-Might be something to think about.</p>
 ]]></content>
   </entry>
   

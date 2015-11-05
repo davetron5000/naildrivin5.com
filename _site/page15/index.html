@@ -30,14 +30,13 @@
     
       
         
-        Ruby's awesomely dangerous awesomeness
+        EMMA and TestNG for Simple Java Code Coverage
         
-        October 31, 2008
+        December 07, 2008
       
       
         
-          
-...">
+    ...">
   
 
   
@@ -68,6 +67,93 @@
     <section>
       <div class="blog-index">
   
+  
+  
+    <article>
+      <header>
+        
+        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2008/12/07/emma-and-testng-for-simple-java-code-coverage.html">EMMA and TestNG for Simple Java Code Coverage</a></h1>
+        
+        <h2 class="f6 mtneg">December 07, 2008</h2>
+      </header>
+      
+        <section class="mb1">
+          <div class="excerpt"><p>
+Although <a href="http://www.naildrivin5.com/daveblog5000/?p=48">RCov makes code coverage in Ruby dead simple</a>, I wasn't sure how easy this would be to achieve with Java.  The first free tool I found is called <a href="http://emma.sourceforge.net/">EMMA</a> and it was surprisingly easy to setup, especially since the documentation isn't geared toward getting coverage during tests (but getting it during execution).
+</p>
+<p>
+EMMA works by instrumenting the classfiles to analyze coverage.  Although it can do just-in-time instrumentation, that didn't seem to work for recording coverage via TestNG.  The offline instrumentation makes is pretty easy to use with anything.  Basically, you want your ANT file to:
+<ol>
+<li>Compile your code</li>
+<li>Use EMMA to instrument your classes to a different directory</li>
+<li>Run your tests, using the instrumented classes <b>first</b> in your classpath</li> and passing a few system properties to your running code</li>
+<li>Run EMMA's report generator on the output</li>
+</ol>
+At first, I was getting some runtime errors because interfaces are not instrumented (and don't show up in the location you tell EMMA to put them).  The solution is to put <b>both</b> your instrumented classes directory and your regular, non-instrumented classes directory in the classpath, making sure the <b>instrumented</b> ones are first.</p>
+<p>
+<a href="http://github.com/davetron5000/importscrubber/tree/master/src/ant/test.xml">Here's my <tt>test.xml</tt></a> I'm using in <a href="https://github.com/davetron5000/importscour/tree">my fork of ImportScrubber</a> that shows it all working together.  All in all, it only took about 15 minutes to set up and debug.  Of course, now, the tests that came with ImportScrubber provide almost <b>no</b> coverage, but that's another story....
+</p>
+
+
+</div>
+          <footer class="mb2 text-l">
+            <a rel="full-article" class="no-ul pill" href="/blog/2008/12/07/emma-and-testng-for-simple-java-code-coverage.html">Read More…</a>
+          </footer>
+        </section>
+      
+    </article>
+  
+  
+    <article>
+      <header>
+        
+        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2008/12/01/i-can-haz-job.html">I can haz job</a></h1>
+        
+        <h2 class="f6 mtneg">December 01, 2008</h2>
+      </header>
+      
+        <section class="mb1">
+          <div class="excerpt"><p>
+So, I am finally employed and I didn't even have to settle.  After a refreshingly protracted and detailed interview process, I'm finally schlepping myself to a job that I'm more or less excited about.  That's saying something, since I've spent the last 8 months at home (6.5 of them working for Gliffy) in my perfect environment: waking up whenever, using my dual-monitor mac, <a href="http://www.flickr.com/photos/davetron5000/tags/rudy">Rudy</a> close by.  My first day was a net win, despite having to bring in my own computer, and overall I'm not complaining because I get to use a Mac at work <B>thank GOD</b>.
+</p>
+<p>
+Pluses so far:
+<ul>
+<li>Smart people I can have a conversation with</li>
+<li>Meaningful product (i.e. not another CRUD app for a government agency [not that there's anything wrong with it])</li>
+<li>Not only have they heard of javadoc, they use it!</li>
+<li>Database migrations!</li>
+<li>Clean looking code and tests that actually pass on a fresh checkout!</li>
+<li>No M$ exchange server or other shitbox mail system (they use Google Apps)</li>
+<li>Damn close to home; I should be biking in real soon</li>
+<li>Relaxed environment</li>
+<li>I'm one person away from a bonafide window with the shades open!</li>
+</ul>
+Honestly, it's almost a 100% on my <a href="http://www.naildrivin5.com/daveblog5000/?p=47">interview rubric</a> (which I took down for a while, because some HR person read it and gave me shit about not liking having a dress code.  I mean, does <b>anyone</b> <b>really</b> like putting on a suit and tie to site and write code?  Or to do anything?  We're talking levels of tolerance, and mine is low, mostly because I believe dress codes indicate a deeper organizational problem of priority management).  
+</p>
+<p>
+Negatives so far:
+<ul>
+<li>Kinda noisy office (fortunately few people seem to have phones)</li>
+<li>Subversion (it looks like they aren't going nuts with branches, so <tt>git-svn</tt> should preserve my sanity in this regard)</li>
+</ul>
+</p>
+<p>
+On the fence so far:
+<ul>
+<li>Maven - The only reason this isn't a negative is that it's better than the pile of shit ant script everyone else uses, and the build <b>does</b> work pretty painlessly.</li>
+<li>Spring - I haven't used Spring for anything real, and I can't say it gets me excited (nor have I ever thought it sounded all that great), but I'm optimistic about it.  I figure if it, in fact, is great, I'm happy. If it sucks, I have fodder for ranting.  It's a win/win.  I <b>do</b> fear the XML situps tho.</li> 
+</ul>
+</p>
+
+
+</div>
+          <footer class="mb2 text-l">
+            <a rel="full-article" class="no-ul pill" href="/blog/2008/12/01/i-can-haz-job.html">Read More…</a>
+          </footer>
+        </section>
+      
+    </article>
   
   
     <article>
@@ -562,141 +648,6 @@ While I do like the new Web-2.0 way of doing things (one site like GitHub really
 </div>
           <footer class="mb2 text-l">
             <a rel="full-article" class="no-ul pill" href="/blog/2008/09/17/better-open-source-hosting-sourceforge-is-looking-weak.html">Read More…</a>
-          </footer>
-        </section>
-      
-    </article>
-  
-  
-    <article>
-      <header>
-        
-        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2008/09/12/test-rest-services.html">Test REST Services</a></h1>
-        
-        <h2 class="f6 mtneg">September 12, 2008</h2>
-      </header>
-      
-        <section class="mb1">
-          <div class="excerpt"><p>In my reply to <a href="http://www.tbray.org/ongoing/When/200x/2008/09/10/Misusing-RSpec">a post on Tim Bray's blog</a> about using RSpec for testing REST services, I briefly described a project I'm working on, based on the work I've been doing at <a href="http://www.gliffy.com">Gliffy</a>, which is a testing framework for REST services called, unsurprisingly, <a href="http://code.google.com/p/restunit/">RestUNIT</a>.
-</p>
-<p>
-For Gliffy's REST-based <a href="http://jira.gliffy.com/browse/GLIFFY-775">integration API</a>, I needed a way to test it, and hand-coding test cases using <a href="http://hc.apache.org/httpclient-3.x/">HTTPClient</a> was just not going to cut it.  Further, requests to Gliffy's API require signing (similar to how Flickr does it), and our API was going to support multiple ways of specifying the representation type as well as tunneling over POST.
-</p>
-<p>
-So, it occured to me that there was a lazier way of doing this testing.  All I really needed to specify was the relative URL, parameters, headers, method, and expected response.  Someone else could do the signing and re-run the tests with the various options (such as specifying the MIME Type via the <tt>Accept:</tt> header, and then again via a file extension in the URL).</p>
-<p>
-I ended up creating a bunch of text files with this information.  I then used a Ruby script to generate two things:  an XML file that could be deserialized into a java object useful for testing, and a PHP script to test our PHP client API.
-</p>
-<p>
-The Ruby script would also do things like calculate the signature (the test text files contained the api and secret keys a Gliffy user would have to use the API) and generate some derivative tests (e.g. one using a <tt>DELETE</tt>, and another tunneling that over <tt>POST</tt>).  The testing engine could generate some additional derivative tests (e.g. GET requests should respond to conditional gets if the server sent back an <tt>ETag</tt> or <tt>Last-Modified</tt> header).  All this then runs as a <a href="http://testng.org">TestNG</a> test.  
-</p>
-<p>
-The whole thing works well, but is pretty hackish.  So, RestUNIT was created as a fresh codebase to create a more stable and useful testing engine.  My hope is to specify tests as YAML or some other human-readable markup, instead of XML (which is essentially binary for any real-sized data) and to allow for more sophisticated means of comparing results, deriving tests, and running outside a container (all the Gliffy tests require a specific data set and run in-container).
-</p>
-<p>
-</p>
-The test specification format should then be usable to generate tests in any other language (like I did with PHP).  I'm working on this slowly in my spare time and trying to keep the code clean and the architecture extensible, but not overly complex.
-</p>
-
-
-</div>
-          <footer class="mb2 text-l">
-            <a rel="full-article" class="no-ul pill" href="/blog/2008/09/12/test-rest-services.html">Read More…</a>
-          </footer>
-        </section>
-      
-    </article>
-  
-  
-    <article>
-      <header>
-        
-        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2008/09/11/schema-for-rest-services.html">Schema for REST services</a></h1>
-        
-        <h2 class="f6 mtneg">September 11, 2008</h2>
-      </header>
-      
-        <section class="mb1">
-          <div class="excerpt"><p>
-I'm currently working the <a href="http://jira.gliffy.com/browse/GLIFFY-775">integration API</a> for <a href="//www.gliffy.com">Gliffy</a>, which is a REST-based service.  The API is fairly stable and we're readying a few ancillary things for release.  One of those is the documentation for the API.  I found it quite difficult to completely describe the REST services and ultimately  ended up creating something that lists out "objects" and "methods", even though the API is not really object-based.  For example, the object "Diagram" has a "method" called "list"; to "call" it, you do an HTTP <tt>GET</tt> to <tt>accounts/<i>your account name</i>/diagrams</tt>. 
-</p>
-<p>The original spec I created to work against (and thus, our initial draft of API documentation) was basically a list of URLs and the HTTP methods they responded to.  Not very easy to navigate or understand on a first sitting.  Some sort of schema to describe the REST API would have been really helpful (along the lines of an XML Schema).  Such a schema could facilitate documentation, testing, code generation.
-</p>
-<p>
-As an example, consider some features of the Gliffy API: you can list the users in an account, list the diagrams in an account and reference an individual diagram via id.  Here's a YAML-esque description of these services:
-<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="l-Scalar-Plain">&lt;b&gt;accounts:&lt;/b&gt;</span>
-  <span class="l-Scalar-Plain">&lt;b&gt;kind:&lt;/b&gt; literal</span>
-  <span class="l-Scalar-Plain">&lt;b&gt;desc:&lt;/b&gt; &lt;i&gt;&quot;Reference to all accounts&quot;&lt;/i&gt;</span>
-  <span class="l-Scalar-Plain">&lt;b&gt;POST:&lt;/b&gt;</span>
-    <span class="l-Scalar-Plain">&lt;b&gt;desc:&lt;/b&gt; &lt;i&gt;&quot;Creates a new account&quot;&lt;/i&gt;</span>
-    <span class="l-Scalar-Plain">&lt;b&gt;parameters:&lt;/b&gt;</span>
-        <span class="l-Scalar-Plain">- account_name</span>
-            <span class="l-Scalar-Plain">&lt;b&gt;required:&lt;/b&gt; true</span>
-            <span class="l-Scalar-Plain">&lt;b&gt;desc:&lt;/b&gt; &lt;i&gt;&quot;Name of the account you want to create&quot;&lt;/i&gt;</span>
-        <span class="l-Scalar-Plain">- admin_email</span>
-            <span class="l-Scalar-Plain">&lt;b&gt;required:&lt;/b&gt; true</span>
-            <span class="l-Scalar-Plain">&lt;b&gt;desc:&lt;/b&gt; &lt;i&gt;&quot;Email address of an administrator for the new account&quot;&lt;/i&gt;</span>
-  <span class="l-Scalar-Plain">&lt;b&gt;children:&lt;/b&gt;</span>
-     <span class="l-Scalar-Plain">&lt;b&gt;account_name:&lt;/b&gt;</span>
-       <span class="l-Scalar-Plain">&lt;b&gt;kind:&lt;/b&gt; variable</span>
-       <span class="l-Scalar-Plain">&lt;b&gt;desc:&lt;/b&gt; &lt;i&gt;&quot;The name of your account&quot;&lt;/i&gt;</span>
-       <span class="l-Scalar-Plain">&lt;b&gt;GET:&lt;/b&gt;</span>
-         <span class="l-Scalar-Plain">&lt;b&gt;desc:&lt;/b&gt; &lt;i&gt;&quot;Returns meta-data about the account&quot;&lt;/i&gt;</span>
-         <span class="l-Scalar-Plain">&lt;b&gt;parameters:&lt;/b&gt;</span>
-            <span class="l-Scalar-Plain">- show_users</span>
-              <span class="l-Scalar-Plain">&lt;b&gt;required:&lt;/b&gt; false</span>
-              <span class="l-Scalar-Plain">&lt;b&gt;desc:&lt;/b&gt; &lt;i&gt;&quot;If true, users are included, if false, they are not&quot;&lt;/i&gt;</span>
-       <span class="l-Scalar-Plain">&lt;b&gt;children:&lt;/b&gt;</span>
-         <span class="l-Scalar-Plain">&lt;b&gt;diagrams:&lt;/b&gt;</span>
-           <span class="l-Scalar-Plain">&lt;b&gt;kind:&lt;/b&gt; literal</span>
-           <span class="l-Scalar-Plain">&lt;b&gt;desc:&lt;/b&gt; &lt;i&gt;&quot;All diagrams in the account&quot;&lt;/i&gt;</span>
-           <span class="l-Scalar-Plain">&lt;b&gt;POST:&lt;/b&gt;</span>
-             <span class="l-Scalar-Plain">&lt;b&gt;desc:&lt;/b&gt; &lt;i&gt;&quot;Creates a new diagram&quot;&lt;/i&gt;</span>
-             <span class="l-Scalar-Plain">&lt;b&gt;parameters:&lt;/b&gt;</span>
-               <span class="l-Scalar-Plain">- diagram_name</span>
-                 <span class="l-Scalar-Plain">&lt;b&gt;required:&lt;/b&gt; true</span>
-                 <span class="l-Scalar-Plain">&lt;b&gt;desc:&lt;/b&gt; &lt;i&gt;&quot;Desired name for this diagram&quot;&lt;/i&gt;</span>
-               <span class="l-Scalar-Plain">- template_id</span>
-                 <span class="l-Scalar-Plain">&lt;b&gt;required:&lt;/b&gt; false</span>
-                 <span class="l-Scalar-Plain">&lt;b&gt;type:&lt;/b&gt; numeric</span>
-                 <span class="l-Scalar-Plain">&lt;b&gt;dsec:&lt;/b&gt; &lt;i&gt;&quot;If present, the id of the diagram to copy, instead of using the blank one&quot;&lt;/i&gt;</span>
-           <span class="l-Scalar-Plain">&lt;b&gt;GET:&lt;/b&gt;</span>
-             <span class="l-Scalar-Plain">&lt;b&gt;desc:&lt;/b&gt; &lt;i&gt;&quot;Gets a list of all diagrams in this account&quot;&lt;/i&gt;</span>
-           <span class="l-Scalar-Plain">&lt;b&gt;children:&lt;/b&gt;</span>
-             <span class="l-Scalar-Plain">&lt;b&gt;id:&lt;/b&gt;</span>
-               <span class="l-Scalar-Plain">&lt;b&gt;kind:&lt;/b&gt; variable</span>
-               <span class="l-Scalar-Plain">&lt;b&gt;type:&lt;/b&gt; numeric</span>
-               <span class="l-Scalar-Plain">desc &lt;i&gt;&quot;The id of a particular diagram&quot;&lt;/i&gt;</span>
-               <span class="l-Scalar-Plain">&lt;b&gt;GET:&lt;/b&gt;</span>
-                 <span class="l-Scalar-Plain">&lt;b&gt;desc:&lt;/b&gt; &lt;i&gt;&quot;Gets the diagram; the requested encoding type will determine the form&quot;&lt;/i&gt;</span>
-                 <span class="l-Scalar-Plain">&lt;b&gt;parameters:&lt;/b&gt;</span>
-                   <span class="l-Scalar-Plain">- &lt;b&gt;version:&lt;/b&gt;</span> 
-                     <span class="l-Scalar-Plain">&lt;b&gt;desc:&lt;/b&gt; &lt;i&gt;&quot;The version to get, 1 is the original version.  If omitted, current version is retrieved&quot;&lt;/i&gt;</span>
-                     <span class="l-Scalar-Plain">&lt;b&gt;required:&lt;/b&gt; false</span>
-                     <span class="l-Scalar-Plain">&lt;b&gt;type:&lt;/b&gt; numeric</span>
-                   <span class="l-Scalar-Plain">- &lt;b&gt;size:&lt;/b&gt;</span>
-                     <span class="l-Scalar-Plain">&lt;b&gt;desc:&lt;/b&gt; &quot;For rastered formats, determins the size</span>
-                     <span class="l-Scalar-Plain">&lt;b&gt;type:&lt;/b&gt; enumeration</span>
-                       <span class="l-Scalar-Plain">- L</span>
-                       <span class="l-Scalar-Plain">- M</span>
-                       <span class="l-Scalar-Plain">- S</span>
-               <span class="l-Scalar-Plain">&lt;b&gt;DELETE:&lt;/b&gt;</span>
-                 <span class="l-Scalar-Plain">&lt;b&gt;desc:&lt;/b&gt; &lt;i&gt;&quot;Deletes this image&quot;&lt;/i&gt;</span>
-          <span class="l-Scalar-Plain">&lt;b&gt;users:&lt;/b&gt;</span>
-            <span class="l-Scalar-Plain">&lt;b&gt;kind:&lt;/b&gt; literal</span>
-            <span class="l-Scalar-Plain">&lt;b&gt;desc:&lt;/b&gt; &lt;i&gt;&quot;All users in the account&quot;&lt;/i&gt;</span>
-            <span class="l-Scalar-Plain">&lt;b&gt;GET:&lt;/b&gt;</span>
-              <span class="l-Scalar-Plain">&lt;b&gt;desc:&lt;/b&gt; &lt;i&gt;&quot;gets a list of all users in the account&quot;&lt;/i&gt;</span></code></pre></div>
-Since "accounts" is the only top-level element, we are saying that every request to this service must start with <tt>accounts/</tt>.  It has one child, which is a variable value for the account name.  It is untyped, so any potential string is allowed.  <b>That element</b> has two possible children: <tt>diagrams</tt> and <tt>users</tt>.  <tt>diagrams</tt> indicates that it responds to the HTTP methods <tt>POST</tt> and <tt>GET</tt>.  A <tt>POST</tt> requires the parameter <tt>diagram_name</tt>, while the parameter <tt>version</tt> is optional.
-</p>
-<p>
-A standard format like this could easily be used to generate documentation, expectations, test cases,  and even stub code.   This format could even be delivered by an <tt>OPTIONS</tt> call to a resource.  I realize there is not much standardization around how to design and implement a REST service, but something like this could at least be a stake in the ground and support a specific method.
-</p>
-
-
-</div>
-          <footer class="mb2 text-l">
-            <a rel="full-article" class="no-ul pill" href="/blog/2008/09/11/schema-for-rest-services.html">Read More…</a>
           </footer>
         </section>
       

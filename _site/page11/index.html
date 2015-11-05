@@ -30,14 +30,13 @@
     
       
         
-        My first iPhone App - Part 5
+        Static vs. Dynamic Typing: A matter of keystrokes?
         
-        July 18, 2010
+        August 24, 2010
       
       
         
-          
-            Se...">
+ ...">
   
 
   
@@ -68,6 +67,210 @@
     <section>
       <div class="blog-index">
   
+  
+  
+    <article>
+      <header>
+        
+        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2010/08/24/static-vs-dynamic-typing-is-typing.html">Static vs. Dynamic Typing: A matter of keystrokes?</a></h1>
+        
+        <h2 class="f6 mtneg">August 24, 2010</h2>
+      </header>
+      
+        
+          <section class="section-break complete-article mb1">
+            <p>In Java, I almost <em>never</em> make type errors.  The type errors that are possible in Java fall roughly into two categories:</p>
+
+<ol>
+<li> Using an object of the wrong type (this is caught by the compiler)</li>
+<li> Casting an object to a more specific type at runtime (this can only be caught by tests or users :)</li>
+</ol>
+
+<p>I&#39;d make error #1 on occasion, but the compiler catches it.  As to #2, before generics, I can count on my hands the number of times I got a bona-fide <code>ClassCastException</code> at runtime.  After generics?  Never.  </p>
+
+<p>I don&#39;t mean just that I didn&#39;t experience these runtime type errors, but that they <em>didn&#39;t even make it to the compiler</em>.  If you think about how Java syntax works, it&#39;s no wonder:</p>
+
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">someList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;();</span>
+<span class="n">someList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&quot;Foo&quot;</span><span class="o">);</span>
+<span class="n">someList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&quot;Bar&quot;</span><span class="o">);</span></code></pre></div>
+
+<p>I had to type almost the exact same thing twice.  After about 2 days of using generics, my muscle memory literally <em>prevents</em> me from making type errors.  To even simulate one requires a pre-generics library call, or some herculean efforts.  An arguable win for static typing, if at the price of verbosity.</p>
+
+<p>Of course, in Ruby, I make type errors all the time, especially when using new libraries I&#39;m not familiar with.  Ruby libraries rarely document the types of things (though they are frequently liberal with what they will accept).  The solution here is just better unit tests.  And that&#39;s a pretty good thing.  So, a slight negative for dynamic typing that leads us to a better tested system, reduced verbosity, and better productivity once the learning curve is dealth with.</p>
+
+<p>This pretty well illustrates the tradeoffs between dynamic and static typing.  Case closed, right?</p>
+
+<p>Enter Scala.  With Scala, I make type errors just as much as I do with Ruby.  The only difference is that the compiler catches them.   Here&#39;s the Scala equivalent to the Java code above</p>
+
+<div class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">var</span> <span class="n">list</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="s">&quot;foo&quot;</span><span class="o">,</span><span class="s">&quot;bar&quot;</span><span class="o">)</span></code></pre></div>
+
+<p>Notce how I haven&#39;t specified a <em>single</em> type?  It&#39;s nearly identical to the Ruby version:</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">list</span> <span class="o">=</span> <span class="o">[</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span><span class="s2">&quot;bar&quot;</span><span class="o">]</span></code></pre></div>
+
+<p>These examples are obviously simplistic, but in a more complex system, Scala&#39;s type inferencer tends to be one
+step ahead of me.  While it&#39;s handy that I have a compiler to catch these type errors, the fact remains that, despite Scala being a statically typed language, <em>I&#39;m making far more type errors than I would in Java</em>.</p>
+
+<p>This seems kindof odd, but I think it&#39;s ultimately a win: I get the brevity and productivity of a dynamically typed language, but the safety of the compiler catching my type errors for me.</p>
+
+<p>Scala puts a subtle spin on the &quot;static vs. dynamic&quot; debate, because you aren&#39;t annotating your types <em>nearly</em> as much as with Java, but you still get all the benefits.  I&#39;ve certainly heard many criticisims of static typing, but having the compiler check types for you wasn&#39;t one of them.</p>
+
+<p>Of course, sometimes you <em>do</em> need to tell Scala what your types are, but, they seem to be exactly where you&#39;d want them anyway:</p>
+
+<div class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="cm">/** get users with the given name and age */</span>
+<span class="k">def</span> <span class="n">getUsers</span><span class="o">(</span><span class="n">name</span><span class="k">:</span><span class="kt">String</span><span class="o">,</span><span class="n">age</span><span class="k">:</span><span class="kt">Option</span><span class="o">[</span><span class="kt">Int</span><span class="o">])</span><span class="k">:</span><span class="kt">List</span><span class="o">[</span><span class="kt">User</span><span class="o">]</span></code></pre></div>
+
+<p>This says that we take a requires <code>String</code> and an optional <code>Int</code> and will return a list of <code>User</code> objects.  To give the same information in Ruby, you&#39;d need to:</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># Gets the users with the given name and age</span>
+<span class="c1">#</span>
+<span class="c1"># name - a String</span>
+<span class="c1"># age - an Int or nil if not searching by age</span>
+<span class="c1">#</span>
+<span class="c1"># Returns an array of User objects</span>
+<span class="k">def</span> <span class="nf">get_users</span><span class="p">(</span><span class="nb">name</span><span class="p">,</span><span class="n">age</span><span class="o">=</span><span class="kp">nil</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+<span class="k">end</span></code></pre></div>
+
+<p><em>(Sure, you could leave off the comment, but do you really hate your fellow developers (<em>and</em> future you) that much?)</em></p>
+
+<p><em>Now</em> which language is more verbose?  Perhaps the static/dynamic typing debate is really just about entering text?</p>
+
+          </section>
+        
+      
+    </article>
+  
+  
+    <article>
+      <header>
+        
+        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2010/07/30/in-offense-of-scala-option.html">In "Offense" of Scala's Option class; a guarded defense of Cédric's rant</a></h1>
+        
+        <h2 class="f6 mtneg">July 30, 2010</h2>
+      </header>
+      
+        
+          <section class="section-break complete-article mb1">
+            <p>In a <a href="http://beust.com/weblog/2010/07/28/why-scalas-option-and-haskells-maybe-types-wont-save-you-from-null/">recent blog entry</a>, Cédric Beust calls out scala&#39;s <code>Option</code> class as nothing more significant than null checks.  Commenters rightly set him straight that the thesis of his blog post was marred by an ignorance of idiomatic use of the class.</p>
+
+<p>But, it&#39;s hard to really blame Cédric, when you look at what he had to go on.  Odersky&#39;s book states that one should use pattern matching with <code>Option</code>, and the scaladoc for Option is just abysmal:</p>
+
+<blockquote>
+<p>This class represents optional values. Instances of Option are either instances of case class Some or it is case object None.</p>
+</blockquote>
+
+<p>That is the <em>entire</em> description of the class, no examples, nothing.  Worse, the method that commenters called out as idiomatic, <code>flatMap</code>, has the following description:</p>
+
+<blockquote>
+<p>If the option is nonempty, return a function applied to its value. Otherwise return None.</p>
+</blockquote>
+
+<p>This is <em>not</em> what <code>Option#flatMap</code> actually appears to do (nor is documented to do; it&#39;s documented to return an <code>Option[B]</code>!):</p>
+
+<div class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="n">s</span><span class="k">:</span><span class="kt">Option</span><span class="o">[</span><span class="kt">String</span><span class="o">]</span> <span class="k">=</span> <span class="nc">Some</span><span class="o">(</span><span class="s">&quot;foo&quot;</span><span class="o">)</span>
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="n">n</span><span class="k">:</span><span class="kt">Option</span><span class="o">[</span><span class="kt">String</span><span class="o">]</span> <span class="k">=</span> <span class="nc">None</span>
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="n">f</span> <span class="k">=</span> <span class="o">{</span> <span class="o">(</span><span class="n">x</span><span class="k">:</span><span class="kt">String</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="nc">Some</span><span class="o">(</span><span class="n">x</span> <span class="o">+</span> <span class="s">&quot;bar&quot;</span><span class="o">)</span> <span class="o">}</span>
+<span class="n">scala</span><span class="o">&gt;</span> <span class="n">s</span><span class="o">.</span><span class="n">flatMap</span><span class="o">(</span><span class="n">f</span><span class="o">)</span>
+<span class="nc">Some</span><span class="o">(</span><span class="n">foobar</span><span class="o">)</span>
+<span class="n">scala</span><span class="o">&gt;</span> <span class="n">n</span><span class="o">.</span><span class="n">flatMap</span><span class="o">(</span><span class="n">f</span><span class="o">)</span>
+<span class="nc">None</span>
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="n">result</span> <span class="k">=</span> <span class="n">s</span><span class="o">.</span><span class="n">flatMap</span><span class="o">(</span><span class="n">f</span><span class="o">)</span>
+<span class="n">r</span><span class="k">:</span> <span class="kt">Option</span><span class="o">[</span><span class="kt">java.lang.String</span><span class="o">]</span> <span class="k">=</span> <span class="nc">Some</span><span class="o">(</span><span class="n">foobar</span><span class="o">)</span>
+<span class="n">scala</span><span class="o">&gt;</span> <span class="n">r</span><span class="o">.</span><span class="n">getClass</span>
+<span class="n">res6</span><span class="k">:</span> <span class="kt">java.lang.Class</span><span class="o">[</span><span class="k">_</span><span class="o">]</span> <span class="k">=</span> <span class="k">class</span> <span class="nc">scala</span><span class="o">.</span><span class="nc">Some</span></code></pre></div>
+
+<p>It certainly doesn&#39;t call itself out as &quot;the way&quot; to use Option.  A simple example in the scaladoc could have gone a long way.</p>
+
+<p>So, angry post + helpful commenters == problem solved, right?</p>
+
+<p>Wrong.</p>
+
+<p>The <code>Option</code> class is, really, an implementation of the <a href="http://en.wikipedia.org/wiki/Null_Object_pattern">NullObject</a> pattern, and a more elegant way to handle optional values.  In scala, we might have this method signature:</p>
+
+<div class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="cm">/**</span>
+<span class="cm"> * Updates the full name</span>
+<span class="cm"> * @param lastName the last name</span>
+<span class="cm"> * @param firstName the first name</span>
+<span class="cm"> */</span>
+<span class="k">def</span> <span class="n">updateName</span><span class="o">(</span><span class="n">lastName</span><span class="k">:</span><span class="kt">String</span><span class="o">,</span> <span class="n">firstName</span><span class="k">:</span><span class="kt">Option</span><span class="o">[</span><span class="kt">String</span><span class="o">])</span></code></pre></div>
+
+<p>This means &quot;update my name; lastName is required and firstName is optional&quot;.  In java, this method might look like this:</p>
+
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="cm">/**</span>
+<span class="cm"> * Updates the full name</span>
+<span class="cm"> * @param lastName the last name, may not be null</span>
+<span class="cm"> * @param firstName the first name, may be null</span>
+<span class="cm"> */</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">updateName</span><span class="o">(</span><span class="n">String</span> <span class="n">lastName</span><span class="o">,</span> <span class="n">String</span> <span class="n">firstName</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">lastName</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="nf">IllegalArgumentException</span><span class="o">(</span><span class="s">&quot;lastName required&quot;</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="n">StringBuffer</span> <span class="n">b</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">StringBuffer</span><span class="o">(</span><span class="n">lastName</span><span class="o">);</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">firstName</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">b</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">&quot;, &quot;</span><span class="o">);</span>
+        <span class="n">b</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">firstName</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">fullName</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+<span class="o">}</span></code></pre></div>
+
+<p>So, what&#39;s the right way to do it in Scala?  According to the commentors:</p>
+
+<div class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">def</span> <span class="n">updateName</span><span class="o">(</span><span class="n">lastName</span><span class="k">:</span><span class="kt">String</span><span class="o">,</span> <span class="n">firstName</span><span class="k">:</span><span class="kt">Option</span><span class="o">[</span><span class="kt">String</span><span class="o">])</span><span class="k">:</span><span class="kt">Unit</span> <span class="o">=</span> <span class="o">{</span>
+  <span class="k">val</span> <span class="n">b</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">StringBuffer</span><span class="o">(</span><span class="n">lastName</span><span class="o">)</span>
+  <span class="n">firstName</span><span class="o">.</span><span class="n">foreach</span><span class="o">(</span> <span class="o">(</span><span class="n">name</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">b</span><span class="o">.</span><span class="n">append</span><span class="o">(</span><span class="s">&quot;, &quot;</span><span class="o">);</span> <span class="n">b</span><span class="o">.</span><span class="n">append</span><span class="o">(</span><span class="n">firstName</span><span class="o">)</span> <span class="o">)</span>
+<span class="o">}</span></code></pre></div>
+
+<p>Yech.  Does anyone else think that calling a method called &quot;foreach&quot; on our &quot;optional value&quot; is just nonsensical?  Or that the <em>idiomatic way</em> to treat an optional value is <em>as a collection</em>, e.g. by using the <code>for</code> comprehension?  This just feels hacky.  Naming is one of the most important (and challenging) things in software engineering, and <code>Option</code>&#39;s API is an utter failure (even its name is wrong; when one has <em>an option</em>, one typicaly has many choices, not just one or nothing.  <em>Optional</em> is really what is meant here, so why are we afraid of adding a few more letters?  Especially given how &quot;precise&quot; some of the documentation is, mathematically speaking, why are we not being precise with English?). If <code>Option</code> is just shorthand for a &quot;list of zero or one elements&quot;, and we get no better methods than what comes with <code>List</code>, then what&#39;s even the point of the class?</p>
+
+<p>I&#39;m not saying we remove all the collection methods from <code>Option</code>, but how about a throwing us a bone to make our code readable and learnable without running to the scaladoc (or REPL) to see what&#39;s going on?  I mean, there&#39;s a method on <code>Option</code> called <code>withFilter</code> whose documented purpose (I&#39;m not making this up) is: &quot;Necessary to keep Option from being implicitly converted to Iterable in for comprehensions&quot;.  Am I expected to believe that it&#39;s ok to have <em>this</em> hacky pile of cruft, but we can&#39;t get a readable method for &quot;do something to the contents if they are there&quot;?</p>
+
+<div class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">class</span> <span class="nc">Option</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span> <span class="o">{</span> 
+  <span class="k">def</span> <span class="n">ifValue</span><span class="o">[</span><span class="kt">U</span><span class="o">](</span> <span class="n">f</span><span class="k">:</span> <span class="o">(</span><span class="kt">A</span><span class="o">)</span> <span class="o">=&gt;</span> <span class="n">U</span> <span class="o">)</span><span class="k">:</span><span class="kt">Unit</span> <span class="o">=</span> <span class="n">foreach</span><span class="o">(</span><span class="n">f</span><span class="o">)</span>
+  <span class="k">def</span> <span class="n">unlessValue</span><span class="o">[</span><span class="kt">U</span><span class="o">](</span> <span class="n">f</span><span class="k">:</span> <span class="o">()</span> <span class="o">=&gt;</span> <span class="n">U</span><span class="o">)</span><span class="k">:</span><span class="kt">Unit</span> <span class="o">=</span> <span class="k">if</span> <span class="o">(</span><span class="n">self</span><span class="o">.</span><span class="n">isEmpty</span><span class="o">)</span> <span class="n">f</span>
+<span class="o">}</span>
+
+<span class="k">def</span> <span class="n">updateName</span><span class="o">(</span><span class="n">lastName</span><span class="k">:</span><span class="kt">String</span><span class="o">,</span> <span class="n">firstName</span><span class="k">:</span><span class="kt">Option</span><span class="o">[</span><span class="kt">String</span><span class="o">])</span><span class="k">:</span><span class="kt">Unit</span> <span class="o">=</span> <span class="o">{</span>
+  <span class="k">val</span> <span class="n">b</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">StringBuffer</span><span class="o">(</span><span class="n">lastName</span><span class="o">)</span>
+  <span class="n">firstName</span><span class="o">.</span><span class="n">ifValue</span><span class="o">(</span> <span class="o">(</span><span class="n">name</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">b</span><span class="o">.</span><span class="n">append</span><span class="o">(</span><span class="s">&quot;, &quot;</span><span class="o">);</span> <span class="n">b</span><span class="o">.</span><span class="n">append</span><span class="o">(</span><span class="n">firstName</span><span class="o">)</span> <span class="o">)</span>
+<span class="o">}</span></code></pre></div>
+
+<p>Which would be less surprising?  Couple this with some better scaladoc:</p>
+
+<div class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="cm">/** This class represents an optional value.  </span>
+<span class="cm"> *</span>
+<span class="cm"> * To use as a null object:</span>
+<span class="cm"> * val optional = getSomePossiblyOptionalValue</span>
+<span class="cm"> * &lt;pre&gt;</span>
+<span class="cm"> * option.ifValue { (actualValue) =&gt; </span>
+<span class="cm"> *   // do things with the value, if it was there</span>
+<span class="cm"> * }</span>
+<span class="cm"> * &lt;/pre&gt;</span>
+<span class="cm"> * or</span>
+<span class="cm"> * &lt;pre&gt;</span>
+<span class="cm"> * optional.unlessValue { log.debug(&quot;missing optional value&quot;) }</span>
+<span class="cm"> * &lt;/pre&gt;</span>
+<span class="cm"> * </span>
+<span class="cm"> * To use as a Monad or collection:</span>
+<span class="cm"> * &lt;pre&gt;</span>
+<span class="cm"> * val first8upper = option.flatMap( (y) =&gt; Some(y.toUpperCase) ).</span>
+<span class="cm"> *                          flatMap( (y) =&gt; Some(y.substring(0,8)) )</span>
+<span class="cm"> * &lt;/pre&gt;</span>
+<span class="cm"> */</span>
+<span class="k">class</span> <span class="nc">Option</span><span class="o">[</span><span class="kt">T</span><span class="o">]</span> <span class="o">{</span>
+  <span class="c1">// etc.</span>
+<span class="o">}</span></code></pre></div>
+
+<p>With these examples, you cover the two main uses of this class, show newcomers how to use it, and demonstrate its superiority over null checks.</p>
+
+<p>It&#39;s frustrating to see this, because Scala has so much potential to be a lucid, accessible, readable language, but API usability and learnability are just not prioties.  Scala needs to take some lessons from Ruby in terms of API design (and Java in terms of API documentation).</p>
+
+<p>Of course, none of this <em>does</em> save you from null, because Scala is perfectly happy to assign null to anything.  It kinda makes the whole thing seem a bit pointless.</p>
+
+          </section>
+        
+      
+    </article>
   
   
     <article>
@@ -643,340 +846,6 @@ with the rules (or so I thought).  Basically, if you call a method like &quot;co
 </div>
           <footer class="mb2 text-l">
             <a rel="full-article" class="no-ul pill" href="/blog/2010/04/30/my-talk-at-scala-days.html">Read More…</a>
-          </footer>
-        </section>
-      
-    </article>
-  
-  
-    <article>
-      <header>
-        
-        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2010/04/22/scala-days-recap.html">Scala Days Impressions</a></h1>
-        
-        <h2 class="f6 mtneg">April 22, 2010</h2>
-      </header>
-      
-        <section class="mb1">
-          <div class="excerpt"><p>
-I had the good fortune to not only attend <a href="http://days2010.scala-lang.org/">ScalaDays 2010</a>, but also to speak (generously supported by <a href="http://www.opower.com">my employer</a>).  The experience overall was great.
-I talked to some really enthusiastic and interesting people (including two high school kids from Austria who were using Lift because, after three years of Java, they were tired of it already!)
-</p>
-<h1>Overall Impressions</h1>
-<ul>
-    <li>Scala 2.8 has some <b>really</b> powerful new features; I'm almost <b>glad</b> I don't have a significant codebase
-    using 2.7, because I would hate to <b>not</b> be able to use 2.8</li>
-    <li>The conference had a wide variety of talks, at varying skill levels; this was not a "beginners-only" conference, though
-    there were plenty of introductory talks (e.g. the <a href="http://akkasource.org/">Akka</a> talk).</li>
-    <li>The Scala team seems very interested in moving Scala into industry and changing the perception of it as an "academic"
-    language (though I'm not convinced they know what to do, nor should this be their responsibility).</li>
-    <li>Most people I talked to who weren't using Scala at their jobs were looking at the strategy <a href="http://sneaking-scala.heroku.com/">I had employed</a>
-    (using it for better testing), or were just frustrated with not being able to take advantage of Scala's productivity.</li>
-    <li>Scala's flexible syntax and powerful constructs are being used for a very wide variety of things; there were talks
-    on using it for <a href="http://processing.org/">Processing</a>, parallel collections, and cross-compilation to
-    non-standard architectures (i.e. chips with no JVM available).</li>
-    <li>The term "monad" was mentioned during exactly one talk and not at all for the rest of the conference.  This made
-    me feel very good, because the impression I get on the Scala mailing list sometimes is that if you don't understand
-    mathematical type theory, you are a moron who can never understand Scala.  This impression has been proved false.</li>
-</ul>
-<h2>Talks I Attended</h2>
-<p>
-It was very interesting to compare this conference to a <a href="http://www.nofluffjuststuff.com/home/main">No Fluff Just Stuff</a> conference.  At those, the speakers
-are professional, both in that they are getting paid and that they are just, really, really good at speaking and presenting.  Their talks, however, tend to be introductory and not terribly advanced.  I think that's fine, these are the type of speakers you want to have when you need to "get the message out" on some new and interesting technologies.
-</p>
-<p>
-The speakers at ScalaDays, however, were just regular people using Scala and wanting to talk about it.  As such, things like presentation style and slides were highly varied in terms of quality.  That being said, even the speakers who had the most trouble, still had some interesting things to talk about.  Following are my quick thoughts on each of the talks I attended:
-</p>
-<h3>Opening Keynote</h3>
-<h4>by Martin Odersky</h4>
-<p>
-His talk was on the new features of Scala 2.8 which, as I said above, are quite exciting.  Package objects, new collections library, and default/named arguments are just some of the highlights.  All-in-all, some very exciting features.
-</p>
-<h3>Runing Scala in the Browser</h3>
-<h4>by Wolfgang Kuehn</h4>
-<p>
-He had created a way to write Scala code and turn it into JavaScript, much like how GWT does this with Java.  His approach wasn't geared around UI widgets, however, but in creating AJAX applications using WebSockets.  I've always felt JavaScript was assembly language (which is why I think <a href="http://jashkenas.github.com/coffee-script/">coffeescript</a> is so interesting), and this was another way to leverage JavaScript without having to deal with it.
-</p>
-<h3>Scala Parallel Collections</h3>
-<h4>by Aleksander Prokopec</h4>
-<p>
-This was a preview of a Scala 2.8.1 (or later) feature, where a subpackage of the new 2.8 collections library was created that could perform the collection operations in parallel.  Consider a <tt>filter</tt> on a collection; this is highly parallelizable.  This library is being created to basically implement that in a transparent fashion.  Really interesting stuff.  They had even considered load balancing, via some interesting work-stealing mechanisms.  In only 30 minutes, there wasn't a <b>huge</b> amount of detail, but this seems to be another way in which parallel computation could be done very easily.
-</p>
-<h3>Developing the Scala Bindings to the Fly Object Space</h3>
-<h4>by Channing Walton, Nigel Warren, Simon Kent</h4>
-<p>
-The concept of "object spaces" never really sunk in with me, but it wasn't actually that relevant to the talk.  This was basically a comparison of a Java library and it's straight-port to Scala.  As expected, the Scala implementations were all much more succinct and (to me) clear.  The speakers hadn't used a lot of Crazy Scala Magic&#8482; to achieve the real code reduction that was shown.  This talk made it very clear that even if you write "Java in Scala", you still get a lot of productivity gains.
-</p>
-<h3>CCSTM: Library-based STM for Scala</h3>
-<h4>by Nathan Bronson, Hassan Chafi, Kunle Olukotun</h4>
-<p>
-<a href="http://en.wikipedia.org/wiki/Software_transactional_memory">Software Transactional Memory</a> is one of the go-to features of Clojure.  Clojure supports it natively, while Scala does not.  This talk was on an implementation of STM as a library for Scala.  It seemed relatively simple to use and understand.  While it's not as "clean" as the Clojure way of doing things, the speaker made a solid case for a library implementation being a better tradeoff, given the difficulty in adding it to the language at this point in Scala's life (it's easy to forget how mature the Scala language and compiler are, despite how "new" it seems).
-</p>
-<h3>Lightweight language support for type-based, concurrent event processing</h3>
-<h4>by Philipp Haller</h4>
-<p>
-This talk proposed a function type called "Translucent Functions" that were better-suited to concurrency than the partial functions used in the actor library.  Honestly, it was a bit over my head, and I wasn't able to catch up with the speaker.  Perhaps the paper would be more elucidating for me.
-</p>
-<h3>Data Parallel Programming in Scala</h3>
-<h4>by Bruce Lester</h4>
-<p>
-This talk was very similar to the one on Scala Parallel Collections.  Here, the speaker had created a collection library separate from the Scala one, designed specifically to allow parallel processing.  He had a very different approach, using control structures to indicate areas where parallelism could occure.  It was pretty interesting, but the Scala 2.8 Collections Library implementation seemed a lot cleaner to me than this.
-</p>
-<h3>Type Specialization in Scala</h3>
-<h4>by Iulian Drago&#x219;</h4>
-<p>
-One of the new features of 2.8 is the ability to "specialize" your code to work with primitive types and avoid boxing/unboxing.  This is something Java cannot really do.  This talk was an overview of how that worked and what specializations were done to the Scala library.  I guess it's nice that this kind of optimization if available, but I think it would have negligible gains for most real-world applications that weren't doing constant number crunching.  Even in that case, you don't necessarily need this.
-</p>
-<h3>Leaky Monads</h3>
-<h4>by Josh Suereth</h4>
-<p>
-How could I not attend the only session (and mention!) of Monads?  The speaker gave a good overview of using Monads to
-implement automatic resource management (e.g. <code>File.open { |file| file.readlines.whatever }</code>).  The idea was that since Monads are designed to hold onto the objects they manage, it's a bit inconvienient when dealing with the results of operating on managed resources.  Thus, his monads "leaked" their contents to create more concise code.
-</p>
-<h3>Type-safe SQL embedded in Scala</h3>
-<h4>by Christoph Wulf</h4>
-<p>
-Akin to <a href="http://en.wikipedia.org/wiki/LINQ">LINQ</a>, this talk showed how to write SQL directly inside Scala code, but maintain type safety.  It uses
-a compiler plugin to achieve this, and he talked a lot about how to tell the difference between embedded SQL and regular Scala code.  I guess the plugin introspects your database to get the types and generates a bunch of code using some Scala classes that get substituted in during compilation.  Pretty interesting.  I'm not sure I'm really <i>missing</i> SQL right in my code, but it is certainly cleaner than JDBC.
-</p>
-<h3>Scala at LinkedIn: Distribute Computing with Norbert</h3>
-<h4>by Chris Conrad</h4>
-<p>
-This was a talk about how LinkedIn is using Scala to glue together some enabling technologies to create their social network graph.  It seemed really clean and simple, especially since the underlying technologies are all Java-based.  This was mostly an overview of the API and some usage examples.  It's <a href="http://sna-projects.com/norbert/">open source</a>, and looks pretty interesting.  I'm not sure it would be useful for me at my job, but definitely seems like a cool project.
-</p>
-<h3>Akka</h3>
-<h4>by Jonas Boner</h4>
-<p>
-I was looking forward to this one quite a bit, as akka gets a lot of hype on Twitter.  I think 30 minutes was just too short, as it was pretty light on details.  There was a lot of assertions about Akka that the speakers just didn't have time to elucidate or substantiate.  I would love to see a comparison of Scala Actor vs. Akka Actor code and discuss why the Akka way is better.  Similarly, I'd love to see the basis for all the assertions on Akka's performance; it certainly gets a lot of hype.  Jonas is currently working on publicizing the production deployments of Akka (which would go a long way) as well as establishing commercial support for it (which <b>also</b> goes a long way :).
-</p>
-<h3>Scala IDE for Eclipse</h3>
-<h4>by Miles Sabin</h4>
-<p>
-I went to this purely for my co-workers.  I hate IDEs in general, and Eclipse does some pretty evil things to my co-workers, yet many of them still swear by it.  At any rate, Miles was almost impossible for me to understand (despite being English!) and most of what I got out of the presentation was that Eclipse was very much designed to work with only Java, requiring some nasty hacks to get Scala working with it.  It seems Miles' Herculean efforts have been used to get around this and there now seems to be a nice development environment for extending and enhancing the Scala plugin.
-</p>
-<h3>sbt Design and Implementation</h3>
-<h4>by Mark Harrah</h4>
-<p>
-While sbt isn't my ideal build tool, but it's a billion times better than Maven and Mark's talk actually made me appreciate it a lot more.  He is unabashedly in favor of terse symbols over long method names, and he spent some time explaining the rational behind them (thus making things make a bit more sense). His assertion is that you will eventually internalize the symbols and achieve productivity gains at a cost of a slight bump at the start.  I tend to disagree with this, because how often is one modifying their build?  This is why learning and retaining Ant and Maven is so difficult (I can't write a <tt>copy</tt> in Ant without a trip to the docs).  At any rate, this was a good talk and great overview of sbt, and, despite me not being into the crazy symbols, I will take it over Maven or Ant any day.  At least it's based in a real programming language and not some XML nonsense.
-<h3>Processing with Spde</h3>
-<h4>by Nathan Hamblen</h4>
-<p>
-This was a brief over of Processing, for those unfamiliar with this (horribly&#8208;named) visualization tool and then a review of the Scala bindingns the presenter had created.  Interestingly, he created <a href="http://technically.us/spde/About">SPDE</a> as an SBT plugin so that users could gain the benefit of SBT's automatic re-compilation and running features.  His plugin + a text editor is a makeshift IDE for Processing, which is pretty cool.  It was very high-level and didn't get into too much detail, but the Scala code was, as expected, much more concise than the Java code.
-</p>
-<h3>Sneaking Scala Into your Organization</h3>
-<h4>by Me!</h4>
-<p>
-I was pretty nervous, as the many of the previous speakers' topics were all quite heady, but I had practiced my ass off, and delivered the talk as well as I could.  I think it was pretty well received and got some good questions.  I had talked with a few people previously in the conference who were using testing as a way to get Scala into their jobs and a few other people who were interested in what I had to say.  Several people were curious as to how the other developers at OPOWER liked Scala.  I felt pretty good about it.
-</p>
-<h3>Future of Scala</h3>
-<h4>by The Scala Team</h4>
-<p>
-For this, we broke into small groups and basically unloaded on a poor member of the Scala team as to how anything related to Scala could be better.  Then, the Scala team assembled all of this info while Martin gave a very long term roadmap for Scala.  I do worry that the universe will never catch up to Martin and Scala team as they add more and more advanced and innovative features.
-</p>
-<p>
-After this, a member of the Scala team did a very fast tour of the feedback.  I wish the entire list could be posted; there was a lot of very heartening complaints in there that would not be obvious from the Scala mailing list (e.g.  hate on the underscore, desire to be less academic in terminology)  This fed my (arguably self-biased) impressions that people want to get Scala into industry and that there is a large hole in this part of the Scala universe.
-</p>
-<p>
-There were also some updates on IntelliJ's support for Scala.  They sound way ahead of the curve compared to Eclipse and NetBeans, but I was a bit frightened by IDEA's  guy saying that they way people learn languages is to ask for auto-completion and see what's available.  I see this trend all to often and I think it's harmful.  More on that later.
-</p>
-<h3>Overall</h3>
-<p>
-Despite still being stuck in Geneva, I'm glad I went.  Giving my talk was fun, but it was also great to hear about all the many ways in which people are using Scala.  I went in expecting massive academia overload, with a lot of theoretical type system and functional programming talk and got, instead, a wide variety of topics and just the right amount of academia (i.e. not that much).  Really encouraging.  Also encouraging is that ScalaDays 2011 will likely be in the Bay Area, which is a much nicer place to get stuck that stupid Geneva.
-</p>
-
-
-</div>
-          <footer class="mb2 text-l">
-            <a rel="full-article" class="no-ul pill" href="/blog/2010/04/22/scala-days-recap.html">Read More…</a>
-          </footer>
-        </section>
-      
-    </article>
-  
-  
-    <article>
-      <header>
-        
-        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2010/03/08/object-oriented-design.html">The only four types of classes in your OO system</a></h1>
-        
-        <h2 class="f6 mtneg">March 08, 2010</h2>
-      </header>
-      
-        <section class="mb1">
-          <div class="excerpt"><p>
-Object-Oriented design is hard, especially in a large application.  It's not always clear where logic should go, and there's often no "right place" to  put a piece of code.  I've found that there are four distinct types of classes that, if you stick to them, can make your code a lot more understandable, and can provide clear direction as to the age-old question of "where does this code go?"
-</p>
-<p>
-<h2>0. Background</h2>
-The J2EE way is to have model objects be stupid structs, and have all business logic in a service layer (this is actually very close to a classic "functional programming" way of doing things; ironic that many Java devs eschew FP).  Spring lets you do whatever you want, but more or less follows this pattern.  
-While the "Rails Way" is to put business logic on the model objects, I think the "service layer" concept <a href="http://www.engineyard.com/blog/2010/let-them-code-cake/">is eventually going to be common practice</a>.
-So, I've found that I very rarely make a pure "by-the-book according-to-Hoyle" OO-compliant class; I've settled on four patterns that seem to cover pretty much everything.  I've also noticed that when these patterns get mixed together, you get trouble.
-</p>
-<p>
-<h2>1. The Record</h2>
-The <i>record</i> is a dumb struct that you usually need to appease your object-relational mapper.  You may need them elsewhere to just name and type some set of data that you either can't model as a tuple because of your language, or don't want to model as a tuple because of some complexity.  A record typically has methods that merely expose it's contents and often need to be mutable for the reasons stated.  You might have derived fields that are convieniences and not based on your core business logic.  An easy example is a person.  They have a name and a birthdate, and you might derive their age from that:
-```java
-public class Person {
-  private String name;
-  private Date birthdate;
- 
-  public Person(String name, Date birthdate) {
-    this.name = name;
-    this.birthdate = birthdate;
-  }
- 
-  public String getName() { return this.name }
-  public void setName(String name) { this.name = name; }
- 
-  public int getBirthdate() { return this.birthdate; }
-  public void setBirthdate(Date birthdate) { 
-    this.birthdate = birthdate;
-  }
- 
-  public int getAge() {
-    // I know this is slightly buggy :)
-    return (
-      new Date().getTime() 
-      - getBirthdate().getTime()
-      ) / (1000 * 60 * 60 * 24 * 365);
-  }
-  // Maybe some toString, equals, etc. type stuff as well
-}
-```
-</p>
-<p>
-<h2>2. The Immutable Object</h2>
-This is the closest to a pure "object-oriented" design.  Classes of this type are immutable and should hold data you will use a lot in your system.  They may also probably have some business-logic attached as methods; this business logic should be entirely focused on the object and its contents.  Typical methods will give you more complex information about the data the object contains, or will vend new objects of the same type, based on the method and parameters called.  
-</p>
-<p>
-This is the most clear distinction (in my mind) between functional programming and object-oriented programming.  In an FP world, the data being operated on would be loosely defined (if at all) and you'd have functions that transform it.  In an OO world, your object's data is clearly defined (by the class fields/accessors), and the operations available are the methods of the class.  When you require that the objects of the class be immutable, you have a very nice encapsulated package of data and operations.  This, to me, seems a lot easier to deal with than a "module" of functions and some tuples (or lists of tuples) that the functions operate on.  Scala makes it very easy to create classes like this.  It's probably one of the few languages that does so (Java certainly is no help, but it <b>can</b> be done).
-```java
-public class Appointment {
-  private final Date date;
-  private final String description;
-  private final Collection<Person> attendees;
- 
-  public Appointment(
-      Date date, 
-      String description, 
-      Collection<Person> attendees) {
-    // normally, you would validate the inputs
-    // for sanity, e.g. Validate.notNull(date)
- 
-    // Since Date is mutable, we make a copy
-    this.date = new Date(date.getTime());
-    this.description = description;
-    this.attendees = Collections.unmodifiableCollection(attendees);
-  }
- 
-  public Date getDate() {
-    // Since Date is mutable, we vend a copy
-    return new Date(this.date.getTime());
-  }
- 
-  public String getMessage() {
-    return this.message;
-  }
- 
-  public Collection<People> getAttendees() {
-    return this.attendees;
-  }
- 
-  public boolean isLate(Date otherDate) {
-    return this.date.before(otherDate);
-  }
- 
-  public boolean shouldRemind(Date otherDate) {
-    return !isLate() && (otherDate.getTime() 
-      - this.date.getTime()) >= (60 * 5 * 1000);
-  }
- 
-  public boolean isAttending(Person p) {
-    return this.attendees.contains(p);
-  }
- 
-  public Appointment reschedule(Date newDate) {
-    return new Appointment(newDate,getMessage(),getAttendees());
-  }
- 
-  public Appointment notAttending(Person p) {
-    if (isAttending(p)) {
-      Collection<Person> newGroup = new HashSet<Person>(getAttendees());
-      newGroup.remove(p);
-      return new Appointment(getDate(),getMessage(),newGroup);
-    } 
-    else {
-      return this;
-    }
-  }
- 
-}
-```
-</p>
-<p>
-The benefits here are huge; immutability allows your codebase to be much more comprehensible, and allows you to use these objects in concurrent situations without worry.  Since they are immutable, their methods are immediate targets for caching if you discover you need to do this to improve performance.
-</p>
-<p>
-<h2>3. The Builder</h2>
-While you can certainly use methods (or create methods) on Immutable Object classes to "build up" the object you want, this is often cumbersome, and results in a lot of object creation for no real reason.  The "builder" can be used to make this a bit simpler.  The Builder is a throwaway class whose sole purpose is to create Immutable Objects.  This obviously creates a very tight coupling between the two classes, but this can be worth it.  This is very preferable to a mutable class and, depending on your operating environment, is preferable to making many intermediate objects you will need to create the Immutable Object.
-```java
-public class AppointmentBuilder {
-  private Date date;
-  private String description;
-  private List<Person> people;
- 
-  public AppointmentBuilder setDate(Date date) {
-    this.date = date;
-    return this;
-  }
- 
-  public AppointmentBuilder setDescription(String description) {
-    this.description = description;
-    return this;
-  }
- 
-  public AppointmentBuilder addPerson(Person p) {
-    this.people.add(p);
-    return this;
-  }
- 
-  public Appointment build() {
-    return new Appointment(date,description,people);
-  }
-}
-```
-</p>
-<p>
-<h2>4. The Service</h2>
-The analog of The Record, the <i>service</i> has no data and all logic.  EJBs are services; they have no internal state, operating on their arguments and returning a result.  Methods of services can be very functional in nature (operating solely on structs or immutable objects), or they may provide functionality that implements complex business logic not logically part of an immutable object's class.  In a vanilla n-tier application, you use services to get data in and out of your database (you might call these DAOs and you might distinguish different types of services for partitioning, but these are all the same sort of class).
-</p>
-<p>
-Like records, Services are not OO at all; these are the functions to your C programs structs.  But, there is a good reason for this design; you separate concerns, don't need to worry about concurrency (services have no state), and can even horizontally partition <i>where</i> serivces actually run.
-```java
-public class Calendaring {
-  /** Schedule an appointment */
-  public Appointment schedule(
-      Date date, 
-      String description, 
-      String... names) {
-    AppointmentBuilder builder = new AppointmentBuilder(date)
-      .setDescription(description);
-    for (String name: names) {
-       Person p = findPersonByName(name);
-       if (p != null) {
-         builder.addPerson(p);
-       }
-    }
-    return builder.build();
-  }
-}
-```
-</p>
-
-
-</div>
-          <footer class="mb2 text-l">
-            <a rel="full-article" class="no-ul pill" href="/blog/2010/03/08/object-oriented-design.html">Read More…</a>
           </footer>
         </section>
       
