@@ -30,15 +30,13 @@
     
       
         
+        Rails Validations vs Postgres Check Constraints
         
-          ☞ Embrace the Full Stack
-        
-        
-        November 05, 2015
+        November 15, 2015
       
       
         
-     ...">
+  ...">
   
 
   
@@ -69,6 +67,31 @@
     <section>
       <div class="blog-index">
   
+  
+  
+    <article>
+      <header>
+        
+        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2015/11/15/rails-validations-vs-postgres-check-constraints.html">Rails Validations vs Postgres Check Constraints</a></h1>
+        
+        <h2 class="f6 mtneg">November 15, 2015</h2>
+      </header>
+      
+        <section class="mb1">
+          <div class="excerpt"><p>Before using Postgres, I would have to rely heavily on Rails validations to ensure data integrity—MySQL simply doesn&#39;t provide the tools
+to do this.  This always felt wrong.  Outside of rogue processes connecting to the database, there&#39;s also application bugs
+and, well, the ActiveRecord API itself: <code>update_attribute</code> skips validation!  That means it&#39;s hard to rely on Rails validations for data
+integrity, but there isn&#39;t a great alternative for creating a great user experience.</p>
+
+<p>Postgres has the answer: <em>check constraints</em>.  As we&#39;ll see, check constraints are tool for <em>data integrity</em> and work much better than
+Rails validations.  But Rails validations are still a great tool for <em>user experience</em>.</p>
+</div>
+          <footer class="mb2 text-l">
+            <a rel="full-article" class="no-ul pill" href="/blog/2015/11/15/rails-validations-vs-postgres-check-constraints.html">Read More…</a>
+          </footer>
+        </section>
+      
+    </article>
   
   
     <article>
@@ -322,30 +345,6 @@ move onto the next most important one.</p>
             <h1 class="f7"><a class="no-ul ul-hover" href="/blog/2014/09/18/why-scrum-should-basically-die-in-a-fire.html">#</a></h1>
           </footer>
         
-      
-    </article>
-  
-  
-    <article>
-      <header>
-        
-        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2014/08/07/rails-degenerate-front-end-support.html">Rails' Degenerate Front-End Support</a></h1>
-        
-        <h2 class="f6 mtneg">August 07, 2014</h2>
-      </header>
-      
-        <section class="mb1">
-          <div class="excerpt"><p>Rails front-end support is pretty degenerate and I don&#39;t understand why.  By &quot;degenerate&quot;, I mean the mathematical notion of
-&quot;so simple as to belonging to another class&quot;.  And it seems that the Rails team isn&#39;t planning to do anything about
-it any time soon, as DHH has doubled-down on &quot;server-generated JavaScript responses&quot;.</p>
-
-<p>Why isn&#39;t Rails leading the way here?  Where is the Rails that shocked the world with its elegant API for creating server-side
-web applications?  It seems that it&#39;s still peddling the same solutions for rich user-interfaces as it was over four years ago.</p>
-</div>
-          <footer class="mb2 text-l">
-            <a rel="full-article" class="no-ul pill" href="/blog/2014/08/07/rails-degenerate-front-end-support.html">Read More…</a>
-          </footer>
-        </section>
       
     </article>
   
