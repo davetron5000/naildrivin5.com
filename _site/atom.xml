@@ -4,7 +4,7 @@
   <title><![CDATA[naildrivin5.com - David Bryant Copeland's Website]]></title>
   <link href="http://naildrivin5.com/atom.xml" rel="self"/>
   <link href="http://naildrivin5.com/"/>
-  <updated>2015-11-15T11:13:32-05:00</updated>
+  <updated>2015-11-15T11:20:36-05:00</updated>
   <id>http://naildrivin5.com/</id>
   <author>
     <name><![CDATA[David Bryant Copeland]]></name>
@@ -201,6 +201,9 @@ universally needed.</p>
 
 <p>Think about Rails validations as purely something for user experience.  Think about check constraints as just being about data integrity.
 Often they are the same thing, but not always.  And don&#39;t fret about a bit of duplication.</p>
+
+<p><em>Read more in my new book <a href="https://pragprog.com/book/dcbang/rails-angular-postgres-and-bootstrap">“Rails, Angular, Postgres, and Bootstrap
+Powerful, Effective, and Efficient Full-Stack Web Development”</a></em></p>
 
 <hr>
 

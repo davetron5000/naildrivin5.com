@@ -215,6 +215,9 @@ universally needed.
 Think about Rails validations as purely something for user experience.  Think about check constraints as just being about data integrity.
 Often they are the same thing, but not always.  And don't fret about a bit of duplication.
 
+_Read more in my new book [“Rails, Angular, Postgres, and Bootstrap
+Powerful, Effective, and Efficient Full-Stack Web Development”](https://pragprog.com/book/dcbang/rails-angular-postgres-and-bootstrap)_
+
 ---
 
 <footer class='footnotes'>
