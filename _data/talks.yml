@@ -1,3 +1,7 @@
+- title: "Storytelling via the Psychology of Professional Wrestling"
+  where: "RubyConf 2015"
+  link: http://confreaks.tv/videos/rubyconf2015-storytelling-via-the-psychology-of-professional-wrestling
+  embed: //www.youtube.com/embed/FplG2HLe3y0
 - title: "Overcoming our Obsession with Stringly-Typed Ruby"
   link: http://confreaks.tv/videos/rubyconf2014-overcoming-our-obsession-with-stringly-typed-ruby
   where: "RubyConf 2014"
@@ -12,6 +16,11 @@
   slides: "http://davetron5000.github.io/services-wtf-gogaruco/"
   link: http://confreaks.com/videos/1119-gogaruco2012-services-scale-backgrounding-and-wtf-is-going-on-here
   embed: //www.youtube.com/embed/swgub0239Y0
+- title: "Make Awesome Command-line Apps with Ruby"
+  where: "Ruby Midwest 2011"
+  slides: "https://speakerdeck.com/davetron5000/build-awesome-command-line-applications-with-ruby"
+  link: "http://confreaks.tv/videos/rubymidwest2011-make-awesome-command-line-apps-with-ruby"
+  embed: "//www.youtube.com/embed/eYk2Otz4X4I"
 - title: "Beyond the Web"
   where: "Ruby Midwest 2011"
   link: http://rubyrogues.com/028-beyond-the-web/

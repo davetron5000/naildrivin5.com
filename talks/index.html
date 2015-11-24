@@ -32,9 +32,14 @@ I've spoken at several tech conferences and user groups.  This page is an archiv
 <section>
   <h1>Slides from Other Talks</h1>
   <ul>
-    {% for slides in site.data.slides.ruby %}
-      {% if slides.link %}
-        <li><a href="{{ slides.link }}">{{slides.title}}</a></li>
+    {% for slide in site.data.slides.ruby %}
+      {% if slide.link %}
+      <li>
+        <a href="{{ slide.link }}">{{slide.title}}</a>
+        {% if slide.where %}
+        (from {{ slide.where }})
+        {% endif %}
+      </li>
       {% endif %}
     {% endfor %}
   </ul>
