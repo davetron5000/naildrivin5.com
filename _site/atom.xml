@@ -4,13 +4,32 @@
   <title><![CDATA[naildrivin5.com - David Bryant Copeland's Website]]></title>
   <link href="http://naildrivin5.com/atom.xml" rel="self"/>
   <link href="http://naildrivin5.com/"/>
-  <updated>2015-11-24T08:34:19-05:00</updated>
+  <updated>2015-11-27T12:12:14-05:00</updated>
   <id>http://naildrivin5.com/</id>
   <author>
     <name><![CDATA[David Bryant Copeland]]></name>
     <email><![CDATA[davec@naildrivin5.com]]></email>
   </author>
 
+  
+  <entry>
+    <title type="html"><![CDATA[All my books are on sale!]]></title>
+    
+    <link href="http://naildrivin5.com/blog/2015/11/27/my-books-on-sale.html"/>
+    
+    <updated>2015-11-27T07:00:00-05:00</updated>
+    <id>http://naildrivin5.com/blog/2015/11/27/my-books-on-sale</id>
+    <content type="html"><![CDATA[<p>Today through next Tuesday, all three of my books are on sale for 40% off, with the code <strong>turkeysale2015</strong>:</p>
+
+<ul>
+<li><a href="https://pragprog.com/book/dcbang/rails-angular-postgres-and-bootstrap">Rails, Angular, Postgres, Bootstrap: Powerful, Effective, Efficient Full-stack Web Development</a> ($14.40 for the beta ebook!)</li>
+<li><a href="http://theseniorsoftwareengineer.com/">The Senior Software Engineer: 11 Practices of an Effective Technical Leader</a> ($15!)</li>
+<li><a href="https://pragprog.com/book/dccar2/build-awesome-command-line-applications-in-ruby-2">Build Awesome Command-Line Applications with Ruby 2</a> ($13.20 for the ebook!)</li>
+</ul>
+
+<p>Just use code <strong>turkeysale2015</strong> at checkout to get 40% off!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Rails Validations vs Postgres Check Constraints]]></title>
@@ -500,33 +519,6 @@ it, actually solving it becomes a lot simpler and a lot easier to get right.</p>
 
 <p>It doesn&#39;t, however, help with the third problem: writing resilient jobs that can survive in a production environment.</p>
 </blockquote>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Why Scrum Should Basically Die in a Fire]]></title>
-    
-    <link href="http://gilesbowkett.blogspot.com/2014/09/why-scrum-should-basically-just-die-in.html"/>
-    
-    <updated>2014-09-18T19:42:00-04:00</updated>
-    <id>http://naildrivin5.com/blog/2014/09/18/why-scrum-should-basically-die-in-a-fire</id>
-    <content type="html"><![CDATA[<p><a href="http://gilesbowkett.blogspot.com/">Giles Bowkett</a> posted <a href="http://gilesbowkett.blogspot.com/2014/09/why-scrum-should-basically-just-die-in.html">a great piece on the deep flaws of Agile processes like Scrum</a>.
-It&#39;s spot-on with my experience.
-There&#39;s so many choice quotes, it&#39;s hard to pull just one, but I&#39;ll try.
-Toward the end of the article:</p>
-
-<blockquote>
-<p>I&#39;ve never seen Scrum-like frameworks for transmuting the work of designers, marketers, or accountants into cartoonish oversimplifications like story points. People are happy to treat these workers as adults and trust them to do their jobs.</p>
-
-<p>I don&#39;t know why this same trust does not prevail in the culture of managing programmers.</p>
-</blockquote>
-
-<p>After a job converting JIRA Tickets into Story Points into diffs, I eventually realized that good developers <a href="http://naildrivin5.com/blog/2013/01/27/what-i-learned-working-at-livingsocial.html">deliver results</a>, not promises, points, or even features.
-I even <a href="http://theseniorsoftwareengineer.com">wrote an entire book about it</a>.</p>
-
-<p>Thankfully, the <a href="http://tech.stitchfix.com">team at Stitch Fix</a> has no sprints, story points,
-velocity, or planning poker.  We just solve the most important problem at hand, and
-move onto the next most important one.</p>
 ]]></content>
   </entry>
   
