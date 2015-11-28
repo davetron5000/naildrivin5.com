@@ -117,6 +117,7 @@ describe 'returns', ->
 Next, we set up our fixture in a `beforeEach` block using CoffeeScript's handy multi-line
 string syntax.  This keeps things fairly readable, despite the fact that we're building a
 giant string of HTML:
+
 ``` coffeescript
 beforeEach ->
   fixture = """

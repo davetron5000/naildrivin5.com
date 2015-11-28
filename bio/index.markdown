@@ -4,7 +4,7 @@ title: About me
 ---
 <img src="http://www.gravatar.com/avatar/ae52d95bbc43d0a62044a9a6b5674de0.png">
 
-I'm a programmer, musician, and author of [“Rails, Angular, Postgres, and Bootstrap”][fullstackbook], [“The Senior Software Engineer”][sweng] and [“Build Awesome Command-Line Applications in Ruby 2”][clibook].  I speak frequently at national and regional conferences and spend my days currently as a lead engineer at [Stitch Fix][stitchfix]. I've written applications in C, Java, Ruby, Scala, and many others, on large and small teams. As a developer, I believe in clean code, making it right, providing a great user experience and using the right tool for the job.  As a bass player, I believe in using a pick, locking it down, and ripping off Peter Hook.  As an author, I insist on the Oxford Comma, try to avoid semi-colons, and dislike title case.
+I'm a programmer, musician, and author of [“Rails, Angular, Postgres, and Bootstrap”][fullstackbook], [“The Senior Software Engineer”][sweng], and [“Build Awesome Command-Line Applications in Ruby 2”][clibook].  I speak frequently at national and regional conferences and spend my days currently as a Director of Engineering at [Stitch Fix][stitchfix]. I've written applications in C, Java, Ruby, Scala, and many others, on large and small teams. As a developer, I believe in clean code, making it right, providing a great user experience and using the right tool for the job.  As a bass player, I believe in using a pick, locking it down, and ripping off Peter Hook.  As an author, I insist on the Oxford Comma, try to avoid semi-colons, and dislike title case.
 
 [stitchfix]: http://www.stitchfix.com
 

@@ -174,34 +174,32 @@ just silently didn&#39;t work, with no way of diagnosing what was going on.</p>
 </code></pre></div>
 <p>Next, we set up our fixture in a <code>beforeEach</code> block using CoffeeScript&#39;s handy multi-line
 string syntax.  This keeps things fairly readable, despite the fact that we&#39;re building a
-giant string of HTML:
-``` coffeescript
-beforeEach -&gt;
-  fixture = &quot;&quot;&quot;
-  <div id="returns-fixture">
-    <div id="flash-alert" class="alert" style="display: none;">
-      <div class="msg"></div>
-    </div>
-    <div id="flash-notice" class="alert" style="display: none;">
-      <div class="msg"></div>
-    </div>
-    <form id="item-id-lookup">
-    <input type="text" id="item-id-field" name="item_id" autofocus="autofocus"></p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">&lt;input id=&quot;item-1-in&quot; type=&quot;radio&quot; name=&quot;return[items][1][status]&quot; value=&quot;In&quot;&gt;
-&lt;input id=&quot;item-1-out&quot; type=&quot;radio&quot; name=&quot;return[items][1][status]&quot; value=&quot;Out&quot;&gt;
-&lt;input id=&quot;item-1-dmg&quot; type=&quot;radio&quot; name=&quot;return[items][1][status]&quot; value=&quot;Damaged - Reparable&quot;&gt;
+giant string of HTML:</p>
+<div class="highlight"><pre><code class="language-coffeescript" data-lang="coffeescript"><span class="nx">beforeEach</span> <span class="nf">-&gt;</span>
+  <span class="nv">fixture = </span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">  &lt;div id=&quot;returns-fixture&quot;&gt;</span>
+<span class="s">    &lt;div id=&quot;flash-alert&quot; class=&quot;alert&quot; style=&quot;display: none;&quot;&gt;</span>
+<span class="s">      &lt;div class=&quot;msg&quot;&gt;&lt;/div&gt;</span>
+<span class="s">    &lt;/div&gt;</span>
+<span class="s">    &lt;div id=&quot;flash-notice&quot; class=&quot;alert&quot; style=&quot;display: none;&quot;&gt;</span>
+<span class="s">      &lt;div class=&quot;msg&quot;&gt;&lt;/div&gt;</span>
+<span class="s">    &lt;/div&gt;</span>
+<span class="s">    &lt;form id=&quot;item-id-lookup&quot;&gt;</span>
+<span class="s">    &lt;input type=&quot;text&quot; id=&quot;item-id-field&quot; name=&quot;item_id&quot; autofocus=&quot;autofocus&quot;&gt;</span>
 
-&lt;input id=&quot;item-2-in&quot; type=&quot;radio&quot; name=&quot;return[items][2][status]&quot; value=&quot;In&quot;&gt;
-&lt;input id=&quot;item-2-out&quot; type=&quot;radio&quot; name=&quot;return[items][2][status]&quot; value=&quot;Out&quot;&gt;
-&lt;input id=&quot;item-2-dmg&quot; type=&quot;radio&quot; name=&quot;return[items][2][status]&quot; value=&quot;Damaged - Reparable&quot;&gt;
-&lt;/form&gt;
+<span class="s">    &lt;input id=&quot;item-1-in&quot; type=&quot;radio&quot; name=&quot;return[items][1][status]&quot; value=&quot;In&quot;&gt;</span>
+<span class="s">    &lt;input id=&quot;item-1-out&quot; type=&quot;radio&quot; name=&quot;return[items][1][status]&quot; value=&quot;Out&quot;&gt;</span>
+<span class="s">    &lt;input id=&quot;item-1-dmg&quot; type=&quot;radio&quot; name=&quot;return[items][1][status]&quot; value=&quot;Damaged - Reparable&quot;&gt;</span>
+
+<span class="s">    &lt;input id=&quot;item-2-in&quot; type=&quot;radio&quot; name=&quot;return[items][2][status]&quot; value=&quot;In&quot;&gt;</span>
+<span class="s">    &lt;input id=&quot;item-2-out&quot; type=&quot;radio&quot; name=&quot;return[items][2][status]&quot; value=&quot;Out&quot;&gt;</span>
+<span class="s">    &lt;input id=&quot;item-2-dmg&quot; type=&quot;radio&quot; name=&quot;return[items][2][status]&quot; value=&quot;Damaged - Reparable&quot;&gt;</span>
+<span class="s">    &lt;/form&gt;</span>
+<span class="s">  &lt;/div&gt;</span>
+<span class="s">  &quot;&quot;&quot;</span>
+  <span class="nx">jasmine</span><span class="p">.</span><span class="nx">getFixtures</span><span class="p">().</span><span class="nx">set</span><span class="p">(</span><span class="nx">fixture</span><span class="p">)</span>
+  <span class="nb">window</span><span class="p">.</span><span class="nx">StitchFix</span><span class="p">.</span><span class="nx">controllers</span><span class="p">.</span><span class="nx">returns</span><span class="p">.</span><span class="nx">show</span><span class="p">()</span>
 </code></pre></div>
-<p></div>
-  &quot;&quot;&quot;
-  jasmine.getFixtures().set(fixture)
-  window.StitchFix.controllers.returns.show()
-```</p>
-
 <p>(When editing this article,I noticed that Pygments highlighted the inline HTML.  I wish Vim did that, it makes the fixture
  pretty readable!)</p>
 
