@@ -181,6 +181,9 @@ footer.footnotes {
 .pb2 {
   padding-bottom: 25.2px; }
 
+.pb3 {
+  padding-bottom: 12.6px; }
+
 .pt1 {
   padding-top: 50.4px; }
 
@@ -189,6 +192,9 @@ footer.footnotes {
 
 .pr2 {
   padding-right: 25.2px; }
+
+.pl0 {
+  padding-left: 0; }
 
 .pl2 {
   padding-left: 25.2px; }
@@ -214,6 +220,9 @@ footer.footnotes {
 .mt2 {
   margin-top: 25.2px; }
 
+.ml0 {
+  margin-left: 0; }
+
 .ib {
   display: inline-block; }
 
@@ -222,6 +231,14 @@ footer.footnotes {
 
 .nowrap {
   white-space: nowrap; }
+
+.fl {
+  float: left; }
+
+.list-inline {
+  list-style: none; }
+  .list-inline li {
+    display: inline; }
 
 header.site-header {
   background-image: url(/images/flamenco.jpg);

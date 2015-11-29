@@ -4,6 +4,9 @@
 .pb2 {
   padding-bottom: $sz2;
 }
+.pb3 {
+  padding-bottom: $sz3;
+}
 .pt1 {
   padding-top: $sz1;
 }
@@ -12,6 +15,9 @@
 }
 .pr2 {
   padding-right: $sz2;
+}
+.pl0 {
+  padding-left: 0;
 }
 .pl2 {
   padding-left: $sz2;
@@ -37,6 +43,9 @@
 .mt2 {
   margin-top: $sz2;
 }
+.ml0 {
+  margin-left: 0;
+}
 
 .ib {
   display: inline-block;
@@ -48,4 +57,8 @@
 
 .nowrap {
   white-space: nowrap;
+}
+
+.fl {
+  float: left;
 }
