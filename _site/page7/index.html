@@ -30,13 +30,13 @@
     
       
         
-        Making it Right: Technical Debt vs. Slop
+        Why you can't refactor test code
         
-        October 05, 2012
+        November 16, 2012
       
       
         
-          ...">
+          Was hav...">
   
 
   
@@ -67,6 +67,27 @@
     <section>
       <div class="blog-index">
   
+  
+  
+    <article>
+      <header>
+        
+        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2012/11/16/why-you-cant-refactor-test-code.html">Why you can't refactor test code</a></h1>
+        
+        <h2 class="f6 mtneg">November 16, 2012</h2>
+      </header>
+      
+        <section class="mb1">
+          <div class="excerpt"><p>Was having a discussion with <a href="http://www.twitter.com/mikegehard">Mike Gehard</a>, <a href="http://www.twitter.com/fooblahblah">Jeff Simpson</a>, and <a href="http://www.twitter.com/boulderdanh">Dan Hopkins</a> about <a href="http://www.twitter.com/danmayer">Dan Mayer&#39;s</a> <a href="http://mayerdan.com/ruby/2012/11/11/bugs-per-line-of-code-ratio/">excellent post</a>, and we go on the topic of refactoring test code.  My assertion is that you cannot, technically speaking, refactor test code, because you have no tests of the test code.  <a href="http://en.wikipedia.org/wiki/Code_refactoring"><em>Refactoring</em></a> cannot be done without tests that assert that the changes you&#39;ve made haven&#39;t introduced problems.</p>
+
+<p>The discussion put forth a few such tests of tests code, such as running it on prod, having the tests continue to pass, or measuring coverage.  Unfortunately, none of these are sufficient to call changes in test code a <em>refactoring</em>.  I would call it a <em>rewrite</em> or <em>redesign</em>, and I think that the distinction is important.</p>
+</div>
+          <footer class="mb2 text-l">
+            <a rel="full-article" class="no-ul pill" href="/blog/2012/11/16/why-you-cant-refactor-test-code.html">Read More…</a>
+          </footer>
+        </section>
+      
+    </article>
   
   
     <article>
@@ -321,38 +342,6 @@ src="//speakerdeck.com/assets/embed.js"></script>
 
           </section>
         
-      
-    </article>
-  
-  
-    <article>
-      <header>
-        
-        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2012/07/17/adventures-in-functional-programming-with-ruby.html">Adventures in functional programming with Ruby</a></h1>
-        
-        <h2 class="f6 mtneg">July 17, 2012</h2>
-      </header>
-      
-        <section class="mb1">
-          <div class="excerpt"><p>The following is an aimless journey through a degenerate form of Ruby, in an effort to learn a bit more about functional programming, simplicity, and API design.</p>
-
-<p>Suppose that the only way we have to organize code in Ruby is to make lambdas, and the only way we have to structure data are arrays:</p>
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">square</span> <span class="o">=</span> <span class="o">-&gt;</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">{</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span> <span class="p">}</span>
-<span class="n">square</span><span class="o">.</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="c1"># =&gt; 16</span>
-
-<span class="n">person</span> <span class="o">=</span> <span class="o">[</span><span class="s2">&quot;Dave&quot;</span><span class="p">,</span><span class="ss">:male</span><span class="o">]</span>
-<span class="n">print_person</span> <span class="o">=</span> <span class="o">-&gt;</span><span class="p">((</span><span class="nb">name</span><span class="p">,</span><span class="n">gender</span><span class="p">))</span> <span class="p">{</span> 
-  <span class="nb">puts</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2"> is a </span><span class="si">#{</span><span class="n">gender</span><span class="si">}</span><span class="s2">&quot;</span>
-<span class="p">}</span>
-<span class="n">print_person</span><span class="o">.</span><span class="p">(</span><span class="n">person</span><span class="p">)</span>
-</code></pre></div>
-<p>This is the most bare-bones essence of functional programming: all we have is functions.   Let&#39;s write some real-ish code this way and see how far we get before it starts
-becoming painful.</p>
-</div>
-          <footer class="mb2 text-l">
-            <a rel="full-article" class="no-ul pill" href="/blog/2012/07/17/adventures-in-functional-programming-with-ruby.html">Read More…</a>
-          </footer>
-        </section>
       
     </article>
   

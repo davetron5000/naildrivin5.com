@@ -30,13 +30,13 @@
     
       
         
-        What is 'better' code?
+        Adventures in functional programming with Ruby
         
-        June 27, 2012
+        July 17, 2012
       
       
         
-          We all want better co...">
+       ...">
   
 
   
@@ -67,6 +67,38 @@
     <section>
       <div class="blog-index">
   
+  
+  
+    <article>
+      <header>
+        
+        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2012/07/17/adventures-in-functional-programming-with-ruby.html">Adventures in functional programming with Ruby</a></h1>
+        
+        <h2 class="f6 mtneg">July 17, 2012</h2>
+      </header>
+      
+        <section class="mb1">
+          <div class="excerpt"><p>The following is an aimless journey through a degenerate form of Ruby, in an effort to learn a bit more about functional programming, simplicity, and API design.</p>
+
+<p>Suppose that the only way we have to organize code in Ruby is to make lambdas, and the only way we have to structure data are arrays:</p>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">square</span> <span class="o">=</span> <span class="o">-&gt;</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">{</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span> <span class="p">}</span>
+<span class="n">square</span><span class="o">.</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="c1"># =&gt; 16</span>
+
+<span class="n">person</span> <span class="o">=</span> <span class="o">[</span><span class="s2">&quot;Dave&quot;</span><span class="p">,</span><span class="ss">:male</span><span class="o">]</span>
+<span class="n">print_person</span> <span class="o">=</span> <span class="o">-&gt;</span><span class="p">((</span><span class="nb">name</span><span class="p">,</span><span class="n">gender</span><span class="p">))</span> <span class="p">{</span> 
+  <span class="nb">puts</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2"> is a </span><span class="si">#{</span><span class="n">gender</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="p">}</span>
+<span class="n">print_person</span><span class="o">.</span><span class="p">(</span><span class="n">person</span><span class="p">)</span>
+</code></pre></div>
+<p>This is the most bare-bones essence of functional programming: all we have is functions.   Let&#39;s write some real-ish code this way and see how far we get before it starts
+becoming painful.</p>
+</div>
+          <footer class="mb2 text-l">
+            <a rel="full-article" class="no-ul pill" href="/blog/2012/07/17/adventures-in-functional-programming-with-ruby.html">Read More…</a>
+          </footer>
+        </section>
+      
+    </article>
   
   
     <article>
@@ -269,42 +301,6 @@
 </div>
           <footer class="mb2 text-l">
             <a rel="full-article" class="no-ul pill" href="/blog/2012/04/02/a-protocol-for-code-reviews.html">Read More…</a>
-          </footer>
-        </section>
-      
-    </article>
-  
-  
-    <article>
-      <header>
-        
-        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2012/04/01/the-nine-facets-of-an-awesome-command-line-app.html">The Nine Facets of an Awesome Command-Line App</a></h1>
-        
-        <h2 class="f6 mtneg">April 01, 2012</h2>
-      </header>
-      
-        <section class="mb1">
-          <div class="excerpt"><p>When creating the outline for <a href="http://bit.ly/cli-hl-blog-post">my book</a> (now officially published and in print!), I decided to organize it around the
-nine facets of an awesome command-line app.  <a href="http://www.awesomecommandlineapps.com">Each chapter</a> focuses on one of these facets.  They state that an awesome
-command-line app should:</p>
-
-<ul>
-<li>have a clear and concise purpose</li>
-<li>be easy to use</li>
-<li>be helpful</li>
-<li>play well with others</li>
-<li>delight casual users</li>
-<li>make configuration easy for advanced users</li>
-<li>install and distribute painlessly</li>
-<li>be well-tested and as bug free as possible</li>
-<li>be easy to maintain</li>
-</ul>
-
-<p>In this post, I&#39;ll illustrate each of these facets (along with a test of the tenth chapter on color and formatting), via a code
-walkthrough of a simple command-line app I created for work.</p>
-</div>
-          <footer class="mb2 text-l">
-            <a rel="full-article" class="no-ul pill" href="/blog/2012/04/01/the-nine-facets-of-an-awesome-command-line-app.html">Read More…</a>
           </footer>
         </section>
       

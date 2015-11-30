@@ -30,13 +30,13 @@
     
       
         
-        Why underscores might be better than camel case
+        Gliffy API private beta: what should I do?
         
-        December 10, 2008
+        December 12, 2008
       
       
         
-  ...">
+       ...">
   
 
   
@@ -67,6 +67,35 @@
     <section>
       <div class="blog-index">
   
+  
+  
+    <article>
+      <header>
+        
+        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2008/12/12/gliffy-api-private-beta-what-should-i-do.html">Gliffy API private beta: what should I do?</a></h1>
+        
+        <h2 class="f6 mtneg">December 12, 2008</h2>
+      </header>
+      
+        <section class="mb1">
+          <div class="excerpt"><p>
+<a href="http://www.gliffy.com">Gliffy</a> hooked me up with access to the private beta of their API (which I helped design and implement).  I create a  PHP client and experimental MediaWiki plugin to validate the API while working for them, and now I want to get something else going in my spare time.
+</p>
+<p>
+My first thought was to make a Ruby client, because I think it would be fun and relatively easy.  But, I have to admit that a Wordpress plugin would be more useful to me personally.  That being said, A <a href="http://trac.edgewall.org/">Trac</a> extension would be useful at work, since we are using Trac (which is python based, and I can't say I'm too interestedin Python at the moment).  I think if <a href="http://support.github.com/discussions/feature-requests/32-wikis-as-git-repository">GitHub allowed git access to project wikis</a>, it would be cool to allow easier integration of Gliffy diagrams to GitHub project wikis.
+</p>
+<p>
+At any rate, I don't have tons of time outside of work, so I want it to be something easily achievable, and also something Chris and Clint are not likely to work on themselves....
+</p>
+
+
+</div>
+          <footer class="mb2 text-l">
+            <a rel="full-article" class="no-ul pill" href="/blog/2008/12/12/gliffy-api-private-beta-what-should-i-do.html">Read More…</a>
+          </footer>
+        </section>
+      
+    </article>
   
   
     <article>
@@ -573,60 +602,6 @@ What else am I missing?
 </div>
           <footer class="mb2 text-l">
             <a rel="full-article" class="no-ul pill" href="/blog/2008/10/07/interviewing-the-interviewer-a-rubric.html">Read More…</a>
-          </footer>
-        </section>
-      
-    </article>
-  
-  
-    <article>
-      <header>
-        
-        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2008/09/26/are-you-emailing-yourself-your-log-errors-you-should-be.html">Are you emailing yourself your log errors?  You should be.</a></h1>
-        
-        <h2 class="f6 mtneg">September 26, 2008</h2>
-      </header>
-      
-        <section class="mb1">
-          <div class="excerpt"><p>
-Time and time again, users complain about an application crashing on them or otherwise not working.  They don't provide you any info and it's hard to repeat.  You check out the log, but there's thousands (or millions) of entries and you have no clue where their error occured.  Worse, if you are deploying a RIA, the log  may be on their computer and not available.
-</p>
-<p>
-On my last project we experienced this scenario so much that we instituted two things
-<ul>
-<li>All messages logged with <tt>Level.ERROR</tt> in log4j would be emailed to us</li>
-<li>All exceptions caught on the client would be packaged and sent back to the server and logged at <tt>Level.ERROR</tt> level (thus emailing them to us</li>
-</ul>
-After the initial deluge of emails, we <b>found a lot of bugs</b>.  I mean <b>a lot</b> of bugs.  The annoying, intermittent kind that are hard to reproduce.  Further, by judicious use of logging, we discovered a lot of mis-configured environments and other problems without having to get users to mail us their logs.
-</p>
-<p>At <a href="http://www.gliffy.com">Gliffy</a>, they are doing the same thing.  Right now, we're testing a bunch of new features and the stage instance just sent me a bunch of emails, all indicating configuration problems, which is the exact kind of thing that can be hard to track down.
-</p>
-<p>
-Setting it up using log4j is dead simple:
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">log4j</span><span class="o">.</span><span class="na">appender</span><span class="o">.</span><span class="na">mail</span><span class="o">=</span><span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">log4j</span><span class="o">.</span><span class="na">net</span><span class="o">.</span><span class="na">SMTPAuthenticateAppender</span>
-<span class="n">log4j</span><span class="o">.</span><span class="na">appender</span><span class="o">.</span><span class="na">mail</span><span class="o">.</span><span class="na">SMTPHost</span><span class="o">=</span><span class="nd">@SMTP_HOST</span><span class="err">@</span>
-<span class="n">log4j</span><span class="o">.</span><span class="na">appender</span><span class="o">.</span><span class="na">mail</span><span class="o">.</span><span class="na">UserName</span><span class="o">=</span><span class="nd">@SMTP_USER</span><span class="err">@</span>
-<span class="n">log4j</span><span class="o">.</span><span class="na">appender</span><span class="o">.</span><span class="na">mail</span><span class="o">.</span><span class="na">Password</span><span class="o">=</span><span class="nd">@SMTP_PASS</span><span class="err">@</span>
-<span class="n">log4j</span><span class="o">.</span><span class="na">appender</span><span class="o">.</span><span class="na">mail</span><span class="o">.</span><span class="na">Authenticate</span><span class="o">=</span><span class="kc">true</span>
-<span class="n">log4j</span><span class="o">.</span><span class="na">appender</span><span class="o">.</span><span class="na">mail</span><span class="o">.</span><span class="na">From</span><span class="o">=</span><span class="n">errors</span><span class="nd">@gliffy.com</span>
-<span class="n">log4j</span><span class="o">.</span><span class="na">appender</span><span class="o">.</span><span class="na">mail</span><span class="o">.</span><span class="na">To</span><span class="o">=</span><span class="nd">@SMTP_LOGGER_FAILURE</span><span class="err">@</span>
-<span class="n">log4j</span><span class="o">.</span><span class="na">appender</span><span class="o">.</span><span class="na">mail</span><span class="o">.</span><span class="na">Subject</span><span class="o">=</span><span class="n">Errors</span> <span class="n">from</span> <span class="nd">@SMTP_DESC</span><span class="err">@</span>
-<span class="n">log4j</span><span class="o">.</span><span class="na">appender</span><span class="o">.</span><span class="na">mail</span><span class="o">.</span><span class="na">BufferSize</span><span class="o">=</span><span class="mi">1</span>
-<span class="n">log4j</span><span class="o">.</span><span class="na">appender</span><span class="o">.</span><span class="na">mail</span><span class="o">.</span><span class="na">Threshold</span><span class="o">=</span><span class="n">ERROR</span>
-<span class="n">log4j</span><span class="o">.</span><span class="na">appender</span><span class="o">.</span><span class="na">mail</span><span class="o">.</span><span class="na">LocationInfo</span><span class="o">=</span><span class="kc">true</span> 
-<span class="n">log4j</span><span class="o">.</span><span class="na">appender</span><span class="o">.</span><span class="na">mail</span><span class="o">.</span><span class="na">layout</span><span class="o">=</span><span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">log4j</span><span class="o">.</span><span class="na">PatternLayout</span> 
-<span class="n">log4j</span><span class="o">.</span><span class="na">appender</span><span class="o">.</span><span class="na">mail</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">ConversionPattern</span><span class="o">=%</span><span class="n">d</span> <span class="o">%</span><span class="n">p</span><span class="o">%</span><span class="n">n</span><span class="o">%</span><span class="n">t</span><span class="o">%</span><span class="n">n</span><span class="o">%</span><span class="nl">c:</span><span class="o">%</span><span class="nl">M:</span><span class="o">%</span><span class="n">L</span><span class="o">%</span><span class="n">n</span><span class="o">---%</span><span class="n">n</span><span class="o">%</span><span class="n">m</span><span class="o">%</span><span class="n">n</span><span class="o">---%</span><span class="n">n</span><span class="o">%</span><span class="n">n</span></code></pre></div>
-
-In my previous job I even created a customized layout to format the emails in such a way that our code was highlighted and GMail didn't compress things into threads.
-</p>
-<p>
-If you aren't doing this, you should be.  Now.
-</p>
-
-
-</div>
-          <footer class="mb2 text-l">
-            <a rel="full-article" class="no-ul pill" href="/blog/2008/09/26/are-you-emailing-yourself-your-log-errors-you-should-be.html">Read More…</a>
           </footer>
         </section>
       

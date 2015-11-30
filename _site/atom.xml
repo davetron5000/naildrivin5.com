@@ -4,13 +4,27 @@
   <title><![CDATA[naildrivin5.com - David Bryant Copeland's Website]]></title>
   <link href="http://naildrivin5.com/atom.xml" rel="self"/>
   <link href="http://naildrivin5.com/"/>
-  <updated>2015-11-29T15:07:52-05:00</updated>
+  <updated>2015-11-30T18:34:07-05:00</updated>
   <id>http://naildrivin5.com/</id>
   <author>
     <name><![CDATA[David Bryant Copeland]]></name>
     <email><![CDATA[davec@naildrivin5.com]]></email>
   </author>
 
+  
+  <entry>
+    <title type="html"><![CDATA[My Talk from Full Stack Toronto 2015]]></title>
+    
+    <link href="https://www.youtube.com/watch?v=QbUZnb0rPdY&feature=youtu.be&a"/>
+    
+    <updated>2015-11-30T00:00:00-05:00</updated>
+    <id>http://naildrivin5.com/blog/2015/11/30/my-talk-from-full-stack-toronto-2015</id>
+    <content type="html"><![CDATA[<p>My talk from <a href="https://fsto.co/">Full Stack Toronto</a>, called “Rails, Postgres, Angular, and Bootstrap - The Power Stack” is up, where I make the case for using not just using a CSS framework, an MVC framework, a
+middleware framework, and an amazing database, but for using Bootstrap, Angular, Rails, and Postgres <strong>and</strong> using them together.</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/QbUZnb0rPdY" frameborder="0" allowfullscreen></iframe>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[All my books are on sale!]]></title>
@@ -502,23 +516,6 @@ and return values.</p>
 <p>You can apply these steps to pretty much anything you need to do, from fixing bugs, to implementing features, to writing
 emails, to holding meetings.  If you know what problem you&#39;re trying to solve, and have a good sense of how you&#39;re going to do
 it, actually solving it becomes a lot simpler and a lot easier to get right.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[What You Don't Get With ActiveJob]]></title>
-    
-    <link href="http://www.sitepoint.com/dont-get-activejob/"/>
-    
-    <updated>2014-10-01T11:12:00-04:00</updated>
-    <id>http://naildrivin5.com/blog/2014/10/01/what-you-dont-get-with-activejob</id>
-    <content type="html"><![CDATA[<p>Post by yours truly on <a href="http://www.sitepoint.com">Sitepoint</a>&#39;s Ruby section, &quot;<a href="http://www.sitepoint.com/dont-get-activejob/">What You Don&#39;t Get With ActiveJob</a>&quot;:</p>
-
-<blockquote>
-<p>ActiveJob provides simple solutions to two problems faced by Rails developers when writing background jobs: queueing jobs (via the ActiveJob API) and serialization of ActiveRecord objects (via GlobalID).</p>
-
-<p>It doesn&#39;t, however, help with the third problem: writing resilient jobs that can survive in a production environment.</p>
-</blockquote>
 ]]></content>
   </entry>
   

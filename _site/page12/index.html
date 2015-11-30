@@ -30,14 +30,14 @@
     
       
         
-        Are private methods code smells?
+        In defense of vi
         
-        May 26, 2010
+        June 14, 2010
       
       
         
           
-           ...">
+            Sadly, I was u...">
   
 
   
@@ -68,6 +68,32 @@
     <section>
       <div class="blog-index">
   
+  
+  
+    <article>
+      <header>
+        
+        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2010/06/14/in-defense-of-vi.html">In defense of vi</a></h1>
+        
+        <h2 class="f6 mtneg">June 14, 2010</h2>
+      </header>
+      
+        
+          <section class="section-break complete-article mb1">
+            <p>Sadly, I was unable to attend <a href="http://www.railsconf.org">RailsConf</a> this year.  It was in Baltimore, and it would&#39;ve been a lot of fun, but it just wasn&#39;t in the cards.  One of the great things about RailsConf is that the videos are posted online very quickly and are always of high quality.  While I always like hearing <a href="http://www.youtube.com/watch?v=b0iKYRKtAsA">DHH</a> speak, I try to never miss one of <a href="http://www.twitter.com/unclebobmartin">Uncle Bob Martin</a>, author of the must-go-read-this-right-now <a href="http://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882/ref=sr_1_1?ie=UTF8&amp;s=books&amp;qid=1276567370&amp;sr=8-1">Clean Code</a>.</p>
+
+<p>This year, he gave an <a href="http://www.youtube.com/watch?v=mslMLp5bQD0">awesome talk</a> on the (lack of) innovation in software development.  He pointed out that we were still writing the same type of code now as we were 40 years ago.  In one part, he asks the crowd what editor they use (knowing full well most will say <a href="http://www.vim.org">vim</a>).  He then proceeds to make light of the audience for using a 19-year-old editor based on a 34-year-old editor.  While his criticism is brief, I think it speaks more to the sorry state of text editing than to the developers (like me) who are &quot;still&quot; using vim.</p>
+
+<p>I&#39;m sure that unclebob is one of the more advanced IDE users, but it just <em>pains</em> me watching my co-workers meander through their code, selecting things with the mouse, and deleting long swaths of text by just hitting the delete key a lot. </p>
+
+<p>While an IDE is great for learning a new environment (especially one as pedantic and verbose as Java or Objective-C), the editing capabilities are counter-intuitive and degenerate.  vim may be hard on the newbie, but it&#39;s intuitive and logical.  When you understand the &quot;zen&quot; of vim, you can fly through your code, playing it like a musical instrument.  It <em>affords</em> muscle memory and allows sophisticated chaining of movement, intent, and action.  You can <em>see</em> what you want to accomplish and your hands make it so, all without reaching for a mouse, cursoring, using the delete key, or contorting your hand with some awful combination of key modifiers.</p>
+
+<p>Think of it as a piano; it&#39;s a very simple base of simple sounds and actions that, when chained together, can be used to make beautiful music.  An IDE is more like a fancy Casio keyboard with built-in songs and beats.  Shiny, but hollow.</p>
+
+          </section>
+        
+      
+    </article>
   
   
     <article>
@@ -899,76 +925,6 @@ Java 5 is at end of life.  The latest released Servlet Spec <b>still doesn't sup
 </div>
           <footer class="mb2 text-l">
             <a rel="full-article" class="no-ul pill" href="/blog/2009/11/23/good-bad-ugly-scala-url-shortener.html">Read More…</a>
-          </footer>
-        </section>
-      
-    </article>
-  
-  
-    <article>
-      <header>
-        
-        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2009/11/14/make-your-own-literal-in-scala.html">Make your own literals in Scala</a></h1>
-        
-        <h2 class="f6 mtneg">November 14, 2009</h2>
-      </header>
-      
-        <section class="mb1">
-          <div class="excerpt">Following up from my post on <a href="">Deconstructing the map literal in Scala</a>, I thought it might be fun to go the other way around, and create a few literals of own.  Since Scala provides the <i>language features</i> to enable literal-like syntax, and not the actual literals themselves, we can do a lot of stuff to reduce the amount of typing we have to.
-
-
-In your production code, you probably wouldn't use a lot of literals, regardless of language support.  However, in test cases, they are much more common.  If creating
-objects in your tests becomes easier, you will tend to write better tests.
-
-Suppose we are writing a Twitter app (that's all the rage these days, anyway).  We might define a <tt>TwitterUser</tt> class like so:
-
-<div class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">class</span> <span class="nc">TwitterUser</span><span class="o">(</span><span class="k">val</span> <span class="n">username</span><span class="k">:</span><span class="kt">String</span><span class="o">)</span> <span class="o">{</span>
-  <span class="k">def</span> <span class="n">url</span> <span class="k">=</span> <span class="s">&quot;http://www.twitter.com/&quot;</span> <span class="o">+</span> <span class="n">username</span>
-  <span class="k">def</span> <span class="n">recentTweets</span> <span class="k">=</span> <span class="c1">// imagine some code here </span>
-<span class="o">}</span></code></pre></div>
-
-We might write a few test cases:
-
-<div class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">me</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">TwitterUser</span><span class="o">(</span><span class="s">&quot;davetron5000&quot;</span><span class="o">)</span>
-<span class="n">assertEquals</span><span class="o">(</span><span class="mi">10</span><span class="o">,</span><span class="n">me</span><span class="o">.</span><span class="n">recentTweets</span><span class="o">.</span><span class="n">size</span><span class="o">)</span>
-
-<span class="k">val</span> <span class="n">fake</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">TwitterUser</span><span class="o">(</span><span class="s">&quot;davetron5001&quot;</span><span class="o">)</span>
-<span class="n">assertEquals</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span><span class="n">fake</span><span class="o">.</span><span class="n">recentTweets</span><span class="o">)</span></code></pre></div>
-
-and so forth.  It's going to get a bit tedious writing <tt>new TwitterUser</tt> over and over again.  We could just make a shorter-named method in our test class, but why not use <a href="http://www.naildrivin5.com/scalatour/wiki_pages/ScalaBasics#Literals_and_Syntactic_Sugar">the <tt>apply()</tt> sugar</a> along with a <a href="http://www.naildrivin5.com/scalatour/wiki_pages/ScalaObject">singleton object</a> to make our own literal?
-
-<div class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="c1">// Along with our TwitterUser class def</span>
-<span class="k">object</span> <span class="nc">@@</span> <span class="o">{</span> <span class="c1">// &quot;@&quot; is a reserved word :(</span>
-  <span class="k">def</span> <span class="n">apply</span><span class="o">(</span><span class="n">username</span><span class="k">:</span><span class="kt">String</span><span class="o">)</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">TwitterUser</span><span class="o">(</span><span class="n">username</span><span class="o">)</span>
-<span class="o">}</span>
-
-<span class="c1">// back to our test code</span>
-
-<span class="k">val</span> <span class="n">me</span> <span class="k">=</span> <span class="o">@@(</span><span class="s">&quot;davetron5000&quot;</span><span class="o">)</span>
-<span class="k">val</span> <span class="n">fake</span> <span class="k">=</span> <span class="o">@@(</span><span class="s">&quot;davetron5001&quot;</span><span class="o">)</span></code></pre></div>
-
-It's a small bit of code, and we've saved some typing without sacrificing readability, since we take advantage of the way Twitter refers to users via the "@" symbol.
-
-If our app is all about Twitter, we can go a step further and just rename <tt>TwitterUser</tt> to <tt>@@</tt> like so:
-
-<div class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="c1">// This replaces the TwitterUser class </span>
-<span class="c1">// and @@ singleton object</span>
-<span class="k">case</span> <span class="k">class</span> <span class="nc">@@</span><span class="o">(</span><span class="k">val</span> <span class="n">username</span><span class="k">:</span><span class="kt">String</span><span class="o">)</span> <span class="o">{</span>
-  <span class="k">def</span> <span class="n">url</span> <span class="k">=</span> <span class="s">&quot;http://www.twitter.com/&quot;</span> <span class="o">+</span> <span class="n">username</span>
-<span class="o">}</span></code></pre></div>
-
-This takes advantage of (the unfortunately named) <a href="http://www.naildrivin5.com/scalatour/wiki_pages/CaseClasses">case classes</a> and now our Twitter user class <b>and</b> literal-like factory are called <tt>@@</tt>.  This allows, among other things, some more readable case statements.
-<div class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="n">user</span> <span class="k">match</span> <span class="o">{</span>
-  <span class="k">case</span> <span class="o">@@(</span><span class="s">&quot;davetron5000&quot;</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="s">&quot;it&#39;s you, dude&quot;</span>
-  <span class="k">case</span> <span class="n">user</span><span class="o">:@@</span> <span class="k">=&gt;</span> <span class="s">&quot;it&#39;s someone else&quot;</span>
-<span class="o">}</span></code></pre></div>
-
-Now, you certainly don't want to do this for every object in your domain (you'd get a horrible mess of symbols), but for key objects that you are using everywhere, an appropriately chosen literal syntax can make your code very clean and easy to read and modify.
-
-
-</div>
-          <footer class="mb2 text-l">
-            <a rel="full-article" class="no-ul pill" href="/blog/2009/11/14/make-your-own-literal-in-scala.html">Read More…</a>
           </footer>
         </section>
       

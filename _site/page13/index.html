@@ -30,14 +30,13 @@
     
       
         
-        Deconstructing the Scala Map Literal
+        Make your own literals in Scala
         
-        November 12, 2009
+        November 14, 2009
       
       
         
-          
-I ...">
+          Followin...">
   
 
   
@@ -68,6 +67,76 @@ I ...">
     <section>
       <div class="blog-index">
   
+  
+  
+    <article>
+      <header>
+        
+        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2009/11/14/make-your-own-literal-in-scala.html">Make your own literals in Scala</a></h1>
+        
+        <h2 class="f6 mtneg">November 14, 2009</h2>
+      </header>
+      
+        <section class="mb1">
+          <div class="excerpt">Following up from my post on <a href="">Deconstructing the map literal in Scala</a>, I thought it might be fun to go the other way around, and create a few literals of own.  Since Scala provides the <i>language features</i> to enable literal-like syntax, and not the actual literals themselves, we can do a lot of stuff to reduce the amount of typing we have to.
+
+
+In your production code, you probably wouldn't use a lot of literals, regardless of language support.  However, in test cases, they are much more common.  If creating
+objects in your tests becomes easier, you will tend to write better tests.
+
+Suppose we are writing a Twitter app (that's all the rage these days, anyway).  We might define a <tt>TwitterUser</tt> class like so:
+
+<div class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">class</span> <span class="nc">TwitterUser</span><span class="o">(</span><span class="k">val</span> <span class="n">username</span><span class="k">:</span><span class="kt">String</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">def</span> <span class="n">url</span> <span class="k">=</span> <span class="s">&quot;http://www.twitter.com/&quot;</span> <span class="o">+</span> <span class="n">username</span>
+  <span class="k">def</span> <span class="n">recentTweets</span> <span class="k">=</span> <span class="c1">// imagine some code here </span>
+<span class="o">}</span></code></pre></div>
+
+We might write a few test cases:
+
+<div class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">me</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">TwitterUser</span><span class="o">(</span><span class="s">&quot;davetron5000&quot;</span><span class="o">)</span>
+<span class="n">assertEquals</span><span class="o">(</span><span class="mi">10</span><span class="o">,</span><span class="n">me</span><span class="o">.</span><span class="n">recentTweets</span><span class="o">.</span><span class="n">size</span><span class="o">)</span>
+
+<span class="k">val</span> <span class="n">fake</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">TwitterUser</span><span class="o">(</span><span class="s">&quot;davetron5001&quot;</span><span class="o">)</span>
+<span class="n">assertEquals</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span><span class="n">fake</span><span class="o">.</span><span class="n">recentTweets</span><span class="o">)</span></code></pre></div>
+
+and so forth.  It's going to get a bit tedious writing <tt>new TwitterUser</tt> over and over again.  We could just make a shorter-named method in our test class, but why not use <a href="http://www.naildrivin5.com/scalatour/wiki_pages/ScalaBasics#Literals_and_Syntactic_Sugar">the <tt>apply()</tt> sugar</a> along with a <a href="http://www.naildrivin5.com/scalatour/wiki_pages/ScalaObject">singleton object</a> to make our own literal?
+
+<div class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="c1">// Along with our TwitterUser class def</span>
+<span class="k">object</span> <span class="nc">@@</span> <span class="o">{</span> <span class="c1">// &quot;@&quot; is a reserved word :(</span>
+  <span class="k">def</span> <span class="n">apply</span><span class="o">(</span><span class="n">username</span><span class="k">:</span><span class="kt">String</span><span class="o">)</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">TwitterUser</span><span class="o">(</span><span class="n">username</span><span class="o">)</span>
+<span class="o">}</span>
+
+<span class="c1">// back to our test code</span>
+
+<span class="k">val</span> <span class="n">me</span> <span class="k">=</span> <span class="o">@@(</span><span class="s">&quot;davetron5000&quot;</span><span class="o">)</span>
+<span class="k">val</span> <span class="n">fake</span> <span class="k">=</span> <span class="o">@@(</span><span class="s">&quot;davetron5001&quot;</span><span class="o">)</span></code></pre></div>
+
+It's a small bit of code, and we've saved some typing without sacrificing readability, since we take advantage of the way Twitter refers to users via the "@" symbol.
+
+If our app is all about Twitter, we can go a step further and just rename <tt>TwitterUser</tt> to <tt>@@</tt> like so:
+
+<div class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="c1">// This replaces the TwitterUser class </span>
+<span class="c1">// and @@ singleton object</span>
+<span class="k">case</span> <span class="k">class</span> <span class="nc">@@</span><span class="o">(</span><span class="k">val</span> <span class="n">username</span><span class="k">:</span><span class="kt">String</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">def</span> <span class="n">url</span> <span class="k">=</span> <span class="s">&quot;http://www.twitter.com/&quot;</span> <span class="o">+</span> <span class="n">username</span>
+<span class="o">}</span></code></pre></div>
+
+This takes advantage of (the unfortunately named) <a href="http://www.naildrivin5.com/scalatour/wiki_pages/CaseClasses">case classes</a> and now our Twitter user class <b>and</b> literal-like factory are called <tt>@@</tt>.  This allows, among other things, some more readable case statements.
+<div class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="n">user</span> <span class="k">match</span> <span class="o">{</span>
+  <span class="k">case</span> <span class="o">@@(</span><span class="s">&quot;davetron5000&quot;</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="s">&quot;it&#39;s you, dude&quot;</span>
+  <span class="k">case</span> <span class="n">user</span><span class="o">:@@</span> <span class="k">=&gt;</span> <span class="s">&quot;it&#39;s someone else&quot;</span>
+<span class="o">}</span></code></pre></div>
+
+Now, you certainly don't want to do this for every object in your domain (you'd get a horrible mess of symbols), but for key objects that you are using everywhere, an appropriately chosen literal syntax can make your code very clean and easy to read and modify.
+
+
+</div>
+          <footer class="mb2 text-l">
+            <a rel="full-article" class="no-ul pill" href="/blog/2009/11/14/make-your-own-literal-in-scala.html">Read More…</a>
+          </footer>
+        </section>
+      
+    </article>
   
   
     <article>
@@ -506,38 +575,6 @@ So, the Jerker is now in pieces and has been replaced by a second Utby at home.<
 </div>
           <footer class="mb2 text-l">
             <a rel="full-article" class="no-ul pill" href="/blog/2009/06/20/stand-while-you-work.html">Read More…</a>
-          </footer>
-        </section>
-      
-    </article>
-  
-  
-    <article>
-      <header>
-        
-        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2009/05/25/lead-or-bleed.html">Lead or Bleed</a></h1>
-        
-        <h2 class="f6 mtneg">May 25, 2009</h2>
-      </header>
-      
-        <section class="mb1">
-          <div class="excerpt"><p>
-After reading all of <a href="http://pragprog.com/titles/cfcar2/the-passionate-programmer">The Passionate Programmer</a> over a week or so, I'm going back through and looking at some of the "Act On It!" sections, where Chad Fowler recommends specific actions to kickstart/sustain/boost your career.  The very first one, titled "Lead or Bleed?" suggests making a map of technologies, with "on the way out" on the left side and "bleeding edge" on the right side, then highlighting how well you know each thing.  Here's my stab at it:
-</p>
-<p>
-<img src="http://www.naildrivin5.com/daveblog5000/wp-content/technologies.png" alt="Technololgies: Lead or Bleed" title="Technololgies: Lead or Bleed" width="610" height="557" class="alignnone size-full wp-image-135" />
-</p>
-<p>
-Green are things are know really well; yellow are things I could do at a job but am by no means an expert.
-</p>
-<p>
-Obviously this is shaped by my own reality and what I perceive on the 'net, and I omitted things like "C", "UNIX" and "Windows", because those are not really "on the way out" in the same way that C++ is (or that COBOL was, etc.). 
-</p>
-
-
-</div>
-          <footer class="mb2 text-l">
-            <a rel="full-article" class="no-ul pill" href="/blog/2009/05/25/lead-or-bleed.html">Read More…</a>
           </footer>
         </section>
       
