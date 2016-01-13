@@ -30,13 +30,13 @@
     
       
         
-        Introduction to GLI
+        Org Charts and Diff Production
         
-        December 02, 2013
+        December 03, 2013
       
       
         
-          Sitepoint recently p...">
+          Square&#3...">
   
 
   
@@ -67,6 +67,31 @@
     <section>
       <div class="blog-index">
   
+  
+  
+    <article>
+      <header>
+        
+        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2013/12/03/org-charts-and-diff-production.html">Org Charts and Diff Production</a></h1>
+        
+        <h2 class="f6 mtneg">December 03, 2013</h2>
+      </header>
+      
+        <section class="mb1">
+          <div class="excerpt"><p>Square&#39;s <a href="https://twitter.com/jackdanger/">@jackdanger</a> wrote a great post on his blog titled &quot;<a href="http://6brand.com/the-upside-down-org-chart.html">The Upside Down Org Chart</a>.&quot; It&#39;s a great read on improving how reasonably-sized companies are structured.  His use of a tree that expands upwards, showing how management supports subordination, is genius.  It visually explains the role of management:</p>
+
+<blockquote>
+<p>For a tech company to describe their structure this way requires some humility from the leadership. It requires accepting that senior positions must be evaluated based on the support given to individuals on the team rather than the support given to the CEO or executives. But it makes the structure one in which nothing is extracted from the laborers – indeed it provides help that an individual could not find working alone.</p>
+</blockquote>
+
+<p>His blog post&#39;s description of traditional top-down management structures brought back memories of teams I&#39;ve been on that, despite having favorable org charts, were unpleasant.  The problem was that I was treated as (and acted like) a producer of <a href="http://en.wikipedia.org/wiki/Diff">diffs</a>, rather than a problem-solver.</p>
+</div>
+          <footer class="mb2 text-l">
+            <a rel="full-article" class="no-ul pill" href="/blog/2013/12/03/org-charts-and-diff-production.html">Read More…</a>
+          </footer>
+        </section>
+      
+    </article>
   
   
     <article>
@@ -297,32 +322,6 @@ Smells, dammit!</p>
       
     </article>
   
-  
-    <article>
-      <header>
-        
-        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2013/08/07/manual-vs-automatic-continuous-deployment.html">Manual vs Automatic Continuous Deployment</a></h1>
-        
-        <h2 class="f6 mtneg">August 07, 2013</h2>
-      </header>
-      
-        
-          <section class="section-break complete-article mb1">
-            <p>My ex-colleague from LivingSocial, <a href="https://twitter.com/danmayer">Dan Mayer</a> posted a <a href="http://mayerdan.com/programming/2013/08/04/thoughts-on-continuous-deployment/">great read about continuous deployment</a>, and the tradeoffs when doing an automatic deploy:</p>
-
-<blockquote>
-<p>After considering some of the real world implications of automated continuous deployment, I didn’t feel it was right for our team on most of our projects at the moment. Both because we would need a bit of additional tooling around deployment and dashboards, and because our tests are far to slow.</p>
-</blockquote>
-
-<p>It&#39;s a good (and quick) read. Having worked on at least one of the apps that Dan&#39;s talking about, I would agree he&#39;s making the right call and that if your test suite is slow, automatic deployment can be a killer.  I also think there&#39;s a relationship between the size of the contributor group and the speed of the test suite - the more devs pushing stuff in, the faster it has to be.</p>
-
-<p>In <a href="http://www.theseniorsoftwareengineer.com">my book</a>, there&#39;s a chapter on bootstrapping new applications, and my recommendation is to set up automatic continuous deployment from the start.  I stand by that, because it basically turns the problem Dan identifies around: slow tests slow your deployment which should thus motivate keeping tests slow (and applications lean).  We&#39;ll see how it works out at <a href="http://stitchfixjobs.com/blog/2013/07/30/our-git-workflow/">Stitch Fix</a>.  We have one app with a somewhat slow test suite, and three with relatively fast ones.  Automatic deploys work really well so far.</p>
-
-          </section>
-        
-      
-    </article>
-  
   <footer class="center border-top">
     <nav class="pt2 pb2">
       
@@ -340,7 +339,7 @@ Smells, dammit!</p>
   </main>
   <footer class="center">
     <p class="f6">
-      Copyright &copy; 2006-2015, by David Bryant Copeland, All Rights Reserved
+      Copyright &copy; 2006-2016, by David Bryant Copeland, All Rights Reserved
   </footer>
   <script type="text/javascript">
     var _gaq = _gaq || [];

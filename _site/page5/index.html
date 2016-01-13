@@ -30,15 +30,13 @@
     
       
         
+        Manual vs Automatic Continuous Deployment
         
-          ☞ Stitch Fix Git Workflow
-        
-        
-        July 30, 2013
+        August 07, 2013
       
       
         
-        ...">
+          ...">
   
 
   
@@ -69,6 +67,32 @@
     <section>
       <div class="blog-index">
   
+  
+  
+    <article>
+      <header>
+        
+        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2013/08/07/manual-vs-automatic-continuous-deployment.html">Manual vs Automatic Continuous Deployment</a></h1>
+        
+        <h2 class="f6 mtneg">August 07, 2013</h2>
+      </header>
+      
+        
+          <section class="section-break complete-article mb1">
+            <p>My ex-colleague from LivingSocial, <a href="https://twitter.com/danmayer">Dan Mayer</a> posted a <a href="http://mayerdan.com/programming/2013/08/04/thoughts-on-continuous-deployment/">great read about continuous deployment</a>, and the tradeoffs when doing an automatic deploy:</p>
+
+<blockquote>
+<p>After considering some of the real world implications of automated continuous deployment, I didn’t feel it was right for our team on most of our projects at the moment. Both because we would need a bit of additional tooling around deployment and dashboards, and because our tests are far to slow.</p>
+</blockquote>
+
+<p>It&#39;s a good (and quick) read. Having worked on at least one of the apps that Dan&#39;s talking about, I would agree he&#39;s making the right call and that if your test suite is slow, automatic deployment can be a killer.  I also think there&#39;s a relationship between the size of the contributor group and the speed of the test suite - the more devs pushing stuff in, the faster it has to be.</p>
+
+<p>In <a href="http://www.theseniorsoftwareengineer.com">my book</a>, there&#39;s a chapter on bootstrapping new applications, and my recommendation is to set up automatic continuous deployment from the start.  I stand by that, because it basically turns the problem Dan identifies around: slow tests slow your deployment which should thus motivate keeping tests slow (and applications lean).  We&#39;ll see how it works out at <a href="http://stitchfixjobs.com/blog/2013/07/30/our-git-workflow/">Stitch Fix</a>.  We have one app with a somewhat slow test suite, and three with relatively fast ones.  Automatic deploys work really well so far.</p>
+
+          </section>
+        
+      
+    </article>
   
   
     <article>
@@ -353,30 +377,6 @@ explanation for doing things a particular way, but it&#39;s not actually a legit
       
     </article>
   
-  
-    <article>
-      <header>
-        
-        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2013/03/18/what-rss-means-to-me.html">What RSS Means to Me</a></h1>
-        
-        <h2 class="f6 mtneg">March 18, 2013</h2>
-      </header>
-      
-        <section class="mb1">
-          <div class="excerpt"><p>With the recent announcement that Google is shutting down Reader, there&#39;s been a lot of talk about RSS: Is it just a geek-only thing?  Isn&#39;t
-Twitter good enough?  Why don&#39;t you read &quot;real&quot; journalists instead of blogs?</p>
-
-<p>RSS is a huge part of my online life - every time I fire up Reeder and see stories, I get very happy.  The way I use RSS (which I believe is the best way to use it) can&#39;t be replaced by anything else that I&#39;m aware of.</p>
-
-<p>So, why do I think RSS is so great?</p>
-</div>
-          <footer class="mb2 text-l">
-            <a rel="full-article" class="no-ul pill" href="/blog/2013/03/18/what-rss-means-to-me.html">Read More…</a>
-          </footer>
-        </section>
-      
-    </article>
-  
   <footer class="center border-top">
     <nav class="pt2 pb2">
       
@@ -394,7 +394,7 @@ Twitter good enough?  Why don&#39;t you read &quot;real&quot; journalists instea
   </main>
   <footer class="center">
     <p class="f6">
-      Copyright &copy; 2006-2015, by David Bryant Copeland, All Rights Reserved
+      Copyright &copy; 2006-2016, by David Bryant Copeland, All Rights Reserved
   </footer>
   <script type="text/javascript">
     var _gaq = _gaq || [];

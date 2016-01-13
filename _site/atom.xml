@@ -4,13 +4,146 @@
   <title><![CDATA[naildrivin5.com - David Bryant Copeland's Website]]></title>
   <link href="http://naildrivin5.com/atom.xml" rel="self"/>
   <link href="http://naildrivin5.com/"/>
-  <updated>2015-11-30T18:34:07-05:00</updated>
+  <updated>2016-01-13T09:54:44-05:00</updated>
   <id>http://naildrivin5.com/</id>
   <author>
     <name><![CDATA[David Bryant Copeland]]></name>
     <email><![CDATA[davec@naildrivin5.com]]></email>
   </author>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Hierarchy of Software Needs]]></title>
+    
+    <link href="http://naildrivin5.com/blog/2016/01/13/hierarchy-of-software-needs.html"/>
+    
+    <updated>2016-01-13T09:00:00-05:00</updated>
+    <id>http://naildrivin5.com/blog/2016/01/13/hierarchy-of-software-needs</id>
+    <content type="html"><![CDATA[<p>If you regularly work with web technologies, you&#39;ve no-doubt pulled your hair out dealing with the technologies used for front-end development (and, let&#39;s be honest, back-end development, too :).  Almost everything about front-end work feels terrible, from the weakness of JavaScript as a language, to the myriad half-documented tools that all somehow manage to do less than <code>make</code>, to the absolute bizarre notion that we are building user interfaces with technologies designed to write term papers.</p>
+
+<p>But <em>why</em>  are these experiences unpleasant?   I would argue simply that they don&#39;t full meet our needs as programmers.  And we can think about those needs as
+a hierarchy, each need building on the need below it.</p>
+
+<!-- more -->
+
+<h2>Hierarchy of Needs?</h2>
+
+<p>If you aren&#39;t familiar with <a href="https://en.wikipedia.org/wiki/Maslow%27s_hierarchy_of_needs">Maslow&#39;s Hierarchy of Needs</a>, it describes a psychological hierarchy
+of increasingly powerful <em>needs</em> that, when met, contribute to healthy mental well-being.</p>
+
+<p>At the bottom are basic needs like air, food, and water—called <em>physiological needs</em>—that we all need to merely be alive.  The next step are <em>safety needs</em>,
+   which we fulfill after our physiologic ones.  These are needs like physical or financial safety, the absence of which can cause stress and anxiety.</p>
+
+<p>Next is our need for <em>love and belonging</em> which contribute to our abililty to form relationships with others.  After this comes <em>self-esteem</em> or self-respect,
+which allow us to feel a sense of contribution and value.</p>
+
+<p>The top of the hierarchy is <em>self-actualization</em>, which represents our desire and ability to achieve all that we can.</p>
+
+<p>What I&#39;ve laid out is an <em>extremely simplified summary</em> and it&#39;s for <em>context only</em>.  It&#39;s a framing concept for talking about the <em>Hierarchy of Programming
+Needs</em>. </p>
+
+<h2>Our Needs as Programmers</h2>
+
+<p>Here are our needs as programmers.  The bottom are our most basic needs, which must be met before needs higher up the pyramid can be met.</p>
+
+<p><img src="/images/programming_hierarchy_of_needs.png" alt="Hierarchy of Programming Needs"></p>
+
+<p>The most basic thing we need as programmers is the ability run, or <em>execute</em>, our code.</p>
+
+<h3>Need to Execute Code</h3>
+
+<p>Code that can&#39;t be executed might as well not exist.  It can never serve much purpose if we can&#39;t run it.  Running code is like breathing—there&#39;s no job
+called “Programmer” if code can&#39;t be executed.</p>
+
+<p>Just as with our physiological needs, our executable needs as programmers can be met with varying degrees of utility.  Technically, loading a BASIC program
+from a floppy disk and typing <code>RUN</code> meets our need.  But not in the same way as a REPL that has a command-line history and code completion.  </p>
+
+<p>Either way, if all we can do is run code, we won&#39;t get far.  Anything remotely complex will be a disaster of confusion, un-maintainability, and errors.  We
+need to manage that complexity, and the most basic way to do that is by creating abstractions.</p>
+
+<h3>Need to Create Abstractions</h3>
+
+<p>It&#39;s difficult to understand and modify a large codebase.  By creating abstractions we have a hope of doing so.  An abstraction is any way to create a
+higher-level construct.  It could be as simple as <a href="https://en.wikipedia.org/wiki/Decomposition_(computer_science)">functional decomposition</a> or creating <a href="https://en.wikipedia.org/wiki/Data_type">data
+types</a>.  It could be as complex is an advanced type system, pattern matching, or inheritance.</p>
+
+<p>Regardless, we have no hope of successfully writing and managing computer software without some way to create and use abstractions.  As with our need to
+execute code, our need to create abstractions can be met in a variety of ways.  Technically, jumping to a pre-defined memory location that contains a subroutine is a form of abstraction.  This is far less convenient than calling a named function.</p>
+
+<p>When our need for abstracting code is met, we can accomplish a great deal.  But the moment we must collaborate with another person (including ourselves in the future!), we&#39;ll run into problems.  With two distinct minds working on a piece of software, there will be different ways to accomplish things, different possible abstractions.  This leads to inconsistency, which a codebase hard to deal with, as you must understand more than you need to.</p>
+
+<h3>Need for Consistency</h3>
+
+<p>Sometimes, the lack of consistency is merely annoying. Sometimes, however, it can be disastrous.  We&#39;ve all heard about the <a href="https://en.wikipedia.org/wiki/Mars_Climate_Orbiter#Cause_of_failure">Mars probe that crashed because half the team was using Metric and the other half Imperial</a>.  Their need for consistency wasn&#39;t being met, and all the great abstractions in the world couldn&#39;t help.</p>
+
+<p>The way to manage consistency is to establish <em>conventions</em>, but they need to be put into code.  The need for consistency is only met when it&#39;s difficult (or
+ideally impossible) circumvent conventions and be inconsistent.</p>
+
+<p>For example, here are two ways to define a function in JavaScript:</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">foo</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">bar</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+</code></pre></div>
+<p>If we wish to use the latter form as our convention, we have no way to enforce or even encourage it in JavaScript.  In this regard, JavaScript is not meeting
+our need for consistency.  </p>
+
+<p>Think about the Mars probe.  Ideally, it would not have been possible to use two measurement systems.  Their programming environment had no way to meet that
+need and a timely, expensive scientific research mission utterly failed.</p>
+
+<p>Take a moment here to reflect.  It was pretty hard to imagine <em>any</em> programming environment, tool, or language that didn&#39;t meet our first two basic needs of executing code and creating abstractions.  But now, we&#39;re starting to see that our deeper needs (like consistency) aren&#39;t that easy to meet.</p>
+
+<p>But, supposing we <em>could</em> meet our need for consistency.  This would lead to many teams and many codebases, all self-consistent and easy to work in, but all
+different.  Working on a new system requires starting over and learning many new things in order to be productive.</p>
+
+<p>While some of this is natural—the domain of a new system might be unfamiliar—some of it is not (e.g. most systems need logging).</p>
+
+<p>The reality is that teams and software systems face many of the same problems, and those problems often have few, or even one, reasonable solution.  We spend time going to conferences and reading books &amp; blogs in order to learn about these solutions, to share them with others, and try to pass them on to the next generation.  We have a need for collective experience.</p>
+
+<h3>Need for Collective Experience</h3>
+
+<p>How many teams are suffering through the exact same problem right now?  How many are re-discovering the same solution to the same problems that have been
+solved years earlier?</p>
+
+<p>If you&#39;ve payed close attention during the birth of new and popular software tools, you&#39;ve seen this.  Ruby on Rails&#39; journey from upstart framework to accepted
+enterprise software platform has included (but, to be fair, not been <em>dominated</em> by) a pointless journey in re-learning many lessons of the previous decade&#39;s Java and J2EE developers (who themselves no-doubt re-learned lessons from the previous generation of C++ developers). NodeJS and the ecosystem of front-end tooling is repeating this.</p>
+
+<p>This isn&#39;t a knock on these communities: this is a <em>hard</em> need to meet.  The current state of the art—reading books, using tried-and-true-but-boring
+programming languages, and going to
+conferences—isn&#39;t cutting it.  Have you ever created a log format for your application log?</p>
+
+<p>When our need for collective experience isn&#39;t met, it can be worse than merely re-implementing solutions and re-learning lessons.  We often regress.</p>
+
+<p>By any objective measure, XML and a Schema is more powerful than JSON.  Yet, XML is the butt of many jokes and is generally avoided by many developers.  Those
+same developers are writing documentation to explain that an <code>address</code> key in a JSON payload should map to an object containing <code>street</code>, <code>city</code>, <code>state</code>, and <code>zip</code> keys (all Strings) so everyone knows what to expect when making an API call.</p>
+
+<p>This was 100% solved <em>in software</em> in the late 90&#39;s.  We&#39;re now seeing stuff like <a href="http://json-schema.org/">JSON Schema</a> crop up as everyone realizes that
+many of XML&#39;s features are actually really useful.</p>
+
+<p>But the failure here isn&#39;t <em>those developers</em> using JSON.  We all embraced JSON because while XML as a specification and a format is great, the ways in which
+we interacted with it were (and are) terrible.  The community around XML was unable to meet our need for collective experience.</p>
+
+<p>Like I said, this is a <em>hard need to meet</em>.  It feels almost impossible.</p>
+
+<p>But, thinking about this need can be instructive.  It can drive us to make better decisions about software design, about tool design, about language design!
+Why does the Go language have first-class support for <a href="https://gobyexample.com/goroutines">goroutines and channels</a>?  Because the language designers are
+trying to pass on their collective experience about how to deal with concurrency.</p>
+
+<h2>And now, back to reality</h2>
+
+<p>Think about the tools you use each day when programming.  How well do they meet your needs as a programmer?  JavaScript <em>barely</em> meets our need for
+abstractions.  CSS doesn&#39;t even meet that!   </p>
+
+<p>Think about Ruby on Rails: it bakes in many conventions.  Have you ever been on a Rails project and discussed how to name database keys?  Or how
+to name controllers?  It is meeting our need for consistency (in those areas :).</p>
+
+<p>And UNIX: The convention around “everything is a stream of bytes” is not only baked into the shell and the included tools, but it&#39;s the foundation of I/O in almost every language in use.  Talk about collective experience!</p>
+
+<p>But, what does this all mean?</p>
+
+<p>On the one hand, we are far too accepting of tools that barely meet our needs.  But, I also think that if we start to think
+about what our needs are, it can drive us to make better decisions about the software we use and the code we write.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[My Talk from Full Stack Toronto 2015]]></title>
@@ -498,24 +631,6 @@ over at <a href="http://technology.stitchfix.com/blog">Stitch Fix&#39;s Eng Blog
 
 <p>The post goes over six rules of thumb that I&#39;ve found useful, including class design, method parameter,
 and return values.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[How to be a Great Software Engineer in 2 Steps]]></title>
-    
-    <link href="http://naildrivin5.com/blog/2015/02/21/how-to-be-a-great-software-engineer.html"/>
-    
-    <updated>2015-02-21T13:03:00-05:00</updated>
-    <id>http://naildrivin5.com/blog/2015/02/21/how-to-be-a-great-software-engineer</id>
-    <content type="html"><![CDATA[<ol>
-<li><strong>Understand what problem you are trying to solve.</strong>  <em>So</em> many skip this, or don&#39;t spend enough time on it or don&#39;t even <em>realize</em> that it&#39;s something to do.  The main failure of good <em>programmers</em> that I&#39;ve seen is in not knowing what problem they were trying to solve.</li>
-<li><strong>Figure out what you need to do to solve the problem before you solve it.</strong>  This can be anything from skimming the code you&#39;re about to change to organizing your thoughts in a full-blown <a href="http://technology.stitchfix.com/blog/2014/12/02/some-design-up-front/">design document</a>.  You have to have a good idea of how you&#39;re going to go about solving the problem in the code.</li>
-</ol>
-
-<p>You can apply these steps to pretty much anything you need to do, from fixing bugs, to implementing features, to writing
-emails, to holding meetings.  If you know what problem you&#39;re trying to solve, and have a good sense of how you&#39;re going to do
-it, actually solving it becomes a lot simpler and a lot easier to get right.</p>
 ]]></content>
   </entry>
   

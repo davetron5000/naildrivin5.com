@@ -30,13 +30,13 @@
     
       
         
-        Git and SVN: connecting git branches to svn branches
+        Using Java Persistence with Tomcat and no EJBs
         
-        April 28, 2008
+        May 08, 2008
       
       
         
-...">
+        ...">
   
 
   
@@ -67,6 +67,83 @@
     <section>
       <div class="blog-index">
   
+  
+  
+    <article>
+      <header>
+        
+        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2008/05/08/using-java-persistence-with-tomcat-and-no-ejbs.html">Using Java Persistence with Tomcat and no EJBs</a></h1>
+        
+        <h2 class="f6 mtneg">May 08, 2008</h2>
+      </header>
+      
+        <section class="mb1">
+          <div class="excerpt">The project I'm working on is deployed under Tomcat and isn't using EJBs.  The codebase is using JDBC for database access and I'm looking into using some O/R mapping.  Hibernate is great, but Java Persistence is more desirable, as it's more of a standard.  Getting it to work with EJB3 is dead simple.  Getting it to work without EJB was a bit more problematic.
+
+The entire application is being deployed as a WAR file.  As such, the JPA configuration artifacts weren't getting picked up.  Setting aside how absolutely horrendous Java Enterprise configuration is, here's what ended up working for me:
+
+<ul>
+<li>Create a <tt>persistence.xml</tt> file as per standard documentation <b>leaving out the <tt>jta-data-source</tt> stanza</b> (I could not figure out how to get Hibernate/JPA to find my configured data source)</li>
+<li>Create your <tt>hibernate.cfg.xml</tt>, being sure to <b>include JDBC conncetion info</b>.  This will result in hibernate managing connections for you, which is fine</li>
+<li>Create a persistence jar containing:
+    <ul>
+    <li>Hibernate config at root</li>
+    <li><tt>persistence.xml</tt> in <tt>META-INF</tt></li>
+    <li>All classes with JPA annotations in root (obviously in their java package/directory structure)</li>
+    </ul></li>
+<li>This goes into <tt>WEB-INF/lib</tt> of the war file (being careful to omit the JPA-annotated classes from <tt>WEB-INF/classes</tt></li>
+</ul>
+
+The first two steps took a while to get to and aren't super clear from the documentation.
+
+To use JPA, this (non-production quality) code works:
+
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">EntityManagerFactory</span> <span class="n">emf</span> <span class="o">=</span> 
+    <span class="n">Persistence</span><span class="o">.</span><span class="na">createEntityManagerFactory</span><span class="o">(</span><span class="s">&quot;name used in persistence.xml&quot;</span><span class="o">);</span>
+<span class="n">EntityManager</span> <span class="n">em</span> <span class="o">=</span> <span class="n">emf</span><span class="o">.</span><span class="na">createEntityManager</span><span class="o">();</span> 
+
+<span class="n">Query</span> <span class="n">query</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="na">createQuery</span><span class="o">(</span><span class="s">&quot;from Account where name = :name&quot;</span><span class="o">);</span>
+<span class="n">query</span><span class="o">.</span><span class="na">setParameter</span><span class="o">(</span><span class="s">&quot;name&quot;</span><span class="o">,</span><span class="n">itsAccountName</span><span class="o">);</span>
+<span class="n">List</span> <span class="n">results</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="na">getResultList</span><span class="o">();</span>
+
+<span class="c1">// do stuff with your results</span>
+
+<span class="n">em</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+<span class="n">emf</span><span class="o">.</span><span class="na">close</span><span class="o">();</span></code></pre></div>
+
+The <tt>EntityManagerFactory</tt> is supposed to survive the life of application and not be created/destroyed on every request.
+
+I also believe there might be some transaction issues with this, but I can't figure out from the documentation what they are and if they are a big deal for a single-database application.
+
+<b>Update</b>:  Turns out, it's not quite this simple.  Since this configuration is running outside an EJB container, and given <a href="http://opensource.atlassian.com/projects/hibernate/browse/HHH-2382">Bug $2382</a>, you can query all day long, but you cannot persist.  To solve this, you must work in a transaction, as so:
+
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">EntityManagerFactory</span> <span class="n">emf</span> <span class="o">=</span> 
+    <span class="n">Persistence</span><span class="o">.</span><span class="na">createEntityManagerFactory</span><span class="o">(</span><span class="s">&quot;name used in persistence.xml&quot;</span><span class="o">);</span>
+<span class="n">EntityManager</span> <span class="n">em</span> <span class="o">=</span> <span class="n">emf</span><span class="o">.</span><span class="na">createEntityManager</span><span class="o">();</span> 
+<span class="n">EntityTransaction</span> <span class="n">tx</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="na">getTransaction</span><span class="o">();</span>
+
+<span class="n">tx</span><span class="o">.</span><span class="na">begin</span><span class="o">();</span>
+<span class="n">Query</span> <span class="n">query</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="na">createQuery</span><span class="o">(</span><span class="s">&quot;from Account where name = :name&quot;</span><span class="o">);</span>
+<span class="n">query</span><span class="o">.</span><span class="na">setParameter</span><span class="o">(</span><span class="s">&quot;name&quot;</span><span class="o">,</span><span class="n">itsAccountName</span><span class="o">);</span>
+<span class="n">List</span> <span class="n">results</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="na">getResultList</span><span class="o">();</span>
+
+<span class="c1">// modify your results somehow via persist() </span>
+<span class="c1">// or merge()</span>
+
+<span class="n">tx</span><span class="o">.</span><span class="na">commit</span><span class="o">();</span>
+<span class="n">em</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+<span class="n">emf</span><span class="o">.</span><span class="na">close</span><span class="o">();</span></code></pre></div>
+
+Again, this is <b> not production code</b> as <b>no</b> error handling has been done at all, but you get the point.
+
+
+</div>
+          <footer class="mb2 text-l">
+            <a rel="full-article" class="no-ul pill" href="/blog/2008/05/08/using-java-persistence-with-tomcat-and-no-ejbs.html">Read More…</a>
+          </footer>
+        </section>
+      
+    </article>
   
   
     <article>
@@ -553,31 +630,6 @@ I guess if we'd been doing this with tape, we would either have had to use a cli
       
     </article>
   
-  
-    <article>
-      <header>
-        
-        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2006/06/20/wikipedia-and-the-speed-of-ebusiness.html">Wikipedia and the speed of eBusiness</a></h1>
-        
-        <h2 class="f6 mtneg">June 20, 2006</h2>
-      </header>
-      
-        <section class="mb1">
-          <div class="excerpt">So, I've authored a few <a href="http://en.wikipedia.org">Wikipedia</a> entries, and have done large edits to some other, so usually a few times a week, I'll check the watchlist and keep an eye on things.  I'll also periodically fix typos or reword things in articles if I'm reading.  Usually I'll only bother for articles about old school video games, wrestling or music.  I was reading the entry on amateur wrestler-turned-sports-entertainer <a href="http://en.wikipedia.org/wiki/Brock_Lesnar">Brock Lesna</a> and notice some pretty poorly worded passages.  A big problem with pro-wrestling entires is that they don't clearly distinguish wrestling storylines from real-world happenings and they come off a bit <a href="http://en.wikipedia.org/wiki/Mark_%28professional_wrestling%29">markish</a>.  
-
-So, I edited a big part of the entry about his time in WWE.  I try to preview before saving, but whenever I edit a lot of text, I end up making several follow-up edits.  After a couple of these, I notice a missing comma, so I click "Edit" and I get a blank page.  Figuring wikipedia just barfed or something, I try it again.  Nothing.  I had been just editing the section, so I go back and try to edit the entire article.  It has been replace with <a href="http://en.wikipedia.org/w/index.php?title=Brock_Lesnar&oldid=59628589">this (possibly NSFW) entry</a>.  Right under my nose!  So, I reverted the edit and went to the user's talk page.  I then had to get searching through the Wikipedia help section to find out how to flag this guy as a vandal.  Meanwhile, he reverted my reversion to his vandalized page <b>again</b>!  Another wikipedia user (possibly someone who was watching his talk page) undid his edits.  
-
-I finally figured out a) how to put a vandal tag on his talk page (he's got a ton there already) and then b) how to inform the Wikipedia admins that he was a repeat offender and needed banning.  Within a few minutes of that, I got a message that he was banned for one week and that this was the third time he'd been banned.  The entire thing from start to finish was about 5 minutes. Kudos to the openness of wikipedia!  Now the world can be more accurately informed about how Brock Lesnar almost broke his neck at Wrestlemania only to get buried by Stone Cold Steve Austin on his way out the door!
-
-
-</div>
-          <footer class="mb2 text-l">
-            <a rel="full-article" class="no-ul pill" href="/blog/2006/06/20/wikipedia-and-the-speed-of-ebusiness.html">Read More…</a>
-          </footer>
-        </section>
-      
-    </article>
-  
   <footer class="center border-top">
     <nav class="pt2 pb2">
       
@@ -595,7 +647,7 @@ I finally figured out a) how to put a vandal tag on his talk page (he's got a to
   </main>
   <footer class="center">
     <p class="f6">
-      Copyright &copy; 2006-2015, by David Bryant Copeland, All Rights Reserved
+      Copyright &copy; 2006-2016, by David Bryant Copeland, All Rights Reserved
   </footer>
   <script type="text/javascript">
     var _gaq = _gaq || [];

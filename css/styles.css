@@ -235,6 +235,10 @@ footer.footnotes {
 .fl {
   float: left; }
 
+img {
+  max-width: 100%;
+  max-height: 100%; }
+
 .list-inline {
   list-style: none; }
   .list-inline li {
