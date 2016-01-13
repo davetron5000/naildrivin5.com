@@ -6,7 +6,7 @@ date: 2016-01-13 9:00
 
 If you regularly work with web technologies, you've no-doubt pulled your hair out dealing with the technologies used for front-end development (and, let's be honest, back-end development, too :).  Almost everything about front-end work feels terrible, from the weakness of JavaScript as a language, to the myriad half-documented tools that all somehow manage to do less than `make`, to the absolute bizarre notion that we are building user interfaces with technologies designed to write term papers.
 
-But *why*  are these experiences unpleasant?   I would argue simply that they don't full meet our needs as programmers.  And we can think about those needs as
+But *why*  are these experiences unpleasant?   I would argue simply that they don't fully meet our needs as programmers.  And we can think about those needs as
 a hierarchy, each need building on the need below it.
 
 <!-- more -->
