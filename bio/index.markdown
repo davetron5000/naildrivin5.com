@@ -34,7 +34,7 @@ I'm a programmer, musician, and author of [“Rails, Angular, Postgres, and Boot
 
 [clibook]: http://pragprog.com/book/dccar2
 [nogoogle]: http://naildrivin5.com/blog/2011/08/01/why-i-wont-work-for-google-twitter-facebook.html
-[typography]: http://localhost:4000/blog/2013/05/17/source-code-typography.html
+[typography]: /blog/2013/05/17/source-code-typography.html
 [pragpub]: http://pragprog.com/magazines/2012-05/what-makes-an-awesome-commandline-application
 [sweng]: http://www.theseniorsoftwareengineer.com
 [fullstackbook]: https://pragprog.com/titles/dcbang
