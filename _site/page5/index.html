@@ -30,13 +30,13 @@
     
       
         
-        Responsible Refactoring
+        Inconsistent Architecture
         
-        August 08, 2013
+        August 21, 2013
       
       
         
-          Emboldened by test...">
+          Quick, which is ...">
   
 
   
@@ -67,6 +67,31 @@
     <section>
       <div class="blog-index">
   
+  
+  
+    <article>
+      <header>
+        
+        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2013/08/21/inconsistent-architecture.html">Inconsistent Architecture</a></h1>
+        
+        <h2 class="f6 mtneg">August 21, 2013</h2>
+      </header>
+      
+        <section class="mb1">
+          <div class="excerpt"><p>Quick, which is better: MiniTest or RSpec?  HAML or ERB?  SASS or LESS?</p>
+
+<p>If you are building your first Rails app at your company, it doesn&#39;t matter.  They all work more or less the same, so just pick one and go.  Take a vote or declare by fiat, but get on with your life.  No project ever failed because they picked HAML over ERB.</p>
+
+<p>If, on the other hand, you are building a new Rails application that runs in an existing technical infrastructure (which is far more likely), then these are the absolute wrong questions to be asking.  Use what your team already uses <em>unless there&#39;s a good technical reason not to</em>.  Why?</p>
+
+<p>Because consistency is far more important than most other factors.</p>
+</div>
+          <footer class="mb2 text-l">
+            <a rel="full-article" class="no-ul pill" href="/blog/2013/08/21/inconsistent-architecture.html">Read More…</a>
+          </footer>
+        </section>
+      
+    </article>
   
   
     <article>
@@ -331,36 +356,6 @@ accomplish your <em>real</em> goal much more efficiently.</p>
       
     </article>
   
-  
-    <article>
-      <header>
-        
-        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2013/04/10/the-painful-world-of-javascript-testing.html">The Painful World of JavaScript Testing</a></h1>
-        
-        <h2 class="f6 mtneg">April 10, 2013</h2>
-      </header>
-      
-        <section class="mb1">
-          <div class="excerpt"><p>One of the main reasons I like working test-first is because I&#39;m lazy.  I don&#39;t want to fire
-up a browser, log in as the right person, navigate to just the right piece of data (which I
-had to set up manually in the database), and click around to see if things are working.</p>
-
-<p>Don&#39;t get me wrong, I <em>do</em> do that, but only when the code is working according to my tests.  Or, when I have to write
-JavaScript.  </p>
-
-<p>At my <a href="http://www.naildrivin5.com/blog/2013/02/19/stitch-fix-slash.html">current job</a>, I&#39;m doing a lot more front-end than I had been, and so more
-JavaScript.  The app I&#39;m working on is a Rails app, and so I looked into the current state of
-the art with testing JavaScript.</p>
-
-<p>In <em>can</em> be done, and it&#39;s painful.</p>
-</div>
-          <footer class="mb2 text-l">
-            <a rel="full-article" class="no-ul pill" href="/blog/2013/04/10/the-painful-world-of-javascript-testing.html">Read More…</a>
-          </footer>
-        </section>
-      
-    </article>
-  
   <footer class="center border-top">
     <nav class="pt2 pb2">
       
@@ -379,16 +374,20 @@ the art with testing JavaScript.</p>
   <footer class="center">
     <p class="f6">
       Copyright &copy; 2006-2016, by David Bryant Copeland, All Rights Reserved
+    </p>
   </footer>
   <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', '']);
-    _gaq.push(['_trackPageview']);
-
+    var _gauges = _gauges || [];
     (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      var t   = document.createElement('script');
+      t.type  = 'text/javascript';
+      t.async = true;
+      t.id    = 'gauges-tracker';
+      t.setAttribute('data-site-id', '56a22cd9c88d90284f000861');
+      t.setAttribute('data-track-path', 'https://track.gaug.es/track.gif');
+      t.src = 'https://d36ee2fcip1434.cloudfront.net/track.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(t, s);
     })();
   </script>
 </body></html>

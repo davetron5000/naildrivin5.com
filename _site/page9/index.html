@@ -30,13 +30,14 @@
     
       
         
-        I heartily endorse Ruby off Rails
+        Methadone 1.0 with Awesome Tutorial
         
-        April 05, 2012
+        April 11, 2012
       
       
         
-          Jesse Wol...">
+          
+      ...">
   
 
   
@@ -67,6 +68,34 @@
     <section>
       <div class="blog-index">
   
+  
+  
+    <article>
+      <header>
+        
+        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2012/04/11/methadone-1-dot-0-with-awesome-tutorial.html">Methadone 1.0 with Awesome Tutorial</a></h1>
+        
+        <h2 class="f6 mtneg">April 11, 2012</h2>
+      </header>
+      
+        
+          <section class="section-break complete-article mb1">
+            <p><a href="http://www.github.com/davetron5000/methadone">Methadone</a> is the ultimate command-line library for Ruby apps.  All the power of <code>OptionParser</code>, none of the verbosity, with a smattering of tools to help you write amazing apps right from the get-go.  In seconds, you have a fully functioning skeleton of an app, with integration and unit test coverage, documentation, and in-line help.  I created most of it while writing [my book][clibook], and have been feverishly polishing it since the book came out.</p>
+
+<p>Today is its first official release at 1.0.  Woot!</p>
+
+<p><img src="/images/methadone_tutorial.jpg" alt="&#39;Cover for the Methadone Tutorial iBook&#39;"></p>
+
+<p>I&#39;ve also released a tutorial as an &quot;enhanced&quot; iBook, <a href="http://itunes.apple.com/us/book/kick-bash-habit-ruby-methadone/id515825242?ls=1">available now</a> from the iBookstore as a free download.  This isn&#39;t just a big ream of code and text, but a step-by-step walkthrough, with screencasts, on how to use Methadone, along with some detailed discussion on some of Methadone&#39;s more useful features.  It&#39;s all presented beautifully as a &quot;textbook&quot;-style iBook that looks great on an iPad 1 and stunning on the new iPad, thanks to iBooks Author and the retina display.</p>
+
+<p>Read the tutorial, <a href="http://rdoc.info/github/davetron5000/methadone/master/frames">read the RDoc</a>, install the library, and feel free to <a href="http://www.github.com/davetron5000/methadone/issues">submit patches</a>.</p>
+
+<hr>
+
+          </section>
+        
+      
+    </article>
   
   
     <article>
@@ -270,27 +299,6 @@ soundtrack :)</p>
       
     </article>
   
-  
-    <article>
-      <header>
-        
-        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2012/01/30/avoid-kingdom-of-nouns-with-procs.html">Avoid the Kingdom of Nouns with Procs</a></h1>
-        
-        <h2 class="f6 mtneg">January 30, 2012</h2>
-      </header>
-      
-        <section class="mb1">
-          <div class="excerpt"><p>Hopefully you&#39;ve read Steve Yegge&#39;s excellent <a href="http://steve-yegge.blogspot.com/2006/03/execution-in-kingdom-of-nouns.html">kingdom of nouns</a> essay, in which he bemoans a pattern that exists in a lot of Java-base systems.  The tell-tale sign is a class named <code>ThingDoer</code> with a single method <code>doThing()</code>.  Systems like this don&#39;t arise simply because Java is the way it is, but when you follow <a href="http://en.wikipedia.org/wiki/SOLID_(object-oriented_design)">SOLID</a> principles (particularly the <a href="http://en.wikipedia.org/wiki/Single_responsibility_principle">single responsibility</a> and <a href="http://en.wikipedia.org/wiki/Dependency_injection">dependency inversion</a> principles), your code ends up with lots of small classes that do one thing only.</p>
-
-<p>In Java, you are basically stuck with this, but in Ruby (or any OO language that supports closures/blocks/functions), we can fight this by using Procs instead of classes.</p>
-</div>
-          <footer class="mb2 text-l">
-            <a rel="full-article" class="no-ul pill" href="/blog/2012/01/30/avoid-kingdom-of-nouns-with-procs.html">Read More…</a>
-          </footer>
-        </section>
-      
-    </article>
-  
   <footer class="center border-top">
     <nav class="pt2 pb2">
       
@@ -309,16 +317,20 @@ soundtrack :)</p>
   <footer class="center">
     <p class="f6">
       Copyright &copy; 2006-2016, by David Bryant Copeland, All Rights Reserved
+    </p>
   </footer>
   <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', '']);
-    _gaq.push(['_trackPageview']);
-
+    var _gauges = _gauges || [];
     (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      var t   = document.createElement('script');
+      t.type  = 'text/javascript';
+      t.async = true;
+      t.id    = 'gauges-tracker';
+      t.setAttribute('data-site-id', '56a22cd9c88d90284f000861');
+      t.setAttribute('data-track-path', 'https://track.gaug.es/track.gif');
+      t.src = 'https://d36ee2fcip1434.cloudfront.net/track.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(t, s);
     })();
   </script>
 </body></html>

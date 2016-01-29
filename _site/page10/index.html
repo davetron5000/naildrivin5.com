@@ -30,12 +30,13 @@
     
       
         
-        More Clean Tests: Handling Mocks &amp; Block-based asserts
+        Avoid the Kingdom of Nouns with Procs
         
-        January 16, 2012
+        January 30, 2012
       
       
- ...">
+        
+          Hop...">
   
 
   
@@ -66,6 +67,27 @@
     <section>
       <div class="blog-index">
   
+  
+  
+    <article>
+      <header>
+        
+        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2012/01/30/avoid-kingdom-of-nouns-with-procs.html">Avoid the Kingdom of Nouns with Procs</a></h1>
+        
+        <h2 class="f6 mtneg">January 30, 2012</h2>
+      </header>
+      
+        <section class="mb1">
+          <div class="excerpt"><p>Hopefully you&#39;ve read Steve Yegge&#39;s excellent <a href="http://steve-yegge.blogspot.com/2006/03/execution-in-kingdom-of-nouns.html">kingdom of nouns</a> essay, in which he bemoans a pattern that exists in a lot of Java-base systems.  The tell-tale sign is a class named <code>ThingDoer</code> with a single method <code>doThing()</code>.  Systems like this don&#39;t arise simply because Java is the way it is, but when you follow <a href="http://en.wikipedia.org/wiki/SOLID_(object-oriented_design)">SOLID</a> principles (particularly the <a href="http://en.wikipedia.org/wiki/Single_responsibility_principle">single responsibility</a> and <a href="http://en.wikipedia.org/wiki/Dependency_injection">dependency inversion</a> principles), your code ends up with lots of small classes that do one thing only.</p>
+
+<p>In Java, you are basically stuck with this, but in Ruby (or any OO language that supports closures/blocks/functions), we can fight this by using Procs instead of classes.</p>
+</div>
+          <footer class="mb2 text-l">
+            <a rel="full-article" class="no-ul pill" href="/blog/2012/01/30/avoid-kingdom-of-nouns-with-procs.html">Read More…</a>
+          </footer>
+        </section>
+      
+    </article>
   
   
     <article>
@@ -302,42 +324,6 @@ Reading Wikipedia <a href="http://en.wikipedia.org/wiki/Flashpoint_(comics)">sum
       
     </article>
   
-  
-    <article>
-      <header>
-        
-        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2011/08/01/why-i-wont-work-for-google-twitter-facebook.html">Why I'd never work for Google, Twitter, or Facebook</a></h1>
-        
-        <h2 class="f6 mtneg">August 01, 2011</h2>
-      </header>
-      
-        
-          <section class="section-break complete-article mb1">
-            <p>Just got back from OSCON 2011.  There were some really interesting talks, and “the big three” were all over the place: Google, Twitter, and Facebook.  I attended the <a href="http://www.oscon.com/oscon2011/public/schedule/detail/20528">Twitter talk</a> on how they moved from Ruby to the JVM, as well a talk by Rob Pike (of Google) on <a href="http://www.oscon.com/oscon2011/public/schedule/detail/18653">Go</a>.  I use Twitter and Google a <em>lot</em>, and enjoyed hearing about how they work (Facebook, on the other hand, I use begrudgingly).</p>
-
-<p>My first reaction to these talks was “Wow, it sure sounds like a lot of fun to work at these places!” From inventing programming languages to using Scala to scale a massive architecture, it sounds like developer shangri-la.  Until recently, I was slinging <a href="/blog/2010/01/09/Top-5-Omissions-From-Spring-MVC.html">Spring MVC</a> code in vanilla Java.  Sucks for me, right?</p>
-
-<p>This is lazy thinking, and I haven&#39;t fallen victim to it in quite a while.  Ask yourself: “Why would Google spend the time and money to get Rob Pike to work for them and invent an entirely new programming language?”  Ask: “Why would Twitter spend the time and money to design and deploy an elegant, scalable architecture using the JVM and Scala?”</p>
-
-<p>An awesome new programming language, or an impressive, scalable architecture is not an end to itself.  These are tools that serve some other purpose.</p>
-
-<p>In the case of Google, Twitter, and Facebook, that purpose is to serve ads.</p>
-
-<p>Although <a href="http://www.youtube.com/watch?v=vKmQW_Nkfk8">Steve Yegge&#39;s</a> keynote features him “quitting” his project at Google (which he describes as “sharing cat pictures”) to work on some higher calling (still within Google), he&#39;s just trading one ad-serving system for another.  </p>
-
-<p>Google+ isn&#39;t about sharing cat pictures, it&#39;s about serving ads.  Twitter&#39;s massive network of 140-character bits of information isn&#39;t about connecting people across the globe or to view current trends in worldwide thinking, it&#39;s about serving ads.  Facebook isn&#39;t about entertaining yourself with games or sharing interesting links, it&#39;s about serving ads.</p>
-
-<p>So, why are the best and brightest in the industry busting their asses to work at these places?   If all you care about is watching performance metrics increase, or playing with something new, or just watching lots of tests pass, I guess it&#39;s nice to get paid well.  But, how can this be truly fulfilling?  For me, it wouldn&#39;t be.  I need the tools I&#39;m building, the products I work on, and the architecture I&#39;m helping to create to all serve something I&#39;m interested in.</p>
-
-<p>I&#39;m not saying that my code needs to save the world or support humanitarian causes, but it should at least be something that <em>I</em> like, or <em>I</em> would use, or that <em>I</em> care about.</p>
-
-<p>And I can&#39;t fucking abide advertisements.  Honestly, I don&#39;t know anyone who does.  Except, apparently, a lot of really smart software engineers.</p>
-
-          </section>
-        
-      
-    </article>
-  
   <footer class="center border-top">
     <nav class="pt2 pb2">
       
@@ -356,16 +342,20 @@ Reading Wikipedia <a href="http://en.wikipedia.org/wiki/Flashpoint_(comics)">sum
   <footer class="center">
     <p class="f6">
       Copyright &copy; 2006-2016, by David Bryant Copeland, All Rights Reserved
+    </p>
   </footer>
   <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', '']);
-    _gaq.push(['_trackPageview']);
-
+    var _gauges = _gauges || [];
     (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      var t   = document.createElement('script');
+      t.type  = 'text/javascript';
+      t.async = true;
+      t.id    = 'gauges-tracker';
+      t.setAttribute('data-site-id', '56a22cd9c88d90284f000861');
+      t.setAttribute('data-track-path', 'https://track.gaug.es/track.gif');
+      t.src = 'https://d36ee2fcip1434.cloudfront.net/track.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(t, s);
     })();
   </script>
 </body></html>

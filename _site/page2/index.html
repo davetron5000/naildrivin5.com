@@ -30,14 +30,13 @@
     
       
         
+        Naming and API Design
         
-          ☞ Anatomy of a Rails Service Object
-        
-        
-        June 02, 2015
+        June 15, 2015
       
       
-       ...">
+        
+          A tenet of design is t...">
   
 
   
@@ -68,6 +67,25 @@
     <section>
       <div class="blog-index">
   
+  
+  
+    <article>
+      <header>
+        
+        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2015/06/15/naming-and-api-design.html">Naming and API Design</a></h1>
+        
+        <h2 class="f6 mtneg">June 15, 2015</h2>
+      </header>
+      
+        <section class="mb1">
+          <div class="excerpt"><p>A tenet of design is that things that are the same should be obviously the same, and things that are different should be obviously different.  This is the most basic way to create consonance and contrast, and is a great rule of thumb when designing <em>anything</em>.  While Rails diverges from this in an annoying way<a name="back-1"></a><sup><a href="#1">1</a></sup>, Angular diverges in a baffling way that makes explaining it to a newcomer head-scratchingly difficult.</p>
+</div>
+          <footer class="mb2 text-l">
+            <a rel="full-article" class="no-ul pill" href="/blog/2015/06/15/naming-and-api-design.html">Read More…</a>
+          </footer>
+        </section>
+      
+    </article>
   
   
     <article>
@@ -351,36 +369,6 @@ Namely, make your jobs idempotent:</p>
       
     </article>
   
-  
-    <article>
-      <header>
-        
-        <h1 class="f4">
-          <a class="no-ul" href="http://technology.stitchfix.com/blog/2014/06/11/introducing-resque-brain/">☞ <span class="ul-hover">Resque Brain - a Better Resque Web UI</span></a>
-        </h1>
-        
-        <h2 class="f6 mtneg">June 12, 2014</h2>
-      </header>
-      
-        
-          <section class="section-break">
-            <p>Monitoring multiple <a href="https://github.com/resque/resque">Resque</a> instances, especially from a mobile phone
-browser, is a huge pain.  That pain is now over.  From the <a href="http://technology.stitchfix.com/blog/2014/06/11/introducing-resque-brain/">Stitch Fix blog</a></p>
-
-<blockquote>
-<p>Today, we’re introducing Resque Brain, an open source application that monitors multiple resque instances. It has a mobile-friendly UI, and provides better tools for managing the failed queue. It also includes some basic monitoring and statistics tasks.</p>
-</blockquote>
-
-<p><a href="http://technology.stitchfix.com/resque-brain">Check it out</a>.</p>
-
-          </section>
-          <footer class="mtneg mb1">
-            <h1 class="f7"><a class="no-ul ul-hover" href="/blog/2014/06/12/resque-brain-a-better-resque-web-ui.html">#</a></h1>
-          </footer>
-        
-      
-    </article>
-  
   <footer class="center border-top">
     <nav class="pt2 pb2">
       
@@ -399,16 +387,20 @@ browser, is a huge pain.  That pain is now over.  From the <a href="http://techn
   <footer class="center">
     <p class="f6">
       Copyright &copy; 2006-2016, by David Bryant Copeland, All Rights Reserved
+    </p>
   </footer>
   <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', '']);
-    _gaq.push(['_trackPageview']);
-
+    var _gauges = _gauges || [];
     (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      var t   = document.createElement('script');
+      t.type  = 'text/javascript';
+      t.async = true;
+      t.id    = 'gauges-tracker';
+      t.setAttribute('data-site-id', '56a22cd9c88d90284f000861');
+      t.setAttribute('data-track-path', 'https://track.gaug.es/track.gif');
+      t.src = 'https://d36ee2fcip1434.cloudfront.net/track.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(t, s);
     })();
   </script>
 </body></html>

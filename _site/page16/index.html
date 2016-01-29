@@ -30,14 +30,15 @@
     
       
         
-        Ruby and dead simple code coverage
+        Things I'd like to leave behind
         
         October 14, 2008
       
       
         
           
-I ha...">
+
+Subve...">
   
 
   
@@ -68,6 +69,40 @@ I ha...">
     <section>
       <div class="blog-index">
   
+  
+  
+    <article>
+      <header>
+        
+        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2008/10/14/things-id-like-to-leave-behind.html">Things I'd like to leave behind</a></h1>
+        
+        <h2 class="f6 mtneg">October 14, 2008</h2>
+      </header>
+      
+        <section class="mb1">
+          <div class="excerpt"><p>
+<ul>
+<li><b>Subversion</b> - Git is so much better in so many ways (it goes without saying that CVS should be allowed to die)</li>
+<li><b>JUnit</b> - TestNG does all that JUnit does and more; what does JUnit even have to offer these days?</li>
+<li><b>Java 1.4</b> - Java without generics is just so much pain</li>
+<li><b>Java Web Frameworks</b> - As far as I can tell, <b>none</b> of them adequately address one of the fundamental problems in web development, which is to simplify the creation of the UI.</li>
+<li><b>Ant</b> - Ant has always been the world's worst build automation language; who creates a build tool without variables, loops and conditionals?  We can do better (and Maven doesn't appear to be it)</li>
+<li><b>Checked exceptions</b> - <tt>java.lang.Exception</tt> is possibly the worst class in the Java library; should never be caught nor thrown<sup>1</sup></li>
+<li><b>Misuses of XML</b> - XML has a purpose, and it's not as a programming language or configuration file format.  Any notion that XML is anything other than a <b>binary format</b> is misguided</li>
+</ul>
+</p>
+<p><i>
+<sup>1</sup>API developers should be allowed to declare that they throw <tt>Exception</tt> to allow subclasses to throw whatever they want with impunity, however <tt>Throwable</tt> is the preferred thing to catch for catch-alls, and the entire exception mechanism in Java is woefully broken.</i>
+<p>
+
+
+</div>
+          <footer class="mb2 text-l">
+            <a rel="full-article" class="no-ul pill" href="/blog/2008/10/14/things-id-like-to-leave-behind.html">Read More…</a>
+          </footer>
+        </section>
+      
+    </article>
   
   
     <article>
@@ -804,104 +839,6 @@ So, I grab my Macbook Pro that I use for Pro Audio, plug in my trusty firewire m
       
     </article>
   
-  
-    <article>
-      <header>
-        
-        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2008/05/14/using-threadlocal-and-servlet-filters-to-cleanly-access-jpa-an-entitymanager.html">Using ThreadLocal and Servlet Filters to cleanly access JPA an EntityManager</a></h1>
-        
-        <h2 class="f6 mtneg">May 14, 2008</h2>
-      </header>
-      
-        <section class="mb1">
-          <div class="excerpt">My current project is slowly moving from JDBC-based database interaction to JPA-based.  Following good sense, I'm trying to change things as little as possible.  One of those things is that we are deploying under Tomcat and not under a full-blown J2EE container.  This means that EJB3 is out.  After my <a href="http://www.naildrivin5.com/daveblog5000/?p=37">post regarding this configuration</a>, I quickly realized that my code started to get littered with:
-
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">EntityManager</span> <span class="n">em</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-<span class="k">try</span>
-<span class="o">{</span>
-  <span class="n">em</span> <span class="o">=</span> <span class="n">EntityManagerUtil</span><span class="o">.</span><span class="na">getEntityManager</span><span class="o">();</span>
-  <span class="c1">// do stuff with entity manager</span>
-<span class="o">}</span>
-<span class="k">finally</span>
-<span class="o">{</span>
-  <span class="k">try</span> <span class="o">{</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">em</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="n">em</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
-  <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Throwable</span> <span class="n">t</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">logger</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="s">&quot;While closing an EntityManager&quot;</span><span class="o">,</span><span class="n">t</span><span class="o">);</span>
-  <span class="o">}</span>
-<span class="o">}</span></code></pre></div>
-
-Pretty ugly, and seriously annoying to have to add <b>13 lines of code</b> to any method that needs to interact with the database.  The Hibernate docs suggest using <tt>ThreadLocal</tt> variables to provide access to the EntityManager throughout the life of a request (which wouldn't really work for a Swing app, but since this is servlet-based, it should work fine).    The <tt>ThreadLocal</tt> javadocs contain possibly the most annoying example ever, and I didn't follow how to use it.
-
-Anyway, I finally got around to it, and also solved the close problem as well, by using a Servlet Filter.  I guess this type of thing would normally be solvable by Spring or Guice, but I didn't want to drag all of that into the application to refactor this one thing; I would've easily spent the rest of the day dealing with XML confihuration and deployment.
-
-The solution was quite simple:
-
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="cm">/** Provides access to the entity manager.  */</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EntityManagerUtil</span> 
-<span class="o">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">ThreadLocal</span><span class="o">&amp;</span><span class="n">lt</span><span class="o">;</span><span class="n">EntityManager</span><span class="o">&gt;</span> 
-        <span class="n">ENTITY_MANAGERS</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ThreadLocal</span><span class="o">&amp;</span><span class="n">lt</span><span class="o">;</span><span class="n">EntityManager</span><span class="o">&gt;();</span>
-
-    <span class="cm">/** Returns a fresh EntityManager */</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="n">EntityManager</span> <span class="nf">getEntityManager</span><span class="o">()</span>
-    <span class="o">{</span>
-        <span class="k">return</span> <span class="n">ENTITY_MANAGERS</span><span class="o">.</span><span class="na">get</span><span class="o">();</span>
-    <span class="o">}</span>
-<span class="o">}</span></code></pre></div>
-
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">EntityManagerFilter</span> <span class="kd">implements</span> <span class="n">Filter</span>
-<span class="o">{</span>
-    <span class="kd">private</span> <span class="n">Logger</span> <span class="n">itsLogger</span> <span class="o">=</span> <span class="n">Logger</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="n">getClass</span><span class="o">().</span><span class="na">getName</span><span class="o">());</span>
-    <span class="kd">private</span> <span class="kd">static</span> <span class="n">EntityManagerFactory</span> <span class="n">theEntityManagerFactory</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doFilter</span><span class="o">(</span><span class="n">ServletRequest</span> <span class="n">request</span><span class="o">,</span> <span class="n">ServletResponse</span> <span class="n">response</span><span class="o">,</span> <span class="n">FilterChain</span> <span class="n">chain</span><span class="o">)</span>
-        <span class="kd">throws</span> <span class="n">IOException</span><span class="o">,</span> <span class="n">ServletException</span>
-    <span class="o">{</span>
-        <span class="n">EntityManager</span> <span class="n">em</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-        <span class="k">try</span>
-        <span class="o">{</span>
-            <span class="n">em</span> <span class="o">=</span> <span class="n">theEntityManagerFactory</span><span class="o">.</span><span class="na">createEntityManager</span><span class="o">();</span>
-            <span class="n">EntityManagerUtil</span><span class="o">.</span><span class="na">ENTITY_MANAGERS</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">em</span><span class="o">);</span>
-            <span class="n">chain</span><span class="o">.</span><span class="na">doFilter</span><span class="o">(</span><span class="n">request</span><span class="o">,</span><span class="n">response</span><span class="o">);</span>
-            <span class="n">EntityManagerUtil</span><span class="o">.</span><span class="na">ENTITY_MANAGERS</span><span class="o">.</span><span class="na">remove</span><span class="o">();</span>
-        <span class="o">}</span>
-        <span class="k">finally</span>
-        <span class="o">{</span>
-            <span class="k">try</span> 
-            <span class="o">{</span> 
-                <span class="k">if</span> <span class="o">(</span><span class="n">em</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> 
-                    <span class="n">em</span><span class="o">.</span><span class="na">close</span><span class="o">();</span> 
-            <span class="o">}</span>
-            <span class="k">catch</span> <span class="o">(</span><span class="n">Throwable</span> <span class="n">t</span><span class="o">)</span> <span class="o">{</span> 
-                <span class="n">itsLogger</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="s">&quot;While closing an EntityManager&quot;</span><span class="o">,</span><span class="n">t</span><span class="o">);</span> 
-            <span class="o">}</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">init</span><span class="o">(</span><span class="n">FilterConfig</span> <span class="n">config</span><span class="o">)</span>
-    <span class="o">{</span>
-        <span class="n">destroy</span><span class="o">();</span>
-        <span class="n">theEntityManagerFactory</span> <span class="o">=</span> 
-          <span class="n">Persistence</span><span class="o">.</span><span class="na">createEntityManagerFactory</span><span class="o">(</span><span class="s">&quot;gliffy&quot;</span><span class="o">);</span>
-    <span class="o">}</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">destroy</span><span class="o">()</span>
-    <span class="o">{</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">theEntityManagerFactory</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span>
-            <span class="n">theEntityManagerFactory</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
-    <span class="o">}</span>
-<span class="o">}</span></code></pre></div>
-
-So, when the web app gets deployed, the entity manager factory is created (and closed when the web app is removed).  Each thread that calls <tt>EntityManagerUtil</tt> to get an EntityManager gets a fresh one that persists for the duration of the request.  When the request is completed, the entity manager is closed automatically.
-
-
-</div>
-          <footer class="mb2 text-l">
-            <a rel="full-article" class="no-ul pill" href="/blog/2008/05/14/using-threadlocal-and-servlet-filters-to-cleanly-access-jpa-an-entitymanager.html">Read More…</a>
-          </footer>
-        </section>
-      
-    </article>
-  
   <footer class="center border-top">
     <nav class="pt2 pb2">
       
@@ -920,16 +857,20 @@ So, when the web app gets deployed, the entity manager factory is created (and c
   <footer class="center">
     <p class="f6">
       Copyright &copy; 2006-2016, by David Bryant Copeland, All Rights Reserved
+    </p>
   </footer>
   <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', '']);
-    _gaq.push(['_trackPageview']);
-
+    var _gauges = _gauges || [];
     (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      var t   = document.createElement('script');
+      t.type  = 'text/javascript';
+      t.async = true;
+      t.id    = 'gauges-tracker';
+      t.setAttribute('data-site-id', '56a22cd9c88d90284f000861');
+      t.setAttribute('data-track-path', 'https://track.gaug.es/track.gif');
+      t.src = 'https://d36ee2fcip1434.cloudfront.net/track.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(t, s);
     })();
   </script>
 </body></html>

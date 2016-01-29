@@ -70,12 +70,12 @@
     </h2>
   </header>
   <section class="blog-content">
-    <p>About a year ago, <a href="https://pragprog.com">PragProg</a> approached me to see if I ws working on anything book-worthy.  I&#39;d just created https://angular-rails.com to document
+    <p>About a year ago, <a href="https://pragprog.com">PragProg</a> approached me to see if I was working on anything book-worthy.  I&#39;d just created https://angular-rails.com to document
 the pain of configuring Rails to do something it clearly didn&#39;t want to do—let you write an application with lots of front-end.  Meanwhile, I&#39;d been
 learning more and more how great Postgres is.</p>
 
 <p>The result is my new book “Rails, Angular, Postgres, and Bootstrap: Powerful, Effective, and Efficient Full-Stack Web Development”.  It&#39;s been in beta for
-a while, but official print-verison is now for sale.</p>
+a while, but official print verison is now for sale.</p>
 
 <p>You can <a href="https://pragprog.com/book/dcbang/rails-angular-postgres-and-bootstrap">buy it</a> now and start embracing the <em>full</em> stack of web development using
 some awesome tools that will serve you well for years to come!</p>
@@ -89,16 +89,20 @@ some awesome tools that will serve you well for years to come!</p>
   <footer class="center">
     <p class="f6">
       Copyright &copy; 2006-2016, by David Bryant Copeland, All Rights Reserved
+    </p>
   </footer>
   <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', '']);
-    _gaq.push(['_trackPageview']);
-
+    var _gauges = _gauges || [];
     (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      var t   = document.createElement('script');
+      t.type  = 'text/javascript';
+      t.async = true;
+      t.id    = 'gauges-tracker';
+      t.setAttribute('data-site-id', '56a22cd9c88d90284f000861');
+      t.setAttribute('data-track-path', 'https://track.gaug.es/track.gif');
+      t.src = 'https://d36ee2fcip1434.cloudfront.net/track.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(t, s);
     })();
   </script>
 </body></html>
