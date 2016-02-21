@@ -4,13 +4,74 @@
   <title><![CDATA[naildrivin5.com - David Bryant Copeland's Website]]></title>
   <link href="http://naildrivin5.com/atom.xml" rel="self"/>
   <link href="http://naildrivin5.com/"/>
-  <updated>2016-01-29T09:03:38-05:00</updated>
+  <updated>2016-02-21T14:42:22-05:00</updated>
   <id>http://naildrivin5.com/</id>
   <author>
     <name><![CDATA[David Bryant Copeland]]></name>
     <email><![CDATA[davec@naildrivin5.com]]></email>
   </author>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Dishonest Abstractions are Not Abstractions]]></title>
+    
+    <link href="http://naildrivin5.com/blog/2016/02/22/dishonest-abstractions-are-not-abstractions.html"/>
+    
+    <updated>2016-02-22T09:00:00-05:00</updated>
+    <id>http://naildrivin5.com/blog/2016/02/22/dishonest-abstractions-are-not-abstractions</id>
+    <content type="html"><![CDATA[<p><a href="https://twitter.com/erniemiller">Ernie Miller</a> started a tweetstorm on Friday that really rang true to me, about how certain abstractions are &quot;dishonest&quot;.  In my mind, the dishonesty
+is calling them abstractions in the first place.</p>
+
+<!-- more -->
+
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">I&#39;ve been thinking a lot about honesty in software development lately. Not just honesty from people, but from technology.</p>&mdash; Ernie Miller (@erniemiller) <a href="https://twitter.com/erniemiller/status/700705128484106240">February 19, 2016</a></blockquote>
+
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<blockquote class="twitter-tweet" data-conversation="none" data-lang="en"><p lang="en" dir="ltr">I think this general sense of honesty is at the core of my feelings about, e.g., HAML/SASS/CoffeeScript vs ERB/SCSS/ES2015.</p>&mdash; Ernie Miller (@erniemiller) <a href="https://twitter.com/erniemiller/status/700706138581561345">February 19, 2016</a></blockquote>
+
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">I had embraced them for their aesthetic appeal, but realized that I was really running from the technology I perceived them to replace.</p>&mdash; Ernie Miller (@erniemiller) <a href="https://twitter.com/erniemiller/status/700711070919426048">February 19, 2016</a></blockquote>
+
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<blockquote class="twitter-tweet" data-conversation="none" data-lang="en"><p lang="en" dir="ltr">But it was very surprising to me, then. I&#39;d get a stack trace listing JavaScript I hadn&#39;t written, or inspect an unexpected HTML element.</p>&mdash; Ernie Miller (@erniemiller) <a href="https://twitter.com/erniemiller/status/700712371606704128">February 19, 2016</a></blockquote>
+
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p>These tweets really spoke to me, but I don&#39;t think abstractions are “lies” per se.  Rather, I feel that the technologies listed (and others like them) are
+just really weak.  They don&#39;t deliver complete solutions to the problems they are there to solve and are built on poor (or no) abstractions, such that they
+require more of the user than they ultimately give.</p>
+
+<p>CoffeeScript is the simplest example of this. It&#39;s a programming language that produces stack traces in a different programming language.  It requires almost the same amount of code as JavaScript and it doesn&#39;t obviate the need to completely understand JavaScript.  Why would I want this?</p>
+
+<p>In a sense, HAML, SASS, CoffeeScript, etc. are nothing more than sophisticated <code>sed</code> scripts (or macro languages).  But this problem isn&#39;t specific to
+front-end technologies.  AREL and Rails Migrations are two back-end examples.  They profess to “save you” from SQL, but you really can&#39;t use them without
+understanding SQL, you can&#39;t access the full power of your database with them, and you can&#39;t debug what they are doing without knowing SQL.</p>
+
+<p>Compare this to writing C.  Do you need to know assembly language to write C?  For almost all cases, the answer is “no”.  Sure, there may be cases where you have to dig into the assembly to figure out a problem, but these are vanishingly small.</p>
+
+<p>Compare that to AREL or CoffeeScript where, as a matter of course, you must break through the “abstraction” to find out what&#39;s going on.  You spend almost as much time in the “assembly language” (SQL, JavaScript), as you do in the “higher-level abstraction”.  </p>
+
+<p>The scare quotes are intentional: to call HAML, CoffeeScript, and friends “abstractions” is to almost render the term meaningless.  They don&#39;t
+abstract anything away from you on any real level.</p>
+
+<p>In <a href="https://pragprog.com/book/dcbang/rails-angular-postgres-and-bootstrap">my book</a>, I encourage the reader to use JavaScript and learn SQL, because the tools given to you by Rails aren&#39;t abstractions—they are extra things
+to learn that provide at best a marginal increase in productivity, and that productivity only applies during the least time-consuming part of software
+development: typing in source code.</p>
+
+<p>These tools don&#39;t meet <a href="http://naildrivin5.com/blog/2016/01/13/hierarchy-of-software-needs.html">any higher-order need</a> a developer has.  They provide the ability to execute code only and when compared to the
+technologies they replace, they appeal more to aesthetics than the ability to better deliver quality software.</p>
+
+<p>Web front-end technologies seem woefully stuck in this quagmire.  React gives you the ability to type markup that looks like a higher-order abstraction, but
+it&#39;s still just a macro language for producing HTML that you must debug directly.  Yes, source maps and other browser extensions exist to make this less
+painful, but your job at the end of the day is still trying to figure out what events are firing on what DOM elements, and how CSS is being applied to them.</p>
+
+<p>I&#39;m not sure what it will take to produce truly higher-level abstractions for powerful technologies like JavaScript and SQL.  If the tools we have now are
+guilty of dishonesty, it&#39;s mostly in overstating what problems they really solve.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[There is no Happy Path in Programming]]></title>
@@ -474,78 +535,6 @@ you should be more well-rounded as a developer (which then should motivate you t
 
 <p>I&#39;ve been working on this for quite a while, and pretty excited about it.  If you want to <em>really</em> level
 up your abilities as a Rails developer, this is the book for you.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[What I learned interviewing with Instagram]]></title>
-    
-    <link href="http://naildrivin5.com/blog/2015/07/21/what-I-learned-interviewing-at-Instagram.html"/>
-    
-    <updated>2015-07-21T14:49:00-04:00</updated>
-    <id>http://naildrivin5.com/blog/2015/07/21/what-I-learned-interviewing-at-Instagram</id>
-    <content type="html"><![CDATA[<p>In September 2011, I interviewed at Instagram.
-While I didn&#39;t ultimately get/take the job<a name="back-1"></a><sup><a href="#1">1</a></sup>, the experience had a pretty profound effect on me as a developer.  </p>
-
-<p>What I learned during the interview process (which was really enjoyable, and became the basis for <a href="http://theseniorsoftwareengineer.com/interview_potential_co-workers_excerpt.html">my ideal technical interview process</a>) was just <em>how much</em> two engineers with relatively little experience could accomplish.</p>
-
-<!-- more -->
-
-<p>My notes on the interview:</p>
-
-<blockquote>
-<ul>
-<li>a popular iPhone app</li>
-<li>the back-end to serve millions and millions of users</li>
-<li>an infrastructure that could be experimented with: attempt to run Mongo and see what happens</li>
-<li>Implemented their data storage layer in Mongo, studied it, abandoned it</li>
-<li>Enhanced their iPhone app with Open GL</li>
-<li>Build, documented, and deployed an API and several clients</li>
-<li>Created a demo using their API in Node</li>
-<li>Have their entire infrastructure monitored; can identify any change in behavior of their system instantly</li>
-<li>Have ready access to their data to support third-party hacking</li>
-<li>Completely manage all of their servers</li>
-</ul>
-These are two guys with very little experience.
-</blockquote>
-
-<p>If you had looked at these developers&#39; résumés as of 2010, you would not find anything to indicate that they
-could both design, build, launch, and maintain a hugely popular application used by millions of people
-around the world..  And while I&#39;m sure the code
-that powered Instagram back in 2011 wasn&#39;t the greatest, these two guys had basically done everything
-from designing the UI to launching an API, to managing servers on AWS.</p>
-
-<p>They did this without a QA team, a system “architect”, a product manager, a <em>project</em> manager, or a technical operations team.  </p>
-
-<p>Before the interview, I didn&#39;t think such a thing would be possible.  I would&#39;ve assumed that such an
-undertaking would require years and years of experience, with an army of specialists each laser-focused
-on one part of a greater whole.</p>
-
-<p>Nope.</p>
-
-<p>To me, this is what I mean when I use the term <em>full stack</em>.  It&#39;s not just about working at any level of
-the stack, but about <em>not being afraid to</em>.  When faced with any problem, these two guys didn&#39;t show
-fear, and didn&#39;t shy away…they dug in.</p>
-
-<p>I used to <em>hate</em> writing JavaScript.  Now, I have no fear and embrace it.  It turns out to be pretty darn
-useful.  I used to immediately dismiss any solution that involved writing raw SQL.  I was above all that.
-Now, I use it <em>a lot</em>, because it&#39;s the best way to solve a lot of thorny problems.</p>
-
-<p>My current fear is around technical operations.  I&#39;m working on overcoming it.  It&#39;s going to make me a
-better developer.</p>
-
-<p>Examine your habits and patterns.  What do you <em>always</em> reach for?  What makes you feel uncomfortable.
-What part of the software you build are you afraid of?</p>
-
-<hr>
-
-<footer class='footnotes'>
-<ol>
-<li>
-<a name='1'></a>
-<sup>1</sup>The process didn't get far enough along where they were deciding to make an offer or not.  We basically came to a point where I would need to be willing to move myself and my family out to SF so I could put in the blood, sweat, and tears necessary to help make them successful.  When I realized there was no way I could realistically do that, we split on good terms.  And then they got sold to Facebook for a billion dollars. Fortunately, I cannot stand Facebook and would <a href="http://naildrivin5.com/blog/2011/08/01/why-i-wont-work-for-google-twitter-facebook.html">never work there</a>.  At least, that's what I tell myself :)<a href='#back-1'>↩</a>
-</li>
-</ol></footer>
 ]]></content>
   </entry>
   
