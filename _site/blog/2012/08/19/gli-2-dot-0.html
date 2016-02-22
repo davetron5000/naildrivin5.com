@@ -32,7 +32,7 @@
     
   
   
-    GLI 2.0 is out!  GLI is the best way to make a &quot;command-suite&quot; command line in...">
+    GLI 2.0 is out!  GLI is the best way to make a “command-suite” command line interface.  ...">
   
 
   
@@ -70,43 +70,47 @@
     </h2>
   </header>
   <section class="blog-content">
-    <p><a href="http://davetron5000.github.com/gli">GLI</a> 2.0 is out!  GLI is <em>the best</em> way to make a &quot;command-suite&quot; command line interface.  If you need to make a complex
-command line app that takes subcommands, like <code>git</code> or <code>gem</code>, GLI is the most powerful and easy-to-use way to do that.</p>
+    <p><a href="http://davetron5000.github.com/gli">GLI</a> 2.0 is out!  GLI is <em>the best</em> way to make a “command-suite” command line interface.  If you need to make a complex
+command line app that takes subcommands, like <code class="highlighter-rouge">git</code> or <code class="highlighter-rouge">gem</code>, GLI is the most powerful and easy-to-use way to do that.</p>
 
 <!-- more -->
 
-<p>Unlike <code>thor</code> or <code>trollop</code>, GLI sits on top of <code>OptionParser</code>, giving you access to its powerful features.  GLI-powered apps have
-fully-featured help systems - you just need to provide a bit of documentation.  There&#39;s also support for a basic application
-lifecycle and with almost no code, you have an awesome, well-behaved command-line app that&#39;s easy to write, easy to test, easy to
+<p>Unlike <code class="highlighter-rouge">thor</code> or <code class="highlighter-rouge">trollop</code>, GLI sits on top of <code class="highlighter-rouge">OptionParser</code>, giving you access to its powerful features.  GLI-powered apps have
+fully-featured help systems - you just need to provide a bit of documentation.  There’s also support for a basic application
+lifecycle and with almost no code, you have an awesome, well-behaved command-line app that’s easy to write, easy to test, easy to
 use, and easy to maintain.</p>
 
-<h2>New Features</h2>
+<h2 id="new-features">New Features</h2>
 
 <ul>
-<li>Arbitrarily deep sub- and sub-sub-commands.  Think <code>git remote add</code>.</li>
-<li>Uses <code>OptionParser</code>, meaning your command-line options can benefit from type conversions, validation checks, negatability, and
-all the other awesome that comes from <code>OptionParser</code>.</li>
-<li>Whole new help system that shows command-line invocation examples, generated from your code.</li>
-<li>Bootstrapped apps now include an <code>.rvmrc</code> and a shell for acceptance testing via <a href="https://github.com/cucumber/aruba">aruba</a>.</li>
-<li>More flexible documentation-generation systems to allow any format of documentation to be generated (currently, only RDoc is
+  <li>Arbitrarily deep sub- and sub-sub-commands.  Think <code class="highlighter-rouge">git remote add</code>.</li>
+  <li>Uses <code class="highlighter-rouge">OptionParser</code>, meaning your command-line options can benefit from type conversions, validation checks, negatability, and
+all the other awesome that comes from <code class="highlighter-rouge">OptionParser</code>.</li>
+  <li>Whole new help system that shows command-line invocation examples, generated from your code.</li>
+  <li>Bootstrapped apps now include an <code class="highlighter-rouge">.rvmrc</code> and a shell for acceptance testing via <a href="https://github.com/cucumber/aruba">aruba</a>.</li>
+  <li>More flexible documentation-generation systems to allow any format of documentation to be generated (currently, only RDoc is
 implemented).</li>
-<li>More easily structure your code in external files</li>
-<li>Lots of bug-fixes</li>
+  <li>More easily structure your code in external files</li>
+  <li>Lots of bug-fixes</li>
 </ul>
 
-<h2>Get Started</h2>
-<div class="highlight"><pre><code class="language-sh" data-lang="sh">&gt; gem install gli
+<h2 id="get-started">Get Started</h2>
+
+<p><code class="highlighter-rouge">sh
+&gt; gem install gli
 &gt; gli init your-new-app
-</code></pre></div>
-<h2>Learn More</h2>
+</code></p>
+
+<h2 id="learn-more">Learn More</h2>
 
 <ul>
-<li><a href="http://davetron5000.github.com/gli">Walkthrough</a> of GLI&#39;s features at a more detailed level</li>
-<li>A more sophisticated application with <a href="http://davetron5000.github.com/gli/todo.html">annotated source</a></li>
-<li>Source code on <a href="http://www.github.com/davetron5000/gli">Github</a></li>
-<li><a href="http://davetron5000.github.com/gli/rdoc">API Documentation</a></li>
-<li><a href="http://www.pragprog.com/titles/dccar">Buy the book</a> - One of the running examples uses GLI, and the examples should all work with 2.0</li>
+  <li><a href="http://davetron5000.github.com/gli">Walkthrough</a> of GLI’s features at a more detailed level</li>
+  <li>A more sophisticated application with <a href="http://davetron5000.github.com/gli/todo.html">annotated source</a></li>
+  <li>Source code on <a href="http://www.github.com/davetron5000/gli">Github</a></li>
+  <li><a href="http://davetron5000.github.com/gli/rdoc">API Documentation</a></li>
+  <li><a href="http://www.pragprog.com/titles/dccar">Buy the book</a> - One of the running examples uses GLI, and the examples should all work with 2.0</li>
 </ul>
+
 
   </section>
 </article>

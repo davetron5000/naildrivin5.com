@@ -70,91 +70,113 @@
     </h2>
   </header>
   <section class="blog-content">
-    <p>Before using Postgres, I would have to rely heavily on Rails validations to ensure data integrity—MySQL simply doesn&#39;t provide the tools
-to do this.  This always felt wrong.  Outside of rogue processes connecting to the database, there&#39;s also application bugs
-and, well, the ActiveRecord API itself: <code>update_attribute</code> skips validation!  That means it&#39;s hard to rely on Rails validations for data
-integrity, but there isn&#39;t a great alternative for creating a great user experience.</p>
+    <p>Before using Postgres, I would have to rely heavily on Rails validations to ensure data integrity—MySQL simply doesn’t provide the tools
+to do this.  This always felt wrong.  Outside of rogue processes connecting to the database, there’s also application bugs
+and, well, the ActiveRecord API itself: <code class="highlighter-rouge">update_attribute</code> skips validation!  That means it’s hard to rely on Rails validations for data
+integrity, but there isn’t a great alternative for creating a great user experience.</p>
 
-<p>Postgres has the answer: <em>check constraints</em>.  As we&#39;ll see, check constraints are tool for <em>data integrity</em> and work much better than
+<p>Postgres has the answer: <em>check constraints</em>.  As we’ll see, check constraints are tool for <em>data integrity</em> and work much better than
 Rails validations.  But Rails validations are still a great tool for <em>user experience</em>.</p>
 
 <!-- more -->
 
-<h2>Check Constraints for Data Integrity</h2>
+<h2 id="check-constraints-for-data-integrity">Check Constraints for Data Integrity</h2>
 
 <p>Suppose we have a table of users, and a user has a name and email:</p>
-<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">create</span> <span class="k">table</span> <span class="n">users</span><span class="p">(</span>
-  <span class="n">id</span>    <span class="nb">int</span>  <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
-  <span class="n">name</span>  <span class="nb">text</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
-  <span class="n">email</span> <span class="nb">text</span> <span class="k">NOT</span> <span class="k">NULL</span>
-<span class="p">);</span>
-</code></pre></div>
+
+<p><code class="highlighter-rouge">sql
+create table users(
+  id    int  NOT NULL,
+  name  text NOT NULL,
+  email text NOT NULL
+);
+</code></p>
+
 <p><a name="back-1">
 </a>
-Although we&#39;ve used <code>NOT NULL</code> to make sure there are values, we need more than that.  Although our domain doesn&#39;t care about first or last names, it <em>does</em> require that a user&#39;s name to be at least one letter, followed by a space, followed by at least one other letter<sup><a href="#fn_1">1</a></sup>.</p>
+Although we’ve used <code class="highlighter-rouge">NOT NULL</code> to make sure there are values, we need more than that.  Although our domain doesn’t care about first or last names, it <em>does</em> require that a user’s name to be at least one letter, followed by a space, followed by at least one other letter<sup><a href="#fn_1">1</a></sup>.</p>
 
-<p>We can do that by requiring that the <code>name</code> field match a regexp:</p>
-<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">ALTER</span> <span class="k">TABLE</span> 
-  <span class="n">users</span> 
-<span class="k">ADD</span> <span class="k">CONSTRAINT</span> 
-  <span class="n">users_name_must_look_like_a_name</span> 
-<span class="k">CHECK</span> <span class="p">(</span>
-  <span class="n">name</span> <span class="o">~*</span> <span class="s1">&#39;^.*[a-z] [a-z].*$&#39;</span>
-<span class="p">);</span>
-</code></pre></div>
+<p>We can do that by requiring that the <code class="highlighter-rouge">name</code> field match a regexp:</p>
+
+<p><code class="highlighter-rouge">sql
+ALTER TABLE 
+  users 
+ADD CONSTRAINT 
+  users_name_must_look_like_a_name 
+CHECK (
+  name ~* '^.*[a-z] [a-z].*$'
+);
+</code></p>
+
 <p><a name="back-2">
 </a>
-This is saying that the <code>name</code> field must match the regular expression specified.  That regexp allows anything, as long as there is a
+This is saying that the <code class="highlighter-rouge">name</code> field must match the regular expression specified.  That regexp allows anything, as long as there is a
 letter followed by a space, followed by another letter, somewhere in the string<sup><a href="#fn_2">2</a></sup>.</p>
 
-<p>Now, when we insert an invalid value, it won&#39;t work:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">&gt; insert into users(id,name,email) values (1,&#39;&#39;,&#39;bob@blah.com&#39;);
-ERROR:  new row for relation &quot;users&quot; violates 
-        check constraint &quot;users_name_must_look_like_a_name&quot;
-DETAIL:  Failing row contains (1, , bob@blah.com).
+<p>Now, when we insert an invalid value, it won’t work:</p>
 
-&gt; insert into users(id,name,email) values (1,&#39;Bob&#39;,&#39;bob@blah.com&#39;);
-ERROR:  new row for relation &quot;users&quot; violates 
-        check constraint &quot;users_name_must_look_like_a_name&quot;
-DETAIL:  Failing row contains (1, Bob, bob@blah.com).
+<p>```
+&gt; insert into users(id,name,email) values (1,’’,’bob@blah.com’);
+ERROR:  new row for relation “users” violates 
+        check constraint “users_name_must_look_like_a_name”
+DETAIL:  Failing row contains (1, , bob@blah.com).</p>
 
-&gt; insert into users(id,name,email) values (1,&#39;Bob Jones&#39;,&#39;bob@blah.com&#39;);
+<blockquote>
+  <p>insert into users(id,name,email) values (1,’Bob’,’bob@blah.com’);
+ERROR:  new row for relation “users” violates 
+        check constraint “users_name_must_look_like_a_name”
+DETAIL:  Failing row contains (1, Bob, bob@blah.com).</p>
+</blockquote>
+
+<blockquote>
+  <p>insert into users(id,name,email) values (1,’Bob Jones’,’bob@blah.com’);
 INSERT 0 1
-</code></pre></div>
+```</p>
+</blockquote>
+
 <p>Nice!  This means that a) our data will always match our rules around what good data is, and b) our code can rely on this.</p>
 
 <p>For example, suppose we have to integrate with a third party shipping system that, for whatever reason, requires a first and last name.
 Our system is designed to allow users to enter whatever their name is, as long as there are at least two parts.</p>
 
 <p>Because we know our data meets its needs, we can safely do:</p>
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">name_part1</span><span class="p">,</span><span class="n">rest_of_name</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sr">/\s/</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
-<span class="no">ShippingProvider</span><span class="o">.</span><span class="n">generate_label</span><span class="p">(</span><span class="ss">first_name</span><span class="p">:</span> <span class="n">name_part1</span><span class="p">,</span>
-                                <span class="ss">last_name</span><span class="p">:</span> <span class="n">rest_of_name</span><span class="p">)</span>
-</code></pre></div>
-<p>Without the check constraints, we couldn&#39;t rely on the data being good, and so our use of <code>split</code> would have to have some sort of error
-handling if the name didn&#39;t have a space in it.  Because that can never happen, our code is simpler!</p>
+
+<p><code class="highlighter-rouge">ruby
+user = User.find(1)
+name_part1,rest_of_name = user.name.split(/\s/,2)
+ShippingProvider.generate_label(first_name: name_part1,
+                                last_name: rest_of_name)
+</code></p>
+
+<p>Without the check constraints, we couldn’t rely on the data being good, and so our use of <code class="highlighter-rouge">split</code> would have to have some sort of error
+handling if the name didn’t have a space in it.  Because that can never happen, our code is simpler!</p>
 
 <p>OK, so what does this have to do with Rails validations?</p>
 
-<h2>Rails Validations for User Experience</h2>
+<h2 id="rails-validations-for-user-experience">Rails Validations for User Experience</h2>
 
 <p>The equivalent of our check constraint above, using Rails Validations, would be:</p>
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
-  <span class="n">validates</span> <span class="ss">:name</span><span class="p">,</span> <span class="nb">format</span><span class="p">:</span> <span class="sr">/\A.*[a-z] [a-z].*\z/i</span>
-<span class="k">end</span>
-</code></pre></div>
+
+<p><code class="highlighter-rouge">ruby
+class User &lt; ActiveRecord::Base
+  validates :name, format: /\A.*[a-z] [a-z].*\z/i
+end
+</code></p>
+
 <p>Sure enough, this prevents us violating the validation:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">&gt; user = User.create(name: &quot;bob&quot;, email: &quot;bob@blah.com&quot;)
- =&gt; #&lt;User id: nil, name: &quot;bob&quot;, email: &quot;bob@blah.com&quot;&gt; 
+
+<p><code class="highlighter-rouge">
+&gt; user = User.create(name: "bob", email: "bob@blah.com")
+ =&gt; #&lt;User id: nil, name: "bob", email: "bob@blah.com"&gt; 
 &gt; user.valid?
  =&gt; false 
 &gt; user.errors
  =&gt; #&lt;ActiveModel::Errors:0x007fcf817cc808 
-      @base=#&lt;User id: nil, name: &quot;bob&quot;, email: &quot;bob@blah.com&quot;&gt;, 
-      @messages={:name=&gt;[&quot;is invalid&quot;]}&gt; 
-</code></pre></div>
-<p>Of course, we can route around this with ActiveRecord&#39;s methods that allow it, or by calling <code>save(false)</code>, or by just going into the
+      @base=#&lt;User id: nil, name: "bob", email: "bob@blah.com"&gt;, 
+      @messages={:name=&gt;["is invalid"]}&gt; 
+</code></p>
+
+<p>Of course, we can route around this with ActiveRecord’s methods that allow it, or by calling <code class="highlighter-rouge">save(false)</code>, or by just going into the
 database.</p>
 
 <p><strong>This</strong> means that any code reading from this table must account for the bad data.</p>
@@ -162,115 +184,129 @@ database.</p>
 <p>This presents us a few choices for how to deal with it:</p>
 
 <ol>
-<li>Don&#39;t worry about bad data getting in there</li>
-<li>Just use the check constraints</li>
-<li>Use both validations <em>and</em> check constraints</li>
+  <li>Don’t worry about bad data getting in there</li>
+  <li>Just use the check constraints</li>
+  <li>Use both validations <em>and</em> check constraints</li>
 </ol>
 
 <p>Option 1 is unacceptable.  Our data is important and if our busines domain requires user names to have a letter, a space, and then
-another letter, we can&#39;t simply hope for the best.  As developers, we have a duty to ensure our code meets its requirements.</p>
+another letter, we can’t simply hope for the best.  As developers, we have a duty to ensure our code meets its requirements.</p>
 
 <p>Option 2 creates a poor user experience:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">&gt; User.create(name: &quot;Bob&quot;, email: &quot;bob@jones.com&quot;)
-ActiveRecord::StatementInvalid: PG::CheckViolation: ERROR:  
-  new row for relation &quot;users&quot; violates 
-  check constraint &quot;user_name_must_look_like_a_name&quot;
-DETAIL:  Failing row contains (22, Bob, bob@jones.com).
-: INSERT INTO &quot;users&quot; (&quot;name&quot;, &quot;email&quot;, &quot;id&quot;) VALUES ($1, $2, $3)
-</code></pre></div>
+
+<dl>
+  <dt>```</dt>
+  <dt>&gt; User.create(name: “Bob”, email: “bob@jones.com”)</dt>
+  <dt>ActiveRecord::StatementInvalid: PG::CheckViolation: ERROR:  </dt>
+  <dt>  new row for relation “users” violates </dt>
+  <dt>  check constraint “user_name_must_look_like_a_name”</dt>
+  <dt>DETAIL:  Failing row contains (22, Bob, bob@jones.com).</dt>
+  <dd>INSERT INTO “users” (“name”, “email”, “id”) VALUES ($1, $2, $3)
+```</dd>
+</dl>
+
 <p>Assuming a user is going to be entering in their name, we need to give them a better experience than an exception. We need to use both,
 which will create some duplication.</p>
 
-<h2>Be OK with Some Duplication</h2>
+<h2 id="be-ok-with-some-duplication">Be OK with Some Duplication</h2>
 
 <p>If we use both the ActiveRecord validation <em>and</em> the check constraint, we achieve what we need: a good user experience, and ther
 assurance of data integrity.  The <em>problem</em> is that this creates duplication.  We have the same regexp in two places and they both have
 to be changed together.</p>
 
-<p>While I could imagine a more sophisticated data layer handling this, we don&#39;t have one.  That means we have to live with the duplication
+<p>While I could imagine a more sophisticated data layer handling this, we don’t have one.  That means we have to live with the duplication
 or sacrifice our system requirements.  For me, the job of a programmer is to make the system work properly, even if that means that the
 resulting code has maintenance issues.</p>
 
 <p>I am OK with this duplication.  If you think about most projects, the changes in requirements are often more about logic than data.  The
 data you are storing and managing has a much more stable definition than the process that manage that data.  So, this duplication is less
-likely to run afoul of bugs since it&#39;s not going to change as much as the logic around it.</p>
+likely to run afoul of bugs since it’s not going to change as much as the logic around it.</p>
 
 <p>That being said, you <em>do</em> have to have an understanding of what valid data is.  This means being clear about data integrity.</p>
 
-<h2>What is Data Integrity?</h2>
+<h2 id="what-is-data-integrity">What is Data Integrity?</h2>
 
-<p>In the example above, my assumption is that the business owning this database of users absolutely requires that each user&#39;s name have a
-letter, a space, and a letter in it.  This isn&#39;t something that&#39;s required <em>sometimes</em> or something a programmer invented, but an
+<p>In the example above, my assumption is that the business owning this database of users absolutely requires that each user’s name have a
+letter, a space, and a letter in it.  This isn’t something that’s required <em>sometimes</em> or something a programmer invented, but an
 <em>invariant of the domain</em>.  This is exactly what you want to encode in database constraints.</p>
 
-<p>What you <em>don&#39;t</em> want to do is encode use-case-specific constraints that are not universal to your business domain.</p>
+<p>What you <em>don’t</em> want to do is encode use-case-specific constraints that are not universal to your business domain.</p>
 
-<p>Suppose that in some cases, we need to have a name that&#39;s more than just a couple characters.  We can blame a third party integration
+<p>Suppose that in some cases, we need to have a name that’s more than just a couple characters.  We can blame a third party integration
 again—we need to generate an invoice and it requires a first and last name that are each two characters or more.</p>
 
-<p>Since that is not a requirement of <em>our</em> domain, we don&#39;t want this in our database.  This means we have to just deal with it:</p>
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">name_part1</span><span class="p">,</span><span class="n">rest_of_name</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sr">/\s/</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
-<span class="k">if</span> <span class="n">name_part1</span><span class="o">.</span><span class="n">length</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">rest_of_name</span><span class="o">.</span><span class="n">length</span> <span class="o">&gt;</span> <span class="mi">1</span>
-  <span class="no">InvoiceService</span><span class="o">.</span><span class="n">generate_invoice!</span><span class="p">(</span><span class="ss">first</span><span class="p">:</span> <span class="n">name_part1</span><span class="p">,</span> <span class="ss">last</span><span class="p">:</span> <span class="n">rest_of_name</span><span class="p">)</span>
-<span class="k">else</span>
-  <span class="c1"># ???</span>
-<span class="k">end</span>
-</code></pre></div>
+<p>Since that is not a requirement of <em>our</em> domain, we don’t want this in our database.  This means we have to just deal with it:</p>
+
+<p><code class="highlighter-rouge">ruby
+name_part1,rest_of_name = user.name.split(/\s/,2)
+if name_part1.length &gt; 1 &amp;&amp; rest_of_name.length &gt; 1
+  InvoiceService.generate_invoice!(first: name_part1, last: rest_of_name)
+else
+  # ???
+end
+</code></p>
+
 <p>Depending on where this code is, you might handle the problem in a variety of ways.  You could create an ActiveModel that uses
 validations to check for this:</p>
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">InvoiceUser</span>
-  <span class="kp">include</span> <span class="no">ActiveModel</span><span class="o">::</span><span class="no">Validations</span>
 
-  <span class="kp">attr_accessor</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:email</span>
+<p>```ruby
+class InvoiceUser
+  include ActiveModel::Validations</p>
 
-  <span class="n">validates</span> <span class="ss">:name</span><span class="p">,</span> <span class="nb">format</span><span class="p">:</span> <span class="sr">/\A.*[a-z][a-z] [a-z][a-z].*\z/i</span>
+<p>attr_accessor :name, :email</p>
 
-  <span class="k">def</span> <span class="nf">user</span>
-    <span class="no">User</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="nb">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="ss">email</span><span class="p">:</span> <span class="nb">self</span><span class="o">.</span><span class="n">email</span><span class="p">)</span>
-  <span class="k">end</span>
-<span class="k">end</span>
-</code></pre></div>
+<p>validates :name, format: /\A.<em>[a-z][a-z] [a-z][a-z].</em>\z/i</p>
+
+<p>def user
+    User.new(name: self.name, email: self.email)
+  end
+end
+```</p>
+
 <p>This works as advertised:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">&gt; i = InvoiceUser.new
+
+<p><code class="highlighter-rouge">
+&gt; i = InvoiceUser.new
  =&gt; #&lt;InvoiceUser:0x007ff604d80b60&gt; 
-&gt; i.name = &#39;a b&#39;
- =&gt; &quot;a b&quot; 
+&gt; i.name = 'a b'
+ =&gt; "a b" 
 &gt; i.valid?
  =&gt; false 
-&gt; i.name = &#39;aa bb&#39;
- =&gt; &quot;aa bb&quot; 
+&gt; i.name = 'aa bb'
+ =&gt; "aa bb" 
 &gt; i.valid?
  =&gt; true 
 &gt; i.user.save!
  =&gt; #&lt;User:0x007fcf817cc808&gt;
-</code></pre></div>
-<p>We could even use this in Rails&#39; form helpers by bringing in more Active Model modules.  This way, a user who has to enter their name as
-part of some use-case to create invoices will have a good experience, but our database won&#39;t need to grow extra constraints that aren&#39;t
+</code></p>
+
+<p>We could even use this in Rails’ form helpers by bringing in more Active Model modules.  This way, a user who has to enter their name as
+part of some use-case to create invoices will have a good experience, but our database won’t need to grow extra constraints that aren’t
 universally needed.</p>
 
-<h2>Conclusion</h2>
+<h2 id="conclusion">Conclusion</h2>
 
 <p>Think about Rails validations as purely something for user experience.  Think about check constraints as just being about data integrity.
-Often they are the same thing, but not always.  And don&#39;t fret about a bit of duplication.</p>
+Often they are the same thing, but not always.  And don’t fret about a bit of duplication.</p>
 
 <p><em>Read more in my new book <a href="https://pragprog.com/book/dcbang/rails-angular-postgres-and-bootstrap">“Rails, Angular, Postgres, and Bootstrap
 Powerful, Effective, and Efficient Full-Stack Web Development”</a></em></p>
 
-<hr>
+<hr />
 
-<footer class='footnotes'>
+<footer class="footnotes">
 <ol>
 <li>
-<a name='fn_1'></a>
+<a name="fn_1"></a>
 <sup>1</sup>I realize this is not appropriate for a lot of people's names.  This isn't a post about that, so this example is quite
 simplified to to illustrate the points.  When designing a system to store people's names, put a <strong>lot</strong> of thought into it,
 especially if someone outside the United States might use it.
-<a href='#back-1'>↩</a>
+<a href="#back-1">↩</a>
 </li>
 <li>
-<a name='fn_2'></a>
+<a name="fn_2"></a>
 <sup>2</sup>This is also not a post about regular expressions.  Please craft them carefully. 
-<a href='#back-2'>↩</a>
+<a href="#back-2">↩</a>
 </li>
 </ol></footer>
 

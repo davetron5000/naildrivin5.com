@@ -75,24 +75,24 @@ Examining the code needed to read a file line by line...">
 Examining the code needed to read a file line by line is a a common way to examine the hoops a programming language makes you jump through.  While Perl certainly
 has some one-liners for this, let's start with Ruby, which presents an elegant and clear way of doing it:
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;some_file.txt&quot;</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">file</span><span class="o">|</span>
-  <span class="n">file</span><span class="o">.</span><span class="n">readlines</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">line</span><span class="o">|</span>
-    <span class="nb">puts</span> <span class="n">line</span><span class="o">.</span><span class="n">upcase</span>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">File</span><span class="p">.</span><span class="nf">open</span><span class="p">(</span><span class="s2">"some_file.txt"</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">file</span><span class="o">|</span>
+  <span class="n">file</span><span class="p">.</span><span class="nf">readlines</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">line</span><span class="o">|</span>
+    <span class="nb">puts</span> <span class="n">line</span><span class="p">.</span><span class="nf">upcase</span>
   <span class="k">end</span>
-<span class="k">end</span></code></pre></div>
+<span class="k">end</span></code></pre></figure>
 
 It really doesn't get any clearer than that.
 </p>
 <p>
 Here's the canonical Java way of doing it, complete with plenty of places to introduce bugs:
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
 
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">ReadFile</span> <span class="o">{</span>
-  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="o">{</span>
-    <span class="n">File</span> <span class="n">file</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">File</span><span class="o">(</span><span class="s">&quot;some_file.txt&quot;</span><span class="o">);</span>
-    <span class="n">BufferedReader</span> <span class="n">reader</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">BufferedReader</span><span class="o">(</span>
-      <span class="k">new</span> <span class="nf">FileReader</span><span class="o">(</span><span class="n">file</span><span class="o">));</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="n">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="o">{</span>
+    <span class="n">File</span> <span class="n">file</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="s">"some_file.txt"</span><span class="o">);</span>
+    <span class="n">BufferedReader</span> <span class="n">reader</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BufferedReader</span><span class="o">(</span>
+      <span class="k">new</span> <span class="n">FileReader</span><span class="o">(</span><span class="n">file</span><span class="o">));</span>
     <span class="n">String</span> <span class="n">line</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="na">readLine</span><span class="o">();</span>
     <span class="k">while</span> <span class="o">(</span><span class="n">line</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
       <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">line</span><span class="o">.</span><span class="na">toUpperCase</span><span class="o">());</span>
@@ -100,21 +100,21 @@ Here's the canonical Java way of doing it, complete with plenty of places to int
     <span class="o">}</span>
     <span class="n">reader</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
   <span class="o">}</span>
-<span class="o">}</span></code></pre></div>
+<span class="o">}</span></code></pre></figure>
 
 Yech.  The need to call <code>readLine()</code> twice kinda sucks.  We could use a do-while, but that requires a second <code>line != null</code> check.  Personally, I like to forget the second <code>readLine()</code> and wonder why my code runs forever :)  That being said, this was extremely easy to figure out, even the very first time I did it in 1998.  The class names are obvious, and the documentation is excellent.
 </p>
 <p>
 Scala to the rescue, right?
 
-<div class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">import</span> <span class="nn">scala.io._</span>
+<figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">import</span> <span class="nn">scala.io._</span>
 
 <span class="k">object</span> <span class="nc">ReadFile</span> <span class="k">extends</span> <span class="nc">Application</span> <span class="o">{</span>
-  <span class="k">val</span> <span class="n">s</span> <span class="k">=</span> <span class="nc">Source</span><span class="o">.</span><span class="n">fromFile</span><span class="o">(</span><span class="s">&quot;some_file.txt&quot;</span><span class="o">)</span>
+  <span class="k">val</span> <span class="n">s</span> <span class="k">=</span> <span class="nc">Source</span><span class="o">.</span><span class="n">fromFile</span><span class="o">(</span><span class="s">"some_file.txt"</span><span class="o">)</span>
   <span class="n">s</span><span class="o">.</span><span class="n">getLines</span><span class="o">.</span><span class="n">foreach</span><span class="o">(</span> <span class="o">(</span><span class="n">line</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="o">{</span>
     <span class="n">println</span><span class="o">(</span><span class="n">line</span><span class="o">.</span><span class="n">trim</span><span class="o">.</span><span class="n">toUpperCase</span><span class="o">)</span>
   <span class="o">})</span>
-<span class="o">}</span></code></pre></div>
+<span class="o">}</span></code></pre></figure>
 
 This was a slight pain figure out.  I looked in <code>scala.io</code> and, of the few classes that were there (including a curiously named <code>BytePickle</code>), it appeared as though <code>Source</code> was the class to use.  Of course, there's no easy way to create one from the constructor, and the scaladoc doesn't just say "Dude, look at the <code>Source</code> object".  Once I looked through the <code>Source</code> object's scaladoc, the solution presented itself.
 </p>

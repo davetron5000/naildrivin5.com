@@ -71,137 +71,160 @@
   </header>
   <section class="blog-content">
     <p>Saw a blog post this morning titled <a href="http://cafe.elharo.com/programming/java-programming/why-functional-programming-in-java-is-dangerous/">Why Functional Programming in Java is Dangerous</a>.  Author Elliotte Rusty Harold sets up
-the world&#39;s worst straw man I&#39;ve seen.  He talks about <a href="http://pragprog.com/magazines/2013-01/functional-programming-basics">Uncle Bob&#39;s post</a> on the advantages of functional programming.
-Elliotte&#39;s thesis is that Java and JVM just can&#39;t handle this sort of thing, and then sets out to prove this with some terrible code that, unsurprisingly, is terrible.  He takes this bit of Clojure</p>
-<div class="highlight"><pre><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="nb">take </span><span class="mi">25</span> <span class="p">(</span><span class="nf">squares-of</span> <span class="p">(</span><span class="nf">integers</span><span class="p">)))</span>
-</code></pre></div>
-<p>And &quot;re-implements&quot; it in Java.  He does this by implementing <code>integers</code> to just allocate an array of all the integers.  </p>
+the world’s worst straw man I’ve seen.  He talks about <a href="http://pragprog.com/magazines/2013-01/functional-programming-basics">Uncle Bob’s post</a> on the advantages of functional programming.
+Elliotte’s thesis is that Java and JVM just can’t handle this sort of thing, and then sets out to prove this with some terrible code that, unsurprisingly, is terrible.  He takes this bit of Clojure</p>
+
+<p><code class="highlighter-rouge">clojure
+(take 25 (squares-of (integers)))
+</code></p>
+
+<p>And “re-implements” it in Java.  He does this by implementing <code class="highlighter-rouge">integers</code> to just allocate an array of all the integers.</p>
 
 <p>Yeah.</p>
 
 <!-- more -->
 
-<p>That&#39;s bad enough, but really, that line of Clojure isn&#39;t functional <em>per se</em>, it&#39;s just that aspects of a functional programming
+<p>That’s bad enough, but really, that line of Clojure isn’t functional <em>per se</em>, it’s just that aspects of a functional programming
 language (namely first-class functions and lazy evaluation) make it really easy to implement that code in an efficient way.</p>
 
-<p>Elliotte is just flat wrong that you can&#39;t do this in Java.  I will now present the Java version of the Clojure version.</p>
+<p>Elliotte is just flat wrong that you can’t do this in Java.  I will now present the Java version of the Clojure version.</p>
 
-<h2>As always, laziness is the key to success</h2>
+<h2 id="as-always-laziness-is-the-key-to-success">As always, laziness is the key to success</h2>
 
-<p>The key to making it work is to use a lazy list which, in Java, is called <code>Iterator</code>.  If you have never used Java before,
-<code>Iterator</code> is basically this:</p>
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Iterator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
-  <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">hasNext</span><span class="o">();</span> <span class="c1">// true if there are more elements</span>
-  <span class="kd">public</span> <span class="n">T</span> <span class="nf">next</span><span class="o">();</span>          <span class="c1">// get the next element</span>
-  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">remove</span><span class="o">();</span>     <span class="c1">// remove the element you just got (optional)</span>
-<span class="o">}</span>
-</code></pre></div>
-<p>First, let&#39;s make a list of all the integers.  The top of the collection food chain in Java is <code>Iterable</code>, which has one method
-that just returns an <code>Iterator</code>.  We&#39;ll make an <code>Iterator</code> of all the integers and wrap it up in an anonymous <code>Iterable</code> for use by anyone:</p>
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">IntegersIterator</span> <span class="kd">implements</span> <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="o">{</span>
-  <span class="kd">private</span> <span class="kt">int</span> <span class="n">nextInt</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
-  <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">hasNext</span><span class="o">()</span> <span class="o">{</span>
-    <span class="k">return</span> <span class="n">nextInt</span> <span class="o">&lt;</span> <span class="n">Integer</span><span class="o">.</span><span class="na">MAX_VALUE</span><span class="o">;</span>
-  <span class="o">}</span>
-  <span class="kd">public</span> <span class="n">Integer</span> <span class="nf">next</span><span class="o">()</span> <span class="o">{</span>
-    <span class="k">if</span> <span class="o">(!</span><span class="n">hasNext</span><span class="o">())</span> <span class="o">{</span>
-      <span class="k">throw</span> <span class="k">new</span> <span class="nf">NoSuchElementException</span><span class="o">();</span>
-    <span class="o">}</span>
-    <span class="n">nextInt</span><span class="o">++;</span>
-    <span class="k">return</span> <span class="n">nextInt</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
-  <span class="o">}</span>
-  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">remove</span><span class="o">()</span> <span class="o">{</span>
-    <span class="k">throw</span> <span class="k">new</span> <span class="nf">UnsupportedOperationException</span><span class="o">();</span>
-  <span class="o">}</span>
-<span class="o">}</span>
+<p>The key to making it work is to use a lazy list which, in Java, is called <code class="highlighter-rouge">Iterator</code>.  If you have never used Java before,
+<code class="highlighter-rouge">Iterator</code> is basically this:</p>
 
-<span class="kd">private</span> <span class="kd">static</span> <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="nf">integers</span><span class="o">()</span> <span class="o">{</span>
-  <span class="k">return</span> <span class="k">new</span> <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;()</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="nf">iterator</span><span class="o">()</span> <span class="o">{</span>
-      <span class="k">return</span> <span class="k">new</span> <span class="nf">IntegersIterator</span><span class="o">();</span>
-    <span class="o">}</span>
-  <span class="o">};</span>
-<span class="o">}</span>
-</code></pre></div>
-<p>This is almost all there is to it.  To make the <code>squares-of</code> function, we need to maintain the &quot;laziness&quot; of our implementation.
-To do this, we&#39;ll create a squaring <code>Iterator</code> that proxies<a name="back-1"></a><sup><a href="#1">1</a></sup> through to another <code>Iterator</code>:</p>
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">SquaringIterator</span> <span class="kd">implements</span> <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="o">{</span>
-  <span class="kd">private</span> <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">original</span><span class="o">;</span>
-  <span class="kd">public</span> <span class="nf">SquaringIterator</span><span class="o">(</span><span class="n">Iterator</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">iter</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">original</span> <span class="o">=</span> <span class="n">iter</span><span class="o">;</span>
-  <span class="o">}</span>
-  <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">hasNext</span><span class="o">()</span> <span class="o">{</span>
-    <span class="k">return</span> <span class="n">original</span><span class="o">.</span><span class="na">hasNext</span><span class="o">();</span>
-  <span class="o">}</span>
-  <span class="kd">public</span> <span class="n">Integer</span> <span class="nf">next</span><span class="o">()</span> <span class="o">{</span>
-    <span class="kt">int</span> <span class="n">value</span> <span class="o">=</span> <span class="n">original</span><span class="o">.</span><span class="na">next</span><span class="o">();</span>
-    <span class="k">return</span> <span class="n">value</span> <span class="o">*</span> <span class="n">value</span><span class="o">;</span>
-  <span class="o">}</span>
-  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">remove</span><span class="o">()</span> <span class="o">{</span>
-    <span class="n">original</span><span class="o">.</span><span class="na">remove</span><span class="o">();</span>
-  <span class="o">}</span>
-<span class="o">}</span>
+<p><code class="highlighter-rouge">java
+public interface Iterator&lt;T&gt; {
+  public boolean hasNext(); // true if there are more elements
+  public T next();          // get the next element
+  public void remove();     // remove the element you just got (optional)
+}
+</code></p>
 
-<span class="kd">private</span> <span class="kd">static</span> <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="nf">squaresOf</span><span class="o">(</span><span class="kd">final</span> <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">seq</span><span class="o">)</span> <span class="o">{</span>
-  <span class="k">return</span> <span class="k">new</span> <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;()</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="nf">iterator</span><span class="o">()</span> <span class="o">{</span>
-      <span class="k">return</span> <span class="k">new</span> <span class="nf">SquaringIterator</span><span class="o">(</span><span class="n">seq</span><span class="o">.</span><span class="na">iterator</span><span class="o">());</span>
-    <span class="o">}</span>
-  <span class="o">};</span>
-<span class="o">}</span>
-</code></pre></div>
-<p>We <em>are</em> starting to see some of Java&#39;s warts here.  Because we&#39;re creating an anonymous inner class, that class cannot access
-parameters or local variables unless we declare them <code>final</code> - we&#39;ve declared the parameter to <code>squaresOf</code> as such.  This is because Java doesn&#39;t support real closures.  We could&#39;ve
-made a class that implements <code>Iterable&lt;Integer&gt;</code> just for our <code>squaresOf</code> function, but that feels like overkill for this
+<p>First, let’s make a list of all the integers.  The top of the collection food chain in Java is <code class="highlighter-rouge">Iterable</code>, which has one method
+that just returns an <code class="highlighter-rouge">Iterator</code>.  We’ll make an <code class="highlighter-rouge">Iterator</code> of all the integers and wrap it up in an anonymous <code class="highlighter-rouge">Iterable</code> for use by anyone:</p>
+
+<p>```java
+private static class IntegersIterator implements Iterator<integer> {
+  private int nextInt = 0;
+  public boolean hasNext() {
+    return nextInt &lt; Integer.MAX_VALUE;
+  }
+  public Integer next() {
+    if (!hasNext()) {
+      throw new NoSuchElementException();
+    }
+    nextInt++;
+    return nextInt - 1;
+  }
+  public void remove() {
+    throw new UnsupportedOperationException();
+  }
+}</integer></p>
+
+<p>private static Iterable<integer> integers() {
+  return new Iterable<integer>() {
+    public Iterator<integer> iterator() {
+      return new IntegersIterator();
+    }
+  };
+}
+```</integer></integer></integer></p>
+
+<p>This is almost all there is to it.  To make the <code class="highlighter-rouge">squares-of</code> function, we need to maintain the “laziness” of our implementation.
+To do this, we’ll create a squaring <code class="highlighter-rouge">Iterator</code> that proxies<a name="back-1"></a><sup><a href="#1">1</a></sup> through to another <code class="highlighter-rouge">Iterator</code>:</p>
+
+<p>```java
+private static class SquaringIterator implements Iterator<integer> {
+  private Iterator<integer> original;
+  public SquaringIterator(Iterator<integer> iter) {
+    original = iter;
+  }
+  public boolean hasNext() {
+    return original.hasNext();
+  }
+  public Integer next() {
+    int value = original.next();
+    return value * value;
+  }
+  public void remove() {
+    original.remove();
+  }
+}</integer></integer></integer></p>
+
+<p>private static Iterable<integer> squaresOf(final Iterable<integer> seq) {
+  return new Iterable<integer>() {
+    public Iterator<integer> iterator() {
+      return new SquaringIterator(seq.iterator());
+    }
+  };
+}
+```</integer></integer></integer></integer></p>
+
+<p>We <em>are</em> starting to see some of Java’s warts here.  Because we’re creating an anonymous inner class, that class cannot access
+parameters or local variables unless we declare them <code class="highlighter-rouge">final</code> - we’ve declared the parameter to <code class="highlighter-rouge">squaresOf</code> as such.  This is because Java doesn’t support real closures.  We could’ve
+made a class that implements <code class="highlighter-rouge">Iterable&lt;Integer&gt;</code> just for our <code class="highlighter-rouge">squaresOf</code> function, but that feels like overkill for this
 increasingly contrived example.</p>
 
 <p>OK, now that we have a way to get <em>all</em> the integers <em>and</em> square them without <em>actually instantiating</em> all the integers, we can
 just take the first 25 off:</p>
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span> <span class="o">{</span>
-  <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">take</span><span class="o">(</span><span class="mi">25</span><span class="o">,</span><span class="n">squaresOf</span><span class="o">(</span><span class="n">integers</span><span class="o">())));</span>
-<span class="o">}</span>
 
-<span class="kd">private</span> <span class="kd">static</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="nf">take</span><span class="o">(</span><span class="kt">int</span> <span class="n">numToTake</span><span class="o">,</span> <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">seq</span><span class="o">)</span> <span class="o">{</span>
-  <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">results</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;();</span>
-  <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">iterator</span> <span class="o">=</span> <span class="n">seq</span><span class="o">.</span><span class="na">iterator</span><span class="o">();</span>
-  <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">numToTake</span><span class="o">;</span><span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">iterator</span><span class="o">.</span><span class="na">hasNext</span><span class="o">())</span> <span class="o">{</span>
-      <span class="n">results</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">iterator</span><span class="o">.</span><span class="na">next</span><span class="o">());</span>
-    <span class="o">}</span>
-  <span class="o">}</span>
-  <span class="k">return</span> <span class="n">results</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></div>
+<p>```java
+public static void main(String args[]) {
+  System.out.println(take(25,squaresOf(integers())));
+}</p>
+
+<p>private static List<integer> take(int numToTake, Iterable<integer> seq) {
+  List<integer> results = new ArrayList<integer>();
+  Iterator<integer> iterator = seq.iterator();
+  for(int i=0;i&lt;numToTake;i++) {
+    if (iterator.hasNext()) {
+      results.add(iterator.next());
+    }
+  }
+  return results;
+}
+```</integer></integer></integer></integer></integer></p>
+
 <p>Running this code sure enough works quickly and without incident (full listing <a href="https://gist.github.com/4579317">here</a>):</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">&gt; java -cp . Functional
+
+<p><code class="highlighter-rouge">
+&gt; java -cp . Functional
 [0, 1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144, 169, 196, 225, 256, 289, 324, \
 361, 400, 441, 484, 529, 576]
-</code></pre></div>
-<p>So, it&#39;s certainly possible to create lazy data structures in Java. There are a few things bad about this, however:</p>
+</code></p>
+
+<p>So, it’s certainly possible to create lazy data structures in Java. There are a few things bad about this, however:</p>
 
 <ul>
-<li>It&#39;s very special purpose - if we needed a <code>doublesOf</code> or <code>squareRootsOf</code>, we&#39;d create a lot of duplicate code</li>
-<li>It&#39;s not very OO - we&#39;d expect our code to be something like <code>squaresOf(integers).take(25)</code>.</li>
+  <li>It’s very special purpose - if we needed a <code class="highlighter-rouge">doublesOf</code> or <code class="highlighter-rouge">squareRootsOf</code>, we’d create a lot of duplicate code</li>
+  <li>It’s not very OO - we’d expect our code to be something like <code class="highlighter-rouge">squaresOf(integers).take(25)</code>.</li>
 </ul>
 
-<p>Let&#39;s fix it!</p>
+<p>Let’s fix it!</p>
 
-<h2>Functions to the rescue</h2>
+<h2 id="functions-to-the-rescue">Functions to the rescue</h2>
 
-<p><em>Now</em> we&#39;re going to need a <code>Function</code> interface:</p>
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="kd">static</span> <span class="kd">interface</span> <span class="nc">Function1</span><span class="o">&lt;</span><span class="n">A</span><span class="o">,</span><span class="n">R</span><span class="o">&gt;</span> <span class="o">{</span>
-  <span class="kd">public</span> <span class="n">R</span> <span class="nf">apply</span><span class="o">(</span><span class="n">A</span> <span class="n">a</span><span class="o">);</span>
-<span class="o">}</span>
-</code></pre></div>
-<p>Think of <code>A</code> is &quot;argument&quot; and <code>R</code> as &quot;return value&quot;.</p>
+<p><em>Now</em> we’re going to need a <code class="highlighter-rouge">Function</code> interface:</p>
 
-<p>With this, we can genericize our <code>SquaringIterator</code> into a <code>TransformingIterator</code> that takes a function for transformation and
-the <code>Iterator</code> to transform:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">private static class TransformingIterator&lt;A,R&gt; implements Iterator&lt;R&gt; {
-  private Iterator&lt;A&gt; original;
-  private Function1&lt;A,R&gt; function;
+<p><code class="highlighter-rouge">java
+private static interface Function1&lt;A,R&gt; {
+  public R apply(A a);
+}
+</code></p>
 
-  public TransformingIterator(Function1&lt;A,R&gt; function, Iterator&lt;A&gt; iter) {
+<p>Think of <code class="highlighter-rouge">A</code> is “argument” and <code class="highlighter-rouge">R</code> as “return value”.</p>
+
+<p>With this, we can genericize our <code class="highlighter-rouge">SquaringIterator</code> into a <code class="highlighter-rouge">TransformingIterator</code> that takes a function for transformation and
+the <code class="highlighter-rouge">Iterator</code> to transform:</p>
+
+<p>```
+private static class TransformingIterator&lt;A,R&gt; implements Iterator<r> {
+  private Iterator<a> original;
+  private Function1&lt;A,R&gt; function;</a></r></p>
+
+<p>public TransformingIterator(Function1&lt;A,R&gt; function, Iterator<a> iter) {
     this.original = iter;
     this.function = function;
   }
@@ -216,99 +239,115 @@ the <code>Iterator</code> to transform:</p>
     original.remove();
   }
 }
-</code></pre></div>
-<p><em>Now</em>, we can make our <code>squaresOf</code> method like so:</p>
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="kd">static</span> <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="nf">squaresOf</span><span class="o">(</span><span class="kd">final</span> <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">seq</span><span class="o">)</span> <span class="o">{</span>
-  <span class="k">return</span> <span class="k">new</span> <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;()</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="nf">iterator</span><span class="o">()</span> <span class="o">{</span>
-      <span class="n">Function1</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">square</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Function1</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span><span class="n">Integer</span><span class="o">&gt;()</span> <span class="o">{</span>
-        <span class="kd">public</span> <span class="n">Integer</span> <span class="nf">apply</span><span class="o">(</span><span class="n">Integer</span> <span class="n">i</span><span class="o">)</span> <span class="o">{</span>
-          <span class="k">return</span> <span class="n">i</span> <span class="o">*</span> <span class="n">i</span><span class="o">;</span>
-        <span class="o">}</span>
-      <span class="o">};</span>
-      <span class="k">return</span> <span class="k">new</span> <span class="n">TransformingIterator</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span><span class="n">Integer</span><span class="o">&gt;(</span><span class="n">square</span><span class="o">,</span> <span class="n">seq</span><span class="o">.</span><span class="na">iterator</span><span class="o">());</span>
-    <span class="o">}</span>
-  <span class="o">};</span>
-<span class="o">}</span>
-</code></pre></div>
-<p>Using <code>TransformingIterator</code>, we could make a <code>doublesOf</code> method like so:</p>
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="kd">static</span> <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="nf">doublesOf</span><span class="o">(</span><span class="kd">final</span> <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">seq</span><span class="o">)</span> <span class="o">{</span>
-  <span class="k">return</span> <span class="k">new</span> <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;()</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="nf">iterator</span><span class="o">()</span> <span class="o">{</span>
-      <span class="n">Function1</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">square</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Function1</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span><span class="n">Integer</span><span class="o">&gt;()</span> <span class="o">{</span>
-        <span class="kd">public</span> <span class="n">Integer</span> <span class="nf">apply</span><span class="o">(</span><span class="n">Integer</span> <span class="n">i</span><span class="o">)</span> <span class="o">{</span>
-          <span class="k">return</span> <span class="n">i</span> <span class="o">+</span> <span class="n">i</span><span class="o">;</span>
-        <span class="o">}</span>
-      <span class="o">};</span>
-      <span class="k">return</span> <span class="k">new</span> <span class="n">TransformingIterator</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span><span class="n">Integer</span><span class="o">&gt;(</span><span class="n">square</span><span class="o">,</span> <span class="n">seq</span><span class="o">.</span><span class="na">iterator</span><span class="o">());</span>
-    <span class="o">}</span>
-  <span class="o">};</span>
-<span class="o">}</span>
-</code></pre></div>
-<p>Yes, creating a function in Java is messy, but it&#39;s not impossible, and doesn&#39;t affect the runtime performance of our
+```</a></p>
+
+<p><em>Now</em>, we can make our <code class="highlighter-rouge">squaresOf</code> method like so:</p>
+
+<p><code class="highlighter-rouge">java
+private static Iterable&lt;Integer&gt; squaresOf(final Iterable&lt;Integer&gt; seq) {
+  return new Iterable&lt;Integer&gt;() {
+    public Iterator&lt;Integer&gt; iterator() {
+      Function1&lt;Integer,Integer&gt; square = new Function1&lt;Integer,Integer&gt;() {
+        public Integer apply(Integer i) {
+          return i * i;
+        }
+      };
+      return new TransformingIterator&lt;Integer,Integer&gt;(square, seq.iterator());
+    }
+  };
+}
+</code></p>
+
+<p>Using <code class="highlighter-rouge">TransformingIterator</code>, we could make a <code class="highlighter-rouge">doublesOf</code> method like so:</p>
+
+<p><code class="highlighter-rouge">java
+private static Iterable&lt;Integer&gt; doublesOf(final Iterable&lt;Integer&gt; seq) {
+  return new Iterable&lt;Integer&gt;() {
+    public Iterator&lt;Integer&gt; iterator() {
+      Function1&lt;Integer,Integer&gt; square = new Function1&lt;Integer,Integer&gt;() {
+        public Integer apply(Integer i) {
+          return i + i;
+        }
+      };
+      return new TransformingIterator&lt;Integer,Integer&gt;(square, seq.iterator());
+    }
+  };
+}
+</code></p>
+
+<p>Yes, creating a function in Java is messy, but it’s not impossible, and doesn’t affect the runtime performance of our
 application.  This ability to extract structure and code vs. logic is the true power of functional programming.</p>
 
-<h2>Making it more OO</h2>
+<h2 id="making-it-more-oo">Making it more OO</h2>
 
-<p>Now, what about that pesky <code>take</code> method?  We can handle that pretty easily by creating an implementation of <code>Iterable</code> that adds
+<p>Now, what about that pesky <code class="highlighter-rouge">take</code> method?  We can handle that pretty easily by creating an implementation of <code class="highlighter-rouge">Iterable</code> that adds
 the necessary methods:</p>
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="kd">abstract</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">RichIterable</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
 
-  <span class="kd">public</span> <span class="kd">static</span> <span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">RichIterable</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="nf">fromIterable</span><span class="o">(</span><span class="n">Iterable</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">seq</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">return</span> <span class="k">new</span> <span class="n">ProxyRichIterable</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;(</span><span class="n">seq</span><span class="o">);</span>
-  <span class="o">}</span>
+<p>```java
+private abstract static class RichIterable<t> implements Iterable<t> {</t></t></p>
 
-  <span class="kd">public</span> <span class="n">RichIterable</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="nf">take</span><span class="o">(</span><span class="kt">int</span> <span class="n">numToTake</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">List</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">results</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;();</span>
-    <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">iterator</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">iterator</span><span class="o">();</span>
-    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">numToTake</span><span class="o">;</span><span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-      <span class="k">if</span> <span class="o">(</span><span class="n">iterator</span><span class="o">.</span><span class="na">hasNext</span><span class="o">())</span> <span class="o">{</span>
-        <span class="n">results</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">iterator</span><span class="o">.</span><span class="na">next</span><span class="o">());</span>
-      <span class="o">}</span>
-    <span class="o">}</span>
-    <span class="k">return</span> <span class="nf">fromIterable</span><span class="o">(</span><span class="n">results</span><span class="o">);</span>
-  <span class="o">}</span>
+<p>public static <t> RichIterable<t> fromIterable(Iterable<t> seq) {
+    return new ProxyRichIterable<t>(seq);
+  }</t></t></t></t></p>
 
-  <span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="nf">toList</span><span class="o">()</span> <span class="o">{</span>
-    <span class="n">List</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;();</span>
-    <span class="k">for</span><span class="o">(</span><span class="n">T</span> <span class="nl">t:</span> <span class="k">this</span><span class="o">)</span> <span class="o">{</span>
-      <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">t</span><span class="o">);</span>
-    <span class="o">}</span>
-    <span class="k">return</span> <span class="n">list</span><span class="o">;</span>
-  <span class="o">}</span>
-<span class="o">}</span>
+<p>public RichIterable<t> take(int numToTake) {
+    List<t> results = new ArrayList<t>();
+    Iterator<t> iterator = this.iterator();
+    for(int i=0;i&lt;numToTake;i++) {
+      if (iterator.hasNext()) {
+        results.add(iterator.next());
+      }
+    }
+    return fromIterable(results);
+  }</t></t></t></t></p>
 
-<span class="kd">private</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">ProxyRichIterable</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="kd">extends</span> <span class="n">RichIterable</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
-  <span class="kd">private</span> <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">seq</span><span class="o">;</span>
-  <span class="kd">public</span> <span class="nf">ProxyRichIterable</span><span class="o">(</span><span class="n">Iterable</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">seq</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">this</span><span class="o">.</span><span class="na">seq</span> <span class="o">=</span> <span class="n">seq</span><span class="o">;</span>
-  <span class="o">}</span>
-  <span class="kd">public</span> <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="nf">iterator</span><span class="o">()</span> <span class="o">{</span>
-    <span class="k">return</span> <span class="n">seq</span><span class="o">.</span><span class="na">iterator</span><span class="o">();</span>
-  <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div>
-<p>Notice that we create a means of converting any <code>Iterable</code> (i.e. any Java collection) into our <code>RichIterable</code>, and also provide a
-way to turn it back into a vanilla list.  We replace all use of <code>Iterable</code> in our code with <code>RichIterable</code> and our <code>main</code> method looks more &quot;OO&quot;:</p>
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span> <span class="o">{</span>
-  <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">squaresOf</span><span class="o">(</span><span class="n">integers</span><span class="o">()).</span><span class="na">take</span><span class="o">(</span><span class="mi">25</span><span class="o">).</span><span class="na">toList</span><span class="o">());</span>
-<span class="o">}</span>
-</code></pre></div>
+<p>public List<t> toList() {
+    List<t> list = new ArrayList<t>();
+    for(T t: this) {
+      list.add(t);
+    }
+    return list;
+  }
+}</t></t></t></p>
+
+<p>private static class ProxyRichIterable<t> extends RichIterable<t> {
+  private Iterable<t> seq;
+  public ProxyRichIterable(Iterable<t> seq) {
+    this.seq = seq;
+  }
+  public Iterator<t> iterator() {
+    return seq.iterator();
+  }
+}
+```</t></t></t></t></t></p>
+
+<p>Notice that we create a means of converting any <code class="highlighter-rouge">Iterable</code> (i.e. any Java collection) into our <code class="highlighter-rouge">RichIterable</code>, and also provide a
+way to turn it back into a vanilla list.  We replace all use of <code class="highlighter-rouge">Iterable</code> in our code with <code class="highlighter-rouge">RichIterable</code> and our <code class="highlighter-rouge">main</code> method looks more “OO”:</p>
+
+<p><code class="highlighter-rouge">java
+public static void main(String args[]) {
+  System.out.println(squaresOf(integers()).take(25).toList());
+}
+</code></p>
+
 <p>And, it still runs great (updated source <a href="https://gist.github.com/4579399">here</a>):</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">&gt; java -cp . Functional
+
+<p><code class="highlighter-rouge">
+&gt; java -cp . Functional
 [0, 1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144, 169, 196, 225, 256, 289, 324, \
 361, 400, 441, 484, 529, 576]
-</code></pre></div>
-<p>So, what did we learn?  We learned that you can&#39;t just write shitty code in Java and then say Java and the JVM can&#39;t handle
-functional programming.  Java can <em>absolutely</em> handle functional programming, even though Java&#39;s syntax makes it a bit painful.</p>
+</code></p>
 
-<hr>
+<p>So, what did we learn?  We learned that you can’t just write shitty code in Java and then say Java and the JVM can’t handle
+functional programming.  Java can <em>absolutely</em> handle functional programming, even though Java’s syntax makes it a bit painful.</p>
 
-<footer class='footnotes'>
+<hr />
+
+<footer class="footnotes">
 <ol>
 <li>
-<a name='1'></a>
-<sup>1</sup>See how I used the name of a design pattern instead of painfully explaining to you what a proxy is?  Handy, isn't it?<a href='#back-1'>↩</a>
+<a name="1"></a>
+<sup>1</sup>See how I used the name of a design pattern instead of painfully explaining to you what a proxy is?  Handy, isn't it?<a href="#back-1">↩</a>
 </li>
 </ol></footer>
 

@@ -87,18 +87,18 @@ It's been almost 7 years since <a href="http://www.joelonsoftware.com/articles/U
 </p>
 <p>
 At any rate, the tricky bit in actually <b>using</b> the domain, because a) entering &#10106;&#10144; into vim is nontrivial, and b) I doubt that Apache's config file would work with unicode characters in it.  Enter <a href="http://en.wikipedia.org/wiki/Punycode">Punycode</a>, which is an asciification of any IDN.  Fortunately, the domain host provides the Punycode for your IDN, so configuring apache was a matter of:
-<div class="highlight"><pre><code class="language-apache" data-lang="apache"><span class="nt">&lt;VirtualHost</span> <span class="s">XXXXX</span><span class="nt">&gt;</span>
-<span class="nb">ServerName</span> xn--dfi5d.ws
-<span class="nb">ServerAlias</span> www.xn--dfi5d.ws
-<span class="nb">DocumentRoot</span> <span class="sx">/home/webadmin/xn--dfi5d.ws/html</span>
-<span class="nt">&lt;!--</span> <span class="s">whatever else goes here --</span><span class="nt">&gt;</span>
-<span class="nb">JkMount</span> /s* ajp13
-<span class="nb">JkMount</span> /s ajp13
-  <span class="nt">&lt;Directory</span> <span class="s">/home/webadmin/xn--dfi5d.ws/html</span><span class="nt">&gt;</span>
-    <span class="nb">Options</span> Includes FollowSymLinks
-    <span class="nb">AllowOverride</span> <span class="k">All</span>
-  <span class="nt">&lt;/Directory&gt;</span>
-<span class="nt">&lt;/VirtualHost&gt;</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-apache" data-lang="apache"><span class="p">&lt;</span><span class="nc">VirtualHost</span> <span class="sr">XXXXX</span><span class="p">&gt;
+</span><span class="nl">ServerName</span> xn--dfi5d.ws
+<span class="nl">ServerAlias</span> www.xn--dfi5d.ws
+<span class="nl">DocumentRoot</span> /home/webadmin/xn--dfi5d.ws/html
+<span class="err">&lt;!--</span>  else goes here --&gt;
+ /s* ajp13
+ /s ajp13
+  <span class="p">&lt;</span><span class="nc">Directory</span> <span class="sr">/home/webadmin/xn--dfi5d.ws/html</span><span class="p">&gt;
+</span>    <span class="nl">Options</span> Includes FollowSymLinks
+    <span class="nl">AllowOverride</span> All
+  <span class="p">&lt;/</span><span class="nc">Directory</span><span class="p">&gt;
+&lt;/</span><span class="nc">VirtualHost</span><span class="err">&gt;</span></code></pre></figure>
 </p>
 <p>
 At this point, it pretty much worked, although it was sometimes difficult to get curl to work with the non-punyied name.

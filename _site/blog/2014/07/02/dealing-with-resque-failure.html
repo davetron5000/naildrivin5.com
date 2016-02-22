@@ -32,7 +32,7 @@
     
   
   
-    Over on Stitch Fix&#39;s engineering blog, I wrote a new post on how w...">
+    Over on Stitch Fix’s engineering blog, I wrote a new post on how we de...">
   
 
   
@@ -70,16 +70,17 @@
     </h2>
   </header>
   <section class="blog-content">
-    <p>Over on <a href="http://technology.stitchfix.com/blog">Stitch Fix&#39;s engineering blog</a>, I wrote a <a href="http://technology.stitchfix.com/blog/2014/07/02/how-we-deal-with-failing-resque-jobs/">new post</a> on how we deal with tricky job failures.
+    <p>Over on <a href="http://technology.stitchfix.com/blog">Stitch Fix’s engineering blog</a>, I wrote a <a href="http://technology.stitchfix.com/blog/2014/07/02/how-we-deal-with-failing-resque-jobs/">new post</a> on how we deal with tricky job failures.
 Namely, make your jobs idempotent:</p>
 
 <blockquote>
-<p>Trapping <code>Resque::TermException</code> is really just kicking the can down the road. You might prevent some of your jobs from failing, but you&#39;ll still get failed jobs. Granted, they will fail at a lower rate, but it&#39;s still a rate correlated to the scale of your business.</p>
+  <p>Trapping <code class="highlighter-rouge">Resque::TermException</code> is really just kicking the can down the road. You might prevent some of your jobs from failing, but you’ll still get failed jobs. Granted, they will fail at a lower rate, but it’s still a rate correlated to the scale of your business.</p>
 
-<p>The underlying problem is that jobs aren&#39;t <strong>idempotent</strong>.</p>
+  <p>The underlying problem is that jobs aren’t <strong>idempotent</strong>.</p>
 </blockquote>
 
 <p>Check out the entire thing <a href="http://technology.stitchfix.com/blog/2014/07/02/how-we-deal-with-failing-resque-jobs/">here</a>.</p>
+
 
   </section>
 </article>

@@ -76,10 +76,10 @@
 So, annotations were created to essentially formalize what XDoclet was doing, instead of considering how horribly broken the implementation of J2EE or Hibernate was.  And now that we have annotations, the "implementation pattern" of "ultimate flexibility through annotations" has made its way into numerous Java frameworks, such as JAX-RS and JPA.</p>
 <p>
 Regarding JPA:
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Id</span>
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Id</span>
 <span class="nd">@GeneratedValue</span>
-<span class="nd">@Column</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;person_id&quot;</span><span class="o">)</span>
-<span class="kd">public</span> <span class="kt">int</span> <span class="nf">getPersonId</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">personId</span><span class="o">;</span> <span class="o">}</span></code></pre></div>
+<span class="nd">@Column</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">"person_id"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kt">int</span> <span class="nf">getPersonId</span><span class="p">(</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> <span class="n">personId</span><span class="o">;</span> <span class="o">}</span></code></pre></figure>
 This is not a significant improvement over XDoclet; the only benefit is if you mistype "GeneratedValue", the compiler will catch it.  I shouldn't have to type "GeneratedValue" in the first place.  Unless I'm doing something non-standard.  Which I almost never do.
 </p>
 <p>

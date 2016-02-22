@@ -40,7 +40,7 @@
   
 
   
-  <link rel="canonical" href="http://naildrivin5.com/page5/index.html">
+  <link rel="canonical" href="http://naildrivin5.com/page5/">
   <link href="/favicon.png" rel="icon">
   <link href="/atom.xml" rel="alternate" title="naildrivin5.com - David Bryant Copeland's Website" type="application/atom+xml">
   <link href="/css/styles.css" rel="stylesheet">
@@ -81,16 +81,17 @@
           <div class="excerpt"><p>Jeff Atwood (AKA codinghorror), <a href="http://www.codinghorror.com/blog/2013/08/the-code-keyboard.html">introduced a new computer keyboard</a>, produced by WASD, called <a href="http://codekeyboards.com/">the CODE keyboard</a>:</p>
 
 <blockquote>
-<p>I told him that the state of keyboards was unacceptable to me as a geek, and I proposed a partnership wherein I was willing to work with him to do whatever it takes to produce a truly great mechanical keyboard.</p>
+  <p>I told him that the state of keyboards was unacceptable to me as a geek, and I proposed a partnership wherein I was willing to work with him to do whatever it takes to produce a truly great mechanical keyboard.</p>
 </blockquote>
 
-<p>Jeff is heralding this as a &quot;truly great mechanical keyboard&quot;.  I was very eager to see what such a beast looked like.  Here it
+<p>Jeff is heralding this as a “truly great mechanical keyboard”.  I was very eager to see what such a beast looked like.  Here it
 is:</p>
 
-<p><img src="/images/ModelM.jpg" alt="image"></p>
+<p><img src="/images/ModelM.jpg" alt="image" /></p>
 
-<p>Oh wait, sorry, that&#39;s the original 101-key version of the IBM PC Keyboard, introduced in 1985.  How&#39;d that get there?  It&#39;s been
+<p>Oh wait, sorry, that’s the original 101-key version of the IBM PC Keyboard, introduced in 1985.  How’d that get there?  It’s been
 almost thirty years, so the CODE keyboard must be awesome, right?</p>
+
 </div>
           <footer class="mb2 text-l">
             <a rel="full-article" class="no-ul pill" href="/blog/2013/08/29/a-real-keyboard-for-programmers.html">Read More…</a>
@@ -111,11 +112,12 @@ almost thirty years, so the CODE keyboard must be awesome, right?</p>
         <section class="mb1">
           <div class="excerpt"><p>Quick, which is better: MiniTest or RSpec?  HAML or ERB?  SASS or LESS?</p>
 
-<p>If you are building your first Rails app at your company, it doesn&#39;t matter.  They all work more or less the same, so just pick one and go.  Take a vote or declare by fiat, but get on with your life.  No project ever failed because they picked HAML over ERB.</p>
+<p>If you are building your first Rails app at your company, it doesn’t matter.  They all work more or less the same, so just pick one and go.  Take a vote or declare by fiat, but get on with your life.  No project ever failed because they picked HAML over ERB.</p>
 
-<p>If, on the other hand, you are building a new Rails application that runs in an existing technical infrastructure (which is far more likely), then these are the absolute wrong questions to be asking.  Use what your team already uses <em>unless there&#39;s a good technical reason not to</em>.  Why?</p>
+<p>If, on the other hand, you are building a new Rails application that runs in an existing technical infrastructure (which is far more likely), then these are the absolute wrong questions to be asking.  Use what your team already uses <em>unless there’s a good technical reason not to</em>.  Why?</p>
 
 <p>Because consistency is far more important than most other factors.</p>
+
 </div>
           <footer class="mb2 text-l">
             <a rel="full-article" class="no-ul pill" href="/blog/2013/08/21/inconsistent-architecture.html">Read More…</a>
@@ -134,11 +136,12 @@ almost thirty years, so the CODE keyboard must be awesome, right?</p>
       </header>
       
         <section class="mb1">
-          <div class="excerpt"><p>Emboldened by tests, and with the words &quot;ruthless refactoring&quot; in my head, I used to &quot;improve&quot; the codebase I was maintaining at a previous job.  One day,
-my &quot;cleanup&quot; caused production to break.  How could this be?  I was being Agile.  I was Testing.  I was Merciless in my Refactoring.  I had found Code
+          <div class="excerpt"><p>Emboldened by tests, and with the words “ruthless refactoring” in my head, I used to “improve” the codebase I was maintaining at a previous job.  One day,
+my “cleanup” caused production to break.  How could this be?  I was being Agile.  I was Testing.  I was Merciless in my Refactoring.  I had found Code
 Smells, dammit!</p>
 
 <p>I was being irresponsible.</p>
+
 </div>
           <footer class="mb2 text-l">
             <a rel="full-article" class="no-ul pill" href="/blog/2013/08/08/responsible-refactoring.html">Read More…</a>
@@ -161,12 +164,13 @@ Smells, dammit!</p>
             <p>My ex-colleague from LivingSocial, <a href="https://twitter.com/danmayer">Dan Mayer</a> posted a <a href="http://mayerdan.com/programming/2013/08/04/thoughts-on-continuous-deployment/">great read about continuous deployment</a>, and the tradeoffs when doing an automatic deploy:</p>
 
 <blockquote>
-<p>After considering some of the real world implications of automated continuous deployment, I didn’t feel it was right for our team on most of our projects at the moment. Both because we would need a bit of additional tooling around deployment and dashboards, and because our tests are far to slow.</p>
+  <p>After considering some of the real world implications of automated continuous deployment, I didn’t feel it was right for our team on most of our projects at the moment. Both because we would need a bit of additional tooling around deployment and dashboards, and because our tests are far to slow.</p>
 </blockquote>
 
-<p>It&#39;s a good (and quick) read. Having worked on at least one of the apps that Dan&#39;s talking about, I would agree he&#39;s making the right call and that if your test suite is slow, automatic deployment can be a killer.  I also think there&#39;s a relationship between the size of the contributor group and the speed of the test suite - the more devs pushing stuff in, the faster it has to be.</p>
+<p>It’s a good (and quick) read. Having worked on at least one of the apps that Dan’s talking about, I would agree he’s making the right call and that if your test suite is slow, automatic deployment can be a killer.  I also think there’s a relationship between the size of the contributor group and the speed of the test suite - the more devs pushing stuff in, the faster it has to be.</p>
 
-<p>In <a href="http://www.theseniorsoftwareengineer.com">my book</a>, there&#39;s a chapter on bootstrapping new applications, and my recommendation is to set up automatic continuous deployment from the start.  I stand by that, because it basically turns the problem Dan identifies around: slow tests slow your deployment which should thus motivate keeping tests slow (and applications lean).  We&#39;ll see how it works out at <a href="http://stitchfixjobs.com/blog/2013/07/30/our-git-workflow/">Stitch Fix</a>.  We have one app with a somewhat slow test suite, and three with relatively fast ones.  Automatic deploys work really well so far.</p>
+<p>In <a href="http://www.theseniorsoftwareengineer.com">my book</a>, there’s a chapter on bootstrapping new applications, and my recommendation is to set up automatic continuous deployment from the start.  I stand by that, because it basically turns the problem Dan identifies around: slow tests slow your deployment which should thus motivate keeping tests slow (and applications lean).  We’ll see how it works out at <a href="http://stitchfixjobs.com/blog/2013/07/30/our-git-workflow/">Stitch Fix</a>.  We have one app with a somewhat slow test suite, and three with relatively fast ones.  Automatic deploys work really well so far.</p>
+
 
           </section>
         
@@ -190,11 +194,12 @@ Smells, dammit!</p>
 branches and tags.</p>
 
 <blockquote>
-<p>This is fairly simple - new code goes on branches, master is always deployable (when clean), and <code>deploy/production</code> always contains whatever&#39;s on production. </p>
+  <p>This is fairly simple - new code goes on branches, master is always deployable (when clean), and <code class="highlighter-rouge">deploy/production</code> always contains whatever’s on production.</p>
 </blockquote>
 
-<p><a href="http://www.theseniorsoftwareengineer.com">My book</a> talks about bootstrapping new applications, and my recommendation is to set up continuous deployment.  If you&#39;ve ever worked on a release
-schedule, you&#39;ll know that continuous deployment is a pure joy.  It&#39;s also a boon to the users, who get the features and fixes as fast as possible.</p>
+<p><a href="http://www.theseniorsoftwareengineer.com">My book</a> talks about bootstrapping new applications, and my recommendation is to set up continuous deployment.  If you’ve ever worked on a release
+schedule, you’ll know that continuous deployment is a pure joy.  It’s also a boon to the users, who get the features and fixes as fast as possible.</p>
+
 
           </section>
           <footer class="mtneg mb1">
@@ -214,15 +219,16 @@ schedule, you&#39;ll know that continuous deployment is a pure joy.  It&#39;s al
       </header>
       
         <section class="mb1">
-          <div class="excerpt"><p>Email is a fact of life.  It&#39;s the primary conduit through which all information in our work life flows.  Clients email us.
+          <div class="excerpt"><p>Email is a fact of life.  It’s the primary conduit through which all information in our work life flows.  Clients email us.
 Users email us.  Project managers email us. Our issue management systems email us.  Heck, even our <em>apps</em> email us when things are going wrong.</p>
 
-<p>Managing email can be tricky - if you spend too much time on it, you don&#39;t get any other work done, and if you don&#39;t spend enough
-time on it, you appear flaky at best and incompetent at worst.  Over the past several years, I&#39;ve developed a system for managing
-email as a developer that maximizes my responsiveness without creating an undue burden on my workload.  In short, I&#39;m a lot more
-agile in how I deliver results by allowing emails to occasionally &quot;overrule&quot; my otherwise prioritized backlog.</p>
+<p>Managing email can be tricky - if you spend too much time on it, you don’t get any other work done, and if you don’t spend enough
+time on it, you appear flaky at best and incompetent at worst.  Over the past several years, I’ve developed a system for managing
+email as a developer that maximizes my responsiveness without creating an undue burden on my workload.  In short, I’m a lot more
+agile in how I deliver results by allowing emails to occasionally “overrule” my otherwise prioritized backlog.</p>
 
-<p>I&#39;m going to share it with you to see if you like it</p>
+<p>I’m going to share it with you to see if you like it</p>
+
 </div>
           <footer class="mb2 text-l">
             <a rel="full-article" class="no-ul pill" href="/blog/2013/07/23/agile-email-management.html">Read More…</a>
@@ -245,33 +251,33 @@ agile in how I deliver results by allowing emails to occasionally &quot;overrule
             <p>Last November, I did my own private <a href="http://pragprog.com/news/november-writing-month-pragmatic-guide-to-git-in-print">PragProWriMo</a>, writing every day that month to produce a non-fiction technology book:</p>
 
 <blockquote class="twitter-tweet"><p>And that&#39;s IT! 671 words today for a total of 46,611 words. Now what? Editing hell I guess :) <a href="https://twitter.com/search?q=%23digwrimo&amp;src=hash">#digwrimo</a> <a href="https://twitter.com/search?q=%23PragProWriMo&amp;src=hash">#PragProWriMo</a></p>&mdash; ❺➠ David Copeland (@davetron5000) <a href="https://twitter.com/davetron5000/statuses/274513337486823425">November 30, 2012</a></blockquote>
+<script async="" src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-<p>Between Dec 1, 2012 and today, I&#39;ve been editing it, and it&#39;s finally complete!</p>
+<p>Between Dec 1, 2012 and today, I’ve been editing it, and it’s finally complete!</p>
 
 <p><a href="http://www.theseniorsoftwareengineer.com">The Senior Software Engineer</a> is a 200-page e-book on everything a developer needs to know to be a truly senior
 engineer…except for how program.</p>
 
-<p>The book&#39;s subtitle is &quot;A Guide for Making the Most of Your Career&quot; and that&#39;s exactly what it is.  I realized over the past few years
-that the best and most successful developers I&#39;ve come across aren&#39;t just good at writing code.  They can communicate effectively
+<p>The book’s subtitle is “A Guide for Making the Most of Your Career” and that’s exactly what it is.  I realized over the past few years
+that the best and most successful developers I’ve come across aren’t just good at writing code.  They can communicate effectively
 with others.  They can launch a greenfield project without incident.  They can write documentation.  They can lead others without
 becoming managers who have to give up coding.</p>
 
 <p>In short, these developers prioritize the delivery of results above all else.  They often (though not always) use software to
 deliver those results.</p>
 
-<p>This is the subject of the book.  It&#39;s designed to get you thinking about the big picture, of which computer programs are only a
-small part.  It&#39;s a roadmap for advancing in your career without giving up writing code.</p>
+<p>This is the subject of the book.  It’s designed to get you thinking about the big picture, of which computer programs are only a
+small part.  It’s a roadmap for advancing in your career without giving up writing code.</p>
 
-<p>It&#39;s also prescriptive.  You&#39;ll learn how to give a code review as well as receive one.  You&#39;ll learn how to keep organized while
-implementing complex features.  You&#39;ll learn how to create a convincing technical argument by understanding others&#39; priorities.
-You&#39;ll learn how to interview potential team members, and then lead them to successful product delivery.  <a href="http://www.theseniorsoftwareengineer.com">Check out the website</a>, where you&#39;ll find a full table of contents as well as some excerpts.</p>
+<p>It’s also prescriptive.  You’ll learn how to give a code review as well as receive one.  You’ll learn how to keep organized while
+implementing complex features.  You’ll learn how to create a convincing technical argument by understanding others’ priorities.
+You’ll learn how to interview potential team members, and then lead them to successful product delivery.  <a href="http://www.theseniorsoftwareengineer.com">Check out the website</a>, where you’ll find a full table of contents as well as some excerpts.</p>
 
 <p>The lessons in this book have taken me a long time to learn, and I still struggle every day with many of them. My hope is
 that if we all start thinking about this stuff earlier in our careers (at least as much as we think about the next great language or framework) we can do better work and make software better.</p>
 
-<p><a href="http://www.theseniorsoftwareengineer.com">It&#39;s available now for $25, in PDF, EPUB, MOBI, and Markdown</a>.  I hope you enjoy it.</p>
+<p><a href="http://www.theseniorsoftwareengineer.com">It’s available now for $25, in PDF, EPUB, MOBI, and Markdown</a>.  I hope you enjoy it.</p>
+
 
           </section>
         
@@ -288,9 +294,10 @@ that if we all start thinking about this stuff earlier in our careers (at least 
       </header>
       
         <section class="mb1">
-          <div class="excerpt"><p>This is important.  It has to do with your treatment and reaction to how your software runs in production. How your software runs in production is <strong>all that matters</strong>.  The most amazing abstractions, cleanest code, or beautiful algorithms are meaningless if your code doesn&#39;t run well on production.</p>
+          <div class="excerpt"><p>This is important.  It has to do with your treatment and reaction to how your software runs in production. How your software runs in production is <strong>all that matters</strong>.  The most amazing abstractions, cleanest code, or beautiful algorithms are meaningless if your code doesn’t run well on production.</p>
 
-<p>If you have no way to understand how your code runs in production, you are more typist than engineer.  It&#39;s not necessarily your fault - many organizations don&#39;t allow developers any real access to production - but you need to do something about it, and I&#39;m gonna show you how.</p>
+<p>If you have no way to understand how your code runs in production, you are more typist than engineer.  It’s not necessarily your fault - many organizations don’t allow developers any real access to production - but you need to do something about it, and I’m gonna show you how.</p>
+
 </div>
           <footer class="mb2 text-l">
             <a rel="full-article" class="no-ul pill" href="/blog/2013/06/16/production-is-all-that-matters.html">Read More…</a>
@@ -309,9 +316,10 @@ that if we all start thinking about this stuff earlier in our careers (at least 
       </header>
       
         <section class="mb1">
-          <div class="excerpt"><p>What&#39;s the one thing we, as developers, do with source code more than anything else?  We <em>read</em> it.  Sure, we change it, and even occasionally we write new source code, but, by and large, we <em>read</em> source code.  We read it to know how to use it.  We read it to know where to change it.  We read it to understand what it does.</p>
+          <div class="excerpt"><p>What’s the one thing we, as developers, do with source code more than anything else?  We <em>read</em> it.  Sure, we change it, and even occasionally we write new source code, but, by and large, we <em>read</em> source code.  We read it to know how to use it.  We read it to know where to change it.  We read it to understand what it does.</p>
 
-<p>But, it&#39;s not just the content - the code itself - that affects readability.  How it&#39;s presented matters and if we&#39;re going to talk about presentation, we have to talk about typography.</p>
+<p>But, it’s not just the content - the code itself - that affects readability.  How it’s presented matters and if we’re going to talk about presentation, we have to talk about typography.</p>
+
 </div>
           <footer class="mb2 text-l">
             <a rel="full-article" class="no-ul pill" href="/blog/2013/05/17/source-code-typography.html">Read More…</a>
@@ -331,18 +339,19 @@ that if we all start thinking about this stuff earlier in our careers (at least 
       
         <section class="mb1">
           <div class="excerpt"><p>At <a href="http://www.stitchfix.com">Stitch Fix</a>, we outsource pretty much <em>all</em> of our hosting and technical needs to Heroku or their add-ons.  Given
-where we are now as a company, it makes total sense: we don&#39;t need to hire an admin, we don&#39;t need to adminster actual boxes, and
+where we are now as a company, it makes total sense: we don’t need to hire an admin, we don’t need to adminster actual boxes, and
 we can easily add/remove/change our technical infrastructure.  If you are a small startup and you are messing with Linode slices,
    you are probably wasting time.</p>
 
-<p>One thing Heroku doesn&#39;t provide out of the box is a login system for &quot;internal&quot; users.  The vast majority of the software at
+<p>One thing Heroku doesn’t provide out of the box is a login system for “internal” users.  The vast majority of the software at
 Stitch Fix is targeted at Stitch Fix employees - to operate the warehouse, choose what goes into a fix, etc.  The natural way to
-allow them to login is via Google Apps.  We can use everyone&#39;s existing username/password, and employees can be added during
+allow them to login is via Google Apps.  We can use everyone’s existing username/password, and employees can be added during
 onboarding and removed when they leave the company, all in one place.</p>
 
 <p>Getting it to work with our Rails apps <em>seemed</em> easy enough with <a href="http://github.com/intridea/omniauth">OmniAuth</a>, but it turned out to be a lot trickier, resulting in
-random failures with the oh-so-helpful error &quot;invalid_credentials&quot;.  Here&#39;s how to fix that, and why you can&#39;t just use the
+random failures with the oh-so-helpful error “invalid_credentials”.  Here’s how to fix that, and why you can’t just use the
 out-of-box configurations recommend by OmniAuth.</p>
+
 </div>
           <footer class="mb2 text-l">
             <a rel="full-article" class="no-ul pill" href="/blog/2013/04/29/getting-omniauth-with-google-apps-to-work-on-heroku.html">Read More…</a>

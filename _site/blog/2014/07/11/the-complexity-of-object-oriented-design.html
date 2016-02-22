@@ -32,7 +32,7 @@
     
   
   
-    I can&#39;t say what a codebase designed to Alan Kay&#39;...">
+    I can’t say what a codebase designed to Alan Kay’s idea o...">
   
 
   
@@ -70,167 +70,188 @@
     </h2>
   </header>
   <section class="blog-content">
-    <p>I can&#39;t say what a codebase designed to Alan Kay&#39;s idea of &quot;object-oriented&quot; might look like.
+    <p>I can’t say what a codebase designed to Alan Kay’s idea of “object-oriented” might look like.
 I <em>can</em> say what your average developer (including myself) actually creates using object-oriented languages, tools, and techniques.
 The result is a constant battle to tame complexity.
-I&#39;m going to lay out one source of that complexity, because it&#39;s baked-in to object-orientation, and I debate that it provides any utility in making programs easy to understand or change.</p>
+I’m going to lay out one source of that complexity, because it’s baked-in to object-orientation, and I debate that it provides any utility in making programs easy to understand or change.</p>
 
 <!-- more -->
 
 <p>Consider a procedural language in which no global symbols are possible:</p>
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">salutation</span><span class="p">(</span><span class="n">first_name</span><span class="p">,</span><span class="n">last_name</span><span class="p">)</span>
-  <span class="k">if</span> <span class="n">first_name</span> <span class="o">!=</span> <span class="kp">nil</span>
-    <span class="s2">&quot;Hey </span><span class="si">#{</span><span class="n">first_name</span><span class="si">}</span><span class="s2">!&quot;</span>
-  <span class="k">else</span>
-    <span class="s2">&quot;Hello, </span><span class="si">#{</span><span class="n">last_name</span><span class="si">}</span><span class="s2">&quot;</span>
-  <span class="k">end</span>
-<span class="k">end</span>
 
-<span class="n">salutation</span><span class="p">(</span><span class="s2">&quot;Dave&quot;</span><span class="p">,</span><span class="s2">&quot;Copeland&quot;</span><span class="p">)</span> <span class="c1"># =&gt; Hey Dave</span>
-<span class="n">salutation</span><span class="p">(</span><span class="kp">nil</span><span class="p">,</span><span class="s2">&quot;Jones&quot;</span><span class="p">)</span>       <span class="c1"># =&gt; Hello, Jones</span>
-</code></pre></div>
+<p>```ruby
+def salutation(first_name,last_name)
+  if first_name != nil
+    “Hey #{first_name}!”
+  else
+    “Hello, #{last_name}”
+  end
+end</p>
+
+<p>salutation(“Dave”,”Copeland”) # =&gt; Hey Dave
+salutation(nil,”Jones”)       # =&gt; Hello, Jones
+```</p>
+
 <p>Because there are no global symbols, we can easily (and totally) understand this routine.
 Everything it requires to do its job is passed as parameter, and every affect it has is part of its return value.</p>
 
 <p>Such a language would be unusable at any real complexity, because we could not decompose logic into smaller re-usable routines.
 Consider if we are creating a message for someone:</p>
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">create_message</span><span class="p">(</span><span class="n">first_name</span><span class="p">,</span><span class="n">last_name</span><span class="p">,</span><span class="n">message</span><span class="p">,</span><span class="n">from</span><span class="p">)</span>
-  <span class="n">salutation</span> <span class="o">=</span> <span class="k">if</span> <span class="n">first_name</span> <span class="o">!=</span> <span class="kp">nil</span>
-                 <span class="s2">&quot;Hey </span><span class="si">#{</span><span class="n">first_name</span><span class="si">}</span><span class="s2">!&quot;</span>
-               <span class="k">else</span>
-                 <span class="s2">&quot;Hello, </span><span class="si">#{</span><span class="n">last_name</span><span class="si">}</span><span class="s2">&quot;</span>
-               <span class="k">end</span>
-  <span class="sx">%{</span>
-<span class="si">#{</span><span class="n">salutation</span><span class="si">}</span><span class="sx">,</span>
 
-<span class="si">#{</span><span class="n">message</span><span class="si">}</span><span class="sx"></span>
+<p>```ruby
+def create_message(first_name,last_name,message,from)
+  salutation = if first_name != nil
+                 “Hey #{first_name}!”
+               else
+                 “Hello, #{last_name}”
+               end
+  %{
+#{salutation},</p>
 
-<span class="sx">           Sincerely,</span>
+<h1 id="message">{message}</h1>
 
-<span class="sx">           </span><span class="si">#{</span><span class="n">from</span><span class="si">}</span><span class="sx"></span>
-<span class="sx">}</span>
-<span class="k">end</span>
-</code></pre></div>
-<p>This routine, like <code>salutation</code>, is still simple to understand.
+<div class="highlighter-rouge"><pre class="highlight"><code>       Sincerely,
+
+       #{from} } end ```
+</code></pre>
+</div>
+
+<p>This routine, like <code class="highlighter-rouge">salutation</code>, is still simple to understand.
 Everything it needs to do its job is passed as a parameter and its entire affect is described in its return value.</p>
 
-<p>But, since we don&#39;t have global symbols (or any other obvious way to share logic), we&#39;ve had to duplicate <code>salutation</code>.
-Although our hypothetical language encourages simple design, it&#39;s not usable in its current state.</p>
+<p>But, since we don’t have global symbols (or any other obvious way to share logic), we’ve had to duplicate <code class="highlighter-rouge">salutation</code>.
+Although our hypothetical language encourages simple design, it’s not usable in its current state.</p>
 
 <p>If we could wrap up the salutation logic, along with the data it needed, into a single package, that could allow re-use.</p>
 
-<h2>Objects: Data &amp; Functionality?</h2>
+<h2 id="objects-data--functionality">Objects: Data &amp; Functionality?</h2>
 
-<p>In an object-oriented language, we have the ability to associate functionality with data, so we might logically have the <code>first_name</code> and <code>last_name</code> in some sort of object, and that object will implement the <code>salutation</code> method.</p>
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Person</span>
-  <span class="k">def</span> <span class="nf">salutation</span>
-    <span class="k">if</span> <span class="n">first_name</span> <span class="o">!=</span> <span class="kp">nil</span>
-      <span class="s2">&quot;Hey </span><span class="si">#{</span><span class="n">first_name</span><span class="si">}</span><span class="s2">!&quot;</span>
-    <span class="k">else</span>
-      <span class="s2">&quot;Hello, </span><span class="si">#{</span><span class="n">last_name</span><span class="si">}</span><span class="s2">&quot;</span>
-    <span class="k">end</span>
-  <span class="k">end</span>
-<span class="k">end</span>
-</code></pre></div>
-<p>Now, our <code>create_message</code> doesn&#39;t need to reproduce the <code>salutation</code> logic, but can use it from the new <code>person</code> object:</p>
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">create_message</span><span class="p">(</span><span class="n">person</span><span class="p">,</span><span class="n">message</span><span class="p">,</span><span class="n">from</span><span class="p">)</span>
-  <span class="sx">%{</span>
-<span class="si">#{</span><span class="n">person</span><span class="o">.</span><span class="n">salutation</span><span class="si">}</span><span class="sx">,</span>
+<p>In an object-oriented language, we have the ability to associate functionality with data, so we might logically have the <code class="highlighter-rouge">first_name</code> and <code class="highlighter-rouge">last_name</code> in some sort of object, and that object will implement the <code class="highlighter-rouge">salutation</code> method.</p>
 
-<span class="si">#{</span><span class="n">message</span><span class="si">}</span><span class="sx"></span>
+<p><code class="highlighter-rouge">ruby
+class Person
+  def salutation
+    if first_name != nil
+      "Hey #{first_name}!"
+    else
+      "Hello, #{last_name}"
+    end
+  end
+end
+</code></p>
 
-<span class="sx">           Sincerely,</span>
+<p>Now, our <code class="highlighter-rouge">create_message</code> doesn’t need to reproduce the <code class="highlighter-rouge">salutation</code> logic, but can use it from the new <code class="highlighter-rouge">person</code> object:</p>
 
-<span class="sx">           </span><span class="si">#{</span><span class="n">from</span><span class="si">}</span><span class="sx"></span>
-<span class="sx">}</span>
-<span class="k">end</span>
-</code></pre></div>
-<p>This seems good, right?  We still don&#39;t need global symbols, and we&#39;ve found a way to encapsulate and re-use logic.</p>
+<p>```ruby
+def create_message(person,message,from)
+  %{
+#{person.salutation},</p>
 
-<h2>Why are global symbols bad?</h2>
+<h1 id="message-1">{message}</h1>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>       Sincerely,
+
+       #{from} } end ```
+</code></pre>
+</div>
+
+<p>This seems good, right?  We still don’t need global symbols, and we’ve found a way to encapsulate and re-use logic.</p>
+
+<h2 id="why-are-global-symbols-bad">Why are global symbols bad?</h2>
 
 <p>Suppose that instead of creating objects, we had the ability to define a global symbol.
-We could re-use <code>salutation</code> by making in global, meaning that <code>create_message</code> could be implemented as follows:</p>
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">create_message</span><span class="p">(</span><span class="n">first_name</span><span class="p">,</span><span class="n">last_name</span><span class="p">,</span><span class="n">message</span><span class="p">,</span><span class="n">from</span><span class="p">)</span>
-  <span class="sx">%{</span>
-<span class="si">#{</span><span class="n">salutation</span><span class="p">(</span><span class="n">first_name</span><span class="p">,</span><span class="n">last_name</span><span class="si">}</span><span class="sx">,</span>
+We could re-use <code class="highlighter-rouge">salutation</code> by making in global, meaning that <code class="highlighter-rouge">create_message</code> could be implemented as follows:</p>
 
-<span class="si">#{</span><span class="n">message</span><span class="si">}</span><span class="sx"></span>
+<p>```ruby
+def create_message(first_name,last_name,message,from)
+  %{
+#{salutation(first_name,last_name},</p>
 
-<span class="sx">           Sincerely,</span>
+<h1 id="message-2">{message}</h1>
 
-<span class="sx">           </span><span class="si">#{</span><span class="n">from</span><span class="si">}</span><span class="sx"></span>
-<span class="sx">}</span>
-<span class="k">end</span>
-</code></pre></div>
-<p>We&#39;ve successfully re-used <code>salutation</code>, but look at how complex <code>create_message</code> has become!  Before, <strong>all</strong> input to <code>create_message</code> was in its parameter list.
+<div class="highlighter-rouge"><pre class="highlight"><code>       Sincerely,
+
+       #{from} } end ```
+</code></pre>
+</div>
+
+<p>We’ve successfully re-used <code class="highlighter-rouge">salutation</code>, but look at how complex <code class="highlighter-rouge">create_message</code> has become!  Before, <strong>all</strong> input to <code class="highlighter-rouge">create_message</code> was in its parameter list.
 <em>Now</em>, its inputs are the parameter list and <strong>every global symbol</strong>.</p>
 
 <p>Consider how we might send a message:</p>
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">send_message</span><span class="p">(</span><span class="n">email_addresses</span><span class="p">,</span><span class="n">message</span><span class="p">)</span>
-  <span class="k">for</span> <span class="n">email_address</span> <span class="k">in</span> <span class="n">email_addresses</span>
-    <span class="n">email</span><span class="p">(</span><span class="n">email_address</span><span class="p">,</span><span class="n">message</span><span class="p">)</span>
-  <span class="k">end</span>
-<span class="k">end</span>
-</code></pre></div>
-<p>In addition to having all global state as its input, <code>send_message</code>&#39;s <em>output</em> is also anything available in global state.
-<code>send_message</code> returns nothing, but has an affect on the outside world nontheless.</p>
 
-<p>All this means that any routine that has access to a shared global state is going to be more complex than one that doesn&#39;t, and that, without discipline, a program making use of shared global state will be harder to understand, test, and modify.</p>
+<p><code class="highlighter-rouge">ruby
+def send_message(email_addresses,message)
+  for email_address in email_addresses
+    email(email_address,message)
+  end
+end
+</code></p>
 
-<p>This gives us a new insight into our object-oriented solution.  Although <code>send_message</code> retained its simplicity, we&#39;ve actually created a miniature global state in our <code>Person</code> class.</p>
+<p>In addition to having all global state as its input, <code class="highlighter-rouge">send_message</code>’s <em>output</em> is also anything available in global state.
+<code class="highlighter-rouge">send_message</code> returns nothing, but has an affect on the outside world nontheless.</p>
 
-<h2>Objects Are Their Own Shared Global State</h2>
+<p>All this means that any routine that has access to a shared global state is going to be more complex than one that doesn’t, and that, without discipline, a program making use of shared global state will be harder to understand, test, and modify.</p>
 
-<p>Our <code>Person</code> class from above omitted a few details, namely where <code>first_name</code> and <code>last_name</code> came from.
-In most OO languages, you&#39;d assume they are instance variables, so let&#39;s add a bit more code to make this a Ruby class.</p>
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Person</span>
-  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">first_name</span><span class="p">,</span><span class="n">last_name</span><span class="p">)</span>
-    <span class="vi">@first_name</span> <span class="o">=</span> <span class="n">first_name</span>
-    <span class="vi">@last_name</span>  <span class="o">=</span> <span class="n">last_name</span>
-  <span class="k">end</span>
+<p>This gives us a new insight into our object-oriented solution.  Although <code class="highlighter-rouge">send_message</code> retained its simplicity, we’ve actually created a miniature global state in our <code class="highlighter-rouge">Person</code> class.</p>
 
-  <span class="k">def</span> <span class="nf">salutation</span>
-    <span class="k">if</span> <span class="vi">@first_name</span> <span class="o">!=</span> <span class="kp">nil</span>
-      <span class="s2">&quot;Hey </span><span class="si">#{</span><span class="vi">@first_name</span><span class="si">}</span><span class="s2">!&quot;</span>
-    <span class="k">else</span>
-      <span class="s2">&quot;Hello, </span><span class="si">#{</span><span class="vi">@last_name</span><span class="si">}</span><span class="s2">&quot;</span>
-    <span class="k">end</span>
-  <span class="k">end</span>
-<span class="k">end</span>
-</code></pre></div>
-<p>This is now a working Ruby implementation of our <code>Person</code> class.
-Look again at <code>salutation</code>.
+<h2 id="objects-are-their-own-shared-global-state">Objects Are Their Own Shared Global State</h2>
+
+<p>Our <code class="highlighter-rouge">Person</code> class from above omitted a few details, namely where <code class="highlighter-rouge">first_name</code> and <code class="highlighter-rouge">last_name</code> came from.
+In most OO languages, you’d assume they are instance variables, so let’s add a bit more code to make this a Ruby class.</p>
+
+<p>```ruby
+class Person
+  def initialize(first_name,last_name)
+    @first_name = first_name
+    @last_name  = last_name
+  end</p>
+
+<p>def salutation
+    if @first_name != nil
+      “Hey #{@first_name}!”
+    else
+      “Hello, #{@last_name}”
+    end
+  end
+end
+```</p>
+
+<p>This is now a working Ruby implementation of our <code class="highlighter-rouge">Person</code> class.
+Look again at <code class="highlighter-rouge">salutation</code>.
 What are its inputs?
 It takes no parameters, but is freely able to reference instance variables.
 So, its inputs are <strong>every instance variable of the object</strong>.
-Currently, there are only two, but it&#39;s entirely possible, and likely, that we&#39;ll have objects with many more instance variables, and more functionality.</p>
+Currently, there are only two, but it’s entirely possible, and likely, that we’ll have objects with many more instance variables, and more functionality.</p>
 
-<p>Let&#39;s add the ability to change a person&#39;s name, which is a reasonable operation to provide (I&#39;m showing the entire class instead just of the changes):</p>
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Person</span>
-  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">first_name</span><span class="p">,</span><span class="n">last_name</span><span class="p">)</span>
-    <span class="vi">@first_name</span> <span class="o">=</span> <span class="n">first_name</span>
-    <span class="vi">@last_name</span>  <span class="o">=</span> <span class="n">last_name</span>
-  <span class="k">end</span>
+<p>Let’s add the ability to change a person’s name, which is a reasonable operation to provide (I’m showing the entire class instead just of the changes):</p>
 
-  <span class="k">def</span> <span class="nf">salutation</span>
-    <span class="k">if</span> <span class="vi">@first_name</span> <span class="o">!=</span> <span class="kp">nil</span>
-      <span class="s2">&quot;Hey </span><span class="si">#{</span><span class="vi">@first_name</span><span class="si">}</span><span class="s2">!&quot;</span>
-    <span class="k">else</span>
-      <span class="s2">&quot;Hello, </span><span class="si">#{</span><span class="vi">@last_name</span><span class="si">}</span><span class="s2">&quot;</span>
-    <span class="k">end</span>
-  <span class="k">end</span>
+<p>```ruby
+class Person
+  def initialize(first_name,last_name)
+    @first_name = first_name
+    @last_name  = last_name
+  end</p>
 
-  <span class="k">def</span> <span class="nf">first_name</span><span class="o">=</span><span class="p">(</span><span class="n">new_first_name</span><span class="p">)</span>
-    <span class="vi">@first_name</span> <span class="o">=</span> <span class="n">new_first_name</span>
-  <span class="k">end</span>
+<p>def salutation
+    if @first_name != nil
+      “Hey #{@first_name}!”
+    else
+      “Hello, #{@last_name}”
+    end
+  end</p>
 
-  <span class="k">def</span> <span class="nf">last_name</span><span class="o">=</span><span class="p">(</span><span class="n">new_last_name</span><span class="p">)</span>
-    <span class="vi">@last_name</span> <span class="o">=</span> <span class="n">new_last_name</span>
-  <span class="k">end</span>
-<span class="k">end</span>
-</code></pre></div>
-<p><code>first_name=</code> and <code>last_name=</code> take a parameter, but they don&#39;t return a (useful) value.
+<p>def first_name=(new_first_name)
+    @first_name = new_first_name
+  end</p>
+
+<p>def last_name=(new_last_name)
+    @last_name = new_last_name
+  end
+end
+```</p>
+
+<p><code class="highlighter-rouge">first_name=</code> and <code class="highlighter-rouge">last_name=</code> take a parameter, but they don’t return a (useful) value.
 The point of those methods is to change the internal state of the object, meaning that their affects are <em>not</em> part of their return value.</p>
 
 <p>This is the same problem we had with global variables!
@@ -241,69 +262,74 @@ Certainly, instance variables, due to their natural proximity to the code that c
 <p>This means that object-oriented designs encourage the creation of routines that have multiple, implicit inputs and have multiple, implicit outputs.
 Object-oriented design, by its very nature, encourages writing complex routines.</p>
 
-<p>To combat this complexity, we have had to develop a lot of &quot;rules&quot;, &quot;laws&quot;, and &quot;principles&quot;, and their application is a source of constant debate.
+<p>To combat this complexity, we have had to develop a lot of “rules”, “laws”, and “principles”, and their application is a source of constant debate.
 Even for someone with years of experience, it can be difficult to know how to best-factor an object-oriented codebase.</p>
 
-<p>Let&#39;s go back to the problem we were originally trying to solve.</p>
+<p>Let’s go back to the problem we were originally trying to solve.</p>
 
-<h2>Remove All Implicit State</h2>
+<h2 id="remove-all-implicit-state">Remove All Implicit State</h2>
 
-<p>I&#39;ve been using &quot;global&quot; a lot, but what we really mean is &quot;implicit&quot;.
-It&#39;s the ability of a routine to access symbols outside its scope that is the source of complexity here.
-So let&#39;s go back to our original routines and see how else we could solve the problem of sharing code, but without introducing implicit state.</p>
+<p>I’ve been using “global” a lot, but what we really mean is “implicit”.
+It’s the ability of a routine to access symbols outside its scope that is the source of complexity here.
+So let’s go back to our original routines and see how else we could solve the problem of sharing code, but without introducing implicit state.</p>
 
 <p>Here are the two routines again:</p>
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">salutation</span><span class="p">(</span><span class="n">first_name</span><span class="p">,</span><span class="n">last_name</span><span class="p">)</span>
-  <span class="k">if</span> <span class="n">first_name</span> <span class="o">!=</span> <span class="kp">nil</span>
-    <span class="s2">&quot;Hey </span><span class="si">#{</span><span class="n">first_name</span><span class="si">}</span><span class="s2">!&quot;</span>
-  <span class="k">else</span>
-    <span class="s2">&quot;Hello, </span><span class="si">#{</span><span class="n">last_name</span><span class="si">}</span><span class="s2">&quot;</span>
-  <span class="k">end</span>
-<span class="k">end</span>
 
-<span class="k">def</span> <span class="nf">create_message</span><span class="p">(</span><span class="n">first_name</span><span class="p">,</span><span class="n">last_name</span><span class="p">,</span><span class="n">message</span><span class="p">,</span><span class="n">from</span><span class="p">)</span>
-  <span class="n">salutation</span> <span class="o">=</span> <span class="k">if</span> <span class="n">first_name</span> <span class="o">!=</span> <span class="kp">nil</span>
-                 <span class="s2">&quot;Hey </span><span class="si">#{</span><span class="n">first_name</span><span class="si">}</span><span class="s2">!&quot;</span>
-               <span class="k">else</span>
-                 <span class="s2">&quot;Hello, </span><span class="si">#{</span><span class="n">last_name</span><span class="si">}</span><span class="s2">&quot;</span>
-               <span class="k">end</span>
-  <span class="sx">%{</span>
-<span class="si">#{</span><span class="n">salutation</span><span class="si">}</span><span class="sx">,</span>
+<p>```ruby
+def salutation(first_name,last_name)
+  if first_name != nil
+    “Hey #{first_name}!”
+  else
+    “Hello, #{last_name}”
+  end
+end</p>
 
-<span class="si">#{</span><span class="n">message</span><span class="si">}</span><span class="sx"></span>
+<p>def create_message(first_name,last_name,message,from)
+  salutation = if first_name != nil
+                 “Hey #{first_name}!”
+               else
+                 “Hello, #{last_name}”
+               end
+  %{
+#{salutation},</p>
 
-<span class="sx">           Sincerely,</span>
+<h1 id="message-3">{message}</h1>
 
-<span class="sx">           </span><span class="si">#{</span><span class="n">from</span><span class="si">}</span><span class="sx"></span>
-<span class="sx">}</span>
-<span class="k">end</span>
-</code></pre></div>
-<p>Clearly, <code>create_message</code> needs to access the logic in <code>salutation</code>, so let&#39;s allow that.
-I&#39;ll do this using valid Ruby syntax, where <code>&amp;foo</code> as a parameter denotes a passed function and <code>&amp;method(:foo)</code> turns a function into a passable function.</p>
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">salutation</span><span class="p">(</span><span class="n">first_name</span><span class="p">,</span><span class="n">last_name</span><span class="p">)</span>
-  <span class="k">if</span> <span class="n">first_name</span> <span class="o">!=</span> <span class="kp">nil</span>
-    <span class="s2">&quot;Hey </span><span class="si">#{</span><span class="n">first_name</span><span class="si">}</span><span class="s2">!&quot;</span>
-  <span class="k">else</span>
-    <span class="s2">&quot;Hello, </span><span class="si">#{</span><span class="n">last_name</span><span class="si">}</span><span class="s2">&quot;</span>
-  <span class="k">end</span>
-<span class="k">end</span>
+<div class="highlighter-rouge"><pre class="highlight"><code>       Sincerely,
 
-<span class="k">def</span> <span class="nf">create_message</span><span class="p">(</span><span class="n">first_name</span><span class="p">,</span><span class="n">last_name</span><span class="p">,</span><span class="n">message</span><span class="p">,</span><span class="n">from</span><span class="p">,</span><span class="o">&amp;</span><span class="n">salutation</span><span class="p">)</span>
-  <span class="sx">%{</span>
-<span class="si">#{</span><span class="n">salutation</span><span class="o">.</span><span class="p">(</span><span class="n">first_name</span><span class="p">,</span><span class="n">last_name</span><span class="si">}</span><span class="sx">,</span>
+       #{from} } end ```
+</code></pre>
+</div>
 
-<span class="si">#{</span><span class="n">message</span><span class="si">}</span><span class="sx"></span>
+<p>Clearly, <code class="highlighter-rouge">create_message</code> needs to access the logic in <code class="highlighter-rouge">salutation</code>, so let’s allow that.
+I’ll do this using valid Ruby syntax, where <code class="highlighter-rouge">&amp;foo</code> as a parameter denotes a passed function and <code class="highlighter-rouge">&amp;method(:foo)</code> turns a function into a passable function.</p>
 
-<span class="sx">           Sincerely,</span>
+<p>```ruby
+def salutation(first_name,last_name)
+  if first_name != nil
+    “Hey #{first_name}!”
+  else
+    “Hello, #{last_name}”
+  end
+end</p>
 
-<span class="sx">           </span><span class="si">#{</span><span class="n">from</span><span class="si">}</span><span class="sx"></span>
-<span class="sx">}</span>
-<span class="k">end</span>
+<p>def create_message(first_name,last_name,message,from,&amp;salutation)
+  %{
+#{salutation.(first_name,last_name},</p>
 
-<span class="n">create_message</span><span class="p">(</span><span class="s2">&quot;Dave&quot;</span><span class="p">,</span><span class="s2">&quot;Copeland&quot;</span><span class="p">,</span><span class="s2">&quot;Nice blog post!&quot;</span><span class="p">,</span><span class="s2">&quot;Yourself&quot;</span><span class="p">,</span><span class="nb">method</span><span class="p">(</span><span class="o">&amp;</span><span class="n">salutation</span><span class="p">))</span>
-</code></pre></div>
-<p>Now, we&#39;ve re-used our logic, and all the routines in question still maintain a single source of input and a single destination for output.
-<code>create_message</code> has gotten slightly more complex, due to the additional parameter, but it&#39;s also lost complexity due to being able to re-use <code>salutation</code>.</p>
+<h1 id="message-4">{message}</h1>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>       Sincerely,
+
+       #{from} } end
+</code></pre>
+</div>
+
+<p>create_message(“Dave”,”Copeland”,”Nice blog post!”,”Yourself”,method(&amp;salutation))
+```</p>
+
+<p>Now, we’ve re-used our logic, and all the routines in question still maintain a single source of input and a single destination for output.
+<code class="highlighter-rouge">create_message</code> has gotten slightly more complex, due to the additional parameter, but it’s also lost complexity due to being able to re-use <code class="highlighter-rouge">salutation</code>.</p>
 
 <p>Can we build an entire system like this?
 The functional programmers say we can (and they have certainly proved this).

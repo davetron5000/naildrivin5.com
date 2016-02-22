@@ -4,7 +4,7 @@
   <title><![CDATA[naildrivin5.com - David Bryant Copeland's Website]]></title>
   <link href="http://naildrivin5.com/atom.xml" rel="self"/>
   <link href="http://naildrivin5.com/"/>
-  <updated>2016-02-22T16:45:17-05:00</updated>
+  <updated>2016-02-22T17:23:05-05:00</updated>
   <id>http://naildrivin5.com/</id>
   <author>
     <name><![CDATA[David Bryant Copeland]]></name>
@@ -19,57 +19,54 @@
     
     <updated>2016-02-22T09:00:00-05:00</updated>
     <id>http://naildrivin5.com/blog/2016/02/22/dishonest-abstractions-are-not-abstractions</id>
-    <content type="html"><![CDATA[<p><a href="https://twitter.com/erniemiller">Ernie Miller</a> started a tweetstorm on Friday that really rang true to me, about how certain abstractions are &quot;dishonest&quot;.  In my mind, the dishonesty
+    <content type="html"><![CDATA[<p><a href="https://twitter.com/erniemiller">Ernie Miller</a> started a tweetstorm on Friday that really rang true to me, about how certain abstractions are “dishonest”.  In my mind, the dishonesty
 is calling them abstractions in the first place.</p>
 
 <!-- more -->
 
 <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">I&#39;ve been thinking a lot about honesty in software development lately. Not just honesty from people, but from technology.</p>&mdash; Ernie Miller (@erniemiller) <a href="https://twitter.com/erniemiller/status/700705128484106240">February 19, 2016</a></blockquote>
-
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<script async="" src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 <blockquote class="twitter-tweet" data-conversation="none" data-lang="en"><p lang="en" dir="ltr">I think this general sense of honesty is at the core of my feelings about, e.g., HAML/SASS/CoffeeScript vs ERB/SCSS/ES2015.</p>&mdash; Ernie Miller (@erniemiller) <a href="https://twitter.com/erniemiller/status/700706138581561345">February 19, 2016</a></blockquote>
-
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<script async="" src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">I had embraced them for their aesthetic appeal, but realized that I was really running from the technology I perceived them to replace.</p>&mdash; Ernie Miller (@erniemiller) <a href="https://twitter.com/erniemiller/status/700711070919426048">February 19, 2016</a></blockquote>
-
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<script async="" src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 <blockquote class="twitter-tweet" data-conversation="none" data-lang="en"><p lang="en" dir="ltr">But it was very surprising to me, then. I&#39;d get a stack trace listing JavaScript I hadn&#39;t written, or inspect an unexpected HTML element.</p>&mdash; Ernie Miller (@erniemiller) <a href="https://twitter.com/erniemiller/status/700712371606704128">February 19, 2016</a></blockquote>
+<script async="" src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-<p>These tweets really spoke to me, but I don&#39;t think abstractions are “lies” per se.  Rather, I feel that the technologies listed (and others like them) are
-just really weak.  They don&#39;t deliver complete solutions to the problems they are there to solve and are built on poor (or no) abstractions, such that they
+<p>These tweets really spoke to me, but I don’t think abstractions are “lies” per se.  Rather, I feel that the technologies listed (and others like them) are
+just really weak.  They don’t deliver complete solutions to the problems they are there to solve and are built on poor (or no) abstractions, such that they
 require more of the user than they ultimately give.</p>
 
-<p>CoffeeScript is the simplest example of this. It&#39;s a programming language that produces stack traces in a different programming language.  It requires almost the same amount of code as JavaScript and it doesn&#39;t obviate the need to completely understand JavaScript.  Why would I want this?</p>
+<p>CoffeeScript is the simplest example of this. It’s a programming language that produces stack traces in a different programming language.  It requires almost the same amount of code as JavaScript and it doesn’t obviate the need to completely understand JavaScript.  Why would I want this?</p>
 
-<p>In a sense, HAML, SASS, CoffeeScript, etc. are nothing more than sophisticated <code>sed</code> scripts (or macro languages).  But this problem isn&#39;t specific to
-front-end technologies.  AREL and Rails Migrations are two back-end examples.  They profess to “save you” from SQL, but you really can&#39;t use them without
-understanding SQL, you can&#39;t access the full power of your database with them, and you can&#39;t debug what they are doing without knowing SQL.</p>
+<p>In a sense, HAML, SASS, CoffeeScript, etc. are nothing more than sophisticated <code class="highlighter-rouge">sed</code> scripts (or macro languages).  But this problem isn’t specific to
+front-end technologies.  AREL and Rails Migrations are two back-end examples.  They profess to “save you” from SQL, but you really can’t use them without
+understanding SQL, you can’t access the full power of your database with them, and you can’t debug what they are doing without knowing SQL.</p>
 
 <p>Compare this to writing C.  Do you need to know assembly language to write C?  For almost all cases, the answer is “no”.  Sure, there may be cases where you have to dig into the assembly to figure out a problem, but these are vanishingly small.</p>
 
-<p>Compare that to AREL or CoffeeScript where, as a matter of course, you must break through the “abstraction” to find out what&#39;s going on.  You spend almost as much time in the “assembly language” (SQL, JavaScript), as you do in the “higher-level abstraction”.  </p>
+<p>Compare that to AREL or CoffeeScript where, as a matter of course, you must break through the “abstraction” to find out what’s going on.  You spend almost as much time in the “assembly language” (SQL, JavaScript), as you do in the “higher-level abstraction”.</p>
 
-<p>The scare quotes are intentional: to call HAML, CoffeeScript, and friends “abstractions” is to almost render the term meaningless.  They don&#39;t
+<p>The scare quotes are intentional: to call HAML, CoffeeScript, and friends “abstractions” is to almost render the term meaningless.  They don’t
 abstract anything away from you on any real level.</p>
 
-<p>In <a href="https://pragprog.com/book/dcbang/rails-angular-postgres-and-bootstrap">my book</a>, I encourage the reader to use JavaScript and learn SQL, because the tools given to you by Rails aren&#39;t abstractions—they are extra things
+<p>In <a href="https://pragprog.com/book/dcbang/rails-angular-postgres-and-bootstrap">my book</a>, I encourage the reader to use JavaScript and learn SQL, because the tools given to you by Rails aren’t abstractions—they are extra things
 to learn that provide at best a marginal increase in productivity, and that productivity only applies during the least time-consuming part of software
 development: typing in source code.</p>
 
-<p>These tools don&#39;t meet <a href="http://naildrivin5.com/blog/2016/01/13/hierarchy-of-software-needs.html">any higher-order need</a> a developer has.  They provide the ability to execute code only and when compared to the
+<p>These tools don’t meet <a href="http://naildrivin5.com/blog/2016/01/13/hierarchy-of-software-needs.html">any higher-order need</a> a developer has.  They provide the ability to execute code only and when compared to the
 technologies they replace, they appeal more to aesthetics than the ability to better deliver quality software.</p>
 
 <p>Web front-end technologies seem woefully stuck in this quagmire.  React gives you the ability to type markup that looks like a higher-order abstraction, but
-it&#39;s still just a macro language for producing HTML that you must debug directly.  Yes, source maps and other browser extensions exist to make this less
+it’s still just a macro language for producing HTML that you must debug directly.  Yes, source maps and other browser extensions exist to make this less
 painful, but your job at the end of the day is still trying to figure out what events are firing on what DOM elements, and how CSS is being applied to them.</p>
 
-<p>I&#39;m not sure what it will take to produce truly higher-level abstractions for powerful technologies like JavaScript and SQL.  If the tools we have now are
-guilty of dishonesty, it&#39;s mostly in overstating what problems they really solve.</p>
+<p>I’m not sure what it will take to produce truly higher-level abstractions for powerful technologies like JavaScript and SQL.  If the tools we have now are
+guilty of dishonesty, it’s mostly in overstating what problems they really solve.</p>
+
 ]]></content>
   </entry>
   
@@ -80,12 +77,13 @@ guilty of dishonesty, it&#39;s mostly in overstating what problems they really s
     
     <updated>2016-01-29T09:02:00-05:00</updated>
     <id>http://naildrivin5.com/blog/2016/01/29/there-is-no-happy-path-in-programming</id>
-    <content type="html"><![CDATA[<p>Writing on the Stitch Fix blog about how feature and product design <a href="http://multithreaded.stitchfix.com/blog/2016/01/29/no-happy-path-in-programming/">can&#39;t just focus on the “happy path”</a>, but must account for, among other things, network
+    <content type="html"><![CDATA[<p>Writing on the Stitch Fix blog about how feature and product design <a href="http://multithreaded.stitchfix.com/blog/2016/01/29/no-happy-path-in-programming/">can’t just focus on the “happy path”</a>, but must account for, among other things, network
 flakiness:</p>
 
 <blockquote>
-<p>The other thing I&#39;ve realized is that you cannot address these issues with entirely technical solutions. You have to account for these realities in the design of your product. </p>
+  <p>The other thing I’ve realized is that you cannot address these issues with entirely technical solutions. You have to account for these realities in the design of your product.</p>
 </blockquote>
+
 ]]></content>
   </entry>
   
@@ -96,15 +94,16 @@ flakiness:</p>
     
     <updated>2016-01-22T08:11:00-05:00</updated>
     <id>http://naildrivin5.com/blog/2016/01/22/rails-angular-postgres-bootstrap-in-print</id>
-    <content type="html"><![CDATA[<p>About a year ago, <a href="https://pragprog.com">PragProg</a> approached me to see if I was working on anything book-worthy.  I&#39;d just created https://angular-rails.com to document
-the pain of configuring Rails to do something it clearly didn&#39;t want to do—let you write an application with lots of front-end.  Meanwhile, I&#39;d been
+    <content type="html"><![CDATA[<p>About a year ago, <a href="https://pragprog.com">PragProg</a> approached me to see if I was working on anything book-worthy.  I’d just created https://angular-rails.com to document
+the pain of configuring Rails to do something it clearly didn’t want to do—let you write an application with lots of front-end.  Meanwhile, I’d been
 learning more and more how great Postgres is.</p>
 
-<p>The result is my new book “Rails, Angular, Postgres, and Bootstrap: Powerful, Effective, and Efficient Full-Stack Web Development”.  It&#39;s been in beta for
+<p>The result is my new book “Rails, Angular, Postgres, and Bootstrap: Powerful, Effective, and Efficient Full-Stack Web Development”.  It’s been in beta for
 a while, but official print verison is now for sale.</p>
 
 <p>You can <a href="https://pragprog.com/book/dcbang/rails-angular-postgres-and-bootstrap">buy it</a> now and start embracing the <em>full</em> stack of web development using
 some awesome tools that will serve you well for years to come!</p>
+
 ]]></content>
   </entry>
   
@@ -115,16 +114,16 @@ some awesome tools that will serve you well for years to come!</p>
     
     <updated>2016-01-13T09:00:00-05:00</updated>
     <id>http://naildrivin5.com/blog/2016/01/13/hierarchy-of-software-needs</id>
-    <content type="html"><![CDATA[<p>If you regularly work with web technologies, you&#39;ve no-doubt pulled your hair out dealing with the technologies used for front-end development (and, let&#39;s be honest, back-end development, too :).  Almost everything about front-end work feels terrible, from the weakness of JavaScript as a language, to the myriad half-documented tools that all somehow manage to do less than <code>make</code>, to the absolute bizarre notion that we are building user interfaces with technologies designed to write term papers.</p>
+    <content type="html"><![CDATA[<p>If you regularly work with web technologies, you’ve no-doubt pulled your hair out dealing with the technologies used for front-end development (and, let’s be honest, back-end development, too :).  Almost everything about front-end work feels terrible, from the weakness of JavaScript as a language, to the myriad half-documented tools that all somehow manage to do less than <code class="highlighter-rouge">make</code>, to the absolute bizarre notion that we are building user interfaces with technologies designed to write term papers.</p>
 
-<p>But <em>why</em>  are these experiences unpleasant?   I would argue simply that they don&#39;t fully meet our needs as programmers.  And we can think about those needs as
+<p>But <em>why</em>  are these experiences unpleasant?   I would argue simply that they don’t fully meet our needs as programmers.  And we can think about those needs as
 a hierarchy, each need building on the need below it.</p>
 
 <!-- more -->
 
-<h2>Hierarchy of Needs?</h2>
+<h2 id="hierarchy-of-needs">Hierarchy of Needs?</h2>
 
-<p>If you aren&#39;t familiar with <a href="https://en.wikipedia.org/wiki/Maslow%27s_hierarchy_of_needs">Maslow&#39;s Hierarchy of Needs</a>, it describes a psychological hierarchy
+<p>If you aren’t familiar with <a href="https://en.wikipedia.org/wiki/Maslow%27s_hierarchy_of_needs">Maslow’s Hierarchy of Needs</a>, it describes a psychological hierarchy
 of increasingly powerful <em>needs</em> that, when met, contribute to healthy mental well-being.</p>
 
 <p>At the bottom are basic needs like air, food, and water—called <em>physiological needs</em>—that we all need to merely be alive.  The next step are <em>safety needs</em>,
@@ -135,58 +134,61 @@ which allow us to feel a sense of contribution and value.</p>
 
 <p>The top of the hierarchy is <em>self-actualization</em>, which represents our desire and ability to achieve all that we can.</p>
 
-<p>What I&#39;ve laid out is an <em>extremely simplified summary</em> and it&#39;s for <em>context only</em>.  It&#39;s a framing concept for talking about the <em>Hierarchy of Programming
-Needs</em>. </p>
+<p>What I’ve laid out is an <em>extremely simplified summary</em> and it’s for <em>context only</em>.  It’s a framing concept for talking about the <em>Hierarchy of Programming
+Needs</em>.</p>
 
-<h2>Our Needs as Programmers</h2>
+<h2 id="our-needs-as-programmers">Our Needs as Programmers</h2>
 
 <p>Here are our needs as programmers.  The bottom are our most basic needs, which must be met before needs higher up the pyramid can be met.</p>
 
-<p><img src="/images/programming_hierarchy_of_needs.png" alt="Hierarchy of Programming Needs"></p>
+<p><img src="/images/programming_hierarchy_of_needs.png" alt="Hierarchy of Programming Needs" /></p>
 
 <p>The most basic thing we need as programmers is the ability run, or <em>execute</em>, our code.</p>
 
-<h3>Need to Execute Code</h3>
+<h3 id="need-to-execute-code">Need to Execute Code</h3>
 
-<p>Code that can&#39;t be executed might as well not exist.  It can never serve much purpose if we can&#39;t run it.  Running code is like breathing—there&#39;s no job
-called “Programmer” if code can&#39;t be executed.</p>
+<p>Code that can’t be executed might as well not exist.  It can never serve much purpose if we can’t run it.  Running code is like breathing—there’s no job
+called “Programmer” if code can’t be executed.</p>
 
 <p>Just as with our physiological needs, our executable needs as programmers can be met with varying degrees of utility.  Technically, loading a BASIC program
-from a floppy disk and typing <code>RUN</code> meets our need.  But not in the same way as a REPL that has a command-line history and code completion.  </p>
+from a floppy disk and typing <code class="highlighter-rouge">RUN</code> meets our need.  But not in the same way as a REPL that has a command-line history and code completion.</p>
 
-<p>Either way, if all we can do is run code, we won&#39;t get far.  Anything remotely complex will be a disaster of confusion, un-maintainability, and errors.  We
+<p>Either way, if all we can do is run code, we won’t get far.  Anything remotely complex will be a disaster of confusion, un-maintainability, and errors.  We
 need to manage that complexity, and the most basic way to do that is by creating abstractions.</p>
 
-<h3>Need to Create Abstractions</h3>
+<h3 id="need-to-create-abstractions">Need to Create Abstractions</h3>
 
-<p>It&#39;s difficult to understand and modify a large codebase.  By creating abstractions we have a hope of doing so.  An abstraction is any way to create a
+<p>It’s difficult to understand and modify a large codebase.  By creating abstractions we have a hope of doing so.  An abstraction is any way to create a
 higher-level construct.  It could be as simple as <a href="https://en.wikipedia.org/wiki/Decomposition_(computer_science)">functional decomposition</a> or creating <a href="https://en.wikipedia.org/wiki/Data_type">data
 types</a>.  It could be as complex is an advanced type system, pattern matching, or inheritance.</p>
 
 <p>Regardless, we have no hope of successfully writing and managing computer software without some way to create and use abstractions.  As with our need to
 execute code, our need to create abstractions can be met in a variety of ways.  Technically, jumping to a pre-defined memory location that contains a subroutine is a form of abstraction.  This is far less convenient than calling a named function.</p>
 
-<p>When our need for abstracting code is met, we can accomplish a great deal.  But the moment we must collaborate with another person (including ourselves in the future!), we&#39;ll run into problems.  With two distinct minds working on a piece of software, there will be different ways to accomplish things, different possible abstractions.  This leads to inconsistency, which a codebase hard to deal with, as you must understand more than you need to.</p>
+<p>When our need for abstracting code is met, we can accomplish a great deal.  But the moment we must collaborate with another person (including ourselves in the future!), we’ll run into problems.  With two distinct minds working on a piece of software, there will be different ways to accomplish things, different possible abstractions.  This leads to inconsistency, which a codebase hard to deal with, as you must understand more than you need to.</p>
 
-<h3>Need for Consistency</h3>
+<h3 id="need-for-consistency">Need for Consistency</h3>
 
-<p>Sometimes, the lack of consistency is merely annoying. Sometimes, however, it can be disastrous.  We&#39;ve all heard about the <a href="https://en.wikipedia.org/wiki/Mars_Climate_Orbiter#Cause_of_failure">Mars probe that crashed because half the team was using Metric and the other half Imperial</a>.  Their need for consistency wasn&#39;t being met, and all the great abstractions in the world couldn&#39;t help.</p>
+<p>Sometimes, the lack of consistency is merely annoying. Sometimes, however, it can be disastrous.  We’ve all heard about the <a href="https://en.wikipedia.org/wiki/Mars_Climate_Orbiter#Cause_of_failure">Mars probe that crashed because half the team was using Metric and the other half Imperial</a>.  Their need for consistency wasn’t being met, and all the great abstractions in the world couldn’t help.</p>
 
-<p>The way to manage consistency is to establish <em>conventions</em>, but they need to be put into code.  The need for consistency is only met when it&#39;s difficult (or
+<p>The way to manage consistency is to establish <em>conventions</em>, but they need to be put into code.  The need for consistency is only met when it’s difficult (or
 ideally impossible) circumvent conventions and be inconsistent.</p>
 
 <p>For example, here are two ways to define a function in JavaScript:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">foo</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
 
-<span class="kd">function</span> <span class="nx">bar</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
-</code></pre></div>
+<p>```javascript
+foo = function() { }</p>
+
+<p>function bar() { }
+```</p>
+
 <p>If we wish to use the latter form as our convention, we have no way to enforce or even encourage it in JavaScript.  In this regard, JavaScript is not meeting
-our need for consistency.  </p>
+our need for consistency.</p>
 
 <p>Think about the Mars probe.  Ideally, it would not have been possible to use two measurement systems.  Their programming environment had no way to meet that
 need and a timely, expensive scientific research mission utterly failed.</p>
 
-<p>Take a moment here to reflect.  It was pretty hard to imagine <em>any</em> programming environment, tool, or language that didn&#39;t meet our first two basic needs of executing code and creating abstractions.  But now, we&#39;re starting to see that our deeper needs (like consistency) aren&#39;t that easy to meet.</p>
+<p>Take a moment here to reflect.  It was pretty hard to imagine <em>any</em> programming environment, tool, or language that didn’t meet our first two basic needs of executing code and creating abstractions.  But now, we’re starting to see that our deeper needs (like consistency) aren’t that easy to meet.</p>
 
 <p>But, supposing we <em>could</em> meet our need for consistency.  This would lead to many teams and many codebases, all self-consistent and easy to work in, but all
 different.  Working on a new system requires starting over and learning many new things in order to be productive.</p>
@@ -195,27 +197,27 @@ different.  Working on a new system requires starting over and learning many new
 
 <p>The reality is that teams and software systems face many of the same problems, and those problems often have few, or even one, reasonable solution.  We spend time going to conferences and reading books &amp; blogs in order to learn about these solutions, to share them with others, and try to pass them on to the next generation.  We have a need for collective experience.</p>
 
-<h3>Need for Collective Experience</h3>
+<h3 id="need-for-collective-experience">Need for Collective Experience</h3>
 
 <p>How many teams are suffering through the exact same problem right now?  How many are re-discovering the same solution to the same problems that have been
 solved years earlier?</p>
 
-<p>If you&#39;ve payed close attention during the birth of new and popular software tools, you&#39;ve seen this.  Ruby on Rails&#39; journey from upstart framework to accepted
-enterprise software platform has included (but, to be fair, not been <em>dominated</em> by) a pointless journey in re-learning many lessons of the previous decade&#39;s Java and J2EE developers (who themselves no-doubt re-learned lessons from the previous generation of C++ developers). NodeJS and the ecosystem of front-end tooling is repeating this.</p>
+<p>If you’ve payed close attention during the birth of new and popular software tools, you’ve seen this.  Ruby on Rails’ journey from upstart framework to accepted
+enterprise software platform has included (but, to be fair, not been <em>dominated</em> by) a pointless journey in re-learning many lessons of the previous decade’s Java and J2EE developers (who themselves no-doubt re-learned lessons from the previous generation of C++ developers). NodeJS and the ecosystem of front-end tooling is repeating this.</p>
 
-<p>This isn&#39;t a knock on these communities: this is a <em>hard</em> need to meet.  The current state of the art—reading books, using tried-and-true-but-boring
+<p>This isn’t a knock on these communities: this is a <em>hard</em> need to meet.  The current state of the art—reading books, using tried-and-true-but-boring
 programming languages, and going to
-conferences—isn&#39;t cutting it.  Have you ever created a log format for your application log?</p>
+conferences—isn’t cutting it.  Have you ever created a log format for your application log?</p>
 
-<p>When our need for collective experience isn&#39;t met, it can be worse than merely re-implementing solutions and re-learning lessons.  We often regress.</p>
+<p>When our need for collective experience isn’t met, it can be worse than merely re-implementing solutions and re-learning lessons.  We often regress.</p>
 
 <p>By any objective measure, XML and a Schema is more powerful than JSON.  Yet, XML is the butt of many jokes and is generally avoided by many developers.  Those
-same developers are writing documentation to explain that an <code>address</code> key in a JSON payload should map to an object containing <code>street</code>, <code>city</code>, <code>state</code>, and <code>zip</code> keys (all Strings) so everyone knows what to expect when making an API call.</p>
+same developers are writing documentation to explain that an <code class="highlighter-rouge">address</code> key in a JSON payload should map to an object containing <code class="highlighter-rouge">street</code>, <code class="highlighter-rouge">city</code>, <code class="highlighter-rouge">state</code>, and <code class="highlighter-rouge">zip</code> keys (all Strings) so everyone knows what to expect when making an API call.</p>
 
-<p>This was 100% solved <em>in software</em> in the late 90&#39;s.  We&#39;re now seeing stuff like <a href="http://json-schema.org/">JSON Schema</a> crop up as everyone realizes that
-many of XML&#39;s features are actually really useful.</p>
+<p>This was 100% solved <em>in software</em> in the late 90’s.  We’re now seeing stuff like <a href="http://json-schema.org/">JSON Schema</a> crop up as everyone realizes that
+many of XML’s features are actually really useful.</p>
 
-<p>But the failure here isn&#39;t <em>those developers</em> using JSON.  We all embraced JSON because while XML as a specification and a format is great, the ways in which
+<p>But the failure here isn’t <em>those developers</em> using JSON.  We all embraced JSON because while XML as a specification and a format is great, the ways in which
 we interacted with it were (and are) terrible.  The community around XML was unable to meet our need for collective experience.</p>
 
 <p>Like I said, this is a <em>hard need to meet</em>.  It feels almost impossible.</p>
@@ -224,15 +226,15 @@ we interacted with it were (and are) terrible.  The community around XML was una
 Why does the Go language have first-class support for <a href="https://gobyexample.com/goroutines">goroutines and channels</a>?  Because the language designers are
 trying to pass on their collective experience about how to deal with concurrency.</p>
 
-<h2>And now, back to reality</h2>
+<h2 id="and-now-back-to-reality">And now, back to reality</h2>
 
 <p>Think about the tools you use each day when programming.  How well do they meet your needs as a programmer?  JavaScript <em>barely</em> meets our need for
-abstractions.  CSS doesn&#39;t even meet that!   </p>
+abstractions.  CSS doesn’t even meet that!</p>
 
 <p>Think about Ruby on Rails: it bakes in many conventions.  Have you ever been on a Rails project and discussed how to name database keys?  Or how
 to name controllers?  It is meeting our need for consistency (in those areas :).</p>
 
-<p>And UNIX: The convention around “everything is a stream of bytes” is not only baked into the shell and the included tools, but it&#39;s the foundation of I/O in almost every language in use.  Talk about collective experience!</p>
+<p>And UNIX: The convention around “everything is a stream of bytes” is not only baked into the shell and the included tools, but it’s the foundation of I/O in almost every language in use.  Talk about collective experience!</p>
 
 <p>But, what does this all mean?</p>
 
@@ -251,7 +253,7 @@ about what our needs are, it can drive us to make better decisions about the sof
     <content type="html"><![CDATA[<p>My talk from <a href="https://fsto.co/">Full Stack Toronto</a>, called “Rails, Postgres, Angular, and Bootstrap - The Power Stack” is up, where I make the case for using not just using a CSS framework, an MVC framework, a
 middleware framework, and an amazing database, but for using Bootstrap, Angular, Rails, and Postgres <strong>and</strong> using them together.</p>
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/QbUZnb0rPdY" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/QbUZnb0rPdY" frameborder="0" allowfullscreen=""></iframe>
 ]]></content>
   </entry>
   
@@ -265,9 +267,9 @@ middleware framework, and an amazing database, but for using Bootstrap, Angular,
     <content type="html"><![CDATA[<p>Today through next Tuesday, all three of my books are on sale for 40% off, with the code <strong>turkeysale2015</strong>:</p>
 
 <ul>
-<li><a href="https://pragprog.com/book/dcbang/rails-angular-postgres-and-bootstrap">Rails, Angular, Postgres, Bootstrap: Powerful, Effective, Efficient Full-stack Web Development</a> ($14.40 for the beta ebook!)</li>
-<li><a href="http://theseniorsoftwareengineer.com/">The Senior Software Engineer: 11 Practices of an Effective Technical Leader</a> ($15!)</li>
-<li><a href="https://pragprog.com/book/dccar2/build-awesome-command-line-applications-in-ruby-2">Build Awesome Command-Line Applications with Ruby 2</a> ($13.20 for the ebook!)</li>
+  <li><a href="https://pragprog.com/book/dcbang/rails-angular-postgres-and-bootstrap">Rails, Angular, Postgres, Bootstrap: Powerful, Effective, Efficient Full-stack Web Development</a> ($14.40 for the beta ebook!)</li>
+  <li><a href="http://theseniorsoftwareengineer.com/">The Senior Software Engineer: 11 Practices of an Effective Technical Leader</a> ($15!)</li>
+  <li><a href="https://pragprog.com/book/dccar2/build-awesome-command-line-applications-in-ruby-2">Build Awesome Command-Line Applications with Ruby 2</a> ($13.20 for the ebook!)</li>
 </ul>
 
 <p>Just use code <strong>turkeysale2015</strong> at checkout to get 40% off!</p>
@@ -281,91 +283,113 @@ middleware framework, and an amazing database, but for using Bootstrap, Angular,
     
     <updated>2015-11-15T00:00:00-05:00</updated>
     <id>http://naildrivin5.com/blog/2015/11/15/rails-validations-vs-postgres-check-constraints</id>
-    <content type="html"><![CDATA[<p>Before using Postgres, I would have to rely heavily on Rails validations to ensure data integrity—MySQL simply doesn&#39;t provide the tools
-to do this.  This always felt wrong.  Outside of rogue processes connecting to the database, there&#39;s also application bugs
-and, well, the ActiveRecord API itself: <code>update_attribute</code> skips validation!  That means it&#39;s hard to rely on Rails validations for data
-integrity, but there isn&#39;t a great alternative for creating a great user experience.</p>
+    <content type="html"><![CDATA[<p>Before using Postgres, I would have to rely heavily on Rails validations to ensure data integrity—MySQL simply doesn’t provide the tools
+to do this.  This always felt wrong.  Outside of rogue processes connecting to the database, there’s also application bugs
+and, well, the ActiveRecord API itself: <code class="highlighter-rouge">update_attribute</code> skips validation!  That means it’s hard to rely on Rails validations for data
+integrity, but there isn’t a great alternative for creating a great user experience.</p>
 
-<p>Postgres has the answer: <em>check constraints</em>.  As we&#39;ll see, check constraints are tool for <em>data integrity</em> and work much better than
+<p>Postgres has the answer: <em>check constraints</em>.  As we’ll see, check constraints are tool for <em>data integrity</em> and work much better than
 Rails validations.  But Rails validations are still a great tool for <em>user experience</em>.</p>
 
 <!-- more -->
 
-<h2>Check Constraints for Data Integrity</h2>
+<h2 id="check-constraints-for-data-integrity">Check Constraints for Data Integrity</h2>
 
 <p>Suppose we have a table of users, and a user has a name and email:</p>
-<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">create</span> <span class="k">table</span> <span class="n">users</span><span class="p">(</span>
-  <span class="n">id</span>    <span class="nb">int</span>  <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
-  <span class="n">name</span>  <span class="nb">text</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
-  <span class="n">email</span> <span class="nb">text</span> <span class="k">NOT</span> <span class="k">NULL</span>
-<span class="p">);</span>
-</code></pre></div>
+
+<p><code class="highlighter-rouge">sql
+create table users(
+  id    int  NOT NULL,
+  name  text NOT NULL,
+  email text NOT NULL
+);
+</code></p>
+
 <p><a name="back-1">
 </a>
-Although we&#39;ve used <code>NOT NULL</code> to make sure there are values, we need more than that.  Although our domain doesn&#39;t care about first or last names, it <em>does</em> require that a user&#39;s name to be at least one letter, followed by a space, followed by at least one other letter<sup><a href="#fn_1">1</a></sup>.</p>
+Although we’ve used <code class="highlighter-rouge">NOT NULL</code> to make sure there are values, we need more than that.  Although our domain doesn’t care about first or last names, it <em>does</em> require that a user’s name to be at least one letter, followed by a space, followed by at least one other letter<sup><a href="#fn_1">1</a></sup>.</p>
 
-<p>We can do that by requiring that the <code>name</code> field match a regexp:</p>
-<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">ALTER</span> <span class="k">TABLE</span> 
-  <span class="n">users</span> 
-<span class="k">ADD</span> <span class="k">CONSTRAINT</span> 
-  <span class="n">users_name_must_look_like_a_name</span> 
-<span class="k">CHECK</span> <span class="p">(</span>
-  <span class="n">name</span> <span class="o">~*</span> <span class="s1">&#39;^.*[a-z] [a-z].*$&#39;</span>
-<span class="p">);</span>
-</code></pre></div>
+<p>We can do that by requiring that the <code class="highlighter-rouge">name</code> field match a regexp:</p>
+
+<p><code class="highlighter-rouge">sql
+ALTER TABLE 
+  users 
+ADD CONSTRAINT 
+  users_name_must_look_like_a_name 
+CHECK (
+  name ~* '^.*[a-z] [a-z].*$'
+);
+</code></p>
+
 <p><a name="back-2">
 </a>
-This is saying that the <code>name</code> field must match the regular expression specified.  That regexp allows anything, as long as there is a
+This is saying that the <code class="highlighter-rouge">name</code> field must match the regular expression specified.  That regexp allows anything, as long as there is a
 letter followed by a space, followed by another letter, somewhere in the string<sup><a href="#fn_2">2</a></sup>.</p>
 
-<p>Now, when we insert an invalid value, it won&#39;t work:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">&gt; insert into users(id,name,email) values (1,&#39;&#39;,&#39;bob@blah.com&#39;);
-ERROR:  new row for relation &quot;users&quot; violates 
-        check constraint &quot;users_name_must_look_like_a_name&quot;
-DETAIL:  Failing row contains (1, , bob@blah.com).
+<p>Now, when we insert an invalid value, it won’t work:</p>
 
-&gt; insert into users(id,name,email) values (1,&#39;Bob&#39;,&#39;bob@blah.com&#39;);
-ERROR:  new row for relation &quot;users&quot; violates 
-        check constraint &quot;users_name_must_look_like_a_name&quot;
-DETAIL:  Failing row contains (1, Bob, bob@blah.com).
+<p>```
+&gt; insert into users(id,name,email) values (1,’’,’bob@blah.com’);
+ERROR:  new row for relation “users” violates 
+        check constraint “users_name_must_look_like_a_name”
+DETAIL:  Failing row contains (1, , bob@blah.com).</p>
 
-&gt; insert into users(id,name,email) values (1,&#39;Bob Jones&#39;,&#39;bob@blah.com&#39;);
+<blockquote>
+  <p>insert into users(id,name,email) values (1,’Bob’,’bob@blah.com’);
+ERROR:  new row for relation “users” violates 
+        check constraint “users_name_must_look_like_a_name”
+DETAIL:  Failing row contains (1, Bob, bob@blah.com).</p>
+</blockquote>
+
+<blockquote>
+  <p>insert into users(id,name,email) values (1,’Bob Jones’,’bob@blah.com’);
 INSERT 0 1
-</code></pre></div>
+```</p>
+</blockquote>
+
 <p>Nice!  This means that a) our data will always match our rules around what good data is, and b) our code can rely on this.</p>
 
 <p>For example, suppose we have to integrate with a third party shipping system that, for whatever reason, requires a first and last name.
 Our system is designed to allow users to enter whatever their name is, as long as there are at least two parts.</p>
 
 <p>Because we know our data meets its needs, we can safely do:</p>
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">name_part1</span><span class="p">,</span><span class="n">rest_of_name</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sr">/\s/</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
-<span class="no">ShippingProvider</span><span class="o">.</span><span class="n">generate_label</span><span class="p">(</span><span class="ss">first_name</span><span class="p">:</span> <span class="n">name_part1</span><span class="p">,</span>
-                                <span class="ss">last_name</span><span class="p">:</span> <span class="n">rest_of_name</span><span class="p">)</span>
-</code></pre></div>
-<p>Without the check constraints, we couldn&#39;t rely on the data being good, and so our use of <code>split</code> would have to have some sort of error
-handling if the name didn&#39;t have a space in it.  Because that can never happen, our code is simpler!</p>
+
+<p><code class="highlighter-rouge">ruby
+user = User.find(1)
+name_part1,rest_of_name = user.name.split(/\s/,2)
+ShippingProvider.generate_label(first_name: name_part1,
+                                last_name: rest_of_name)
+</code></p>
+
+<p>Without the check constraints, we couldn’t rely on the data being good, and so our use of <code class="highlighter-rouge">split</code> would have to have some sort of error
+handling if the name didn’t have a space in it.  Because that can never happen, our code is simpler!</p>
 
 <p>OK, so what does this have to do with Rails validations?</p>
 
-<h2>Rails Validations for User Experience</h2>
+<h2 id="rails-validations-for-user-experience">Rails Validations for User Experience</h2>
 
 <p>The equivalent of our check constraint above, using Rails Validations, would be:</p>
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
-  <span class="n">validates</span> <span class="ss">:name</span><span class="p">,</span> <span class="nb">format</span><span class="p">:</span> <span class="sr">/\A.*[a-z] [a-z].*\z/i</span>
-<span class="k">end</span>
-</code></pre></div>
+
+<p><code class="highlighter-rouge">ruby
+class User &lt; ActiveRecord::Base
+  validates :name, format: /\A.*[a-z] [a-z].*\z/i
+end
+</code></p>
+
 <p>Sure enough, this prevents us violating the validation:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">&gt; user = User.create(name: &quot;bob&quot;, email: &quot;bob@blah.com&quot;)
- =&gt; #&lt;User id: nil, name: &quot;bob&quot;, email: &quot;bob@blah.com&quot;&gt; 
+
+<p><code class="highlighter-rouge">
+&gt; user = User.create(name: "bob", email: "bob@blah.com")
+ =&gt; #&lt;User id: nil, name: "bob", email: "bob@blah.com"&gt; 
 &gt; user.valid?
  =&gt; false 
 &gt; user.errors
  =&gt; #&lt;ActiveModel::Errors:0x007fcf817cc808 
-      @base=#&lt;User id: nil, name: &quot;bob&quot;, email: &quot;bob@blah.com&quot;&gt;, 
-      @messages={:name=&gt;[&quot;is invalid&quot;]}&gt; 
-</code></pre></div>
-<p>Of course, we can route around this with ActiveRecord&#39;s methods that allow it, or by calling <code>save(false)</code>, or by just going into the
+      @base=#&lt;User id: nil, name: "bob", email: "bob@blah.com"&gt;, 
+      @messages={:name=&gt;["is invalid"]}&gt; 
+</code></p>
+
+<p>Of course, we can route around this with ActiveRecord’s methods that allow it, or by calling <code class="highlighter-rouge">save(false)</code>, or by just going into the
 database.</p>
 
 <p><strong>This</strong> means that any code reading from this table must account for the bad data.</p>
@@ -373,115 +397,129 @@ database.</p>
 <p>This presents us a few choices for how to deal with it:</p>
 
 <ol>
-<li>Don&#39;t worry about bad data getting in there</li>
-<li>Just use the check constraints</li>
-<li>Use both validations <em>and</em> check constraints</li>
+  <li>Don’t worry about bad data getting in there</li>
+  <li>Just use the check constraints</li>
+  <li>Use both validations <em>and</em> check constraints</li>
 </ol>
 
 <p>Option 1 is unacceptable.  Our data is important and if our busines domain requires user names to have a letter, a space, and then
-another letter, we can&#39;t simply hope for the best.  As developers, we have a duty to ensure our code meets its requirements.</p>
+another letter, we can’t simply hope for the best.  As developers, we have a duty to ensure our code meets its requirements.</p>
 
 <p>Option 2 creates a poor user experience:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">&gt; User.create(name: &quot;Bob&quot;, email: &quot;bob@jones.com&quot;)
-ActiveRecord::StatementInvalid: PG::CheckViolation: ERROR:  
-  new row for relation &quot;users&quot; violates 
-  check constraint &quot;user_name_must_look_like_a_name&quot;
-DETAIL:  Failing row contains (22, Bob, bob@jones.com).
-: INSERT INTO &quot;users&quot; (&quot;name&quot;, &quot;email&quot;, &quot;id&quot;) VALUES ($1, $2, $3)
-</code></pre></div>
+
+<dl>
+  <dt>```</dt>
+  <dt>&gt; User.create(name: “Bob”, email: “bob@jones.com”)</dt>
+  <dt>ActiveRecord::StatementInvalid: PG::CheckViolation: ERROR:  </dt>
+  <dt>  new row for relation “users” violates </dt>
+  <dt>  check constraint “user_name_must_look_like_a_name”</dt>
+  <dt>DETAIL:  Failing row contains (22, Bob, bob@jones.com).</dt>
+  <dd>INSERT INTO “users” (“name”, “email”, “id”) VALUES ($1, $2, $3)
+```</dd>
+</dl>
+
 <p>Assuming a user is going to be entering in their name, we need to give them a better experience than an exception. We need to use both,
 which will create some duplication.</p>
 
-<h2>Be OK with Some Duplication</h2>
+<h2 id="be-ok-with-some-duplication">Be OK with Some Duplication</h2>
 
 <p>If we use both the ActiveRecord validation <em>and</em> the check constraint, we achieve what we need: a good user experience, and ther
 assurance of data integrity.  The <em>problem</em> is that this creates duplication.  We have the same regexp in two places and they both have
 to be changed together.</p>
 
-<p>While I could imagine a more sophisticated data layer handling this, we don&#39;t have one.  That means we have to live with the duplication
+<p>While I could imagine a more sophisticated data layer handling this, we don’t have one.  That means we have to live with the duplication
 or sacrifice our system requirements.  For me, the job of a programmer is to make the system work properly, even if that means that the
 resulting code has maintenance issues.</p>
 
 <p>I am OK with this duplication.  If you think about most projects, the changes in requirements are often more about logic than data.  The
 data you are storing and managing has a much more stable definition than the process that manage that data.  So, this duplication is less
-likely to run afoul of bugs since it&#39;s not going to change as much as the logic around it.</p>
+likely to run afoul of bugs since it’s not going to change as much as the logic around it.</p>
 
 <p>That being said, you <em>do</em> have to have an understanding of what valid data is.  This means being clear about data integrity.</p>
 
-<h2>What is Data Integrity?</h2>
+<h2 id="what-is-data-integrity">What is Data Integrity?</h2>
 
-<p>In the example above, my assumption is that the business owning this database of users absolutely requires that each user&#39;s name have a
-letter, a space, and a letter in it.  This isn&#39;t something that&#39;s required <em>sometimes</em> or something a programmer invented, but an
+<p>In the example above, my assumption is that the business owning this database of users absolutely requires that each user’s name have a
+letter, a space, and a letter in it.  This isn’t something that’s required <em>sometimes</em> or something a programmer invented, but an
 <em>invariant of the domain</em>.  This is exactly what you want to encode in database constraints.</p>
 
-<p>What you <em>don&#39;t</em> want to do is encode use-case-specific constraints that are not universal to your business domain.</p>
+<p>What you <em>don’t</em> want to do is encode use-case-specific constraints that are not universal to your business domain.</p>
 
-<p>Suppose that in some cases, we need to have a name that&#39;s more than just a couple characters.  We can blame a third party integration
+<p>Suppose that in some cases, we need to have a name that’s more than just a couple characters.  We can blame a third party integration
 again—we need to generate an invoice and it requires a first and last name that are each two characters or more.</p>
 
-<p>Since that is not a requirement of <em>our</em> domain, we don&#39;t want this in our database.  This means we have to just deal with it:</p>
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">name_part1</span><span class="p">,</span><span class="n">rest_of_name</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sr">/\s/</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
-<span class="k">if</span> <span class="n">name_part1</span><span class="o">.</span><span class="n">length</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">rest_of_name</span><span class="o">.</span><span class="n">length</span> <span class="o">&gt;</span> <span class="mi">1</span>
-  <span class="no">InvoiceService</span><span class="o">.</span><span class="n">generate_invoice!</span><span class="p">(</span><span class="ss">first</span><span class="p">:</span> <span class="n">name_part1</span><span class="p">,</span> <span class="ss">last</span><span class="p">:</span> <span class="n">rest_of_name</span><span class="p">)</span>
-<span class="k">else</span>
-  <span class="c1"># ???</span>
-<span class="k">end</span>
-</code></pre></div>
+<p>Since that is not a requirement of <em>our</em> domain, we don’t want this in our database.  This means we have to just deal with it:</p>
+
+<p><code class="highlighter-rouge">ruby
+name_part1,rest_of_name = user.name.split(/\s/,2)
+if name_part1.length &gt; 1 &amp;&amp; rest_of_name.length &gt; 1
+  InvoiceService.generate_invoice!(first: name_part1, last: rest_of_name)
+else
+  # ???
+end
+</code></p>
+
 <p>Depending on where this code is, you might handle the problem in a variety of ways.  You could create an ActiveModel that uses
 validations to check for this:</p>
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">InvoiceUser</span>
-  <span class="kp">include</span> <span class="no">ActiveModel</span><span class="o">::</span><span class="no">Validations</span>
 
-  <span class="kp">attr_accessor</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:email</span>
+<p>```ruby
+class InvoiceUser
+  include ActiveModel::Validations</p>
 
-  <span class="n">validates</span> <span class="ss">:name</span><span class="p">,</span> <span class="nb">format</span><span class="p">:</span> <span class="sr">/\A.*[a-z][a-z] [a-z][a-z].*\z/i</span>
+<p>attr_accessor :name, :email</p>
 
-  <span class="k">def</span> <span class="nf">user</span>
-    <span class="no">User</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="nb">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="ss">email</span><span class="p">:</span> <span class="nb">self</span><span class="o">.</span><span class="n">email</span><span class="p">)</span>
-  <span class="k">end</span>
-<span class="k">end</span>
-</code></pre></div>
+<p>validates :name, format: /\A.<em>[a-z][a-z] [a-z][a-z].</em>\z/i</p>
+
+<p>def user
+    User.new(name: self.name, email: self.email)
+  end
+end
+```</p>
+
 <p>This works as advertised:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">&gt; i = InvoiceUser.new
+
+<p><code class="highlighter-rouge">
+&gt; i = InvoiceUser.new
  =&gt; #&lt;InvoiceUser:0x007ff604d80b60&gt; 
-&gt; i.name = &#39;a b&#39;
- =&gt; &quot;a b&quot; 
+&gt; i.name = 'a b'
+ =&gt; "a b" 
 &gt; i.valid?
  =&gt; false 
-&gt; i.name = &#39;aa bb&#39;
- =&gt; &quot;aa bb&quot; 
+&gt; i.name = 'aa bb'
+ =&gt; "aa bb" 
 &gt; i.valid?
  =&gt; true 
 &gt; i.user.save!
  =&gt; #&lt;User:0x007fcf817cc808&gt;
-</code></pre></div>
-<p>We could even use this in Rails&#39; form helpers by bringing in more Active Model modules.  This way, a user who has to enter their name as
-part of some use-case to create invoices will have a good experience, but our database won&#39;t need to grow extra constraints that aren&#39;t
+</code></p>
+
+<p>We could even use this in Rails’ form helpers by bringing in more Active Model modules.  This way, a user who has to enter their name as
+part of some use-case to create invoices will have a good experience, but our database won’t need to grow extra constraints that aren’t
 universally needed.</p>
 
-<h2>Conclusion</h2>
+<h2 id="conclusion">Conclusion</h2>
 
 <p>Think about Rails validations as purely something for user experience.  Think about check constraints as just being about data integrity.
-Often they are the same thing, but not always.  And don&#39;t fret about a bit of duplication.</p>
+Often they are the same thing, but not always.  And don’t fret about a bit of duplication.</p>
 
 <p><em>Read more in my new book <a href="https://pragprog.com/book/dcbang/rails-angular-postgres-and-bootstrap">“Rails, Angular, Postgres, and Bootstrap
 Powerful, Effective, and Efficient Full-Stack Web Development”</a></em></p>
 
-<hr>
+<hr />
 
-<footer class='footnotes'>
+<footer class="footnotes">
 <ol>
 <li>
-<a name='fn_1'></a>
+<a name="fn_1"></a>
 <sup>1</sup>I realize this is not appropriate for a lot of people's names.  This isn't a post about that, so this example is quite
 simplified to to illustrate the points.  When designing a system to store people's names, put a <strong>lot</strong> of thought into it,
 especially if someone outside the United States might use it.
-<a href='#back-1'>↩</a>
+<a href="#back-1">↩</a>
 </li>
 <li>
-<a name='fn_2'></a>
+<a name="fn_2"></a>
 <sup>2</sup>This is also not a post about regular expressions.  Please craft them carefully. 
-<a href='#back-2'>↩</a>
+<a href="#back-2">↩</a>
 </li>
 </ol></footer>
 ]]></content>
@@ -498,10 +536,11 @@ especially if someone outside the United States might use it.
 you should be more well-rounded as a developer (which then should motivate you to <a href="https://pragprog.com/book/dcbang/rails-angular-postgres-and-bootstrap">buy my new book</a> :).  I cover things from grid-based design to database indexes.</p>
 
 <blockquote>
-<p>This may seem like an immense amount of learning and work, but it hopefully feels more achievable now.  You could get a cursory understanding of these topics in a week.  What happens when you do is that you start to take a more holistic view of your application and of how to build features.</p>
+  <p>This may seem like an immense amount of learning and work, but it hopefully feels more achievable now.  You could get a cursory understanding of these topics in a week.  What happens when you do is that you start to take a more holistic view of your application and of how to build features.</p>
 </blockquote>
 
 <p>Pick up your copy <a href="http://theprosegarden.com/contents-of-recent-issues/#11-15">here</a></p>
+
 ]]></content>
   </entry>
   
@@ -515,8 +554,9 @@ you should be more well-rounded as a developer (which then should motivate you t
     <content type="html"><![CDATA[<p>New post on the <a href="http://multithreaded.stitchfix.com/blog">Stitch Fix Tech Blog</a> about how we create Rails-based HTTP APIs using a simple gem called <a href="https://github.com/stitchfix/stitches">stitches</a>:</p>
 
 <blockquote>
-<p>With this set of conventions, it was important that developers not feel these were optional features they could leave out to cut corners, so it seemed logical to make it as painless as possible to follow them. The result is stitches, which works as a generator and backing library. It&#39;s not an engine or a DSL or anything complex. It&#39;s just a bit of Rails configuration, designed to be explicit and obvious.</p>
+  <p>With this set of conventions, it was important that developers not feel these were optional features they could leave out to cut corners, so it seemed logical to make it as painless as possible to follow them. The result is stitches, which works as a generator and backing library. It’s not an engine or a DSL or anything complex. It’s just a bit of Rails configuration, designed to be explicit and obvious.</p>
 </blockquote>
+
 ]]></content>
   </entry>
   
@@ -530,11 +570,12 @@ you should be more well-rounded as a developer (which then should motivate you t
     <content type="html"><![CDATA[<p>My new Book, <a href="https://pragprog.com/book/dcbang/rails-angular-postgres-and-bootstrap">Rails, Angular, Postgres, and Bootstrap: Powerful, Effective, and Efficient Full-Stack Web Development</a> is in beta:</p>
 
 <blockquote>
-<p>As a Rails developer, you care about user experience and performance, but you also want simple and maintainable code. Achieve all that by embracing the full stack of web development, from styling with Twitter Bootstrap, building an interactive user interface with AngularJS, to storing data quickly and reliably in PostgreSQL. Take a holistic view of full-stack development to create usable, high-performing applications, and learn to use these technologies effectively in a Ruby on Rails environment.</p>
+  <p>As a Rails developer, you care about user experience and performance, but you also want simple and maintainable code. Achieve all that by embracing the full stack of web development, from styling with Twitter Bootstrap, building an interactive user interface with AngularJS, to storing data quickly and reliably in PostgreSQL. Take a holistic view of full-stack development to create usable, high-performing applications, and learn to use these technologies effectively in a Ruby on Rails environment.</p>
 </blockquote>
 
-<p>I&#39;ve been working on this for quite a while, and pretty excited about it.  If you want to <em>really</em> level
+<p>I’ve been working on this for quite a while, and pretty excited about it.  If you want to <em>really</em> level
 up your abilities as a Rails developer, this is the book for you.</p>
+
 ]]></content>
   </entry>
   

@@ -78,11 +78,11 @@ I decided on Ruby since that would be the most fun and didn't require learning a
 </p>
 <p>
 The command line interface uses the Ruby client library and provides just the basic functions I need:
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="p">&amp;</span>gt<span class="p">;</span> gliffy ls
-<span class="m">321654</span> Some Diagram
-<span class="m">987654</span> Some Other Diagram
-<span class="p">&amp;</span>gt<span class="p">;</span> gliffy edit 321654
-<span class="c"># Takes you to your browser to edit the diagram</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">&amp;gt; gliffy ls
+321654 Some Diagram
+987654 Some Other Diagram
+&amp;gt; gliffy edit 321654
+<span class="c"># Takes you to your browser to edit the diagram</span></code></pre></figure>
 I live on the command line, so this is much more expedient than logging into Gliffy and navigating the UI to edit a diagram.
 </p>
 <p>I'm already feeling like providing access to the folders via the command line would be helpful (they are exposed in the Ruby client of course).  Not sure how much the API will ultimately change (it's in private beta now), but hopefully not too much.  

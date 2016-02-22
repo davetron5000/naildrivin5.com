@@ -84,25 +84,25 @@ I think an approach the addresses the above concerns without adding a lot of cru
 
 I think some changes to the language to help us all out would improve things.  Wouldn't this be much more readable source code:
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="n">myapp</span><span class="o">;</span>
-<span class="c1">// no point in putting the dir-structure as dots, the compiler</span>
-<span class="c1">// can figure it out.  Instead we indicate that this class, whever</span>
-<span class="c1">// it is, is part of the conceptual package &quot;myapp&quot;</span>
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="n">myapp</span><span class="o">;</span>
+<span class="c1">// no point in putting the dir-structure as dots, the compiler</span>
+<span class="c1">// can figure it out.  Instead we indicate that this class, whever</span>
+<span class="c1">// it is, is part of the conceptual package "myapp"</span>
 
-<span class="kn">import</span> <span class="nn">commons</span><span class="o">-</span><span class="n">lang</span><span class="o">[</span><span class="mf">2.1</span><span class="o">,];</span>     <span class="c1">// check for version 2.1 or greater</span>
-<span class="kn">import</span> <span class="nn">commons</span><span class="o">-</span><span class="n">logging</span><span class="o">[</span><span class="mf">1.0</span><span class="o">.*];</span> <span class="c1">// check for version 1.0.* only</span>
-<span class="kn">import</span> <span class="nn">j2ee</span><span class="o">[</span><span class="mf">5.0</span><span class="o">,</span><span class="mf">5.3</span><span class="o">];</span>          <span class="c1">// check for any version from 5.0 to 5.3</span>
+<span class="kn">import</span> <span class="nn">commons</span><span class="o">-</span><span class="n">lang</span><span class="o">[</span><span class="mf">2.1</span><span class="o">,];</span>     <span class="c1">// check for version 2.1 or greater</span>
+<span class="kn">import</span> <span class="nn">commons</span><span class="o">-</span><span class="n">logging</span><span class="o">[</span><span class="mf">1.0</span><span class="o">.*];</span> <span class="c1">// check for version 1.0.* only</span>
+<span class="kn">import</span> <span class="nn">j2ee</span><span class="o">[</span><span class="mf">5.0</span><span class="o">,</span><span class="mf">5.3</span><span class="o">];</span>          <span class="c1">// check for any version from 5.0 to 5.3</span>
 
 <span class="n">clarify</span> <span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">Date</span><span class="o">;</span>
 
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Whatever</span>
 <span class="o">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span> 
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="n">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span> 
     <span class="o">{</span>
-        <span class="n">Date</span> <span class="n">date</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">Date</span><span class="o">();</span>
-        <span class="c1">// whatever else</span>
+        <span class="n">Date</span> <span class="n">date</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Date</span><span class="o">();</span>
+        <span class="c1">// whatever else</span>
     <span class="o">}</span>
-<span class="o">}</span></code></pre></div>
+<span class="o">}</span></code></pre></figure>
 
 This syntax that I just made up is explicit and much more powerful than import statements.  You declare your version requirements and dependencies in a different way than clearing up ambiguities.  The compiler could even issue warnings when you import things you don't use.  It would not be terribly difficult for the compiler to provide this service, and it would keep it in the language and not in the hands of some unwieldy external tool or IDE.
 
