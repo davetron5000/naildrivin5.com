@@ -13,11 +13,11 @@ author: "David Bryant Copeland"
 subscribe_rss: /atom.xml
 
 # Build settings
-markdown: redcarpet
+markdown: kramdown
 redcarpet:
   extensions: ["tables"]
 
-highlighter: pygments
+highlighter: rouge
 date_format: "ordinal"
 permalink: /blog/:year/:month/:day/:title.html
 paginate: 10          # Posts per page on the blog index
