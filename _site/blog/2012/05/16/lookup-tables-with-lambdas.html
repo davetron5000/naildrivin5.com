@@ -95,36 +95,36 @@ useful gems in there.</p>
 <p>In the simplest form, you’d replace a <code class="highlighter-rouge">case</code> statement with a table lookup.  Consider this method that determines, based on the
 type of credit card, what countries that card can be used in:</p>
 
-<p><code class="highlighter-rouge">ruby
-def countries_usable_in
-  case self.card_type
-    when 'discover'
-      ['US']
-    when 'maestro'
-      ['UK']
-    when 'visa'
-      ['US','UK','IE']
-    when 'master_card'
-      ['US','UK','IE']
-    end
-  end
-end
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">countries_usable_in</span>
+  <span class="k">case</span> <span class="nb">self</span><span class="p">.</span><span class="nf">card_type</span>
+    <span class="k">when</span> <span class="s1">'discover'</span>
+      <span class="p">[</span><span class="s1">'US'</span><span class="p">]</span>
+    <span class="k">when</span> <span class="s1">'maestro'</span>
+      <span class="p">[</span><span class="s1">'UK'</span><span class="p">]</span>
+    <span class="k">when</span> <span class="s1">'visa'</span>
+      <span class="p">[</span><span class="s1">'US'</span><span class="p">,</span><span class="s1">'UK'</span><span class="p">,</span><span class="s1">'IE'</span><span class="p">]</span>
+    <span class="k">when</span> <span class="s1">'master_card'</span>
+      <span class="p">[</span><span class="s1">'US'</span><span class="p">,</span><span class="s1">'UK'</span><span class="p">,</span><span class="s1">'IE'</span><span class="p">]</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>This could be easily replaced by:</p>
 
-<p>```ruby
-CARD_TYPE_COUNTRIES = {
-  ‘discover’    =&gt; [‘US’],
-  ‘maestro’     =&gt; [‘UK’],
-  ‘visa’        =&gt; [‘US’,’UK’,’ZA’],
-  ‘master_card’ =&gt; [‘US’,’UK’,’ZA’],
-}</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="no">CARD_TYPE_COUNTRIES</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s1">'discover'</span>    <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">'US'</span><span class="p">],</span>
+  <span class="s1">'maestro'</span>     <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">'UK'</span><span class="p">],</span>
+  <span class="s1">'visa'</span>        <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">'US'</span><span class="p">,</span><span class="s1">'UK'</span><span class="p">,</span><span class="s1">'ZA'</span><span class="p">],</span>
+  <span class="s1">'master_card'</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">'US'</span><span class="p">,</span><span class="s1">'UK'</span><span class="p">,</span><span class="s1">'ZA'</span><span class="p">],</span>
+<span class="p">}</span>
 
-<p>def countries_usable_in
-  CARD_TYPE_COUNTRIES[self.card_type]
-end
-```</p>
+<span class="k">def</span> <span class="nf">countries_usable_in</span>
+  <span class="no">CARD_TYPE_COUNTRIES</span><span class="p">[</span><span class="nb">self</span><span class="p">.</span><span class="nf">card_type</span><span class="p">]</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>This is much less complex, both from a formal perspective, and from a general “what’s going on here?” perspective.  We replace a
 bunch of conditionals with a simple mapping.  Enhancing this code is simple: we just add a new entry to the <code class="highlighter-rouge">CARD_TYPE_COUNTRIES</code>
@@ -137,57 +137,57 @@ South Africa.</p>
 <p>Ruby’s <code class="highlighter-rouge">Hash</code> constructor can be given a block that returns the value to use when a key is missing, so that would seem to be
 useful:</p>
 
-<p><code class="highlighter-rouge">ruby
-hash = Hash.new { |key,value
-  "FOO"
-}
-hash[:blah] # =&gt; "FOO"
-hash[:blah] = "BAR"
-hash[:blah] # =&gt; "BAR"
-hash[:crud] # =&gt; "FOO"
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nb">hash</span> <span class="o">=</span> <span class="no">Hash</span><span class="p">.</span><span class="nf">new</span> <span class="p">{</span> <span class="o">|</span><span class="n">key</span><span class="p">,</span><span class="n">value</span>
+  <span class="s2">"FOO"</span>
+<span class="p">}</span>
+<span class="nb">hash</span><span class="p">[</span><span class="ss">:blah</span><span class="p">]</span> <span class="c1"># =&gt; "FOO"</span>
+<span class="nb">hash</span><span class="p">[</span><span class="ss">:blah</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"BAR"</span>
+<span class="nb">hash</span><span class="p">[</span><span class="ss">:blah</span><span class="p">]</span> <span class="c1"># =&gt; "BAR"</span>
+<span class="nb">hash</span><span class="p">[</span><span class="ss">:crud</span><span class="p">]</span> <span class="c1"># =&gt; "FOO"</span>
+</code></pre>
+</div>
 
 <p>Of course, this makes it a bit awkward to populate our <code class="highlighter-rouge">Hash</code> with the lookup table, because we lose the literal syntax.  We can
 deal with <em>this</em> by using <code class="highlighter-rouge">tap</code>, which passes the object called on it to the block passed to it, executes the block, throws away
 the block’s return value and returns the object on which we called <code class="highlighter-rouge">tap</code>.  Whoa.  Let’s look at an example.</p>
 
-<p><code class="highlighter-rouge">ruby
-CARD_TYPE_COUNTRIES = Hash.new { |key,value|
-  ['US','UK','IE']
-}.tap { |new_hash|
-  new_hash['discover'] = ['US']
-  new_hash['maestro']  = ['UK']
-}
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="no">CARD_TYPE_COUNTRIES</span> <span class="o">=</span> <span class="no">Hash</span><span class="p">.</span><span class="nf">new</span> <span class="p">{</span> <span class="o">|</span><span class="n">key</span><span class="p">,</span><span class="n">value</span><span class="o">|</span>
+  <span class="p">[</span><span class="s1">'US'</span><span class="p">,</span><span class="s1">'UK'</span><span class="p">,</span><span class="s1">'IE'</span><span class="p">]</span>
+<span class="p">}.</span><span class="nf">tap</span> <span class="p">{</span> <span class="o">|</span><span class="n">new_hash</span><span class="o">|</span>
+  <span class="n">new_hash</span><span class="p">[</span><span class="s1">'discover'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'US'</span><span class="p">]</span>
+  <span class="n">new_hash</span><span class="p">[</span><span class="s1">'maestro'</span><span class="p">]</span>  <span class="o">=</span> <span class="p">[</span><span class="s1">'UK'</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre>
+</div>
 
 <p>Now, when we call <code class="highlighter-rouge">CARD_TYPE_COUNTRIES['visa']</code>, this uses the block we gave to the constructor, but
 <code class="highlighter-rouge">CARD_TYPE_COUNTRIES['maestro']</code> simply returns the literal array we assigned in <code class="highlighter-rouge">tap</code>.</p>
 
 <p>So far so good.  Now, suppose we have a new requirement to add American Express.  Suppose that American Express isn’t supported in African countries, but works everywhere else.  Since we don’t want to hard-code what countries are in Africa, we’ll need to consult the database.</p>
 
-<p><code class="highlighter-rouge">ruby
-def countries_usable_in
-  countries = CARD_TYPE_COUNTRIES[self.card_type]
-  if self.card_type == 'american_express'
-    countries - Continent.find("Africa").countries
-  else
-    countries
-  end
-end
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">countries_usable_in</span>
+  <span class="n">countries</span> <span class="o">=</span> <span class="no">CARD_TYPE_COUNTRIES</span><span class="p">[</span><span class="nb">self</span><span class="p">.</span><span class="nf">card_type</span><span class="p">]</span>
+  <span class="k">if</span> <span class="nb">self</span><span class="p">.</span><span class="nf">card_type</span> <span class="o">==</span> <span class="s1">'american_express'</span>
+    <span class="n">countries</span> <span class="o">-</span> <span class="no">Continent</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="s2">"Africa"</span><span class="p">).</span><span class="nf">countries</span>
+  <span class="k">else</span>
+    <span class="n">countries</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>We’ve re-introduced those pesky control structures we were trying to remove.  Why can’t we do this?</p>
 
-<p><code class="highlighter-rouge">ruby
-DEFAULT_COUNTRIES = ['US','UK','IE']
-CARD_TYPE_COUNTRIES = Hash.new { |key,value|
-  DEFAULT_COUNTRIES
-}.tap { |new_hash|
-  new_hash['discover']         = ['US']
-  new_hash['maestro']          = ['UK']
-  new_hash['american_express'] = DEFAULT_COUNTRIES - Continent.find("Africa").countries
-}
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="no">DEFAULT_COUNTRIES</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'US'</span><span class="p">,</span><span class="s1">'UK'</span><span class="p">,</span><span class="s1">'IE'</span><span class="p">]</span>
+<span class="no">CARD_TYPE_COUNTRIES</span> <span class="o">=</span> <span class="no">Hash</span><span class="p">.</span><span class="nf">new</span> <span class="p">{</span> <span class="o">|</span><span class="n">key</span><span class="p">,</span><span class="n">value</span><span class="o">|</span>
+  <span class="no">DEFAULT_COUNTRIES</span>
+<span class="p">}.</span><span class="nf">tap</span> <span class="p">{</span> <span class="o">|</span><span class="n">new_hash</span><span class="o">|</span>
+  <span class="n">new_hash</span><span class="p">[</span><span class="s1">'discover'</span><span class="p">]</span>         <span class="o">=</span> <span class="p">[</span><span class="s1">'US'</span><span class="p">]</span>
+  <span class="n">new_hash</span><span class="p">[</span><span class="s1">'maestro'</span><span class="p">]</span>          <span class="o">=</span> <span class="p">[</span><span class="s1">'UK'</span><span class="p">]</span>
+  <span class="n">new_hash</span><span class="p">[</span><span class="s1">'american_express'</span><span class="p">]</span> <span class="o">=</span> <span class="no">DEFAULT_COUNTRIES</span> <span class="o">-</span> <span class="no">Continent</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="s2">"Africa"</span><span class="p">).</span><span class="nf">countries</span>
+<span class="p">}</span>
+</code></pre>
+</div>
 
 <p>This has two problems:</p>
 
@@ -198,22 +198,22 @@ CARD_TYPE_COUNTRIES = Hash.new { |key,value|
 
 <p>What we need is a lookup table that calculates its results on demand.  Ruby has a structure for that: <code class="highlighter-rouge">lambda</code></p>
 
-<p>```ruby
-DEFAULT_COUNTRIES = [‘US’,’UK’,’IE’]
-CARD_TYPE_COUNTRIES = Hash.new { |key,value|
-  DEFAULT_COUNTRIES
-}.tap { |new_hash|
-  new_hash[‘discover’]         = lambda { [‘US’] }
-  new_hash[‘maestro’]          = lambda { [‘UK’] }
-  new_hash[‘american_express’] = lambda { 
-    DEFAULT_COUNTRIES - Continent.find(“Africa”).countries 
-  }
-}</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="no">DEFAULT_COUNTRIES</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'US'</span><span class="p">,</span><span class="s1">'UK'</span><span class="p">,</span><span class="s1">'IE'</span><span class="p">]</span>
+<span class="no">CARD_TYPE_COUNTRIES</span> <span class="o">=</span> <span class="no">Hash</span><span class="p">.</span><span class="nf">new</span> <span class="p">{</span> <span class="o">|</span><span class="n">key</span><span class="p">,</span><span class="n">value</span><span class="o">|</span>
+  <span class="no">DEFAULT_COUNTRIES</span>
+<span class="p">}.</span><span class="nf">tap</span> <span class="p">{</span> <span class="o">|</span><span class="n">new_hash</span><span class="o">|</span>
+  <span class="n">new_hash</span><span class="p">[</span><span class="s1">'discover'</span><span class="p">]</span>         <span class="o">=</span> <span class="nb">lambda</span> <span class="p">{</span> <span class="p">[</span><span class="s1">'US'</span><span class="p">]</span> <span class="p">}</span>
+  <span class="n">new_hash</span><span class="p">[</span><span class="s1">'maestro'</span><span class="p">]</span>          <span class="o">=</span> <span class="nb">lambda</span> <span class="p">{</span> <span class="p">[</span><span class="s1">'UK'</span><span class="p">]</span> <span class="p">}</span>
+  <span class="n">new_hash</span><span class="p">[</span><span class="s1">'american_express'</span><span class="p">]</span> <span class="o">=</span> <span class="nb">lambda</span> <span class="p">{</span> 
+    <span class="no">DEFAULT_COUNTRIES</span> <span class="o">-</span> <span class="no">Continent</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="s2">"Africa"</span><span class="p">).</span><span class="nf">countries</span> 
+  <span class="p">}</span>
+<span class="p">}</span>
 
-<p>def countries_usable_in
-  CARD_TYPE_COUNTRIES[self.card_type].call
-end
-```</p>
+<span class="k">def</span> <span class="nf">countries_usable_in</span>
+  <span class="no">CARD_TYPE_COUNTRIES</span><span class="p">[</span><span class="nb">self</span><span class="p">.</span><span class="nf">card_type</span><span class="p">].</span><span class="nf">call</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>I find this to be a pretty clean solution.  We have all the benefits of a table-driven approach, but only need to specify special
 cases (thanks to our default block), and have the ability to calcualte our results on demand, based on the current state of the system (thanks to using lambdas and static values).  Not too bad.</p>
@@ -233,31 +233,31 @@ various conditions to find one that holds, and returns a value based on that con
 <p>How does this apply to our lookup table?  Essentially we want a table of conditions and, for the first one that holds, perform
 the calculation to figure out the size.  For the sake of clarity, we’ll assume some helper methods, which gives us this code:</p>
 
-<p><code class="highlighter-rouge">ruby
-def terminal_columns
-  if ENV['COLUMNS'] =~ /^\s+$/
-    ENV['COLUMNS']
-  elsif command_exists?("tput")
-    `tput lines`.chomp.to_i
-  elsif command_exists?("stty")
-    parse_stty
-  else
-    DEFAULT_COLUMNS
-  end
-end
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">terminal_columns</span>
+  <span class="k">if</span> <span class="no">ENV</span><span class="p">[</span><span class="s1">'COLUMNS'</span><span class="p">]</span> <span class="o">=~</span> <span class="sr">/^\s+$/</span>
+    <span class="no">ENV</span><span class="p">[</span><span class="s1">'COLUMNS'</span><span class="p">]</span>
+  <span class="k">elsif</span> <span class="n">command_exists?</span><span class="p">(</span><span class="s2">"tput"</span><span class="p">)</span>
+    <span class="sb">`tput lines`</span><span class="p">.</span><span class="nf">chomp</span><span class="p">.</span><span class="nf">to_i</span>
+  <span class="k">elsif</span> <span class="n">command_exists?</span><span class="p">(</span><span class="s2">"stty"</span><span class="p">)</span>
+    <span class="n">parse_stty</span>
+  <span class="k">else</span>
+    <span class="no">DEFAULT_COLUMNS</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>This is a pretty complex routine.  What if we need to add Windows support?  Another <code class="highlighter-rouge">elsif</code>.  Lets use our newfound lookup table
 powers, but instead of using a static key for lookup, we’ll use a dynamic one, based on our conditions:</p>
 
-<p><code class="highlighter-rouge">ruby
-TERMINAL_SIZES = [
-  { :test =&gt; lambda { ENV['COLUMNS'] =~ /^\s+$/ }, :val =&gt; lambda { ENV['COLUMNS'] },
-  { :test =&gt; lambda { command_exists?("tput") },   :val =&gt; lambda { `tput lines`.chomp.to_i },
-  { :test =&gt; lambda { command_exists?("stty") },   :val =&gt; lambda { parse_stty },
-  { :test =&gt; lambda { true },                      :val =&gt; lambda { DEFAULT_COLUMNS },
-]
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="no">TERMINAL_SIZES</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="p">{</span> <span class="ss">:test</span> <span class="o">=&gt;</span> <span class="nb">lambda</span> <span class="p">{</span> <span class="no">ENV</span><span class="p">[</span><span class="s1">'COLUMNS'</span><span class="p">]</span> <span class="o">=~</span> <span class="sr">/^\s+$/</span> <span class="p">},</span> <span class="ss">:val</span> <span class="o">=&gt;</span> <span class="nb">lambda</span> <span class="p">{</span> <span class="no">ENV</span><span class="p">[</span><span class="s1">'COLUMNS'</span><span class="p">]</span> <span class="p">},</span>
+  <span class="p">{</span> <span class="ss">:test</span> <span class="o">=&gt;</span> <span class="nb">lambda</span> <span class="p">{</span> <span class="n">command_exists?</span><span class="p">(</span><span class="s2">"tput"</span><span class="p">)</span> <span class="p">},</span>   <span class="ss">:val</span> <span class="o">=&gt;</span> <span class="nb">lambda</span> <span class="p">{</span> <span class="sb">`tput lines`</span><span class="p">.</span><span class="nf">chomp</span><span class="p">.</span><span class="nf">to_i</span> <span class="p">},</span>
+  <span class="p">{</span> <span class="ss">:test</span> <span class="o">=&gt;</span> <span class="nb">lambda</span> <span class="p">{</span> <span class="n">command_exists?</span><span class="p">(</span><span class="s2">"stty"</span><span class="p">)</span> <span class="p">},</span>   <span class="ss">:val</span> <span class="o">=&gt;</span> <span class="nb">lambda</span> <span class="p">{</span> <span class="n">parse_stty</span> <span class="p">},</span>
+  <span class="p">{</span> <span class="ss">:test</span> <span class="o">=&gt;</span> <span class="nb">lambda</span> <span class="p">{</span> <span class="kp">true</span> <span class="p">},</span>                      <span class="ss">:val</span> <span class="o">=&gt;</span> <span class="nb">lambda</span> <span class="p">{</span> <span class="no">DEFAULT_COLUMNS</span> <span class="p">},</span>
+<span class="p">]</span>
+</code></pre>
+</div>
 
 <p>Note that we’re using an array to keep things ordered, but we’re using an <code class="highlighter-rouge">Array</code> of <code class="highlighter-rouge">Hash</code> so that our client code will be
 fairly readable (we’ll see that in a second).</p>
@@ -265,11 +265,11 @@ fairly readable (we’ll see that in a second).</p>
 <p>Recall that we want the first expression that returns true, and to return the value associated with that expression.  This is a
 one-liner, thanks to Ruby’s aweomse collections:</p>
 
-<p><code class="highlighter-rouge">ruby
-def terminal_columns
-  TERMINAL_SIZES.find { |size| size[:test].call }.first[:val].call
-end
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">terminal_columns</span>
+  <span class="no">TERMINAL_SIZES</span><span class="p">.</span><span class="nf">find</span> <span class="p">{</span> <span class="o">|</span><span class="n">size</span><span class="o">|</span> <span class="n">size</span><span class="p">[</span><span class="ss">:test</span><span class="p">].</span><span class="nf">call</span> <span class="p">}.</span><span class="nf">first</span><span class="p">[</span><span class="ss">:val</span><span class="p">].</span><span class="nf">call</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>Not bad.</p>
 

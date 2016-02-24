@@ -14,8 +14,9 @@ subscribe_rss: /atom.xml
 
 # Build settings
 markdown: kramdown
-redcarpet:
-  extensions: ["tables"]
+kramdown:
+  input: GFM
+  hard_wrap: false
 
 highlighter: rouge
 date_format: "ordinal"

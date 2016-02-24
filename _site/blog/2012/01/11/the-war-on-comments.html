@@ -92,50 +92,50 @@
 
 <p>Let’s take the example from my <a href="http://www.naildrivin5.com/blog/2012/01/08/make-tests-clean-and-clear-without-duplication.html">last blog entry</a>: a salutation class.  Suppose our system has the following implementation:</p>
 
-<p>```ruby
-class Salutation
-  def initialize(person)
-    @person = person
-  end</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Salutation</span>
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">person</span><span class="p">)</span>
+    <span class="vi">@person</span> <span class="o">=</span> <span class="n">person</span>
+  <span class="k">end</span>
 
-<p>def greeting
-    if @person.honorific == :doctor
-      “Hello, Dr. #{person.last_name}!”
-    elsif @person.first_name.present?
-      “Hello, #{person.first_name}!”
-    elsif @person.male?
-      “Hello, Mr. #{person.last_name}!”
-    else
-      “Hello, Ms. #{person.last_name}!”
-    end
-  end
-end
-```</p>
+  <span class="k">def</span> <span class="nf">greeting</span>
+    <span class="k">if</span> <span class="vi">@person</span><span class="p">.</span><span class="nf">honorific</span> <span class="o">==</span> <span class="ss">:doctor</span>
+      <span class="s2">"Hello, Dr. </span><span class="si">#{</span><span class="n">person</span><span class="p">.</span><span class="nf">last_name</span><span class="si">}</span><span class="s2">!"</span>
+    <span class="k">elsif</span> <span class="vi">@person</span><span class="p">.</span><span class="nf">first_name</span><span class="p">.</span><span class="nf">present?</span>
+      <span class="s2">"Hello, </span><span class="si">#{</span><span class="n">person</span><span class="p">.</span><span class="nf">first_name</span><span class="si">}</span><span class="s2">!"</span>
+    <span class="k">elsif</span> <span class="vi">@person</span><span class="p">.</span><span class="nf">male?</span>
+      <span class="s2">"Hello, Mr. </span><span class="si">#{</span><span class="n">person</span><span class="p">.</span><span class="nf">last_name</span><span class="si">}</span><span class="s2">!"</span>
+    <span class="k">else</span>
+      <span class="s2">"Hello, Ms. </span><span class="si">#{</span><span class="n">person</span><span class="p">.</span><span class="nf">last_name</span><span class="si">}</span><span class="s2">!"</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>This code is pretty clear, and it’s easy to understand what it does.  A novice programmer might comment it like so:</p>
 
-<p>```ruby
-class Salutation
-  def initialize(person)
-    @person = person
-  end</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Salutation</span>
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">person</span><span class="p">)</span>
+    <span class="vi">@person</span> <span class="o">=</span> <span class="n">person</span>
+  <span class="k">end</span>
 
-<p>def greeting
-    # Check if they are a doctor, otherwise
-    # use their first name, falling back
-    # to their gender
-    if @person.honorific == :doctor
-      “Hello, Dr. #{person.last_name}!”
-    elsif @person.first_name.present?
-      “Hello, #{person.first_name}!”
-    elsif @person.male?
-      “Hello, Mr. #{person.last_name}!”
-    else
-      “Hello, Ms. #{person.last_name}!”
-    end
-  end
-end
-```</p>
+  <span class="k">def</span> <span class="nf">greeting</span>
+    <span class="c1"># Check if they are a doctor, otherwise</span>
+    <span class="c1"># use their first name, falling back</span>
+    <span class="c1"># to their gender</span>
+    <span class="k">if</span> <span class="vi">@person</span><span class="p">.</span><span class="nf">honorific</span> <span class="o">==</span> <span class="ss">:doctor</span>
+      <span class="s2">"Hello, Dr. </span><span class="si">#{</span><span class="n">person</span><span class="p">.</span><span class="nf">last_name</span><span class="si">}</span><span class="s2">!"</span>
+    <span class="k">elsif</span> <span class="vi">@person</span><span class="p">.</span><span class="nf">first_name</span><span class="p">.</span><span class="nf">present?</span>
+      <span class="s2">"Hello, </span><span class="si">#{</span><span class="n">person</span><span class="p">.</span><span class="nf">first_name</span><span class="si">}</span><span class="s2">!"</span>
+    <span class="k">elsif</span> <span class="vi">@person</span><span class="p">.</span><span class="nf">male?</span>
+      <span class="s2">"Hello, Mr. </span><span class="si">#{</span><span class="n">person</span><span class="p">.</span><span class="nf">last_name</span><span class="si">}</span><span class="s2">!"</span>
+    <span class="k">else</span>
+      <span class="s2">"Hello, Ms. </span><span class="si">#{</span><span class="n">person</span><span class="p">.</span><span class="nf">last_name</span><span class="si">}</span><span class="s2">!"</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>We can all agree these comments add noise.  So what’s missing from this picture that the code can’t express?  Something that seems odd is the explicit check for the <code class="highlighter-rouge">honorific</code> of <code class="highlighter-rouge">:doctor</code>.  Why do we only check that one?  Clearly there can be other values for <code class="highlighter-rouge">honorific</code>; why don’t we check those?</p>
 
@@ -145,31 +145,31 @@ end
 
 <p>Explanatory Comments.</p>
 
-<p>```ruby
-class Salutation
-  def initialize(person)
-    @person = person
-  end</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Salutation</span>
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">person</span><span class="p">)</span>
+    <span class="vi">@person</span> <span class="o">=</span> <span class="n">person</span>
+  <span class="k">end</span>
 
-<p>def greeting
-    # We special case :doctor because the Initech
-    # style guide for messaging requires it, and we need
-    # to be compliant with it.  Since we have very few users with
-    # honorifics other than doctor, we don’t want to get into a 
-    # complex honorific mapping mapping situation right now, so
-    # we just handle this one explcitly.
-    if @person.honorific == :doctor
-      “Hello, Dr. #{person.last_name}!”
-    elsif @person.first_name.present?
-      “Hello, #{person.first_name}!”
-    elsif @person.male?
-      “Hello, Mr. #{person.last_name}!”
-    else
-      “Hello, Ms. #{person.last_name}!”
-    end
-  end
-end
-```</p>
+  <span class="k">def</span> <span class="nf">greeting</span>
+    <span class="c1"># We special case :doctor because the Initech</span>
+    <span class="c1"># style guide for messaging requires it, and we need</span>
+    <span class="c1"># to be compliant with it.  Since we have very few users with</span>
+    <span class="c1"># honorifics other than doctor, we don't want to get into a </span>
+    <span class="c1"># complex honorific mapping mapping situation right now, so</span>
+    <span class="c1"># we just handle this one explcitly.</span>
+    <span class="k">if</span> <span class="vi">@person</span><span class="p">.</span><span class="nf">honorific</span> <span class="o">==</span> <span class="ss">:doctor</span>
+      <span class="s2">"Hello, Dr. </span><span class="si">#{</span><span class="n">person</span><span class="p">.</span><span class="nf">last_name</span><span class="si">}</span><span class="s2">!"</span>
+    <span class="k">elsif</span> <span class="vi">@person</span><span class="p">.</span><span class="nf">first_name</span><span class="p">.</span><span class="nf">present?</span>
+      <span class="s2">"Hello, </span><span class="si">#{</span><span class="n">person</span><span class="p">.</span><span class="nf">first_name</span><span class="si">}</span><span class="s2">!"</span>
+    <span class="k">elsif</span> <span class="vi">@person</span><span class="p">.</span><span class="nf">male?</span>
+      <span class="s2">"Hello, Mr. </span><span class="si">#{</span><span class="n">person</span><span class="p">.</span><span class="nf">last_name</span><span class="si">}</span><span class="s2">!"</span>
+    <span class="k">else</span>
+      <span class="s2">"Hello, Ms. </span><span class="si">#{</span><span class="n">person</span><span class="p">.</span><span class="nf">last_name</span><span class="si">}</span><span class="s2">!"</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p><strong>Now</strong> it makes sense.  We got some annoying requirement and had to meet it.  The reality of the data in our system made the cost of a more generalized soluation have little benefit, so we did the simplest thing that could possibly work <em>and</em> were nice enough to explain ourselves.</p>
 
@@ -184,32 +184,32 @@ end
 
 <p>The second criticism typically leveled against comments is that they become out of sync with the code.  Continuing our <code class="highlighter-rouge">Salutation</code> example, suppose we later get a requirement to special-case college professors.  The quick and dirty solution would be:</p>
 
-<p>```ruby
-class Salutation
-  def initialize(person)
-    @person = person
-  end</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Salutation</span>
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">person</span><span class="p">)</span>
+    <span class="vi">@person</span> <span class="o">=</span> <span class="n">person</span>
+  <span class="k">end</span>
 
-<p>def greeting
-    # We special case :doctor because the Initech
-    # style guide for messaging requires it, and we need
-    # to be compliant with it, and have very few users with
-    # other honorifics, so we don’t want to get into a 
-    # complex honorific mapping mapping situation right now
-    if @person.honorific == :doctor
-      “Hello, Dr. #{person.last_name}!”
-    elsif @person.honorific == :professor
-      “Hello, Prof. #{person.last_name}!”
-    elsif @person.first_name.present?
-      “Hello, #{person.first_name}!”
-    elsif @person.male?
-      “Hello, Mr. #{person.last_name}!”
-    else
-      “Hello, Ms. #{person.last_name}!”
-    end
-  end
-end
-```</p>
+  <span class="k">def</span> <span class="nf">greeting</span>
+    <span class="c1"># We special case :doctor because the Initech</span>
+    <span class="c1"># style guide for messaging requires it, and we need</span>
+    <span class="c1"># to be compliant with it, and have very few users with</span>
+    <span class="c1"># other honorifics, so we don't want to get into a </span>
+    <span class="c1"># complex honorific mapping mapping situation right now</span>
+    <span class="k">if</span> <span class="vi">@person</span><span class="p">.</span><span class="nf">honorific</span> <span class="o">==</span> <span class="ss">:doctor</span>
+      <span class="s2">"Hello, Dr. </span><span class="si">#{</span><span class="n">person</span><span class="p">.</span><span class="nf">last_name</span><span class="si">}</span><span class="s2">!"</span>
+    <span class="k">elsif</span> <span class="vi">@person</span><span class="p">.</span><span class="nf">honorific</span> <span class="o">==</span> <span class="ss">:professor</span>
+      <span class="s2">"Hello, Prof. </span><span class="si">#{</span><span class="n">person</span><span class="p">.</span><span class="nf">last_name</span><span class="si">}</span><span class="s2">!"</span>
+    <span class="k">elsif</span> <span class="vi">@person</span><span class="p">.</span><span class="nf">first_name</span><span class="p">.</span><span class="nf">present?</span>
+      <span class="s2">"Hello, </span><span class="si">#{</span><span class="n">person</span><span class="p">.</span><span class="nf">first_name</span><span class="si">}</span><span class="s2">!"</span>
+    <span class="k">elsif</span> <span class="vi">@person</span><span class="p">.</span><span class="nf">male?</span>
+      <span class="s2">"Hello, Mr. </span><span class="si">#{</span><span class="n">person</span><span class="p">.</span><span class="nf">last_name</span><span class="si">}</span><span class="s2">!"</span>
+    <span class="k">else</span>
+      <span class="s2">"Hello, Ms. </span><span class="si">#{</span><span class="n">person</span><span class="p">.</span><span class="nf">last_name</span><span class="si">}</span><span class="s2">!"</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>Now the comment is out of sync with reality.  We have a nice explanation of special-casing <code class="highlighter-rouge">:doctor</code>, but not a word about <code class="highlighter-rouge">:professor</code>.  I would argue that the developer that wrote this code and called it “done” has been negligent.  He’s <strong>not done his job</strong> and there’s no excuse for this.  At the <em>very</em> least, he should replace the phrase “We special case :doctor” in the comment with “We special case :doctor and :professor”.  There’s many better ways to meet the new requirement, but for the purpose of keeping our focus on comments, <em>you must keep the comments and the code in sync</em>.  That’s the job.</p>
 
@@ -228,47 +228,47 @@ self-documenting, but leaving out comments doesn’t make it so.</p>
 
 <p>Suppose we come across this code:</p>
 
-<p>```ruby
-def isqrt(square)
-  square = square.to_i 
-  return 0 if square == 0 
-  raise RangeError if square &lt; 0</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">isqrt</span><span class="p">(</span><span class="n">square</span><span class="p">)</span>
+  <span class="n">square</span> <span class="o">=</span> <span class="n">square</span><span class="p">.</span><span class="nf">to_i</span> 
+  <span class="k">return</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">square</span> <span class="o">==</span> <span class="mi">0</span> 
+  <span class="k">raise</span> <span class="no">RangeError</span> <span class="k">if</span> <span class="n">square</span> <span class="o">&lt;</span> <span class="mi">0</span>
 
-<p>n = iter(1, square)
-  n1 = iter(n, square)
-  n1, n = iter(n1, square), n1 until n1 &gt;= n - 1
-  n1 = n1 - 1 until n1*n1 &lt;= square
-  return n1
-end
-def iter(n, square) 
-  (n + (square / n)) / 2 
-end
-```</p>
+  <span class="n">n</span> <span class="o">=</span> <span class="n">iter</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">square</span><span class="p">)</span>
+  <span class="n">n1</span> <span class="o">=</span> <span class="n">iter</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">square</span><span class="p">)</span>
+  <span class="n">n1</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="n">iter</span><span class="p">(</span><span class="n">n1</span><span class="p">,</span> <span class="n">square</span><span class="p">),</span> <span class="n">n1</span> <span class="k">until</span> <span class="n">n1</span> <span class="o">&gt;=</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span>
+  <span class="n">n1</span> <span class="o">=</span> <span class="n">n1</span> <span class="o">-</span> <span class="mi">1</span> <span class="k">until</span> <span class="n">n1</span><span class="o">*</span><span class="n">n1</span> <span class="o">&lt;=</span> <span class="n">square</span>
+  <span class="k">return</span> <span class="n">n1</span>
+<span class="k">end</span>
+<span class="k">def</span> <span class="nf">iter</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">square</span><span class="p">)</span> 
+  <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="p">(</span><span class="n">square</span> <span class="o">/</span> <span class="n">n</span><span class="p">))</span> <span class="o">/</span> <span class="mi">2</span> 
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>You might guess that this takes the square root, but boy is it impenetrable.  Some things are just complex and either can’t be made more clear or external constraints exist (like time) that we just can’t do so.  What we probably <em>could</em> do is add a few comments to help the poor sap that must fix a bug in this code later:</p>
 
-<p>```ruby
-def isqrt(square)
-  # just in case we don’t get an int
-  square = square.to_i 
-  return 0 if square == 0 
-  raise RangeError if square &lt; 0</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">isqrt</span><span class="p">(</span><span class="n">square</span><span class="p">)</span>
+  <span class="c1"># just in case we don't get an int</span>
+  <span class="n">square</span> <span class="o">=</span> <span class="n">square</span><span class="p">.</span><span class="nf">to_i</span> 
+  <span class="k">return</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">square</span> <span class="o">==</span> <span class="mi">0</span> 
+  <span class="k">raise</span> <span class="no">RangeError</span> <span class="k">if</span> <span class="n">square</span> <span class="o">&lt;</span> <span class="mi">0</span>
 
-<p># make our initial guesses, which are initially 
-  # too high (intentionally; see next)
-  n = iter(1, square)
-  n1 = iter(n, square)</p>
+  <span class="c1"># make our initial guesses, which are initially </span>
+  <span class="c1"># too high (intentionally; see next)</span>
+  <span class="n">n</span> <span class="o">=</span> <span class="n">iter</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">square</span><span class="p">)</span>
+  <span class="n">n1</span> <span class="o">=</span> <span class="n">iter</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">square</span><span class="p">)</span>
 
-<p># Refine our guesses until we get close enough
-  n1, n = iter(n1, square), n1 until n1 &gt;= n - 1
-  # We’re close enough when we’re JUST under square
-  n1 = n1 - 1 until n1*n1 &lt;= square
-  return n1
-end
-def iter(n, square) 
-  (n + (square / n)) / 2 
-end
-```</p>
+  <span class="c1"># Refine our guesses until we get close enough</span>
+  <span class="n">n1</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="n">iter</span><span class="p">(</span><span class="n">n1</span><span class="p">,</span> <span class="n">square</span><span class="p">),</span> <span class="n">n1</span> <span class="k">until</span> <span class="n">n1</span> <span class="o">&gt;=</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span>
+  <span class="c1"># We're close enough when we're JUST under square</span>
+  <span class="n">n1</span> <span class="o">=</span> <span class="n">n1</span> <span class="o">-</span> <span class="mi">1</span> <span class="k">until</span> <span class="n">n1</span><span class="o">*</span><span class="n">n1</span> <span class="o">&lt;=</span> <span class="n">square</span>
+  <span class="k">return</span> <span class="n">n1</span>
+<span class="k">end</span>
+<span class="k">def</span> <span class="nf">iter</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">square</span><span class="p">)</span> 
+  <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="p">(</span><span class="n">square</span> <span class="o">/</span> <span class="n">n</span><span class="p">))</span> <span class="o">/</span> <span class="mi">2</span> 
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>The code is more noisy, yes, but now the reader has some clue as to what’s going on.  It might even given him the confidence to refactor this in a way that no longer requires comments.</p>
 

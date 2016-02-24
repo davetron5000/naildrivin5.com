@@ -87,48 +87,48 @@ very easy.  It’s designed to make the simple things simple, but to not hide an
 <p>I won’t go back to getopt, but a fairly common way to create a command suite application is to use <code class="highlighter-rouge">OptionParser</code> to get command
 line options, and then parse <code class="highlighter-rouge">ARGV</code> directly to figure out the “command”:</p>
 
-<p>```ruby
-include “optparse”</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kp">include</span> <span class="s2">"optparse"</span>
 
-<p>options[:file] = “~/.todo”</p>
+<span class="n">options</span><span class="p">[</span><span class="ss">:file</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"~/.todo"</span>
 
-<p>opts = OptionParser.new do |opts|
-  # declare a new options
-  opts.on(
-      “-f FILE”,”–file”, # it can be -f or –file and requires an argument
-      “Location of the todo list file (default ~/.todo)”) do |file|
-    options[:file] = file # when the user specifies it, save the argument in options[:file]
-  end</p>
+<span class="n">opts</span> <span class="o">=</span> <span class="no">OptionParser</span><span class="p">.</span><span class="nf">new</span> <span class="k">do</span> <span class="o">|</span><span class="n">opts</span><span class="o">|</span>
+  <span class="c1"># declare a new options</span>
+  <span class="n">opts</span><span class="p">.</span><span class="nf">on</span><span class="p">(</span>
+      <span class="s2">"-f FILE"</span><span class="p">,</span><span class="s2">"--file"</span><span class="p">,</span> <span class="c1"># it can be -f or --file and requires an argument</span>
+      <span class="s2">"Location of the todo list file (default ~/.todo)"</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">file</span><span class="o">|</span>
+    <span class="n">options</span><span class="p">[</span><span class="ss">:file</span><span class="p">]</span> <span class="o">=</span> <span class="n">file</span> <span class="c1"># when the user specifies it, save the argument in options[:file]</span>
+  <span class="k">end</span>
 
-<p>opts.on(
-      “-l”,”–long”,
-      “List todo elements in long form”) do |long|
-    options[:long] = long
-  end</p>
+  <span class="n">opts</span><span class="p">.</span><span class="nf">on</span><span class="p">(</span>
+      <span class="s2">"-l"</span><span class="p">,</span><span class="s2">"--long"</span><span class="p">,</span>
+      <span class="s2">"List todo elements in long form"</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">long</span><span class="o">|</span>
+    <span class="n">options</span><span class="p">[</span><span class="ss">:long</span><span class="p">]</span> <span class="o">=</span> <span class="n">long</span>
+  <span class="k">end</span>
 
-<p>opts.on(
-      “-a”,”–all”,
-      “List all todos, not just ones that haven’t been completed”) do |all|
-    options[:all] = all
-  end
-end</p>
+  <span class="n">opts</span><span class="p">.</span><span class="nf">on</span><span class="p">(</span>
+      <span class="s2">"-a"</span><span class="p">,</span><span class="s2">"--all"</span><span class="p">,</span>
+      <span class="s2">"List all todos, not just ones that haven't been completed"</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">all</span><span class="o">|</span>
+    <span class="n">options</span><span class="p">[</span><span class="ss">:all</span><span class="p">]</span> <span class="o">=</span> <span class="n">all</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 
-<p>opts.parse!  # parse the options, modifying ARGV</p>
+<span class="n">opts</span><span class="p">.</span><span class="nf">parse!</span>  <span class="c1"># parse the options, modifying ARGV</span>
 
-<p>command = ARGV.shift</p>
+<span class="n">command</span> <span class="o">=</span> <span class="no">ARGV</span><span class="p">.</span><span class="nf">shift</span>
 
-<p>case command do
-when ‘new’: 
-  # Add a new todo to options[:file]
-when ‘done’
-  # complete a todo and rewrite options[:file]
-when ‘list’
-  # use options[:all] and options[:long] to output
-  # the todo list in options[:file]
-else
-  # Print help
-end
-```</p>
+<span class="k">case</span> <span class="n">command</span> <span class="k">do</span>
+<span class="k">when</span> <span class="s1">'new'</span><span class="p">:</span> 
+  <span class="c1"># Add a new todo to options[:file]</span>
+<span class="k">when</span> <span class="s1">'done'</span>
+  <span class="c1"># complete a todo and rewrite options[:file]</span>
+<span class="k">when</span> <span class="s1">'list'</span>
+  <span class="c1"># use options[:all] and options[:long] to output</span>
+  <span class="c1"># the todo list in options[:file]</span>
+<span class="k">else</span>
+  <span class="c1"># Print help</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>There are a few problems with this:</p>
 
@@ -145,8 +145,7 @@ end
 
 <p>Typically, a new GLI app is generated for you by the <code class="highlighter-rouge">gli</code> command-line app:</p>
 
-<p>```
-&gt; gem install gli
+<div class="highlighter-rouge"><pre class="highlight"><code>&gt; gem install gli
 Fetching: gli-2.8.1.gem (100%)
 Successfully installed gli-2.8.1
 &gt; gli init todo new done list
@@ -154,26 +153,27 @@ Successfully installed gli-2.8.1
 &gt; bundle install
 &gt; bundle exec bin/todo help
 NAME
-    todo - Describe your application here</p>
+    todo - Describe your application here
 
-<p>SYNOPSIS
-    todo [global options] command [command options] [arguments…]</p>
+SYNOPSIS
+    todo [global options] command [command options] [arguments...]
 
-<p>VERSION
-    0.0.1</p>
+VERSION
+    0.0.1
 
-<p>GLOBAL OPTIONS
-    -f, –flagname=The name of the argument - Describe some flag here (default: the default)
-    –help                                  - Show this message
-    -s, –[no-]switch                       - Describe some switch here
-    –version                               - Display the program version</p>
+GLOBAL OPTIONS
+    -f, --flagname=The name of the argument - Describe some flag here (default: the default)
+    --help                                  - Show this message
+    -s, --[no-]switch                       - Describe some switch here
+    --version                               - Display the program version
 
-<p>COMMANDS
+COMMANDS
     done - Describe done here
     help - Shows a list of commands or help for one command
     list - Describe list here
     new  - Describe new here
-```</p>
+</code></pre>
+</div>
 
 <p>OK, so what happened?  We haven’t written any Ruby code, but we ran some commands, and had to use bundler.</p>
 
@@ -192,93 +192,91 @@ does the same thing.  You could also do <code class="highlighter-rouge">RUBYLIB=
 
 <p>Back to our app, you’ll notice that we have an application that produces a pretty decent help system already, so what does the code look like?</p>
 
-<p>```ruby
-#!/usr/bin/env ruby
-require ‘gli’
-require ‘todo’</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1">#!/usr/bin/env ruby</span>
+<span class="nb">require</span> <span class="s1">'gli'</span>
+<span class="nb">require</span> <span class="s1">'todo'</span>
 
-<p>include GLI::App</p>
+<span class="kp">include</span> <span class="no">GLI</span><span class="o">::</span><span class="no">App</span>
 
-<p>program_desc ‘Describe your application here’</p>
+<span class="n">program_desc</span> <span class="s1">'Describe your application here'</span>
 
-<p>version Todo::VERSION</p>
+<span class="n">version</span> <span class="no">Todo</span><span class="o">::</span><span class="no">VERSION</span>
 
-<p>desc ‘Describe some switch here’
-switch [:s,:switch]</p>
+<span class="n">desc</span> <span class="s1">'Describe some switch here'</span>
+<span class="n">switch</span> <span class="p">[</span><span class="ss">:s</span><span class="p">,</span><span class="ss">:switch</span><span class="p">]</span>
 
-<p>desc ‘Describe some flag here’
-default_value ‘the default’
-arg_name ‘The name of the argument’
-flag [:f,:flagname]</p>
+<span class="n">desc</span> <span class="s1">'Describe some flag here'</span>
+<span class="n">default_value</span> <span class="s1">'the default'</span>
+<span class="n">arg_name</span> <span class="s1">'The name of the argument'</span>
+<span class="n">flag</span> <span class="p">[</span><span class="ss">:f</span><span class="p">,</span><span class="ss">:flagname</span><span class="p">]</span>
 
-<p>desc ‘Describe new here’
-arg_name ‘Describe arguments to new here’
-command :new do |c|
-  c.desc ‘Describe a switch to new’
-  c.switch :s</p>
+<span class="n">desc</span> <span class="s1">'Describe new here'</span>
+<span class="n">arg_name</span> <span class="s1">'Describe arguments to new here'</span>
+<span class="n">command</span> <span class="ss">:new</span> <span class="k">do</span> <span class="o">|</span><span class="n">c</span><span class="o">|</span>
+  <span class="n">c</span><span class="p">.</span><span class="nf">desc</span> <span class="s1">'Describe a switch to new'</span>
+  <span class="n">c</span><span class="p">.</span><span class="nf">switch</span> <span class="ss">:s</span>
 
-<p>c.desc ‘Describe a flag to new’
-  c.default_value ‘default’
-  c.flag :f
-  c.action do |global_options,options,args|
-    puts “new command ran”
-  end
-end</p>
+  <span class="n">c</span><span class="p">.</span><span class="nf">desc</span> <span class="s1">'Describe a flag to new'</span>
+  <span class="n">c</span><span class="p">.</span><span class="nf">default_value</span> <span class="s1">'default'</span>
+  <span class="n">c</span><span class="p">.</span><span class="nf">flag</span> <span class="ss">:f</span>
+  <span class="n">c</span><span class="p">.</span><span class="nf">action</span> <span class="k">do</span> <span class="o">|</span><span class="n">global_options</span><span class="p">,</span><span class="n">options</span><span class="p">,</span><span class="n">args</span><span class="o">|</span>
+    <span class="nb">puts</span> <span class="s2">"new command ran"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 
-<p>desc ‘Describe done here’
-arg_name ‘Describe arguments to done here’
-command :done do |c|
-  c.action do |global_options,options,args|
-    puts “done command ran”
-  end
-end</p>
+<span class="n">desc</span> <span class="s1">'Describe done here'</span>
+<span class="n">arg_name</span> <span class="s1">'Describe arguments to done here'</span>
+<span class="n">command</span> <span class="ss">:done</span> <span class="k">do</span> <span class="o">|</span><span class="n">c</span><span class="o">|</span>
+  <span class="n">c</span><span class="p">.</span><span class="nf">action</span> <span class="k">do</span> <span class="o">|</span><span class="n">global_options</span><span class="p">,</span><span class="n">options</span><span class="p">,</span><span class="n">args</span><span class="o">|</span>
+    <span class="nb">puts</span> <span class="s2">"done command ran"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 
-<p>desc ‘Describe list here’
-arg_name ‘Describe arguments to list here’
-command :list do |c|
-  c.action do |global_options,options,args|
-    puts “list command ran”
-  end
-end</p>
+<span class="n">desc</span> <span class="s1">'Describe list here'</span>
+<span class="n">arg_name</span> <span class="s1">'Describe arguments to list here'</span>
+<span class="n">command</span> <span class="ss">:list</span> <span class="k">do</span> <span class="o">|</span><span class="n">c</span><span class="o">|</span>
+  <span class="n">c</span><span class="p">.</span><span class="nf">action</span> <span class="k">do</span> <span class="o">|</span><span class="n">global_options</span><span class="p">,</span><span class="n">options</span><span class="p">,</span><span class="n">args</span><span class="o">|</span>
+    <span class="nb">puts</span> <span class="s2">"list command ran"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 
-<p>pre do |global,command,options,args|
-  true
-end</p>
+<span class="n">pre</span> <span class="k">do</span> <span class="o">|</span><span class="n">global</span><span class="p">,</span><span class="n">command</span><span class="p">,</span><span class="n">options</span><span class="p">,</span><span class="n">args</span><span class="o">|</span>
+  <span class="kp">true</span>
+<span class="k">end</span>
 
-<p>post do |global,command,options,args|
-end</p>
+<span class="n">post</span> <span class="k">do</span> <span class="o">|</span><span class="n">global</span><span class="p">,</span><span class="n">command</span><span class="p">,</span><span class="n">options</span><span class="p">,</span><span class="n">args</span><span class="o">|</span>
+<span class="k">end</span>
 
-<p>on_error do |exception|
-  true
-end</p>
+<span class="n">on_error</span> <span class="k">do</span> <span class="o">|</span><span class="n">exception</span><span class="o">|</span>
+  <span class="kp">true</span>
+<span class="k">end</span>
 
-<p>exit run(ARGV)
-```</p>
+<span class="nb">exit</span> <span class="n">run</span><span class="p">(</span><span class="no">ARGV</span><span class="p">)</span>
+</code></pre>
+</div>
 
 <p>Since we specified <code class="highlighter-rouge">new done list</code> on the command line to <code class="highlighter-rouge">gli init</code>, it went ahead and created command blocks for us.  Notice
 that each command block is configured in the style of rake - we describe the command, document its arguments, and declare that
 it exists.  You’ll notice that each command has a generic <code class="highlighter-rouge">puts</code> in it, so we can see how our new app works right now:</p>
 
-<p>```
-&gt; bundle exec bin/todo list
-list command ran</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>&gt; bundle exec bin/todo list
+list command ran
 
-<blockquote>
-  <p>bundle exec bin/todo done
+&gt; bundle exec bin/todo done
 done command ran
-```</p>
-</blockquote>
+</code></pre>
+</div>
 
 <p>We can also get help for particular commands already:</p>
 
-<p>```
-&gt; bundle exec bin/todo help list
+<div class="highlighter-rouge"><pre class="highlight"><code>&gt; bundle exec bin/todo help list
 NAME
-    list - Describe list here</p>
+    list - Describe list here
 
-<p>SYNOPSIS
+SYNOPSIS
     todo [global options] list Describe arguments to list here
-```</p>
+</code></pre>
+</div>
 
 <p>Not bad for having written absolutely no code!</p>
 
@@ -286,96 +284,92 @@ NAME
 
 <p>Let’s replace the boilerplate with what we need for our todo list app.</p>
 
-<p>```ruby
-desc ‘Location of todo file’
-default_value ‘~/.todo’
-arg_name ‘path_to_file’
-flag [:f,:file]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">desc</span> <span class="s1">'Location of todo file'</span>
+<span class="n">default_value</span> <span class="s1">'~/.todo'</span>
+<span class="n">arg_name</span> <span class="s1">'path_to_file'</span>
+<span class="n">flag</span> <span class="p">[</span><span class="ss">:f</span><span class="p">,</span><span class="ss">:file</span><span class="p">]</span>
 
-<p>desc ‘Create a new todo item’
-arg_name ‘text_of_todo’
-command :new do |c|
-  c.action do |global_options,options,args|
-    todo = args.join(‘ ‘)
-    # Add todo to the file at global_options[:file]
-  end
-end</p>
+<span class="n">desc</span> <span class="s1">'Create a new todo item'</span>
+<span class="n">arg_name</span> <span class="s1">'text_of_todo'</span>
+<span class="n">command</span> <span class="ss">:new</span> <span class="k">do</span> <span class="o">|</span><span class="n">c</span><span class="o">|</span>
+  <span class="n">c</span><span class="p">.</span><span class="nf">action</span> <span class="k">do</span> <span class="o">|</span><span class="n">global_options</span><span class="p">,</span><span class="n">options</span><span class="p">,</span><span class="n">args</span><span class="o">|</span>
+    <span class="n">todo</span> <span class="o">=</span> <span class="n">args</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="s1">' '</span><span class="p">)</span>
+    <span class="c1"># Add todo to the file at global_options[:file]</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 
-<p>desc ‘Complete a todo’
-arg_name ‘todo_id’
-command :done do |c|
-  c.action do |global_options,options,args|
-    id = args.shift
-    # Locate id in global_options[:file] and mark it completed
-  end
-end</p>
+<span class="n">desc</span> <span class="s1">'Complete a todo'</span>
+<span class="n">arg_name</span> <span class="s1">'todo_id'</span>
+<span class="n">command</span> <span class="ss">:done</span> <span class="k">do</span> <span class="o">|</span><span class="n">c</span><span class="o">|</span>
+  <span class="n">c</span><span class="p">.</span><span class="nf">action</span> <span class="k">do</span> <span class="o">|</span><span class="n">global_options</span><span class="p">,</span><span class="n">options</span><span class="p">,</span><span class="n">args</span><span class="o">|</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">args</span><span class="p">.</span><span class="nf">shift</span>
+    <span class="c1"># Locate id in global_options[:file] and mark it completed</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 
-<p>desc ‘List todo items’
-command :list do |c|
-  c.desc ‘Use long format’
-  c.switch [:l,:long]</p>
+<span class="n">desc</span> <span class="s1">'List todo items'</span>
+<span class="n">command</span> <span class="ss">:list</span> <span class="k">do</span> <span class="o">|</span><span class="n">c</span><span class="o">|</span>
+  <span class="n">c</span><span class="p">.</span><span class="nf">desc</span> <span class="s1">'Use long format'</span>
+  <span class="n">c</span><span class="p">.</span><span class="nf">switch</span> <span class="p">[</span><span class="ss">:l</span><span class="p">,</span><span class="ss">:long</span><span class="p">]</span>
 
-<p>c.desc ‘Show all items, even uncompleted ones’
-  c.switch [:a,:all]</p>
+  <span class="n">c</span><span class="p">.</span><span class="nf">desc</span> <span class="s1">'Show all items, even uncompleted ones'</span>
+  <span class="n">c</span><span class="p">.</span><span class="nf">switch</span> <span class="p">[</span><span class="ss">:a</span><span class="p">,</span><span class="ss">:all</span><span class="p">]</span>
 
-<p>c.action do |global_options,options,args|
-    # Read todos from global_options[:file]
-    # and then use options[:long] and
-    # options[:all] to figure out what
-    # to display
-  end
-end
-```</p>
+  <span class="n">c</span><span class="p">.</span><span class="nf">action</span> <span class="k">do</span> <span class="o">|</span><span class="n">global_options</span><span class="p">,</span><span class="n">options</span><span class="p">,</span><span class="n">args</span><span class="o">|</span>
+    <span class="c1"># Read todos from global_options[:file]</span>
+    <span class="c1"># and then use options[:long] and</span>
+    <span class="c1"># options[:all] to figure out what</span>
+    <span class="c1"># to display</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>Basically, we’ve just replaced boilerplate text with our app-, command-, and option-specific help text.  We also removed the
 example flags and switches and replaced them with the ones we’ll actually need.</p>
 
 <p>Notice that we specified <code class="highlighter-rouge">--file</code> outside of any command block, thus making it a global flag.  This is because all commands need access to the todo file.  Note also that the options <code class="highlighter-rouge">--long</code> and <code class="highlighter-rouge">--all</code>, which are specified inside the <code class="highlighter-rouge">list</code> command block, will only be available for the <code class="highlighter-rouge">list</code> command.</p>
 
-<p>```
-&gt; bundle exec bin/todo help 
+<div class="highlighter-rouge"><pre class="highlight"><code>&gt; bundle exec bin/todo help 
 NAME
-    todo - Describe your application here</p>
+    todo - Describe your application here
 
-<p>SYNOPSIS
-    todo [global options] command [command options] [arguments…]</p>
+SYNOPSIS
+    todo [global options] command [command options] [arguments...]
 
-<p>VERSION
-    0.0.1</p>
+VERSION
+    0.0.1
 
-<p>GLOBAL OPTIONS
-    -f, –file=path_to_file - Location of todo file (default: ~/.todo)
-    –help                  - Show this message
-    –version               - Display the program version</p>
+GLOBAL OPTIONS
+    -f, --file=path_to_file - Location of todo file (default: ~/.todo)
+    --help                  - Show this message
+    --version               - Display the program version
 
-<p>COMMANDS
+COMMANDS
     done - Complete a todo
     help - Shows a list of commands or help for one command
     list - List todo items
-    new  - Create a new todo item</p>
+    new  - Create a new todo item
 
-<blockquote>
-  <p>bundle exec bin/todo help new
+&gt; bundle exec bin/todo help new
 NAME
-    new - Create a new todo item</p>
-</blockquote>
+    new - Create a new todo item
 
-<p>SYNOPSIS
-    todo [global options] new text_of_todo</p>
+SYNOPSIS
+    todo [global options] new text_of_todo
 
-<blockquote>
-  <p>bundle exec bin/todo help list
+&gt; bundle exec bin/todo help list
 NAME
-    list - List todo items</p>
-</blockquote>
+    list - List todo items
 
-<p>SYNOPSIS
-    todo [global options] list [command options]</p>
+SYNOPSIS
+    todo [global options] list [command options] 
 
-<p>COMMAND OPTIONS
-    -a, –[no-]all  - Show all items, even uncompleted ones
-    -l, –[no-]long - Use long format
-```</p>
+COMMAND OPTIONS
+    -a, --[no-]all  - Show all items, even uncompleted ones
+    -l, --[no-]long - Use long format
+</code></pre>
+</div>
 
 <p>Notice how we see the documentation relevant to the command, and not in one global space?  Handy.</p>
 
@@ -385,14 +379,14 @@ interface isn’t OO, it’s declarative and command-oriented, so it makes sense
 <p>Also notice the structure of the command line.  In a Thor app, all command-line options must come at the end of the command line.
 In a GLI app, the position of the switches determines their interpretation.</p>
 
-<p><code class="highlighter-rouge">
-&gt; bin/todo -f ~/.todo.txt -l list
+<div class="highlighter-rouge"><pre class="highlight"><code>&gt; bin/todo -f ~/.todo.txt -l list
 error: Unknown options -l
 &gt; bin/todo list -l -f ~/.todo.txt
 error: Unknown option -f
 &gt; bin/todo -f ~/.todo.txt list -l
 # lists in long form from ~/.todo.txt
-</code></p>
+</code></pre>
+</div>
 
 <p>This creates namespaces for our options, which allows the creation of a rich user interface, if needed. I borrowed this design
 from <code class="highlighter-rouge">git</code> (and, in fact, GLI stands for “Git-Like Interface”).</p>
@@ -414,41 +408,41 @@ specifies <code class="highlighter-rouge">--no-all</code> on the command line, <
 
 <p>Suppose we want to give our new todo items a “category” and that we want to require the category to be one of “chore”, “feature”, or “bug”.   The naive approach would be to examine <code class="highlighter-rouge">options[:category]</code> inside our <code class="highlighter-rouge">action</code> block and raise an error if it’s not one of the three allowed values, GLI, via <code class="highlighter-rouge">OptionParser</code>, provides this for us:</p>
 
-<p>```ruby
-command :new do |c|
-  c.desc “The category of the new todo”
-  c.default_value ‘chore’
-  c.flag :category, must_match: %w(chore feature bug)</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">command</span> <span class="ss">:new</span> <span class="k">do</span> <span class="o">|</span><span class="n">c</span><span class="o">|</span>
+  <span class="n">c</span><span class="p">.</span><span class="nf">desc</span> <span class="s2">"The category of the new todo"</span>
+  <span class="n">c</span><span class="p">.</span><span class="nf">default_value</span> <span class="s1">'chore'</span>
+  <span class="n">c</span><span class="p">.</span><span class="nf">flag</span> <span class="ss">:category</span><span class="p">,</span> <span class="ss">must_match: </span><span class="sx">%w(chore feature bug)</span>
 
-<p># …</p>
+  <span class="c1"># ...</span>
 
-<p>c.action do |global_options, options, args|
-    # options[:category] will always be one of chore, feature, or bug
-  end
-end
-```</p>
+  <span class="n">c</span><span class="p">.</span><span class="nf">action</span> <span class="k">do</span> <span class="o">|</span><span class="n">global_options</span><span class="p">,</span> <span class="n">options</span><span class="p">,</span> <span class="n">args</span><span class="o">|</span>
+    <span class="c1"># options[:category] will always be one of chore, feature, or bug</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p><code class="highlighter-rouge">must_match</code> takes a wide variety of values, including an <code class="highlighter-rouge">Array</code>, <code class="highlighter-rouge">Hash</code>, or <code class="highlighter-rouge">Regexp</code>.</p>
 
 <p>Flags also accept the option <code class="highlighter-rouge">:type</code> that can be used to do a type conversion.  <code class="highlighter-rouge">OptionParser</code> has some <a href="http://ruby-doc.org/stdlib-2.0.0/libdoc/optparse/rdoc/OptionParser.html">conversions built-in</a>, but we could do very sophisticated things if we wanted to:</p>
 
-<p>```ruby
-accept(Todo::Type) do |string|
-  Todo.const_get(string.capitalize)
-end</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">accept</span><span class="p">(</span><span class="no">Todo</span><span class="o">::</span><span class="no">Type</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">string</span><span class="o">|</span>
+  <span class="no">Todo</span><span class="p">.</span><span class="nf">const_get</span><span class="p">(</span><span class="n">string</span><span class="p">.</span><span class="nf">capitalize</span><span class="p">)</span>
+<span class="k">end</span>
 
-<p>command :new do |c|
-  c.desc “The type of the new todo”
-  c.default_value ‘chore’
-  c.flag :type, must_match: %w(chore feature bug), type: Todo::Type</p>
+<span class="n">command</span> <span class="ss">:new</span> <span class="k">do</span> <span class="o">|</span><span class="n">c</span><span class="o">|</span>
+  <span class="n">c</span><span class="p">.</span><span class="nf">desc</span> <span class="s2">"The type of the new todo"</span>
+  <span class="n">c</span><span class="p">.</span><span class="nf">default_value</span> <span class="s1">'chore'</span>
+  <span class="n">c</span><span class="p">.</span><span class="nf">flag</span> <span class="ss">:type</span><span class="p">,</span> <span class="ss">must_match: </span><span class="sx">%w(chore feature bug)</span><span class="p">,</span> <span class="ss">type: </span><span class="no">Todo</span><span class="o">::</span><span class="no">Type</span>
 
-<p># …</p>
+  <span class="c1"># ...</span>
 
-<p>c.action do |global_options, options, args|
-    # options[:type] will always be Todo::Chore, Todo::Feature, or Todo::Bug
-  end
-end
-```</p>
+  <span class="n">c</span><span class="p">.</span><span class="nf">action</span> <span class="k">do</span> <span class="o">|</span><span class="n">global_options</span><span class="p">,</span> <span class="n">options</span><span class="p">,</span> <span class="n">args</span><span class="o">|</span>
+    <span class="c1"># options[:type] will always be Todo::Chore, Todo::Feature, or Todo::Bug</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>Nice!</p>
 
@@ -464,81 +458,81 @@ recognized as the “new” command, because no other command starts with “n�
 
 <p>We can also provide explicit aliases by passing an array to <code class="highlighter-rouge">command</code>, much as we did with our flags and switches:</p>
 
-<p>```ruby
-command [:list,:show] do |c|</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">command</span> <span class="p">[</span><span class="ss">:list</span><span class="p">,</span><span class="ss">:show</span><span class="p">]</span> <span class="k">do</span> <span class="o">|</span><span class="n">c</span><span class="o">|</span>
 
-<p># …</p>
+  <span class="c1"># ...</span>
 
-<p>end
-```</p>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <h3 id="global-hooks">Global Hooks</h3>
 
 <p>If we were to fill in the three actions with actual code, you’d see that they all have some need to access the to-do list.  We
 might create a class like <code class="highlighter-rouge">TodoList</code> and use it like so:</p>
 
-<p>```ruby
-c.command :list do 
-  c.action do |global_options,options,args|
-    todo_list = TodoList.load(global_options[:file])
-    todo_list.tasks.each do |todo|
-      puts todo
-    end
-  end
-end</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">c</span><span class="p">.</span><span class="nf">command</span> <span class="ss">:list</span> <span class="k">do</span> 
+  <span class="n">c</span><span class="p">.</span><span class="nf">action</span> <span class="k">do</span> <span class="o">|</span><span class="n">global_options</span><span class="p">,</span><span class="n">options</span><span class="p">,</span><span class="n">args</span><span class="o">|</span>
+    <span class="n">todo_list</span> <span class="o">=</span> <span class="no">TodoList</span><span class="p">.</span><span class="nf">load</span><span class="p">(</span><span class="n">global_options</span><span class="p">[</span><span class="ss">:file</span><span class="p">])</span>
+    <span class="n">todo_list</span><span class="p">.</span><span class="nf">tasks</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">todo</span><span class="o">|</span>
+      <span class="nb">puts</span> <span class="n">todo</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 
-<p>c.command :done do
-  c.action do |global_options,options,args|
-    todo_list = TodoList.load(global_options[:file])
-    todo_list.complete!(args.shift)
-    todo_list.save!(global_options[:file])
-  end
-end</p>
+<span class="n">c</span><span class="p">.</span><span class="nf">command</span> <span class="ss">:done</span> <span class="k">do</span>
+  <span class="n">c</span><span class="p">.</span><span class="nf">action</span> <span class="k">do</span> <span class="o">|</span><span class="n">global_options</span><span class="p">,</span><span class="n">options</span><span class="p">,</span><span class="n">args</span><span class="o">|</span>
+    <span class="n">todo_list</span> <span class="o">=</span> <span class="no">TodoList</span><span class="p">.</span><span class="nf">load</span><span class="p">(</span><span class="n">global_options</span><span class="p">[</span><span class="ss">:file</span><span class="p">])</span>
+    <span class="n">todo_list</span><span class="p">.</span><span class="nf">complete!</span><span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="nf">shift</span><span class="p">)</span>
+    <span class="n">todo_list</span><span class="p">.</span><span class="nf">save!</span><span class="p">(</span><span class="n">global_options</span><span class="p">[</span><span class="ss">:file</span><span class="p">])</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 
-<p>c.command :new do
-  c.action do |global_options,options,args|
-    todo_list = TodoList.load(global_options[:file])
-    todo_list.add(args.join(‘ ‘)
-    todo_list.save!(global_options[:file])
-  end
-end
-```</p>
+<span class="n">c</span><span class="p">.</span><span class="nf">command</span> <span class="ss">:new</span> <span class="k">do</span>
+  <span class="n">c</span><span class="p">.</span><span class="nf">action</span> <span class="k">do</span> <span class="o">|</span><span class="n">global_options</span><span class="p">,</span><span class="n">options</span><span class="p">,</span><span class="n">args</span><span class="o">|</span>
+    <span class="n">todo_list</span> <span class="o">=</span> <span class="no">TodoList</span><span class="p">.</span><span class="nf">load</span><span class="p">(</span><span class="n">global_options</span><span class="p">[</span><span class="ss">:file</span><span class="p">])</span>
+    <span class="n">todo_list</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="s1">' '</span><span class="p">)</span>
+    <span class="n">todo_list</span><span class="p">.</span><span class="nf">save!</span><span class="p">(</span><span class="n">global_options</span><span class="p">[</span><span class="ss">:file</span><span class="p">])</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>This can get repetitive.  Although we have a way to specify that all commands have the flag <code class="highlighter-rouge">--file</code>, it would be nice if we
 could globally translate that filename into a real object and have it managed outside our commands.</p>
 
 <p>That’s where <code class="highlighter-rouge">pre</code> and <code class="highlighter-rouge">post</code> come in:</p>
 
-<p>```ruby
-pre do |global_options,command,options,args|
-  $todo_list = TodoList.load(global_options[:file])
-  true
-end</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">pre</span> <span class="k">do</span> <span class="o">|</span><span class="n">global_options</span><span class="p">,</span><span class="n">command</span><span class="p">,</span><span class="n">options</span><span class="p">,</span><span class="n">args</span><span class="o">|</span>
+  <span class="vg">$todo_list</span> <span class="o">=</span> <span class="no">TodoList</span><span class="p">.</span><span class="nf">load</span><span class="p">(</span><span class="n">global_options</span><span class="p">[</span><span class="ss">:file</span><span class="p">])</span>
+  <span class="kp">true</span>
+<span class="k">end</span>
 
-<p>post do |global_options,command,options,args|
-  $todo_list.save!(global_options[:file])
-end</p>
+<span class="n">post</span> <span class="k">do</span> <span class="o">|</span><span class="n">global_options</span><span class="p">,</span><span class="n">command</span><span class="p">,</span><span class="n">options</span><span class="p">,</span><span class="n">args</span><span class="o">|</span>
+  <span class="vg">$todo_list</span><span class="p">.</span><span class="nf">save!</span><span class="p">(</span><span class="n">global_options</span><span class="p">[</span><span class="ss">:file</span><span class="p">])</span>
+<span class="k">end</span>
 
-<p>c.command :list do 
-  c.action do |global_options,options,args|
-    $todo_list.tasks.each do |todo|
-      puts todo
-    end
-  end
-end</p>
+<span class="n">c</span><span class="p">.</span><span class="nf">command</span> <span class="ss">:list</span> <span class="k">do</span> 
+  <span class="n">c</span><span class="p">.</span><span class="nf">action</span> <span class="k">do</span> <span class="o">|</span><span class="n">global_options</span><span class="p">,</span><span class="n">options</span><span class="p">,</span><span class="n">args</span><span class="o">|</span>
+    <span class="vg">$todo_list</span><span class="p">.</span><span class="nf">tasks</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">todo</span><span class="o">|</span>
+      <span class="nb">puts</span> <span class="n">todo</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 
-<p>c.command :done do
-  c.action do |global_options,options,args|
-    $todo_list.complete!(args.shift)
-  end
-end</p>
+<span class="n">c</span><span class="p">.</span><span class="nf">command</span> <span class="ss">:done</span> <span class="k">do</span>
+  <span class="n">c</span><span class="p">.</span><span class="nf">action</span> <span class="k">do</span> <span class="o">|</span><span class="n">global_options</span><span class="p">,</span><span class="n">options</span><span class="p">,</span><span class="n">args</span><span class="o">|</span>
+    <span class="vg">$todo_list</span><span class="p">.</span><span class="nf">complete!</span><span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="nf">shift</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 
-<p>c.command :new do
-  c.action do |global_options,options,args|
-    $todo_list.add(args.join(‘ ‘)
-  end
-end
-```</p>
+<span class="n">c</span><span class="p">.</span><span class="nf">command</span> <span class="ss">:new</span> <span class="k">do</span>
+  <span class="n">c</span><span class="p">.</span><span class="nf">action</span> <span class="k">do</span> <span class="o">|</span><span class="n">global_options</span><span class="p">,</span><span class="n">options</span><span class="p">,</span><span class="n">args</span><span class="o">|</span>
+    <span class="vg">$todo_list</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="s1">' '</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>Here, <code class="highlighter-rouge">pre</code> receives the parsed command and options.  The <code class="highlighter-rouge">pre</code> block’s code will execute before the contents of our <code class="highlighter-rouge">action</code> block.
 <code class="highlighter-rouge">post</code>, too, receives this information and runs <em>after</em> our action block.  Our todo list app commands always have access to the parsed todo list file, and can be sure that any changes they make will
@@ -549,29 +543,29 @@ be saved to disk after.</p>
 <p>GLI allows infinitely nested subcommands.  For example, if we wanted to have our <code class="highlighter-rouge">list</code> command work a bit differently, such as
 <code class="highlighter-rouge">todo list done</code> or <code class="highlighter-rouge">todo list inprogress</code>, we can model <code class="highlighter-rouge">done</code> and <code class="highlighter-rouge">inprogress</code> as subcommands:</p>
 
-<p>```ruby
-desc “List todo items”
-command :list do |list|</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">desc</span> <span class="s2">"List todo items"</span>
+<span class="n">command</span> <span class="ss">:list</span> <span class="k">do</span> <span class="o">|</span><span class="n">list</span><span class="o">|</span>
 
-<p>list.desc “Show only completed items”
-  list.command :done do |done|
-    done.action do |global_options,options,args|
-      $todo_list.completed.each do |todo|
-        puts todo
-      end
-    end
-  end</p>
+  <span class="n">list</span><span class="p">.</span><span class="nf">desc</span> <span class="s2">"Show only completed items"</span>
+  <span class="n">list</span><span class="p">.</span><span class="nf">command</span> <span class="ss">:done</span> <span class="k">do</span> <span class="o">|</span><span class="n">done</span><span class="o">|</span>
+    <span class="n">done</span><span class="p">.</span><span class="nf">action</span> <span class="k">do</span> <span class="o">|</span><span class="n">global_options</span><span class="p">,</span><span class="n">options</span><span class="p">,</span><span class="n">args</span><span class="o">|</span>
+      <span class="vg">$todo_list</span><span class="p">.</span><span class="nf">completed</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">todo</span><span class="o">|</span>
+        <span class="nb">puts</span> <span class="n">todo</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
 
-<p>list.desc “Show only in-progress items”
-  list.command :inprogress do |done|
-    done.action do |global_options,options,args|
-      $todo_list.in_progress.each do |todo|
-        puts todo
-      end
-    end
-  end
-end
-```</p>
+  <span class="n">list</span><span class="p">.</span><span class="nf">desc</span> <span class="s2">"Show only in-progress items"</span>
+  <span class="n">list</span><span class="p">.</span><span class="nf">command</span> <span class="ss">:inprogress</span> <span class="k">do</span> <span class="o">|</span><span class="n">done</span><span class="o">|</span>
+    <span class="n">done</span><span class="p">.</span><span class="nf">action</span> <span class="k">do</span> <span class="o">|</span><span class="n">global_options</span><span class="p">,</span><span class="n">options</span><span class="p">,</span><span class="n">args</span><span class="o">|</span>
+      <span class="vg">$todo_list</span><span class="p">.</span><span class="nf">in_progress</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">todo</span><span class="o">|</span>
+        <span class="nb">puts</span> <span class="n">todo</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>Subcommands have their own “option space”, so you can create a very sophisticated UI if you need to.</p>
 

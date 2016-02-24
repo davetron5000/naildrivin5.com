@@ -84,13 +84,13 @@ Rails validations.  But Rails validations are still a great tool for <em>user ex
 
 <p>Suppose we have a table of users, and a user has a name and email:</p>
 
-<p><code class="highlighter-rouge">sql
-create table users(
-  id    int  NOT NULL,
-  name  text NOT NULL,
-  email text NOT NULL
-);
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">create</span> <span class="k">table</span> <span class="n">users</span><span class="p">(</span>
+  <span class="n">id</span>    <span class="n">int</span>  <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="n">name</span>  <span class="n">text</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="n">email</span> <span class="n">text</span> <span class="k">NOT</span> <span class="k">NULL</span>
+<span class="p">);</span>
+</code></pre>
+</div>
 
 <p><a name="back-1">
 </a>
@@ -98,15 +98,15 @@ Although we’ve used <code class="highlighter-rouge">NOT NULL</code> to make su
 
 <p>We can do that by requiring that the <code class="highlighter-rouge">name</code> field match a regexp:</p>
 
-<p><code class="highlighter-rouge">sql
-ALTER TABLE 
-  users 
-ADD CONSTRAINT 
-  users_name_must_look_like_a_name 
-CHECK (
-  name ~* '^.*[a-z] [a-z].*$'
-);
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">ALTER</span> <span class="k">TABLE</span> 
+  <span class="n">users</span> 
+<span class="k">ADD</span> <span class="k">CONSTRAINT</span> 
+  <span class="n">users_name_must_look_like_a_name</span> 
+<span class="k">CHECK</span> <span class="p">(</span>
+  <span class="n">name</span> <span class="o">~*</span> <span class="s1">'^.*[a-z] [a-z].*$'</span>
+<span class="p">);</span>
+</code></pre>
+</div>
 
 <p><a name="back-2">
 </a>
@@ -115,24 +115,20 @@ letter followed by a space, followed by another letter, somewhere in the string<
 
 <p>Now, when we insert an invalid value, it won’t work:</p>
 
-<p>```
-&gt; insert into users(id,name,email) values (1,’’,’bob@blah.com’);
-ERROR:  new row for relation “users” violates 
-        check constraint “users_name_must_look_like_a_name”
-DETAIL:  Failing row contains (1, , bob@blah.com).</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>&gt; insert into users(id,name,email) values (1,'','bob@blah.com');
+ERROR:  new row for relation "users" violates 
+        check constraint "users_name_must_look_like_a_name"
+DETAIL:  Failing row contains (1, , bob@blah.com).
 
-<blockquote>
-  <p>insert into users(id,name,email) values (1,’Bob’,’bob@blah.com’);
-ERROR:  new row for relation “users” violates 
-        check constraint “users_name_must_look_like_a_name”
-DETAIL:  Failing row contains (1, Bob, bob@blah.com).</p>
-</blockquote>
+&gt; insert into users(id,name,email) values (1,'Bob','bob@blah.com');
+ERROR:  new row for relation "users" violates 
+        check constraint "users_name_must_look_like_a_name"
+DETAIL:  Failing row contains (1, Bob, bob@blah.com).
 
-<blockquote>
-  <p>insert into users(id,name,email) values (1,’Bob Jones’,’bob@blah.com’);
+&gt; insert into users(id,name,email) values (1,'Bob Jones','bob@blah.com');
 INSERT 0 1
-```</p>
-</blockquote>
+</code></pre>
+</div>
 
 <p>Nice!  This means that a) our data will always match our rules around what good data is, and b) our code can rely on this.</p>
 
@@ -141,12 +137,12 @@ Our system is designed to allow users to enter whatever their name is, as long a
 
 <p>Because we know our data meets its needs, we can safely do:</p>
 
-<p><code class="highlighter-rouge">ruby
-user = User.find(1)
-name_part1,rest_of_name = user.name.split(/\s/,2)
-ShippingProvider.generate_label(first_name: name_part1,
-                                last_name: rest_of_name)
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">name_part1</span><span class="p">,</span><span class="n">rest_of_name</span> <span class="o">=</span> <span class="n">user</span><span class="p">.</span><span class="nf">name</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="sr">/\s/</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="no">ShippingProvider</span><span class="p">.</span><span class="nf">generate_label</span><span class="p">(</span><span class="ss">first_name: </span><span class="n">name_part1</span><span class="p">,</span>
+                                <span class="ss">last_name: </span><span class="n">rest_of_name</span><span class="p">)</span>
+</code></pre>
+</div>
 
 <p>Without the check constraints, we couldn’t rely on the data being good, and so our use of <code class="highlighter-rouge">split</code> would have to have some sort of error
 handling if the name didn’t have a space in it.  Because that can never happen, our code is simpler!</p>
@@ -157,16 +153,15 @@ handling if the name didn’t have a space in it.  Because that can never happen
 
 <p>The equivalent of our check constraint above, using Rails Validations, would be:</p>
 
-<p><code class="highlighter-rouge">ruby
-class User &lt; ActiveRecord::Base
-  validates :name, format: /\A.*[a-z] [a-z].*\z/i
-end
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+  <span class="n">validates</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">format: </span><span class="sr">/\A.*[a-z] [a-z].*\z/i</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>Sure enough, this prevents us violating the validation:</p>
 
-<p><code class="highlighter-rouge">
-&gt; user = User.create(name: "bob", email: "bob@blah.com")
+<div class="highlighter-rouge"><pre class="highlight"><code>&gt; user = User.create(name: "bob", email: "bob@blah.com")
  =&gt; #&lt;User id: nil, name: "bob", email: "bob@blah.com"&gt; 
 &gt; user.valid?
  =&gt; false 
@@ -174,7 +169,8 @@ end
  =&gt; #&lt;ActiveModel::Errors:0x007fcf817cc808 
       @base=#&lt;User id: nil, name: "bob", email: "bob@blah.com"&gt;, 
       @messages={:name=&gt;["is invalid"]}&gt; 
-</code></p>
+</code></pre>
+</div>
 
 <p>Of course, we can route around this with ActiveRecord’s methods that allow it, or by calling <code class="highlighter-rouge">save(false)</code>, or by just going into the
 database.</p>
@@ -194,16 +190,14 @@ another letter, we can’t simply hope for the best.  As developers, we have a d
 
 <p>Option 2 creates a poor user experience:</p>
 
-<dl>
-  <dt>```</dt>
-  <dt>&gt; User.create(name: “Bob”, email: “bob@jones.com”)</dt>
-  <dt>ActiveRecord::StatementInvalid: PG::CheckViolation: ERROR:  </dt>
-  <dt>  new row for relation “users” violates </dt>
-  <dt>  check constraint “user_name_must_look_like_a_name”</dt>
-  <dt>DETAIL:  Failing row contains (22, Bob, bob@jones.com).</dt>
-  <dd>INSERT INTO “users” (“name”, “email”, “id”) VALUES ($1, $2, $3)
-```</dd>
-</dl>
+<div class="highlighter-rouge"><pre class="highlight"><code>&gt; User.create(name: "Bob", email: "bob@jones.com")
+ActiveRecord::StatementInvalid: PG::CheckViolation: ERROR:  
+  new row for relation "users" violates 
+  check constraint "user_name_must_look_like_a_name"
+DETAIL:  Failing row contains (22, Bob, bob@jones.com).
+: INSERT INTO "users" ("name", "email", "id") VALUES ($1, $2, $3)
+</code></pre>
+</div>
 
 <p>Assuming a user is going to be entering in their name, we need to give them a better experience than an exception. We need to use both,
 which will create some duplication.</p>
@@ -237,36 +231,35 @@ again—we need to generate an invoice and it requires a first and last name tha
 
 <p>Since that is not a requirement of <em>our</em> domain, we don’t want this in our database.  This means we have to just deal with it:</p>
 
-<p><code class="highlighter-rouge">ruby
-name_part1,rest_of_name = user.name.split(/\s/,2)
-if name_part1.length &gt; 1 &amp;&amp; rest_of_name.length &gt; 1
-  InvoiceService.generate_invoice!(first: name_part1, last: rest_of_name)
-else
-  # ???
-end
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">name_part1</span><span class="p">,</span><span class="n">rest_of_name</span> <span class="o">=</span> <span class="n">user</span><span class="p">.</span><span class="nf">name</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="sr">/\s/</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">name_part1</span><span class="p">.</span><span class="nf">length</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">rest_of_name</span><span class="p">.</span><span class="nf">length</span> <span class="o">&gt;</span> <span class="mi">1</span>
+  <span class="no">InvoiceService</span><span class="p">.</span><span class="nf">generate_invoice!</span><span class="p">(</span><span class="ss">first: </span><span class="n">name_part1</span><span class="p">,</span> <span class="ss">last: </span><span class="n">rest_of_name</span><span class="p">)</span>
+<span class="k">else</span>
+  <span class="c1"># ???</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>Depending on where this code is, you might handle the problem in a variety of ways.  You could create an ActiveModel that uses
 validations to check for this:</p>
 
-<p>```ruby
-class InvoiceUser
-  include ActiveModel::Validations</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">InvoiceUser</span>
+  <span class="kp">include</span> <span class="no">ActiveModel</span><span class="o">::</span><span class="no">Validations</span>
 
-<p>attr_accessor :name, :email</p>
+  <span class="kp">attr_accessor</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:email</span>
 
-<p>validates :name, format: /\A.<em>[a-z][a-z] [a-z][a-z].</em>\z/i</p>
+  <span class="n">validates</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">format: </span><span class="sr">/\A.*[a-z][a-z] [a-z][a-z].*\z/i</span>
 
-<p>def user
-    User.new(name: self.name, email: self.email)
-  end
-end
-```</p>
+  <span class="k">def</span> <span class="nf">user</span>
+    <span class="no">User</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">name: </span><span class="nb">self</span><span class="p">.</span><span class="nf">name</span><span class="p">,</span> <span class="ss">email: </span><span class="nb">self</span><span class="p">.</span><span class="nf">email</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>This works as advertised:</p>
 
-<p><code class="highlighter-rouge">
-&gt; i = InvoiceUser.new
+<div class="highlighter-rouge"><pre class="highlight"><code>&gt; i = InvoiceUser.new
  =&gt; #&lt;InvoiceUser:0x007ff604d80b60&gt; 
 &gt; i.name = 'a b'
  =&gt; "a b" 
@@ -278,7 +271,8 @@ end
  =&gt; true 
 &gt; i.user.save!
  =&gt; #&lt;User:0x007fcf817cc808&gt;
-</code></p>
+</code></pre>
+</div>
 
 <p>We could even use this in Rails’ form helpers by bringing in more Active Model modules.  This way, a user who has to enter their name as
 part of some use-case to create invoices will have a good experience, but our database won’t need to grow extra constraints that aren’t

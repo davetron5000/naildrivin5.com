@@ -81,14 +81,14 @@ Injection is not about a framework, XML, factories, or testing.  It’s about si
 <p>I’m going to ignore Rails for the moment, and just talk about designing classes in Ruby<a name="back-1"></a><sup><a href="#1">1</a></sup>.  Let’s take the example
 domain from <a href="http://www.naildrivin5.com/blog/2013/01/02/dci-vs-just-making-classes.html">my previous post</a>, and expand it a bit.  We start with a class that implements purchasing logic:</p>
 
-<p><code class="highlighter-rouge">ruby
-class PurchaseProcess
-  def purchase_product(customer,product)
-    customer.charge(product.price) if product.price &gt; 0
-    customer.invoices &lt;&lt; Invoice.new(product)
-  end
-end
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">PurchaseProcess</span>
+  <span class="k">def</span> <span class="nf">purchase_product</span><span class="p">(</span><span class="n">customer</span><span class="p">,</span><span class="n">product</span><span class="p">)</span>
+    <span class="n">customer</span><span class="p">.</span><span class="nf">charge</span><span class="p">(</span><span class="n">product</span><span class="p">.</span><span class="nf">price</span><span class="p">)</span> <span class="k">if</span> <span class="n">product</span><span class="p">.</span><span class="nf">price</span> <span class="o">&gt;</span> <span class="mi">0</span>
+    <span class="n">customer</span><span class="p">.</span><span class="nf">invoices</span> <span class="o">&lt;&lt;</span> <span class="no">Invoice</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">product</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>I’ve simplified things a bit, but basically we charge the customer, create an invoice, and add it to their invoices.  This class
 gets used as part of the regular purchase flow of our website.  Suppose that we want to run a promotion such that, whenever
@@ -97,15 +97,15 @@ it’s a special product with a price of zero, so they get it for free.</p>
 
 <p>Let’s make a class for this.</p>
 
-<p><code class="highlighter-rouge">ruby
-class KeychainPromotion
-  def sign_up_for_mailing_list(customer)
-    MailingList.add(customer)
-    keychain = Product.find("promo-keychain")
-    PurchaseProcess.new.purchase_product(customer,keychain)
-  end
-end
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">KeychainPromotion</span>
+  <span class="k">def</span> <span class="nf">sign_up_for_mailing_list</span><span class="p">(</span><span class="n">customer</span><span class="p">)</span>
+    <span class="no">MailingList</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="n">customer</span><span class="p">)</span>
+    <span class="n">keychain</span> <span class="o">=</span> <span class="no">Product</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="s2">"promo-keychain"</span><span class="p">)</span>
+    <span class="no">PurchaseProcess</span><span class="p">.</span><span class="nf">new</span><span class="p">.</span><span class="nf">purchase_product</span><span class="p">(</span><span class="n">customer</span><span class="p">,</span><span class="n">keychain</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>This is straightforward, simple code.  We add the customer to the mailing list, find the promotional keychain, and “purchase” it.</p>
 
@@ -122,19 +122,19 @@ end
 object is only needed to create an instance of that class so we can call <code class="highlighter-rouge">purchase_product</code> on it.  Let’s inject this dependency
 and see what happens.</p>
 
-<p>```ruby
-class KeychainPromotion
-  def initialize(purchase_process)
-    @purchase_process = purchase_process
-  end</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">KeychainPromotion</span>
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">purchase_process</span><span class="p">)</span>
+    <span class="vi">@purchase_process</span> <span class="o">=</span> <span class="n">purchase_process</span>
+  <span class="k">end</span>
 
-<p>def sign_up_for_mailing_list(customer)
-    MailingList.add(customer)
-    keychain = Product.find(“promo-keychain”)
-    @purchase_process.purchase_product(customer,keychain)
-  end
-end
-```</p>
+  <span class="k">def</span> <span class="nf">sign_up_for_mailing_list</span><span class="p">(</span><span class="n">customer</span><span class="p">)</span>
+    <span class="no">MailingList</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="n">customer</span><span class="p">)</span>
+    <span class="n">keychain</span> <span class="o">=</span> <span class="no">Product</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="s2">"promo-keychain"</span><span class="p">)</span>
+    <span class="vi">@purchase_process</span><span class="p">.</span><span class="nf">purchase_product</span><span class="p">(</span><span class="n">customer</span><span class="p">,</span><span class="n">keychain</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>Our class is a bit longer, but it has fewer dependencies.  It also does fewer, things, making it more cohesive.  It’s <em>only</em> about this promotion, and no longer about creating instances of a shared class.  If the way in which <code class="highlighter-rouge">PurchaseProcess</code> instances get created needs to change, we will not have to change this class, meaning its <em>fan out</em> is lower.  It is <em>simpler</em>, by any objective definition.</p>
 
@@ -156,20 +156,20 @@ and, outside of the <a href="http://stackoverflow.com/questions/1722726/is-the-s
 <p>Suppose we want to inject more dependencies into our <code class="highlighter-rouge">KeychainPromotion</code> class.  Let’s replace the “hard-coded” dependency on
 the <code class="highlighter-rouge">Product</code> object with an injected finder and see what happens.</p>
 
-<p>```ruby
-class KeychainPromotion
-  def initialize(purchase_process,product_finder)
-    @purchase_process = purchase_process
-    @product_finder   = product_finder
-  end</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">KeychainPromotion</span>
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">purchase_process</span><span class="p">,</span><span class="n">product_finder</span><span class="p">)</span>
+    <span class="vi">@purchase_process</span> <span class="o">=</span> <span class="n">purchase_process</span>
+    <span class="vi">@product_finder</span>   <span class="o">=</span> <span class="n">product_finder</span>
+  <span class="k">end</span>
 
-<p>def sign_up_for_mailing_list(customer)
-    MailingList.add(customer)
-    keychain = @product_finder.find(“promo-keychain”)
-    @purchase_process.purchase_product(customer,keychain)
-  end
-end
-```</p>
+  <span class="k">def</span> <span class="nf">sign_up_for_mailing_list</span><span class="p">(</span><span class="n">customer</span><span class="p">)</span>
+    <span class="no">MailingList</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="n">customer</span><span class="p">)</span>
+    <span class="n">keychain</span> <span class="o">=</span> <span class="vi">@product_finder</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="s2">"promo-keychain"</span><span class="p">)</span>
+    <span class="vi">@purchase_process</span><span class="p">.</span><span class="nf">purchase_product</span><span class="p">(</span><span class="n">customer</span><span class="p">,</span><span class="n">keychain</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>Is this better?  We haven’t reduced the <em>number</em> of dependencies on this class, even though we increased the complexity of the
 constructor.  The <code class="highlighter-rouge">sign_up_for_mailing_list</code> method is also more complex because it now depends on a new ivar, <code class="highlighter-rouge">@product_finder</code>,

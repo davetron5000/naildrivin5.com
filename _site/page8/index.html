@@ -197,16 +197,16 @@ than the title implies.  You need to read the entire thing. After he makes the c
 
 <p>Suppose that the only way we have to organize code in Ruby is to make lambdas, and the only way we have to structure data are arrays:</p>
 
-<p>```ruby
-square = -&gt;(x) { x * x }
-square.(4) # =&gt; 16</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">square</span> <span class="o">=</span> <span class="o">-&gt;</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">{</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span> <span class="p">}</span>
+<span class="n">square</span><span class="o">.</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="c1"># =&gt; 16</span>
 
-<p>person = [“Dave”,:male]
-print_person = -&gt;((name,gender)) { 
-  puts “#{name} is a #{gender}”
-}
-print_person.(person)
-```</p>
+<span class="n">person</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Dave"</span><span class="p">,</span><span class="ss">:male</span><span class="p">]</span>
+<span class="n">print_person</span> <span class="o">=</span> <span class="o">-&gt;</span><span class="p">((</span><span class="nb">name</span><span class="p">,</span><span class="n">gender</span><span class="p">))</span> <span class="p">{</span> 
+  <span class="nb">puts</span> <span class="s2">"</span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2"> is a </span><span class="si">#{</span><span class="n">gender</span><span class="si">}</span><span class="s2">"</span>
+<span class="p">}</span>
+<span class="n">print_person</span><span class="o">.</span><span class="p">(</span><span class="n">person</span><span class="p">)</span>
+</code></pre>
+</div>
 
 <p>This is the most bare-bones essence of functional programming: all we have is functions.   Let’s write some real-ish code this way and see how far we get before it starts
 becoming painful.</p>

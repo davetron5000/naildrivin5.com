@@ -84,10 +84,10 @@
 
 <p>We use typography all the time in our code.  We indent it whenever a new scope is created.  We limit our line lengths to a certain number of characters.  We color-code bits of code according to their purpose, aka syntax highlighting.  Some of us even align other parts of our code, such repeated inline comments, like so:</p>
 
-<p><code class="highlighter-rouge">java
-int left = shape.positionLeft(); // Our display is left-oriented
-int top = shape.positionTop();   // We start drawing pixels from the top
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kt">int</span> <span class="n">left</span> <span class="o">=</span> <span class="n">shape</span><span class="o">.</span><span class="na">positionLeft</span><span class="o">();</span> <span class="c1">// Our display is left-oriented</span>
+<span class="kt">int</span> <span class="n">top</span> <span class="o">=</span> <span class="n">shape</span><span class="o">.</span><span class="na">positionTop</span><span class="o">();</span>   <span class="c1">// We start drawing pixels from the top</span>
+</code></pre>
+</div>
 
 <p>This sort of “code formatting” isn’t about correctness, it’s about aesthetics, all in aid of making the code easier to read.  Typography doesn’t address what <em>should</em> be written but rather how it should be presented to make what <em>was</em> written as readable as possible.</p>
 
@@ -116,16 +116,16 @@ strong as others in the chain.</p>
 
 <p>We’ll start with C, one of the oldest “high-level” languages.  Here is the source code for the <code class="highlighter-rouge">strcpy</code> function from the BSD kernel:</p>
 
-<p>```c
-char *
-strcpy(to, from)
-        register char *to;
-        register const char *from;
-{
-        char *save = to;</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kt">char</span> <span class="o">*</span>
+<span class="n">strcpy</span><span class="p">(</span><span class="n">to</span><span class="p">,</span> <span class="n">from</span><span class="p">)</span>
+        <span class="k">register</span> <span class="kt">char</span> <span class="o">*</span><span class="n">to</span><span class="p">;</span>
+        <span class="k">register</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">from</span><span class="p">;</span>
+<span class="p">{</span>
+        <span class="kt">char</span> <span class="o">*</span><span class="n">save</span> <span class="o">=</span> <span class="n">to</span><span class="p">;</span>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>    for (; (*to = *from) != 0; ++from, ++to);
-    return(save); } ```
+        <span class="k">for</span> <span class="p">(;</span> <span class="p">(</span><span class="o">*</span><span class="n">to</span> <span class="o">=</span> <span class="o">*</span><span class="n">from</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">;</span> <span class="o">++</span><span class="n">from</span><span class="p">,</span> <span class="o">++</span><span class="n">to</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">(</span><span class="n">save</span><span class="p">);</span>
+<span class="p">}</span>
 </code></pre>
 </div>
 
@@ -137,12 +137,12 @@ strcpy(to, from)
 
 <p>Let’s re-set the argument list, aligning like with like, forming a table structure, like so:</p>
 
-<p><code class="highlighter-rouge">c
-char *
-strcpy(to, from)
-        register       char* to;
-        register const char* from;
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kt">char</span> <span class="o">*</span>
+<span class="n">strcpy</span><span class="p">(</span><span class="n">to</span><span class="p">,</span> <span class="n">from</span><span class="p">)</span>
+        <span class="k">register</span>       <span class="kt">char</span><span class="o">*</span> <span class="n">to</span><span class="p">;</span>
+        <span class="k">register</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">from</span><span class="p">;</span>
+</code></pre>
+</div>
 
 <p>Now, the arguments block forms a table of three columns.  The modifiers make up the first column, the data types are aligned in the second column, and the names are in the third column (also notice how the syntax highlighting reinforces the new table structure).  We’ve also re-set the data type such that there is no space between <code class="highlighter-rouge">char</code> and <code class="highlighter-rouge">*</code> - the data type of both of these variables is “pointer to char”, so it makes more sense to put the space before the argument name, not in the middle the data type’s name (<strong>update</strong>: it should be pointed out that this only makes sense for a single declaration.  A construct like <code class="highlighter-rouge">char* a, b</code> will create a pointer to <code class="highlighter-rouge">char</code>, <code class="highlighter-rouge">a</code>, and a regular <code class="highlighter-rouge">char</code>, <code class="highlighter-rouge">b</code>).</p>
 
@@ -152,14 +152,14 @@ strcpy(to, from)
 
 <p>One thing that would be handy is to make it more clear that there is <em>intentionally</em> no initializing code nor loop body.  We’d also like to make it simpler to see each part of the <code class="highlighter-rouge">for</code> loop for what it is.  Let’s add some whitespace and vertical alignment to see if we can improve it.</p>
 
-<p><code class="highlighter-rouge">c
-for (
-                          ; 
-        (*to = *from) != 0; 
-        ++from, ++to
-    )
-    ;
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">for</span> <span class="p">(</span>
+                          <span class="p">;</span> 
+        <span class="p">(</span><span class="o">*</span><span class="n">to</span> <span class="o">=</span> <span class="o">*</span><span class="n">from</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">;</span> 
+        <span class="o">++</span><span class="n">from</span><span class="p">,</span> <span class="o">++</span><span class="n">to</span>
+    <span class="p">)</span>
+    <span class="p">;</span>
+</code></pre>
+</div>
 
 <p>By vertically aligning the semi-colons, the missing initializer jumps right out at you.  The whitespace created by the semicolons now looks intentional - that space couldn’t be there by accident.  We’ve done the same with the loop body, although we took care <em>not</em> to vertically align that semi-colon, thus creating a visual distinction between the two parts of the <code class="highlighter-rouge">for</code> loop.</p>
 
@@ -169,11 +169,11 @@ for (
 
 <p>Let’s look at the routine from Ruby on Rails for creating a text field tag in HTML:</p>
 
-<p><code class="highlighter-rouge">ruby
-def text_field_tag(name, value = nil, options = {})
-  tag :input, { :type =&gt; "text", :name =&gt; name, :id =&gt; sanitize_to_id(name), :value =&gt; value }.update(options.stringify_keys)
-end
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">text_field_tag</span><span class="p">(</span><span class="nb">name</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="kp">nil</span><span class="p">,</span> <span class="n">options</span> <span class="o">=</span> <span class="p">{})</span>
+  <span class="n">tag</span> <span class="ss">:input</span><span class="p">,</span> <span class="p">{</span> <span class="ss">:type</span> <span class="o">=&gt;</span> <span class="s2">"text"</span><span class="p">,</span> <span class="ss">:name</span> <span class="o">=&gt;</span> <span class="nb">name</span><span class="p">,</span> <span class="ss">:id</span> <span class="o">=&gt;</span> <span class="n">sanitize_to_id</span><span class="p">(</span><span class="nb">name</span><span class="p">),</span> <span class="ss">:value</span> <span class="o">=&gt;</span> <span class="n">value</span> <span class="p">}.</span><span class="nf">update</span><span class="p">(</span><span class="n">options</span><span class="p">.</span><span class="nf">stringify_keys</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>Wow, that is way off the page (or wrapping horribly, depending on how you’re reading this).</p>
 
@@ -185,17 +185,17 @@ end
 
 <p>Let’s re-set this code to keep the tokens-per-line low but avoid splitting expressions across lines.</p>
 
-<p>```ruby
-def text_field_tag(name, value = nil, options = {})
-  tag :input, 
-      {</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">text_field_tag</span><span class="p">(</span><span class="nb">name</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="kp">nil</span><span class="p">,</span> <span class="n">options</span> <span class="o">=</span> <span class="p">{})</span>
+  <span class="n">tag</span> <span class="ss">:input</span><span class="p">,</span> 
+      <span class="p">{</span> 
 
-<div class="highlighter-rouge"><pre class="highlight"><code>    :type  =&gt; "text",
-    :name  =&gt; name,
-    :id    =&gt; sanitize_to_id(name),
-    :value =&gt; value
+        <span class="ss">:type</span>  <span class="o">=&gt;</span> <span class="s2">"text"</span><span class="p">,</span>
+        <span class="ss">:name</span>  <span class="o">=&gt;</span> <span class="nb">name</span><span class="p">,</span>
+        <span class="ss">:id</span>    <span class="o">=&gt;</span> <span class="n">sanitize_to_id</span><span class="p">(</span><span class="nb">name</span><span class="p">),</span>
+        <span class="ss">:value</span> <span class="o">=&gt;</span> <span class="n">value</span>
 
-  }.update(options.stringify_keys) end ```
+      <span class="p">}.</span><span class="nf">update</span><span class="p">(</span><span class="n">options</span><span class="p">.</span><span class="nf">stringify_keys</span><span class="p">)</span>
+<span class="k">end</span>
 </code></pre>
 </div>
 
@@ -213,12 +213,12 @@ def text_field_tag(name, value = nil, options = {})
 
 <p>The convention was born out of a common idiom in in JavaScript where variables are declared in a comma-delimited list after a single <code class="highlighter-rouge">var</code>, with the list terminated by a semicolon. The typographical convention I’m referring to is in how this list is formatted, namely, it’s formatted with leading commas, like so:</p>
 
-<p><code class="highlighter-rouge">javascript
-var x = shape.left()
-  , y = shape.right()
-  , numSides = shape.sides()
-  ;
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">shape</span><span class="p">.</span><span class="nx">left</span><span class="p">()</span>
+  <span class="p">,</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">shape</span><span class="p">.</span><span class="nx">right</span><span class="p">()</span>
+  <span class="p">,</span> <span class="nx">numSides</span> <span class="o">=</span> <span class="nx">shape</span><span class="p">.</span><span class="nx">sides</span><span class="p">()</span>
+  <span class="p">;</span>
+</code></pre>
+</div>
 
 <p>This is typeset poorly, insomuch as it does not honor the readability of the content, instead hindering it.</p>
 
@@ -226,21 +226,21 @@ var x = shape.left()
 
 <p>The more conventional approach is much better, as the language’s peculiarities simply fade away:</p>
 
-<p><code class="highlighter-rouge">javascript
-var x = shape.left(),
-    y = shape.right(),
-    numSides = shape.sides();
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">shape</span><span class="p">.</span><span class="nx">left</span><span class="p">(),</span>
+    <span class="nx">y</span> <span class="o">=</span> <span class="nx">shape</span><span class="p">.</span><span class="nx">right</span><span class="p">(),</span>
+    <span class="nx">numSides</span> <span class="o">=</span> <span class="nx">shape</span><span class="p">.</span><span class="nx">sides</span><span class="p">();</span>
+</code></pre>
+</div>
 
 <p>Each line can now be easily read from left to right.  The <code class="highlighter-rouge">var</code> establishes this block as a “paragraph”, and each declaration is a sentence. Each line is eminently readable - it starts with the name of the variable, which is what the reader is most interested in, and is followed by the default value.  The names are left-aligned and are the first thing on each line (save for the initial <code class="highlighter-rouge">var</code> which establishes that these are variables).  The commas, being incidental, are hidden nicely at the end of the line.</p>
 
 <p>We can reinforce this structure with vertical alignment of the <code class="highlighter-rouge">=</code>:</p>
 
-<p><code class="highlighter-rouge">javascript
-var x        = shape.left(),
-    y        = shape.right(),
-    numSides = shape.sides();
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">x</span>        <span class="o">=</span> <span class="nx">shape</span><span class="p">.</span><span class="nx">left</span><span class="p">(),</span>
+    <span class="nx">y</span>        <span class="o">=</span> <span class="nx">shape</span><span class="p">.</span><span class="nx">right</span><span class="p">(),</span>
+    <span class="nx">numSides</span> <span class="o">=</span> <span class="nx">shape</span><span class="p">.</span><span class="nx">sides</span><span class="p">();</span>
+</code></pre>
+</div>
 
 <p>We could go even further and align the commas and semi-colon, however this draws attention to aspects of the code that aren’t important (much as the comma-first style does).  Although JavaScript needs to know when each declaration ends, we, the human reader, already know - the line merely ends.  The declaration block itself ends with whitespace - that JavaScript requires a semicolon is incidental to reading this code.</p>
 

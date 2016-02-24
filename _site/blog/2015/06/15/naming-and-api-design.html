@@ -79,18 +79,18 @@
 <p>Imagine the following programming language.  To define a function, we name it using a <em>dasherized</em> scheme,
 with square brackets to offset the arguments:</p>
 
-<p><code class="highlighter-rouge">
-define full-name[first-name,last-name]
+<div class="highlighter-rouge"><pre class="highlight"><code>define full-name[first-name,last-name]
   first-name + " " + last-name
 end-define
-</code></p>
+</code></pre>
+</div>
 
 <p>Further imaging that in this programming language, to <em>invoke</em> the function you use a camel-cased version
 of the function name, and use parenthesis to offset the arguments:</p>
 
-<p><code class="highlighter-rouge">
-print fullName("Dave","Copeland")
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code>print fullName("Dave","Copeland")
+</code></pre>
+</div>
 
 <p>I don’t think it’s a stretch to call this language poorly designed.  Things that are the same—a
 function—are handled differently depending upon the occasion.  The design of this language would benefit
@@ -103,9 +103,9 @@ greatly if you defined functions using the name symbol used to invoke them.</p>
 <p>Angular uses <em>directives</em> in HTML to bind your code to the DOM or to DOM events.  The simplist one to
 understand is <code class="highlighter-rouge">ng-click</code>:</p>
 
-<p><code class="highlighter-rouge">html
-&lt;button ng-click="doit()"&gt;Do It! Do It, Now!&lt;/button&gt;
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;button</span> <span class="na">ng-click=</span><span class="s">"doit()"</span><span class="nt">&gt;</span>Do It! Do It, Now!<span class="nt">&lt;/button&gt;</span>
+</code></pre>
+</div>
 
 <p>This calls <code class="highlighter-rouge">doit</code>, whenever the button is clicked.</p>
 

@@ -84,25 +84,25 @@
 
 <p>First off, <code class="highlighter-rouge">tap</code> is a method on <code class="highlighter-rouge">Object</code> that takes a block, which is passed itself, and evaluates to itself.  Whoa.</p>
 
-<p><code class="highlighter-rouge">ruby
-class Object
-  # Imagined implementation
-  def tap(&amp;block)
-    block.call(self)
-    self
-  end
-end
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Object</span>
+  <span class="c1"># Imagined implementation</span>
+  <span class="k">def</span> <span class="nf">tap</span><span class="p">(</span><span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+    <span class="n">block</span><span class="p">.</span><span class="nf">call</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span>
+    <span class="nb">self</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>An interesting use of <code class="highlighter-rouge">tap</code> is when debugging a <a href="http://en.wikipedia.org/wiki/Law_of_Demeter">Law of Demeter</a> violation:</p>
 
-<p>```ruby
-# before
-@person.parents.first.nag(:are_we_there_yet?)</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1"># before</span>
+<span class="vi">@person</span><span class="p">.</span><span class="nf">parents</span><span class="p">.</span><span class="nf">first</span><span class="p">.</span><span class="nf">nag</span><span class="p">(</span><span class="ss">:are_we_there_yet?</span><span class="p">)</span>
 
-<h1 id="after">after</h1>
-<p>@person.parents.tap { |parents| puts parents.inspect }.first.nag(:are_we_there_yet?)
-```</p>
+<span class="c1"># after</span>
+<span class="vi">@person</span><span class="p">.</span><span class="nf">parents</span><span class="p">.</span><span class="nf">tap</span> <span class="p">{</span> <span class="o">|</span><span class="n">parents</span><span class="o">|</span> <span class="nb">puts</span> <span class="n">parents</span><span class="p">.</span><span class="nf">inspect</span> <span class="p">}.</span><span class="nf">first</span><span class="p">.</span><span class="nf">nag</span><span class="p">(</span><span class="ss">:are_we_there_yet?</span><span class="p">)</span>
+</code></pre>
+</div>
 
 <p>No matter what happens inside of the block you give to <code class="highlighter-rouge">tap</code>, the call always evaluates to the object itself.  We don’t change the string of calls, but can inject code into it.</p>
 
@@ -117,29 +117,29 @@ end
 
 <p>From <a href="http://www.naildrivin5.com/blog/2012/06/10/single-responsibility-principle-and-rails.html">my last blog post</a>, I had this method:</p>
 
-<p><code class="highlighter-rouge">ruby
-def create_new_user(params)
-  User.create(params).tap { |new_user|
-    if new_user.valid?
-      UserMailer.deliver_welcome_email(new_user)
-    end
-  }
-end
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">create_new_user</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+  <span class="no">User</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="n">params</span><span class="p">).</span><span class="nf">tap</span> <span class="p">{</span> <span class="o">|</span><span class="n">new_user</span><span class="o">|</span>
+    <span class="k">if</span> <span class="n">new_user</span><span class="p">.</span><span class="nf">valid?</span>
+      <span class="no">UserMailer</span><span class="p">.</span><span class="nf">deliver_welcome_email</span><span class="p">(</span><span class="n">new_user</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="p">}</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>Between creating the user and returning it, I needed to do some other stuff, so I create a scope in which to do it with <code class="highlighter-rouge">tap</code>.</p>
 
 <p>The classic approach is to use an intermediate variable for the new user and looks like so:</p>
 
-<p><code class="highlighter-rouge">ruby
-def create_new_user(params)
-  new_user = User.create(params)
-  if new_user.valid?
-    UserMailer.deliver_welcome_email(new_user)
-  end
-  new_user
-end
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">create_new_user</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+  <span class="n">new_user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">new_user</span><span class="p">.</span><span class="nf">valid?</span>
+    <span class="no">UserMailer</span><span class="p">.</span><span class="nf">deliver_welcome_email</span><span class="p">(</span><span class="n">new_user</span><span class="p">)</span>
+  <span class="k">end</span>
+  <span class="n">new_user</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>Same lines of code, so why is the <code class="highlighter-rouge">tap</code> version better?</p>
 
@@ -151,17 +151,17 @@ end
 
 <p>Let’s look at our intermediate routine again, this time, marking a few places in the code</p>
 
-<p><code class="highlighter-rouge">ruby
-def create_new_user(params)
-  new_user = User.create(params)
-  if new_user.valid?
-    UserMailer.deliver_welcome_email(new_user)
-  end
-  # 1
-  new_user
-  # 2
-end
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">create_new_user</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+  <span class="n">new_user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">new_user</span><span class="p">.</span><span class="nf">valid?</span>
+    <span class="no">UserMailer</span><span class="p">.</span><span class="nf">deliver_welcome_email</span><span class="p">(</span><span class="n">new_user</span><span class="p">)</span>
+  <span class="k">end</span>
+  <span class="c1"># 1</span>
+  <span class="n">new_user</span>
+  <span class="c1"># 2</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <ol>
   <li>Here is where any new code should be added to this method.</li>
@@ -173,16 +173,16 @@ you have to add code on the <em>second to last line</em>.</p>
 
 <p>But, isn’t that the same in the <code class="highlighter-rouge">tap</code> version?  No, because <code class="highlighter-rouge">tap</code> creates a scope, visually and literally.</p>
 
-<p><code class="highlighter-rouge">ruby
-def create_new_user(params)
-  User.create(params).tap { |new_user|
-    if new_user.valid?
-      UserMailer.deliver_welcome_email(new_user)
-    end
-    # 1
-  }
-end
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">create_new_user</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+  <span class="no">User</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="n">params</span><span class="p">).</span><span class="nf">tap</span> <span class="p">{</span> <span class="o">|</span><span class="n">new_user</span><span class="o">|</span>
+    <span class="k">if</span> <span class="n">new_user</span><span class="p">.</span><span class="nf">valid?</span>
+      <span class="no">UserMailer</span><span class="p">.</span><span class="nf">deliver_welcome_email</span><span class="p">(</span><span class="n">new_user</span><span class="p">)</span>
+    <span class="k">end</span>
+    <span class="c1"># 1</span>
+  <span class="p">}</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>The location of #1 is logically “the bottom”, because it’s the end of the scope in question, and thus where you are more
 likely to put new code.  It <em>also</em> alleviates you from having to worry about making sure that <code class="highlighter-rouge">new_user</code> is the last thing
@@ -194,67 +194,67 @@ evaluated; <code class="highlighter-rouge">tap</code> handles that.  No matter w
 
 <p>In Scala, this can be achieved using implicits:</p>
 
-<p>```scala
-object Tapper {
-  implicit def anyToTapper<a href="obj: A">A</a> = new Tapper(obj)
-}</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">object</span> <span class="nc">Tapper</span> <span class="o">{</span>
+  <span class="k">implicit</span> <span class="k">def</span> <span class="n">anyToTapper</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">obj</span><span class="k">:</span> <span class="kt">A</span><span class="o">)</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">Tapper</span><span class="o">(</span><span class="n">obj</span><span class="o">)</span>
+<span class="o">}</span>
 
-<p>class Tapper<a href="obj: A">A</a> {
-  def tap(code: A =&gt; Unit): A = {
-    code(obj)
-    obj
-  }
-}</p>
+<span class="k">class</span> <span class="nc">Tapper</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">obj</span><span class="k">:</span> <span class="kt">A</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">def</span> <span class="n">tap</span><span class="o">(</span><span class="n">code</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=&gt;</span> <span class="nc">Unit</span><span class="o">)</span><span class="k">:</span> <span class="kt">A</span> <span class="o">=</span> <span class="o">{</span>
+    <span class="n">code</span><span class="o">(</span><span class="n">obj</span><span class="o">)</span>
+    <span class="n">obj</span>
+  <span class="o">}</span>
+<span class="o">}</span>
 
-<p>import Tapper._</p>
+<span class="k">import</span> <span class="nn">Tapper._</span>
 
-<p>new User(params).tap { newUser =&gt;
-  if (newUser.isValid) {
-    UserMailer.deliverWelcomeEmail(newUser)
-  }
-}
-```</p>
+<span class="k">new</span> <span class="nc">User</span><span class="o">(</span><span class="n">params</span><span class="o">).</span><span class="n">tap</span> <span class="o">{</span> <span class="n">newUser</span> <span class="k">=&gt;</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">newUser</span><span class="o">.</span><span class="n">isValid</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">UserMailer</span><span class="o">.</span><span class="n">deliverWelcomeEmail</span><span class="o">(</span><span class="n">newUser</span><span class="o">)</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+</div>
 
 <p>In JavaScript, you can just put it on <code class="highlighter-rouge">Object</code>:</p>
 
-<p>```javascript
-Object.prototype.tap = function(block) { block(this); return this; };</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">tap</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">block</span><span class="p">)</span> <span class="p">{</span> <span class="nx">block</span><span class="p">(</span><span class="k">this</span><span class="p">);</span> <span class="k">return</span> <span class="k">this</span><span class="p">;</span> <span class="p">};</span>
 
-<p>function createNewUser(params) {
-  return new User(params).tap( function(newUser) {
-    if (newUser.isValid()) {
-      new UserMailer().deliverWelcomeEmail(newUser);
-    }
-  });
-}
-```</p>
+<span class="kd">function</span> <span class="nx">createNewUser</span><span class="p">(</span><span class="nx">params</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="k">new</span> <span class="nx">User</span><span class="p">(</span><span class="nx">params</span><span class="p">).</span><span class="nx">tap</span><span class="p">(</span> <span class="kd">function</span><span class="p">(</span><span class="nx">newUser</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">newUser</span><span class="p">.</span><span class="nx">isValid</span><span class="p">())</span> <span class="p">{</span>
+      <span class="k">new</span> <span class="nx">UserMailer</span><span class="p">().</span><span class="nx">deliverWelcomeEmail</span><span class="p">(</span><span class="nx">newUser</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+<span class="p">}</span>
+</code></pre>
+</div>
 
 <p>In Java, you’re screwed, but just for fun, let’s try:</p>
 
-<p>```java
-public interface TapFunction<t> {
-  void apply(T object);
-}</t></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">TapFunction</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
+  <span class="kt">void</span> <span class="n">apply</span><span class="o">(</span><span class="n">T</span> <span class="n">object</span><span class="o">);</span>
+<span class="o">}</span>
 
-<p>public class Tapper {
-  public static <t> T tap(T object, TapFunction<t> function) {
-    function.apply(object);
-    return object;
-  }
-}</t></t></p>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Tapper</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">T</span> <span class="n">tap</span><span class="o">(</span><span class="n">T</span> <span class="n">object</span><span class="o">,</span> <span class="n">TapFunction</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">function</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">function</span><span class="o">.</span><span class="na">apply</span><span class="o">(</span><span class="n">object</span><span class="o">);</span>
+    <span class="k">return</span> <span class="n">object</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
 
-<p>import static Tapper.tap;</p>
+<span class="kn">import</span> <span class="nn">static</span> <span class="n">Tapper</span><span class="o">.</span><span class="na">tap</span><span class="o">;</span>
 
-<p>public void createNewUser(Map&lt;String,?&gt; params) {
-  tap(new User(params),new TapFunction<user>() {
-    public void apply(User newUser) {
-      if (newUser.isValid()) {
-        UserMailer.deliverWelcomeEmail(newUser);
-      }
-    }
-  });
-}
-```</user></p>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">createNewUser</span><span class="p">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,?&gt;</span> <span class="n">params</span><span class="o">)</span> <span class="o">{</span>
+  <span class="n">tap</span><span class="o">(</span><span class="k">new</span> <span class="n">User</span><span class="o">(</span><span class="n">params</span><span class="o">),</span><span class="k">new</span> <span class="n">TapFunction</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;()</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="n">apply</span><span class="o">(</span><span class="n">User</span> <span class="n">newUser</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">if</span> <span class="o">(</span><span class="n">newUser</span><span class="o">.</span><span class="na">isValid</span><span class="o">())</span> <span class="o">{</span>
+        <span class="n">UserMailer</span><span class="o">.</span><span class="na">deliverWelcomeEmail</span><span class="o">(</span><span class="n">newUser</span><span class="o">);</span>
+      <span class="o">}</span>
+    <span class="o">}</span>
+  <span class="o">});</span>
+<span class="o">}</span>
+</code></pre>
+</div>
 
 <p>Not exactly a huge win in Java :)  Now, who’ll write this in C?</p>
 

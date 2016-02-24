@@ -506,7 +506,7 @@ of a data structure, so we just need a more generic way to do so.
 Currently, the only data structure we have is an array, and we don't have methods, since we don't have classes.  The arrays we have are really tuples, and the only general
 operations we have are the ability to extract data from them.  For example:
 
-```
+```ruby
 first = ->((f,*rest)) { f    } # or should I name this car? :)
 rest  = ->((f,*rest)) { rest }
 ```
@@ -514,7 +514,7 @@ rest  = ->((f,*rest)) { rest }
 We can model a map as a list, by treating it as a list with three entires: the key, the value, and the rest of the map.  Let's avoid the "OO style" of making "methods" and
 just keep it pureful functional:
 
-```
+```ruby
 empty_map = []
 add = ->(map,key,value) {
   [key,value,map]
@@ -528,7 +528,7 @@ get = ->(map,key) {
 
 We can use it like so:
 
-```
+```ruby
 map = add.(empty_map,:foo,:bar)
 map = add.(map,:baz,:quux)
 get.(map,:foo)  # => :bar
@@ -538,7 +538,7 @@ get.(map,:blah) # => nil
 
 This is enough to namepsace things:
 
-```
+```ruby
 people = add.(empty_map ,:insert ,insert_person)
 people = add.(people    ,:update ,update_person)
 people = add.(people    ,:delete ,delete_person)
@@ -565,7 +565,7 @@ We could certainly replace our `new_person` implementation with a map, but it's 
 
 One last bit of magic.  `include` is a nice feature of Ruby; it lets us bring modules into scope to avoid using the namespace.  Can we do that here?  We can get close:
 
-```
+```ruby
 include_namespace = ->(namespace,code) {
   code.(->(key) { get(namespace,key) })
 }

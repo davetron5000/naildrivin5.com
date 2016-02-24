@@ -92,11 +92,11 @@ out-of-box configurations recommend by OmniAuth.</p>
 
 <p>First, the general setup of OmniAuth recommends this:</p>
 
-<p><code class="highlighter-rouge">ruby
-Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :google_apps, domain: 'your-domain.com'  
-end
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">config</span><span class="p">.</span><span class="nf">middleware</span><span class="p">.</span><span class="nf">use</span> <span class="no">OmniAuth</span><span class="o">::</span><span class="no">Builder</span> <span class="k">do</span>
+  <span class="n">provider</span> <span class="ss">:google_apps</span><span class="p">,</span> <span class="ss">domain: </span><span class="s1">'your-domain.com'</span>  
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>We use the <a href="https://github.com/sishen/omniauth-google-apps">omniauth-google-apps</a> gem, which is a very thin extension of <a href="https://github.com/intridea/omniauth-openid">omniauth-openid</a> that makes setup a bit simpler, and
 allows us to only allow Stitch Fix employees access to our systems.</p>
@@ -104,13 +104,13 @@ allows us to only allow Stitch Fix employees access to our systems.</p>
 <p>This setup has issues with SSL certificates, so we need to tell OpenID where the CA file is, and we just use curl’s, checked-into
 our source code because of Wacky Heroku Thing #1 - no guarantees about what’s on the Dynos.</p>
 
-<p><code class="highlighter-rouge">ruby
-require 'openid/fetchers'
-OpenID.fetcher.ca_file = File.join(Rails.root,'config','curl.pem')
-Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :google_apps, domain: 'your-domain.com'  
-end
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nb">require</span> <span class="s1">'openid/fetchers'</span>
+<span class="no">OpenID</span><span class="p">.</span><span class="nf">fetcher</span><span class="p">.</span><span class="nf">ca_file</span> <span class="o">=</span> <span class="no">File</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="no">Rails</span><span class="p">.</span><span class="nf">root</span><span class="p">,</span><span class="s1">'config'</span><span class="p">,</span><span class="s1">'curl.pem'</span><span class="p">)</span>
+<span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">config</span><span class="p">.</span><span class="nf">middleware</span><span class="p">.</span><span class="nf">use</span> <span class="no">OmniAuth</span><span class="o">::</span><span class="no">Builder</span> <span class="k">do</span>
+  <span class="n">provider</span> <span class="ss">:google_apps</span><span class="p">,</span> <span class="ss">domain: </span><span class="s1">'your-domain.com'</span>  
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>We can’t just assume that <code class="highlighter-rouge">curl</code> is even installed, much less make any assumptions about where the <code class="highlighter-rouge">pem</code> file is, so we have to
 include it.  Another option would be to provide an environment variable based on where we know it is on the Dyno, but this seemed
@@ -123,20 +123,20 @@ OmniAuth/OpenID is using what it believes to be a sensible default, but is, in f
 (Google, in our case), the server can find this information and complete the login.  <em>How</em> this information is stored can be
 configured via the <code class="highlighter-rouge">:store</code> option to <code class="highlighter-rouge">provider</code>.  The default is an in-memory store, so it’s equivalent to this:</p>
 
-<p><code class="highlighter-rouge">ruby
-provider :google_apps, domain: 'your-domain.com', store: OpenID::Store::Memory.new
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">provider</span> <span class="ss">:google_apps</span><span class="p">,</span> <span class="ss">domain: </span><span class="s1">'your-domain.com'</span><span class="p">,</span> <span class="ss">store: </span><span class="no">OpenID</span><span class="o">::</span><span class="no">Store</span><span class="o">::</span><span class="no">Memory</span><span class="p">.</span><span class="nf">new</span>
+</code></pre>
+</div>
 
 <p>For development, this seems reasonable - it doesn’t require any setup - but for deployment, it’s Just Wrong, which we can tell by
 reading the RubyDoc of the <code class="highlighter-rouge">OpenID::Store::Memory</code> class from <code class="highlighter-rouge">ruby-openid</code>:</p>
 
-<p><code class="highlighter-rouge">
-# An in-memory implementation of Store.  This class is mainly used
+<div class="highlighter-rouge"><pre class="highlight"><code># An in-memory implementation of Store.  This class is mainly used
 # for testing, though it may be useful for long-running single
 # process apps.  Note that this store is NOT thread-safe.
 #
 # You should probably be looking at OpenID::Store::Filesystem
-</code></p>
+</code></pre>
+</div>
 
 <p>We’ll get to <code class="highlighter-rouge">OpenID::Store::Filesystem</code>, but what’s wrong with the memory store?</p>
 
@@ -154,11 +154,11 @@ OmniAuth’s docs <em>do</em> mention <code class="highlighter-rouge">OpenID::St
 
 <p>Here’s how we’d set up the filesystem-based store:</p>
 
-<p><code class="highlighter-rouge">ruby
-provider :google_apps, 
-         domain: 'your-domain.com', 
-         store: OpenID::Store::Filesystem.new(File.join(Rails.root,'tmp'))
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">provider</span> <span class="ss">:google_apps</span><span class="p">,</span> 
+         <span class="ss">domain: </span><span class="s1">'your-domain.com'</span><span class="p">,</span> 
+         <span class="ss">store: </span><span class="no">OpenID</span><span class="o">::</span><span class="no">Store</span><span class="o">::</span><span class="no">Filesystem</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="no">File</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="no">Rails</span><span class="p">.</span><span class="nf">root</span><span class="p">,</span><span class="s1">'tmp'</span><span class="p">))</span>
+</code></pre>
+</div>
 
 <p>We can’t even be guaranteed of <code class="highlighter-rouge">/tmp</code> existing, so we set up the store inside our Rails app.  This configuration works great in
 development, because I’m running my server on one machine - all three Unicorn processes share the same data store.</p>
@@ -185,37 +185,37 @@ you’re sitting on a ticking timebomb.</p>
 <p>On Heroku, they recommend Dalli - strongly - so I went with that.  The interface that <code class="highlighter-rouge">OpenID::Store::Memcache</code> expects from the
 memcache client is supported by Dalli, so we’re off to the races:</p>
 
-<p><code class="highlighter-rouge">
-$ heroku addons:add memcache
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code>$ heroku addons:add memcache
+</code></pre>
+</div>
 
-<p><code class="highlighter-rouge">ruby
-gem 'dalli'
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">gem</span> <span class="s1">'dalli'</span>
+</code></pre>
+</div>
 
-<p>```ruby
-require ‘openid/fetchers’
-require ‘openid/store/filesystem’
-require ‘openid/store/memcache’
-require ‘dalli’</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nb">require</span> <span class="s1">'openid/fetchers'</span>
+<span class="nb">require</span> <span class="s1">'openid/store/filesystem'</span>
+<span class="nb">require</span> <span class="s1">'openid/store/memcache'</span>
+<span class="nb">require</span> <span class="s1">'dalli'</span>
 
-<p>OpenID.fetcher.ca_file = File.join(Rails.root,’config’,’curl.pem’)</p>
+<span class="no">OpenID</span><span class="p">.</span><span class="nf">fetcher</span><span class="p">.</span><span class="nf">ca_file</span> <span class="o">=</span> <span class="no">File</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="no">Rails</span><span class="p">.</span><span class="nf">root</span><span class="p">,</span><span class="s1">'config'</span><span class="p">,</span><span class="s1">'curl.pem'</span><span class="p">)</span>
 
-<p>Rails.application.config.middleware.use OmniAuth::Builder do
-  if Rails.env.staging? || Rails.env.production? || ENV[‘OPENID_STORE’] == ‘memcache’
-    # Locally, these env vars will be blank, and it will connect to the local memcached
-    # client running on the standard port
-    memcached_client = Dalli::Client.new(ENV[‘MEMCACHE_SERVERS’], 
-                                         :username =&gt; ENV[‘MEMCACHE_USERNAME’], 
-                                         :password =&gt; ENV[‘MEMCACHE_PASSWORD’])
-    provider :google_apps, domain: ‘your-domain.com’, 
-                           store: OpenID::Store::Memcache.new(memcached_client)
-  else
-    provider :google_apps, domain: ‘your-domain.com’, 
-                           store: OpenID::Store::Filesystem.new(File.join(Rails.root,’tmp’))
-  end
-end
-```</p>
+<span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">config</span><span class="p">.</span><span class="nf">middleware</span><span class="p">.</span><span class="nf">use</span> <span class="no">OmniAuth</span><span class="o">::</span><span class="no">Builder</span> <span class="k">do</span>
+  <span class="k">if</span> <span class="no">Rails</span><span class="p">.</span><span class="nf">env</span><span class="p">.</span><span class="nf">staging?</span> <span class="o">||</span> <span class="no">Rails</span><span class="p">.</span><span class="nf">env</span><span class="p">.</span><span class="nf">production?</span> <span class="o">||</span> <span class="no">ENV</span><span class="p">[</span><span class="s1">'OPENID_STORE'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'memcache'</span>
+    <span class="c1"># Locally, these env vars will be blank, and it will connect to the local memcached</span>
+    <span class="c1"># client running on the standard port</span>
+    <span class="n">memcached_client</span> <span class="o">=</span> <span class="no">Dalli</span><span class="o">::</span><span class="no">Client</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="no">ENV</span><span class="p">[</span><span class="s1">'MEMCACHE_SERVERS'</span><span class="p">],</span> 
+                                         <span class="ss">:username</span> <span class="o">=&gt;</span> <span class="no">ENV</span><span class="p">[</span><span class="s1">'MEMCACHE_USERNAME'</span><span class="p">],</span> 
+                                         <span class="ss">:password</span> <span class="o">=&gt;</span> <span class="no">ENV</span><span class="p">[</span><span class="s1">'MEMCACHE_PASSWORD'</span><span class="p">])</span>
+    <span class="n">provider</span> <span class="ss">:google_apps</span><span class="p">,</span> <span class="ss">domain: </span><span class="s1">'your-domain.com'</span><span class="p">,</span> 
+                           <span class="ss">store: </span><span class="no">OpenID</span><span class="o">::</span><span class="no">Store</span><span class="o">::</span><span class="no">Memcache</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">memcached_client</span><span class="p">)</span>
+  <span class="k">else</span>
+    <span class="n">provider</span> <span class="ss">:google_apps</span><span class="p">,</span> <span class="ss">domain: </span><span class="s1">'your-domain.com'</span><span class="p">,</span> 
+                           <span class="ss">store: </span><span class="no">OpenID</span><span class="o">::</span><span class="no">Store</span><span class="o">::</span><span class="no">Filesystem</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="no">File</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="no">Rails</span><span class="p">.</span><span class="nf">root</span><span class="p">,</span><span class="s1">'tmp'</span><span class="p">))</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>Whew!  This setup doesn’t require memcache for development, but allows it as an option by setting the <code class="highlighter-rouge">OPENID_STORE</code> environment
 variable.  Although the Dalli client claims to use the environment variables automatically, the code doesn’t indicate this to be

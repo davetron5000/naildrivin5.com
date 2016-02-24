@@ -103,29 +103,29 @@
 
 <p>Size can mean two things: length (the number of lines of code) and <em>density</em> (the amount of information per line of code).  The more code you must evaluate, by either measure, the longer it will take to come to an understanding.  The distinction between length and density is interesting.  Short, but dense code, can be just as difficult to grasp as long sparse code.</p>
 
-<p><code class="highlighter-rouge">ruby
-def create_new_person(first_name, last_name, birthdate)
-  raise "first name and last name required" if first_name.nil? || last_name.nil?
-  Person.create(:first_name =&gt; first_name, :last_name =&gt; last_name).tap do { |person|
-    person.age = Time.now.year - birthdate.year if birthdate.present?
-  }
-end
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">create_new_person</span><span class="p">(</span><span class="n">first_name</span><span class="p">,</span> <span class="n">last_name</span><span class="p">,</span> <span class="n">birthdate</span><span class="p">)</span>
+  <span class="k">raise</span> <span class="s2">"first name and last name required"</span> <span class="k">if</span> <span class="n">first_name</span><span class="p">.</span><span class="nf">nil?</span> <span class="o">||</span> <span class="n">last_name</span><span class="p">.</span><span class="nf">nil?</span>
+  <span class="no">Person</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="ss">:first_name</span> <span class="o">=&gt;</span> <span class="n">first_name</span><span class="p">,</span> <span class="ss">:last_name</span> <span class="o">=&gt;</span> <span class="n">last_name</span><span class="p">).</span><span class="nf">tap</span> <span class="k">do</span> <span class="p">{</span> <span class="o">|</span><span class="n">person</span><span class="o">|</span>
+    <span class="n">person</span><span class="p">.</span><span class="nf">age</span> <span class="o">=</span> <span class="no">Time</span><span class="p">.</span><span class="nf">now</span><span class="p">.</span><span class="nf">year</span> <span class="o">-</span> <span class="n">birthdate</span><span class="p">.</span><span class="nf">year</span> <span class="k">if</span> <span class="n">birthdate</span><span class="p">.</span><span class="nf">present?</span>
+  <span class="p">}</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>Here’s the same routine, rewritten to be as sparse as possible:</p>
 
-<p><code class="highlighter-rouge">ruby
-def create_new_person(first_name, last_name, birthdate)
-  if first_name.nil? || last_name.nil?
-    raise "first name and last name required" 
-  end
-  person = Person.create(:first_name =&gt; first_name, :last_name =&gt; last_name)
-  if birthdate.present?
-    person.age = Time.now.year - birthdate.year
-  end
-  person
-end
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">create_new_person</span><span class="p">(</span><span class="n">first_name</span><span class="p">,</span> <span class="n">last_name</span><span class="p">,</span> <span class="n">birthdate</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">first_name</span><span class="p">.</span><span class="nf">nil?</span> <span class="o">||</span> <span class="n">last_name</span><span class="p">.</span><span class="nf">nil?</span>
+    <span class="k">raise</span> <span class="s2">"first name and last name required"</span> 
+  <span class="k">end</span>
+  <span class="n">person</span> <span class="o">=</span> <span class="no">Person</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="ss">:first_name</span> <span class="o">=&gt;</span> <span class="n">first_name</span><span class="p">,</span> <span class="ss">:last_name</span> <span class="o">=&gt;</span> <span class="n">last_name</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">birthdate</span><span class="p">.</span><span class="nf">present?</span>
+    <span class="n">person</span><span class="p">.</span><span class="nf">age</span> <span class="o">=</span> <span class="no">Time</span><span class="p">.</span><span class="nf">now</span><span class="p">.</span><span class="nf">year</span> <span class="o">-</span> <span class="n">birthdate</span><span class="p">.</span><span class="nf">year</span>
+  <span class="k">end</span>
+  <span class="n">person</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>Which one do you find easier to understand?  I would argue that the answer is not so clear-cut.  What <em>is</em> interesting is that modern languages, like Ruby or Scala, tend to encourage denser, shorter programs.  Some densly-packed statements are idiomatic, and are easily understood, while others become impeneatrable code golf.  Know the difference and you can get a good sense of the size of a piece of code.</p>
 
@@ -140,65 +140,65 @@ order to understand a piece of code.</p>
 
 <p>Here’s a pattern I’ve seen in complex controllers, where ivars are used to pass variables between methods (you’ll need to imagine many other controller methods here):</p>
 
-<p>```ruby
-class PeopleController &lt; ApplicationController
-  def destroy
-    id = params[:id]
-    @person = Person.find(id)
-    if can_destroy?
-      @person.destroy
-      redirect_to persons_path
-    else
-      flash[:error] = @error
-      redirect_to persons_path
-    end
-  end</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">PeopleController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="k">def</span> <span class="nf">destroy</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">]</span>
+    <span class="vi">@person</span> <span class="o">=</span> <span class="no">Person</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">can_destroy?</span>
+      <span class="vi">@person</span><span class="p">.</span><span class="nf">destroy</span>
+      <span class="n">redirect_to</span> <span class="n">persons_path</span>
+    <span class="k">else</span>
+      <span class="n">flash</span><span class="p">[</span><span class="ss">:error</span><span class="p">]</span> <span class="o">=</span> <span class="vi">@error</span>
+      <span class="n">redirect_to</span> <span class="n">persons_path</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
 
-<p>private</p>
+<span class="kp">private</span>
 
-<p>def can_destroy?
-    if @person.admin? 
-      @error = ‘You cannot delete an admin’
-      false
-    elsif @person.orders.unfulfilled.any?
-      @error = ‘Person has unfullied orders’
-      false
-    else
-      true
-    end
-  end
-end
-```</p>
+  <span class="k">def</span> <span class="nf">can_destroy?</span>
+    <span class="k">if</span> <span class="vi">@person</span><span class="p">.</span><span class="nf">admin?</span> 
+      <span class="vi">@error</span> <span class="o">=</span> <span class="s1">'You cannot delete an admin'</span>
+      <span class="kp">false</span>
+    <span class="k">elsif</span> <span class="vi">@person</span><span class="p">.</span><span class="nf">orders</span><span class="p">.</span><span class="nf">unfulfilled</span><span class="p">.</span><span class="nf">any?</span>
+      <span class="vi">@error</span> <span class="o">=</span> <span class="s1">'Person has unfullied orders'</span>
+      <span class="kp">false</span>
+    <span class="k">else</span>
+      <span class="kp">true</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>Notice how both outcomes of <code class="highlighter-rouge">destroy</code> are redirects, yet we are setting <code class="highlighter-rouge">@person</code>.  In a Rails controller, you create ivars to communicate data to the view, but for a redirect, these variables don’t apply.  <code class="highlighter-rouge">@person</code> is effectively a parameter passed to <code class="highlighter-rouge">can_destroy?</code> but without declaring it as a parameter.  Further, <code class="highlighter-rouge">@error</code> is being initialized in <code class="highlighter-rouge">can_destroy?</code> and acts as a return value.  Finally, does <code class="highlighter-rouge">id</code> need to be a variable at all?  It’s only used in one place.  Here’s a version that keeps variables to a minimum scope:</p>
 
-<p>```ruby
-class PeopleController &lt; ApplicationController
-  def destroy
-    person = Person.find(params[:id])
-    error = can_destroy?(person)
-    if error.nil?
-      person.destroy
-      redirect_to persons_path
-    else
-      flash[:error] = error
-      redirect_to persons_path
-    end
-  end</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">PeopleController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="k">def</span> <span class="nf">destroy</span>
+    <span class="n">person</span> <span class="o">=</span> <span class="no">Person</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
+    <span class="n">error</span> <span class="o">=</span> <span class="n">can_destroy?</span><span class="p">(</span><span class="n">person</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">error</span><span class="p">.</span><span class="nf">nil?</span>
+      <span class="n">person</span><span class="p">.</span><span class="nf">destroy</span>
+      <span class="n">redirect_to</span> <span class="n">persons_path</span>
+    <span class="k">else</span>
+      <span class="n">flash</span><span class="p">[</span><span class="ss">:error</span><span class="p">]</span> <span class="o">=</span> <span class="n">error</span>
+      <span class="n">redirect_to</span> <span class="n">persons_path</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
 
-<p>private</p>
+<span class="kp">private</span>
 
-<p>def can_destroy?(person)
-    if person.admin? 
-      ‘You cannot delete an admin’
-    elsif person.orders.unfulfilled.any?
-      ‘Person has unfullied orders’
-    else
-      nil
-    end
-  end
-end
-```</p>
+  <span class="k">def</span> <span class="nf">can_destroy?</span><span class="p">(</span><span class="n">person</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">person</span><span class="p">.</span><span class="nf">admin?</span> 
+      <span class="s1">'You cannot delete an admin'</span>
+    <span class="k">elsif</span> <span class="n">person</span><span class="p">.</span><span class="nf">orders</span><span class="p">.</span><span class="nf">unfulfilled</span><span class="p">.</span><span class="nf">any?</span>
+      <span class="s1">'Person has unfullied orders'</span>
+    <span class="k">else</span>
+      <span class="kp">nil</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>Not only is the code a bit shorter, but each routine is simpler to understand, because the scope of the variables used are constrainted to only where they are needed.</p>
 
@@ -212,33 +212,33 @@ end
 
 <p>Often referred to as “complexity” in computer science, the number of possble paths of execution through a piece of code can greatly affect its ability to be understood by a person.  Consider this slightly modified version of <code class="highlighter-rouge">can_destroy?</code> from our example above:</p>
 
-<p><code class="highlighter-rouge">ruby
-def can_destroy?(person)
-  errors = []
-  if person.admin? 
-    errors &lt;&lt; 'You cannot delete an admin'
-  end
-  if person.orders.unfulfilled.any?
-    errors &lt;&lt; 'Person has unfullied orders'
-  end
-  return errors.join(',')
-end
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">can_destroy?</span><span class="p">(</span><span class="n">person</span><span class="p">)</span>
+  <span class="n">errors</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="k">if</span> <span class="n">person</span><span class="p">.</span><span class="nf">admin?</span> 
+    <span class="n">errors</span> <span class="o">&lt;&lt;</span> <span class="s1">'You cannot delete an admin'</span>
+  <span class="k">end</span>
+  <span class="k">if</span> <span class="n">person</span><span class="p">.</span><span class="nf">orders</span><span class="p">.</span><span class="nf">unfulfilled</span><span class="p">.</span><span class="nf">any?</span>
+    <span class="n">errors</span> <span class="o">&lt;&lt;</span> <span class="s1">'Person has unfullied orders'</span>
+  <span class="k">end</span>
+  <span class="k">return</span> <span class="n">errors</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="s1">','</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>There are two <code class="highlighter-rouge">if</code> statements here, which gives us <em>four</em> possible ways through this code.  This means that, to gain a real understanding of this code, we need to mentally play through all four scenarios in our heads.  Since the expression of each <code class="highlighter-rouge">if</code> statement is simple, this isn’t so bad.  What if we needed to add a feature where employees are also not allowed to be destroyed in our controller?</p>
 
-<p><code class="highlighter-rouge">ruby
-def can_destroy?(person)
-  errors = []
-  if person.admin? || person.is_employee?
-    errors &lt;&lt; 'You cannot delete an admin or employee'
-  end
-  if person.orders.unfulfilled.any?
-    errors &lt;&lt; 'Person has unfullied orders'
-  end
-  return errors.join(',')
-end
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">can_destroy?</span><span class="p">(</span><span class="n">person</span><span class="p">)</span>
+  <span class="n">errors</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="k">if</span> <span class="n">person</span><span class="p">.</span><span class="nf">admin?</span> <span class="o">||</span> <span class="n">person</span><span class="p">.</span><span class="nf">is_employee?</span>
+    <span class="n">errors</span> <span class="o">&lt;&lt;</span> <span class="s1">'You cannot delete an admin or employee'</span>
+  <span class="k">end</span>
+  <span class="k">if</span> <span class="n">person</span><span class="p">.</span><span class="nf">orders</span><span class="p">.</span><span class="nf">unfulfilled</span><span class="p">.</span><span class="nf">any?</span>
+    <span class="n">errors</span> <span class="o">&lt;&lt;</span> <span class="s1">'Person has unfullied orders'</span>
+  <span class="k">end</span>
+  <span class="k">return</span> <span class="n">errors</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="s1">','</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>We’ve added an additional case for our first <code class="highlighter-rouge">if</code> statement, and so we have more paths:</p>
 
@@ -255,24 +255,24 @@ end
 
 <p>If we were to extract the first <code class="highlighter-rouge">if</code> statement’s expression to a method, we’d reduce the complexity of this code:</p>
 
-<p>```ruby
-class Person
-  def deletable?
-    person.admin? || person.is_employee?
-  end
-end</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Person</span>
+  <span class="k">def</span> <span class="nf">deletable?</span>
+    <span class="n">person</span><span class="p">.</span><span class="nf">admin?</span> <span class="o">||</span> <span class="n">person</span><span class="p">.</span><span class="nf">is_employee?</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 
-<p>def can_destroy?(person)
-  errors = []
-  if person.deletable?
-    errors « ‘You cannot delete an admin or employee’
-  end
-  if person.orders.unfulfilled.any?
-    errors « ‘Person has unfullied orders’
-  end
-  return errors.join(‘,’)
-end
-```</p>
+<span class="k">def</span> <span class="nf">can_destroy?</span><span class="p">(</span><span class="n">person</span><span class="p">)</span>
+  <span class="n">errors</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="k">if</span> <span class="n">person</span><span class="p">.</span><span class="nf">deletable?</span>
+    <span class="n">errors</span> <span class="o">&lt;&lt;</span> <span class="s1">'You cannot delete an admin or employee'</span>
+  <span class="k">end</span>
+  <span class="k">if</span> <span class="n">person</span><span class="p">.</span><span class="nf">orders</span><span class="p">.</span><span class="nf">unfulfilled</span><span class="p">.</span><span class="nf">any?</span>
+    <span class="n">errors</span> <span class="o">&lt;&lt;</span> <span class="s1">'Person has unfullied orders'</span>
+  <span class="k">end</span>
+  <span class="k">return</span> <span class="n">errors</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="s1">','</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>We’ve simplified <code class="highlighter-rouge">can_destroy?</code>, but we’ve added a new method to <code class="highlighter-rouge">Person</code>.  Readability isn’t so simple, is it?</p>
 

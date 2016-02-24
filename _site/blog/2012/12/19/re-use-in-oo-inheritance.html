@@ -243,12 +243,12 @@ extract it)</p>
 <p>In the classic use of mixins, one declares the modules to be mixed-in as part of the class definition.  In the examples around
 DCI, however, one mixes-in the needed code <em>only when needed</em>.  So, a <code class="highlighter-rouge">Person</code> that might need tagging would only have <code class="highlighter-rouge">Taggable</code> mixed in when code requires the ability to tag a person.  By default, a <code class="highlighter-rouge">Person</code> would not be taggable.  In Ruby, this might look like:</p>
 
-<p><code class="highlighter-rouge">ruby
-person = Person.find(params[:id])
-person.respond_to? :tag_names # =&gt; false
-person.extend(Taggable)
-person.respond_to? :tag_names # =&gt; true
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">person</span> <span class="o">=</span> <span class="no">Person</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
+<span class="n">person</span><span class="p">.</span><span class="nf">respond_to?</span> <span class="ss">:tag_names</span> <span class="c1"># =&gt; false</span>
+<span class="n">person</span><span class="p">.</span><span class="nf">extend</span><span class="p">(</span><span class="no">Taggable</span><span class="p">)</span>
+<span class="n">person</span><span class="p">.</span><span class="nf">respond_to?</span> <span class="ss">:tag_names</span> <span class="c1"># =&gt; true</span>
+</code></pre>
+</div>
 
 <p>This sort of dynamic type manipulation is not possible in every language, but it seems interesting to me.  Although it has some
 abuse cases that seem equally horrible to those of vanilla mixins, I can think of some legacy code that could’ve done well to

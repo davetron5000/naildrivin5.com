@@ -76,12 +76,12 @@
 
 <p>Here’s what I have aliased in <code class="highlighter-rouge">bash</code>:</p>
 
-<p><code class="highlighter-rouge">sh
-alias vi='mvim'
-alias ps='ps auxwwwwwwww'
-alias ls='ls -FG'
-alias irb=pry
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nb">alias </span><span class="nv">vi</span><span class="o">=</span><span class="s1">'mvim'</span>
+<span class="nb">alias </span><span class="nv">ps</span><span class="o">=</span><span class="s1">'ps auxwwwwwwww'</span>
+<span class="nb">alias </span><span class="nv">ls</span><span class="o">=</span><span class="s1">'ls -FG'</span>
+<span class="nb">alias </span><span class="nv">irb</span><span class="o">=</span>pry
+</code></pre>
+</div>
 
 <p>That’s <strong>it</strong>.  I type <code class="highlighter-rouge">bundle exec</code> if I have to (and always in anger).  I have a function called <code class="highlighter-rouge">go</code> that sets up a few things for working on a particular project (e.g. <code class="highlighter-rouge">go gli</code> before I start working on <a href="http://davetron5000.github.com/gli">gli</a>), but otherwise, I type the commands as
 they come and use whatever options I need at the time, even if I tend to use the same options a lot (e.g. <code class="highlighter-rouge">grep -r</code>).</p>
@@ -96,8 +96,7 @@ developer’s box), I’m almost exactly as proficient as I am in my own environ
 <p>My <code class="highlighter-rouge">.vimrc</code> is a bit of an exception, as I have a fair amount of default configuration overridden, but in terms of mappings, I still don’t have that much set up.  I use <a href="https://github.com/tpope/vim-pathogen/">pathogen</a> plugins and know the shortcuts many of them provide (like the amazing <a href="https://github.com/tpope/vim-rails">rails.vim</a>), but I don’t tend to customize them that much.  Here’s all the
 mappings I have setup:</p>
 
-<p><code class="highlighter-rouge">
-" cd to directory of current file
+<div class="highlighter-rouge"><pre class="highlight"><code>" cd to directory of current file
 map c :cd %:p:h
 " open buffer list
 map b n\be
@@ -109,7 +108,8 @@ map f !!fold -w77 -s
 map  sgf
 " Avoid annoying ^Z minimizing to nowhere
 map  
-</code></p>
+</code></pre>
+</div>
 
 <p>Again, that’s <strong>it</strong>.  Whenever I’m in <code class="highlighter-rouge">vi</code>, <em>anywhere</em>, I’m 99% effective.</p>
 

@@ -126,27 +126,27 @@ that a caller is depending on its internal implementation.</p>
 
 <p>For example, in the United States, a person’s full name is created by appending their surname to their given name:</p>
 
-<p><code class="highlighter-rouge">ruby
-me = Person.new(given_name: "David", surname: "Copeland")
-puts "#{me.given_name} #{me.surname}" # =&gt; David Copeland
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">me</span> <span class="o">=</span> <span class="no">Person</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">given_name: </span><span class="s2">"David"</span><span class="p">,</span> <span class="ss">surname: </span><span class="s2">"Copeland"</span><span class="p">)</span>
+<span class="nb">puts</span> <span class="s2">"</span><span class="si">#{</span><span class="n">me</span><span class="p">.</span><span class="nf">given_name</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="n">me</span><span class="p">.</span><span class="nf">surname</span><span class="si">}</span><span class="s2">"</span> <span class="c1"># =&gt; David Copeland</span>
+</code></pre>
+</div>
 
 <p>In China, however, the full name is reversed, so if we need to support Chinese people in our application, our code is now broken:</p>
 
-<p><code class="highlighter-rouge">ruby
-me = Person.new(given_name: "Kong-sang", surname: "Chan")
-puts "#{me.given_name} #{me.surname}" # =&gt; Kong-sang Chan (wrong)
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">me</span> <span class="o">=</span> <span class="no">Person</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">given_name: </span><span class="s2">"Kong-sang"</span><span class="p">,</span> <span class="ss">surname: </span><span class="s2">"Chan"</span><span class="p">)</span>
+<span class="nb">puts</span> <span class="s2">"</span><span class="si">#{</span><span class="n">me</span><span class="p">.</span><span class="nf">given_name</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="n">me</span><span class="p">.</span><span class="nf">surname</span><span class="si">}</span><span class="s2">"</span> <span class="c1"># =&gt; Kong-sang Chan (wrong)</span>
+</code></pre>
+</div>
 
 <p>We can “fix” it with <code class="highlighter-rouge">if</code> statements:</p>
 
-<p><code class="highlighter-rouge">ruby
-if me.nationality.chinese?
-  puts "#{me.surname} #{me.given_name}" # =&gt; Chan Kong-sang (right)
-else
-  puts "#{me.given_name} #{me.surname}"
-end
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">if</span> <span class="n">me</span><span class="p">.</span><span class="nf">nationality</span><span class="p">.</span><span class="nf">chinese?</span>
+  <span class="nb">puts</span> <span class="s2">"</span><span class="si">#{</span><span class="n">me</span><span class="p">.</span><span class="nf">surname</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="n">me</span><span class="p">.</span><span class="nf">given_name</span><span class="si">}</span><span class="s2">"</span> <span class="c1"># =&gt; Chan Kong-sang (right)</span>
+<span class="k">else</span>
+  <span class="nb">puts</span> <span class="s2">"</span><span class="si">#{</span><span class="n">me</span><span class="p">.</span><span class="nf">given_name</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="n">me</span><span class="p">.</span><span class="nf">surname</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>This is not a good design, yet this is exactly the type of design that Rails would encourage us to use.  Why?</p>
 
@@ -172,44 +172,44 @@ object-oriented, helpers have a host of problems related to being globally-scope
 
 <p>The second is to simply create a method on <code class="highlighter-rouge">Person</code>, which seemingly encapsulates the details:</p>
 
-<p>```ruby
-class Person &lt; ActiveRecord::Base</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Person</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
 
-<p>def full_name
-    if nationality.chinese?
-      “#{surname} #{given_name}”
-    else
-      “#{given_name} #{surname}”
-    end
-  end
-end
-```</p>
+  <span class="k">def</span> <span class="nf">full_name</span>
+    <span class="k">if</span> <span class="n">nationality</span><span class="p">.</span><span class="nf">chinese?</span>
+      <span class="s2">"</span><span class="si">#{</span><span class="n">surname</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="n">given_name</span><span class="si">}</span><span class="s2">"</span>
+    <span class="k">else</span>
+      <span class="s2">"</span><span class="si">#{</span><span class="n">given_name</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="n">surname</span><span class="si">}</span><span class="s2">"</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>Does this seem like right place for this code?  Before adding this method, <code class="highlighter-rouge">Person</code> was a class that provided access to our secondary storage mechanism.  Even with the large footprint of Active Record, <code class="highlighter-rouge">Person</code> was a fairly focused and cohesive class.</p>
 
 <p><em>Now</em>, it’s in the business for formatting names based on nationality.  What if we later had a requirement to use a
 gender-specific prefix for non-Chinese when we don’t have a given name?</p>
 
-<p>```ruby
-class Person &lt; ActiveRecord::Base</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Person</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
 
-<p>def full_name
-    if nationality.chinese?
-      “#{surname} #{given_name}”
-    else
-      if !given_name
-        if gender &amp;&amp; gender.prefix?
-          “#{gender.prefix} #{given_name}”
-        else
-          surname
-        end
-      else
-        “#{surname} #{last_name}”
-      end
-    end
-  end
-end
-```</p>
+  <span class="k">def</span> <span class="nf">full_name</span>
+    <span class="k">if</span> <span class="n">nationality</span><span class="p">.</span><span class="nf">chinese?</span>
+      <span class="s2">"</span><span class="si">#{</span><span class="n">surname</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="n">given_name</span><span class="si">}</span><span class="s2">"</span>
+    <span class="k">else</span>
+      <span class="k">if</span> <span class="o">!</span><span class="n">given_name</span>
+        <span class="k">if</span> <span class="n">gender</span> <span class="o">&amp;&amp;</span> <span class="n">gender</span><span class="p">.</span><span class="nf">prefix?</span>
+          <span class="s2">"</span><span class="si">#{</span><span class="n">gender</span><span class="p">.</span><span class="nf">prefix</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="n">given_name</span><span class="si">}</span><span class="s2">"</span>
+        <span class="k">else</span>
+          <span class="n">surname</span>
+        <span class="k">end</span>
+      <span class="k">else</span>
+        <span class="s2">"</span><span class="si">#{</span><span class="n">surname</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="n">last_name</span><span class="si">}</span><span class="s2">"</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>What if we then need to use “Dr.” for doctors?  What about other formal titles?  What about professional associations? Why is our class for accessing secondary storage changing so often?</p>
 
@@ -228,15 +228,15 @@ an editor created in the 70’s.</p>
 
 <p>If I were viewing this code, I would be mere keystrokes away from the implementation of <code class="highlighter-rouge">full_name</code>:</p>
 
-<p><code class="highlighter-rouge">erb
-&lt;%= person.full_name %&gt;
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;%=</span> <span class="n">person</span><span class="p">.</span><span class="nf">full_name</span> <span class="cp">%&gt;</span>
+</code></pre>
+</div>
 
 <p>Given <em>this</em> code, I would <em>still</em> be mere keystrokes away:</p>
 
-<p><code class="highlighter-rouge">erb
-&lt;%= FullName.for(person) %&gt;
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;%=</span> <span class="no">FullName</span><span class="p">.</span><span class="nf">for</span><span class="p">(</span><span class="n">person</span><span class="p">)</span> <span class="cp">%&gt;</span>
+</code></pre>
+</div>
 
 <p>In fact, the second version would almost certainly be faster, because <code class="highlighter-rouge">FullName</code> will almost certainly be a very small class,
 whereas <code class="highlighter-rouge">Person</code>, chock full of helper methods, will be huge.</p>
@@ -246,54 +246,53 @@ whereas <code class="highlighter-rouge">Person</code>, chock full of helper meth
 <p>I hinted at a possible alternative implementation above, so let’s see what it might look like.  Again, this is just a
 possibility:</p>
 
-<p>```ruby
-class FullName
-  def self.for(person)
-    if person.nationality.chinese?
-      ChineseFullName.new(person.surname,person.given_name)
-    else
-      if person.given_name
-        EuropeanFullName.new(person.surname,person.given_name)
-      else
-        if person.gender &amp;&amp; person.gender.prefix?
-          GenderSalutatingFullName.new(person.given_name,person.gender.prefix)
-        else
-          EuropeanFullName.new(nil,person.given_name)
-        end
-      end
-    end
-  end</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">FullName</span>
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">for</span><span class="p">(</span><span class="n">person</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">person</span><span class="p">.</span><span class="nf">nationality</span><span class="p">.</span><span class="nf">chinese?</span>
+      <span class="no">ChineseFullName</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">person</span><span class="p">.</span><span class="nf">surname</span><span class="p">,</span><span class="n">person</span><span class="p">.</span><span class="nf">given_name</span><span class="p">)</span>
+    <span class="k">else</span>
+      <span class="k">if</span> <span class="n">person</span><span class="p">.</span><span class="nf">given_name</span>
+        <span class="no">EuropeanFullName</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">person</span><span class="p">.</span><span class="nf">surname</span><span class="p">,</span><span class="n">person</span><span class="p">.</span><span class="nf">given_name</span><span class="p">)</span>
+      <span class="k">else</span>
+        <span class="k">if</span> <span class="n">person</span><span class="p">.</span><span class="nf">gender</span> <span class="o">&amp;&amp;</span> <span class="n">person</span><span class="p">.</span><span class="nf">gender</span><span class="p">.</span><span class="nf">prefix?</span>
+          <span class="no">GenderSalutatingFullName</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">person</span><span class="p">.</span><span class="nf">given_name</span><span class="p">,</span><span class="n">person</span><span class="p">.</span><span class="nf">gender</span><span class="p">.</span><span class="nf">prefix</span><span class="p">)</span>
+        <span class="k">else</span>
+          <span class="no">EuropeanFullName</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="kp">nil</span><span class="p">,</span><span class="n">person</span><span class="p">.</span><span class="nf">given_name</span><span class="p">)</span>
+        <span class="k">end</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
 
-<p>def initialize(surname,given_name)
-    @surname = surname
-    @given_name = given_name
-  end</p>
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">surname</span><span class="p">,</span><span class="n">given_name</span><span class="p">)</span>
+    <span class="vi">@surname</span> <span class="o">=</span> <span class="n">surname</span>
+    <span class="vi">@given_name</span> <span class="o">=</span> <span class="n">given_name</span>
+  <span class="k">end</span>
 
-<p>class EuropeanFullName &lt; FullName
-    def to_s
-      “#{@given_name} #{@surname}”
-    end
-  end</p>
+  <span class="k">class</span> <span class="nc">EuropeanFullName</span> <span class="o">&lt;</span> <span class="no">FullName</span>
+    <span class="k">def</span> <span class="nf">to_s</span>
+      <span class="s2">"</span><span class="si">#{</span><span class="vi">@given_name</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="vi">@surname</span><span class="si">}</span><span class="s2">"</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
 
-<p>class GenderSalutatingFullName &lt; FullName
-    def initialize(given_name,gender_prefix)
-      super(nil,given_name)
-      @gender_prefix = gender_prefix
-    end</p>
+  <span class="k">class</span> <span class="nc">GenderSalutatingFullName</span> <span class="o">&lt;</span> <span class="no">FullName</span>
+    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">given_name</span><span class="p">,</span><span class="n">gender_prefix</span><span class="p">)</span>
+      <span class="k">super</span><span class="p">(</span><span class="kp">nil</span><span class="p">,</span><span class="n">given_name</span><span class="p">)</span>
+      <span class="vi">@gender_prefix</span> <span class="o">=</span> <span class="n">gender_prefix</span>
+    <span class="k">end</span>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>def to_s
-  "#{@gender_prefix} #{@given_name}"
-end   end
+    <span class="k">def</span> <span class="nf">to_s</span>
+      <span class="s2">"</span><span class="si">#{</span><span class="vi">@gender_prefix</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="vi">@given_name</span><span class="si">}</span><span class="s2">"</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="k">class</span> <span class="nc">ChineseFullName</span> <span class="o">&lt;</span> <span class="no">FullName</span>
+    <span class="k">def</span> <span class="nf">to_s</span>
+      <span class="s2">"</span><span class="si">#{</span><span class="vi">@surname</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="vi">@given_name</span><span class="si">}</span><span class="s2">"</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 </code></pre>
 </div>
-
-<p>class ChineseFullName &lt; FullName
-    def to_s
-      “#{@surname} #{@given_name}”
-    end
-  end
-end
-```</p>
 
 <p>Well, holy crap that’s a lot of code.  It might seem overly complex.  We turned a big bunch of <code class="highlighter-rouge">if</code> statements into a class
 hierarchy with four different classes, just to format a string.</p>
@@ -316,44 +315,44 @@ depends on name fragments and not an entire <code class="highlighter-rouge">Pers
 
 <p>For example, consider where we started:</p>
 
-<p>```ruby
-# person.rb
-class Person &lt; ActiveRecord::Base
-  def full_name
-    “#{surname} #{given_name}”
-  end
-end</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1"># person.rb</span>
+<span class="k">class</span> <span class="nc">Person</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+  <span class="k">def</span> <span class="nf">full_name</span>
+    <span class="s2">"</span><span class="si">#{</span><span class="n">surname</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="n">given_name</span><span class="si">}</span><span class="s2">"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 
-<h1 id="personshowhtmlerb">person/show.html.erb</h1>
-<p>&lt;%= person.full_name %&gt;
-```</p>
+<span class="c1"># person/show.html.erb</span>
+<span class="o">&lt;</span><span class="sx">%= person.full_name %&gt;
+</span></code></pre>
+</div>
 
 <p>Is the code above really less complex than:</p>
 
-<p>```ruby
-# person.rb
-class Person &lt; ActiveRecord::Base
-end</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1"># person.rb</span>
+<span class="k">class</span> <span class="nc">Person</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+<span class="k">end</span>
 
-<h1 id="fullnamerb">full_name.rb</h1>
-<p>class FullName
-  def self.for(person)
-    FullName.new(person.surname,person.given_name)
-  end</p>
+<span class="c1"># full_name.rb</span>
+<span class="k">class</span> <span class="nc">FullName</span>
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">for</span><span class="p">(</span><span class="n">person</span><span class="p">)</span>
+    <span class="no">FullName</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">person</span><span class="p">.</span><span class="nf">surname</span><span class="p">,</span><span class="n">person</span><span class="p">.</span><span class="nf">given_name</span><span class="p">)</span>
+  <span class="k">end</span>
 
-<p>def initialize(surname,given_name)
-    @surname    = surname
-    @given_name = given_name
-  end</p>
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">surname</span><span class="p">,</span><span class="n">given_name</span><span class="p">)</span>
+    <span class="vi">@surname</span>    <span class="o">=</span> <span class="n">surname</span>
+    <span class="vi">@given_name</span> <span class="o">=</span> <span class="n">given_name</span>
+  <span class="k">end</span>
 
-<p>def to_s
-    “#{surname} #{given_name}”
-  end
-end</p>
+  <span class="k">def</span> <span class="nf">to_s</span>
+    <span class="s2">"</span><span class="si">#{</span><span class="n">surname</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="n">given_name</span><span class="si">}</span><span class="s2">"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 
-<h1 id="personshowhtmlerb-1">person/show.html.erb</h1>
-<p>&lt;%= FullName.for(person) %&gt;
-```</p>
+<span class="c1"># person/show.html.erb</span>
+<span class="o">&lt;</span><span class="sx">%= FullName.for(person) %&gt;
+</span></code></pre>
+</div>
 
 <p>The second version has three extra lines of code.  The ERB is almost identical.  And although it might’ve taken 30 more seconds
 to enter the second code in than the former version, we will no longer ever have to decide if our <code class="highlighter-rouge">Person</code> class is “too big”, or worry about refactoring it.  Ever.  We can safely enhance our name-formatting code as needed with one less decision to make.</p>

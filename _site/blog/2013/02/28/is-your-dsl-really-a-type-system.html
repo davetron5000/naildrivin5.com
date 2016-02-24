@@ -82,58 +82,58 @@ of a type system - and a verbose one at that.</p>
 method calls.  You can specify quite a bit about our service calls, all to make the underlying logic very simple.  For example,
 they have a “user signup” service and, in the most naive, but safe, way, it would look like this:</p>
 
-<p>```ruby
-class UserSignupService</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">UserSignupService</span>
 
-<p>def self.signup(name,email,birthdate,newsletter_subscribe=false)
-    raise “name is required”    if name.nil?
-    raise “email is required”   if email.nil?
-    raise “email must be valid” unless email =~ EMAIL_REGEX</p>
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">signup</span><span class="p">(</span><span class="nb">name</span><span class="p">,</span><span class="n">email</span><span class="p">,</span><span class="n">birthdate</span><span class="p">,</span><span class="n">newsletter_subscribe</span><span class="o">=</span><span class="kp">false</span><span class="p">)</span>
+    <span class="k">raise</span> <span class="s2">"name is required"</span>    <span class="k">if</span> <span class="nb">name</span><span class="p">.</span><span class="nf">nil?</span>
+    <span class="k">raise</span> <span class="s2">"email is required"</span>   <span class="k">if</span> <span class="n">email</span><span class="p">.</span><span class="nf">nil?</span>
+    <span class="k">raise</span> <span class="s2">"email must be valid"</span> <span class="k">unless</span> <span class="n">email</span> <span class="o">=~</span> <span class="no">EMAIL_REGEX</span>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>user = User.create!(name: name, email: email, birthdate:birthdate)
-NewsletterSubscriptions.create(email: email, user_id: user.id) if newsletter_subscribe
-UserMailer.async(:deliver_welcome, user.id)
-user   end end
+    <span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">create!</span><span class="p">(</span><span class="ss">name: </span><span class="nb">name</span><span class="p">,</span> <span class="ss">email: </span><span class="n">email</span><span class="p">,</span> <span class="n">birthdate</span><span class="ss">:birthdate</span><span class="p">)</span>
+    <span class="no">NewsletterSubscriptions</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="ss">email: </span><span class="n">email</span><span class="p">,</span> <span class="ss">user_id: </span><span class="n">user</span><span class="p">.</span><span class="nf">id</span><span class="p">)</span> <span class="k">if</span> <span class="n">newsletter_subscribe</span>
+    <span class="no">UserMailer</span><span class="p">.</span><span class="nf">async</span><span class="p">(</span><span class="ss">:deliver_welcome</span><span class="p">,</span> <span class="n">user</span><span class="p">.</span><span class="nf">id</span><span class="p">)</span>
+    <span class="n">user</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">user</span> <span class="o">=</span> <span class="no">UserSignupService</span><span class="p">.</span><span class="nf">signup</span><span class="p">(</span><span class="nb">name</span><span class="p">,</span><span class="n">email</span><span class="p">,</span><span class="n">birthdate</span><span class="p">)</span>
 </code></pre>
 </div>
-
-<p>user = UserSignupService.signup(name,email,birthdate)
-```</p>
 
 <p>This is a very paranoid, but rock solid implementation.  If you screw up calling it, you’ll know why.  In Mutations, this code
 would look like so:</p>
 
-<p>```ruby
-class UserSignup &lt; Mutations::Command</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">UserSignup</span> <span class="o">&lt;</span> <span class="no">Mutations</span><span class="o">::</span><span class="no">Command</span>
 
-<p># These inputs are required
-  required do
-    string :email, matches: EMAIL_REGEX
-    string :name
-  end</p>
+  <span class="c1"># These inputs are required</span>
+  <span class="n">required</span> <span class="k">do</span>
+    <span class="n">string</span> <span class="ss">:email</span><span class="p">,</span> <span class="ss">matches: </span><span class="no">EMAIL_REGEX</span>
+    <span class="n">string</span> <span class="ss">:name</span>
+  <span class="k">end</span>
 
-<p># These inputs are optional
-  optional do
-    boolean :newsletter_subscribe
-    date :birthdate
-  end</p>
+  <span class="c1"># These inputs are optional</span>
+  <span class="n">optional</span> <span class="k">do</span>
+    <span class="n">boolean</span> <span class="ss">:newsletter_subscribe</span>
+    <span class="n">date</span> <span class="ss">:birthdate</span>
+  <span class="k">end</span>
 
-<p># The execute method is called only if the inputs validate. It does your business action.
-  def execute
-    user = User.create!(inputs)
-    NewsletterSubscriptions.create(email: email, user_id: user.id) if newsletter_subscribe
-    UserMailer.async(:deliver_welcome, user.id)
-    user
-  end
-end
-# …
-outcome = UserSignup.run(params)
-if outcome.success?
-  #
-else
-  #
-end
-```</p>
+  <span class="c1"># The execute method is called only if the inputs validate. It does your business action.</span>
+  <span class="k">def</span> <span class="nf">execute</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">create!</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+    <span class="no">NewsletterSubscriptions</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="ss">email: </span><span class="n">email</span><span class="p">,</span> <span class="ss">user_id: </span><span class="n">user</span><span class="p">.</span><span class="nf">id</span><span class="p">)</span> <span class="k">if</span> <span class="n">newsletter_subscribe</span>
+    <span class="no">UserMailer</span><span class="p">.</span><span class="nf">async</span><span class="p">(</span><span class="ss">:deliver_welcome</span><span class="p">,</span> <span class="n">user</span><span class="p">.</span><span class="nf">id</span><span class="p">)</span>
+    <span class="n">user</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+<span class="c1"># ...</span>
+<span class="n">outcome</span> <span class="o">=</span> <span class="no">UserSignup</span><span class="p">.</span><span class="nf">run</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">outcome</span><span class="p">.</span><span class="nf">success?</span>
+  <span class="c1">#</span>
+<span class="k">else</span>
+  <span class="c1">#</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>This is fairly interesting, as the “business logic” (the code in <code class="highlighter-rouge">execute</code>) is clean - it’s just the bare logic.  The sanity
 checking and other paranoia is handled by the framework.  Likely that tests of this are simpler as well - you don’t need to
@@ -142,21 +142,21 @@ of parameter validation in Ruby contains an ad-hoc, informally-specified, bug-ri
 
 <p>To demonstrate, here’s what this class would look like in Scala:</p>
 
-<p><code class="highlighter-rouge">scala
-object UserSignup {
-  def signup(name                : String,
-             email               : Email,
-             birthDate           : Option[Date],
-             newsletterSubscribe : Boolean=false) : User = {
-    var user = User.create_!(name,email,birthDate,newsletterSubscribe)
-    if (newsletterSubscribe)
-      NewsletterSubscriptions.create(email, user.id) 
-    UserMailer.async('deliver_welcome, user.id)
-    user
-  }
-}
-var user:User = UserSignup.signup(name,email,Some(birthDate))
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">object</span> <span class="nc">UserSignup</span> <span class="o">{</span>
+  <span class="k">def</span> <span class="n">signup</span><span class="o">(</span><span class="n">name</span>                <span class="k">:</span> <span class="kt">String</span><span class="o">,</span>
+             <span class="n">email</span>               <span class="k">:</span> <span class="kt">Email</span><span class="o">,</span>
+             <span class="n">birthDate</span>           <span class="k">:</span> <span class="kt">Option</span><span class="o">[</span><span class="kt">Date</span><span class="o">],</span>
+             <span class="n">newsletterSubscribe</span> <span class="k">:</span> <span class="kt">Boolean</span><span class="o">=</span><span class="kc">false</span><span class="o">)</span> <span class="k">:</span> <span class="kt">User</span> <span class="o">=</span> <span class="o">{</span>
+    <span class="k">var</span> <span class="n">user</span> <span class="k">=</span> <span class="nc">User</span><span class="o">.</span><span class="n">create_!</span><span class="o">(</span><span class="n">name</span><span class="o">,</span><span class="n">email</span><span class="o">,</span><span class="n">birthDate</span><span class="o">,</span><span class="n">newsletterSubscribe</span><span class="o">)</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">newsletterSubscribe</span><span class="o">)</span>
+      <span class="nc">NewsletterSubscriptions</span><span class="o">.</span><span class="n">create</span><span class="o">(</span><span class="n">email</span><span class="o">,</span> <span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="o">)</span> 
+    <span class="nc">UserMailer</span><span class="o">.</span><span class="n">async</span><span class="o">(</span><span class="ss">'deliver_welcome,</span> <span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="o">)</span>
+    <span class="n">user</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+<span class="k">var</span> <span class="n">user</span><span class="k">:</span><span class="kt">User</span> <span class="o">=</span> <span class="nc">UserSignup</span><span class="o">.</span><span class="n">signup</span><span class="o">(</span><span class="n">name</span><span class="o">,</span><span class="n">email</span><span class="o">,</span><span class="nc">Some</span><span class="o">(</span><span class="n">birthDate</span><span class="o">))</span>
+</code></pre>
+</div>
 
 <p>That’s it.  No special DSL, no custom framework, nothing. Just the programming language.  Why?</p>
 
@@ -170,16 +170,16 @@ parameter”.</p>
 hallmark of every <a href="http://www.globalnerdy.com/2010/05/09/new-programming-jargon/">stringly typed</a> application), we require an instance of <code class="highlighter-rouge">Email</code>.  We might imagine it looks like
 this:</p>
 
-<p>```scala
-class Email(var emailAddress: String) {
-  if (!EMAIL_REGEX.matches(emailAddress)) {
-    throw new InvalidInputError(“Email address isn’t valid”)
-  }
-}</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Email</span><span class="o">(</span><span class="k">var</span> <span class="n">emailAddress</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">if</span> <span class="o">(!</span><span class="nc">EMAIL_REGEX</span><span class="o">.</span><span class="n">matches</span><span class="o">(</span><span class="n">emailAddress</span><span class="o">))</span> <span class="o">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nc">InvalidInputError</span><span class="o">(</span><span class="s">"Email address isn't valid"</span><span class="o">)</span>
+  <span class="o">}</span>
+<span class="o">}</span>
 
-<p>var goodemail = new Email(“dave@foo.com”) // all good
-var badEmail  = new Email(“dave.foo.com”) // exception thrown
-```</p>
+<span class="k">var</span> <span class="n">goodemail</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">Email</span><span class="o">(</span><span class="s">"dave@foo.com"</span><span class="o">)</span> <span class="c1">// all good
+</span><span class="k">var</span> <span class="n">badEmail</span>  <span class="k">=</span> <span class="k">new</span> <span class="nc">Email</span><span class="o">(</span><span class="s">"dave.foo.com"</span><span class="o">)</span> <span class="c1">// exception thrown
+</span></code></pre>
+</div>
 
 <p>So, our <code class="highlighter-rouge">UserSignup</code> code can be <strong>absolutely sure</strong> that it gets a valid email.  Validating that email happens elsewhere, as
 it should.</p>

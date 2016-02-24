@@ -105,9 +105,9 @@ walkthrough of a simple command-line app I created for work.</p>
 
 <p>This is a <em>big</em> topic, but here’s an example of using <code class="highlighter-rouge">hl</code>:</p>
 
-<p><code class="highlighter-rouge">
-$ grep 987876736 my_logs.log | hl credit_card_token
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code>$ grep 987876736 my_logs.log | hl credit_card_token
+</code></pre>
+</div>
 
 <p><code class="highlighter-rouge">hl</code> does what it’s asked, by default, without a lot of fuss, just like any other UNIX command.  It has options, but you never
 need to worry about them in most cases.  Of course, if you <em>are</em> curious about those options, that leads to our next facet.</p>
@@ -116,27 +116,27 @@ need to worry about them in most cases.  Of course, if you <em>are</em> curious 
 
 <p><code class="highlighter-rouge">hl</code> is based on <a href="https://github.com/davetron5000/methadone">methadone</a>, which is a proxy to <a href="http://ruby-doc.org/stdlib-1.9.3/libdoc/optparse/rdoc/OptionParser.html">OptionParser</a>, which is <em>the</em> tool to use for parsing the command-line in Ruby.  It’s very powerful, and generates a canonical, documented UI for your app:</p>
 
-<p>```
-$ bin/hl –help
-Usage: hl [options] [search_term] [filename]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>$ bin/hl --help
+Usage: hl [options] [search_term] [filename]
 
-<p>Highlight terms in output without grepping out lines</p>
+Highlight terms in output without grepping out lines
 
-<p>v1.0.0</p>
+v1.0.0
 
-<p>Options:
-    -c, –color COLOR                Color to use for highlighting
+Options:
+    -c, --color COLOR                Color to use for highlighting
                                      (red|green|yellow|blue|magenta|cyan|white)
                                      (default: yellow)
-    -b, –[no-]bright                Use bright colors
-    -n, –[no-]inverse               Inverse highlight
-    -u, –[no-]underline             Underline highlight
-    -p, –regexp PATTERN             Search term as explicit option
-    -i, –[no-]ignore-case           Ignore case in match
-        –version                    Show help/version info</p>
+    -b, --[no-]bright                Use bright colors
+    -n, --[no-]inverse               Inverse highlight
+    -u, --[no-]underline             Underline highlight
+    -p, --regexp PATTERN             Search term as explicit option
+    -i, --[no-]ignore-case           Ignore case in match
+        --version                    Show help/version info
 
-<p>Default values can be placed in the HL_OPTS environment variable
-```</p>
+Default values can be placed in the HL_OPTS environment variable
+</code></pre>
+</div>
 
 <p>Note how much <code class="highlighter-rouge">OptionParser</code> gives us:</p>
 
@@ -150,72 +150,72 @@ Usage: hl [options] [search_term] [filename]</p>
 
 <p>Here’s the code that makes this happen (if you aren’t familiar with methadone, the method <code class="highlighter-rouge">on</code> behaves almost exactly like the <code class="highlighter-rouge">on</code> method in <code class="highlighter-rouge">OptionParser</code>):</p>
 
-<p>```ruby
-#!/usr/bin/env ruby</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1">#!/usr/bin/env ruby</span>
 
-<p>require ‘optparse’
-require ‘methadone’
-require ‘hl’</p>
+<span class="nb">require</span> <span class="s1">'optparse'</span>
+<span class="nb">require</span> <span class="s1">'methadone'</span>
+<span class="nb">require</span> <span class="s1">'hl'</span>
 
-<p>class App
-  include Methadone::Main
-  include Methadone::CLILogging</p>
+<span class="k">class</span> <span class="nc">App</span>
+  <span class="kp">include</span> <span class="no">Methadone</span><span class="o">::</span><span class="no">Main</span>
+  <span class="kp">include</span> <span class="no">Methadone</span><span class="o">::</span><span class="no">CLILogging</span>
 
-<p>main do |keyword,*filenames|
-    # main logic here
-  end</p>
+  <span class="n">main</span> <span class="k">do</span> <span class="o">|</span><span class="n">keyword</span><span class="p">,</span><span class="o">*</span><span class="n">filenames</span><span class="o">|</span>
+    <span class="c1"># main logic here</span>
+  <span class="k">end</span>
 
-<p>description “Highlight terms in output without grepping out lines”</p>
+  <span class="n">description</span> <span class="s2">"Highlight terms in output without grepping out lines"</span>
 
-<p>options[:color] = ‘yellow’
-  colors = [‘red’, ‘green’, ‘yellow’, ‘blue’, ‘magenta’, ‘cyan’, ‘white’]
-  on(“-c COLOR”,       “–color”,”Color to use for highlighting”,colors,”(#{colors.join(‘|’)})”)
-  on(“–[no-]bright”,     “-b”,  “Use bright colors”)
-  on(“–[no-]inverse”,    “-n”,  “Inverse highlight”)
-  on(“–[no-]underline”,  “-u”,  “Underline highlight”)
-  on(“–regexp PATTERN”,  “-p”,  “Search term as explicit option”)
-  on(“–[no-]ignore-case”,”-i”,  “Ignore case in match”)</p>
+  <span class="n">options</span><span class="p">[</span><span class="ss">:color</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'yellow'</span>
+  <span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'red'</span><span class="p">,</span> <span class="s1">'green'</span><span class="p">,</span> <span class="s1">'yellow'</span><span class="p">,</span> <span class="s1">'blue'</span><span class="p">,</span> <span class="s1">'magenta'</span><span class="p">,</span> <span class="s1">'cyan'</span><span class="p">,</span> <span class="s1">'white'</span><span class="p">]</span>
+  <span class="n">on</span><span class="p">(</span><span class="s2">"-c COLOR"</span><span class="p">,</span>       <span class="s2">"--color"</span><span class="p">,</span><span class="s2">"Color to use for highlighting"</span><span class="p">,</span><span class="n">colors</span><span class="p">,</span><span class="s2">"(</span><span class="si">#{</span><span class="n">colors</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="s1">'|'</span><span class="p">)</span><span class="si">}</span><span class="s2">)"</span><span class="p">)</span>
+  <span class="n">on</span><span class="p">(</span><span class="s2">"--[no-]bright"</span><span class="p">,</span>     <span class="s2">"-b"</span><span class="p">,</span>  <span class="s2">"Use bright colors"</span><span class="p">)</span>
+  <span class="n">on</span><span class="p">(</span><span class="s2">"--[no-]inverse"</span><span class="p">,</span>    <span class="s2">"-n"</span><span class="p">,</span>  <span class="s2">"Inverse highlight"</span><span class="p">)</span>
+  <span class="n">on</span><span class="p">(</span><span class="s2">"--[no-]underline"</span><span class="p">,</span>  <span class="s2">"-u"</span><span class="p">,</span>  <span class="s2">"Underline highlight"</span><span class="p">)</span>
+  <span class="n">on</span><span class="p">(</span><span class="s2">"--regexp PATTERN"</span><span class="p">,</span>  <span class="s2">"-p"</span><span class="p">,</span>  <span class="s2">"Search term as explicit option"</span><span class="p">)</span>
+  <span class="n">on</span><span class="p">(</span><span class="s2">"--[no-]ignore-case"</span><span class="p">,</span><span class="s2">"-i"</span><span class="p">,</span>  <span class="s2">"Ignore case in match"</span><span class="p">)</span>
 
-<p>arg :search_term, :optional
-  arg :filename, :optional</p>
+  <span class="n">arg</span> <span class="ss">:search_term</span><span class="p">,</span> <span class="ss">:optional</span>
+  <span class="n">arg</span> <span class="ss">:filename</span><span class="p">,</span> <span class="ss">:optional</span>
 
-<p>version Hl::VERSION</p>
+  <span class="n">version</span> <span class="no">Hl</span><span class="o">::</span><span class="no">VERSION</span>
 
-<p>defaults_from_env_var ‘HL_OPTS’</p>
+  <span class="n">defaults_from_env_var</span> <span class="s1">'HL_OPTS'</span>
 
-<p>go!
-end
-```</p>
+  <span class="n">go!</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>Methods like <code class="highlighter-rouge">arg</code>, <code class="highlighter-rouge">version</code>, and <code class="highlighter-rouge">description</code> are helpers from methadone (see the <a href="http://www.naildrivin5.com/blog/2011/12/19/methadone-the-awesome-cli-library.html">intro</a> for more), but note how <em>little</em> code it takes just to make a great and polished UI.</p>
 
 <p>The second part of a helpful app is to include more detailed documentation.  For a command-line app, this is expected to be in the form of a man page.  If you installed <code class="highlighter-rouge">hl</code> with RubyGems, try this:</p>
 
-<p><code class="highlighter-rouge">sh
-$ gem man hl
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>gem man hl
+</code></pre>
+</div>
 
 <p>You should see a nicely formatted man page (which also happens <a href="https://github.com/davetron5000/hl/blob/master/README.md">to be the <code class="highlighter-rouge">README</code></a> for the github project)!  Creating a man page is extremely simple thanks to <a href="https://github.com/rtomayko/ronn">ronn</a>.  <code class="highlighter-rouge">ronn</code> converts Markdown to troff, the format used by the man system.  Just add this to your Rakefile:</p>
 
-<p>```ruby
-require ‘methadone’
-require ‘fileutils’</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nb">require</span> <span class="s1">'methadone'</span>
+<span class="nb">require</span> <span class="s1">'fileutils'</span>
 
-<p>include Methadone::SH
-include FileUtils</p>
+<span class="kp">include</span> <span class="no">Methadone</span><span class="o">::</span><span class="no">SH</span>
+<span class="kp">include</span> <span class="no">FileUtils</span>
 
-<p>task :man do 
-  sh ‘ronn –markdown –roff man/hl.1.ronn’
-  mv ‘man/hl.1.markdown’,’README.md’
-end
-```</p>
+<span class="n">task</span> <span class="ss">:man</span> <span class="k">do</span> 
+  <span class="n">sh</span> <span class="s1">'ronn --markdown --roff man/hl.1.ronn'</span>
+  <span class="n">mv</span> <span class="s1">'man/hl.1.markdown'</span><span class="p">,</span><span class="s1">'README.md'</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>And, your gemspec just needs:</p>
 
-<p><code class="highlighter-rouge">ruby
-  s.add_development_dependency('ronn')
-  s.add_dependency('gem-man')
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  <span class="n">s</span><span class="p">.</span><span class="nf">add_development_dependency</span><span class="p">(</span><span class="s1">'ronn'</span><span class="p">)</span>
+  <span class="n">s</span><span class="p">.</span><span class="nf">add_dependency</span><span class="p">(</span><span class="s1">'gem-man'</span><span class="p">)</span>
+</code></pre>
+</div>
 
 <p>You’ll also need to include the generated file <code class="highlighter-rouge">man/hl.1</code> in your <code class="highlighter-rouge">files</code> in your gemspec, but if you’re using the gemspec created by Bundler, this happens automatically as long as the file is in source control.</p>
 
@@ -231,22 +231,22 @@ end
 
 <p>We saw that <code class="highlighter-rouge">hl</code> was designed to take input from a tool like <code class="highlighter-rouge">grep</code>.  <code class="highlighter-rouge">hl</code> can also highlight terms from any number of files given to it on the command line.  You can do this transparently in Ruby using the awesome <a href="http://ruby-doc.org/core-1.9.3/ARGF.html">ARGF</a>, however Methadone doesn’t support ARGF (a sad fact I learned while writing this app, and something <a href="https://github.com/davetron5000/methadone/issues/34">I’ll address</a> in the near future), so here’s how did it (a few comments added to indicate what’s going on):</p>
 
-<p><code class="highlighter-rouge">ruby
-# filenames is a possibly empty list of strings
-files = if filenames.empty?
-          [STDIN]
-        else
-          filenames.map { |_| File.open(_) }
-        end
-# files is now an Array of open IO objects
-begin
-  # highlighting code
-ensure
-  # we close the files since we didn't open them in "block" form; closing STDIN is OK to do
-  # since we know our app will soon exit
-  files &amp;&amp; files.map(&amp;:close)
-end
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1"># filenames is a possibly empty list of strings</span>
+<span class="n">files</span> <span class="o">=</span> <span class="k">if</span> <span class="n">filenames</span><span class="p">.</span><span class="nf">empty?</span>
+          <span class="p">[</span><span class="no">STDIN</span><span class="p">]</span>
+        <span class="k">else</span>
+          <span class="n">filenames</span><span class="p">.</span><span class="nf">map</span> <span class="p">{</span> <span class="o">|</span><span class="n">_</span><span class="o">|</span> <span class="no">File</span><span class="p">.</span><span class="nf">open</span><span class="p">(</span><span class="n">_</span><span class="p">)</span> <span class="p">}</span>
+        <span class="k">end</span>
+<span class="c1"># files is now an Array of open IO objects</span>
+<span class="k">begin</span>
+  <span class="c1"># highlighting code</span>
+<span class="k">ensure</span>
+  <span class="c1"># we close the files since we didn't open them in "block" form; closing STDIN is OK to do</span>
+  <span class="c1"># since we know our app will soon exit</span>
+  <span class="n">files</span> <span class="o">&amp;&amp;</span> <span class="n">files</span><span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:close</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>Again, ARGF handles this transparently, but the point is, we want the standard input and a provided list of files to be treated the same by our program, and this is how I did it.</p>
 
@@ -267,17 +267,17 @@ with <code class="highlighter-rouge">hl</code>.</p>
 
 <p>In the book, I talk about using YAML as a configuration format for an <code class="highlighter-rouge">.rc</code> file.  This can be very useful for complex apps, but another technique that’s handy is to allow an environment variable to hold default options.  <code class="highlighter-rouge">grep</code> does this via <code class="highlighter-rouge">GREP_OPTS</code> and if you were paying attenion, you noticed this line in <code class="highlighter-rouge">bin/hl</code>:</p>
 
-<p><code class="highlighter-rouge">ruby
-  defaults_from_env_var 'HL_OPTS'
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  <span class="n">defaults_from_env_var</span> <span class="s1">'HL_OPTS'</span>
+</code></pre>
+</div>
 
 <p>This tells methadone to look at the environment variable <code class="highlighter-rouge">HL_OPTS</code> (as well as the command line) for any options.  These options are placed first in <code class="highlighter-rouge">ARGV</code>, essentially like so:</p>
 
-<p><code class="highlighter-rouge">ruby
-String(ENV[@env_var]).split(/\s+/).each do |arg|
-  ::ARGV.unshift(arg)
-end
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="no">String</span><span class="p">(</span><span class="no">ENV</span><span class="p">[</span><span class="vi">@env_var</span><span class="p">]).</span><span class="nf">split</span><span class="p">(</span><span class="sr">/\s+/</span><span class="p">).</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">arg</span><span class="o">|</span>
+  <span class="o">::</span><span class="no">ARGV</span><span class="p">.</span><span class="nf">unshift</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>(Note the use of <code class="highlighter-rouge">String</code> to make sure that <code class="highlighter-rouge">nil</code> gets turned into the empty string, saving us an <code class="highlighter-rouge">if</code> statement).  Methadone does this before parsing <code class="highlighter-rouge">ARGV</code>.  Using <code class="highlighter-rouge">unshift</code> means that any options the <em>user</em> specifies will come <em>after</em> those in <code class="highlighter-rouge">HL_OPTS</code> and therefore take precendence:</p>
 
@@ -335,25 +335,25 @@ $ hl --help
 
 <p>I wrote <code class="highlighter-rouge">hl</code> entirely using <a href="http://en.wikipedia.org/wiki/Test-driven_development">TDD</a> and entirely using <a href="https://github.com/cucumber/aruba">aruba</a>.  Here’s a sampling:</p>
 
-<p><code class="highlighter-rouge">cucumber
-  Scenario: Highlights with case insensitivity
-    Given a file named "test_file" with the word "FOO bar foo" in it
-    When I successfully run `hl -i foo ../../test_file`
-    Then the entire contents of "test_file" should be output
-    But the word "foo" should be highlighted in yellow
-    And the word "FOO" should be highlighted in yellow
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  <span class="kn">Scenario</span><span class="p">:</span> Highlights with case insensitivity
+    <span class="nf">Given</span> a file named <span class="s">"test_file"</span> with the word <span class="s">"FOO bar foo"</span> in it
+    <span class="nf">When</span> I successfully run `hl -i foo ../../test_file`
+    <span class="nf">Then</span> the entire contents of <span class="s">"test_file"</span> should be output
+    <span class="nf">But</span> the word <span class="s">"foo"</span> should be highlighted in yellow
+    <span class="nf">And</span> the word <span class="s">"FOO"</span> should be highlighted in yellow
+</code></pre>
+</div>
 
 <p>It was very easy to do this, although aruba could use a man page for easier reference.  I had to jump into its source too many times to get reminded of the syntax of the steps it provides.  Aruba also strips out ANSI escape sequences, which made testing <code class="highlighter-rouge">hl</code> a bit tricky.  There appears to be an option to <em>prevent</em> this, but I couldn’t get it to work, so I just used Aruba’s internal API:</p>
 
-<p><code class="highlighter-rouge">ruby
-Then /^the word "([^"]*)" should be highlighted in (.*$)$/ do |keyword,color|
-  # #color is provided by rainbow, which we'll talk about in a bit
-  expected = keyword.color(color.to_sym)
-  # assert_partial_output and all_stdout are provided by aruba
-  assert_partial_output(expected,all_stdout)
-end
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="no">Then</span> <span class="sr">/^the word "([^"]*)" should be highlighted in (.*$)$/</span> <span class="k">do</span> <span class="o">|</span><span class="n">keyword</span><span class="p">,</span><span class="n">color</span><span class="o">|</span>
+  <span class="c1"># #color is provided by rainbow, which we'll talk about in a bit</span>
+  <span class="n">expected</span> <span class="o">=</span> <span class="n">keyword</span><span class="p">.</span><span class="nf">color</span><span class="p">(</span><span class="n">color</span><span class="p">.</span><span class="nf">to_sym</span><span class="p">)</span>
+  <span class="c1"># assert_partial_output and all_stdout are provided by aruba</span>
+  <span class="n">assert_partial_output</span><span class="p">(</span><span class="n">expected</span><span class="p">,</span><span class="n">all_stdout</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>I still recommend aruba and cucumber, as it forces you to think about how users will use your app first, not how to implement it.  In fact, my initial implementation was a big hacky mess of stuff inside the <code class="highlighter-rouge">main</code> block.  Once the tests were in place, I refactored it to be a lot cleaner.</p>
 
@@ -361,21 +361,21 @@ end
 
 <p>As I just mentioned, I was able to use my tests to refactor my code.  As such, the main block of <code class="highlighter-rouge">hl</code> is pretty simple:</p>
 
-<p>```ruby
-main do |keyword,*filenames|
-  if options[:regexp]
-    Array(filenames).unshift(keyword)
-    keyword = options[:regexp]
-  end</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">main</span> <span class="k">do</span> <span class="o">|</span><span class="n">keyword</span><span class="p">,</span><span class="o">*</span><span class="n">filenames</span><span class="o">|</span>
+  <span class="k">if</span> <span class="n">options</span><span class="p">[</span><span class="ss">:regexp</span><span class="p">]</span>
+    <span class="no">Array</span><span class="p">(</span><span class="n">filenames</span><span class="p">).</span><span class="nf">unshift</span><span class="p">(</span><span class="n">keyword</span><span class="p">)</span>
+    <span class="n">keyword</span> <span class="o">=</span> <span class="n">options</span><span class="p">[</span><span class="ss">:regexp</span><span class="p">]</span>
+  <span class="k">end</span>
 
-<p>exit_now! ‘search term or –regexp/-p required’ if keyword.nil?</p>
+  <span class="n">exit_now!</span> <span class="s1">'search term or --regexp/-p required'</span> <span class="k">if</span> <span class="n">keyword</span><span class="p">.</span><span class="nf">nil?</span>
 
-<p>keyword = keyword.dup
-  highlighter = Hl::Highlighter.new(options)</p>
+  <span class="n">keyword</span> <span class="o">=</span> <span class="n">keyword</span><span class="p">.</span><span class="nf">dup</span>
+  <span class="n">highlighter</span> <span class="o">=</span> <span class="no">Hl</span><span class="o">::</span><span class="no">Highlighter</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">options</span><span class="p">)</span>
 
-<p>puts highlighter.highlight(filenames,keyword)
-end
-```</p>
+  <span class="nb">puts</span> <span class="n">highlighter</span><span class="p">.</span><span class="nf">highlight</span><span class="p">(</span><span class="n">filenames</span><span class="p">,</span><span class="n">keyword</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>This is the sort of logic you want in your <code class="highlighter-rouge">main</code> block:</p>
 
@@ -390,9 +390,9 @@ end
 
 <p>The actual highlighting is made possible via lots of list comprehension:</p>
 
-<p><code class="highlighter-rouge">ruby
-files.map { |_| _.readlines}.flatten.map { |_| highlight_matches(regexp,_) }.join("")
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">files</span><span class="p">.</span><span class="nf">map</span> <span class="p">{</span> <span class="o">|</span><span class="n">_</span><span class="o">|</span> <span class="n">_</span><span class="p">.</span><span class="nf">readlines</span><span class="p">}.</span><span class="nf">flatten</span><span class="p">.</span><span class="nf">map</span> <span class="p">{</span> <span class="o">|</span><span class="n">_</span><span class="o">|</span> <span class="n">highlight_matches</span><span class="p">(</span><span class="n">regexp</span><span class="p">,</span><span class="n">_</span><span class="p">)</span> <span class="p">}.</span><span class="nf">join</span><span class="p">(</span><span class="s2">""</span><span class="p">)</span>
+</code></pre>
+</div>
 
 <p>If you aren’t comfortable with this use of chained calls, it can be very powerful.  What this does is:</p>
 
@@ -411,15 +411,15 @@ files.map { |_| _.readlines}.flatten.map { |_| highlight_matches(regexp,_) }.joi
 <p>Color and formatting <em>are not</em> typically associated with awesome command-line apps; too much of it makes an app hard to use with other apps.  But, the whole purpose of <code class="highlighter-rouge">hl</code> is to colorize output, so for that, I used <a href="https://github.com/sickill/rainbow">rainbow</a>, which is a pretty
 simple enhancement to <code class="highlighter-rouge">String</code> that allows coloring and formatting.  We can see it in action in the <code class="highlighter-rouge">highlight_string</code> method of <code class="highlighter-rouge">Highlighter</code>:</p>
 
-<p><code class="highlighter-rouge">ruby
-def highlight_string(string)
-  string = string.color(@options['color'].to_sym)
-  string = string.inverse if @options[:inverse]
-  string = string.bright if @options[:bright]
-  string = string.underline if @options[:underline]
-  string
-end
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">highlight_string</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+  <span class="n">string</span> <span class="o">=</span> <span class="n">string</span><span class="p">.</span><span class="nf">color</span><span class="p">(</span><span class="vi">@options</span><span class="p">[</span><span class="s1">'color'</span><span class="p">].</span><span class="nf">to_sym</span><span class="p">)</span>
+  <span class="n">string</span> <span class="o">=</span> <span class="n">string</span><span class="p">.</span><span class="nf">inverse</span> <span class="k">if</span> <span class="vi">@options</span><span class="p">[</span><span class="ss">:inverse</span><span class="p">]</span>
+  <span class="n">string</span> <span class="o">=</span> <span class="n">string</span><span class="p">.</span><span class="nf">bright</span> <span class="k">if</span> <span class="vi">@options</span><span class="p">[</span><span class="ss">:bright</span><span class="p">]</span>
+  <span class="n">string</span> <span class="o">=</span> <span class="n">string</span><span class="p">.</span><span class="nf">underline</span> <span class="k">if</span> <span class="vi">@options</span><span class="p">[</span><span class="ss">:underline</span><span class="p">]</span>
+  <span class="n">string</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>Each method called on <code class="highlighter-rouge">string</code> is a method provided by Rainbow.  These methods return a new string with the appropriate ANSI escape codes added.</p>
 

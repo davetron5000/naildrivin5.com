@@ -346,9 +346,9 @@ way?</p>
 the world’s worst straw man I’ve seen.  He talks about <a href="http://pragprog.com/magazines/2013-01/functional-programming-basics">Uncle Bob’s post</a> on the advantages of functional programming.
 Elliotte’s thesis is that Java and JVM just can’t handle this sort of thing, and then sets out to prove this with some terrible code that, unsurprisingly, is terrible.  He takes this bit of Clojure</p>
 
-<p><code class="highlighter-rouge">clojure
-(take 25 (squares-of (integers)))
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">(</span><span class="nb">take</span><span class="w"> </span><span class="mi">25</span><span class="w"> </span><span class="p">(</span><span class="nf">squares-of</span><span class="w"> </span><span class="p">(</span><span class="nf">integers</span><span class="p">)))</span><span class="w">
+</span></code></pre>
+</div>
 
 <p>And “re-implements” it in Java.  He does this by implementing <code class="highlighter-rouge">integers</code> to just allocate an array of all the integers.</p>
 

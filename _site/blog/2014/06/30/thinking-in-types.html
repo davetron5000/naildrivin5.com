@@ -90,11 +90,11 @@
 
 <p>Take this Ruby routine:</p>
 
-<p><code class="highlighter-rouge">ruby
-def square(x)
-  x * x
-end
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">square</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+  <span class="n">x</span> <span class="o">*</span> <span class="n">x</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>Although you can’t see it in the source directly, <code class="highlighter-rouge">x</code> has a type, as does the return value of <code class="highlighter-rouge">square</code>.</p>
 
@@ -102,11 +102,11 @@ end
 
 <p>What about <em>this</em> routine:</p>
 
-<p><code class="highlighter-rouge">ruby
-def divide(numerator,denominator)
-  numerator / denominator
-end
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">divide</span><span class="p">(</span><span class="n">numerator</span><span class="p">,</span><span class="n">denominator</span><span class="p">)</span>
+  <span class="n">numerator</span> <span class="o">/</span> <span class="n">denominator</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>You may think that both <code class="highlighter-rouge">numerator</code> and <code class="highlighter-rouge">denominator</code> have the same type.  They do not.  While both are ostensibly numbers, 0 is not a valid value for <code class="highlighter-rouge">denominator</code>, because there’s no such thing as dividing by zero.  <code class="highlighter-rouge">denominator</code> has a slightly different type than <code class="highlighter-rouge">numerator</code> in that there is one additional valid value for <code class="highlighter-rouge">numerator</code> that is not valid for <code class="highlighter-rouge">denominator</code> (namely, zero).</p>
 
@@ -125,17 +125,17 @@ across a series of operations, resulting in new data.  Just because the types in
 
 <p>Suppose we are modeling an item for purchase.  An item has a price:</p>
 
-<p>```ruby
-class Item
-  def price
-    @price
-  end</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Item</span>
+  <span class="k">def</span> <span class="nf">price</span>
+    <span class="vi">@price</span>
+  <span class="k">end</span>
 
-<p>def price=(new_price)
-    @price = new_price
-  end
-end
-```</p>
+  <span class="k">def</span> <span class="nf">price</span><span class="o">=</span><span class="p">(</span><span class="n">new_price</span><span class="p">)</span>
+    <span class="vi">@price</span> <span class="o">=</span> <span class="n">new_price</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>We could have a guess at the type of <code class="highlighter-rouge">price</code>.  With just a modicum of domain knowledge
 we could guess it’s some sort of number.</p>
@@ -148,20 +148,20 @@ we could guess it’s some sort of number.</p>
 
 <p>Let’s make this type explicit by defining a new type called <code class="highlighter-rouge">Price</code>.</p>
 
-<p>```ruby
-class Price
-  attr_reader :number_of_cents
-  def initialize(number_of_cents)
-    raise ArgumentError unless number_of_cents &gt;= 0
-    raise ArgumentError unless number_of_cents == Integer(number_of_cents)
-    @number_of_cents = BigDecimal.new(number_of_cents)
-  end</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Price</span>
+  <span class="kp">attr_reader</span> <span class="ss">:number_of_cents</span>
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">number_of_cents</span><span class="p">)</span>
+    <span class="k">raise</span> <span class="no">ArgumentError</span> <span class="k">unless</span> <span class="n">number_of_cents</span> <span class="o">&gt;=</span> <span class="mi">0</span>
+    <span class="k">raise</span> <span class="no">ArgumentError</span> <span class="k">unless</span> <span class="n">number_of_cents</span> <span class="o">==</span> <span class="no">Integer</span><span class="p">(</span><span class="n">number_of_cents</span><span class="p">)</span>
+    <span class="vi">@number_of_cents</span> <span class="o">=</span> <span class="no">BigDecimal</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">number_of_cents</span><span class="p">)</span>
+  <span class="k">end</span>
 
-<p>def dollars
-    @number_of_cents / 100
-  end
-end
-```</p>
+  <span class="k">def</span> <span class="nf">dollars</span>
+    <span class="vi">@number_of_cents</span> <span class="o">/</span> <span class="mi">100</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>Now, because we have an explicit type defining a price in our system, anyone can easily understand the rules and logic about prices.  We’ve also made it extremely difficult to use incorrectly (this is Ruby, after all, so the only things that are impossible are strong guarantees).</p>
 
@@ -179,13 +179,13 @@ well-defined on that system type.</p>
 
 <p>Addition is pretty straightforward:</p>
 
-<p><code class="highlighter-rouge">ruby
-class Price
-  def +(other_price)
-    Price.new(@number_of_cents + other_price.number_of_cents)
-  end
-end
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Price</span>
+  <span class="k">def</span> <span class="nf">+</span><span class="p">(</span><span class="n">other_price</span><span class="p">)</span>
+    <span class="no">Price</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="vi">@number_of_cents</span> <span class="o">+</span> <span class="n">other_price</span><span class="p">.</span><span class="nf">number_of_cents</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>But what about subtraction?  We might subtract prices when doing an exchange, refund,
 or discount, but if a price cannot be negative, what happens when we subtract one
@@ -206,34 +206,34 @@ be?</p>
 
 <p>Type <em>declaration</em> is how we communicate the expected type of a variable, parameter, or return value.  For example, our <code class="highlighter-rouge">Item</code> class defined accessor methods for <code class="highlighter-rouge">price</code>:</p>
 
-<p>```ruby
-class Item
-  def price
-    @price
-  end</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Item</span>
+  <span class="k">def</span> <span class="nf">price</span>
+    <span class="vi">@price</span>
+  <span class="k">end</span>
 
-<p>def price=(new_price)
-    @price = new_price
-  end
-end
-```</p>
+  <span class="k">def</span> <span class="nf">price</span><span class="o">=</span><span class="p">(</span><span class="n">new_price</span><span class="p">)</span>
+    <span class="vi">@price</span> <span class="o">=</span> <span class="n">new_price</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>It may seem that no types have been actually declared here. While it’s true that the Ruby runtime allows any value to be passed to (or returned from) any routine, the programmer <em>has</em> made a clear intent as to the types involved.</p>
 
 <p>Given that our system has an explicitly-defined type called <code class="highlighter-rouge">Price</code>, it’s highly
 likely that the programmer is declaring that <code class="highlighter-rouge">price</code> returns a <code class="highlighter-rouge">Price</code> and <code class="highlighter-rouge">price=</code> expects a <code class="highlighter-rouge">Price</code> as its parameter (and that <code class="highlighter-rouge">@price</code> is intended to hold an instance of <code class="highlighter-rouge">Price</code>).  Compare to this code:</p>
 
-<p>```ruby
-class Item
-  def price
-    @price
-  end</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Item</span>
+  <span class="k">def</span> <span class="nf">price</span>
+    <span class="vi">@price</span>
+  <span class="k">end</span>
 
-<p>def price=(number_of_cents)
-    @price = Price.new(number_of_cents)
-  end
-end
-```</p>
+  <span class="k">def</span> <span class="nf">price</span><span class="o">=</span><span class="p">(</span><span class="n">number_of_cents</span><span class="p">)</span>
+    <span class="vi">@price</span> <span class="o">=</span> <span class="no">Price</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">number_of_cents</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>Here, the programmer has declared that the parameter to <code class="highlighter-rouge">price=</code> is a number of cents, not a <code class="highlighter-rouge">Price</code>.  Even though the language is providing no guarantees
 about the types of these values at runtime, the programmer has declared their types.</p>
@@ -245,23 +245,23 @@ compiler, inference, generics, annotate.  There’s a difference between definin
 
 <p>We’ve seen how we can both define and declare types in our code, but what good is it?  Why is this code:</p>
 
-<p>```ruby
-class Price
-  # …
-end</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Price</span>
+  <span class="c1"># ...</span>
+<span class="k">end</span>
 
-<p>def price=(price)
-  @price = price
-end
-```</p>
+<span class="k">def</span> <span class="nf">price</span><span class="o">=</span><span class="p">(</span><span class="n">price</span><span class="p">)</span>
+  <span class="vi">@price</span> <span class="o">=</span> <span class="n">price</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>better than this:</p>
 
-<p><code class="highlighter-rouge">ruby
-def price=(x)
-  @price = x
-end
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">price</span><span class="o">=</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+  <span class="vi">@price</span> <span class="o">=</span> <span class="n">x</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>Two words: boundaries.</p>
 
@@ -284,11 +284,11 @@ expectations are.  Types also encourage us to think about how our program will b
 <p>A simple way to check that types are being used correctly is to simply add code that
 checks:</p>
 
-<p><code class="highlighter-rouge">ruby
-def price=(new_price)
-  raise ArgumentError unless new_price.kind_of? Price
-end
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">price</span><span class="o">=</span><span class="p">(</span><span class="n">new_price</span><span class="p">)</span>
+  <span class="k">raise</span> <span class="no">ArgumentError</span> <span class="k">unless</span> <span class="n">new_price</span><span class="p">.</span><span class="nf">kind_of?</span> <span class="no">Price</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>An advantage of this means of type-checking is that it’s explicit, clear, obvious, and
 can be used “as-needed” (e.g. for critical entry points where mistakes are likely to
@@ -296,13 +296,13 @@ be made). The disadvantage is that you will not find out until runtime if the wr
 
 <p>To deal with that, we can use tests so we have some assurances <em>before</em> the application is actually deployed:</p>
 
-<p><code class="highlighter-rouge">ruby
-def test_price_returns_a_price_not_a_decimal
-  item = FactoryGirl.create(:item)
-  item = Item.find(item.id)
-  assert_equal Price,item.price.class
-end
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">test_price_returns_a_price_not_a_decimal</span>
+  <span class="n">item</span> <span class="o">=</span> <span class="no">FactoryGirl</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="ss">:item</span><span class="p">)</span>
+  <span class="n">item</span> <span class="o">=</span> <span class="no">Item</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">item</span><span class="p">.</span><span class="nf">id</span><span class="p">)</span>
+  <span class="n">assert_equal</span> <span class="no">Price</span><span class="p">,</span><span class="n">item</span><span class="p">.</span><span class="nf">price</span><span class="p">.</span><span class="nf">class</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>In a language like Ruby, where there’s no built-in way to check or enforce type
 declarations, you can run out of options quickly.</p>
@@ -310,11 +310,11 @@ declarations, you can run out of options quickly.</p>
 <p>There have been attempts to add richer type-checking systems to Ruby.
 Rails’ validations is probably the most prolific:</p>
 
-<p><code class="highlighter-rouge">ruby
-class Item &lt; ActiveRecord::Base
-  validate :price, :numericality =&gt; { :greater_than_or_equal_to =&gt; 0 }
-end
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Item</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+  <span class="n">validate</span> <span class="ss">:price</span><span class="p">,</span> <span class="ss">:numericality</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="ss">:greater_than_or_equal_to</span> <span class="o">=&gt;</span> <span class="mi">0</span> <span class="p">}</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>Here, we’ve declared the valid values of <code class="highlighter-rouge">price</code>, and we can invoke the type-checker
 by calling <code class="highlighter-rouge">valid?</code> on the item.  We can even get a detailed explanation of type
@@ -341,51 +341,51 @@ type of a value can be unambiguously deduced).</p>
 
 <p>If your last experience with such a language is this:</p>
 
-<p><code class="highlighter-rouge">java
-List&lt;String&gt; names = new ArrayList&lt;String&gt;();
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">names</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;();</span>
+</code></pre>
+</div>
 
 <p>then it’s <strong>no wonder</strong> you aren’t a fan of having your source code checked for type
 correctness.  <strong>And</strong>, if your main experience in <em>defining</em> types is this:</p>
 
-<p>```ruby
-class Person
-  attr_accessor :name
-  attr_accessor :birthdate
-  attr_accessor :address</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Person</span>
+  <span class="kp">attr_accessor</span> <span class="ss">:name</span>
+  <span class="kp">attr_accessor</span> <span class="ss">:birthdate</span>
+  <span class="kp">attr_accessor</span> <span class="ss">:address</span>
 
-<p>def initialize(name, birthdate, address)
-    @name      = name
-    @birthdate = birthdate
-    @address   = address
-  end
-end
-```</p>
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="nb">name</span><span class="p">,</span> <span class="n">birthdate</span><span class="p">,</span> <span class="n">address</span><span class="p">)</span>
+    <span class="vi">@name</span>      <span class="o">=</span> <span class="nb">name</span>
+    <span class="vi">@birthdate</span> <span class="o">=</span> <span class="n">birthdate</span>
+    <span class="vi">@address</span>   <span class="o">=</span> <span class="n">address</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>then it’s <strong>no wonder</strong> you aren’t a fan of using types in the first place.</p>
 
 <p>Let’s see what our <code class="highlighter-rouge">Item</code> and <code class="highlighter-rouge">Price</code> types look like in a modern language that supports type-checking, Scala:</p>
 
-<p>```scala
-case class Price(val numberOfCents: Int) {
-  if (numberOfCents &lt; 0) {
-    throw new IllegalArgumentException(“numberOfCents must be positive”)
-  }</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">case</span> <span class="k">class</span> <span class="nc">Price</span><span class="o">(</span><span class="k">val</span> <span class="n">numberOfCents</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">numberOfCents</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nc">IllegalArgumentException</span><span class="o">(</span><span class="s">"numberOfCents must be positive"</span><span class="o">)</span>
+  <span class="o">}</span>
 
-<p>def dollars = new BigDecimal(numberOfCents) / 100;</p>
+  <span class="k">def</span> <span class="n">dollars</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">BigDecimal</span><span class="o">(</span><span class="n">numberOfCents</span><span class="o">)</span> <span class="o">/</span> <span class="mi">100</span><span class="o">;</span>
 
-<p>def +(other:Price) = Price(numberOfCents + other.numberOfCents)
-}</p>
+  <span class="k">def</span> <span class="o">+(</span><span class="n">other</span><span class="k">:</span><span class="kt">Price</span><span class="o">)</span> <span class="k">=</span> <span class="nc">Price</span><span class="o">(</span><span class="n">numberOfCents</span> <span class="o">+</span> <span class="n">other</span><span class="o">.</span><span class="n">numberOfCents</span><span class="o">)</span>
+<span class="o">}</span>
 
-<p>case class Item(var price: Price)
-```</p>
+<span class="k">case</span> <span class="k">class</span> <span class="nc">Item</span><span class="o">(</span><span class="k">var</span> <span class="n">price</span><span class="k">:</span> <span class="kt">Price</span><span class="o">)</span>
+</code></pre>
+</div>
 
 <p>That’s 8 lines of Scala to 19 in Ruby.  <strong>And</strong> our Scala version will not even <em>execute</em> if we’ve misused it.
 These “static types” may not tell us everything about our program, but we know that an <code class="highlighter-rouge">Item</code> will <strong>never</strong> contain an invalid price, <strong>ever</strong>:</p>
 
-<p><code class="highlighter-rouge">scala
-item.price = 43 // compile error.  Will never, ever, ever execute
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">item</span><span class="o">.</span><span class="n">price</span> <span class="k">=</span> <span class="mi">43</span> <span class="c1">// compile error.  Will never, ever, ever execute
+</span></code></pre>
+</div>
 
 <p>Hopefully, you’re starting to see that explicit type declarations, and programs written to enforce them (often called compilers) are <em>tools</em> you can use to make sure that your notion of how your system behaves has been correctly encoded in the source (as opposed to thinking of them as fussy gatekeepers you must satisfy).</p>
 

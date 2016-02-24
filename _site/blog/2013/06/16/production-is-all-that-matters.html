@@ -302,18 +302,18 @@ where you want to start.</p>
 
 <p>Let’s take an example.  Suppose you have a background job that charges customers a monthly fee for your service:</p>
 
-<p><code class="highlighter-rouge">ruby
-class MonthlyFeeChargingJob
-  def self.perform(customer_id)
-    customer = Customer.find(customer_id)
-    charge_amount = MonthlyCharge.for_customer(customer)
-    result = ThirdPartyCreditCardGateway.charge(customer_id,charge_amount)
-    if result.declined?
-      ChargeFailedMailer.mail(customer_id,result)
-    end
-  end
-end
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">MonthlyFeeChargingJob</span>
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">perform</span><span class="p">(</span><span class="n">customer_id</span><span class="p">)</span>
+    <span class="n">customer</span> <span class="o">=</span> <span class="no">Customer</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">customer_id</span><span class="p">)</span>
+    <span class="n">charge_amount</span> <span class="o">=</span> <span class="no">MonthlyCharge</span><span class="p">.</span><span class="nf">for_customer</span><span class="p">(</span><span class="n">customer</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="no">ThirdPartyCreditCardGateway</span><span class="p">.</span><span class="nf">charge</span><span class="p">(</span><span class="n">customer_id</span><span class="p">,</span><span class="n">charge_amount</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">result</span><span class="p">.</span><span class="nf">declined?</span>
+      <span class="no">ChargeFailedMailer</span><span class="p">.</span><span class="nf">mail</span><span class="p">(</span><span class="n">customer_id</span><span class="p">,</span><span class="n">result</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>We handle the two expected cases: a successful charge, and a decline.  Suppose, though,
 that every once in a while we get a “connection refused” exception from the call to <code class="highlighter-rouge">ThirdPartyCreditCardGateway.charge</code>.  This is a production error.</p>
@@ -328,27 +328,27 @@ allows us to break out of the retry loop in the event of a serious and lengthly 
 Next, we catch the particular error and perform the retry (making sure to log what is going on in
 case we need to investigate).</p>
 
-<p><code class="highlighter-rouge">ruby
-class MonthlyFeeChargingJob
-  def self.perform(customer_id,num_attempts=0)
-    customer = Customer.find(customer_id)
-    charge_amount = MonthlyCharge.for_customer(customer)
-    begin
-      result = ThirdPartyCreditCardGateway.charge(customer_id,charge_amount)
-      if result.declined?
-        ChargeFailedMailer.mail(customer_id,result)
-      end
-    rescue NetworkError =&gt; ex
-      logger.warn("Got #{ex.message} charging #{customer_id}, #{charge_amount}")
-      if num_attempts &lt; 5
-        perform(customer_id,num_attempts + 1)
-      else
-        raise
-      end
-    end
-  end
-end
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">MonthlyFeeChargingJob</span>
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">perform</span><span class="p">(</span><span class="n">customer_id</span><span class="p">,</span><span class="n">num_attempts</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">customer</span> <span class="o">=</span> <span class="no">Customer</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">customer_id</span><span class="p">)</span>
+    <span class="n">charge_amount</span> <span class="o">=</span> <span class="no">MonthlyCharge</span><span class="p">.</span><span class="nf">for_customer</span><span class="p">(</span><span class="n">customer</span><span class="p">)</span>
+    <span class="k">begin</span>
+      <span class="n">result</span> <span class="o">=</span> <span class="no">ThirdPartyCreditCardGateway</span><span class="p">.</span><span class="nf">charge</span><span class="p">(</span><span class="n">customer_id</span><span class="p">,</span><span class="n">charge_amount</span><span class="p">)</span>
+      <span class="k">if</span> <span class="n">result</span><span class="p">.</span><span class="nf">declined?</span>
+        <span class="no">ChargeFailedMailer</span><span class="p">.</span><span class="nf">mail</span><span class="p">(</span><span class="n">customer_id</span><span class="p">,</span><span class="n">result</span><span class="p">)</span>
+      <span class="k">end</span>
+    <span class="k">rescue</span> <span class="no">NetworkError</span> <span class="o">=&gt;</span> <span class="n">ex</span>
+      <span class="n">logger</span><span class="p">.</span><span class="nf">warn</span><span class="p">(</span><span class="s2">"Got </span><span class="si">#{</span><span class="n">ex</span><span class="p">.</span><span class="nf">message</span><span class="si">}</span><span class="s2"> charging </span><span class="si">#{</span><span class="n">customer_id</span><span class="si">}</span><span class="s2">, </span><span class="si">#{</span><span class="n">charge_amount</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+      <span class="k">if</span> <span class="n">num_attempts</span> <span class="o">&lt;</span> <span class="mi">5</span>
+        <span class="n">perform</span><span class="p">(</span><span class="n">customer_id</span><span class="p">,</span><span class="n">num_attempts</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+      <span class="k">else</span>
+        <span class="k">raise</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>Note that we are only rescuing one type of error from the one line of code that’s causing the
 problem.  This prevents us from applying the wrong fix to other errors that might happen (for
@@ -383,28 +383,28 @@ up again.  In this case, I’d be proactive in my code.</p>
 <p>If you can’t outright prevent a production error, you can often find a way to turn it into a
 production error that’s easier to resolve.  For example, consider this Rails code:</p>
 
-<p><code class="highlighter-rouge">ruby
-def update_prefs(email,best_time)
-  customer.email_preferences   = email
-  cutomer.best_time_to_contact = best_time
-  customer.save!
-end
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">update_prefs</span><span class="p">(</span><span class="n">email</span><span class="p">,</span><span class="n">best_time</span><span class="p">)</span>
+  <span class="n">customer</span><span class="p">.</span><span class="nf">email_preferences</span>   <span class="o">=</span> <span class="n">email</span>
+  <span class="n">cutomer</span><span class="p">.</span><span class="nf">best_time_to_contact</span> <span class="o">=</span> <span class="n">best_time</span>
+  <span class="n">customer</span><span class="p">.</span><span class="nf">save!</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>If <code class="highlighter-rouge">save!</code> blows up, we have a production error, and not much to go on.  It will likely be the
 error message straight from the database, which won’t be useful.  If the success of this code is crucial, we can
 make its failure easier to deal with:</p>
 
-<p><code class="highlighter-rouge">ruby
-def update_prefs(email,best_time)
-  customer.email_preferences   = email
-  cutomer.best_time_to_contact = best_time
-  customer.save!
-rescue =&gt; ex
-  raise "Saving customer #{customer.id}'s preferences " +
-        "to #{email}, #{best_time} failed: #{ex.message"
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">update_prefs</span><span class="p">(</span><span class="n">email</span><span class="p">,</span><span class="n">best_time</span><span class="p">)</span>
+  <span class="n">customer</span><span class="p">.</span><span class="nf">email_preferences</span>   <span class="o">=</span> <span class="n">email</span>
+  <span class="n">cutomer</span><span class="p">.</span><span class="nf">best_time_to_contact</span> <span class="o">=</span> <span class="n">best_time</span>
+  <span class="n">customer</span><span class="p">.</span><span class="nf">save!</span>
+<span class="k">rescue</span> <span class="o">=&gt;</span> <span class="n">ex</span>
+  <span class="k">raise</span> <span class="s2">"Saving customer </span><span class="si">#{</span><span class="n">customer</span><span class="p">.</span><span class="nf">id</span><span class="si">}</span><span class="s2">'s preferences "</span> <span class="o">+</span>
+        <span class="s2">"to </span><span class="si">#{</span><span class="n">email</span><span class="si">}</span><span class="s2">, </span><span class="si">#{</span><span class="n">best_time</span><span class="si">}</span><span class="s2"> failed: </span><span class="si">#{</span><span class="n">ex</span><span class="p">.</span><span class="nf">message</span><span class="s2">"
 end
-</code></p>
+</span></code></pre>
+</div>
 
 <p>Now, if something goes wrong, we can recreate the effects of this code manually.  We know which customer was affected, and what the system was trying to do when the failure occurred.</p>
 

@@ -93,28 +93,28 @@ You often test that the class-under-test made certain calls to its collaborators
 <p>Suppose we have an existing system and we wish to start recording some statistics, such as the number of times a method is called
 or how long a method takes to run.  We’ve created a class, <code class="highlighter-rouge">Statistics</code>, that has some class methods on it to do the recording:</p>
 
-<p><code class="highlighter-rouge">ruby
-class Statistics
-  # Add one to stat_name
-  def self.count(stat_name)
-    # ...
-  end
-end
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Statistics</span>
+  <span class="c1"># Add one to stat_name</span>
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">count</span><span class="p">(</span><span class="n">stat_name</span><span class="p">)</span>
+    <span class="c1"># ...</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>We want to start using this class in our <code class="highlighter-rouge">Salutation</code> class to keep track of the number of times we’re calling <code class="highlighter-rouge">#greeting</code>.
 In order to add this in, we need to test that <code class="highlighter-rouge">Salutation#greeting</code> is calling <code class="highlighter-rouge">Statistics.count</code>.  While we could set up a fake
 statistics server and examine it during our test, it’s more straightforward to use mocks.</p>
 
-<p><code class="highlighter-rouge">ruby
-class SalutationTest &lt;&lt; TestCase
-  def test_that_we_log_statistics
-    saluation = Salutation.new(Person.new('David','Copeland',:male))
-    Statistics.expects(:count).with('saluation.greeting.count')
-    saluation.greeting
-  end
-end
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">SalutationTest</span> <span class="o">&lt;&lt;</span> <span class="no">TestCase</span>
+  <span class="k">def</span> <span class="nf">test_that_we_log_statistics</span>
+    <span class="n">saluation</span> <span class="o">=</span> <span class="no">Salutation</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="no">Person</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s1">'David'</span><span class="p">,</span><span class="s1">'Copeland'</span><span class="p">,</span><span class="ss">:male</span><span class="p">))</span>
+    <span class="no">Statistics</span><span class="p">.</span><span class="nf">expects</span><span class="p">(</span><span class="ss">:count</span><span class="p">).</span><span class="nf">with</span><span class="p">(</span><span class="s1">'saluation.greeting.count'</span><span class="p">)</span>
+    <span class="n">saluation</span><span class="p">.</span><span class="nf">greeting</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>What will happen is, if we don’t call <code class="highlighter-rouge">Statistics.count("saluation.greeting.count")</code> in the <code class="highlighter-rouge">Salutation</code> class, this test will
 fail.  That’s what a mocking framework like mocha does for us.</p>
@@ -123,18 +123,18 @@ fail.  That’s what a mocking framework like mocha does for us.</p>
 unclear.  For a real-world test that requires a lot more setup, it can be even more difficult to see what’s actually being
 tested.  Essentially, the “Given/When/Then” is “out of order”:</p>
 
-<p><code class="highlighter-rouge">ruby
-class SalutationTest &lt;&lt; TestCase
-  def test_that_we_log_statistics
-    # Given
-    saluation = Salutation.new(Person.new('David','Copeland',:male))
-    # Then
-    Statistics.expects(:count).with('saluation.greeting.count')
-    # When
-    saluation.greeting
-  end
-end
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">SalutationTest</span> <span class="o">&lt;&lt;</span> <span class="no">TestCase</span>
+  <span class="k">def</span> <span class="nf">test_that_we_log_statistics</span>
+    <span class="c1"># Given</span>
+    <span class="n">saluation</span> <span class="o">=</span> <span class="no">Salutation</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="no">Person</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s1">'David'</span><span class="p">,</span><span class="s1">'Copeland'</span><span class="p">,</span><span class="ss">:male</span><span class="p">))</span>
+    <span class="c1"># Then</span>
+    <span class="no">Statistics</span><span class="p">.</span><span class="nf">expects</span><span class="p">(</span><span class="ss">:count</span><span class="p">).</span><span class="nf">with</span><span class="p">(</span><span class="s1">'saluation.greeting.count'</span><span class="p">)</span>
+    <span class="c1"># When</span>
+    <span class="n">saluation</span><span class="p">.</span><span class="nf">greeting</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <h2 id="making-our-intent-clear">Making our Intent Clear</h2>
 
@@ -148,26 +148,25 @@ method, <code class="highlighter-rouge">assert_mocks_were_called</code> that wil
 about what’s being asserted.  Although this “assert” method doesn’t do anything, it allows use to distinguish between “this test
 passes when the mocks are called as expected” from “I forgot to actually test for something”.</p>
 
-<p>```ruby
-class SalutationTest « TestCase
-  def test_that_we_log_statistics
-    when_the_test_runs_then {
-      Statistics.expects(:count).with(‘saluation.greeting.count’)
-    }</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">SalutationTest</span> <span class="o">&lt;&lt;</span> <span class="no">TestCase</span>
+  <span class="k">def</span> <span class="nf">test_that_we_log_statistics</span>
+    <span class="n">when_the_test_runs_then</span> <span class="p">{</span>
+      <span class="no">Statistics</span><span class="p">.</span><span class="nf">expects</span><span class="p">(</span><span class="ss">:count</span><span class="p">).</span><span class="nf">with</span><span class="p">(</span><span class="s1">'saluation.greeting.count'</span><span class="p">)</span>
+    <span class="p">}</span>
 
-<div class="highlighter-rouge"><pre class="highlight"><code># Given
-saluation = Salutation.new(Person.new('David','Copeland',:male))
-# When
-saluation.greeting
-# Then
-assert_mocks_were_called   end
+    <span class="c1"># Given</span>
+    <span class="n">saluation</span> <span class="o">=</span> <span class="no">Salutation</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="no">Person</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s1">'David'</span><span class="p">,</span><span class="s1">'Copeland'</span><span class="p">,</span><span class="ss">:male</span><span class="p">))</span>
+    <span class="c1"># When</span>
+    <span class="n">saluation</span><span class="p">.</span><span class="nf">greeting</span>
+    <span class="c1"># Then</span>
+    <span class="n">assert_mocks_were_called</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">when_the_test_runs_then</span><span class="p">;</span> <span class="k">yield</span><span class="p">;</span> <span class="k">end</span>
+  <span class="k">def</span> <span class="nf">assert_mocks_were_called</span><span class="p">;</span> <span class="k">end</span>
+<span class="k">end</span>
 </code></pre>
 </div>
-
-<p>def when_the_test_runs_then; yield; end
-  def assert_mocks_were_called; end
-end
-```</p>
 
 <p>We’ve still deviated from our canonical structure, but the test <em>reads</em> better: “When the test runs then expect this method to be
 called; now let’s run the test”</p>
@@ -182,41 +181,41 @@ least make the intent clear.</p>
 disruption is block-based asserts, the most common of which is <code class="highlighter-rouge">assert_raises</code>.  For example, suppose we’re testing that our
 <code class="highlighter-rouge">Saluation</code> class requires a non-<code class="highlighter-rouge">nil</code> <code class="highlighter-rouge">Person</code> in its constructor.  We could test that like so:</p>
 
-<p><code class="highlighter-rouge">ruby
-def test_that_constructor_requires_a_person
-  assert_raises ArgumentError do
-    Salutation.new(nil)
-  end
-end
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">test_that_constructor_requires_a_person</span>
+  <span class="n">assert_raises</span> <span class="no">ArgumentError</span> <span class="k">do</span>
+    <span class="no">Salutation</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="kp">nil</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>This test is weird for two reasons: the first is that the “Given” is implicit.  The second is that the “Then” comes before the
 “When”:</p>
 
-<p><code class="highlighter-rouge">ruby
-def test_that_constructor_requires_a_person
-  # Given - we are going to use a nil Person
-  # Then
-  assert_raises ArgumentError do
-    # When
-    Salutation.new(nil)
-  end
-end
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">test_that_constructor_requires_a_person</span>
+  <span class="c1"># Given - we are going to use a nil Person</span>
+  <span class="c1"># Then</span>
+  <span class="n">assert_raises</span> <span class="no">ArgumentError</span> <span class="k">do</span>
+    <span class="c1"># When</span>
+    <span class="no">Salutation</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="kp">nil</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>We can clean this up by creating a variable for our <code class="highlighter-rouge">nil</code> <code class="highlighter-rouge">Person</code> and putting our “Then” code inside a block, which we then pass
 to <code class="highlighter-rouge">assert_raises</code>:</p>
 
-<p><code class="highlighter-rouge">ruby
-def test_that_constructor_requires_a_person
-  # Given
-  nil_person = nil
-  # When
-  code = lambda { Salutation.new(nil_person) }
-  # Then
-  assert_raises(ArgumentError,&amp;code)
-end
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">test_that_constructor_requires_a_person</span>
+  <span class="c1"># Given</span>
+  <span class="n">nil_person</span> <span class="o">=</span> <span class="kp">nil</span>
+  <span class="c1"># When</span>
+  <span class="n">code</span> <span class="o">=</span> <span class="nb">lambda</span> <span class="p">{</span> <span class="no">Salutation</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">nil_person</span><span class="p">)</span> <span class="p">}</span>
+  <span class="c1"># Then</span>
+  <span class="n">assert_raises</span><span class="p">(</span><span class="no">ArgumentError</span><span class="p">,</span><span class="o">&amp;</span><span class="n">code</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>We’ve had to jump through a slightly awkward hoop of putting the code-under-test in a lambda, but now things are in a consistent
 structure.  This example might seem a bit too simplisitc.  What about another popular block-based assertion, <code class="highlighter-rouge">assert_difference</code>?
@@ -225,62 +224,62 @@ assertion is generally not needed, it is commonly used.<br />
 Here’s an example where we suppose that an <code class="highlighter-rouge">after_save</code> hook is memoizing a
 derived field for us.</p>
 
-<p>```ruby
-test “we can save and our after-save hook runs, generating the full_name attribute” do
-  # Given
-  first_name = ‘David’
-  last_name = ‘Copeland’</p>
-
-<p># Then
-  assert_difference(‘Person.count’) do
-    # When
-    person = Person.create(:first_name =&gt; first_name, last_name =&gt; last_name)
-    # Then
-    assert ‘David Copeland’,person.full_name
-  end
-end
-```</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nb">test</span> <span class="s2">"we can save and our after-save hook runs, generating the full_name attribute"</span> <span class="k">do</span>
+  <span class="c1"># Given</span>
+  <span class="n">first_name</span> <span class="o">=</span> <span class="s1">'David'</span>
+  <span class="n">last_name</span> <span class="o">=</span> <span class="s1">'Copeland'</span>
+ 
+  <span class="c1"># Then</span>
+  <span class="n">assert_difference</span><span class="p">(</span><span class="s1">'Person.count'</span><span class="p">)</span> <span class="k">do</span>
+    <span class="c1"># When</span>
+    <span class="n">person</span> <span class="o">=</span> <span class="no">Person</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="ss">:first_name</span> <span class="o">=&gt;</span> <span class="n">first_name</span><span class="p">,</span> <span class="n">last_name</span> <span class="o">=&gt;</span> <span class="n">last_name</span><span class="p">)</span>
+    <span class="c1"># Then</span>
+    <span class="n">assert</span> <span class="s1">'David Copeland'</span><span class="p">,</span><span class="n">person</span><span class="p">.</span><span class="nf">full_name</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p><em>Now</em> the structure is very strange.  If we try to apply our <code class="highlighter-rouge">lambda</code> solution above, it’s still a bit odd:</p>
 
-<p>```ruby
-test “we can save and our after-save hook runs, generating the full_name attribute” do
-  # Given
-  first_name = ‘David’
-  last_name = ‘Copeland’</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nb">test</span> <span class="s2">"we can save and our after-save hook runs, generating the full_name attribute"</span> <span class="k">do</span>
+  <span class="c1"># Given</span>
+  <span class="n">first_name</span> <span class="o">=</span> <span class="s1">'David'</span>
+  <span class="n">last_name</span> <span class="o">=</span> <span class="s1">'Copeland'</span>
 
-<p># When
-  code = lambda {
-    person = Person.create(:first_name =&gt; first_name, last_name =&gt; last_name)
-    # Then
-    assert ‘David Copeland’,person.full_name
-  }</p>
-
-<p># Then
-  assert_difference(‘Person.count’,&amp;code)
-end
-```</p>
+  <span class="c1"># When</span>
+  <span class="n">code</span> <span class="o">=</span> <span class="nb">lambda</span> <span class="p">{</span>
+    <span class="n">person</span> <span class="o">=</span> <span class="no">Person</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="ss">:first_name</span> <span class="o">=&gt;</span> <span class="n">first_name</span><span class="p">,</span> <span class="n">last_name</span> <span class="o">=&gt;</span> <span class="n">last_name</span><span class="p">)</span>
+    <span class="c1"># Then</span>
+    <span class="n">assert</span> <span class="s1">'David Copeland'</span><span class="p">,</span><span class="n">person</span><span class="p">.</span><span class="nf">full_name</span>
+  <span class="p">}</span>
+ 
+  <span class="c1"># Then</span>
+  <span class="n">assert_difference</span><span class="p">(</span><span class="s1">'Person.count'</span><span class="p">,</span><span class="o">&amp;</span><span class="n">code</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>Yikes.  This is arguably worse.  Since only one line of code inside our “When” block is really affecting the condition that
 <code class="highlighter-rouge">assert_difference</code> tests for, we can take advantage of Ruby’s ability to create instance variables on-demand and pass
 the person outside of the <code class="highlighter-rouge">assert_difference</code> block:</p>
 
-<p>```ruby
-test “we can save and our after-save hook runs, generating the full_name attribute” do
-  # Given
-  first_name = ‘David’
-  last_name = ‘Copeland’</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nb">test</span> <span class="s2">"we can save and our after-save hook runs, generating the full_name attribute"</span> <span class="k">do</span>
+  <span class="c1"># Given</span>
+  <span class="n">first_name</span> <span class="o">=</span> <span class="s1">'David'</span>
+  <span class="n">last_name</span> <span class="o">=</span> <span class="s1">'Copeland'</span>
 
-<p># When
-  create_person = lambda { 
-    @person = Person.create(:first_name =&gt; first_name, last_name =&gt; last_name)
-  }</p>
-
-<p># Then
-  assert_difference(‘Person.count’,&amp;create_person)
-  assert ‘David Copeland’,@person.full_name
-end
-```</p>
+  <span class="c1"># When</span>
+  <span class="n">create_person</span> <span class="o">=</span> <span class="nb">lambda</span> <span class="p">{</span> 
+    <span class="vi">@person</span> <span class="o">=</span> <span class="no">Person</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="ss">:first_name</span> <span class="o">=&gt;</span> <span class="n">first_name</span><span class="p">,</span> <span class="n">last_name</span> <span class="o">=&gt;</span> <span class="n">last_name</span><span class="p">)</span>
+  <span class="p">}</span>
+ 
+  <span class="c1"># Then</span>
+  <span class="n">assert_difference</span><span class="p">(</span><span class="s1">'Person.count'</span><span class="p">,</span><span class="o">&amp;</span><span class="n">create_person</span><span class="p">)</span>
+  <span class="n">assert</span> <span class="s1">'David Copeland'</span><span class="p">,</span><span class="vi">@person</span><span class="p">.</span><span class="nf">full_name</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>That’s much better; we can now clearly see the setup, the code being tested, and all the assertions together.</p>
 

@@ -105,14 +105,14 @@ available in Java 10 years ago.  We’ll get to that.</p>
 very much along those lines.  You write your “spec” and then call assertions in the form
 <code class="highlighter-rouge">expect(foo).toBe(bar)</code>:</p>
 
-<p><code class="highlighter-rouge">coffeescript
-describe 'my math library', -&gt;
-  describe 'can add', -&gt;
-    it "should handle 0", -&gt;
-      expect(SuperMath.add(9,0)).toBe(9)
-    it "can handle negatives", -&gt;
-      expect(SuperMath.add(9,-5)).toBe(4)
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nx">describe</span> <span class="s">'my math library'</span><span class="p">,</span> <span class="o">-&gt;</span>
+  <span class="nx">describe</span> <span class="s">'can add'</span><span class="p">,</span> <span class="o">-&gt;</span>
+    <span class="nx">it</span> <span class="s">"should handle 0"</span><span class="p">,</span> <span class="o">-&gt;</span>
+      <span class="nx">expect</span><span class="p">(</span><span class="nx">SuperMath</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="mi">0</span><span class="p">)).</span><span class="na">toBe</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span>
+    <span class="nx">it</span> <span class="s">"can handle negatives"</span><span class="p">,</span> <span class="o">-&gt;</span>
+      <span class="nx">expect</span><span class="p">(</span><span class="nx">SuperMath</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="o">-</span><span class="mi">5</span><span class="p">)).</span><span class="na">toBe</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+</code></pre>
+</div>
 
 <p>Wonderful!  There’s lots of useful matchers and, with CoffeeScript, the code is pretty
 readable.  The output is very RSpec-like.</p>
@@ -121,9 +121,9 @@ readable.  The output is very RSpec-like.</p>
 wrapper around the Jasmine JS code, and a simple engine you can mount to run the tests
 in-browser.</p>
 
-<p><code class="highlighter-rouge">ruby
-gem 'jasmine-rails'
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">gem</span> <span class="s1">'jasmine-rails'</span>
+</code></pre>
+</div>
 
 <p>This will bootstrap a configuration file for you, and this is where the pain starts.  The
 configuration is not well documented or well designed, so it’s hard to understand exactly
@@ -175,42 +175,42 @@ just silently didn’t work, with no way of diagnosing what was going on.</p>
 
 <p>First, we set up the spec:</p>
 
-<p><code class="highlighter-rouge">coffeescript
-describe 'returns', -&gt;
-  describe 'show', -&gt;
-    describe 'doing an item lookup', -&gt;
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nx">describe</span> <span class="s">'returns'</span><span class="p">,</span> <span class="o">-&gt;</span>
+  <span class="nx">describe</span> <span class="s">'show'</span><span class="p">,</span> <span class="o">-&gt;</span>
+    <span class="nx">describe</span> <span class="s">'doing an item lookup'</span><span class="p">,</span> <span class="o">-&gt;</span>
+</code></pre>
+</div>
 
 <p>Next, we set up our fixture in a <code class="highlighter-rouge">beforeEach</code> block using CoffeeScript’s handy multi-line
 string syntax.  This keeps things fairly readable, despite the fact that we’re building a
 giant string of HTML:</p>
 
-<p>``` coffeescript
-beforeEach -&gt;
-  fixture = “””</p>
-<div id="returns-fixture">
-    <div id="flash-alert" class="alert" style="display: none;">
-      <div class="msg"></div>
-    </div>
-    <div id="flash-notice" class="alert" style="display: none;">
-      <div class="msg"></div>
-    </div>
-    <form id="item-id-lookup">
-    <input type="text" id="item-id-field" name="item_id" autofocus="autofocus" />
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nx">beforeEach</span> <span class="o">-&gt;</span>
+  <span class="nx">fixture</span> <span class="o">=</span> <span class="s">"""
+  &lt;div id="returns-fixture"&gt;
+    &lt;div id="flash-alert" class="alert" style="display: none;"&gt;
+      &lt;div class="msg"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div id="flash-notice" class="alert" style="display: none;"&gt;
+      &lt;div class="msg"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;form id="item-id-lookup"&gt;
+    &lt;input type="text" id="item-id-field" name="item_id" autofocus="autofocus"&gt;
 
-    <input id="item-1-in" type="radio" name="return[items][1][status]" value="In" />
-    <input id="item-1-out" type="radio" name="return[items][1][status]" value="Out" />
-    <input id="item-1-dmg" type="radio" name="return[items][1][status]" value="Damaged - Reparable" />
+    &lt;input id="item-1-in" type="radio" name="return[items][1][status]" value="In"&gt;
+    &lt;input id="item-1-out" type="radio" name="return[items][1][status]" value="Out"&gt;
+    &lt;input id="item-1-dmg" type="radio" name="return[items][1][status]" value="Damaged - Reparable"&gt;
 
-    <input id="item-2-in" type="radio" name="return[items][2][status]" value="In" />
-    <input id="item-2-out" type="radio" name="return[items][2][status]" value="Out" />
-    <input id="item-2-dmg" type="radio" name="return[items][2][status]" value="Damaged - Reparable" />
-    </form>
-  </div>
-<p>”””
-  jasmine.getFixtures().set(fixture)
-  window.StitchFix.controllers.returns.show()
-```</p>
+    &lt;input id="item-2-in" type="radio" name="return[items][2][status]" value="In"&gt;
+    &lt;input id="item-2-out" type="radio" name="return[items][2][status]" value="Out"&gt;
+    &lt;input id="item-2-dmg" type="radio" name="return[items][2][status]" value="Damaged - Reparable"&gt;
+    &lt;/form&gt;
+  &lt;/div&gt;
+  """</span>
+  <span class="nx">jasmine</span><span class="p">.</span><span class="na">getFixtures</span><span class="p">().</span><span class="na">set</span><span class="p">(</span><span class="nx">fixture</span><span class="p">)</span>
+  <span class="nb">window</span><span class="p">.</span><span class="na">StitchFix</span><span class="p">.</span><span class="na">controllers</span><span class="p">.</span><span class="na">returns</span><span class="p">.</span><span class="na">show</span><span class="p">()</span>
+</code></pre>
+</div>
 
 <p>(When editing this article,I noticed that Pygments highlighted the inline HTML.  I wish Vim did that, it makes the fixture
  pretty readable!)</p>
@@ -225,29 +225,29 @@ someone changed the ids on me, my tests will pass, but the app breaks.  It’s a
 compromise, and this seems like a decent compromise.  These are unit tests, and I have to have
 some assumptions about the inputs.</p>
 
-<p>```coffeescript
-describe ‘should check the proper radio button when the id is submitted’, -&gt;
-  beforeEach -&gt;
-    $(“#item-id-field”).val(“1”)</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nx">describe</span> <span class="s">'should check the proper radio button when the id is submitted'</span><span class="p">,</span> <span class="o">-&gt;</span>
+  <span class="nx">beforeEach</span> <span class="o">-&gt;</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s">"#item-id-field"</span><span class="p">).</span><span class="na">val</span><span class="p">(</span><span class="s">"1"</span><span class="p">)</span>
 
-<p>it ‘when there was no previous alert message’, -&gt;
-    $(“#item-id-lookup”).submit()
-    expect($(“#item-1-in”)).toBeChecked()
-    expect($(“#item-id-field”)).toHaveValue(“”)
-    waitForAnimations -&gt;
-      expect($(“#flash-notice”)).toBeVisible()
-      expect($(“#flash-notice .msg”)).toHaveText(“Item 1 marked as ‘In’”)
-```</p>
+  <span class="nx">it</span> <span class="s">'when there was no previous alert message'</span><span class="p">,</span> <span class="o">-&gt;</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s">"#item-id-lookup"</span><span class="p">).</span><span class="na">submit</span><span class="p">()</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s">"#item-1-in"</span><span class="p">)).</span><span class="na">toBeChecked</span><span class="p">()</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s">"#item-id-field"</span><span class="p">)).</span><span class="na">toHaveValue</span><span class="p">(</span><span class="s">""</span><span class="p">)</span>
+    <span class="nx">waitForAnimations</span> <span class="o">-&gt;</span>
+      <span class="nx">expect</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s">"#flash-notice"</span><span class="p">)).</span><span class="na">toBeVisible</span><span class="p">()</span>
+      <span class="nx">expect</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s">"#flash-notice .msg"</span><span class="p">)).</span><span class="na">toHaveText</span><span class="p">(</span><span class="s">"Item 1 marked as 'In'"</span><span class="p">)</span>
+</code></pre>
+</div>
 
 <p>That last bit was really fun.  We changed the hiding logic to do an animation.  When we did
 that, our expectations fired before the animations had completed, making the test fail.  So,
   we have to litter our test with this crud to get consistency.  Here’s <em>that</em> function:</p>
 
-<p><code class="highlighter-rouge">javascript
-var waitForAnimations = function(andThen) {
-  $(":animated").promise().done(andThen)
-};
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">waitForAnimations</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">andThen</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">$</span><span class="p">(</span><span class="s2">":animated"</span><span class="p">).</span><span class="nx">promise</span><span class="p">().</span><span class="nx">done</span><span class="p">(</span><span class="nx">andThen</span><span class="p">)</span>
+<span class="p">};</span>
+</code></pre>
+</div>
 
 <p>Yup, it’s in JavaScript, because a) I don’t know how to make global functions in CoffeeScript
 that works in this weird context of running tests and b) a class created here to hold the
@@ -283,34 +283,34 @@ the codebase.</p>
 <p>In some cases, this works OK.  Let’s change our spec above to expect <code class="highlighter-rouge">#item-id-field</code>  to have
 the value “foo”:</p>
 
-<p><code class="highlighter-rouge">coffeescript
-expect($("#item-id-field")).toHaveValue("foo")
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nx">expect</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s">"#item-id-field"</span><span class="p">)).</span><span class="na">toHaveValue</span><span class="p">(</span><span class="s">"foo"</span><span class="p">)</span>
+</code></pre>
+</div>
 
 <p>The test failure message is very nice:</p>
 
-<p><code class="highlighter-rouge">
-Expected '&lt;input type="text" id="item-id-field" name="item_id" autofocus="autofocus"&gt;' 
+<div class="highlighter-rouge"><pre class="highlight"><code>Expected '&lt;input type="text" id="item-id-field" name="item_id" autofocus="autofocus"&gt;' 
 to have value 'foobar'. (line ~36)
-</code></p>
+</code></pre>
+</div>
 
 <p>The failure message is accurate, as is the line number.  So far, so good.</p>
 
 <p>Now, let’s introduce a typo.  It happens, and, while annoying, is usually an easy problem to fix.
 Not in the world of JavaScript unit testing:</p>
 
-<p><code class="highlighter-rouge">
-(/Users/davec/Projects/spectre/spec/javascripts/returns_spec.coffee:33)
+<div class="highlighter-rouge"><pre class="highlight"><code>(/Users/davec/Projects/spectre/spec/javascripts/returns_spec.coffee:33)
    TypeError: 'undefined' is not a function
-</code></p>
+</code></pre>
+</div>
 
 <p>Umm, OK?  I haven’t shown you where the typo is, and in a potentially large codebase,
 you might have a lot of code to look through.  Let’s use <strong>the only information we were
 given</strong> and head to line 33 of our spec:</p>
 
-<p><code class="highlighter-rouge">coffeescript
-it 'when there was no previous alert message', -&gt;
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nx">it</span> <span class="s">'when there was no previous alert message'</span><span class="p">,</span> <span class="o">-&gt;</span>
+</code></pre>
+</div>
 
 <p>Not only is there no typo here, but this <strong>isn’t even the line of code that was
 executed that resulted in the error!</strong>   Basically, at this point, we have two problems,
@@ -326,10 +326,10 @@ severely hampered.  When starting out a new bit of code, I’m gonna have a lot 
 
 <p>Want to see what the typo was?</p>
 
-<p><code class="highlighter-rouge">coffeescript
-notifications.close_noow("alert")
-notifications.close_now("notice")
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nx">notifications</span><span class="p">.</span><span class="na">close_noow</span><span class="p">(</span><span class="s">"alert"</span><span class="p">)</span>
+<span class="nx">notifications</span><span class="p">.</span><span class="na">close_now</span><span class="p">(</span><span class="s">"notice"</span><span class="p">)</span>
+</code></pre>
+</div>
 
 <p>I fat-fingered the function <code class="highlighter-rouge">close_now</code>.  So, not only did it not point me to <em>any relevant
 line of code</em> (and I’d be happy with the line of code in the generated JavaScript), it <strong>didn’t

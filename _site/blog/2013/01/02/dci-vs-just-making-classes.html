@@ -84,42 +84,42 @@ needless DSL and leaky abstractions.  It would all have been a lot simpler if he
 
 <p>In rebo’s post, he has a basic domain of a <code class="highlighter-rouge">User</code>, a <code class="highlighter-rouge">Product</code>, an <code class="highlighter-rouge">Invoice</code>, and <code class="highlighter-rouge">Accounts</code> (which groups invoices).  The classes he creates for them are reasonable structs - they just hold data and have no real methods.  He then shows the implementation of a basic use case - when someone buys something an invoice is created and added to their accounts.  Here’s the code.</p>
 
-<p>```ruby
-class PurchasingProcess
-  include AliasDCI::Context
-  def initialize(user, product, accounts)
-    assign_named_roles(:customer            =&gt; user,
-                       :selected_product    =&gt; product,
-                       :accounts_department =&gt; accounts)
-  end</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">PurchasingProcess</span>
+  <span class="kp">include</span> <span class="no">AliasDCI</span><span class="o">::</span><span class="no">Context</span>
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">product</span><span class="p">,</span> <span class="n">accounts</span><span class="p">)</span>
+    <span class="n">assign_named_roles</span><span class="p">(</span><span class="ss">:customer</span>            <span class="o">=&gt;</span> <span class="n">user</span><span class="p">,</span>
+                       <span class="ss">:selected_product</span>    <span class="o">=&gt;</span> <span class="n">product</span><span class="p">,</span>
+                       <span class="ss">:accounts_department</span> <span class="o">=&gt;</span> <span class="n">accounts</span><span class="p">)</span>
+  <span class="k">end</span>
 
-<p>def call
-    in_context do
-      customer.buy_product
-      accounts_department.generate_invoice
-    end
-  end</p>
+  <span class="k">def</span> <span class="nf">call</span>
+    <span class="n">in_context</span> <span class="k">do</span>
+      <span class="n">customer</span><span class="p">.</span><span class="nf">buy_product</span>
+      <span class="n">accounts_department</span><span class="p">.</span><span class="nf">generate_invoice</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
 
-<p>role :customer do
-    def buy_product
-      purchases « selected_product
-    end
-  end</p>
+  <span class="n">role</span> <span class="ss">:customer</span> <span class="k">do</span>
+    <span class="k">def</span> <span class="nf">buy_product</span>
+      <span class="n">purchases</span> <span class="o">&lt;&lt;</span> <span class="n">selected_product</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
 
-<p>role :selected_product do
-    def invoice_desc
-      “#{name} - #{description} @ #{price} ea.”
-    end
-  end</p>
+  <span class="n">role</span> <span class="ss">:selected_product</span> <span class="k">do</span>
+    <span class="k">def</span> <span class="nf">invoice_desc</span>
+      <span class="s2">"</span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2"> - </span><span class="si">#{</span><span class="n">description</span><span class="si">}</span><span class="s2"> @ </span><span class="si">#{</span><span class="n">price</span><span class="si">}</span><span class="s2"> ea."</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
 
-<p>role :accounts_department do
-    def generate_invoice
-      invoice =  Invoice.new(customer.address, selected_product.invoice_desc, total )
-      invoices « invoice
-    end
-  end
-end
-```</p>
+  <span class="n">role</span> <span class="ss">:accounts_department</span> <span class="k">do</span>
+    <span class="k">def</span> <span class="nf">generate_invoice</span>
+      <span class="n">invoice</span> <span class="o">=</span>  <span class="no">Invoice</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">customer</span><span class="p">.</span><span class="nf">address</span><span class="p">,</span> <span class="n">selected_product</span><span class="p">.</span><span class="nf">invoice_desc</span><span class="p">,</span> <span class="n">total</span> <span class="p">)</span>
+      <span class="n">invoices</span> <span class="o">&lt;&lt;</span> <span class="n">invoice</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>My first thought looking at this was “WTF?”  This is <em>entirely</em> too complex for the task at hand.  It looks like it would be hard
 to write, hard to test, and hard to read (not to mention <a href="http://tonyarcieri.com/dci-in-ruby-is-completely-broken">hard to execute</a>).</p>
@@ -129,9 +129,9 @@ to write, hard to test, and hard to read (not to mention <a href="http://tonyarc
 <p>Let’s start with the definition of <code class="highlighter-rouge">call</code>, and let’s assume that we understand that <code class="highlighter-rouge">in_context</code> runs the code inside our “DCI
 Container” that enables the DSL.  This is a big assumption, but I’ll make it.  The first call:</p>
 
-<p><code class="highlighter-rouge">ruby
-customer.buy_product
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">customer</span><span class="p">.</span><span class="nf">buy_product</span>
+</code></pre>
+</div>
 
 <p>What is <code class="highlighter-rouge">customer</code>?  Where is it defined?  I see no method with that name.  I’ll need to understand that the hash given to
 <code class="highlighter-rouge">assign_named_roles</code> renames the object given to the constructor.  OK, what about <code class="highlighter-rouge">buy_product</code>, the method that’s being called?</p>
@@ -147,9 +147,9 @@ would <em>not</em> be what I’m looking for.</p>
 
 <p>One line down, one to go.  Whew!</p>
 
-<p><code class="highlighter-rouge">ruby
-accounts_department.generate_invoice
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">accounts_department</span><span class="p">.</span><span class="nf">generate_invoice</span>
+</code></pre>
+</div>
 
 <p>Again, we confirm that <code class="highlighter-rouge">accounts_department</code> is not a method defined locally, but is an instance of <code class="highlighter-rouge">Accounts</code> set up in the constructor. The method <code class="highlighter-rouge">generate_invoice</code> is a method defined at the bottom of our class presumably added to the <code class="highlighter-rouge">Accounts</code> instance by the DSL.  As before, <code class="highlighter-rouge">invoices</code> is an attribute of <code class="highlighter-rouge">Accounts</code>, and our method is executing inside that binding, which we just have to remember to piece together.</p>
 
@@ -159,15 +159,15 @@ and writing code easier?!  And how the heck do we test all this?  <em>More</em> 
 <p>rebo states his case for this complexity and insanity by showing some “fat model” code as well as some unscoped “glue code” that
 implements this use case.  This code is, indeed bad, too.  It puts logic on the models that really don’t belong there.  Can we do better?  Yes.</p>
 
-<p><code class="highlighter-rouge">ruby
-class PurchasingProcess
-  def purchase_product(customer,product,accounts)
-    customer.purchases &lt;&lt; product
-    invoice_desc = "#{invoice.name} - #{invoice.description} @ #{invoice.price} ea."
-    accounts.invoices &lt;&lt; Invoice.new(customer.address,invoice_desc, invoice.total)
-  end
-end
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">PurchasingProcess</span>
+  <span class="k">def</span> <span class="nf">purchase_product</span><span class="p">(</span><span class="n">customer</span><span class="p">,</span><span class="n">product</span><span class="p">,</span><span class="n">accounts</span><span class="p">)</span>
+    <span class="n">customer</span><span class="p">.</span><span class="nf">purchases</span> <span class="o">&lt;&lt;</span> <span class="n">product</span>
+    <span class="n">invoice_desc</span> <span class="o">=</span> <span class="s2">"</span><span class="si">#{</span><span class="n">invoice</span><span class="p">.</span><span class="nf">name</span><span class="si">}</span><span class="s2"> - </span><span class="si">#{</span><span class="n">invoice</span><span class="p">.</span><span class="nf">description</span><span class="si">}</span><span class="s2"> @ </span><span class="si">#{</span><span class="n">invoice</span><span class="p">.</span><span class="nf">price</span><span class="si">}</span><span class="s2"> ea."</span>
+    <span class="n">accounts</span><span class="p">.</span><span class="nf">invoices</span> <span class="o">&lt;&lt;</span> <span class="no">Invoice</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">customer</span><span class="p">.</span><span class="nf">address</span><span class="p">,</span><span class="n">invoice_desc</span><span class="p">,</span> <span class="n">invoice</span><span class="p">.</span><span class="nf">total</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>Yup. Instead of bringing in a complex framework, confusing monkeypatching, and dynamic methods created in non-obvious bindings, I
 just <em>made a class</em> that implements the <em>business logic</em>, and write the requisite three lines of code.</p>

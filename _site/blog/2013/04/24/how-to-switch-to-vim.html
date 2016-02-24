@@ -143,80 +143,80 @@ help files go in one place, etc.  This means that installing extensions using st
 
 <p>Here’s how to set it up:</p>
 
-<p><code class="highlighter-rouge">
-&gt; mkdir -p ~/.vim/autoload ~/.vim/bundle
+<div class="highlighter-rouge"><pre class="highlight"><code>&gt; mkdir -p ~/.vim/autoload ~/.vim/bundle
 &gt; curl -Sso ~/.vim/autoload/pathogen.vim \
     https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim
-</code></p>
+</code></pre>
+</div>
 
 <p>Put this at the top of <code class="highlighter-rouge">~/.vimrc</code>:</p>
 
-<p><code class="highlighter-rouge">
-execute pathogen#infect()
+<div class="highlighter-rouge"><pre class="highlight"><code>execute pathogen#infect()
 syntax on
 filetype plugin indent on
-</code></p>
+</code></pre>
+</div>
 
 <p>This gives you a system in which to manage extensions.  Test it by doing this:</p>
 
-<p><code class="highlighter-rouge">
-&gt; cd ~/.vim/bundle
+<div class="highlighter-rouge"><pre class="highlight"><code>&gt; cd ~/.vim/bundle
 &gt; git clone git://github.com/nanotech/jellybeans.vim.git jellybeans.vim
 &gt; vim some_file
-</code></p>
+</code></pre>
+</div>
 
 <p>Now, in Vim, do <code class="highlighter-rouge">:colorscheme jellybeans</code> and you should see your colors change (or at least you shouldn’t get an error).</p>
 
 <p><em>Do not manage plugins by typing <code class="highlighter-rouge">git</code> commands</em>.  That was just a test.  We’re here to improve things and the way you do that is with a <em>command line app</em>.  When you pass the Jedi trials (or cut Darth Maul in half), you can do something fancier, but this at least keeps you from typing a bunch of <code class="highlighter-rouge">git</code> commands:</p>
 
-<p>```ruby
-#!/usr/bin/env ruby</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1">#!/usr/bin/env ruby</span>
 
-<p>require ‘optparse’
-require ‘fileutils’
-require ‘open-uri’</p>
+<span class="nb">require</span> <span class="s1">'optparse'</span>
+<span class="nb">require</span> <span class="s1">'fileutils'</span>
+<span class="nb">require</span> <span class="s1">'open-uri'</span>
 
-<p>options = {}</p>
+<span class="n">options</span> <span class="o">=</span> <span class="p">{}</span>
 
-<p>opts = OptionParser.new do |o|
-  o.on(“–clean”,”Delete everything before re-cloning”) do
-    options[:clean] = true
-  end
-end
-opts.parse!</p>
+<span class="n">opts</span> <span class="o">=</span> <span class="no">OptionParser</span><span class="p">.</span><span class="nf">new</span> <span class="k">do</span> <span class="o">|</span><span class="n">o</span><span class="o">|</span>
+  <span class="n">o</span><span class="p">.</span><span class="nf">on</span><span class="p">(</span><span class="s2">"--clean"</span><span class="p">,</span><span class="s2">"Delete everything before re-cloning"</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">options</span><span class="p">[</span><span class="ss">:clean</span><span class="p">]</span> <span class="o">=</span> <span class="kp">true</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+<span class="n">opts</span><span class="p">.</span><span class="nf">parse!</span>
 
-<p>git_bundles = [ 
-  “git://github.com/nanotech/jellybeans.vim.git”,
-  “git://github.com/tpope/Vim-vividchalk.git”,
-  # add more here
-]</p>
+<span class="n">git_bundles</span> <span class="o">=</span> <span class="p">[</span> 
+  <span class="s2">"git://github.com/nanotech/jellybeans.vim.git"</span><span class="p">,</span>
+  <span class="s2">"git://github.com/tpope/Vim-vividchalk.git"</span><span class="p">,</span>
+  <span class="c1"># add more here</span>
+<span class="p">]</span>
 
-<p>bundles_dir = File.join(File.dirname(<strong>FILE</strong>), “bundle”)</p>
+<span class="n">bundles_dir</span> <span class="o">=</span> <span class="no">File</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="no">File</span><span class="p">.</span><span class="nf">dirname</span><span class="p">(</span><span class="kp">__FILE__</span><span class="p">),</span> <span class="s2">"bundle"</span><span class="p">)</span>
 
-<p>FileUtils.cd(bundles_dir)</p>
+<span class="no">FileUtils</span><span class="p">.</span><span class="nf">cd</span><span class="p">(</span><span class="n">bundles_dir</span><span class="p">)</span>
 
-<p>if options[:clean]
-  puts “Trashing everything (lookout!)”
-  Dir[“*”].each do |d| 
-    FileUtils.rm_rf d
-  end
-end</p>
+<span class="k">if</span> <span class="n">options</span><span class="p">[</span><span class="ss">:clean</span><span class="p">]</span>
+  <span class="nb">puts</span> <span class="s2">"Trashing everything (lookout!)"</span>
+  <span class="no">Dir</span><span class="p">[</span><span class="s2">"*"</span><span class="p">].</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">d</span><span class="o">|</span> 
+    <span class="no">FileUtils</span><span class="p">.</span><span class="nf">rm_rf</span> <span class="n">d</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 
-<p>git_bundles.each do |url|
-  dir = url.split(‘/’).last.sub(/.git$/, ‘’)
-  if File.exists?(dir)
-    puts “  Skipping #{dir}, as it already exists”
-  else
-    puts “  Unpacking #{url} into #{dir}”
-    <code class="highlighter-rouge">git clone #{url} #{dir}</code>
-    if $?.success?
-      FileUtils.rm_rf(File.join(dir, “.git”))
-    else
-      STDERR.puts “Problem with #{url}”
-    end
-  end
-end
-```</p>
+<span class="n">git_bundles</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">url</span><span class="o">|</span>
+  <span class="n">dir</span> <span class="o">=</span> <span class="n">url</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="s1">'/'</span><span class="p">).</span><span class="nf">last</span><span class="p">.</span><span class="nf">sub</span><span class="p">(</span><span class="sr">/\.git$/</span><span class="p">,</span> <span class="s1">''</span><span class="p">)</span>
+  <span class="k">if</span> <span class="no">File</span><span class="p">.</span><span class="nf">exists?</span><span class="p">(</span><span class="n">dir</span><span class="p">)</span>
+    <span class="nb">puts</span> <span class="s2">"  Skipping </span><span class="si">#{</span><span class="n">dir</span><span class="si">}</span><span class="s2">, as it already exists"</span>
+  <span class="k">else</span>
+    <span class="nb">puts</span> <span class="s2">"  Unpacking </span><span class="si">#{</span><span class="n">url</span><span class="si">}</span><span class="s2"> into </span><span class="si">#{</span><span class="n">dir</span><span class="si">}</span><span class="s2">"</span>
+    <span class="sb">`git clone </span><span class="si">#{</span><span class="n">url</span><span class="si">}</span><span class="sb"> </span><span class="si">#{</span><span class="n">dir</span><span class="si">}</span><span class="sb">`</span>
+    <span class="k">if</span> <span class="vg">$?</span><span class="p">.</span><span class="nf">success?</span>
+      <span class="no">FileUtils</span><span class="p">.</span><span class="nf">rm_rf</span><span class="p">(</span><span class="no">File</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">dir</span><span class="p">,</span> <span class="s2">".git"</span><span class="p">))</span>
+    <span class="k">else</span>
+      <span class="no">STDERR</span><span class="p">.</span><span class="nf">puts</span> <span class="s2">"Problem with </span><span class="si">#{</span><span class="n">url</span><span class="si">}</span><span class="s2">"</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>I keep this file in <code class="highlighter-rouge">update_bundles</code> in my <code class="highlighter-rouge">~/.vim</code> directory (which I keep in version control).  Since this is an <a href="http://www.pragprog.com/titles/dccar">awesome command-line app</a>, you can do <code class="highlighter-rouge">./update_bundles -h</code> and get some help.  Start off with <code class="highlighter-rouge">./update_bundles --clean</code>.  This will delete your one bundle and re-clone it, along with a second bundle. That’s the “vividchalk” colorscheme, which I’m not recommending per se, but it’s just a second thing you can use to check that you’ve got everything set up properly.  Do that via <code class="highlighter-rouge">:colorscheme vividchalk</code>.</p>
 

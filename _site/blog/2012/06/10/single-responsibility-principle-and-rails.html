@@ -76,18 +76,18 @@
 
 <p>Here’s the code to create a new user and email them a welcome note:</p>
 
-<p><code class="highlighter-rouge">ruby
-class UsersController &lt; ApplicationController
-  def create
-    @user = User.new(params[:user])
-    respond_to do |format|
-      if @user.save
-        UserMailer.deliver_welcome_email(@user)
-      end
-    end
-  end
-end
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">UsersController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="k">def</span> <span class="nf">create</span>
+    <span class="vi">@user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:user</span><span class="p">])</span>
+    <span class="n">respond_to</span> <span class="k">do</span> <span class="o">|</span><span class="nb">format</span><span class="o">|</span>
+      <span class="k">if</span> <span class="vi">@user</span><span class="p">.</span><span class="nf">save</span>
+        <span class="no">UserMailer</span><span class="p">.</span><span class="nf">deliver_welcome_email</span><span class="p">(</span><span class="vi">@user</span><span class="p">)</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>Simple enough, so what’s the problem?  Let’s list out the things this class does:</p>
 
@@ -104,26 +104,26 @@ end
 
 <p>The Rails Way™ is to put all of this into the model.  Using the power of Rails, we could do this:</p>
 
-<p>```ruby
-class UsersController &lt; ApplicationController
-  def create
-    @user = User.create(params[:user])
-  end
-end</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">UsersController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="k">def</span> <span class="nf">create</span>
+    <span class="vi">@user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:user</span><span class="p">])</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 
-<p>class User &lt; ActiveRecord::Base</p>
+<span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
 
-<p>after_create :deliver_welcome_email</p>
+  <span class="n">after_create</span> <span class="ss">:deliver_welcome_email</span>
 
-<p>private</p>
+<span class="kp">private</span>
 
-<p>def deliver_welcome_email
-    if self.valid?
-      UserMailer.deliver_welcome_email(@user)
-    end
-  end
-end
-```</p>
+  <span class="k">def</span> <span class="nf">deliver_welcome_email</span>
+    <span class="k">if</span> <span class="nb">self</span><span class="p">.</span><span class="nf">valid?</span>
+      <span class="no">UserMailer</span><span class="p">.</span><span class="nf">deliver_welcome_email</span><span class="p">(</span><span class="vi">@user</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>Is this better?  Well, our controller is a lot simpler, and now just creates the user and renders the view.  That’s pretty much all it should be doing.  We’ve deferred our email to an <code class="highlighter-rouge">after_create</code> hook.</p>
 
@@ -144,25 +144,25 @@ end
 
 <p>Since our new class is going to create new application users, let’s call it <code class="highlighter-rouge">ApplicationUserCreator</code>.  I know it’s the <a href="http://steve-yegge.blogspot.com/2006/03/execution-in-kingdom-of-nouns.html">Kingdom of Nouns</a>, but the more classes you have, the more specific their names have to be.  We could <a href="http://www.naildrivin5.com/blog/2012/01/30/avoid-kingdom-of-nouns-with-procs.html">use lambdas</a>, but let’s keep things simple for now.</p>
 
-<p>```ruby
-class ApplicationUserCreator
-  # Creates a new user for the application, based on form parameters.
-  # Returns the User instance that was created, which might be invalid
-  def create_new_user(params)
-    User.create(params).tap { |new_user|
-      if new_user.valid?
-        UserMailer.deliver_welcome_email(new_user)
-      end
-    }
-  end
-end</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">ApplicationUserCreator</span>
+  <span class="c1"># Creates a new user for the application, based on form parameters.</span>
+  <span class="c1"># Returns the User instance that was created, which might be invalid</span>
+  <span class="k">def</span> <span class="nf">create_new_user</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+    <span class="no">User</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="n">params</span><span class="p">).</span><span class="nf">tap</span> <span class="p">{</span> <span class="o">|</span><span class="n">new_user</span><span class="o">|</span>
+      <span class="k">if</span> <span class="n">new_user</span><span class="p">.</span><span class="nf">valid?</span>
+        <span class="no">UserMailer</span><span class="p">.</span><span class="nf">deliver_welcome_email</span><span class="p">(</span><span class="n">new_user</span><span class="p">)</span>
+      <span class="k">end</span>
+    <span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 
-<p>class UsersController &lt; ApplicationController
-  def create
-    @user = ApplicationUserCreator.new.create_new_user(params[:user])
-  end
-end
-```</p>
+<span class="k">class</span> <span class="nc">UsersController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="k">def</span> <span class="nf">create</span>
+    <span class="vi">@user</span> <span class="o">=</span> <span class="no">ApplicationUserCreator</span><span class="p">.</span><span class="nf">new</span><span class="p">.</span><span class="nf">create_new_user</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:user</span><span class="p">])</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>Much better.  Our <code class="highlighter-rouge">User</code> class remains as it was originally - a class that holds data for the <code class="highlighter-rouge">USERS</code> table and provides CRUD operations for it.  Our controller is just as skinny in our second example - it launches the new user creation logic and renders the view.  We have a new class which is custom built to hold the new application user logic.</p>
 
@@ -177,55 +177,55 @@ end
 <p>We could start peppering <code class="highlighter-rouge">UserMailer</code> with <code class="highlighter-rouge">if user.admin?</code> but that’s just wrong, too.  The <code class="highlighter-rouge">UserMailer</code> already does enough - it emails new application users a welcome email.  It does <em>not</em> need to also email administrative users a security-related email.  Let’s assume we’ve created <code class="highlighter-rouge">AdminUserMailer</code> to handle that.  We can also assume we have an <code class="highlighter-rouge">AdminUsersController</code> that looks
 like so:</p>
 
-<p><code class="highlighter-rouge">ruby
-class AdminUsersController &lt; ApplicationController
-  def create
-    @user = ApplicationUserCreator.new.create_new_user(params[:user])
-  end
-end
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">AdminUsersController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="k">def</span> <span class="nf">create</span>
+    <span class="vi">@user</span> <span class="o">=</span> <span class="no">ApplicationUserCreator</span><span class="p">.</span><span class="nf">new</span><span class="p">.</span><span class="nf">create_new_user</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:user</span><span class="p">])</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>Identical to <code class="highlighter-rouge">UsersController</code>, for now.  Our <code class="highlighter-rouge">ApplicationUserCreator</code> now needs to check if the new user is an admin.  The quick and dirty path, which will get us into trouble, is to check inside that class, like so:</p>
 
-<p><code class="highlighter-rouge">ruby
-class ApplicationUserCreator
-  def create_new_user(params)
-    User.create(params).tap { |new_user|
-      if new_user.valid?
-        if new_user.admin?
-          AdminUserMailer.deliver_welcome_email(new_user)
-        else
-          UserMailer.deliver_welcome_email(new_user)
-        end
-      end
-    }
-  end
-end
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">ApplicationUserCreator</span>
+  <span class="k">def</span> <span class="nf">create_new_user</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+    <span class="no">User</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="n">params</span><span class="p">).</span><span class="nf">tap</span> <span class="p">{</span> <span class="o">|</span><span class="n">new_user</span><span class="o">|</span>
+      <span class="k">if</span> <span class="n">new_user</span><span class="p">.</span><span class="nf">valid?</span>
+        <span class="k">if</span> <span class="n">new_user</span><span class="p">.</span><span class="nf">admin?</span>
+          <span class="no">AdminUserMailer</span><span class="p">.</span><span class="nf">deliver_welcome_email</span><span class="p">(</span><span class="n">new_user</span><span class="p">)</span>
+        <span class="k">else</span>
+          <span class="no">UserMailer</span><span class="p">.</span><span class="nf">deliver_welcome_email</span><span class="p">(</span><span class="n">new_user</span><span class="p">)</span>
+        <span class="k">end</span>
+      <span class="k">end</span>
+    <span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>Well, this sucks.  We now need to double our tests to handle the case where the new user is an admin.  What happens when we add the next few feature?  More <code class="highlighter-rouge">if</code> statements and more complication.  Lets decouple this class from the mailer it uses by allowing the mailer to be injectible:</p>
 
-<p>```ruby
-class ApplicationUserCreator
-  def initialize(welcome_mailer=nil)
-    @welcome_mailer = welcome_mailer
-  end</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">ApplicationUserCreator</span>
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">welcome_mailer</span><span class="o">=</span><span class="kp">nil</span><span class="p">)</span>
+    <span class="vi">@welcome_mailer</span> <span class="o">=</span> <span class="n">welcome_mailer</span>
+  <span class="k">end</span>
 
-<p>def create_new_user(params)
-    User.create(params).tap { |new_user|
-      if new_user.valid?
-        self.welcome_mailer.deliver_welcome_email(new_user)
-      end
-    }
-  end</p>
+  <span class="k">def</span> <span class="nf">create_new_user</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+    <span class="no">User</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="n">params</span><span class="p">).</span><span class="nf">tap</span> <span class="p">{</span> <span class="o">|</span><span class="n">new_user</span><span class="o">|</span>
+      <span class="k">if</span> <span class="n">new_user</span><span class="p">.</span><span class="nf">valid?</span>
+        <span class="nb">self</span><span class="p">.</span><span class="nf">welcome_mailer</span><span class="p">.</span><span class="nf">deliver_welcome_email</span><span class="p">(</span><span class="n">new_user</span><span class="p">)</span>
+      <span class="k">end</span>
+    <span class="p">}</span>
+  <span class="k">end</span>
 
-<p>private</p>
+<span class="kp">private</span>
 
-<p>def welcome_mailer
-    @welcome_mailer ||= UserMailer
-  end
-end
-```</p>
+  <span class="k">def</span> <span class="nf">welcome_mailer</span>
+    <span class="vi">@welcome_mailer</span> <span class="o">||=</span> <span class="no">UserMailer</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>With this design, we can change mailers all we want, and won’t ever need to change <code class="highlighter-rouge">ApplicationUserCreator</code> or its tests.  We
 should add a test that <code class="highlighter-rouge">UserMailer</code> is the default and that we can inject our own mailer, but at that point,
@@ -233,37 +233,37 @@ should add a test that <code class="highlighter-rouge">UserMailer</code> is the 
 
 <p><code class="highlighter-rouge">AdminUsersController</code> now looks like this:</p>
 
-<p><code class="highlighter-rouge">ruby
-class AdminUsersController &lt; ApplicationController
-  def create
-    @user = ApplicationUserCreator.new(AdminUserMailer).create_new_user(params[:user])
-  end
-end
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">AdminUsersController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="k">def</span> <span class="nf">create</span>
+    <span class="vi">@user</span> <span class="o">=</span> <span class="no">ApplicationUserCreator</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="no">AdminUserMailer</span><span class="p">).</span><span class="nf">create_new_user</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:user</span><span class="p">])</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
 
 <p>Not too bad.  The classes involved in user creation are all dead simple and easy to test.</p>
 
 <p>Suppose we had a third type of user creation scenario where we <em>don’t</em> want welcome emails to be sent at all?  Not a problem:</p>
 
-<p>```ruby
-class NoOpMailer
-  def deliver_welcome_email(*args)
-  end
-end</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">NoOpMailer</span>
+  <span class="k">def</span> <span class="nf">deliver_welcome_email</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 
-<p>ApplicationUserCreator.new(NoOpMailer).create_new_user(params[:user])
-```</p>
+<span class="no">ApplicationUserCreator</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="no">NoOpMailer</span><span class="p">).</span><span class="nf">create_new_user</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:user</span><span class="p">])</span>
+</code></pre>
+</div>
 
 <p>I realize that Aaron’s code is just an example for a slide at a conference, but I can tell you from experience, that any time an authoritative source shows code to others, they take that as the “right way” to do things.  It took the Java community <em>years</em> to stop writing code like this:</p>
 
-<p><code class="highlighter-rouge">java
-try {
-  someCode();
-}
-catch (Exception ex)
-  ex.printStackTrace();
-}
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">try</span> <span class="o">{</span>
+  <span class="n">someCode</span><span class="o">();</span>
+<span class="o">}</span>
+<span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">ex</span><span class="o">)</span>
+  <span class="n">ex</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre>
+</div>
 
 <p>This code snippet is in <em>every book</em> on Java I’ve ever read, and I get why authors write it, but it’s Just Wrong. So is putting excessive business logic in your controllers or models.</p>
 
