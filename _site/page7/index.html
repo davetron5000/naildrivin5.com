@@ -30,13 +30,13 @@
     
       
         
-        What Dependency Injection Really Is
+        Bad Programming in Java is Dangerous
         
-        January 07, 2013
+        January 20, 2013
       
       
         
-          Both ...">
+          Saw ...">
   
 
   
@@ -67,6 +67,36 @@
     <section>
       <div class="blog-index">
   
+  
+  
+    <article>
+      <header>
+        
+        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2013/01/20/bad-programming-in-java-is-dangerous.html">Bad Programming in Java is Dangerous</a></h1>
+        
+        <h2 class="f6 mtneg">January 20, 2013</h2>
+      </header>
+      
+        <section class="mb1">
+          <div class="excerpt"><p>Saw a blog post this morning titled <a href="http://cafe.elharo.com/programming/java-programming/why-functional-programming-in-java-is-dangerous/">Why Functional Programming in Java is Dangerous</a>.  Author Elliotte Rusty Harold sets up
+the world’s worst straw man I’ve seen.  He talks about <a href="http://pragprog.com/magazines/2013-01/functional-programming-basics">Uncle Bob’s post</a> on the advantages of functional programming.
+Elliotte’s thesis is that Java and JVM just can’t handle this sort of thing, and then sets out to prove this with some terrible code that, unsurprisingly, is terrible.  He takes this bit of Clojure</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">(</span><span class="nb">take</span><span class="w"> </span><span class="mi">25</span><span class="w"> </span><span class="p">(</span><span class="nf">squares-of</span><span class="w"> </span><span class="p">(</span><span class="nf">integers</span><span class="p">)))</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>And “re-implements” it in Java.  He does this by implementing <code class="highlighter-rouge">integers</code> to just allocate an array of all the integers.</p>
+
+<p>Yeah.</p>
+
+</div>
+          <footer class="mb2 text-l">
+            <a rel="full-article" class="no-ul pill" href="/blog/2013/01/20/bad-programming-in-java-is-dangerous.html">Read More…</a>
+          </footer>
+        </section>
+      
+    </article>
   
   
     <article>
@@ -340,26 +370,6 @@ political stances is the epitome of anti-intellectualism.</p>
             <h1 class="f7"><a class="no-ul ul-hover" href="/blog/2012/08/10/end-of-rational-discourse.html">#</a></h1>
           </footer>
         
-      
-    </article>
-  
-  
-    <article>
-      <header>
-        
-        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2012/08/02/running-stock.html">Running Stock</a></h1>
-        
-        <h2 class="f6 mtneg">August 02, 2012</h2>
-      </header>
-      
-        <section class="mb1">
-          <div class="excerpt"><p>One of my fellow developers asked me the other day if I had any good dotfiles for <code class="highlighter-rouge">bash</code>.  I realized I don’t.  I don’t even have <code class="highlighter-rouge">ll</code> aliased to <code class="highlighter-rouge">ls -l</code> like most of the known universe.  I realized that I like to run as stock as I can.</p>
-
-</div>
-          <footer class="mb2 text-l">
-            <a rel="full-article" class="no-ul pill" href="/blog/2012/08/02/running-stock.html">Read More…</a>
-          </footer>
-        </section>
       
     </article>
   

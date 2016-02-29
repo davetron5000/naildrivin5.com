@@ -30,14 +30,13 @@
     
       
         
-        Unicode in Your Domain Names
+        Reading a File in Scala vs. Java vs Ruby
         
-        January 24, 2010
+        January 26, 2010
       
       
         
-          
-           ...">
+          ...">
   
 
   
@@ -68,6 +67,79 @@
     <section>
       <div class="blog-index">
   
+  
+  
+    <article>
+      <header>
+        
+        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2010/01/26/reading-a-file-in-scala-ruby-java.html">Reading a File in Scala vs. Java vs Ruby</a></h1>
+        
+        <h2 class="f6 mtneg">January 26, 2010</h2>
+      </header>
+      
+        
+          <section class="section-break complete-article mb1">
+            <p>
+Examining the code needed to read a file line by line is a a common way to examine the hoops a programming language makes you jump through.  While Perl certainly
+has some one-liners for this, let's start with Ruby, which presents an elegant and clear way of doing it:
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">File</span><span class="p">.</span><span class="nf">open</span><span class="p">(</span><span class="s2">"some_file.txt"</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">file</span><span class="o">|</span>
+  <span class="n">file</span><span class="p">.</span><span class="nf">readlines</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">line</span><span class="o">|</span>
+    <span class="nb">puts</span> <span class="n">line</span><span class="p">.</span><span class="nf">upcase</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre></figure>
+
+It really doesn't get any clearer than that.
+</p>
+<p>
+Here's the canonical Java way of doing it, complete with plenty of places to introduce bugs:
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ReadFile</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="n">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="o">{</span>
+    <span class="n">File</span> <span class="n">file</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="s">"some_file.txt"</span><span class="o">);</span>
+    <span class="n">BufferedReader</span> <span class="n">reader</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BufferedReader</span><span class="o">(</span>
+      <span class="k">new</span> <span class="n">FileReader</span><span class="o">(</span><span class="n">file</span><span class="o">));</span>
+    <span class="n">String</span> <span class="n">line</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="na">readLine</span><span class="o">();</span>
+    <span class="k">while</span> <span class="o">(</span><span class="n">line</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">line</span><span class="o">.</span><span class="na">toUpperCase</span><span class="o">());</span>
+      <span class="n">line</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="na">readLine</span><span class="o">();</span>
+    <span class="o">}</span>
+    <span class="n">reader</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+  <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+Yech.  The need to call <code>readLine()</code> twice kinda sucks.  We could use a do-while, but that requires a second <code>line != null</code> check.  Personally, I like to forget the second <code>readLine()</code> and wonder why my code runs forever :)  That being said, this was extremely easy to figure out, even the very first time I did it in 1998.  The class names are obvious, and the documentation is excellent.
+</p>
+<p>
+Scala to the rescue, right?
+
+<figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">import</span> <span class="nn">scala.io._</span>
+
+<span class="k">object</span> <span class="nc">ReadFile</span> <span class="k">extends</span> <span class="nc">Application</span> <span class="o">{</span>
+  <span class="k">val</span> <span class="n">s</span> <span class="k">=</span> <span class="nc">Source</span><span class="o">.</span><span class="n">fromFile</span><span class="o">(</span><span class="s">"some_file.txt"</span><span class="o">)</span>
+  <span class="n">s</span><span class="o">.</span><span class="n">getLines</span><span class="o">.</span><span class="n">foreach</span><span class="o">(</span> <span class="o">(</span><span class="n">line</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="o">{</span>
+    <span class="n">println</span><span class="o">(</span><span class="n">line</span><span class="o">.</span><span class="n">trim</span><span class="o">.</span><span class="n">toUpperCase</span><span class="o">)</span>
+  <span class="o">})</span>
+<span class="o">}</span></code></pre></figure>
+
+This was a slight pain figure out.  I looked in <code>scala.io</code> and, of the few classes that were there (including a curiously named <code>BytePickle</code>), it appeared as though <code>Source</code> was the class to use.  Of course, there's no easy way to create one from the constructor, and the scaladoc doesn't just say "Dude, look at the <code>Source</code> object".  Once I looked through the <code>Source</code> object's scaladoc, the solution presented itself.
+</p>
+<p>
+Of course, unlike every other line-traversing library in the known universe, <code>Source</code> leaves the line endings on.  This is thankfully fixed in 2.8 (by which I mean 2.8 breaks 2.7's implementation, which is a strange thing for a point release to do).  The real question is: "Is this how I'm supposed to read files in Scala?".  With a class called <nobr><code>Source?!</code></nobr>.  The scaladoc says that this class represents "an iterable representation of source files".  That might explain the strange methods like <code>reportError</code> and <code>reportWarning</code>.  I guess this is only for writing the Scala compiler?   If so, <code>scala.io</code> seems an odd place to put this.
+</p>
+<p>
+So, my answer is "No, this <strong>cannot</strong> be how to canonically read files in Scala".  Since the Java way kinda, well, sucks, what alternatives are there?  There's <code><a href="http://scalax.scalaforge.org/api/">scalax.io</a></code>, which seems to implement this as a class called, curiously, <code>FileExtras</code>.    I'm not sure if this code is actively maintained, but it's documented in classic Scala style: terse and full of loaded terms like "nonstrict". Nevertheless, there seems to be some code here to easily read a file "the easy way" (despite some distracting names).
+</p>
+<p>
+This points out a big difference between "Scala the language" and "Scala the library".  Scala the language is very interesting and has a lot of potential.  Scala the library is schizophrenic at best; it's not sure if it wants to be OO, functional, or what.  The documentation ranges from sparse to absent, and the overall designs of the classes and package range for sublime to baffling.  Years different from Java 1.1.
+</p>
+
+          </section>
+        
+      
+    </article>
   
   
     <article>
@@ -598,29 +670,6 @@ expectLastCall.andReturn(enumeration)
 ```
 
 Kinda cheesy, and I kinda feel stupid for not thinking of it sooner.  
-
-          </section>
-        
-      
-    </article>
-  
-  
-    <article>
-      <header>
-        
-        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2009/10/17/moved-to-jekyll.html">Moved my blog to Jekyll</a></h1>
-        
-        <h2 class="f6 mtneg">October 17, 2009</h2>
-      </header>
-      
-        
-          <section class="section-break complete-article mb1">
-            <p>
-Kinda wanted a change of pace, so I moved my website over to <a href="http://www.github.com/mojombo/jekyll">Jekyll</a>, which has been fun to set up.  Plus, I actually spent more than 10 seconds on a site design.  I'm assuming my many hours of labour could've been done by a real designer.  
-</p>
-<p>
-At any rate, Jekyll seems reasonably easy to deal with.  I got a very small taste of Capistrano as well; I push my site to a remote bare git repo on this server and then have the capfile update it.  I suppose it could be more sophisticiated, but this seems to work for now.
-</p>
 
           </section>
         
