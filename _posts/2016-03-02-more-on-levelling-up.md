@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "More on Levelling Up"
+title: "More on Leveling Up"
 date: 2016-03-02 9:00
 ---
 
