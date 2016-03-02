@@ -32,7 +32,7 @@ to happen, but they will lack your input.  That could go bad for you.
 
 That said, some people *do* default to meetings instead of trying to use email.  In those cases, it's fine to “push back” and try to solve the issue
 asynchronously, but you also have to understand that not everyone is effective at written communication.  So, while you could lead such a person through a
-multi-email exchange to get to the issue ta hand, it might be easier to have a 10 minute conversation.
+multi-email exchange to get to the issue at hand, it might be easier to have a 10 minute conversation.
 
 The rest of the stuff in “Level 1” is great.  As I've mentioned many times, using Test-driven development is a great way to save state when you need to get
 interrupted.  It's also worth spending time [getting really good at email][emailpost] so it's never a distraction.
