@@ -63,7 +63,7 @@ Which leads to Will's Level 3.
 This is all good, particularly, “Admit What you Don't Know”.  You should become very comfortable with this, because a) you'll learn things this way and b) it's a good signal to a code's author that maybe there code isn't clear enough.
 
 I would also not shy away from “nitpicky” code comments.  If a change is mostly pretty good and there are no major issues, nitpicky comments about
-formatting and consistency are fair game.  Most developers want their code to be consistent like most writes want to be using proper grammar and spelling.
+formatting and consistency are fair game.  Most developers want their code to be consistent like most writers want to be using proper grammar and spelling.
 Point it out—politely—and most developers will fix.  If they disagree, don't die on that hill, but most of the time it's appreciated.  That said, if a pull request or diff has larger issues, do not waste time on
 nitpicky stuff; let the author deal with the larger issues first.
 
