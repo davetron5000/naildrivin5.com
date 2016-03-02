@@ -4,7 +4,7 @@
   <title><![CDATA[naildrivin5.com - David Bryant Copeland's Website]]></title>
   <link href="http://naildrivin5.com/atom.xml" rel="self"/>
   <link href="http://naildrivin5.com/"/>
-  <updated>2016-02-29T17:19:00-05:00</updated>
+  <updated>2016-03-02T09:09:03-05:00</updated>
   <id>http://naildrivin5.com/</id>
   <author>
     <name><![CDATA[David Bryant Copeland]]></name>
@@ -13,12 +13,12 @@
 
   
   <entry>
-    <title type="html"><![CDATA[More on Levelling Up]]></title>
+    <title type="html"><![CDATA[More on Leveling Up]]></title>
     
-    <link href="http://naildrivin5.com/blog/2016/03/01/more-on-levelling-up.html"/>
+    <link href="http://naildrivin5.com/blog/2016/03/02/more-on-levelling-up.html"/>
     
-    <updated>2016-03-01T09:00:00-05:00</updated>
-    <id>http://naildrivin5.com/blog/2016/03/01/more-on-levelling-up</id>
+    <updated>2016-03-02T09:00:00-05:00</updated>
+    <id>http://naildrivin5.com/blog/2016/03/02/more-on-levelling-up</id>
     <content type="html"><![CDATA[<p>This interesting piece from Will Hughes titled <a href="https://medium.com/@willh/how-to-level-up-as-a-developer-87344584777c#.nxkkh5mz6">How to Level up as a Developer</a> was a great read, but it focuses too much on
 <a href="http://naildrivin5.com/blog/2013/12/03/org-charts-and-diff-production.html">“developer-as-producer-of-diffs”</a> and not enough on “developer-as-solver-of-problems”.  Although I’ve written in detail in my book <a href="http://theseniorsoftwareengineer.com/">“The Senior
 Software Engineer”</a> what I think you need to do to be a great developer, I’m going to augment and modify some of the specific points Will makes.</p>
@@ -36,7 +36,7 @@ meetings.</p>
 doing.  Here are the regular meetings developers at Stitch Fix have:</p>
 
 <ul>
-  <li>1-1 with their manager (weekly or bi-weekly)</li>
+  <li>1-1 with their manager (weekly or every-other-week)</li>
   <li>All-team tech meeting (every other week)</li>
   <li>All-hands engineering meeting (every other week)</li>
   <li>Team roadmap planning with business partners (every week)</li>

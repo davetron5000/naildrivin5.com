@@ -20,7 +20,7 @@ meetings.
 If you push back on “all recurring meetings” as the developer quoted in Will's piece maintains, you will limit your effectiveness and end up being a ticket-taker with no real agency or input into the work you are
 doing.  Here are the regular meetings developers at Stitch Fix have:
 
-* 1-1 with their manager (weekly or bi-weekly)
+* 1-1 with their manager (weekly or every-other-week)
 * All-team tech meeting (every other week)
 * All-hands engineering meeting (every other week)
 * Team roadmap planning with business partners (every week)
