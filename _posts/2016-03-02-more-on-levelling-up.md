@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "More on Levelling Up"
-date: 2016-03-01 9:00
+date: 2016-03-02 9:00
 ---
 
 This interesting piece from Will Hughes titled [How to Level up as a Developer][level] was a great read, but it focuses too much on
