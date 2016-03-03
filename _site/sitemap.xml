@@ -2,6 +2,15 @@
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
     <url>
+      <loc>http://naildrivin5.com/blog/2016/03/03/why-you-need-a-javascript-framework.html</loc>
+      
+        <lastmod>2016-03-03T11:00:00-05:00</lastmod>
+      
+      <changefreq>weekly</changefreq>
+      <priority>1.0</priority>
+    </url>
+  
+    <url>
       <loc>http://naildrivin5.com/blog/2016/03/02/more-on-levelling-up.html</loc>
       
         <lastmod>2016-03-02T09:00:00-05:00</lastmod>

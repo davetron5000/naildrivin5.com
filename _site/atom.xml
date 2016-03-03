@@ -4,13 +4,32 @@
   <title><![CDATA[naildrivin5.com - David Bryant Copeland's Website]]></title>
   <link href="http://naildrivin5.com/atom.xml" rel="self"/>
   <link href="http://naildrivin5.com/"/>
-  <updated>2016-03-02T09:09:03-05:00</updated>
+  <updated>2016-03-02T10:45:34-05:00</updated>
   <id>http://naildrivin5.com/</id>
   <author>
     <name><![CDATA[David Bryant Copeland]]></name>
     <email><![CDATA[davec@naildrivin5.com]]></email>
   </author>
 
+  
+  <entry>
+    <title type="html"><![CDATA[“Why You Need a JavaScript Framework” in March's PragPub]]></title>
+    
+    <link href="http://theprosegarden.com/store/"/>
+    
+    <updated>2016-03-03T11:00:00-05:00</updated>
+    <id>http://naildrivin5.com/blog/2016/03/03/why-you-need-a-javascript-framework</id>
+    <content type="html"><![CDATA[<p>In March’s <a href="http://theprosegarden.com">PragPub</a>, I’ve got an article titled “Why You Need a JavaScript Framework”.</p>
+
+<blockquote>
+  <p>Remember that application you were working on that started out needing just a bit of JavaScript? And then it needed more? And then just a bit more? And then you had a complete mess on your hands?</p>
+
+  <p>You can avoid that next time by using a front-end application framework right from the start.</p>
+</blockquote>
+
+<p>The issue is a couple bucks. Check out the other contents <a href="http://theprosegarden.com/contents-of-recent-issues/#03-16">here</a>.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[More on Leveling Up]]></title>
@@ -626,22 +645,6 @@ you should be more well-rounded as a developer (which then should motivate you t
 </blockquote>
 
 <p>Pick up your copy <a href="http://theprosegarden.com/contents-of-recent-issues/#11-15">here</a></p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Simple Rails Apis With Stitches]]></title>
-    
-    <link href="http://multithreaded.stitchfix.com/blog/2015/11/04/simple-rails-apis-with-stitches/"/>
-    
-    <updated>2015-11-04T10:56:00-05:00</updated>
-    <id>http://naildrivin5.com/blog/2015/11/04/rails-apis-with-stitches</id>
-    <content type="html"><![CDATA[<p>New post on the <a href="http://multithreaded.stitchfix.com/blog">Stitch Fix Tech Blog</a> about how we create Rails-based HTTP APIs using a simple gem called <a href="https://github.com/stitchfix/stitches">stitches</a>:</p>
-
-<blockquote>
-  <p>With this set of conventions, it was important that developers not feel these were optional features they could leave out to cut corners, so it seemed logical to make it as painless as possible to follow them. The result is stitches, which works as a generator and backing library. It’s not an engine or a DSL or anything complex. It’s just a bit of Rails configuration, designed to be explicit and obvious.</p>
-</blockquote>
 
 ]]></content>
   </entry>
