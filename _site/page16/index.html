@@ -30,15 +30,13 @@
     
       
         
-        I can haz job
+        Why underscores might be better than camel case
         
-        December 01, 2008
+        December 10, 2008
       
       
         
-          
-            
-So, I am fi...">
+  ...">
   
 
   
@@ -69,6 +67,96 @@ So, I am fi...">
     <section>
       <div class="blog-index">
   
+  
+  
+    <article>
+      <header>
+        
+        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2008/12/10/why-underscores-might-be-better-than-camel-case.html">Why underscores might be better than camel case</a></h1>
+        
+        <h2 class="f6 mtneg">December 10, 2008</h2>
+      </header>
+      
+        
+          <section class="section-break complete-article mb1">
+            <p>
+So, the "Ruby way" is to use underscores to delimit most identifiers, e.g. "<tt>add_months_to_date</tt>", as opposed to the Java camel-case way of "<tt>addMonthsToDate</tt>".  This was initially something that irked me about Ruby, mostly because typing an underscore is kindof a pain (shift with the left hand and pinky with the other).</p>
+<p> Now that I've started working, I've been reading a lot of code and realizing that <b>code is more often read than written</b>.  Ultimately, camel case is a just lot harder to read (especially if you create meaningful method names like myself and my co-workers seem to do).
+</p>
+<p>
+It's pretty hard to defend:
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">Date</span> <span class="nf">calculatePersonDataUsageHistoryStartDate</span><span class="p">(</span><span class="o">)</span> <span class="o">{}</span></code></pre></figure>
+as more readable than:
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">calculate_person_data_usage_history_start_date</span><span class="p">()</span>
+<span class="k">end</span></code></pre></figure>
+The underscores are like spaces, making the identifier a lot more readable.  Of course, both are more readable than:
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="c1">// Calculates the start date of the
+// person's data usage history
+</span><span class="n">time_</span> <span class="n">prsn_dt_uhst_st_dt</span><span class="p">(){}</span></code></pre></figure>
+</p>
+<p>
+This would never fly with Java (and, honestly, look a bit weird), but I'm no longer gonna curse the Ruby convention.
+</p>
+
+          </section>
+        
+      
+    </article>
+  
+  
+    <article>
+      <header>
+        
+        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2008/12/09/gliffy-updated-their-site.html">Gliffy updated their site!</a></h1>
+        
+        <h2 class="f6 mtneg">December 09, 2008</h2>
+      </header>
+      
+        
+          <section class="section-break complete-article mb1">
+            <p>
+Though I'm no longer working for <a href="http://www.gliffy.com">Gliffy</a>, I'm excited to see that <a href="http://www.gliffy.com/blog/2008/12/08/gliffy-online-release-bpmn-symbols-and-folder-management/">they updated their site</a> with some of what I worked on!  Awesome!
+</p>
+<p>
+Specifically, I worked on the folder organization system that they added to replace the tagging system.  This fell out of the API work that I did (which I'm assuming is in private beta right now, but I'm not sure).  I also worked on a feature that, while painful as a developer, is my favorite new thing about Gliffy: the basic account no longer has a five-diagram limit!  That means for free, you can create unlimited diagrams.  The catch is that your diagrams are all public, but I think it's a great way to enhance the functionality while subversively getting their name out to more people.
+</p>
+
+          </section>
+        
+      
+    </article>
+  
+  
+    <article>
+      <header>
+        
+        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2008/12/07/emma-and-testng-for-simple-java-code-coverage.html">EMMA and TestNG for Simple Java Code Coverage</a></h1>
+        
+        <h2 class="f6 mtneg">December 07, 2008</h2>
+      </header>
+      
+        
+          <section class="section-break complete-article mb1">
+            <p>
+Although <a href="http://www.naildrivin5.com/daveblog5000/?p=48">RCov makes code coverage in Ruby dead simple</a>, I wasn't sure how easy this would be to achieve with Java.  The first free tool I found is called <a href="http://emma.sourceforge.net/">EMMA</a> and it was surprisingly easy to setup, especially since the documentation isn't geared toward getting coverage during tests (but getting it during execution).
+</p>
+<p>
+EMMA works by instrumenting the classfiles to analyze coverage.  Although it can do just-in-time instrumentation, that didn't seem to work for recording coverage via TestNG.  The offline instrumentation makes is pretty easy to use with anything.  Basically, you want your ANT file to:
+<ol>
+<li>Compile your code</li>
+<li>Use EMMA to instrument your classes to a different directory</li>
+<li>Run your tests, using the instrumented classes <b>first</b> in your classpath</li> and passing a few system properties to your running code</li>
+<li>Run EMMA's report generator on the output</li>
+</ol>
+At first, I was getting some runtime errors because interfaces are not instrumented (and don't show up in the location you tell EMMA to put them).  The solution is to put <b>both</b> your instrumented classes directory and your regular, non-instrumented classes directory in the classpath, making sure the <b>instrumented</b> ones are first.</p>
+<p>
+<a href="http://github.com/davetron5000/importscrubber/tree/master/src/ant/test.xml">Here's my <tt>test.xml</tt></a> I'm using in <a href="https://github.com/davetron5000/importscour/tree">my fork of ImportScrubber</a> that shows it all working together.  All in all, it only took about 15 minutes to set up and debug.  Of course, now, the tests that came with ImportScrubber provide almost <b>no</b> coverage, but that's another story....
+</p>
+
+          </section>
+        
+      
+    </article>
   
   
     <article>
@@ -507,122 +595,6 @@ In my previous job I even created a customized layout to format the emails in su
 </p>
 <p>
 If you aren't doing this, you should be.  Now.
-</p>
-
-          </section>
-        
-      
-    </article>
-  
-  
-    <article>
-      <header>
-        
-        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2008/09/17/getting-rakes-packagetask-to-depend-on-generated-files.html">Getting Rake's PackageTask to depend on generated files</a></h1>
-        
-        <h2 class="f6 mtneg">September 17, 2008</h2>
-      </header>
-      
-        
-          <section class="section-break complete-article mb1">
-            Been playing with <a href="http://rake.rubyforge.org/">Rake</a> lately and decided to use it to package up the PHP Client Library for the <a href="http://www.gliffy.com">Gliffy</a> <a href="http://jira.gliffy.com/browse/GLIFFY-775">integration API</a>.  Didn't seem to make sense to use ant for something that amounts to creating a tarball.  <tt>make</tt> would be appropriate here, too, but I figured it would be cool to use Rake and there's not really much harm in doing so.
-
-A large annoyance is <tt>Rake::PackageTask</tt>.  This is a seemingly handy task that creates tars, zips, etc. and is pretty useful.  It's not a task in and of itself, but it creates the <tt>:package</tt> task:
-
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">Rake</span><span class="o">::</span><span class="no">PackageTask</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s2">"gliffy-php-client"</span><span class="p">,</span><span class="no">GLIFFY_VERSION</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="nb">p</span><span class="o">|</span>
-    <span class="nb">p</span><span class="p">.</span><span class="nf">need_tar</span> <span class="o">=</span> <span class="kp">true</span>
-    <span class="nb">p</span><span class="p">.</span><span class="nf">need_zip</span> <span class="o">=</span> <span class="kp">true</span>
-    <span class="nb">p</span><span class="p">.</span><span class="nf">package_files</span> <span class="o">=</span> <span class="no">SRC_FILES</span> <span class="o">+</span> <span class="no">EXAMPLE_FILES</span> <span class="o">+</span> <span class="no">DOC_FILES</span>
-<span class="k">end</span></code></pre></figure>
-
-Unfortunately, this doesn't do what it seems to do.  <tt>DOC_FILES</tt> is the list of documentation files output by <a href="http://www.phpdoc.org/">phpDocumentor</a> and are not checked into version control.  The syntax of the <tt>PackageTask</tt> makes it appear that the code in the block will run when the <tt>:package</tt> task executes, however this is not the case.  This code is initialization code.  So, I tried:
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># DOC_DIR is the dir generated by phpdoc, a task elsewhere</span>
-<span class="c1"># uses this to kick off phpdoc</span>
-<span class="n">task</span> <span class="ss">:package</span> <span class="o">=&gt;</span> <span class="no">DOC_DIR</span></code></pre></figure>
-
-The result is that the tarball and zip files are created and <b>then</b> the documentation is generated.  The reason is that <tt>PackageTask.new</tt> creates a set of tasks and the actual creation of the tarball/zip file is done via a <tt>file</tt> task, upon which <tt>:package</tt> is dependent.  So, the real dependency I created was:
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">task</span> <span class="ss">:package</span> <span class="o">=&gt;</span> <span class="s2">"gliffy-php-client.zip"</span> <span class="s2">"gliffy-php-client.tgz"</span> <span class="no">DOC_DIR</span></code></pre></figure>
-
-Examining the source code, a task named for the directory created by <tt>:package</tt> is created.  This task is dependent on the <tt>package_files</tt> set up in the constructor.  So <b>this</b> is the task I need to use:
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># Have to keep a reference to the PackageTask object</span>
-<span class="n">package_task</span> <span class="o">=</span> <span class="no">Rake</span><span class="o">::</span><span class="no">PackageTask</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s2">"gliffy-php-client"</span><span class="p">,</span><span class="no">GLIFFY_VERSION</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="nb">p</span><span class="o">|</span>
-    <span class="nb">p</span><span class="p">.</span><span class="nf">need_tar</span> <span class="o">=</span> <span class="kp">true</span>
-    <span class="nb">p</span><span class="p">.</span><span class="nf">need_zip</span> <span class="o">=</span> <span class="kp">true</span>
-    <span class="c1"># Executed BEFORE any other tasks; DOC_FILES don't exist  yet</span>
-    <span class="nb">p</span><span class="p">.</span><span class="nf">package_files</span> <span class="o">=</span> <span class="no">SRC_FILES</span> <span class="o">+</span> <span class="no">EXAMPLE_FILES</span>
-<span class="k">end</span>
-
-<span class="n">file</span> <span class="n">package_task</span><span class="p">.</span><span class="nf">package_dir_path</span> <span class="o">=&gt;</span> <span class="no">DOC_DIR</span>
-
-<span class="n">file</span> <span class="no">DOC_DIR</span> <span class="o">=&gt;</span> <span class="no">SRC_FILES</span> <span class="o">+</span> <span class="no">EXAMPLE_FILES</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
-    <span class="nb">system</span><span class="p">(</span><span class="s2">"phpdoc </span><span class="si">#{</span><span class="no">PHP_DOC_ARGS</span><span class="si">}</span><span class="s2">"</span><span class="p">);</span>
-    <span class="n">doc_files</span> <span class="o">=</span> <span class="no">FileList</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="no">DOC_DIR</span> <span class="o">+</span> <span class="s2">"/**/**"</span><span class="p">);</span>
-    <span class="c1"># Have to add these files to the package_task file list</span>
-    <span class="n">package_task</span><span class="p">.</span><span class="nf">package_files</span> <span class="o">=</span> <span class="n">package_task</span><span class="p">.</span><span class="nf">package_files</span> <span class="o">+</span> <span class="n">doc_files</span>
-<span class="k">end</span></code></pre></figure>
-
-This is definitely a hack, because I'm depending on the internal implementation of the <tt>PackageTask</tt>.  It really needs a facility for including generated files.  In <tt>make</tt>, I could just send the directory <tt>DOC_DIR</tt> to <tt>tar</tt> and it would pick up everything.  In Ant, I'd probably have to spawn another ant, since ant sets all property vaules at startup time.
-
-          </section>
-        
-      
-    </article>
-  
-  
-    <article>
-      <header>
-        
-        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2008/09/17/better-open-source-hosting-sourceforge-is-looking-weak.html">Better open-source hosting: SourceForge is looking weak</a></h1>
-        
-        <h2 class="f6 mtneg">September 17, 2008</h2>
-      </header>
-      
-        
-          <section class="section-break complete-article mb1">
-            <p>I currently host <a href="http://vimdoclet.sf.net">my Vim Javadoc doclet</a> on <a href="http://www.sourceforge.net">SourceForge</a> and <b>every</b> time I have to deal with it, it's just a monumental pain.  The documentation is insanely long and detailed, the website looks horribly out of date and cruddy, and when compared to stuff like <a href="http://www.github.com">GitHub</a> and <a href="http://www.lighthouseapp.com">Lighthouse</a>, it's almost embarrassing how difficult it is to deal with and how bad the UI is (despite my best efforts, it <b>still</b> insists that the featured download is the vimdoc samples and not the doclet itself.  WTF?).
-</p>
-<p>
-I'm already hosting the code in GitHub and just moved my tickets to Lighthouse.  The only thing left is where to host binary downloads and static assets.  For <a href="http://www.googlecode.com/p/restunit">RESTUnit</a>, I'm using <a href="http://code.google.com">Google Code</a>, which is pretty easy to deal with (about a zillion times simpler and easier than SourceForge), however it has no facility for hosting arbitrary HTML.  Currently, I'm just using my website for static assets.
-</p>
-<p>
-While I do like the new Web-2.0 way of doing things (one site like GitHub really focusing on source, another like Lighthouse just does ticketing, etc. and they integrate via web services), I'm not sure where the best place is to host downloads and static assets.  I would need programmatic access and some liberal download/diskspace quotas for sure.  It would also be nice to be able to connect to other services, for example generate a changelog based on commits or tickets closed since the last release.
-</p>
-
-          </section>
-        
-      
-    </article>
-  
-  
-    <article>
-      <header>
-        
-        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2008/09/12/test-rest-services.html">Test REST Services</a></h1>
-        
-        <h2 class="f6 mtneg">September 12, 2008</h2>
-      </header>
-      
-        
-          <section class="section-break complete-article mb1">
-            <p>In my reply to <a href="http://www.tbray.org/ongoing/When/200x/2008/09/10/Misusing-RSpec">a post on Tim Bray's blog</a> about using RSpec for testing REST services, I briefly described a project I'm working on, based on the work I've been doing at <a href="http://www.gliffy.com">Gliffy</a>, which is a testing framework for REST services called, unsurprisingly, <a href="http://code.google.com/p/restunit/">RestUNIT</a>.
-</p>
-<p>
-For Gliffy's REST-based <a href="http://jira.gliffy.com/browse/GLIFFY-775">integration API</a>, I needed a way to test it, and hand-coding test cases using <a href="http://hc.apache.org/httpclient-3.x/">HTTPClient</a> was just not going to cut it.  Further, requests to Gliffy's API require signing (similar to how Flickr does it), and our API was going to support multiple ways of specifying the representation type as well as tunneling over POST.
-</p>
-<p>
-So, it occured to me that there was a lazier way of doing this testing.  All I really needed to specify was the relative URL, parameters, headers, method, and expected response.  Someone else could do the signing and re-run the tests with the various options (such as specifying the MIME Type via the <tt>Accept:</tt> header, and then again via a file extension in the URL).</p>
-<p>
-I ended up creating a bunch of text files with this information.  I then used a Ruby script to generate two things:  an XML file that could be deserialized into a java object useful for testing, and a PHP script to test our PHP client API.
-</p>
-<p>
-The Ruby script would also do things like calculate the signature (the test text files contained the api and secret keys a Gliffy user would have to use the API) and generate some derivative tests (e.g. one using a <tt>DELETE</tt>, and another tunneling that over <tt>POST</tt>).  The testing engine could generate some additional derivative tests (e.g. GET requests should respond to conditional gets if the server sent back an <tt>ETag</tt> or <tt>Last-Modified</tt> header).  All this then runs as a <a href="http://testng.org">TestNG</a> test.  
-</p>
-<p>
-The whole thing works well, but is pretty hackish.  So, RestUNIT was created as a fresh codebase to create a more stable and useful testing engine.  My hope is to specify tests as YAML or some other human-readable markup, instead of XML (which is essentially binary for any real-sized data) and to allow for more sophisticated means of comparing results, deriving tests, and running outside a container (all the Gliffy tests require a specific data set and run in-container).
-</p>
-<p>
-</p>
-The test specification format should then be usable to generate tests in any other language (like I did with PHP).  I'm working on this slowly in my spare time and trying to keep the code clean and the architecture extensible, but not overly complex.
 </p>
 
           </section>

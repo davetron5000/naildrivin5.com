@@ -30,13 +30,13 @@
     
       
         
-        The Complexity of Object-Oriented Design
         
-        July 11, 2014
-      
-      
+          ☞ Why Scrum Should Basically Die in a Fire
         
-          I c...">
+        
+        September 18, 2014
+      
+  ...">
   
 
   
@@ -67,6 +67,122 @@
     <section>
       <div class="blog-index">
   
+  
+  
+    <article>
+      <header>
+        
+        <h1 class="f4">
+          <a class="no-ul" href="http://gilesbowkett.blogspot.com/2014/09/why-scrum-should-basically-just-die-in.html">☞ <span class="ul-hover">Why Scrum Should Basically Die in a Fire</span></a>
+        </h1>
+        
+        <h2 class="f6 mtneg">September 18, 2014</h2>
+      </header>
+      
+        
+          <section class="section-break">
+            <p><a href="http://gilesbowkett.blogspot.com/">Giles Bowkett</a> posted <a href="http://gilesbowkett.blogspot.com/2014/09/why-scrum-should-basically-just-die-in.html">a great piece on the deep flaws of Agile processes like Scrum</a>.
+It’s spot-on with my experience.
+There’s so many choice quotes, it’s hard to pull just one, but I’ll try.
+Toward the end of the article:</p>
+
+<blockquote>
+  <p>I’ve never seen Scrum-like frameworks for transmuting the work of designers, marketers, or accountants into cartoonish oversimplifications like story points. People are happy to treat these workers as adults and trust them to do their jobs.</p>
+
+  <p>I don’t know why this same trust does not prevail in the culture of managing programmers.</p>
+</blockquote>
+
+<p>After a job converting JIRA Tickets into Story Points into diffs, I eventually realized that good developers <a href="http://naildrivin5.com/blog/2013/01/27/what-i-learned-working-at-livingsocial.html">deliver results</a>, not promises, points, or even features.
+I even <a href="http://theseniorsoftwareengineer.com">wrote an entire book about it</a>.</p>
+
+<p>Thankfully, the <a href="http://tech.stitchfix.com">team at Stitch Fix</a> has no sprints, story points,
+velocity, or planning poker.  We just solve the most important problem at hand, and
+move onto the next most important one.</p>
+
+
+          </section>
+          <footer class="mtneg mb1">
+            <h1 class="f7"><a class="no-ul ul-hover" href="/blog/2014/09/18/why-scrum-should-basically-die-in-a-fire.html">#</a></h1>
+          </footer>
+        
+      
+    </article>
+  
+  
+    <article>
+      <header>
+        
+        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2014/08/07/rails-degenerate-front-end-support.html">Rails' Degenerate Front-End Support</a></h1>
+        
+        <h2 class="f6 mtneg">August 07, 2014</h2>
+      </header>
+      
+        <section class="mb1">
+          <div class="excerpt"><p>Rails front-end support is pretty degenerate and I don’t understand why.  By “degenerate”, I mean the mathematical notion of
+“so simple as to belonging to another class”.  And it seems that the Rails team isn’t planning to do anything about
+it any time soon, as DHH has doubled-down on “server-generated JavaScript responses”.</p>
+
+<p>Why isn’t Rails leading the way here?  Where is the Rails that shocked the world with its elegant API for creating server-side
+web applications?  It seems that it’s still peddling the same solutions for rich user-interfaces as it was over four years ago.</p>
+
+</div>
+          <footer class="mb2 text-l">
+            <a rel="full-article" class="no-ul pill" href="/blog/2014/08/07/rails-degenerate-front-end-support.html">Read More…</a>
+          </footer>
+        </section>
+      
+    </article>
+  
+  
+    <article>
+      <header>
+        
+        <h1 class="f4">
+          <a class="no-ul" href="http://arxiv.org/pdf/1304.5257.pdf">☞ <span class="ul-hover">What Makes Code Hard to Understand?</span></a>
+        </h1>
+        
+        <h2 class="f6 mtneg">July 13, 2014</h2>
+      </header>
+      
+        
+          <section class="section-break">
+            <p><a href="http://twitter.com/garybernhardt">@garybernhardt</a> linked to a short academic paper on code readability, called <a href="http://arxiv.org/pdf/1304.5257.pdf">“What Makes Code Hard to Understand?”</a>.  It’s a quick read that details an experiment where researchers showed severals versions of the same program to a bunch of programmers and asked them to guess the output.  Each version had the same <a href="http://en.wikipedia.org/wiki/Cyclomatic_complexity">cyclomatic complexity</a> and lines of code, but differed only in formatting, variable naming, and use of types.</p>
+
+<p>Choice quote:</p>
+
+<blockquote>
+  <p>The physical aspects of notation, often considered superficial, can have a profound impact on performance [of programmers to understand what code will
+do]</p>
+</blockquote>
+
+<p>In particular, in a program that relied on order of operations, two versions were given, one in which one space was used around operators (<code class="highlighter-rouge">zigzag</code>) and
+another where the operators were all vertically aligned (<code class="highlighter-rouge">linedup</code>):</p>
+
+<blockquote>
+  <p>Programmers were more likely to respect the order of mathematical operations in the <code class="highlighter-rouge">linedup</code> version of <code class="highlighter-rouge">whitespace</code>, showing how horizontal space can emphasize the common structure between related calculations.</p>
+</blockquote>
+
+<p>Also, they presented three versions of code to calculate the area of a rectangle, using free variables, tuples, and a <code class="highlighter-rouge">Rectangle</code> class:</p>
+
+<blockquote>
+  <p>Programmers took longer to respond to the <code class="highlighter-rouge">tuples</code> version of <code class="highlighter-rouge">rectangle</code> despite it having fewer lines than the <code class="highlighter-rouge">class</code> version. It is not uncommon in Python to use tuples for (x, y) coordinates, but the syntactic “noise” that is present in the tuples version for variable names (e.g., <code class="highlighter-rouge">r1_xy_1</code>) and calculations (e.g., <code class="highlighter-rouge">width = xy_2[0] - xy_1[0]</code>) likely gave programmers pause when verifying the code’s operation.</p>
+</blockquote>
+
+<p>This was not something that was initially obvious to me as I learned programming, but I have come to realize the importance of typography in writing
+  code.  From <a href="http://www.naildrivin5.com/blog/2013/05/17/source-code-typography.html">my post</a> on the subject over a year ago:</p>
+
+<blockquote>
+  <p>But, it’s not just the content - the code itself - that affects readability. How it’s presented matters and if we’re going to talk about presentation, we have to talk about typography.</p>
+</blockquote>
+
+
+          </section>
+          <footer class="mtneg mb1">
+            <h1 class="f7"><a class="no-ul ul-hover" href="/blog/2014/07/13/what-makes-code-hard-to-understand.html">#</a></h1>
+          </footer>
+        
+      
+    </article>
   
   
     <article>
@@ -273,116 +389,6 @@ lot of architectural decisions to you.</p>
 </div>
           <footer class="mb2 text-l">
             <a rel="full-article" class="no-ul pill" href="/blog/2014/05/27/rails-does-not-define-your-application-architecture.html">Read More…</a>
-          </footer>
-        </section>
-      
-    </article>
-  
-  
-    <article>
-      <header>
-        
-        <h1 class="f4">
-          <a class="no-ul" href="http://growingdevs.com/stop-using-rubygems-and-start-using-bower.html">☞ <span class="ul-hover">Use Bower for managing front-end assets in Rails</span></a>
-        </h1>
-        
-        <h2 class="f6 mtneg">April 10, 2014</h2>
-      </header>
-      
-        
-          <section class="section-break">
-            <p>By yours truly, on <a href="http://growingdevs.com/">the GrowingDevs blog</a>, giving you some more reasons and help on using Bower instead of RubyGems
-for managing your front-end assets in Rails:</p>
-
-<p><a href="http://growingdevs.com/stop-using-rubygems-and-start-using-bower.html">Use Bower for managing front-end assets in Rails</a></p>
-
-<blockquote>
-  <p>Rails 4.0.4 depends on version 2.2.x of the jquery-rails gem which in turn bundles 1.9.1 of JQuery. Does that make any sense? The latest official release of angular-ui-bootstrap-rails is 0.9.0, which is at least a version behind the current release of the Angular UI bootstrap directives. When will it be updated? chosen-rails version 1.1.0 bundles an old version of chosen-jquery that has never been officially released. What?</p>
-</blockquote>
-
-<p>The state of front-end assets in RubyGems is almost comical.  Please start using Bower.</p>
-
-
-          </section>
-          <footer class="mtneg mb1">
-            <h1 class="f7"><a class="no-ul ul-hover" href="/blog/2014/04/10/use-bower-for-managing-front-end-assets-in-rails.html">#</a></h1>
-          </footer>
-        
-      
-    </article>
-  
-  
-    <article>
-      <header>
-        
-        <h1 class="f4">
-          <a class="no-ul" href="http://angular-rails.com">☞ <span class="ul-hover">Getting Angular and Rails Working Together</span></a>
-        </h1>
-        
-        <h2 class="f6 mtneg">April 07, 2014</h2>
-      </header>
-      
-        
-          <section class="section-break">
-            <p>I’ve been doing a bit of <a href="http://angularjs.com">AngularJS</a> at work, and getting it all working with Rails, the asset pipeline, testing, and deployment was quite a
-challenge.  It wasn’t so much difficult to do, but difficult to uncover the right information.  So, I decided to compile it all in a nice tutorial and post it as a free mini-ebook, in web form, also known as a website<a name="back-1"></a><sup><a href="#1">1</a></sup>.</p>
-
-<p>From <a href="http://angular-rails.com">angular-rails.com</a>:</p>
-
-<blockquote>
-Once you're familiar enough with Angular to start building an app, you'll find there are a lot of unanswered questions:
-<ul>
-<li>How do I serve Angular assets via the Rails Asset Pipeline?</li>
-<li>How does Angular's templating system work with Rails?</li>
-<li>How do I connect Angular to my Rails controllers?</li>
-<li>How do I test my Angular code within a Rails app?</li>
-<li>How do I manage all these JavaScript dependencies?</li>
-<li>What challenges will there be in the production environment not present in the development environment?</li>
-</ul>
-I was able to find answers by piecing together information from Stack Overflow and various blog posts. You shouldn't have to do that.
-</blockquote>
-
-<p>Check it out, start making some awesome Angular apps with Rails, and <a href="http://angular-rails.com/contributing.html">correct any mistakes you find</a>.</p>
-
-<hr />
-
-<footer class="footnotes">
-<ol>
-<li>
-<a name="1"></a>
-<sup>1</sup>I have a longer-term goal to make this an <em>actual</em> e-book, but for now, I wanted to get it out and get feedback<a href="#back-1">↩</a>
-</li>
-</ol></footer>
-
-          </section>
-          <footer class="mtneg mb1">
-            <h1 class="f7"><a class="no-ul ul-hover" href="/blog/2014/04/07/getting-angular-and-rails-working-together.html">#</a></h1>
-          </footer>
-        
-      
-    </article>
-  
-  
-    <article>
-      <header>
-        
-        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2014/03/16/doing-your-best-work.html">Doing your best work</a></h1>
-        
-        <h2 class="f6 mtneg">March 16, 2014</h2>
-      </header>
-      
-        <section class="mb1">
-          <div class="excerpt"><p>If I could sum up the best programmers I’ve worked with in a sentence, it would be:</p>
-
-<blockquote>
-  <p>They know what to build and they know how build it</p>
-</blockquote>
-
-<p>The later is almost trivial to achieve compared to the former, but without both, you won’t be doing your best work.</p>
-
-</div>
-          <footer class="mb2 text-l">
-            <a rel="full-article" class="no-ul pill" href="/blog/2014/03/16/doing-your-best-work.html">Read More…</a>
           </footer>
         </section>
       

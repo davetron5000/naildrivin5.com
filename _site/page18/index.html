@@ -30,13 +30,11 @@
     
       
         
-        Quick and Dirty Code Reviews: Check commit logs
+        REST Security: Signing requests with secret key, but does it work?
         
-        April 03, 2008
+        April 21, 2008
       
-      
-        
-     ...">
+  ...">
   
 
   
@@ -67,6 +65,187 @@
     <section>
       <div class="blog-index">
   
+  
+  
+    <article>
+      <header>
+        
+        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2008/04/21/rest-security-signing-requests-with-secret-key-but-does-it-work.html">REST Security: Signing requests with secret key, but does it work?</a></h1>
+        
+        <h2 class="f6 mtneg">April 21, 2008</h2>
+      </header>
+      
+        
+          <section class="section-break complete-article mb1">
+            Both <a href="http://docs.amazonwebservices.com/AmazonS3/2006-03-01/gsg/?ref=get-started">Amazon Web Services</a> and the <a href="http://www.flickr.com/services/api/auth.howto.web.html">Flickr Services</a> provide <a href="http://en.wikipedia.org/wiki/Representational_State_Transfer">REST</a> APIs to their services.  I'm currently working on developing such a service, and noticed that both use signatures based on a shared secret to provide security (basically using a <a href="http://en.wikipedia.org/wiki/HMAC">Hash Message Authentication Code</a>).
+
+It works as follows:
+<ol>
+<li>Applications receive a shared secret known only to them and the service provider.</li>
+<li>A request is constructed (either a URL or a query string)</li>
+<li>A digest/hash is created using the shared secret, based on the request (for Flickr, the parameter keys and values are assembled in a certain way, so that Flickr can easily generate the same string)</li>
+<li>The digest is included in the request</li>
+<li>The service provider, using the shared secret, creates a digest/hash on the request it receives</li>
+<li>If the service provider's signature matches the one included in the request, the request is serviced</li>
+</ol>
+
+It's actually quite simple, and for one-time requests, is effective.  The problem, however, is that anyone intercepting the request can make it themselves, without some other state being shared with the client and service provider.  Consider a request for an image.  The unsigned request might look like:
+
+<code>http://www.naildrivin5.com/api/images?image_id=45&type=jpg</code>
+
+The signed request, would look like so:
+
+<code>http://www.naildrivin5.com/api/images?image_id=45&type=jpg&signature=34729347298473</code>
+
+So, anyone can then take that URL and request the resource.  They don't need to know the shared secret, or the signature algorithm.  This is a bit of a problem.  One of the advantages of REST is that URLs that request resources are static and can be cached (much as WWW resources are).  So, if I wish to protect the given URL, how can I do so?
+
+<h3>HTTP Authentication</h3>
+
+The usual answer is HTTP Authentication; the service provide protects the resource, and the client must first log in.  Login can be done programmatically, and this basically accomplishes sending a second shared secret with the request that cannot be easily intercepted.  HTTP Auth has its issues, however, and might not be feasible in every context.
+
+Another way to address this is to provide an additional piece of data that makes each request unique and usable only once.  To do so requires state to be saved on the client and the server.
+
+<h3>Negotiated One-time Token</h3>
+
+Authentication can be avoided by using the shared secret to establish a token, usable for one request of the given resource.  It would work like this:
+<ol>
+<li>Client requests a token for a given resource</li>
+<li>Service Provider creates a token (via some uuid algorithm ensuring no repeats) and associates it with the resource</li>
+<li>Client creates a second request, as above, for the resource, including the token in the request</li>
+<li>Service Provider checks not just for a valid signature, but also that the provided token is associated with the given resource</li>
+<li>If so, the token is retired, and the resource data is returned</li>
+</ol>
+
+Here, the URL constructed in step 3 can be used only once.  Anyone intercepting the request can't make it again, without constructing a new one, which they would be unable to do without the shared secret.  Further, this doesn't preclude caching.  The main issue here is that since two requests are required, simultaneous access to one resource could result in false errors: if Client A acquires a token, and Client B requests one before Client A <b>uses</b> the token, Client A's token could be squashed, resulting in an error when he makes his request.  The service provider can alleviate this by allowing the issuance of multiple active tokens per resource.
+
+<h3>Timestamp</h3>
+
+A disadvantage to the One-Time Token method is that it requires two requests of the service provider for every actual request (one to get the token and one to request the resource).  A way around that is to include a timestamp in the request.  This would work as follows:
+
+<ol>
+<li>Client creates request, including the current time.  This request is signed as per above procedure</li>
+<li>Service provider validates the request and compares it's time with the given timestamp.</li>
+<li>If the difference in the service provider's time and the client's provided time is within some tolerance, the request is serviced</li>
+</ol>
+
+This obviously requires the two clocks to be vaguely in sync.  It also allows the resource to be requested by anyone within the timespan of the tolerance.  But, it does save a second request to the client.
+
+<h3>Self-created One-time Token</h3>
+
+This is an amalgam of the Timestamp solution and the Negotiated One-time Token solution.  Here, the client creates its own token, as a simple integer of increasing value.  The server maintains the last requested value and accepts only requests with a higher number:
+
+<ol>
+<li>Client creates request, using a global long-lived number</li>
+<li>Client signs requests and sends it to the service provider</li>
+<li>Service provider validates the signature and compares the provided numeric token with the one last used (the tokens can be globally scoped, or scoped for a given resource)</li>
+<li>If the provided numeric token is greater than the previous, the request is serviced</li>
+<li>The Client increments his numeric token for next time</li>
+</ol>
+
+As with the Timestamp solution, only one request is required.  As with the negotiated one-time token solution, the URL can never be used twice.  The main issue here is if the client forgets its numeric token.  This could be addressed with an additional call to re-establish the token, made only when the Client has determined it no longer knows the last used value.
+
+Unfortunately, this is much more susceptible to race conditions than the Negotiated one-time token.  Since the service provider doesn't know what tokens to expect (only that they should be greater than the last requested one), the client has to ensure that the "create request, submit request, receive response, update local numeric token" cycle is atomic.  That is not straightforward.
+
+<b>Update</b> Got another idea from a co-worker
+
+<h3>Session Token</h3>
+
+When a user access the system that uses the REST API, they get issued a token (via the REST API).  This token is just like a session token, with an inactivity timeout and so forth.  The token can be manually invalidated via the API, so that when a user logs out or completes some logical task, the token can be invalidated.
+
+This suffers none of the problems of the other solutions, though it isn't the most secure.  However, the security problem it has (using the valid URL before the session times out) is fairly minor, and the tradeoff of getting one request per actual request and no race conditions makes it probably the best way to go.
+
+          </section>
+        
+      
+    </article>
+  
+  
+    <article>
+      <header>
+        
+        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2008/04/17/shell-history-meme.html">Shell history meme</a></h1>
+        
+        <h2 class="f6 mtneg">April 17, 2008</h2>
+      </header>
+      
+        
+          <section class="section-break complete-article mb1">
+            In response to the rage-of-the-moment <a href="http://raibledesigns.com/rd/entry/history_meme">shell history</a> meme, I present my list, which looks different than a lot of peoples':
+<ul>
+<li><b>149</b><tt> cd</tt> - Well, duh</li>
+<li><b>104</b><tt> ./run.sh</tt> - Occasionally to run JBoss (I have to have two JBoss servers running locally, and when I do a complete recompile/redeploy (not often), I must restart, as ant fstats the ever-loving shit out thousands of files (multiple times, per, 'natch, cause it so superior to <tt>make</tt>) at the same time JBoss is hot-deploying (twice) and my machine just dies), but more often to run the application I'm developing.</li>
+<li><b>88</b><tt> tail</tt> - To read log files (were I on OS X, Console.app would be the way to go)</li>
+<li><b>84</b><tt> ls</tt> - Well, duh</li>
+<li><b>73</b><tt> git</tt> - I <code>commit</code> a lot, I <code>diff</code> alot, I <code>stat</code> alot, and I <code>blame</code> alot.  <a href="http://www.naildrivin5.com/daveblog5000/?p=32">You should, too</a></li>
+<li><b>57</b><tt> sqlshell.pl</tt> - Awesomely awesome command-line SQL client written by my co-worker and enhanced on occasion by me.  I'll probably steal it when I leave this project, and I wish he'd put it up on sourceforge</li>
+<li><b>51</b><tt> jobs</tt> - To find out which JBosses to kill (frequently executed in the wrong shell window)</li>
+<li><b>44</b><tt> kill</tt> - To then go kill JBoss</li>
+<li><b>43</b><tt> vi</tt> - To get some work done</li>
+</ul>
+
+Runners up: <code>rm</code>, <code>grep</code>, <code>git-svn</code>
+
+          </section>
+        
+      
+    </article>
+  
+  
+    <article>
+      <header>
+        
+        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2008/04/15/distributed-version-control-with-git-for-code-quality-and-team-organization.html">Distributed version control with Git for code quality and team organization</a></h1>
+        
+        <h2 class="f6 mtneg">April 15, 2008</h2>
+      </header>
+      
+        
+          <section class="section-break complete-article mb1">
+            In <a href="http://www.naildrivin5.com/daveblog5000/?p=31">my previous post</a>, I outlined a code review process I've been using with reasonably effectiveness.  It's supported, in my case, by <a href="http://git.or.cz">the Git</a> source code management tool (most known for it's use in managing the Linux kernel).  Git or, more generally, distributed development, can encourage some good quality control procedures in teams working on enterprise software.  The lessons learned from the open source world (and the Linux kernel, in particular) can be applied outside the world of OSS and to the consultant-heavy world of enterprise/in-house software development.
+
+The project I've been working on for the past several months has undergone what I believe to be a common change on in-house/enterprise software, which is that several new developers are being added to the project.  Outside of the learning curve required with any new system, many of them are not seasoned Java developers, or are otherwise missing experience in some key technologies in use.   While <a href="http://www.naildrivin5.com/daveblog5000/?p=31">code reviews</a> are a great way to ensure these developers are doing things the right way, there is still concern that their ability to commit to source control could be problematic for the entire team.
+
+Consider a developer breaking the build, or incorrectly refactoring a key piece of shared code.  A review of their commit and some continuous integration can help identify these problems, but, once identified, they must be removed from the codebase.  In the meantime, the development team could be stuck with an unusable build.  This can lead to two bad practices:
+<ul>
+<li>Commit very rarely</li>
+<li>Get new changes from the repository only when absolutely  needed</li>
+</ul>
+These "anti-practices" result in unreadable commit logs, difficult (or skipped) code reviews, duplication of code, and a general discoherence of the system.  This is primarily due to the way most common version control systems work. 
+
+In reserved-checkout systems (e.g. PVCS, StarTeam) <strong>and</strong> concurrent systems (CVS, Subversion), there is the concept of the <b>one true repository of code</b> that is a bottleneck for all code on the project.  The only way Aaron can use Bill's code is for Bill to commit it to the repository and for Aaron to check it out (along with anything else committed since the last time he did so).  The only way Carl can effectively review Dan's code, or for the automated build to run his test cases, is to checkout code from the repository and examine/run it.  <b>This</b> reality often leads to situations where each developer is operating on his own branch.  The problem here is that CVS and Subversion suck at merging.  This makes the branching solution effectively useless.
+
+Enter Git.  With Git, there is no central repository.  Each developer is on his own branch (or his own copy of someone's branch) and can commit to their heart's content, whenever <b>they</b> feel they have reached a commit point.  Their changes will <b>never</b> be forced upon the rest of the team.  So, how does the code get integrated?
+
+Developer's submit their code to the team lead/integrator (who is the ultimate authority on what code goes to QA/production/the customer), who then reviews it and either accepts or rejects it.  If code is rejected, the team lead works with the developer to get it accepted (either via a simple email of the issues, or more in-depth mentoring as needed).  Git makes this painless and fast, because it handles merging so well.
+
+Consider how effective this is, especially when managing a large (greater than, say, five) team of developers working concurrently.  The only code that gets into the production build will have been vetted through the team lead; he is responsible for physically applying each developer's patches (an action that takes a few minutes or even seconds in Git).  Further, developers get instant feedback on their code quality.  In most cases, bad commits are the result of ignorance and lack of experience.  A code review, with instant feedback, is a great way to address both of those issues, resulting in a better developer and a better team, based on open, honest, and immediate communication.
+
+Here's how to set this up:
+<ol>
+<li><b>Assign a team lead to integrate the code</b> - this is a senior <i>developers</i> who can assess code quality, provide mentoring and guidance and can be trusted to put code into the repository destined for QA and production</li>
+<li><b>Each developer clones the team lead's repository</b> - This is done to baseline the start of their work</li>
+<li><b>Developers commit, branch, merge, and pull as necessary</b> - Since Git makes merging simple, developer's can have full use of all features of version control and can do so in their environment without the possibility of polluting the main line of development.  They can also share code amongst themselves, as well as get updates from the team lead's repository of "blessed" code<sup><a href="#1">1</a></sup></li>
+<li><b>Developer's inform the lead of completion</b></li>
+<li><b>Lead pulls from their repository</b> - The lead reviews the developer's changes and applies the patch to his repository.  He can then exercise whatever quality control mechanisms he wishes, including automated tests, manual tests, reviews, etc<sup><a href="#2">2</a></sup>.
+<li><b>Lead rejects patches he doesn't agree with</b> - If the patch is wrong, buggy, or just not appropriate in some way, the lead rejects the patch and provides the developer with information on the correct approach</li>
+<li><B>Lead accepts patches he does agree with</b> - If the lead agrees with the patch, he applies it to his repository, where it is now cleared for QA</li>
+</ol>
+
+This may seem convoluted, but it actually carries little overhead compared to a junior developer performing a "nuclear bomb" commit that must then be rolled back.  For much larger teams, the approach can be layered, with the primary team lead accepting patches only from lieutenants, who accept patches from the primary developers.
+
+Unlike a lot of hand-wavy processes and practices, this model has been demonstrated effective on virtually <b>every open source project</b>.  Even though the Linux kernel is one of the few to use technology to support this process (Git), every other large OSS project has the concept of "committers" who are the people allowed to actually commit.  Anyone else wishing to contribute must submit patches to a committer, who then reviews and approves of their patch (or not).
+
+I belive this would be highly effective in a professional environment developing in-house or enterprise software (especially given the typical love of process in those environments; <b>this</b> process might actually help!).  I have been on at least three such projects where it would've been an enormous boon to quality (not to mention that the natural mentoring and feedback built into the process would've been hugely helpful for the more junior developers).
+
+<hr />
+<a name="1"><b>1</b></a> <i>Git even allows a developer to merge certain <b>commits</b> from one branch to another.  Suppose Frank is working on a large feature, and happens to notice a bug in common code.  He can address that bug and commit it.  Gary can then merge only that commit into his codebase to get the bugfix, without having to also take all of Frank's in-progress work on the large feature.  Good luck doing that with StarTeam.</i><br />
+<a name="2"><b>2</b></a> <i> A CI system could be set up in a variety of ways:  it could run only against the lead's "blessed" repository, or it could run against an intermediate repository created by the lead (who then blesses patches that pass), or it could be totally on its own and allow developers to submit against it prior to submitting to the lead.
+</i>
+
+          </section>
+        
+      
+    </article>
   
   
     <article>

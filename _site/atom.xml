@@ -4,13 +4,362 @@
   <title><![CDATA[naildrivin5.com - David Bryant Copeland's Website]]></title>
   <link href="http://naildrivin5.com/atom.xml" rel="self"/>
   <link href="http://naildrivin5.com/"/>
-  <updated>2016-03-02T10:45:34-05:00</updated>
+  <updated>2016-05-03T12:52:19-04:00</updated>
   <id>http://naildrivin5.com/</id>
   <author>
     <name><![CDATA[David Bryant Copeland]]></name>
     <email><![CDATA[davec@naildrivin5.com]]></email>
   </author>
 
+  
+  <entry>
+    <title type="html"><![CDATA[The 'Type Wars' Are Far From Over]]></title>
+    
+    <link href="http://naildrivin5.com/blog/2016/05/03/type-wars-are-far-from-over.html"/>
+    
+    <updated>2016-05-03T12:00:00-04:00</updated>
+    <id>http://naildrivin5.com/blog/2016/05/03/type-wars-are-far-from-over</id>
+    <content type="html"><![CDATA[<p>Uncle Bob penned an <a href="http://blog.cleancoder.com/uncle-bob/2016/05/01/TypeWars.html">interesting piece called Type Wars</a>.  It’s ostensibly a history of the fashion around how types are handled in programming languages.  It, unfortunately, comes to the conclusion that “TDD and unit tests means you don’t need statically-enforced types”.  This is not true.</p>
+
+<p>He initially describes how C had types, but they weren’t enforced at compile- or run-time.  This is bad (he says and I agree) and then talks about two ways to enforce type safety (i.e. require that the you are using the correct types).  In Java, the compiler requires it or the code won’t even run.  In Smalltalk, the runtime requires it only at runtime.  And, according to Uncle Bob, the latter is preferable because you have unit tests.  This is not true (he also overstates the burden required in having types enforced at compile time—just because Java is terrible doesn’t mean the concept is).</p>
+
+<p>In particular, he creates a false equivalence between unit testing and static type checking:</p>
+
+<blockquote>
+  <p>You don’t need static type checking if you have 100% unit test coverage.</p>
+</blockquote>
+
+<p>Not true.</p>
+
+<!-- more -->
+
+<h2 id="its-not-true-but-suppose-it-is">It’s Not True, but Suppose It IS</h2>
+
+<p>If this is true (it’s not), it doesn’t imply that 100% test coverage is a better method of ensuring program correctness than static type checking.  Consider a routine to format a name for a person in the US:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">UsaNameFormatter</span>
+  <span class="k">def</span> <span class="nf">format</span><span class="p">(</span><span class="n">first_name</span><span class="p">,</span> <span class="n">last_name</span><span class="p">)</span>
+    <span class="n">first_name</span> <span class="o">+</span> <span class="s2">" "</span> <span class="o">+</span> <span class="n">last_name</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Here is a test that achieves 100% test coverage (I’m assuming Uncle Bob means “statement coverage” due to his assertion that “unit test coverage close to 100% can, and is, being achieved”; <a href="https://en.wikipedia.org/wiki/Code_coverage">other types of coverage</a> are very difficult to achieve at 100% and very difficult to measure.).</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">test_format</span>
+  <span class="n">formatter</span> <span class="o">=</span> <span class="no">UsaNameFormatter</span><span class="p">.</span><span class="nf">new</span>
+  <span class="n">assert_equals</span> <span class="s2">"Dave Copeland"</span><span class="p">,</span> <span class="n">formatter</span><span class="p">.</span><span class="nf">format</span><span class="p">(</span><span class="s2">"Dave"</span><span class="p">,</span><span class="s2">"Copeland"</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Despite 100% test coverage, our <code class="highlighter-rouge">format</code> call still feels buggy, especially around the types of data we pass in.  If we pass in <code class="highlighter-rouge">nil</code> for either value, it blows up.  If we pass in non-strings, it blows up (unless those values support <code class="highlighter-rouge">+</code> in all the ways it’s being used, in which case it returns a possibly unexpected value).</p>
+
+<p>In order to ensure we aren’t making these type errors, it’s not sufficient to just test <code class="highlighter-rouge">UsaNameFormatter</code>, we must ensure that the unit tests of very single <em>use</em> of this class pass in the correct arguments. This means at least one test per callsite and those tests must be carefully written so that if future changes to the code pass in nil or non-Strings, those tests fail.</p>
+
+<p>Now consider if we had static type-checking, particularly something like Swift that prevents nil values if you haven’t opted into them:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">func</span> <span class="nf">format</span><span class="p">(</span><span class="nv">firstName</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">lastName</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="n">firstName</span> <span class="o">+</span> <span class="s">" "</span> <span class="o">+</span> <span class="n">lastName</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>We still need a test that the name is formatted correct, but <em>that’s it</em>.  We never have to worry about this being called incorrectly, and we don’t have to test the <em>use</em> of this function, because it’s impossible to mis-use.</p>
+
+<p>So, I would say that even <em>if</em> you could obviate the need for static type checking by having 100% unit test coverage, it’s not the best way to model correctness: it’s difficult and costly.</p>
+
+<p>Of course, it’s not actually true that 100% unit test coverage obviates the need for static type checking.</p>
+
+<h2 id="its-not-true">It’s Not True</h2>
+
+<p>Consider <code class="highlighter-rouge">UsaNameFormatter</code> above.  Suppose that it’s part of a name-formatting library.  In that case, our existing unit test provides 100% test coverage for our library.  If the “you” is “the person that wrote the library” then, I guess you could say that we don’t need static type checks, because our hands are clean.  If you use the code the way we told you, it’s fine.</p>
+
+<p>If “you” is “the user of the library” then things don’t look so good.  First, you don’t have any way to know what you are supposed to pass in.  You could look at the code or unit tests to see what you <em>can</em> pass in, but you can’t possibly know what the intention is of the routine or library.  The library author has to tell you, with words and text and prose and hopefully in a way that you can understand.  And even then, if you mess it up, you can get cryptic runtime errors.  It’s hard to think of this situation as “the program is correct”.</p>
+
+<p>Our unit tests should not test the correctness of our third-party name-formatting library.  This is a common rule of thumb and I don’t know of any reasonable guidance that says the consumer of a third-party library should write unit tests for that library.  Instead, we tend to mock our use of said third-party library.</p>
+
+<p>Suppose we used <code class="highlighter-rouge">UsaNameFormatter</code> in a presenter to format the name of our <code class="highlighter-rouge">Person</code> object.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Presenter</span>
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">person</span><span class="p">)</span>
+    <span class="vi">@person</span> <span class="o">=</span> <span class="n">person</span>
+  <span class="k">end</span>
+  
+  <span class="k">def</span> <span class="nf">display_name</span>
+    <span class="no">UsaNameFormatter</span><span class="p">.</span><span class="nf">new</span><span class="p">.</span><span class="nf">format</span><span class="p">(</span><span class="n">person</span><span class="p">.</span><span class="nf">given_name</span><span class="p">,</span><span class="n">person</span><span class="p">.</span><span class="nf">sirname</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>To test it, we mock <code class="highlighter-rouge">UsaNameFormatter</code>, because again, we don’t normally test our third-party code in <em>our</em> unit tests.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">person</span> <span class="o">=</span> <span class="no">Person</span><span class="p">.</span><span class="nf">new</span>
+<span class="n">presenter</span> <span class="o">=</span> <span class="no">Presenter</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">person</span><span class="p">)</span>
+
+<span class="n">expect_any_instance_of</span><span class="p">(</span><span class="no">UsaNameFormatter</span><span class="p">).</span>
+  <span class="nf">to</span> <span class="n">receive</span><span class="p">(</span><span class="n">first</span><span class="p">,</span><span class="n">last</span><span class="p">).</span><span class="nf">and_return</span><span class="p">(</span><span class="s2">"Dave Copeland"</span><span class="p">)</span>
+
+<span class="n">expect</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="nf">display_name</span><span class="p">).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span><span class="s2">"Dave Copeland"</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>100% (passing) test coverage!  Unless the constructor of <code class="highlighter-rouge">Person</code> sets default names (and in almost all cases, it wouldn’t), we have a passing test where we pass in <code class="highlighter-rouge">nil</code> to <code class="highlighter-rouge">UsaNameFormatter#format</code>—a situation that would certainly cause a runtime error.  We have a bug.  How could this be?  Both our code and the third-party library have 100% unit test coverage.  What could static typing have done here that we have not already done?</p>
+
+<p>Consider a Swift version of this.  The compiler would see that our Person’s <code class="highlighter-rouge">last_name</code> field is of type “nullable String”, and that our formatter requires the type “non-nullable String”.  It would refuse to compile or execute the code.  The bug would be impossible to write.</p>
+
+<p>Therefore, it’s still possible to write bugs (bad ones!) that would be caught by static type-checking, despite having 100% unit test coverage.</p>
+
+<p>But it gets worse.</p>
+
+<h2 id="everything-is-a-string-right">Everything is A String, Right?</h2>
+
+<p>When you write code with the notion that “you don’t need types because you have 100% unit test coverage” (a flawed, but not unreasonable, interpretation of what Uncle Bob is saying), you end up not using types, and instead making everything a String or a Hashtable.  And isn’t this the problem with our name-formatting in the first place?</p>
+
+<p>Think of every possible <code class="highlighter-rouge">first_name</code> a person in the US could possible have.  Is this the <strong>exact same list</strong> as every possible string in the known universe?  No it’s not.  So why are we using Strings?!?!?  And if if that <em>were</em> true, the formatter code says that everyone must have a first name, so <code class="highlighter-rouge">nil</code> is not a valid first name, yet we have chosen types that allow it.</p>
+
+<p>We do this all the time, because in dynamic languages, we don’t get the full benefits of static type checking, and thus there is less incentive to create custom data types.  In some static languages, like Java or C#, the type system is weak and verbose, so this, too, puts up a barrier to using custom data types.  Instead, we use Strings for everything.  This is terrible.</p>
+
+<p>Static type checking <em>can</em> be a benefit.  It can identify bugs that are difficult or impossible to detect with 100% unit test coverage, and do so much more simply and easily.  The Type Wars are far from over.</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Technology is Terrible]]></title>
+    
+    <link href="http://naildrivin5.com/blog/2016/04/10/technology-is-terrible.html"/>
+    
+    <updated>2016-04-10T09:00:00-04:00</updated>
+    <id>http://naildrivin5.com/blog/2016/04/10/technology-is-terrible</id>
+    <content type="html"><![CDATA[<p>I get into my hotel at around 8:30pm. I want to watch NXT Takeover on the WWE network and then go to bed. I unpack and then put my Amazon Fire Stick in the HDMI port on the TV.</p>
+
+<p>I start looking for an outlet to plug it in. Nothing close. The armoire weighs a ton and both of the plugs behind it are used up anyway.</p>
+
+<p>Ok, I can just watch on my laptop. Open it up. Keyboard and trackpad not responding. Reboot. No Mac Startup Chime. Keyboard still not working. Reboot. Same. Reboot and hold down Option. Nothin. Repeat with Shift. Repeat with Command Option P M. Wait. Reboot into recovery mode. Computer insists I turn on my Bluetooth keyboard and mouse. Which I don’t have. Fuck.</p>
+
+<p>I just want to watch an hour of pro wrestling.</p>
+
+<p>Pour myself a drink.</p>
+
+<p>Plug the Amazon Fire Stick into my USB battery. Turn on Tv and it works.</p>
+
+<p>Connect to hotel wi-fi. Amazon browser not compatible with the OMNI’s interstitial. Go into “cursor mode” and I’m literally surfing the web with up/down/left/right/submit.</p>
+
+<p>Select premium Internet. Fuck it, I want this to work. Enter my name and room number. I’m in!</p>
+
+<p>Navigate passed about 20 apps that I could download, but have not. WWE is at the end and it’s already downloaded.</p>
+
+<p>OF COURSE I have to sign in! Otherwise, someone might have stolen my Fire stick and started watching 1990’s WCW repeats on my dime!</p>
+
+<p>Open phone, launch 1Password to get my login details. Sometime in the past my phone rebooted so I can’t use TouchID to get in. Enter my very long and easy to mistype pass phrase. Thankfully I get it right the first time.</p>
+
+<p>Back to the Fire stick, I log in to the WWE network. It’s really. really. slow.</p>
+
+<p>Find NXT Takeover and start it up. Stuttering and buffering would be an understatement. I let it ride. After about 10 minutes, I’ve seen 2 minutes of the event, doled out in 5 second bursts. Fuck.</p>
+
+<p>Second drink is poured.</p>
+
+<p>Ok, I’ll watch something else. Maybe it’s WWE. The tech behind their network is not very robust.</p>
+
+<p>Hulu! I can catch up on the terrible superhero shows I like. Or Netflix! Can watch Walking Dead. Both require downloading an app and surely logging in. I’m done logging into things for the night.</p>
+
+<p>Oh, I’m still in season 1 of Veronica Mars! And it’s only on Amazon Prime!</p>
+
+<p>Amazingly, it remembers the last episode I watched (God knows I don’t). Start it up.</p>
+
+<p>“Previously on Veronica Mars…” and then the screen turns solid green and does nothing but glitch.</p>
+
+<p>Ok, maybe it’s this episode. I’ll skip it and not worry about missing too much. Start the next episode.</p>
+
+<p>“Previously on Veronica Mars…” and then the screen turns solid green and does nothing but glitch.</p>
+
+<p>I just want to watch TV and go to bed.</p>
+
+<p>Ok, what else is there? The Wire season 1. Haven’t watched it in ages and could honestly settle for Idris Elba reading he phone book for 2 hours. You know what would be awesome? A sitcom around all the time Stringer Bell spent in community college. I mean, they had to have group projects so I can see hours of fun watching him and three 19 year olds try to make business plans for video stores or whatever.</p>
+
+<p>Anyway, this finally works. I watch a couple episodes without incident. Finally. It’s bleaker than I remember.</p>
+
+<p>It’s 11pm and I still want to watch wrestling. Flip back to WWE and now it’s working. But I’m tired. Fast forward to Baylee vs Asuka for the women’s title. Baylee loses. Fucking hell.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[It's not Naming That's Hard—It's Types]]></title>
+    
+    <link href="http://naildrivin5.com/blog/2016/03/15/its-not-naming-its-types.html"/>
+    
+    <updated>2016-03-15T09:00:00-04:00</updated>
+    <id>http://naildrivin5.com/blog/2016/03/15/its-not-naming-its-types</id>
+    <content type="html"><![CDATA[<p>Katrina Owen wrote an interesting piece on SitePoint Ruby called <a href="http://www.sitepoint.com/whats-in-a-name-anti-patterns-to-a-hard-problem/">“What’s in a Name? Anti-Patterns to a Hard Problem”</a>.  She identifies a lot of pitfalls around naming and method design, but the solutions to the problems she’s identified aren’t as much about naming as they are about using data types effectively.</p>
+
+<!-- more -->
+
+<p>I’m having a hard time with this statement from her post:</p>
+
+<blockquote>
+  <p>Type information is just not that compelling.</p>
+</blockquote>
+
+<p>Type information is <em>everything</em>.  Every line of code is filled with types, and the correctness of code, as well as our ability to use it properly, relies
+on knowing type information.  Just because Ruby has “duck typing” doesn’t mean it has <em>no</em> types.</p>
+
+<p>And, types are a better way to solve the problems Katrina identifies in her post.</p>
+
+<p>She starts with this routine, arguing that the names are bad since they encode type information:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">anagrams</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="n">string_array</span><span class="p">)</span>
+  <span class="n">string_array</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">str</span><span class="o">|</span>
+    <span class="n">str</span> <span class="o">!=</span> <span class="n">string</span> <span class="o">&amp;&amp;</span> <span class="n">same_alphagram?</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="n">str</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>For me, it’s plainly obvious how to properly use this method: I pass in a string and an array of strings.  Katrina’s improved version makes it harder to
+know what I’m expected to pass in:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">anagrams</span><span class="p">(</span><span class="n">subject</span><span class="p">,</span> <span class="n">candidates</span><span class="p">)</span>
+  <span class="n">candidates</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">candidate</span><span class="o">|</span>
+    <span class="n">subject</span> <span class="o">!=</span> <span class="n">candidate</span> <span class="o">&amp;&amp;</span> <span class="n">same_alphagram?</span><span class="p">(</span><span class="n">subject</span><span class="p">,</span> <span class="n">candidate</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>What is a “subject”?  What is a “candidate”?  My first guess would be some sort of <code class="highlighter-rouge">Subject</code> or <code class="highlighter-rouge">Candidate</code> class.  The author of this code had <em>something</em>
+in mind that I should be passing in, but it’s no longer clear.  With no guidance I would have to read the source to <code class="highlighter-rouge">same_alphagram?</code> (and whatever its dependencies are).</p>
+
+<p>The real problem is that a string is not a word and an array of strings is not a set of words.  We shouldn’t be using strings to solve this problem, and no
+efforts of naming will change that.  What the <code class="highlighter-rouge">anagrams</code> method is trying to do is tell us if one word has anagrams in a set of other words.  That says to me we might need a word class.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Word</span>
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+    <span class="vi">@string</span> <span class="o">=</span> <span class="n">word</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">to_s</span>
+    <span class="vi">@string</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>This may seem superfluous, but we have now named the thing we are operating on.  We’ve also created a place for ourselves to put code about this type of
+data.  For example, a word should only contain alphabetics and spaces.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Word</span>
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+    <span class="k">unless</span> <span class="n">string</span> <span class="o">=~</span> <span class="sr">/^[\a\s]+$/</span>
+      <span class="k">raise</span> <span class="no">ArgumentError</span><span class="p">,</span> <span class="s2">"</span><span class="si">#{</span><span class="n">string</span><span class="si">}</span><span class="s2"> is not a word"</span> 
+    <span class="k">end</span>
+    <span class="vi">@string</span> <span class="o">=</span> <span class="n">word</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>We’ve now described—in code—what a word is.  We’ve written code that explains what the parameters to <code class="highlighter-rouge">anagrams</code> actually are supposed to be.  And we
+communicate that by naming the parameters after the data type:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">anagrams</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">candidate_words</span><span class="p">)</span>
+  <span class="n">candidate_words</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">candidate_word</span><span class="o">|</span>
+    <span class="n">word</span> <span class="o">!=</span> <span class="n">candidate_word</span> <span class="o">&amp;&amp;</span> <span class="n">same_alphagram?</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">candidate_word</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>With an actual data type available to us—instead of a string—we can also get rid of that pesky <code class="highlighter-rouge">same_alphagram?</code> free-floating method.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Word</span>
+
+  <span class="k">def</span> <span class="nf">letters</span>
+    <span class="vi">@string</span><span class="p">.</span><span class="nf">chars</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">same_alphagram?</span><span class="p">(</span><span class="n">other_word</span><span class="p">)</span>
+    <span class="nb">self</span><span class="p">.</span><span class="nf">letters</span><span class="p">.</span><span class="nf">sort</span> <span class="o">==</span> <span class="n">other_word</span><span class="p">.</span><span class="nf">letters</span><span class="p">.</span><span class="nf">sort</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Now, our <code class="highlighter-rouge">anagrams</code> routine is a bit better:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">anagrams</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">candidate_words</span><span class="p">)</span>
+  <span class="n">candidate_words</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">candidate_word</span><span class="o">|</span>
+    <span class="n">word</span> <span class="o">!=</span> <span class="n">candidate_word</span> <span class="o">&amp;&amp;</span> <span class="n">word</span><span class="p">.</span><span class="nf">same_alphagram?</span><span class="p">(</span><span class="n">candidate_word</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>While the names in the original routine weren’t great, the solution wasn’t to mask the method’s intent and proper use by using different names.  The
+solution is use code to describe the parameters.</p>
+
+<p>But wait.  <code class="highlighter-rouge">letters</code> is returning an array of strings.  Shouldn’t it return a <code class="highlighter-rouge">Letter</code>?</p>
+
+<p>Yup.  Let’s do that.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Letter</span>
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">char</span><span class="p">)</span>
+    <span class="k">unless</span> <span class="n">char</span> <span class="o">=~</span> <span class="sr">/^[\a\s]$/</span>
+      <span class="k">raise</span> <span class="no">ArgumentError</span><span class="p">,</span><span class="s2">"'</span><span class="si">#{</span><span class="n">char</span><span class="si">}</span><span class="s2">' is not a letter"</span> 
+    <span class="k">end</span>
+    <span class="vi">@char</span> <span class="o">=</span> <span class="n">char</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">to_s</span>
+    <span class="vi">@char</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">==</span><span class="p">(</span><span class="n">other_letter</span><span class="p">)</span>
+    <span class="nb">self</span><span class="p">.</span><span class="nf">to_s</span> <span class="o">==</span> <span class="n">other_letter</span><span class="p">.</span><span class="nf">to_s</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">&lt;</span><span class="o">=&gt;</span><span class="p">(</span><span class="n">other_letter</span><span class="p">)</span>
+    <span class="nb">self</span><span class="p">.</span><span class="nf">to_s</span> <span class="o">&lt;=&gt;</span> <span class="n">other_letter</span><span class="p">.</span><span class="nf">to_s</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Before we re-implement <code class="highlighter-rouge">letters</code>, let’s take a moment.  We have duplicated code now in the initializers of these two classes.  Because we now have a
+<code class="highlighter-rouge">Letter</code> class that describes a letter, and we know that a <code class="highlighter-rouge">Word</code> is an ordered list of <code class="highlighter-rouge">Letters</code>, we can change our implementation of <code class="highlighter-rouge">Word</code> to make that
+abundandtly clear.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Word</span>
+
+  <span class="kp">attr_reader</span> <span class="ss">:letters</span>
+
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+    <span class="vi">@letters</span> <span class="o">=</span> <span class="n">string</span><span class="p">.</span><span class="nf">chars</span><span class="p">.</span><span class="nf">map</span> <span class="p">{</span> <span class="o">|</span><span class="n">char</span><span class="o">|</span>
+      <span class="no">Letter</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">char</span><span class="p">)</span>
+    <span class="p">}</span>
+  <span class="k">rescue</span> <span class="n">ex</span> <span class="o">=&gt;</span> <span class="no">ArgumentError</span>
+    <span class="k">raise</span> <span class="no">ArgumentError</span><span class="p">,</span> <span class="s2">"'</span><span class="si">#{</span><span class="n">string</span><span class="si">}</span><span class="s2">' is not a word: </span><span class="si">#{</span><span class="n">ex</span><span class="p">.</span><span class="nf">message</span><span class="si">}</span><span class="s2">"</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">to_s</span>
+    <span class="vi">@letters</span><span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:to_s</span><span class="p">).</span><span class="nf">join</span><span class="p">(</span><span class="s2">""</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">same_alphagram?</span><span class="p">(</span><span class="n">other_word</span><span class="p">)</span>
+    <span class="nb">self</span><span class="p">.</span><span class="nf">letters</span><span class="p">.</span><span class="nf">sort</span> <span class="o">==</span> <span class="n">other_word</span><span class="p">.</span><span class="nf">letters</span><span class="p">.</span><span class="nf">sort</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>This may seem like a lot of code, and possibly even ridiculous, but if we really <em>are</em> writing code that does anagrams, doesn’t it make sense to have classes to describe the building blocks of our domain?</p>
+
+<p>Strings (and Hashes) are great for exploring your domain, but once you understand your domain, data types will make your code easier to
+understand and easier to change. It also alleviates you from stressing about parameter names.  <a href="http://naildrivin5.com/blog/2014/06/30/thinking-in-types.html">Thinking in Types</a> will make your code better and make you a better programmer.  They also help <em>greatly</em> in naming things.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[“Why You Need a JavaScript Framework” in March's PragPub]]></title>
@@ -68,7 +417,7 @@ to happen, but they will lack your input.  That could go bad for you.</p>
 
 <p>That said, some people <em>do</em> default to meetings instead of trying to use email.  In those cases, it’s fine to “push back” and try to solve the issue
 asynchronously, but you also have to understand that not everyone is effective at written communication.  So, while you could lead such a person through a
-multi-email exchange to get to the issue ta hand, it might be easier to have a 10 minute conversation.</p>
+multi-email exchange to get to the issue at hand, it might be easier to have a 10 minute conversation.</p>
 
 <p>The rest of the stuff in “Level 1” is great.  As I’ve mentioned many times, using Test-driven development is a great way to save state when you need to get
 interrupted.  It’s also worth spending time <a href="http://naildrivin5.com/blog/2013/07/23/agile-email-management.html">getting really good at email</a> so it’s never a distraction.</p>
@@ -101,7 +450,7 @@ thumbs-up.</p>
 <p>This is all good, particularly, “Admit What you Don’t Know”.  You should become very comfortable with this, because a) you’ll learn things this way and b) it’s a good signal to a code’s author that maybe there code isn’t clear enough.</p>
 
 <p>I would also not shy away from “nitpicky” code comments.  If a change is mostly pretty good and there are no major issues, nitpicky comments about
-formatting and consistency are fair game.  Most developers want their code to be consistent like most writes want to be using proper grammar and spelling.
+formatting and consistency are fair game.  Most developers want their code to be consistent like most writers want to be using proper grammar and spelling.
 Point it out—politely—and most developers will fix.  If they disagree, don’t die on that hill, but most of the time it’s appreciated.  That said, if a pull request or diff has larger issues, do not waste time on
 nitpicky stuff; let the author deal with the larger issues first.</p>
 
@@ -365,287 +714,6 @@ about what our needs are, it can drive us to make better decisions about the sof
 middleware framework, and an amazing database, but for using Bootstrap, Angular, Rails, and Postgres <strong>and</strong> using them together.</p>
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/QbUZnb0rPdY" frameborder="0" allowfullscreen=""></iframe>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[All my books are on sale!]]></title>
-    
-    <link href="http://naildrivin5.com/blog/2015/11/27/my-books-on-sale.html"/>
-    
-    <updated>2015-11-27T07:00:00-05:00</updated>
-    <id>http://naildrivin5.com/blog/2015/11/27/my-books-on-sale</id>
-    <content type="html"><![CDATA[<p>Today through next Tuesday, all three of my books are on sale for 40% off, with the code <strong>turkeysale2015</strong>:</p>
-
-<ul>
-  <li><a href="https://pragprog.com/book/dcbang/rails-angular-postgres-and-bootstrap">Rails, Angular, Postgres, Bootstrap: Powerful, Effective, Efficient Full-stack Web Development</a> ($14.40 for the beta ebook!)</li>
-  <li><a href="http://theseniorsoftwareengineer.com/">The Senior Software Engineer: 11 Practices of an Effective Technical Leader</a> ($15!)</li>
-  <li><a href="https://pragprog.com/book/dccar2/build-awesome-command-line-applications-in-ruby-2">Build Awesome Command-Line Applications with Ruby 2</a> ($13.20 for the ebook!)</li>
-</ul>
-
-<p>Just use code <strong>turkeysale2015</strong> at checkout to get 40% off!</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Rails Validations vs Postgres Check Constraints]]></title>
-    
-    <link href="http://naildrivin5.com/blog/2015/11/15/rails-validations-vs-postgres-check-constraints.html"/>
-    
-    <updated>2015-11-15T00:00:00-05:00</updated>
-    <id>http://naildrivin5.com/blog/2015/11/15/rails-validations-vs-postgres-check-constraints</id>
-    <content type="html"><![CDATA[<p>Before using Postgres, I would have to rely heavily on Rails validations to ensure data integrity—MySQL simply doesn’t provide the tools
-to do this.  This always felt wrong.  Outside of rogue processes connecting to the database, there’s also application bugs
-and, well, the ActiveRecord API itself: <code class="highlighter-rouge">update_attribute</code> skips validation!  That means it’s hard to rely on Rails validations for data
-integrity, but there isn’t a great alternative for creating a great user experience.</p>
-
-<p>Postgres has the answer: <em>check constraints</em>.  As we’ll see, check constraints are tool for <em>data integrity</em> and work much better than
-Rails validations.  But Rails validations are still a great tool for <em>user experience</em>.</p>
-
-<!-- more -->
-
-<h2 id="check-constraints-for-data-integrity">Check Constraints for Data Integrity</h2>
-
-<p>Suppose we have a table of users, and a user has a name and email:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">create</span> <span class="k">table</span> <span class="n">users</span><span class="p">(</span>
-  <span class="n">id</span>    <span class="n">int</span>  <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
-  <span class="n">name</span>  <span class="n">text</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
-  <span class="n">email</span> <span class="n">text</span> <span class="k">NOT</span> <span class="k">NULL</span>
-<span class="p">);</span>
-</code></pre>
-</div>
-
-<p><a name="back-1">
-</a>
-Although we’ve used <code class="highlighter-rouge">NOT NULL</code> to make sure there are values, we need more than that.  Although our domain doesn’t care about first or last names, it <em>does</em> require that a user’s name to be at least one letter, followed by a space, followed by at least one other letter<sup><a href="#fn_1">1</a></sup>.</p>
-
-<p>We can do that by requiring that the <code class="highlighter-rouge">name</code> field match a regexp:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">ALTER</span> <span class="k">TABLE</span> 
-  <span class="n">users</span> 
-<span class="k">ADD</span> <span class="k">CONSTRAINT</span> 
-  <span class="n">users_name_must_look_like_a_name</span> 
-<span class="k">CHECK</span> <span class="p">(</span>
-  <span class="n">name</span> <span class="o">~*</span> <span class="s1">'^.*[a-z] [a-z].*$'</span>
-<span class="p">);</span>
-</code></pre>
-</div>
-
-<p><a name="back-2">
-</a>
-This is saying that the <code class="highlighter-rouge">name</code> field must match the regular expression specified.  That regexp allows anything, as long as there is a
-letter followed by a space, followed by another letter, somewhere in the string<sup><a href="#fn_2">2</a></sup>.</p>
-
-<p>Now, when we insert an invalid value, it won’t work:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>&gt; insert into users(id,name,email) values (1,'','bob@blah.com');
-ERROR:  new row for relation "users" violates 
-        check constraint "users_name_must_look_like_a_name"
-DETAIL:  Failing row contains (1, , bob@blah.com).
-
-&gt; insert into users(id,name,email) values (1,'Bob','bob@blah.com');
-ERROR:  new row for relation "users" violates 
-        check constraint "users_name_must_look_like_a_name"
-DETAIL:  Failing row contains (1, Bob, bob@blah.com).
-
-&gt; insert into users(id,name,email) values (1,'Bob Jones','bob@blah.com');
-INSERT 0 1
-</code></pre>
-</div>
-
-<p>Nice!  This means that a) our data will always match our rules around what good data is, and b) our code can rely on this.</p>
-
-<p>For example, suppose we have to integrate with a third party shipping system that, for whatever reason, requires a first and last name.
-Our system is designed to allow users to enter whatever their name is, as long as there are at least two parts.</p>
-
-<p>Because we know our data meets its needs, we can safely do:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">name_part1</span><span class="p">,</span><span class="n">rest_of_name</span> <span class="o">=</span> <span class="n">user</span><span class="p">.</span><span class="nf">name</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="sr">/\s/</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
-<span class="no">ShippingProvider</span><span class="p">.</span><span class="nf">generate_label</span><span class="p">(</span><span class="ss">first_name: </span><span class="n">name_part1</span><span class="p">,</span>
-                                <span class="ss">last_name: </span><span class="n">rest_of_name</span><span class="p">)</span>
-</code></pre>
-</div>
-
-<p>Without the check constraints, we couldn’t rely on the data being good, and so our use of <code class="highlighter-rouge">split</code> would have to have some sort of error
-handling if the name didn’t have a space in it.  Because that can never happen, our code is simpler!</p>
-
-<p>OK, so what does this have to do with Rails validations?</p>
-
-<h2 id="rails-validations-for-user-experience">Rails Validations for User Experience</h2>
-
-<p>The equivalent of our check constraint above, using Rails Validations, would be:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
-  <span class="n">validates</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">format: </span><span class="sr">/\A.*[a-z] [a-z].*\z/i</span>
-<span class="k">end</span>
-</code></pre>
-</div>
-
-<p>Sure enough, this prevents us violating the validation:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>&gt; user = User.create(name: "bob", email: "bob@blah.com")
- =&gt; #&lt;User id: nil, name: "bob", email: "bob@blah.com"&gt; 
-&gt; user.valid?
- =&gt; false 
-&gt; user.errors
- =&gt; #&lt;ActiveModel::Errors:0x007fcf817cc808 
-      @base=#&lt;User id: nil, name: "bob", email: "bob@blah.com"&gt;, 
-      @messages={:name=&gt;["is invalid"]}&gt; 
-</code></pre>
-</div>
-
-<p>Of course, we can route around this with ActiveRecord’s methods that allow it, or by calling <code class="highlighter-rouge">save(false)</code>, or by just going into the
-database.</p>
-
-<p><strong>This</strong> means that any code reading from this table must account for the bad data.</p>
-
-<p>This presents us a few choices for how to deal with it:</p>
-
-<ol>
-  <li>Don’t worry about bad data getting in there</li>
-  <li>Just use the check constraints</li>
-  <li>Use both validations <em>and</em> check constraints</li>
-</ol>
-
-<p>Option 1 is unacceptable.  Our data is important and if our busines domain requires user names to have a letter, a space, and then
-another letter, we can’t simply hope for the best.  As developers, we have a duty to ensure our code meets its requirements.</p>
-
-<p>Option 2 creates a poor user experience:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>&gt; User.create(name: "Bob", email: "bob@jones.com")
-ActiveRecord::StatementInvalid: PG::CheckViolation: ERROR:  
-  new row for relation "users" violates 
-  check constraint "user_name_must_look_like_a_name"
-DETAIL:  Failing row contains (22, Bob, bob@jones.com).
-: INSERT INTO "users" ("name", "email", "id") VALUES ($1, $2, $3)
-</code></pre>
-</div>
-
-<p>Assuming a user is going to be entering in their name, we need to give them a better experience than an exception. We need to use both,
-which will create some duplication.</p>
-
-<h2 id="be-ok-with-some-duplication">Be OK with Some Duplication</h2>
-
-<p>If we use both the ActiveRecord validation <em>and</em> the check constraint, we achieve what we need: a good user experience, and ther
-assurance of data integrity.  The <em>problem</em> is that this creates duplication.  We have the same regexp in two places and they both have
-to be changed together.</p>
-
-<p>While I could imagine a more sophisticated data layer handling this, we don’t have one.  That means we have to live with the duplication
-or sacrifice our system requirements.  For me, the job of a programmer is to make the system work properly, even if that means that the
-resulting code has maintenance issues.</p>
-
-<p>I am OK with this duplication.  If you think about most projects, the changes in requirements are often more about logic than data.  The
-data you are storing and managing has a much more stable definition than the process that manage that data.  So, this duplication is less
-likely to run afoul of bugs since it’s not going to change as much as the logic around it.</p>
-
-<p>That being said, you <em>do</em> have to have an understanding of what valid data is.  This means being clear about data integrity.</p>
-
-<h2 id="what-is-data-integrity">What is Data Integrity?</h2>
-
-<p>In the example above, my assumption is that the business owning this database of users absolutely requires that each user’s name have a
-letter, a space, and a letter in it.  This isn’t something that’s required <em>sometimes</em> or something a programmer invented, but an
-<em>invariant of the domain</em>.  This is exactly what you want to encode in database constraints.</p>
-
-<p>What you <em>don’t</em> want to do is encode use-case-specific constraints that are not universal to your business domain.</p>
-
-<p>Suppose that in some cases, we need to have a name that’s more than just a couple characters.  We can blame a third party integration
-again—we need to generate an invoice and it requires a first and last name that are each two characters or more.</p>
-
-<p>Since that is not a requirement of <em>our</em> domain, we don’t want this in our database.  This means we have to just deal with it:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">name_part1</span><span class="p">,</span><span class="n">rest_of_name</span> <span class="o">=</span> <span class="n">user</span><span class="p">.</span><span class="nf">name</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="sr">/\s/</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
-<span class="k">if</span> <span class="n">name_part1</span><span class="p">.</span><span class="nf">length</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">rest_of_name</span><span class="p">.</span><span class="nf">length</span> <span class="o">&gt;</span> <span class="mi">1</span>
-  <span class="no">InvoiceService</span><span class="p">.</span><span class="nf">generate_invoice!</span><span class="p">(</span><span class="ss">first: </span><span class="n">name_part1</span><span class="p">,</span> <span class="ss">last: </span><span class="n">rest_of_name</span><span class="p">)</span>
-<span class="k">else</span>
-  <span class="c1"># ???</span>
-<span class="k">end</span>
-</code></pre>
-</div>
-
-<p>Depending on where this code is, you might handle the problem in a variety of ways.  You could create an ActiveModel that uses
-validations to check for this:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">InvoiceUser</span>
-  <span class="kp">include</span> <span class="no">ActiveModel</span><span class="o">::</span><span class="no">Validations</span>
-
-  <span class="kp">attr_accessor</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:email</span>
-
-  <span class="n">validates</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">format: </span><span class="sr">/\A.*[a-z][a-z] [a-z][a-z].*\z/i</span>
-
-  <span class="k">def</span> <span class="nf">user</span>
-    <span class="no">User</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">name: </span><span class="nb">self</span><span class="p">.</span><span class="nf">name</span><span class="p">,</span> <span class="ss">email: </span><span class="nb">self</span><span class="p">.</span><span class="nf">email</span><span class="p">)</span>
-  <span class="k">end</span>
-<span class="k">end</span>
-</code></pre>
-</div>
-
-<p>This works as advertised:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>&gt; i = InvoiceUser.new
- =&gt; #&lt;InvoiceUser:0x007ff604d80b60&gt; 
-&gt; i.name = 'a b'
- =&gt; "a b" 
-&gt; i.valid?
- =&gt; false 
-&gt; i.name = 'aa bb'
- =&gt; "aa bb" 
-&gt; i.valid?
- =&gt; true 
-&gt; i.user.save!
- =&gt; #&lt;User:0x007fcf817cc808&gt;
-</code></pre>
-</div>
-
-<p>We could even use this in Rails’ form helpers by bringing in more Active Model modules.  This way, a user who has to enter their name as
-part of some use-case to create invoices will have a good experience, but our database won’t need to grow extra constraints that aren’t
-universally needed.</p>
-
-<h2 id="conclusion">Conclusion</h2>
-
-<p>Think about Rails validations as purely something for user experience.  Think about check constraints as just being about data integrity.
-Often they are the same thing, but not always.  And don’t fret about a bit of duplication.</p>
-
-<p><em>Read more in my new book <a href="https://pragprog.com/book/dcbang/rails-angular-postgres-and-bootstrap">“Rails, Angular, Postgres, and Bootstrap
-Powerful, Effective, and Efficient Full-Stack Web Development”</a></em></p>
-
-<hr />
-
-<footer class="footnotes">
-<ol>
-<li>
-<a name="fn_1"></a>
-<sup>1</sup>I realize this is not appropriate for a lot of people's names.  This isn't a post about that, so this example is quite
-simplified to to illustrate the points.  When designing a system to store people's names, put a <strong>lot</strong> of thought into it,
-especially if someone outside the United States might use it.
-<a href="#back-1">↩</a>
-</li>
-<li>
-<a name="fn_2"></a>
-<sup>2</sup>This is also not a post about regular expressions.  Please craft them carefully. 
-<a href="#back-2">↩</a>
-</li>
-</ol></footer>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Embrace the Full Stack]]></title>
-    
-    <link href="http://theprosegarden.com/contents-of-recent-issues/#11-15"/>
-    
-    <updated>2015-11-05T00:00:00-05:00</updated>
-    <id>http://naildrivin5.com/blog/2015/11/05/embrace-the-stack</id>
-    <content type="html"><![CDATA[<p>The latest edition of <a href="http://theprosegarden.com/store/">PragPub</a> is out, featuring an article I wrote on embracing the full stack.  This is more of a motivator for why
-you should be more well-rounded as a developer (which then should motivate you to <a href="https://pragprog.com/book/dcbang/rails-angular-postgres-and-bootstrap">buy my new book</a> :).  I cover things from grid-based design to database indexes.</p>
-
-<blockquote>
-  <p>This may seem like an immense amount of learning and work, but it hopefully feels more achievable now.  You could get a cursory understanding of these topics in a week.  What happens when you do is that you start to take a more holistic view of your application and of how to build features.</p>
-</blockquote>
-
-<p>Pick up your copy <a href="http://theprosegarden.com/contents-of-recent-issues/#11-15">here</a></p>
-
 ]]></content>
   </entry>
   

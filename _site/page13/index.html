@@ -30,13 +30,14 @@
     
       
         
-        The only four types of classes in your OO system
+        Are private methods code smells?
         
-        March 08, 2010
+        May 26, 2010
       
       
         
-    ...">
+          
+           ...">
   
 
   
@@ -67,6 +68,358 @@
     <section>
       <div class="blog-index">
   
+  
+  
+    <article>
+      <header>
+        
+        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2010/05/26/is-private-a-code-smell.html">Are private methods code smells?</a></h1>
+        
+        <h2 class="f6 mtneg">May 26, 2010</h2>
+      </header>
+      
+        
+          <section class="section-break complete-article mb1">
+            <p>Having had discussions with co-workers on the utility of private methods and <a href="http://scala-programming-language.1934581.n4.nabble.com/Just-curious-why-public-as-default-visibility-td2228941.html">recently on the scala mailing list</a>, there’s been the notion that private methods (or even protected methods) are code smells – indicators that there is something wrong with the design of your code.  I believe in many cases they can be, but that private (and protected) methods still have their uses, especially in maintaining a clean design under constraints of getting things done.  First, we need to know what we are talking about.</p>
+
+<h2 id="definitions">Definitions</h2>
+
+<p>While the technical meaning of access modifiers varies with the language, the <em>intent</em> these concepts communicate is what we’re talking about here.  I assert that the <em>intent</em> of public/protected/private is (and/or should be) as follows:</p>
+
+<ul>
+  <li><em>public</em> - this method is part of the published API and will not change within major versions of the class</li>
+  <li><em>protected</em> - this method is a hook for modifying the behavior of this class using subclasses.  It, too, will not change within major versions of the class (of course, it also might exist for code-reuse internal to the class hierarchy).</li>
+  <li><em>private</em> - this method was <em>refactored out of a well tested public or protected method</em> for reasons of clarity or internal re-use.  This method may absolutely change, even in patch releases, and should not be relied upon to even exist</li>
+  <li><em>package private</em> (bonus for Java) - this method was written by someone lazy or ignorant, <em>or</em> by someone who acknowledges that this code should be pulled out into its own class, but hasn’t done so, yet still wants to test it separately, thus breaking encapsulation.</li>
+</ul>
+
+<h2 id="why-would-private-methods-be-code-smells">Why would private methods be code smells?</h2>
+
+<p>The most concise argument is that private methods could indicate that the class that contains them is doing too many things.  Consider this code from shorty, my URL shortener:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">override</span> <span class="k">def</span> <span class="n">contextInitialized</span><span class="o">(</span><span class="n">event</span><span class="k">:</span><span class="kt">ServletContextEvent</span><span class="o">)</span> <span class="k">=</span> <span class="o">{</span>
+  <span class="n">event</span><span class="o">.</span><span class="n">getServletContext</span><span class="o">.</span><span class="n">log</span><span class="o">(</span><span class="s">"Initializing our hasher/DB"</span><span class="o">)</span>
+  <span class="k">val</span> <span class="n">dirName</span> <span class="k">=</span> <span class="n">event</span><span class="o">.</span><span class="n">getServletContext</span><span class="o">.</span><span class="n">getInitParameter</span><span class="o">(</span>
+    <span class="nc">ShortyServlet</span><span class="o">.</span><span class="nc">DB_DIR_PARAM</span><span class="o">)</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">dirName</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">val</span> <span class="n">dir</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="n">dirName</span><span class="o">)</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">dir</span><span class="o">.</span><span class="n">exists</span><span class="o">())</span> <span class="o">{</span>
+      <span class="k">if</span> <span class="o">(</span><span class="n">dir</span><span class="o">.</span><span class="n">isDirectory</span><span class="o">())</span> <span class="o">{</span>
+        <span class="k">val</span> <span class="n">hasher</span> <span class="k">=</span> <span class="nc">URIHasher</span><span class="o">(</span><span class="nc">DB</span><span class="o">(</span><span class="n">dir</span><span class="o">))</span>
+        <span class="n">hasher</span><span class="o">.</span><span class="n">start</span>
+        <span class="n">uriHasher</span> <span class="k">=</span> <span class="n">hasher</span>
+        <span class="n">event</span><span class="o">.</span><span class="n">getServletContext</span><span class="o">.</span><span class="n">setAttribute</span><span class="o">(</span>
+          <span class="nc">ShortyServlet</span><span class="o">.</span><span class="nc">URI_HASHER_ATTRIBUTE</span><span class="o">,</span><span class="n">uriHasher</span><span class="o">)</span>
+      <span class="o">}</span>
+      <span class="k">else</span> <span class="o">{</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="nc">ServletException</span><span class="o">(</span><span class="n">dir</span><span class="o">.</span><span class="n">getAbsolutePath</span> 
+          <span class="o">+</span> <span class="s">" is not a directory"</span><span class="o">)</span>
+      <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="k">else</span> <span class="o">{</span>
+      <span class="k">throw</span> <span class="k">new</span> <span class="nc">ServletException</span><span class="o">(</span><span class="n">dir</span><span class="o">.</span><span class="n">getAbsolutePath</span> <span class="o">+</span> <span class="s">" doesn't exist"</span><span class="o">)</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+  <span class="k">else</span> <span class="o">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nc">ServletException</span><span class="o">(</span><span class="s">"You must supply a value for "</span> 
+      <span class="o">+</span> <span class="nc">ShortyServlet</span><span class="o">.</span><span class="nc">DB_DIR_PARAM</span><span class="o">)</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<p>Is it totally clear what this method does?  If not, it basically checks that the directory configured for our database exists and is a directory, giving us a specific error message if not.  It’s a bit long and full of error checking, so the meat where it creates our URI hasher and gives it to the servlet is somewhat obscured.  Here’s a cleaned up version:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">override</span> <span class="k">def</span> <span class="n">contextInitialized</span><span class="o">(</span><span class="n">event</span><span class="k">:</span><span class="kt">ServletContextEvent</span><span class="o">)</span> <span class="k">=</span> <span class="o">{</span>
+  <span class="n">event</span><span class="o">.</span><span class="n">getServletContext</span><span class="o">.</span><span class="n">log</span><span class="o">(</span><span class="s">"Initializing our hasher/DB"</span><span class="o">)</span>
+  <span class="n">getDBDir</span><span class="o">(</span><span class="n">event</span><span class="o">)</span> <span class="k">match</span> <span class="o">{</span>
+    <span class="k">case</span> <span class="nc">Right</span><span class="o">(</span><span class="n">dir</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="o">{</span>
+      <span class="k">val</span> <span class="n">hasher</span> <span class="k">=</span> <span class="nc">URIHasher</span><span class="o">(</span><span class="nc">DB</span><span class="o">(</span><span class="n">dir</span><span class="o">))</span>
+      <span class="n">hasher</span><span class="o">.</span><span class="n">start</span>
+      <span class="n">uriHasher</span> <span class="k">=</span> <span class="n">hasher</span>
+      <span class="n">event</span><span class="o">.</span><span class="n">getServletContext</span><span class="o">.</span><span class="n">setAttribute</span><span class="o">(</span>
+        <span class="nc">ShortyServlet</span><span class="o">.</span><span class="nc">URI_HASHER_ATTRIBUTE</span><span class="o">,</span><span class="n">uriHasher</span><span class="o">)</span>
+    <span class="o">}</span>
+    <span class="k">case</span> <span class="nc">Left</span><span class="o">(</span><span class="n">errorMessage</span><span class="o">)</span> <span class="k">=&gt;</span> 
+      <span class="k">throw</span> <span class="k">new</span> <span class="nc">ServletException</span><span class="o">(</span><span class="n">errorMessage</span><span class="o">)</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="k">private</span> <span class="k">def</span> <span class="n">getDBDir</span><span class="o">(</span><span class="n">event</span><span class="k">:</span><span class="kt">ServletContextEvent</span><span class="o">)</span> <span class="k">=</span> <span class="o">{</span>
+  <span class="k">val</span> <span class="n">dirName</span> <span class="k">=</span> <span class="n">event</span><span class="o">.</span><span class="n">getServletContext</span><span class="o">.</span><span class="n">getInitParameter</span><span class="o">(</span>
+    <span class="nc">ShortyServlet</span><span class="o">.</span><span class="nc">DB_DIR_PARAM</span><span class="o">)</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">dirName</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">val</span> <span class="n">dir</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="n">dirName</span><span class="o">)</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">dir</span><span class="o">.</span><span class="n">exists</span><span class="o">())</span> <span class="o">{</span>
+      <span class="k">if</span> <span class="o">(</span><span class="n">dir</span><span class="o">.</span><span class="n">isDirectory</span><span class="o">())</span> <span class="o">{</span>
+        <span class="nc">Right</span><span class="o">(</span><span class="n">dir</span><span class="o">)</span>
+      <span class="o">}</span>
+      <span class="k">else</span> <span class="o">{</span>
+        <span class="nc">Left</span><span class="o">(</span><span class="n">dir</span><span class="o">.</span><span class="n">getAbsolutePath</span> <span class="o">+</span> <span class="s">" is not a directory"</span><span class="o">)</span>
+      <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="k">else</span> <span class="o">{</span>
+      <span class="nc">Left</span><span class="o">(</span><span class="n">dir</span><span class="o">.</span><span class="n">getAbsolutePath</span> <span class="o">+</span> <span class="s">" doesn't exist"</span><span class="o">)</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+  <span class="k">else</span> <span class="o">{</span>
+    <span class="nc">Left</span><span class="o">(</span><span class="s">"You must supply a value for "</span> <span class="o">+</span> <span class="nc">ShortyServlet</span><span class="o">.</span><span class="nc">DB_DIR_PARAM</span><span class="o">)</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<p>We’ve added lines of code, but our public method is a lot clearer: we get the dir for our DB; if we get a “right”, we have a usable dir, and if we get a “left” (the Scala convention for an error), we have the error message to use for our exception.</p>
+
+<p>So, is <code>getDBDir</code> now a code smell?  This is a private method and, this  means that <code>contextInitialized</code> was tested and we extracted the private method as step three of the TDD “Test/Fix/Refactor” cycle.</p>
+
+<p>Of course, <code>getDBDir</code> has nothing to do with the <code>ServletContextListener</code> and is really all about checking for a valid path.  So, we should extract it to a new class, right?</p>
+
+<p>Well, if we <em>did</em> do that, we’ve now actually added a public API to our codebase.  Unless we make the new class completely private to the enclosing class, we’ve now introduced a new public class that must be tested and managed as part of our system’s public API.</p>
+
+<p>I don’t see the benefit to doing that.  I don’t particularly <em>want</em> this method to be in the public API (at least not <em>now</em>).  So, what about making it a private inner class?  That doesn’t seem to be much different than what we have now, though it might save a few minutes on a future extraction.</p>
+
+<h2 id="when-is-this-a-code-smell">When IS this a code smell?</h2>
+
+<p>This was a simple example.  Consider a class like <a href="http://github.com/davetron5000/gliffy/blob/master/lib/gliffy/url.rb"><code>SignedUrl</code> in my Gliffy Ruby client</a>.  This class has a fair number of private methods and, overall, is pretty large.  The private methods are vague things like <code>handle_params</code> and <code>get_signing_key</code>.  The private methods aren’t really the problem, however; They are a symptom of the fact that this class is just doing too many things.  A better design would be to split this class up into something like a <code>UrlParams</code>, <code>UrlSigner</code> and <code>UrlAssembler</code> (just off the top of my head).  The result would be more smaller classes, each with fewer public <em>and</em> private methods.</p>
+
+<h2 id="what-about-protected-methods">What about protected methods?</h2>
+
+<p>In Ruby, you don’t see a lot of protected methods.  In well-designed Java frameworks (such as <a href="http://www.springframework.org">Spring</a>), you’ll see them as I’ve described above: hooks into a helper class that allow you to customize how that class behaves via subclassing.  In non-library code, protected methods tend to get used for code-reuse in narrowly-focused class hierarchies.  For example, the project I’m working on has a <code>BaseController</code> that provides common methods to the actual web controllers.  Having used protected methods for both of these purposes, I think that, honestly, both <em>can</em> be code smells.</p>
+
+<h3 id="protected-methods-as-hooks">Protected methods as hooks</h3>
+
+<p>In the case of providing “hooks”, I think it’s clear that by providing them at all, you are acknowledging that your class <em>might</em> be poorly designed (or that your language lacks the expressiveness to better design it).  Consider the venerable (and now deprecated) <a href="http://static.springsource.org/spring/docs/2.5.x/api/org/springframework/web/servlet/mvc/SimpleFormController.html"><code>SimpleFormController</code></a>, a Spring MVC class that provides <em>many</em> protected-method hooks, one of which is <code>protected Map referenceData(HttpServletRequest request)</code>.  This is called during the lifecycle of the controller to get any data needed by the form that should be available to the view (for example, a list of U.S. states from the database).  Your subclass of <code>SimpleFormController</code> overrides this to provide the data as a map.</p>
+
+<p>Why not create an interface called <code>ServletRequestToReferenceData</code> that contains this method, and inject an instance into <code>SimpleFormController</code>?  This would be very Spring-like.  My guess as to why this <em>isn’t</em> the case is that there is simply too much overhead in making yet another one-method interface and the designer of <code>SimpleFormController</code> just felt this was a reasonable tradeoff.</p>
+
+<p>In Scala, however, this could simply take a function:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>  <span class="k">def</span> <span class="n">referenceData</span><span class="o">[</span><span class="kt">A</span><span class="o">]((</span><span class="nc">HttpServletRequest</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="nc">Map</span><span class="o">[</span><span class="kt">String</span>,<span class="kt">A</span><span class="o">]);</span>
+
+  <span class="c1">// ...
+</span>
+
+  <span class="n">controller</span><span class="o">.</span><span class="n">referenceData</span><span class="o">{</span> <span class="n">request</span> <span class="k">=&gt;</span> 
+    <span class="c1">// create our map based on the request
+</span>  <span class="o">}</span>
+</code></pre>
+</div>
+
+<p>In Ruby, the overhead of creating a new class isn’t nearly as onerous, and we could still inject a block as we do in Scala.</p>
+
+<p>Ultimately, I would say that you have to make a tradeoff here, and it <em>has</em> to take the language and frameworks into account; a class with many, many hooks might be a code smell, but using it as a means to avoid language ceremony in the name of OO purity is probably a reasonable design tradeoff.</p>
+
+<h3 id="protected-methods-as-code-sharing">Protected methods as code sharing</h3>
+
+<p>This use of protected methods is harder to justify, but incredibly handy.  Still, this could be another case of Java (e.g.) not providing the necessary language features to make class extraction more straightforward.  As mentioned, in my current application, I have a <code>BaseController</code>.  It has a helper method as follows:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">protected</span> <span class="n">Person</span> <span class="nf">getAndValidateLoggedInPerson</span><span class="p">(</span><span class="o">)</span> <span class="o">{</span>
+  <span class="n">Person</span> <span class="n">p</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">personService</span><span class="o">.</span><span class="na">getPerson</span><span class="o">(</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">authenticationService</span><span class="o">.</span><span class="na">loggedInUserId</span><span class="o">());</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">p</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="n">NotFoundException</span><span class="o">;</span>
+  <span class="o">}</span>
+  <span class="k">return</span> <span class="n">p</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<p>Because of Spring MVC, we have specialized exceptions for HTTP errors, such as “NOT_FOUND”.  Here we contain the logic to identify the id of the logged-in person as well as the check for existence.  Having this available to all controllers in the entire system is very handy.</p>
+
+<p>But, is this a code smell?</p>
+
+<p>We could make a class that does this, turning this code:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">Person</span> <span class="n">p</span> <span class="o">=</span> <span class="n">getAndValidateLoggedInPerson</span><span class="o">();</span>
+</code></pre>
+</div>
+
+<p>into this:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">Person</span> <span class="n">p</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">personValidatorAndGetter</span><span class="o">.</span><span class="na">getPerson</span><span class="o">();</span>
+</code></pre>
+</div>
+
+<p>creating a one method class that has many lines of injected dependencies and other boilerplate with a few actual lines of code.</p>
+
+<p>I think this is yet another case of pragmatically dealing with language ceremony.  In Scala or Ruby, the overhead of creating re-usable bits of code like this is far lower than for Java; In Scala one could envision a simple function, possibly with some implicit parameters.   Ultimately, “too much” of this sort of thing <em>should</em> be a code smell, but small bits of this, in the name of simplicity, clarity, and simply keeping the codebase smaller isn’t an automatic red flag.</p>
+
+<h2 id="conclusions">Conclusions</h2>
+
+<p>So, are non-public methods code smells?  If we take the <a href="http://en.wikipedia.org/wiki/Code_smell">wikipedia definition</a>, which is clear that a code smell indicates merely the <em>possibility</em> of deeper problems in your code, then, yes, private and protected methods <em>are</em> code smells.</p>
+
+<p>But, should they be avoided at all costs?  Absolutely not.  There’s many valid reasons to use them, and they do not deserve the blame for an ill-conceived class.  Coding in the real world is about tradeoffs; we have to do the best thing we can with the time, resources, and tools at our disposal.  These tradeoffs may not result in an <a href="http://en.wikipedia.org/wiki/Edmond_Hoyle">According-to-Hoyle</a> OO (or functional) design, but we’re not writing code to provide examples of programming paradigms or design patterns; we’re writing it to accomplish something and provide value.  And, as professionals, we need to do it at a predictable rate that doesn’t incur too much technical debt.</p>
+
+          </section>
+        
+      
+    </article>
+  
+  
+    <article>
+      <header>
+        
+        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2010/04/30/my-talk-at-scala-days.html">Video of My Talk at ScalaDays 2010</a></h1>
+        
+        <h2 class="f6 mtneg">April 30, 2010</h2>
+      </header>
+      
+        
+          <section class="section-break complete-article mb1">
+            <p>
+<a href="http://days2010.scala-lang.org/node/138/169">Video of my talk at ScalaDays is online</a>.  Check it out.  Feedback very much appreciated!
+</p>
+<p>
+<a href="http://days2010.scala-lang.org/node/138/169"><img src="/images/scaladays_talk.jpg" width="400" border="0"/></a>
+</p>
+
+          </section>
+        
+      
+    </article>
+  
+  
+    <article>
+      <header>
+        
+        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2010/04/22/scala-days-recap.html">Scala Days Impressions</a></h1>
+        
+        <h2 class="f6 mtneg">April 22, 2010</h2>
+      </header>
+      
+        
+          <section class="section-break complete-article mb1">
+            <p>
+I had the good fortune to not only attend <a href="http://days2010.scala-lang.org/">ScalaDays 2010</a>, but also to speak (generously supported by <a href="http://www.opower.com">my employer</a>).  The experience overall was great.
+I talked to some really enthusiastic and interesting people (including two high school kids from Austria who were using Lift because, after three years of Java, they were tired of it already!)
+</p>
+<h1>Overall Impressions</h1>
+<ul>
+    <li>Scala 2.8 has some <b>really</b> powerful new features; I'm almost <b>glad</b> I don't have a significant codebase
+    using 2.7, because I would hate to <b>not</b> be able to use 2.8</li>
+    <li>The conference had a wide variety of talks, at varying skill levels; this was not a "beginners-only" conference, though
+    there were plenty of introductory talks (e.g. the <a href="http://akkasource.org/">Akka</a> talk).</li>
+    <li>The Scala team seems very interested in moving Scala into industry and changing the perception of it as an "academic"
+    language (though I'm not convinced they know what to do, nor should this be their responsibility).</li>
+    <li>Most people I talked to who weren't using Scala at their jobs were looking at the strategy <a href="http://sneaking-scala.heroku.com/">I had employed</a>
+    (using it for better testing), or were just frustrated with not being able to take advantage of Scala's productivity.</li>
+    <li>Scala's flexible syntax and powerful constructs are being used for a very wide variety of things; there were talks
+    on using it for <a href="http://processing.org/">Processing</a>, parallel collections, and cross-compilation to
+    non-standard architectures (i.e. chips with no JVM available).</li>
+    <li>The term "monad" was mentioned during exactly one talk and not at all for the rest of the conference.  This made
+    me feel very good, because the impression I get on the Scala mailing list sometimes is that if you don't understand
+    mathematical type theory, you are a moron who can never understand Scala.  This impression has been proved false.</li>
+</ul>
+<h2>Talks I Attended</h2>
+<p>
+It was very interesting to compare this conference to a <a href="http://www.nofluffjuststuff.com/home/main">No Fluff Just Stuff</a> conference.  At those, the speakers
+are professional, both in that they are getting paid and that they are just, really, really good at speaking and presenting.  Their talks, however, tend to be introductory and not terribly advanced.  I think that's fine, these are the type of speakers you want to have when you need to "get the message out" on some new and interesting technologies.
+</p>
+<p>
+The speakers at ScalaDays, however, were just regular people using Scala and wanting to talk about it.  As such, things like presentation style and slides were highly varied in terms of quality.  That being said, even the speakers who had the most trouble, still had some interesting things to talk about.  Following are my quick thoughts on each of the talks I attended:
+</p>
+<h3>Opening Keynote</h3>
+<h4>by Martin Odersky</h4>
+<p>
+His talk was on the new features of Scala 2.8 which, as I said above, are quite exciting.  Package objects, new collections library, and default/named arguments are just some of the highlights.  All-in-all, some very exciting features.
+</p>
+<h3>Runing Scala in the Browser</h3>
+<h4>by Wolfgang Kuehn</h4>
+<p>
+He had created a way to write Scala code and turn it into JavaScript, much like how GWT does this with Java.  His approach wasn't geared around UI widgets, however, but in creating AJAX applications using WebSockets.  I've always felt JavaScript was assembly language (which is why I think <a href="http://jashkenas.github.com/coffee-script/">coffeescript</a> is so interesting), and this was another way to leverage JavaScript without having to deal with it.
+</p>
+<h3>Scala Parallel Collections</h3>
+<h4>by Aleksander Prokopec</h4>
+<p>
+This was a preview of a Scala 2.8.1 (or later) feature, where a subpackage of the new 2.8 collections library was created that could perform the collection operations in parallel.  Consider a <tt>filter</tt> on a collection; this is highly parallelizable.  This library is being created to basically implement that in a transparent fashion.  Really interesting stuff.  They had even considered load balancing, via some interesting work-stealing mechanisms.  In only 30 minutes, there wasn't a <b>huge</b> amount of detail, but this seems to be another way in which parallel computation could be done very easily.
+</p>
+<h3>Developing the Scala Bindings to the Fly Object Space</h3>
+<h4>by Channing Walton, Nigel Warren, Simon Kent</h4>
+<p>
+The concept of "object spaces" never really sunk in with me, but it wasn't actually that relevant to the talk.  This was basically a comparison of a Java library and it's straight-port to Scala.  As expected, the Scala implementations were all much more succinct and (to me) clear.  The speakers hadn't used a lot of Crazy Scala Magic&#8482; to achieve the real code reduction that was shown.  This talk made it very clear that even if you write "Java in Scala", you still get a lot of productivity gains.
+</p>
+<h3>CCSTM: Library-based STM for Scala</h3>
+<h4>by Nathan Bronson, Hassan Chafi, Kunle Olukotun</h4>
+<p>
+<a href="http://en.wikipedia.org/wiki/Software_transactional_memory">Software Transactional Memory</a> is one of the go-to features of Clojure.  Clojure supports it natively, while Scala does not.  This talk was on an implementation of STM as a library for Scala.  It seemed relatively simple to use and understand.  While it's not as "clean" as the Clojure way of doing things, the speaker made a solid case for a library implementation being a better tradeoff, given the difficulty in adding it to the language at this point in Scala's life (it's easy to forget how mature the Scala language and compiler are, despite how "new" it seems).
+</p>
+<h3>Lightweight language support for type-based, concurrent event processing</h3>
+<h4>by Philipp Haller</h4>
+<p>
+This talk proposed a function type called "Translucent Functions" that were better-suited to concurrency than the partial functions used in the actor library.  Honestly, it was a bit over my head, and I wasn't able to catch up with the speaker.  Perhaps the paper would be more elucidating for me.
+</p>
+<h3>Data Parallel Programming in Scala</h3>
+<h4>by Bruce Lester</h4>
+<p>
+This talk was very similar to the one on Scala Parallel Collections.  Here, the speaker had created a collection library separate from the Scala one, designed specifically to allow parallel processing.  He had a very different approach, using control structures to indicate areas where parallelism could occure.  It was pretty interesting, but the Scala 2.8 Collections Library implementation seemed a lot cleaner to me than this.
+</p>
+<h3>Type Specialization in Scala</h3>
+<h4>by Iulian Drago&#x219;</h4>
+<p>
+One of the new features of 2.8 is the ability to "specialize" your code to work with primitive types and avoid boxing/unboxing.  This is something Java cannot really do.  This talk was an overview of how that worked and what specializations were done to the Scala library.  I guess it's nice that this kind of optimization if available, but I think it would have negligible gains for most real-world applications that weren't doing constant number crunching.  Even in that case, you don't necessarily need this.
+</p>
+<h3>Leaky Monads</h3>
+<h4>by Josh Suereth</h4>
+<p>
+How could I not attend the only session (and mention!) of Monads?  The speaker gave a good overview of using Monads to
+implement automatic resource management (e.g. <code>File.open { |file| file.readlines.whatever }</code>).  The idea was that since Monads are designed to hold onto the objects they manage, it's a bit inconvienient when dealing with the results of operating on managed resources.  Thus, his monads "leaked" their contents to create more concise code.
+</p>
+<h3>Type-safe SQL embedded in Scala</h3>
+<h4>by Christoph Wulf</h4>
+<p>
+Akin to <a href="http://en.wikipedia.org/wiki/LINQ">LINQ</a>, this talk showed how to write SQL directly inside Scala code, but maintain type safety.  It uses
+a compiler plugin to achieve this, and he talked a lot about how to tell the difference between embedded SQL and regular Scala code.  I guess the plugin introspects your database to get the types and generates a bunch of code using some Scala classes that get substituted in during compilation.  Pretty interesting.  I'm not sure I'm really <i>missing</i> SQL right in my code, but it is certainly cleaner than JDBC.
+</p>
+<h3>Scala at LinkedIn: Distribute Computing with Norbert</h3>
+<h4>by Chris Conrad</h4>
+<p>
+This was a talk about how LinkedIn is using Scala to glue together some enabling technologies to create their social network graph.  It seemed really clean and simple, especially since the underlying technologies are all Java-based.  This was mostly an overview of the API and some usage examples.  It's <a href="http://sna-projects.com/norbert/">open source</a>, and looks pretty interesting.  I'm not sure it would be useful for me at my job, but definitely seems like a cool project.
+</p>
+<h3>Akka</h3>
+<h4>by Jonas Boner</h4>
+<p>
+I was looking forward to this one quite a bit, as akka gets a lot of hype on Twitter.  I think 30 minutes was just too short, as it was pretty light on details.  There was a lot of assertions about Akka that the speakers just didn't have time to elucidate or substantiate.  I would love to see a comparison of Scala Actor vs. Akka Actor code and discuss why the Akka way is better.  Similarly, I'd love to see the basis for all the assertions on Akka's performance; it certainly gets a lot of hype.  Jonas is currently working on publicizing the production deployments of Akka (which would go a long way) as well as establishing commercial support for it (which <b>also</b> goes a long way :).
+</p>
+<h3>Scala IDE for Eclipse</h3>
+<h4>by Miles Sabin</h4>
+<p>
+I went to this purely for my co-workers.  I hate IDEs in general, and Eclipse does some pretty evil things to my co-workers, yet many of them still swear by it.  At any rate, Miles was almost impossible for me to understand (despite being English!) and most of what I got out of the presentation was that Eclipse was very much designed to work with only Java, requiring some nasty hacks to get Scala working with it.  It seems Miles' Herculean efforts have been used to get around this and there now seems to be a nice development environment for extending and enhancing the Scala plugin.
+</p>
+<h3>sbt Design and Implementation</h3>
+<h4>by Mark Harrah</h4>
+<p>
+While sbt isn't my ideal build tool, but it's a billion times better than Maven and Mark's talk actually made me appreciate it a lot more.  He is unabashedly in favor of terse symbols over long method names, and he spent some time explaining the rational behind them (thus making things make a bit more sense). His assertion is that you will eventually internalize the symbols and achieve productivity gains at a cost of a slight bump at the start.  I tend to disagree with this, because how often is one modifying their build?  This is why learning and retaining Ant and Maven is so difficult (I can't write a <tt>copy</tt> in Ant without a trip to the docs).  At any rate, this was a good talk and great overview of sbt, and, despite me not being into the crazy symbols, I will take it over Maven or Ant any day.  At least it's based in a real programming language and not some XML nonsense.
+<h3>Processing with Spde</h3>
+<h4>by Nathan Hamblen</h4>
+<p>
+This was a brief over of Processing, for those unfamiliar with this (horribly&#8208;named) visualization tool and then a review of the Scala bindingns the presenter had created.  Interestingly, he created <a href="http://technically.us/spde/About">SPDE</a> as an SBT plugin so that users could gain the benefit of SBT's automatic re-compilation and running features.  His plugin + a text editor is a makeshift IDE for Processing, which is pretty cool.  It was very high-level and didn't get into too much detail, but the Scala code was, as expected, much more concise than the Java code.
+</p>
+<h3>Sneaking Scala Into your Organization</h3>
+<h4>by Me!</h4>
+<p>
+I was pretty nervous, as the many of the previous speakers' topics were all quite heady, but I had practiced my ass off, and delivered the talk as well as I could.  I think it was pretty well received and got some good questions.  I had talked with a few people previously in the conference who were using testing as a way to get Scala into their jobs and a few other people who were interested in what I had to say.  Several people were curious as to how the other developers at OPOWER liked Scala.  I felt pretty good about it.
+</p>
+<h3>Future of Scala</h3>
+<h4>by The Scala Team</h4>
+<p>
+For this, we broke into small groups and basically unloaded on a poor member of the Scala team as to how anything related to Scala could be better.  Then, the Scala team assembled all of this info while Martin gave a very long term roadmap for Scala.  I do worry that the universe will never catch up to Martin and Scala team as they add more and more advanced and innovative features.
+</p>
+<p>
+After this, a member of the Scala team did a very fast tour of the feedback.  I wish the entire list could be posted; there was a lot of very heartening complaints in there that would not be obvious from the Scala mailing list (e.g.  hate on the underscore, desire to be less academic in terminology)  This fed my (arguably self-biased) impressions that people want to get Scala into industry and that there is a large hole in this part of the Scala universe.
+</p>
+<p>
+There were also some updates on IntelliJ's support for Scala.  They sound way ahead of the curve compared to Eclipse and NetBeans, but I was a bit frightened by IDEA's  guy saying that they way people learn languages is to ask for auto-completion and see what's available.  I see this trend all to often and I think it's harmful.  More on that later.
+</p>
+<h3>Overall</h3>
+<p>
+Despite still being stuck in Geneva, I'm glad I went.  Giving my talk was fun, but it was also great to hear about all the many ways in which people are using Scala.  I went in expecting massive academia overload, with a lot of theoretical type system and functional programming talk and got, instead, a wide variety of topics and just the right amount of academia (i.e. not that much).  Really encouraging.  Also encouraging is that ScalaDays 2011 will likely be in the Bay Area, which is a much nicer place to get stuck that stupid Geneva.
+</p>
+
+          </section>
+        
+      
+    </article>
   
   
     <article>
@@ -606,195 +959,6 @@ This takes advantage of (the unfortunately named) <a href="http://www.naildrivin
 <span class="o">}</span></code></pre></figure>
 
 Now, you certainly don't want to do this for every object in your domain (you'd get a horrible mess of symbols), but for key objects that you are using everywhere, an appropriately chosen literal syntax can make your code very clean and easy to read and modify.
-
-          </section>
-        
-      
-    </article>
-  
-  
-    <article>
-      <header>
-        
-        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2009/11/12/deconstructing-scala-map-literal.html">Deconstructing the Scala Map Literal</a></h1>
-        
-        <h2 class="f6 mtneg">November 12, 2009</h2>
-      </header>
-      
-        
-          <section class="section-break complete-article mb1">
-            <p class="first">
-I find that Scala is one giant <a href="">Rube Goldberg Machine</a> that manages to do something not easily be done otherwise.  By this I mean that Scala has many features that, by themselves, seem very strange, but, in combination, enable some very cool functionality.  This is why I initially started my <a href="http://www.naildrivin5.com/scalatour">personal tour of Scala</a>.  I read stuff like <a href="http://www.naildrivin5.com/scalatour/wiki_pages/ExplcitlyTypedSelfReferences">explicitly typed self-references</a> and was left scratching my head.
-</p>
-<p>
-I thought it might be fun to deconstruct the "map literal" in Scala and observie how the features interact to create a very handy piece of code that isn't baked into the language.  This assumes and understanding of some <a href="http://www.naildrivin5.com/scalatour/wiki_pages/ScalaBasics">Scala basics</a>.
-</p>
-<p>
-Although Java 7 is getting map literals, Scala already has it (or so it appears):
-
-<figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">band</span> <span class="k">=</span> <span class="nc">Map</span><span class="o">(</span><span class="s">"Dave"</span> <span class="o">-&gt;</span> <span class="s">"Bass"</span><span class="o">,</span>
-                <span class="s">"Tony"</span> <span class="o">-&gt;</span> <span class="s">"Guitar"</span><span class="o">,</span>
-                <span class="s">"Greg"</span> <span class="o">-&gt;</span> <span class="s">"Drums"</span><span class="o">)</span></code></pre></figure>
-This is not actually a literal, but enabled by Scala features to make it look like a literal.  Which means that you can use these facilities to make your own literals.  So, how does this work?
-</p>
-<p>
-Most surprising to a Java programmer is the <tt>-&gt;</tt> operator.  This makes use of two Scala features:
-<ul>
-    <li><a href="http://www.naildrivin5.com/scalatour/wiki_pages/ScalaOperators">Operator-like method naming</a></li>
-    <li><a href="http://www.naildrivin5.com/scalatour/wiki_pages/ImplicitConversions">Implicit Conversions</a></li>
-</ul>
-</p>
-<p>
-It turns out that the <tt>-&gt;</tt> operator is on the class <tt>Predef.ArrowAssoc</tt>.  <tt>Predef</tt> is automatically imported in every Scala program, so you don't need to prefix anything with <tt>Predef</tt>.  It returns a tuple of its caller and its argument, e.g.
-<figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">dave</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">ArrowAssoc</span><span class="o">(</span><span class="s">"Dave"</span><span class="o">)</span>
-<span class="k">val</span> <span class="n">entry</span> <span class="k">=</span> <span class="n">dave</span> <span class="o">-&gt;</span> <span class="s">"Bass"</span>
-<span class="c1">// entry is now ("Dave","Bass")
-</span><span class="o">//</span> <span class="n">which</span> <span class="n">is</span> <span class="n">a</span> <span class="nc">Tuple2</span><span class="o">[</span><span class="kt">String</span>,<span class="kt">String</span><span class="o">]</span></code></pre></figure>
-</p>
-<p>
-Of course, we aren't creating <tt>ArrowAssoc</tt> instances anywhere, so how does this get called?  This is where implicits come in.  Suppose we change our simple example to:
-<figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">dave</span> <span class="k">=</span> <span class="s">"Dave"</span>
-<span class="k">val</span> <span class="n">entry</span> <span class="k">=</span> <span class="n">dave</span> <span class="o">-&gt;</span> <span class="s">"Bass"</span>
-<span class="c1">// entry is still ("Dave","Bass")
-</span><span class="o">//</span> <span class="n">which</span> <span class="n">is</span> <span class="n">a</span> <span class="nc">Tuple2</span><span class="o">[</span><span class="kt">String</span>,<span class="kt">String</span><span class="o">]</span></code></pre></figure>
-Here, Scala sees that the method <tt>-&gt;</tt> needs to be called on an <tt>ArrowAssoc</tt>, but is being called on a <tt>String</tt>.  Instead of giving up, Scala notices the method: 
-<figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">implicit</span> <span class="k">def</span> <span class="n">any2ArrowAssoc</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">x</span><span class="k">:</span> <span class="kt">A</span><span class="o">)</span><span class="k">:</span> 
-  <span class="kt">ArrowAssoc</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">ArrowAssoc</span><span class="o">(</span><span class="n">x</span><span class="o">)</span></code></pre></figure>
-This means that anything at all can be converted into an <tt>ArrowAssoc</tt> if there's some reason to.  And we have a reason to here.
-</p>
-<p>
-This means our code is now effectively:
-<figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">band</span> <span class="k">=</span> <span class="nc">Map</span><span class="o">((</span><span class="s">"Dave"</span> <span class="o">,</span> <span class="s">"Bass"</span><span class="o">),</span>
-                <span class="o">(</span><span class="s">"Tony"</span> <span class="o">,</span> <span class="s">"Guitar"</span><span class="o">),</span>
-                <span class="o">(</span><span class="s">"Greg"</span> <span class="o">,</span> <span class="s">"Drums"</span><span class="o">))</span></code></pre></figure>
-It's not hard to imagine a <tt>Map</tt> constructor taking <tt>Tuple2</tt>, using the first part as the key and the second part as the value, however where is the constructor?  Scala creates objects via the <tt>new</tt> keyword, just as Java does.  So, what's going on here?
-</p>
-<p>
-This use two additional Scala features:
-<ol>
-    <li><a href="http://www.naildrivin5.com/scalatour/wiki_pages/ScalaBasics#Literals_and_Syntactic_Sugar"><tt>apply()</tt>
-        shortcutting</a>
-    <li><a href="http://www.naildrivin5.com/scalatour/wiki_pages/ScalaObject">Scala singleton objects</a></li>
-</ol>
-This is much simpler to decode than the <tt>-&gt;</tt> method; there is simply an object in scope named <tt>Map</tt>, and it has an <tt>apply</tt> method that takes a variable list of <tt>Tuple2</tt> objects.  Scala interprets a method-call syntax on an object, but lacking a method name, as a call to the <tt>apply</tt> method of that object (if it exists).  So, removing this, we have:
-<figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">band</span> <span class="k">=</span> <span class="nc">Map</span><span class="o">.</span><span class="n">apply</span><span class="o">((</span><span class="s">"Dave"</span> <span class="o">,</span> <span class="s">"Bass"</span><span class="o">),</span>
-                      <span class="o">(</span><span class="s">"Tony"</span> <span class="o">,</span> <span class="s">"Guitar"</span><span class="o">),</span>
-                      <span class="o">(</span><span class="s">"Greg"</span> <span class="o">,</span> <span class="s">"Drums"</span><span class="o">))</span></code></pre></figure>
-</p>
-<p>
-That's all there is to it!  A few things to note about this:
-<ul>
-    <li>Without the application of some Scala features, it's pretty ugly</li>
-    <li>The language itself didn't need to implement a special "map literal"; it simply combines smaller features
-    in a way to make it appear as though it does.  You can even create your own "literals" rather than waiting for
-    the language to implement them</li>
-</ul>
-</p>
-
-
-          </section>
-        
-      
-    </article>
-  
-  
-    <article>
-      <header>
-        
-        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2009/11/01/why-gitub-can-opensource-their-libraries.html">Why Github Can Open-Source Their Libraries</a></h1>
-        
-        <h2 class="f6 mtneg">November 01, 2009</h2>
-      </header>
-      
-        
-          <section class="section-break complete-article mb1">
-            <p class="first">
-One thing I love about Github is that they open-source a <b>lot</b> of their internal tools that power the site.  What's interesting is that, unlike SourceForge, they open source little bits and pieces; tiny libraries that do one specific thing.  These things are supremely useful (I use <a href="http://www.github.com/davetron5000/grit">Grit</a> and <a href="http://www.github.com/mojombo/jekyll">Jekyll</a> quite often).
-</p>
-<p>This is a huge benefit to them; their products become higher-quality through contribution, and their talent-pool increases due to their contribution to the community; they are positioned as a technical leader and social force in the development community.  I've often wondered why more companies don't do this and what's really involved?
-</p>
-<p>
-There are three main hurdles to overcome in order to do this:
-<ul>
-    <li><b>Usefulness</b> - do you have code that someone will find useful?</li>
-    <li><b>Legalish</b> - are you comfortable giving away some part of your company's intellectual property?</li>
-    <li><b>Technical</b> - does your technical infrastructure support extraction, collaboration, and re-integration?</li>
-</ul>
-</p>
-<p>
-<h3>Usefulness</h3>
-I think comparing Github to Sourceforge makes this point very clear.  While SourceForge does <b>more</b> than, say, <a href="http://github.com/mojombo/bert">BERT</a>, it's just a big huge all-or-nothing proposition; Github has extracted small parts of their infrastructure useful outside the realm of "software project hosting", resulting in many useful, fine-grained libraries.
-</p>
-<p>
-<h3>Legalish</h3>
-The issue here is essentially to determine if the gains achieved by open-sourcing some of your code are <i>greater</i> than the competitive advantage <i>lost</i> by doing so.  Again, the ability to extract small, focused, and useful pieces of functionality is key.  Github isn't open-sourcing their entire infrastructure; just the parts that are really useful and not incidental to their success (though one may argue that their IP has <b>nothing</b> to do with their success).
-</p>
-<p>
-<h3>Technical</h3>
-Here's where things get interesting.  Extracting a small, useful piece of technology from your application, without revealing any trade secrets or other IP can be a challenging task.  Add to that the infrastructure needed to manage and incorporate contributions, and your technical infrastructure could be the main barrier to interacting with the community (and <b>not</b> the lawyers!).
-</p>
-<p>
-My company struggles with this daily, as our tools were just not designed to make extraction and management of dependencies easy.  Our problem is almost entirely based on tooling and technology choice (which I'll get into in a further post).
-</p>
-<p>
-<h3>Conclusion</h3>
-The advantages to open-sourcing some of your code are obvious: you can improve the quality of your codebase while improving your standing in the community (which enahnces your ability to attract top-talent).  You just need to make sure your technical infrastructure is built for it, and that the lines of communication between the development staff and the legal staff are clear and functional.
-</p>
-<p>
-That Github routinely open-sources bits of their code speaks volumes to the choices they've made as an organization, as well as their technical prowess.
-</p>
-
-          </section>
-        
-      
-    </article>
-  
-  
-    <article>
-      <header>
-        
-        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2009/10/27/joel-spolsky-at-devdays.html">An anecdote about Joel Spolksy at DevDays DC</a></h1>
-        
-        <h2 class="f6 mtneg">October 27, 2009</h2>
-      </header>
-      
-        
-          <section class="section-break complete-article mb1">
-            <p>
-I had signed up to volunteer at DC's DevDays, however <a href="http://www.opower.com">My Company</a> decided to be a local sponsor.  Part of that involed us having some time for a 15-minute presentation during the lunch break.  We were told that other sponsors would be doing something similar.  I worked up a <a href="http://www.slideshare.net/davetron5000/measuring-agile-process-shorter-2359457">brief presentation on how we improve our development process with each iteration</a>.  I figured it would be of interest and not be too (obviously) self-promoting.
-</p>
-<p>
-We get there and find out that not only are none of the other sponsors doing this, but we can't go at lunch, because Joel very-much wanted these things to be "optional" and, The State Theater being near almost nowhere to go have lunch, everyone would be stuck there and "forced" to watch our presentation.  So, we'd be going <b>after</b> the entire conference was over.  
-</p>
-<p>
-I have no problem with this at all; it's his/their conference after all.  But, we probably wouldn't have bothered if we had known this ahead of time. Nevertheless, I <a href="http://search.twitter.com/search?q=process+%23devdays+from%3Adavetron5000">tweeted</a> to the #DevDays hashtag (showing up on the big screen between speakers) and looked forward to it anyway.  As a member of a crappy local band, I've played some gigs to no-one, so it's no big deal.
-</p>
-<p>
-For most of the day the end of the schedule looked like:
-<ul>
-    <li style="font-size: 120%">4:15 - JQuery</li>
-    <li style="font-size: 120%">5:30 - Goodbye!</li>
-    <li style="font-size: 70%">(unspecified showcase for OPOWER (formerly Positive Energy))</li>
-</ul>
-</p>
-<p>
-Toward the end, Joel came by, introduced himself, and got my info so he could mention it in his closing remarks.  We discussed some logistics and he was very polite, but obviously had a lot going on.  
-</p>
-<p>
-While Richard Worth was finishing up his JQuery talk, I head to the back.  The stagehand gets me set up and Joel is about to go deliver the "goodbye and thanks" speech.   Here is my mostly accurate transcription of our brief discussion:
-<ul>
-    <li><b>Joel:</b> <i>OK, I'm gonna go out, say goodbye, and then I'll play a song that goes for about 4 minutes.  After that,
-        you can head out and start</i></li>
-    <li><b>Me:</b> <i>No problem, can you or someone cue me when the song is almost over? [you couldn't hear much back there and I
-        didn't know the song]</i></li>
-    <li><b>Joel:</b> <i>My experience running these things is that people will start leaving pretty soon, so once it looks like
-        everyone's left, you can head out there</i></li>
-    <li><b>Me:</b> <i>Um, ok [mostly amused at his comment and a bit nervious]</i></li>
-    <li><b>Joel:</b> <i>[slighly chuckling] We try to have a strict separation of Editorial and Advertorial content at these</i></li>
-    <li><b>Me:</b> <i>[not quite parsing the word "Advertorial" and also thinking about the hour-long demo on FogBugz] </i></li>
-</ul>
-As I said, it was all good, and a few people DID stick around, but I found the whole thing rather amusing in retrospect.  And I think he actually paid attention to about half of my talk!
-</p>
 
           </section>
         
