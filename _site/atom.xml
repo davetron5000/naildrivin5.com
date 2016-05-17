@@ -4,13 +4,323 @@
   <title><![CDATA[naildrivin5.com - David Bryant Copeland's Website]]></title>
   <link href="http://naildrivin5.com/atom.xml" rel="self"/>
   <link href="http://naildrivin5.com/"/>
-  <updated>2016-05-03T12:52:19-04:00</updated>
+  <updated>2016-05-17T16:12:09-04:00</updated>
   <id>http://naildrivin5.com/</id>
   <author>
     <name><![CDATA[David Bryant Copeland]]></name>
     <email><![CDATA[davec@naildrivin5.com]]></email>
   </author>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Announcing Rails 6: An Imagined Keynote]]></title>
+    
+    <link href="http://naildrivin5.com/blog/2016/05/17/announcing-rails-6-an-imagined-roadmap.html"/>
+    
+    <updated>2016-05-17T12:00:00-04:00</updated>
+    <id>http://naildrivin5.com/blog/2016/05/17/announcing-rails-6-an-imagined-roadmap</id>
+    <content type="html"><![CDATA[<p>Just got back from RailsConf.  It was a great Ruby &amp; Rails conference, but I was struck by the dearth of talks about new features of Rails 5—because there just aren’t many.  I thought back to what excited me about Rails in the first place—the baked-in conventions, convenience, encouragement of good practices.</p>
+
+<p>Justin Searls gave <a href="http://blog.testdouble.com/posts/2016-05-09-make-ruby-great-again.html">a talk</a> not about RSpec but about how Rails is losing mindshare, losing favor.  Is Rails losing relevance?  I hope not, but it’s easy to see how someone less emotionally invested than me might see it that way.</p>
+
+<p>I’m trying to write about this without complaining.  This is my fifth attempt.  It’s hard not to just rant about Rails’ failings, so I’m going to try to be constructive by outline a fantasy roadmap for Rails 6.</p>
+
+<p>I tried very much to think about this without going against the “<a href="http://rubyonrails.org/doctrine/">Rails Doctrine</a>”, and have written this as if it were an Apple-style keynote.  The theme is Progress.</p>
+
+<!-- more -->
+
+<hr />
+
+<h2 id="rails-6-progress">Rails 6: Progress</h2>
+
+<p>Good morning.  I’d like to share with you all the exciting changes we have in store for Rails 6.  Since Rails was first launched 11 years ago, a lot has changed in the world of web development.</p>
+
+<p>Billion-dollar business are being run on Rails.  These business—along with countless others—have been able to use Rails to solve problems we never imagined.  Rails not only enables small teams to ship great software, but it works for big teams, too.</p>
+
+<p>We’ve seen Rails move beyond its role as “the single application” to being a part of highly distributed systems.  The productivity gains developers get in the small, and in the simple, they get in the large and complex, too.</p>
+
+<p>Meanwhile, there have been tremendous strides in what is possible in a web browser.  Rails was born of a love of the web, and the web has gotten so much better over the years.  The front-end has blossomed.  We can now deliver amazing things to our users, and the community of web developers both inside and outside Rails has produced amazing tools and techniques for doing so.</p>
+
+<p>Finally, the community of Rails and Ruby developers have over a decade of experience using Rails.  A <em>decade</em>!  We’ve learned so much about what it’s like to maintain Rails applications over long periods, and how to best use developers of all levels of experience in working on Rails applications.</p>
+
+<p>Rails 6 is the most revolutionary release of Rails ever, and we’ve rallied around seventh pillar of the Rails Doctrine: Progress.</p>
+
+<p>Let’s start with the front-end.</p>
+
+<h2 id="front-end-20">Front-End 2.0</h2>
+
+<p>Sprockets was way ahead of its time.  Using <code class="highlighter-rouge">remote=true</code> was, too.  Rails was one of the first web frameworks to actually acknowledge the front-end and include powerful tools for managing your assets.</p>
+
+<p>The rest of the industry has not embraced these tools or techniques, but has instead solved the problems of front-end development in other ways.  Although the tools used for front-end development are in constant flux, there are stable, mature techniques that have proven results.</p>
+
+<p>Rails 6 will bake in the best of these techniques, and create an updated, modern set of front-end tools.</p>
+
+<p>In Rails 6:</p>
+
+<ul>
+  <li>No more per-view CSS.  Rails 6 encourages OOCSS and ships with <a href="http://tachyons.io/">Tachyons</a>, allowing developers to style their views without any CSS from day 1.</li>
+  <li>No more per-view JavaScript. Rails 6 supports ES6 and ES6 module syntax to allow developers to structure their front-end code however they see fit.</li>
+  <li>Rails 6 no longer includes jQuery by default.  Instead, Rails includes a library called <code class="highlighter-rouge">rails.js</code> that provides a simple and standard way to access Rails resources via AJAX without using jQuery.  Rails.js can be used standalone, or in conjunction with existing front-end frameworks like React.</li>
+  <li>Source maps will be generated for any front-end compiled assets or code, if the source language supports it.</li>
+  <li>A new focus on simple plugability and transparent behavior.  The one constant in front-end tooling is change, and a full-stack web application framework like Rails should give you the ability to keep up.</li>
+</ul>
+
+<p>What Rails 6 doesn’t ship with is a front-end framework. There’s value in server-generated views, and a light sprinkling of JavaScript can get you a long way.</p>
+
+<p>Next up, the controller layer.</p>
+
+<h2 id="doubling-down-on-resource-based-design">Doubling-down on Resource-based Design.</h2>
+
+<p>Rails strongly believes in resource-based design.  It’s been a part of Rails since Rails 2.  Too often, however, developers deviate from this design when without a strong reason.  We’ve realized this happens for two different reasons.</p>
+
+<p>First, it’s largely the same amount of work in your routes and controller to use RPC-style routing as it is to use resourceful routing.  Second, it’s too difficult to create resources that work with Rails but that aren’t ActiveRecords.</p>
+
+<p>In Rails 6, developers who embrace resource-based design no longer need to specify routes explicitly.  The “special 7” routes are configured automatically by declaring the needed methods in the controller.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">UsersController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="k">def</span> <span class="nf">index</span> <span class="c1"># automatically sets up GET /users</span>
+  <span class="k">end</span>
+  
+  <span class="k">def</span> <span class="nf">create</span> <span class="c1"># automatically sets up POST /users</span>
+             <span class="c1"># also sets up GET /users/new</span>
+  <span class="k">end</span>
+  
+  <span class="n">opt_out</span> <span class="ss">:new</span> <span class="c1"># remove GET /users/new</span>
+  
+  <span class="k">def</span> <span class="nf">destroy</span> <span class="c1"># configure DELETE /users/:I'd</span>
+  <span class="k">end</span>
+  
+  <span class="k">def</span> <span class="nf">deactivate</span> <span class="c1"># does not introduce any route</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Developers unnecessarily using RPC-based designs now have more work to do than if they stick with a resource-based design.  The old way of declaring routes still works, but we feel this method will be much simpler.</p>
+
+<p>We also want to make it easier to describe resources that work with the Rails View layer but that aren’t Active Records.  We introduced helper modules in Rails 3, and an explicit Active Model in Rails 4, but we still see developers struggling to adopt these technologies.</p>
+
+<p>Instead, developers use presenters, decorators, and view models either hand-rolled or from one or more third-party gems.</p>
+
+<p>Rails 6 will build on ActiveModel by providing a base class called ActionResource.</p>
+
+<p>An ActionResource makes it easy to totally describe your resource, with support for:</p>
+
+<ul>
+  <li>delegating to an underlying object.</li>
+  <li>create derived fields.</li>
+  <li>formatting values.</li>
+  <li>interoperability with Rails form and URL helpers.</li>
+</ul>
+
+<p>Suppose we want to display a user’s name, signup date, email, and most recent order (a date and description).  We’ll call this an <em>account</em>.  We’ll implement it using ActionResource, which we can use in our controller like so:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">AccountsController</span>
+  <span class="k">def</span> <span class="nf">show</span>
+    <span class="vi">@account</span> <span class="o">=</span> <span class="no">Account</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">customer: </span><span class="n">current_user</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>We create <code class="highlighter-rouge">Account</code> like so:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Account</span> <span class="o">&lt;</span> <span class="no">ActionResource</span>
+  <span class="n">from</span> <span class="ss">:customer</span><span class="p">,</span> <span class="ss">show: </span><span class="p">[</span> <span class="ss">:email</span><span class="p">,</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:created_at</span> <span class="p">]</span>
+
+  <span class="nb">format</span> <span class="ss">:created_at</span><span class="p">,</span> <span class="ss">with: :short</span>
+  <span class="nb">format</span> <span class="ss">:email</span><span class="p">,</span> <span class="n">with</span> <span class="ss">:downcase</span>
+  
+  <span class="k">def</span> <span class="nf">last_order_date</span>
+    <span class="n">time_ago_in_words</span><span class="p">(</span><span class="n">last_order</span><span class="p">.</span><span class="nf">created_at</span><span class="p">)</span>
+  <span class="k">end</span>
+  
+  <span class="k">def</span> <span class="nf">last_order_description</span>
+    <span class="n">last_order</span><span class="p">.</span><span class="nf">items</span><span class="p">.</span><span class="nf">count</span> <span class="o">+</span> <span class="s2">" items"</span>
+  <span class="k">end</span>
+  
+  <span class="kp">private</span>
+  
+    <span class="k">def</span> <span class="nf">last_order</span>
+      <span class="vi">@last_order</span> <span class="o">||=</span> <span class="n">customer</span><span class="p">.</span><span class="nf">orders</span><span class="p">.</span><span class="nf">last</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>As with much of Rails, how this works should be obvious by the API we’ve designed.</p>
+
+<p>The resulting object can be used like any model object:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">customer</span> <span class="o">=</span> <span class="no">Customer</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">name: </span><span class="s2">"Bob Jones"</span><span class="p">,</span>
+                        <span class="ss">email: </span><span class="s2">"Bob@JONES.net"</span><span class="p">)</span>
+<span class="n">customer</span><span class="p">.</span><span class="nf">orders</span> <span class="o">&lt;&lt;</span> <span class="no">Order</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">created_at: </span><span class="mi">3</span><span class="p">.</span><span class="nf">days</span><span class="p">.</span><span class="nf">ago</span><span class="p">,</span>
+                             <span class="ss">items: </span><span class="no">Item</span><span class="p">.</span><span class="nf">new</span><span class="p">)</span>
+
+<span class="n">account</span> <span class="o">=</span> <span class="no">Account</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">customer: </span><span class="n">customer</span><span class="p">)</span>
+
+<span class="n">account</span><span class="p">.</span><span class="nf">email</span>                  <span class="c1"># bob@jones.net</span>
+<span class="n">account</span><span class="p">.</span><span class="nf">name</span>                   <span class="c1"># Bob Jones</span>
+<span class="n">account</span><span class="p">.</span><span class="nf">created_at</span>             <span class="c1"># May 13</span>
+<span class="n">account</span><span class="p">.</span><span class="nf">last_order_date</span>        <span class="c1"># 3 days ago</span>
+<span class="n">account</span><span class="p">.</span><span class="nf">last_order_description</span> <span class="c1"># 1 items</span>
+</code></pre>
+</div>
+
+<p>We hope this will allow Rails developers to effectively use resourceful design without needing third-party gems, and to do so with minimal, beautiful code.</p>
+
+<p>We’re also discouraging the use of helpers in Rails 6.  Helpers are still a fully supported feature, but when scaffolding or creating new resources with the Rails generator, you will no longer be given an empty helper file.  ActionResource can replace most need for helpers.</p>
+
+<p>Next, let’s talk about the code that makes your app special: the business logic.</p>
+
+<h2 id="the-business-of-logic">The Business of Logic</h2>
+
+<p>Over the last ten years, it’s become clear that every Rails application needs to manage code that doesn’t belong to a controller, model, job, or mailer.  While there are many opinions on exactly <em>how much</em> code should go where, there’s no debate that sometimes code has to go somewhere else, and Rails hasn’t had an opinion.  Until now.</p>
+
+<p>Rails 6 supports <em>services</em>, as we felt this was a good enough nudge regarding where code could go, but without being overly prescriptive, or requiring developers to opt-in to a complex DSL.</p>
+
+<p>Make now mistake: this is a radical change in how Rails thinks about your application’s architecture.</p>
+
+<p>By default, <code class="highlighter-rouge">app/services</code> will be created when you run <code class="highlighter-rouge">rails new</code> and any code you place there will be auto-loaded the same as for your controllers or models.  The code in your services can be anything.</p>
+
+<p>However, when writing good services, it’s often required to bring together lower-level libraries, third-party code, and other services to get the job done.  Testing this code can be challenging.</p>
+
+<p>To help organize your services, we’re also introducing <em>ActiveService</em>, which is a lightweight library that makes writing and testing services as easy as it can be.</p>
+
+<p>Suppose you want a service for charging customers some money using your <code class="highlighter-rouge">Customer</code> and <code class="highlighter-rouge">Order</code> models.  To do this, we need to locate the customer’s credit card, charge it the amount of their order, and then email them a receipt (or a notification about failure).  To do this, we need access to our payment processor’s Ruby library as well as our <code class="highlighter-rouge">OrderMailer</code> Rails mailer.</p>
+
+<p>While you could access these classes in the normal way of referencing their global symbols, we can use less code that’s easier to test by using Active Service.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Purchaser</span> <span class="o">&lt;</span> <span class="no">ActiveService</span><span class="o">::</span><span class="no">Base</span>
+  <span class="n">needs</span> <span class="ss">:payment_transaction</span>
+  <span class="n">needs</span> <span class="ss">:credit_cards</span>
+  <span class="n">needs</span> <span class="ss">:order_mailer</span>
+  
+  <span class="k">def</span> <span class="nf">purchase!</span><span class="p">(</span><span class="n">customer</span><span class="p">:,</span> <span class="n">order</span><span class="p">:)</span>
+    <span class="n">card</span>        <span class="o">=</span> <span class="n">credit_cards</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">customer</span><span class="p">.</span><span class="nf">id</span><span class="p">)</span>
+    <span class="n">transaction</span> <span class="o">=</span> <span class="n">payment_transaction</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">card</span><span class="p">,</span><span class="n">order</span><span class="p">.</span><span class="nf">amount</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">transaction</span><span class="p">.</span><span class="nf">success?</span>
+      <span class="n">order_mailer</span><span class="p">.</span><span class="nf">receipt_email</span><span class="p">(</span><span class="n">customer</span><span class="p">,</span><span class="n">order</span><span class="p">).</span><span class="nf">deliver_later</span>
+    <span class="k">else</span>
+      <span class="n">order_mailer</span><span class="p">.</span><span class="nf">card_failed</span><span class="p">(</span><span class="n">customer</span><span class="p">,</span><span class="n">order</span><span class="p">,</span><span class="n">transaction</span><span class="p">).</span><span class="nf">deliver_later</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>As you can see, ActiveService provides a way to manage all your services at runtime.  This is especially useful for third-party libraries like our payment processor.  Instead of configuring a global constant like <code class="highlighter-rouge">BRAINTREE_TRANSACTION</code>, we can let ActiveService handle it:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1"># config/initializers/braintree.rb</span>
+<span class="n">service</span> <span class="ss">:payment_transaction</span> <span class="k">do</span>
+  <span class="no">Braintree</span><span class="o">::</span><span class="no">Transaction</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">api_key: </span><span class="no">ENV</span><span class="p">[</span><span class="s2">"BRAINTREE_API_KEY"</span><span class="p">])</span>
+<span class="k">end</span>
+
+<span class="n">service</span> <span class="ss">:credit_cards</span> <span class="k">do</span>
+  <span class="no">Braintree</span><span class="o">::</span><span class="no">PaymentCard</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">api_key: </span><span class="no">ENV</span><span class="p">[</span><span class="s2">"BRAINTREE_API_KEY"</span><span class="p">])</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>This way, any other service that needs access to this can be sure to get the properly configured objects.  The real benefit, however, is in our tests.</p>
+
+<p>Instead of mocking classes, or using code like <code class="highlighter-rouge">allow_any_instance_of</code>, Rails takes care of all that.  Since Rails now knows what your services needs to do its job, it can intelligently mock the behavior of
+those objects and allow you to test your code in isolation.</p>
+
+<p>For example, to test our <code class="highlighter-rouge">purchase!</code> method, we need to arrange for <code class="highlighter-rouge">payment_transaction</code> to return a successful result, and check that the right mailer method was called.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">PurchaserTest</span> <span class="o">&lt;</span> <span class="no">ActiveService</span><span class="o">::</span><span class="no">Test</span><span class="o">::</span><span class="no">Base</span>
+  
+  <span class="k">def</span> <span class="nf">test_purchase_succeeded</span>
+    <span class="n">successful_transaction</span> <span class="o">=</span> <span class="n">stub</span><span class="p">(</span><span class="n">success?</span><span class="p">:</span> <span class="kp">true</span><span class="p">)</span>    
+
+    <span class="n">order</span>    <span class="o">=</span> <span class="n">orders</span><span class="p">(</span><span class="ss">:any</span><span class="p">)</span>    <span class="c1"># we'll talk about these</span>
+    <span class="n">customer</span> <span class="o">=</span> <span class="n">customers</span><span class="p">(</span><span class="ss">:any</span><span class="p">)</span> <span class="c1"># later on in the presentation</span>
+    
+    <span class="n">purchaser</span><span class="p">.</span><span class="nf">payment_transaction</span><span class="p">.</span><span class="nf">on</span><span class="p">(</span><span class="ss">:new</span><span class="p">).</span><span class="nf">returns</span><span class="p">(</span><span class="n">successful_transaction</span><span class="p">)</span>
+
+    <span class="n">purchaser</span><span class="p">.</span><span class="nf">purchase!</span><span class="p">(</span><span class="n">customer</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
+    
+    <span class="n">purchaser</span><span class="p">.</span><span class="nf">order_mailer</span><span class="p">.</span><span class="nf">verify</span><span class="p">(</span><span class="ss">:receipt_email</span><span class="p">).</span><span class="nf">with</span><span class="p">(</span><span class="n">customer</span><span class="p">,</span><span class="n">order</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>No matter how much code you write as services, Rails 6 will make it easy to keep your code clean, simple, and tested.</p>
+
+<p>We’d like to talk about the fixture-like code above, but first we need to learn about how Rails 6 treats your database.</p>
+
+<h2 id="rails-and-databases-its-complicated">Rails and Databases: It’s Complicated</h2>
+
+<p>One thing we’ve come to understand over the years is that Rails is just a piece of your technical architecture.  The days of one company having exactly one Rails app that controls one database are increasingly rare.  What we’ve also seen is that in most cases, the <em>data</em> is more important than code.  Many companies use Rails to create applications that, at their core, manage the data in a database.  This is very much what Rails was originally designed to do!</p>
+
+<p>Rails 6 is now much more opinionated about how you should manage your data and interact with your database.  Instead of a “common denominator” approach, Rails 6 is designed to get the most out of your data
+store—whichever brand it might be.</p>
+
+<p>To state this another way, we want good database design to be easy but bad design to be possible.</p>
+
+<p>In Rails 6, we’re making the following changes:</p>
+
+<ul>
+  <li>Columns are no longer nullable by default.</li>
+  <li>Numeric-based enums are deprecated.  If your database supports enums, those are used, otherwise string-based enums are the default.</li>
+  <li>Foreign keys have constraints by default, if your database supports it.</li>
+  <li>Primary keys are UUIDs by default, if your database supports it.</li>
+  <li>There is a new DSL for check constraints, if supported by your database, that also create equivalent ActiveRecord validations in the related model.</li>
+</ul>
+
+<p>These new defaults and features will keep the migrations DSL just as easy to use as it’s ever been, but result in a consistent, resilient, well-designed database that works great with Active Record.</p>
+
+<p>Making this happen isn’t easy, and the biggest trickle-down affect it had is the way we manage test data.</p>
+
+<h2 id="test-data">Test Data</h2>
+
+<p>Test data comes in two flavors: reference data that is mostly immutable throughout an app’s lifetime (think: country codes), and transactional data, which is the data the app exists to manage (for example, orders).</p>
+
+<p>Reference data can be managed with fixtures, however transactional data will now be managed with <em>factories</em>.</p>
+
+<p>It’s too difficult to manage one single set of test data that works for every test case.  Instead, each use-case for your data will be described by a factory.  You can create a global repository of factories—similar to what you might do with FactoryGirl—or you can create factories directly in your test cases.</p>
+
+<p>By default, however, objects created with factories won’t be written to the database.  This will make your tests run much faster, because you typically just need to test logic—not Active Record.</p>
+
+<p>One problem with this approach, however, is that it’s possible to create use-case-based factories that could never happen in production.  This is why Rails 6 includes a standard linting task that will write all your factories to the database, to ensure that your scenarios actually could exist in the real world.</p>
+
+<p>We also have a few more changes in how to write tests for Rails apps.</p>
+
+<h2 id="testing-20">Testing 2.0</h2>
+
+<p>In Rails 6, there will now be only three types of tests.</p>
+
+<p><em>Unit Tests</em> do not use the database by default, and are where the majority of your tests should be written.  The code tested here would be any of your business logic in your models or services.  These are in <code class="highlighter-rouge">test/unit/{models,mailers,jobs,services}</code>.</p>
+
+<p>For testing scopes, or other code that runs database queries, Rails 6 supports <em>active record tests</em>.  We expect these to be infrequent, but it’s difficult to test database queries without executing against real data.  These live in <code class="highlighter-rouge">test/active_records</code>.</p>
+
+<p>Finally, Rails 6 integration test support will be based on end-to-end in-browser testing using PhantomJS.  You’ll never have confidence in your web application until you’ve used it in a real web browser.  We realize these types of tests can be slow, but we’ve rarely seen a Rails app that doesn’t need them.  They will live in <code class="highlighter-rouge">test/integrations</code>.</p>
+
+<h2 id="thats-it">That’s It!</h2>
+
+<p>We hope you’re as excited for Rails 6 as we are.  This is going to be the best release of Rails yet.</p>
+
+<hr />
+
+<h2 id="afterword">Afterword</h2>
+
+<p>I know this is a fantasy.  I also know that the amount of work outlined here is massive.  But I strongly feel that features <em>like</em> the ones I’ve made up would address common things faced by all Rails developers.  Heck, these are issues faced by any web application developer, and Ruby is one of the few languages where solutions can be easily provided out of the box.</p>
+
+<p>Maybe my particular solutions aren’t the best, and there are certainly many issues my hand-wavy features aren’t addressing that might make them really difficult to actually implement.</p>
+
+<p>But, wouldn’t it be amazing if Rails 6 shipped with features kinda like this?  Wouldn’t it be awesome if Rails 6 acknowledged the community’s collected learnings over the last 10 years, and acknowledged that Rails is actually really awesome at things other than what a small team can accomplish?  Wouldn’t be great if Rails acknowledged advances made outside the Rails community?</p>
+
+<p>I do wonder if this is even possible.  Can Rails make such fundamental changes any longer?  Even if we set aside the technical challenges—which are huge—could the culture of Rails (and its maintainers) allow these things to happen?  <em>Should</em> they?</p>
+
+<p>Let’s say it <em>did</em>.  Let’s say Rails 6 was the revolutionary release I’m pretending it is.  Would that put Rails back in the spotlight?  Would that make Rails the go-to web framework for web development?  Would CTOs start thinking about Rails again?</p>
+
+<p>I don’t know.</p>
+
+<p>What I do know is that we all better prepare ourselves to write a lot more JavaScript if things don’t change.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[The 'Type Wars' Are Far From Over]]></title>
@@ -700,20 +1010,6 @@ to name controllers?  It is meeting our need for consistency (in those areas :).
 
 <p>On the one hand, we are far too accepting of tools that barely meet our needs.  But, I also think that if we start to think
 about what our needs are, it can drive us to make better decisions about the software we use and the code we write.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[My Talk from Full Stack Toronto 2015]]></title>
-    
-    <link href="https://www.youtube.com/watch?v=QbUZnb0rPdY&feature=youtu.be&a"/>
-    
-    <updated>2015-11-30T00:00:00-05:00</updated>
-    <id>http://naildrivin5.com/blog/2015/11/30/my-talk-from-full-stack-toronto-2015</id>
-    <content type="html"><![CDATA[<p>My talk from <a href="https://fsto.co/">Full Stack Toronto</a>, called “Rails, Postgres, Angular, and Bootstrap - The Power Stack” is up, where I make the case for using not just using a CSS framework, an MVC framework, a
-middleware framework, and an amazing database, but for using Bootstrap, Angular, Rails, and Postgres <strong>and</strong> using them together.</p>
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/QbUZnb0rPdY" frameborder="0" allowfullscreen=""></iframe>
 ]]></content>
   </entry>
   
