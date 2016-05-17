@@ -1,4 +1,6 @@
 ruby:
+  - title: "Can Time-Travel Keep You From Blowing Up The Enterprise?"
+    link: "https://speakerdeck.com/davetron5000/can-time-travel-keep-you-from-blowing-up-the-enterprise"
   - title: "Rails, Postgres, Angular, and Bootstrap: The Power Stack"
     link: "https://speakerdeck.com/davetron5000/rails-postgres-angular-and-bootstrap-the-power-stack"
   - title: "You Might Are Gonna Need It: Avoiding the MonoRail"
