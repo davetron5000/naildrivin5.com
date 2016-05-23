@@ -2,6 +2,15 @@
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
     <url>
+      <loc>http://naildrivin5.com/blog/2016/05/23/test-behavior-not-configuration.html</loc>
+      
+        <lastmod>2016-05-23T08:00:00-04:00</lastmod>
+      
+      <changefreq>weekly</changefreq>
+      <priority>1.0</priority>
+    </url>
+  
+    <url>
       <loc>http://naildrivin5.com/blog/2016/05/17/announcing-rails-6-an-imagined-roadmap.html</loc>
       
         <lastmod>2016-05-17T12:00:00-04:00</lastmod>
