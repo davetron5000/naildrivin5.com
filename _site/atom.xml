@@ -4,13 +4,29 @@
   <title><![CDATA[naildrivin5.com - David Bryant Copeland's Website]]></title>
   <link href="http://naildrivin5.com/atom.xml" rel="self"/>
   <link href="http://naildrivin5.com/"/>
-  <updated>2016-05-23T08:46:36-04:00</updated>
+  <updated>2016-05-31T11:03:23-04:00</updated>
   <id>http://naildrivin5.com/</id>
   <author>
     <name><![CDATA[David Bryant Copeland]]></name>
     <email><![CDATA[davec@naildrivin5.com]]></email>
   </author>
 
+  
+  <entry>
+    <title type="html"><![CDATA[My talk on scaling Rails from RailsConf 2016]]></title>
+    
+    <link href="http://confreaks.tv/videos/railsconf2016-can-time-travel-keep-you-from-blowing-up-the-enterprise"/>
+    
+    <updated>2016-05-31T00:00:00-04:00</updated>
+    <id>http://naildrivin5.com/blog/2016/05/31/scaling-rails-talk-from-railsconf</id>
+    <content type="html"><![CDATA[<p>I gave a talk at <a href="http://railsconf.com/">RailsConf ‘16</a> called “Can Time-Travel Keep You From Blowing Up the Enterprise”.  The talk is really about scaling Rails on a growing team, and attempts to stop the discussion around “monolith vs microservices” by showing how a team can take hold of its destiny.</p>
+
+<p>It’s also the exact way Stitch Fix engineering evolved, and while we have some large Rails apps, none are the monstrosities I’ve seen elsewhere.</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/23NhP4x3AAE" frameborder="0" allowfullscreen=""></iframe>
+<p> </p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Test Behavior, not Configuration]]></title>
@@ -958,26 +974,6 @@ flakiness:</p>
 <blockquote>
   <p>The other thing I’ve realized is that you cannot address these issues with entirely technical solutions. You have to account for these realities in the design of your product.</p>
 </blockquote>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Rails, Angular, Postgres, and Bootstrap is in print!]]></title>
-    
-    <link href="https://pragprog.com/book/dcbang/rails-angular-postgres-and-bootstrap"/>
-    
-    <updated>2016-01-22T08:11:00-05:00</updated>
-    <id>http://naildrivin5.com/blog/2016/01/22/rails-angular-postgres-bootstrap-in-print</id>
-    <content type="html"><![CDATA[<p>About a year ago, <a href="https://pragprog.com">PragProg</a> approached me to see if I was working on anything book-worthy.  I’d just created https://angular-rails.com to document
-the pain of configuring Rails to do something it clearly didn’t want to do—let you write an application with lots of front-end.  Meanwhile, I’d been
-learning more and more how great Postgres is.</p>
-
-<p>The result is my new book “Rails, Angular, Postgres, and Bootstrap: Powerful, Effective, and Efficient Full-Stack Web Development”.  It’s been in beta for
-a while, but official print verison is now for sale.</p>
-
-<p>You can <a href="https://pragprog.com/book/dcbang/rails-angular-postgres-and-bootstrap">buy it</a> now and start embracing the <em>full</em> stack of web development using
-some awesome tools that will serve you well for years to come!</p>
 
 ]]></content>
   </entry>
