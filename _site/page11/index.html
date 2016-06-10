@@ -30,12 +30,13 @@
     
       
         
-        More Clean Tests: Handling Mocks &amp; Block-based asserts
+        Avoid the Kingdom of Nouns with Procs
         
-        January 16, 2012
+        January 30, 2012
       
       
- ...">
+        
+          Hop...">
   
 
   
@@ -66,6 +67,28 @@
     <section>
       <div class="blog-index">
   
+  
+  
+    <article>
+      <header>
+        
+        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2012/01/30/avoid-kingdom-of-nouns-with-procs.html">Avoid the Kingdom of Nouns with Procs</a></h1>
+        
+        <h2 class="f6 mtneg">January 30, 2012</h2>
+      </header>
+      
+        <section class="mb1">
+          <div class="excerpt"><p>Hopefully you’ve read Steve Yegge’s excellent <a href="http://steve-yegge.blogspot.com/2006/03/execution-in-kingdom-of-nouns.html">kingdom of nouns</a> essay, in which he bemoans a pattern that exists in a lot of Java-base systems.  The tell-tale sign is a class named <code class="highlighter-rouge">ThingDoer</code> with a single method <code class="highlighter-rouge">doThing()</code>.  Systems like this don’t arise simply because Java is the way it is, but when you follow <a href="http://en.wikipedia.org/wiki/SOLID_(object-oriented_design)">SOLID</a> principles (particularly the <a href="http://en.wikipedia.org/wiki/Single_responsibility_principle">single responsibility</a> and <a href="http://en.wikipedia.org/wiki/Dependency_injection">dependency inversion</a> principles), your code ends up with lots of small classes that do one thing only.</p>
+
+<p>In Java, you are basically stuck with this, but in Ruby (or any OO language that supports closures/blocks/functions), we can fight this by using Procs instead of classes.</p>
+
+</div>
+          <footer class="mb2 text-l">
+            <a rel="full-article" class="no-ul pill" href="/blog/2012/01/30/avoid-kingdom-of-nouns-with-procs.html">Read More…</a>
+          </footer>
+        </section>
+      
+    </article>
   
   
     <article>
@@ -307,43 +330,6 @@ Reading Wikipedia <a href="http://en.wikipedia.org/wiki/Flashpoint_(comics)">sum
             <a rel="full-article" class="no-ul pill" href="/blog/2011/08/07/end-of-reference-curation-ftw.html">Read More…</a>
           </footer>
         </section>
-      
-    </article>
-  
-  
-    <article>
-      <header>
-        
-        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2011/08/01/why-i-wont-work-for-google-twitter-facebook.html">Why I'd never work for Google, Twitter, or Facebook</a></h1>
-        
-        <h2 class="f6 mtneg">August 01, 2011</h2>
-      </header>
-      
-        
-          <section class="section-break complete-article mb1">
-            <p>Just got back from OSCON 2011.  There were some really interesting talks, and “the big three” were all over the place: Google, Twitter, and Facebook.  I attended the <a href="http://www.oscon.com/oscon2011/public/schedule/detail/20528">Twitter talk</a> on how they moved from Ruby to the JVM, as well a talk by Rob Pike (of Google) on <a href="http://www.oscon.com/oscon2011/public/schedule/detail/18653">Go</a>.  I use Twitter and Google a <em>lot</em>, and enjoyed hearing about how they work (Facebook, on the other hand, I use begrudgingly).</p>
-
-<p>My first reaction to these talks was “Wow, it sure sounds like a lot of fun to work at these places!” From inventing programming languages to using Scala to scale a massive architecture, it sounds like developer shangri-la.  Until recently, I was slinging <a href="/blog/2010/01/09/Top-5-Omissions-From-Spring-MVC.html">Spring MVC</a> code in vanilla Java.  Sucks for me, right?</p>
-
-<p>This is lazy thinking, and I haven’t fallen victim to it in quite a while.  Ask yourself: “Why would Google spend the time and money to get Rob Pike to work for them and invent an entirely new programming language?”  Ask: “Why would Twitter spend the time and money to design and deploy an elegant, scalable architecture using the JVM and Scala?”</p>
-
-<p>An awesome new programming language, or an impressive, scalable architecture is not an end to itself.  These are tools that serve some other purpose.</p>
-
-<p>In the case of Google, Twitter, and Facebook, that purpose is to serve ads.</p>
-
-<p>Although <a href="http://www.youtube.com/watch?v=vKmQW_Nkfk8">Steve Yegge’s</a> keynote features him “quitting” his project at Google (which he describes as “sharing cat pictures”) to work on some higher calling (still within Google), he’s just trading one ad-serving system for another.</p>
-
-<p>Google+ isn’t about sharing cat pictures, it’s about serving ads.  Twitter’s massive network of 140-character bits of information isn’t about connecting people across the globe or to view current trends in worldwide thinking, it’s about serving ads.  Facebook isn’t about entertaining yourself with games or sharing interesting links, it’s about serving ads.</p>
-
-<p>So, why are the best and brightest in the industry busting their asses to work at these places?   If all you care about is watching performance metrics increase, or playing with something new, or just watching lots of tests pass, I guess it’s nice to get paid well.  But, how can this be truly fulfilling?  For me, it wouldn’t be.  I need the tools I’m building, the products I work on, and the architecture I’m helping to create to all serve something I’m interested in.</p>
-
-<p>I’m not saying that my code needs to save the world or support humanitarian causes, but it should at least be something that <em>I</em> like, or <em>I</em> would use, or that <em>I</em> care about.</p>
-
-<p>And I can’t fucking abide advertisements.  Honestly, I don’t know anyone who does.  Except, apparently, a lot of really smart software engineers.</p>
-
-
-          </section>
-        
       
     </article>
   

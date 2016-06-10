@@ -4,13 +4,170 @@
   <title><![CDATA[naildrivin5.com - David Bryant Copeland's Website]]></title>
   <link href="http://naildrivin5.com/atom.xml" rel="self"/>
   <link href="http://naildrivin5.com/"/>
-  <updated>2016-06-08T11:51:49-04:00</updated>
+  <updated>2016-06-10T09:10:23-04:00</updated>
   <id>http://naildrivin5.com/</id>
   <author>
     <name><![CDATA[David Bryant Copeland]]></name>
     <email><![CDATA[davec@naildrivin5.com]]></email>
   </author>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Don't use the UNIX environment directly]]></title>
+    
+    <link href="http://naildrivin5.com/blog/2016/06/10/dont-use-ENV-directly.html"/>
+    
+    <updated>2016-06-10T00:00:00-04:00</updated>
+    <id>http://naildrivin5.com/blog/2016/06/10/dont-use-ENV-directly</id>
+    <content type="html"><![CDATA[<p>Getting configuration from the UNIX environment is a hallmark of <a href="http://12factor.net/">12-factor application design</a>, and is a great practice.  Problems arise, however, when your code is littered with direct references to it.  This is because the UNIX environment is a very poor database, but we need to treat it as a better one.</p>
+
+<!-- more -->
+
+<p>Instead of having your code that needs configuration grab values directly from the environment, you should use a lightweight abstraction layer that your code depends on.  This has three advantages:</p>
+
+<ul>
+  <li>It allows you to deal with the fact that the UNIX environment is essentially typeless.</li>
+  <li>It’s a centralized place for all default values needed for optional settings.</li>
+  <li>It’s a single place for things that might need to be configurable, but aren’t yet.</li>
+</ul>
+
+<h2 id="environment-variables-are-strings">Environment Variables are Strings</h2>
+
+<p>Most programming languages vend environment variables as strings.  This leads to errors like so:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">if</span> <span class="no">ENV</span><span class="p">[</span><span class="s2">"SOME_FLAG"</span><span class="p">]</span>
+  <span class="nb">puts</span> <span class="s2">"Flag enabled!"</span>
+<span class="k">else</span>
+  <span class="nb">puts</span> <span class="s2">"Flag disabled."</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>In Ruby, all non-nil, non-false values are “truthy”.  Since <code class="highlighter-rouge">ENV#[]</code> will only ever return either <code class="highlighter-rouge">nil</code> or a String, the “Flag disabled” path wil never execute:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>&gt; SOME_FLAG=false ./test.rb
+Flag enabled!
+</code></pre>
+</div>
+
+<p>This means that you have to coerce your environment variables to a type you want.  Often, developers do this:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">if</span> <span class="no">ENV</span><span class="p">[</span><span class="s2">"SOME_FLAG"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"true"</span>
+  <span class="nb">puts</span> <span class="s2">"Flag enabled!"</span>
+<span class="k">else</span>
+  <span class="nb">puts</span> <span class="s2">"Flag disabled."</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>This is somewhat verbose, easy to mess up, and creates other problems when you have someone who prefers “0” and “1” instead of “true” and “false”:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>&gt; SOME_FLAG=1 ./test.rb
+Flag disabled.
+</code></pre>
+</div>
+
+<p>If you have a layer between your code and the environment, you can handle that in a common way.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Settings</span>
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">some_flag?</span>
+    <span class="p">(</span><span class="s2">"1"</span><span class="p">,</span><span class="s2">"true"</span><span class="p">).</span><span class="nf">include?</span><span class="p">(</span><span class="no">ENV</span><span class="p">[</span><span class="s2">"SOME_FLAG"</span><span class="p">].</span><span class="nf">downcase</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="c1"># or maybe</span>
+
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">some_flag?</span>
+    <span class="n">boolean</span><span class="p">(</span><span class="s2">"SOME_FLAG"</span><span class="p">)</span>
+  <span class="k">end</span>
+
+<span class="kp">private</span>
+
+  <span class="k">def</span> <span class="nf">boolean</span><span class="p">(</span><span class="n">env_var</span><span class="p">)</span>
+    <span class="sx">%("1","true")</span><span class="p">.</span><span class="nf">include?</span><span class="p">(</span><span class="no">ENV</span><span class="p">[</span><span class="n">env_var</span><span class="p">].</span><span class="nf">downcase</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Your code then becomes much cleaner:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">if</span> <span class="no">Settings</span><span class="p">.</span><span class="nf">some_flag?</span>
+  <span class="nb">puts</span> <span class="s2">"Flag enabled!"</span>
+<span class="k">else</span>
+  <span class="nb">puts</span> <span class="s2">"Flag disabled."</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>It also works :)</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>&gt; SOME_FLAG=1 ./test.rb
+Flag enabled!
+&gt; SOME_FLAG=True ./test.rb
+Flag enabled!
+&gt; SOME_FLAG=false ./test.rb
+Flag disabled.
+</code></pre>
+</div>
+
+<p>With an abstraction layer, we can also handle default values for optional environment variables.</p>
+
+<h2 id="centralizing-defaults">Centralizing Defaults</h2>
+
+<p>Suppose we want to allow the configuration of a timeout for talking to our payment processor.  We have an idea of what the right value is, but we may need to tweak it in production, so we don’t want to have to do a code change every time.  So, we’ll grab it from the environment, but set a reasonable default.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Settings</span>
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">payment_processor_timeout</span>
+    <span class="no">ENV</span><span class="p">[</span><span class="s2">"PAYMENT_PROCESSOR_TIMEOUT"</span><span class="p">].</span><span class="nf">try</span><span class="p">(</span><span class="ss">:to_i</span><span class="p">)</span> <span class="o">||</span> <span class="mi">2000</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Not we have to use <code class="highlighter-rouge">try</code> because <code class="highlighter-rouge">nil.to_i</code> returns 0, not <code class="highlighter-rouge">nil</code>.  So, we’re saying “if a value has been set, coerce it to an integer, otherwise use 2000”.</p>
+
+<p>With such a system set up, you can use this to centralize all your application’s configurable bits, even if you don’t need or want them overridden by the environment.</p>
+
+<h2 id="centralizing-configuration">Centralizing Configuration</h2>
+
+<p>For example, you might be using S3 to store files, and want all code that uses S3 to use the same bucket, but you have no real need to configure that bucket in the environment.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Settings</span>
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">s3_bucket_name</span>
+    <span class="s2">"my-app-files"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>This now means the code that needs the bucket name can just ask the settings for it, and if you later need it to be configurable, it can easily be extracted from the environment.</p>
+
+<h2 id="isnt-this-a-solved-problem">Isn’t this a solved problem?</h2>
+
+<p>We use the <a href="https://github.com/modcloth/mc-settings">mc-settings</a> gem, that uses an ERB-ized YAML file:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="s">some_flag</span><span class="pi">:</span> <span class="s">&lt;%= ("1","true",).include?(ENV["SOME_FLAG"].downcase) %&gt;</span>
+<span class="s">payment_processor_timeout</span><span class="pi">:</span> <span class="s">&lt;%= ENV["PAYMENT_PROCESSOR_TIMEOUT"].try(:to_i) || 2000 %&gt;</span>
+<span class="s">s3_bucket_name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">my-app-files"</span>
+</code></pre>
+</div>
+
+<p>This allows us to write <code class="highlighter-rouge">Setting.some_flag</code>.  It even supports nested settings, like so:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="s">payment_processing</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">timeout</span><span class="pi">:</span> <span class="s">&lt;%= ENV["PAYMENT_PROCESSOR_TIMEOUT"].try(:to_i) || 2000 %&gt;</span>
+  <span class="pi">-</span> <span class="s">api_key</span><span class="pi">:</span> <span class="s">&lt;%= ENV["PAYMENT_PROCESSOR_API_KEY"] %&gt;</span>
+</code></pre>
+</div>
+
+<p>We can then do <code class="highlighter-rouge">Setting.payment_processing(:timeout)</code> to access the configured value.</p>
+
+<h2 id="conclusions">Conclusions</h2>
+
+<p>Don’t litter your code with references to the environment.  It’s easy to create bugs because the environment is a somewhat degenerate settings database.  It also makes your code harder to follower because you are using <code class="highlighter-rouge">SCREAMING_SNAKE_CASE</code> instead of nice, readable methods.  It also makes it hard to centralize type coercions and default values.</p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[My talk on scaling Rails from RailsConf 2016]]></title>
@@ -957,23 +1114,6 @@ painful, but your job at the end of the day is still trying to figure out what e
 
 <p>I’m not sure what it will take to produce truly higher-level abstractions for powerful technologies like JavaScript and SQL.  If the tools we have now are
 guilty of dishonesty, it’s mostly in overstating what problems they really solve.</p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[There is no Happy Path in Programming]]></title>
-    
-    <link href="http://multithreaded.stitchfix.com/blog/2016/01/29/no-happy-path-in-programming/"/>
-    
-    <updated>2016-01-29T09:02:00-05:00</updated>
-    <id>http://naildrivin5.com/blog/2016/01/29/there-is-no-happy-path-in-programming</id>
-    <content type="html"><![CDATA[<p>Writing on the Stitch Fix blog about how feature and product design <a href="http://multithreaded.stitchfix.com/blog/2016/01/29/no-happy-path-in-programming/">can’t just focus on the “happy path”</a>, but must account for, among other things, network
-flakiness:</p>
-
-<blockquote>
-  <p>The other thing I’ve realized is that you cannot address these issues with entirely technical solutions. You have to account for these realities in the design of your product.</p>
-</blockquote>
 
 ]]></content>
   </entry>
