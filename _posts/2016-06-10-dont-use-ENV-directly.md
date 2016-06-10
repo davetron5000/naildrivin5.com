@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Don't use the UNIX environment directly"
+title: "Don't Use the UNIX Environment Directly"
 date: 2016-06-10
 ---
 
