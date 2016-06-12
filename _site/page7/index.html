@@ -30,13 +30,13 @@
     
       
         
-        The Painful World of JavaScript Testing
+        Getting OmniAuth with Google Apps to Work on Heroku
         
-        April 10, 2013
+        April 29, 2013
       
       
         
-          One...">
+ ...">
   
 
   
@@ -67,6 +67,75 @@
     <section>
       <div class="blog-index">
   
+  
+  
+    <article>
+      <header>
+        
+        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2013/04/29/getting-omniauth-with-google-apps-to-work-on-heroku.html">Getting OmniAuth with Google Apps to Work on Heroku</a></h1>
+        
+        <h2 class="f6 mtneg">April 29, 2013</h2>
+      </header>
+      
+        <section class="mb1">
+          <div class="excerpt"><p>At <a href="http://www.stitchfix.com">Stitch Fix</a>, we outsource pretty much <em>all</em> of our hosting and technical needs to Heroku or their add-ons.  Given
+where we are now as a company, it makes total sense: we don’t need to hire an admin, we don’t need to adminster actual boxes, and
+we can easily add/remove/change our technical infrastructure.  If you are a small startup and you are messing with Linode slices,
+   you are probably wasting time.</p>
+
+<p>One thing Heroku doesn’t provide out of the box is a login system for “internal” users.  The vast majority of the software at
+Stitch Fix is targeted at Stitch Fix employees - to operate the warehouse, choose what goes into a fix, etc.  The natural way to
+allow them to login is via Google Apps.  We can use everyone’s existing username/password, and employees can be added during
+onboarding and removed when they leave the company, all in one place.</p>
+
+<p>Getting it to work with our Rails apps <em>seemed</em> easy enough with <a href="http://github.com/intridea/omniauth">OmniAuth</a>, but it turned out to be a lot trickier, resulting in
+random failures with the oh-so-helpful error “invalid_credentials”.  Here’s how to fix that, and why you can’t just use the
+out-of-box configurations recommend by OmniAuth.</p>
+
+</div>
+          <footer class="mb2 text-l">
+            <a rel="full-article" class="no-ul pill" href="/blog/2013/04/29/getting-omniauth-with-google-apps-to-work-on-heroku.html">Read More…</a>
+          </footer>
+        </section>
+      
+    </article>
+  
+  
+    <article>
+      <header>
+        
+        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2013/04/24/how-to-switch-to-vim.html">How to switch to Vim</a></h1>
+        
+        <h2 class="f6 mtneg">April 24, 2013</h2>
+      </header>
+      
+        <section class="mb1">
+          <div class="excerpt"><p>From time to time, I see people in my twitter stream attempting to switch to Vim.  This is a
+good thing.  The problem is that they appear to be viewing the switch as swapping out one
+tool for another.</p>
+
+<p>This is not what switching to Vim means, nor is it a good reason to switch.</p>
+
+<p>The reason to switch to Vim is to <em>work better</em>.  I realize “better” is subjective, but
+whatever way <em>you</em> define it is what it means - code faster, edit text more easily, automate
+your workflow, whatever.</p>
+
+<p>As such, switching to Vim is to <em>throw out</em> your old editor (or plan to) and replace it with
+a <em>different tool</em> that works differently and is, hopefully, better.  Stop asking for “a
+plugin that does XXX like Sublime Text does things”.  If Sublime Text has a plugin for what
+you want, you don’t need Vim.  Vim might very well have a plugin that does whatever XXX is,
+but it’s more likely that you don’t need a plugin, or that Vim provides a way to
+accomplish your <em>real</em> goal much more efficiently.</p>
+
+<p>Here’s how to make the move.</p>
+
+</div>
+          <footer class="mb2 text-l">
+            <a rel="full-article" class="no-ul pill" href="/blog/2013/04/24/how-to-switch-to-vim.html">Read More…</a>
+          </footer>
+        </section>
+      
+    </article>
   
   
     <article>
@@ -290,60 +359,6 @@ way?</p>
 </div>
           <footer class="mb2 text-l">
             <a rel="full-article" class="no-ul pill" href="/blog/2013/01/24/if-you-call-out-bad-code.html">Read More…</a>
-          </footer>
-        </section>
-      
-    </article>
-  
-  
-    <article>
-      <header>
-        
-        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2013/01/20/bad-programming-in-java-is-dangerous.html">Bad Programming in Java is Dangerous</a></h1>
-        
-        <h2 class="f6 mtneg">January 20, 2013</h2>
-      </header>
-      
-        <section class="mb1">
-          <div class="excerpt"><p>Saw a blog post this morning titled <a href="http://cafe.elharo.com/programming/java-programming/why-functional-programming-in-java-is-dangerous/">Why Functional Programming in Java is Dangerous</a>.  Author Elliotte Rusty Harold sets up
-the world’s worst straw man I’ve seen.  He talks about <a href="http://pragprog.com/magazines/2013-01/functional-programming-basics">Uncle Bob’s post</a> on the advantages of functional programming.
-Elliotte’s thesis is that Java and JVM just can’t handle this sort of thing, and then sets out to prove this with some terrible code that, unsurprisingly, is terrible.  He takes this bit of Clojure</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">(</span><span class="nb">take</span><span class="w"> </span><span class="mi">25</span><span class="w"> </span><span class="p">(</span><span class="nf">squares-of</span><span class="w"> </span><span class="p">(</span><span class="nf">integers</span><span class="p">)))</span><span class="w">
-</span></code></pre>
-</div>
-
-<p>And “re-implements” it in Java.  He does this by implementing <code class="highlighter-rouge">integers</code> to just allocate an array of all the integers.</p>
-
-<p>Yeah.</p>
-
-</div>
-          <footer class="mb2 text-l">
-            <a rel="full-article" class="no-ul pill" href="/blog/2013/01/20/bad-programming-in-java-is-dangerous.html">Read More…</a>
-          </footer>
-        </section>
-      
-    </article>
-  
-  
-    <article>
-      <header>
-        
-        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2013/01/07/what-dependency-injection-really-is.html">What Dependency Injection Really Is</a></h1>
-        
-        <h2 class="f6 mtneg">January 07, 2013</h2>
-      </header>
-      
-        <section class="mb1">
-          <div class="excerpt"><p>Both <a href="http://david.heinemeierhansson.com/2012/dependency-injection-is-not-a-virtue.html">DHH</a> and <a href="http://www.tbray.org/ongoing/When/201x/2013/01/06/Unit-testing-and-dependency-injection">Tim Bray</a> make great points about “dependency injection” and its issues regarding Ruby and
-testing.  My colleague <a href="http://weblog.therealadam.com/2013/01/03/design-for-test-vs-design-for-api/">Adam Keys</a> makes a similar point, though doesn’t call his anti-pattern “dependency injection”.</p>
-
-<p>The scare quotes are because neither DHH nor Tim are accurately representing the purpose of dependency injection.  Dependency
-Injection is not about a framework, XML, factories, or testing.  It’s about simplifying code.  Let’s see how.</p>
-
-</div>
-          <footer class="mb2 text-l">
-            <a rel="full-article" class="no-ul pill" href="/blog/2013/01/07/what-dependency-injection-really-is.html">Read More…</a>
           </footer>
         </section>
       

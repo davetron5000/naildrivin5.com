@@ -4,7 +4,7 @@
   <title><![CDATA[naildrivin5.com - David Bryant Copeland's Website]]></title>
   <link href="http://naildrivin5.com/atom.xml" rel="self"/>
   <link href="http://naildrivin5.com/"/>
-  <updated>2016-06-10T09:10:23-04:00</updated>
+  <updated>2016-06-12T12:58:28-04:00</updated>
   <id>http://naildrivin5.com/</id>
   <author>
     <name><![CDATA[David Bryant Copeland]]></name>
@@ -13,7 +13,48 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Don't use the UNIX environment directly]]></title>
+    <title type="html"><![CDATA[Imagined Rails 6: No More Per-View CSS]]></title>
+    
+    <link href="http://naildrivin5.com/blog/2016/06/13/imagined-rails-6-no-more-per-view-css.html"/>
+    
+    <updated>2016-06-13T00:00:00-04:00</updated>
+    <id>http://naildrivin5.com/blog/2016/06/13/imagined-rails-6-no-more-per-view-css</id>
+    <content type="html"><![CDATA[<p>This is a series of posts about <a href="http://naildrivin5.com/blog/2016/06/12/why-did-i-recommend-XX-for-rails-6.md">why I recommended the changes I did for Rails 6</a>, in my <a href="http://naildrivin5.com/blog/2016/05/17/announcing-rails-6-an-imagined-roadmap.html">imagined keynote
+for Rails 6</a>.</p>
+
+<p>In this one, we’ll explore why I recommended the removal of per-view CSS and the inclusion of an “OOCSS”-style framework.</p>
+
+<!-- more -->
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Why did I Recommend What I Did for Rails 6?]]></title>
+    
+    <link href="http://naildrivin5.com/blog/2016/06/12/why-did-i-recommend-XX-for-rails-6.html"/>
+    
+    <updated>2016-06-12T00:00:00-04:00</updated>
+    <id>http://naildrivin5.com/blog/2016/06/12/why-did-i-recommend-XX-for-rails-6</id>
+    <content type="html"><![CDATA[<p>In my <a href="http://naildrivin5.com/blog/2016/05/17/announcing-rails-6-an-imagined-roadmap.html">imagined keynote for Rails 6</a>, I imagined a lot of wacky new features for Rails.  My Rails 6 had lots of big changes, and I thought it might be interesting to dig into why I think those changes are useful for Rails.</p>
+
+<!-- more -->
+
+<p>First, I very much feel that Rails should continue to have opinions, and to embody those opinions in the framework.  It seems logical for me that as the shared body of knowledge around web development increases, Rails should bring the best of those practices to the framework.</p>
+
+<p>I view Rails’ strength as removing decisions that aren’t relevant to getting your work done.  For example, I don’t care what the name of a primary key is, I just need it to be consistent in the system. Therefore, I shouldn’t have to make a decision about it.  Similarly, I don’t want to have to decide the names of the directories where code goes, I’m fine if there is a consistent, framework-enforced standard.</p>
+
+<p>To my mind, then, it stands to reason that as more and more practices become common, Rails should incorporate them into the framework, each time removing a decision a future developer has to make that isn’t relevant to the task at hand.</p>
+
+<p>A great, and simple example is presenters.  Developers have recognized that views often need to expose more data than is in an Active Record and that sometimes that data is view-specific.  There are myriad gems to address this.  They are all more or less the samed, and they all seem to indicate that developers are making pointless decisions—which presenter framework or pattern should I use?  If Rails adopted such as mechanism, it would remove that decision for most developers and be a win for the framework and its users.</p>
+
+<p>So, let’s explore my imagined features/changes to Rails.  We’ll go in order of the keynote, and each bit will be its own blog post. I’ll update this post with links to the posts as I post them.</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Don't Use the UNIX Environment Directly]]></title>
     
     <link href="http://naildrivin5.com/blog/2016/06/10/dont-use-ENV-directly.html"/>
     
@@ -965,156 +1006,6 @@ understand and easier to change. It also alleviates you from stressing about par
 </blockquote>
 
 <p>The issue is a couple bucks. Check out the other contents <a href="http://theprosegarden.com/contents-of-recent-issues/#03-16">here</a>.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[More on Leveling Up]]></title>
-    
-    <link href="http://naildrivin5.com/blog/2016/03/02/more-on-levelling-up.html"/>
-    
-    <updated>2016-03-02T09:00:00-05:00</updated>
-    <id>http://naildrivin5.com/blog/2016/03/02/more-on-levelling-up</id>
-    <content type="html"><![CDATA[<p>This interesting piece from Will Hughes titled <a href="https://medium.com/@willh/how-to-level-up-as-a-developer-87344584777c#.nxkkh5mz6">How to Level up as a Developer</a> was a great read, but it focuses too much on
-<a href="http://naildrivin5.com/blog/2013/12/03/org-charts-and-diff-production.html">“developer-as-producer-of-diffs”</a> and not enough on “developer-as-solver-of-problems”.  Although I’ve written in detail in my book <a href="http://theseniorsoftwareengineer.com/">“The Senior
-Software Engineer”</a> what I think you need to do to be a great developer, I’m going to augment and modify some of the specific points Will makes.</p>
-
-<!-- more -->
-
-<h2 id="level-1-reduce-unnecessary-distractions">Level 1: Reduce Unnecessary Distractions</h2>
-
-<p>I totally agree with the advice here in spirit, however the guidance given isn’t quite right for me.  Chapter Ten in my book is titled “Be Responsive and Productive” and it
-addresses this issue.  First, you have to understand that your job as a developer is not entirely about producing code.  As a developer, you have
-expertise that no one else has, and you must often share that expertise in ways <em>other</em> than writing code.  This means emails, conversations, and, yes,
-meetings.</p>
-
-<p>If you push back on “all recurring meetings” as the developer quoted in Will’s piece maintains, you will limit your effectiveness and end up being a ticket-taker with no real agency or input into the work you are
-doing.  Here are the regular meetings developers at Stitch Fix have:</p>
-
-<ul>
-  <li>1-1 with their manager (weekly or every-other-week)</li>
-  <li>All-team tech meeting (every other week)</li>
-  <li>All-hands engineering meeting (every other week)</li>
-  <li>Team roadmap planning with business partners (every week)</li>
-  <li>Sync with business partners on project (weekly)</li>
-</ul>
-
-<p>This may seem like a lot, but these meetings are crucial.  Having dedicated time with your manager every week is important.  So is having a
-weekly time to talk with the people for whom you are building software about priorities.  And if you aren’t part of these discussions, they are still going
-to happen, but they will lack your input.  That could go bad for you.</p>
-
-<p>That said, some people <em>do</em> default to meetings instead of trying to use email.  In those cases, it’s fine to “push back” and try to solve the issue
-asynchronously, but you also have to understand that not everyone is effective at written communication.  So, while you could lead such a person through a
-multi-email exchange to get to the issue at hand, it might be easier to have a 10 minute conversation.</p>
-
-<p>The rest of the stuff in “Level 1” is great.  As I’ve mentioned many times, using Test-driven development is a great way to save state when you need to get
-interrupted.  It’s also worth spending time <a href="http://naildrivin5.com/blog/2013/07/23/agile-email-management.html">getting really good at email</a> so it’s never a distraction.</p>
-
-<h2 id="level-2-write-better-diffs">Level 2: Write “Better” Diffs</h2>
-
-<p>While I don’t disagree with the advice here, it misses the forest for the trees.  Your job as a developer is not to get your code changes “easily
-accepted”.  Your job is to solve the problem in front of you, and sometimes it takes a larger diff to do that.  If you focus, instead, on breaking up your
-work as a series of small “digestible” diffs, there will never be an occasion to review your <em>actual</em> change.  It might be possible to ship something
-terribly designed—or just plain buggy—by obscuring the true nature of what you are doing as a bunch of small diffs.</p>
-
-<p>Of course, spending weeks in a hole and producing an enormous diff is also not good.  You should strive to deliver a series of tiny solutions to tiny
-problems, but at the end of the day, the size of your diff will be commensurate with the size of the problem you are solving (or bigger, depending on the quality of the codebase).  Do not optimize for getting a
-thumbs-up.</p>
-
-<p>In terms of getting feedback, it highly depends on the culture of your company, but there are three techniques I find useful:</p>
-
-<ul>
-  <li>Write clean code as much as possible.  Spend a bit of extra time <a href="http://naildrivin5.com/blog/2012/10/05/making-it-right-technical-debt-vs-slop.html">making it right</a>.</li>
-  <li>Write tests. Will calls this out, but couches it as optional.  Tests are not optional.  They are the way you know your code works as intended.</li>
-  <li><a href="http://naildrivin5.com/blog/2012/04/02/a-protocol-for-code-reviews.html">Comment on your diff/pull request</a> before asking for feedback.  This allows you to attach plain language explanations of what’s going on without using code comments. It also allows you to ask pointed questions about specific bits of code, which helps reviewers know what to look for.</li>
-</ul>
-
-<p>The advice in “Communicate” is spot-on.  Throwing up a diff without context does no one any good.  Spend 10 minutes of your life making things easier for your team-mates.</p>
-
-<p>Which leads to Will’s Level 3.</p>
-
-<h2 id="level-3-being-a-team-player">Level 3: Being a Team Player</h2>
-
-<p>This is all good, particularly, “Admit What you Don’t Know”.  You should become very comfortable with this, because a) you’ll learn things this way and b) it’s a good signal to a code’s author that maybe there code isn’t clear enough.</p>
-
-<p>I would also not shy away from “nitpicky” code comments.  If a change is mostly pretty good and there are no major issues, nitpicky comments about
-formatting and consistency are fair game.  Most developers want their code to be consistent like most writers want to be using proper grammar and spelling.
-Point it out—politely—and most developers will fix.  If they disagree, don’t die on that hill, but most of the time it’s appreciated.  That said, if a pull request or diff has larger issues, do not waste time on
-nitpicky stuff; let the author deal with the larger issues first.</p>
-
-<h2 id="level-4-organize--hustle">Level 4: Organize &amp; Hustle</h2>
-
-<p>This section is great, too.  I want to expand on “work/life balance”.  You need to establish early on what the expectation is of the hours you should be
-online and responding to email or interacting with others.  Whenever that is, you absolutely <em>must</em> do your best to be present during those hours.
-<em>Hopefully</em>, they are fewer than eight hours, so you can allocate the rest of your work time to whenever suits you best.</p>
-
-<p>Beyond that, you have to set boundaries with your co-workers and manager about when you will and won’t be working.  Unless your manager is <em>very</em>
-conscientious, they will not complain about you working “too many” hours.  You have to limit it.  You can do this by simply setting strict work hours.  Or,
-if you tend to work at different or odd times of the day, be vocal about that.  Make sure everyone knows that e.g. just because you were working at
-10:00pm, that didn’t mean you were working all day.</p>
-
-<h2 id="parting-thoughts">Parting Thoughts</h2>
-
-<p>I say this a lot, but the best thing you can do as a developer is to understand the problem you are trying to solve.  And be honest about it.</p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Dishonest Abstractions are Not Abstractions]]></title>
-    
-    <link href="http://naildrivin5.com/blog/2016/02/22/dishonest-abstractions-are-not-abstractions.html"/>
-    
-    <updated>2016-02-22T09:00:00-05:00</updated>
-    <id>http://naildrivin5.com/blog/2016/02/22/dishonest-abstractions-are-not-abstractions</id>
-    <content type="html"><![CDATA[<p><a href="https://twitter.com/erniemiller">Ernie Miller</a> started a tweetstorm on Friday that really rang true to me, about how certain abstractions are “dishonest”.  In my mind, the dishonesty
-is calling them abstractions in the first place.</p>
-
-<!-- more -->
-
-<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">I&#39;ve been thinking a lot about honesty in software development lately. Not just honesty from people, but from technology.</p>&mdash; Ernie Miller (@erniemiller) <a href="https://twitter.com/erniemiller/status/700705128484106240">February 19, 2016</a></blockquote>
-<script async="" src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-<blockquote class="twitter-tweet" data-conversation="none" data-lang="en"><p lang="en" dir="ltr">I think this general sense of honesty is at the core of my feelings about, e.g., HAML/SASS/CoffeeScript vs ERB/SCSS/ES2015.</p>&mdash; Ernie Miller (@erniemiller) <a href="https://twitter.com/erniemiller/status/700706138581561345">February 19, 2016</a></blockquote>
-<script async="" src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">I had embraced them for their aesthetic appeal, but realized that I was really running from the technology I perceived them to replace.</p>&mdash; Ernie Miller (@erniemiller) <a href="https://twitter.com/erniemiller/status/700711070919426048">February 19, 2016</a></blockquote>
-<script async="" src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-<blockquote class="twitter-tweet" data-conversation="none" data-lang="en"><p lang="en" dir="ltr">But it was very surprising to me, then. I&#39;d get a stack trace listing JavaScript I hadn&#39;t written, or inspect an unexpected HTML element.</p>&mdash; Ernie Miller (@erniemiller) <a href="https://twitter.com/erniemiller/status/700712371606704128">February 19, 2016</a></blockquote>
-<script async="" src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-<p>These tweets really spoke to me, but I don’t think abstractions are “lies” per se.  Rather, I feel that the technologies listed (and others like them) are
-just really weak.  They don’t deliver complete solutions to the problems they are there to solve and are built on poor (or no) abstractions, such that they
-require more of the user than they ultimately give.</p>
-
-<p>CoffeeScript is the simplest example of this. It’s a programming language that produces stack traces in a different programming language.  It requires almost the same amount of code as JavaScript and it doesn’t obviate the need to completely understand JavaScript.  Why would I want this?</p>
-
-<p>In a sense, HAML, SASS, CoffeeScript, etc. are nothing more than sophisticated <code class="highlighter-rouge">sed</code> scripts (or macro languages).  But this problem isn’t specific to
-front-end technologies.  AREL and Rails Migrations are two back-end examples.  They profess to “save you” from SQL, but you really can’t use them without
-understanding SQL, you can’t access the full power of your database with them, and you can’t debug what they are doing without knowing SQL.</p>
-
-<p>Compare this to writing C.  Do you need to know assembly language to write C?  For almost all cases, the answer is “no”.  Sure, there may be cases where you have to dig into the assembly to figure out a problem, but these are vanishingly small.</p>
-
-<p>Compare that to AREL or CoffeeScript where, as a matter of course, you must break through the “abstraction” to find out what’s going on.  You spend almost as much time in the “assembly language” (SQL, JavaScript), as you do in the “higher-level abstraction”.</p>
-
-<p>The scare quotes are intentional: to call HAML, CoffeeScript, and friends “abstractions” is to almost render the term meaningless.  They don’t
-abstract anything away from you on any real level.</p>
-
-<p>In <a href="https://pragprog.com/book/dcbang/rails-angular-postgres-and-bootstrap">my book</a>, I encourage the reader to use JavaScript and learn SQL, because the tools given to you by Rails aren’t abstractions—they are extra things
-to learn that provide at best a marginal increase in productivity, and that productivity only applies during the least time-consuming part of software
-development: typing in source code.</p>
-
-<p>These tools don’t meet <a href="http://naildrivin5.com/blog/2016/01/13/hierarchy-of-software-needs.html">any higher-order need</a> a developer has.  They provide the ability to execute code only and when compared to the
-technologies they replace, they appeal more to aesthetics than the ability to better deliver quality software.</p>
-
-<p>Web front-end technologies seem woefully stuck in this quagmire.  React gives you the ability to type markup that looks like a higher-order abstraction, but
-it’s still just a macro language for producing HTML that you must debug directly.  Yes, source maps and other browser extensions exist to make this less
-painful, but your job at the end of the day is still trying to figure out what events are firing on what DOM elements, and how CSS is being applied to them.</p>
-
-<p>I’m not sure what it will take to produce truly higher-level abstractions for powerful technologies like JavaScript and SQL.  If the tools we have now are
-guilty of dishonesty, it’s mostly in overstating what problems they really solve.</p>
-
 ]]></content>
   </entry>
   

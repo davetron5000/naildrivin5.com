@@ -30,9 +30,9 @@
     
       
         
-        Top 5 Shocking Omissions from Spring MVC
+        Reading a File in Scala vs. Java vs Ruby
         
-        January 09, 2010
+        January 26, 2010
       
       
         
@@ -67,6 +67,131 @@
     <section>
       <div class="blog-index">
   
+  
+  
+    <article>
+      <header>
+        
+        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2010/01/26/reading-a-file-in-scala-ruby-java.html">Reading a File in Scala vs. Java vs Ruby</a></h1>
+        
+        <h2 class="f6 mtneg">January 26, 2010</h2>
+      </header>
+      
+        
+          <section class="section-break complete-article mb1">
+            <p>
+Examining the code needed to read a file line by line is a a common way to examine the hoops a programming language makes you jump through.  While Perl certainly
+has some one-liners for this, let's start with Ruby, which presents an elegant and clear way of doing it:
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">File</span><span class="p">.</span><span class="nf">open</span><span class="p">(</span><span class="s2">"some_file.txt"</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">file</span><span class="o">|</span>
+  <span class="n">file</span><span class="p">.</span><span class="nf">readlines</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">line</span><span class="o">|</span>
+    <span class="nb">puts</span> <span class="n">line</span><span class="p">.</span><span class="nf">upcase</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre></figure>
+
+It really doesn't get any clearer than that.
+</p>
+<p>
+Here's the canonical Java way of doing it, complete with plenty of places to introduce bugs:
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ReadFile</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="n">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="o">{</span>
+    <span class="n">File</span> <span class="n">file</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="s">"some_file.txt"</span><span class="o">);</span>
+    <span class="n">BufferedReader</span> <span class="n">reader</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BufferedReader</span><span class="o">(</span>
+      <span class="k">new</span> <span class="n">FileReader</span><span class="o">(</span><span class="n">file</span><span class="o">));</span>
+    <span class="n">String</span> <span class="n">line</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="na">readLine</span><span class="o">();</span>
+    <span class="k">while</span> <span class="o">(</span><span class="n">line</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">line</span><span class="o">.</span><span class="na">toUpperCase</span><span class="o">());</span>
+      <span class="n">line</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="na">readLine</span><span class="o">();</span>
+    <span class="o">}</span>
+    <span class="n">reader</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+  <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+Yech.  The need to call <code>readLine()</code> twice kinda sucks.  We could use a do-while, but that requires a second <code>line != null</code> check.  Personally, I like to forget the second <code>readLine()</code> and wonder why my code runs forever :)  That being said, this was extremely easy to figure out, even the very first time I did it in 1998.  The class names are obvious, and the documentation is excellent.
+</p>
+<p>
+Scala to the rescue, right?
+
+<figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">import</span> <span class="nn">scala.io._</span>
+
+<span class="k">object</span> <span class="nc">ReadFile</span> <span class="k">extends</span> <span class="nc">Application</span> <span class="o">{</span>
+  <span class="k">val</span> <span class="n">s</span> <span class="k">=</span> <span class="nc">Source</span><span class="o">.</span><span class="n">fromFile</span><span class="o">(</span><span class="s">"some_file.txt"</span><span class="o">)</span>
+  <span class="n">s</span><span class="o">.</span><span class="n">getLines</span><span class="o">.</span><span class="n">foreach</span><span class="o">(</span> <span class="o">(</span><span class="n">line</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="o">{</span>
+    <span class="n">println</span><span class="o">(</span><span class="n">line</span><span class="o">.</span><span class="n">trim</span><span class="o">.</span><span class="n">toUpperCase</span><span class="o">)</span>
+  <span class="o">})</span>
+<span class="o">}</span></code></pre></figure>
+
+This was a slight pain figure out.  I looked in <code>scala.io</code> and, of the few classes that were there (including a curiously named <code>BytePickle</code>), it appeared as though <code>Source</code> was the class to use.  Of course, there's no easy way to create one from the constructor, and the scaladoc doesn't just say "Dude, look at the <code>Source</code> object".  Once I looked through the <code>Source</code> object's scaladoc, the solution presented itself.
+</p>
+<p>
+Of course, unlike every other line-traversing library in the known universe, <code>Source</code> leaves the line endings on.  This is thankfully fixed in 2.8 (by which I mean 2.8 breaks 2.7's implementation, which is a strange thing for a point release to do).  The real question is: "Is this how I'm supposed to read files in Scala?".  With a class called <nobr><code>Source?!</code></nobr>.  The scaladoc says that this class represents "an iterable representation of source files".  That might explain the strange methods like <code>reportError</code> and <code>reportWarning</code>.  I guess this is only for writing the Scala compiler?   If so, <code>scala.io</code> seems an odd place to put this.
+</p>
+<p>
+So, my answer is "No, this <strong>cannot</strong> be how to canonically read files in Scala".  Since the Java way kinda, well, sucks, what alternatives are there?  There's <code><a href="http://scalax.scalaforge.org/api/">scalax.io</a></code>, which seems to implement this as a class called, curiously, <code>FileExtras</code>.    I'm not sure if this code is actively maintained, but it's documented in classic Scala style: terse and full of loaded terms like "nonstrict". Nevertheless, there seems to be some code here to easily read a file "the easy way" (despite some distracting names).
+</p>
+<p>
+This points out a big difference between "Scala the language" and "Scala the library".  Scala the language is very interesting and has a lot of potential.  Scala the library is schizophrenic at best; it's not sure if it wants to be OO, functional, or what.  The documentation ranges from sparse to absent, and the overall designs of the classes and package range for sublime to baffling.  Years different from Java 1.1.
+</p>
+
+          </section>
+        
+      
+    </article>
+  
+  
+    <article>
+      <header>
+        
+        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2010/01/24/unicode-domain-names.html">Unicode in Your Domain Names</a></h1>
+        
+        <h2 class="f6 mtneg">January 24, 2010</h2>
+      </header>
+      
+        
+          <section class="section-break complete-article mb1">
+            <p>
+Got a few questions about how I set up <a href="http://&#10106;&#10144;.ws/">&#10106;&#10144;.ws</a> (which is powered
+by <a href="http://www.github.com/davetron5000/shorty">Shorty</a>, my <a href="2009-11-23-good-bad-ugly-scala-url-shortener.html">Scala-based URL shortener</a>), so I thought I'd write up how I got it working.  Short answer is that it was pretty easy.
+</p>
+<p>
+I got the idea from <a href="http://www.daringfireball.net">John Gruber</a>, who made a similar thing for his site to post entries on <a href="http://www.twitter.com/daringfireball">@daringfireball</a>.  The trickiest part was figuring out what this was called so I could find out who could sell me a domain with unicode characters in it.
+</p>
+<p>
+It turns out, this is called an IDN (short for <a href="http://en.wikipedia.org/wiki/Internationalized_domain_name">Internationalized Domain Name</a>), and not everyone will sell you one.  Couple that with the need to get a non-<code>.com</code> domain, and I had to hunt around for a while.
+</p>
+<p>
+I ended up going with <a href="http://www.dynadot.com/">DynaDot</a> as they could provide the wacky hostname that I wanted as well as a <code>.ws</code> TLD registration.  I was amazed at the number of domain regstrars whose web forms could not handle Unicode.
+It's been almost 7 years since <a href="http://www.joelonsoftware.com/articles/Unicode.html">Joel Spolsky</a> wrote his screed on dealing with Unicode, so I don't know what the deal is.
+</p>
+<p>
+At any rate, the tricky bit in actually <b>using</b> the domain, because a) entering &#10106;&#10144; into vim is nontrivial, and b) I doubt that Apache's config file would work with unicode characters in it.  Enter <a href="http://en.wikipedia.org/wiki/Punycode">Punycode</a>, which is an asciification of any IDN.  Fortunately, the domain host provides the Punycode for your IDN, so configuring apache was a matter of:
+<figure class="highlight"><pre><code class="language-conf" data-lang="conf">&lt;<span class="n">VirtualHost</span> <span class="n">XXXXX</span>&gt;
+<span class="n">ServerName</span> <span class="n">xn</span>--<span class="n">dfi5d</span>.<span class="n">ws</span>
+<span class="n">ServerAlias</span> <span class="n">www</span>.<span class="n">xn</span>--<span class="n">dfi5d</span>.<span class="n">ws</span>
+<span class="n">DocumentRoot</span> /<span class="n">home</span>/<span class="n">webadmin</span>/<span class="n">xn</span>--<span class="n">dfi5d</span>.<span class="n">ws</span>/<span class="n">html</span>
+&lt;!-- <span class="n">whatever</span> <span class="n">else</span> <span class="n">goes</span> <span class="n">here</span> --&gt;
+<span class="n">JkMount</span> /<span class="n">s</span>* <span class="n">ajp13</span>
+<span class="n">JkMount</span> /<span class="n">s</span> <span class="n">ajp13</span>
+  &lt;<span class="n">Directory</span> /<span class="n">home</span>/<span class="n">webadmin</span>/<span class="n">xn</span>--<span class="n">dfi5d</span>.<span class="n">ws</span>/<span class="n">html</span>&gt;
+    <span class="n">Options</span> <span class="n">Includes</span> <span class="n">FollowSymLinks</span>
+    <span class="n">AllowOverride</span> <span class="n">All</span>
+  &lt;/<span class="n">Directory</span>&gt;
+&lt;/<span class="n">VirtualHost</span>&gt;</code></pre></figure>
+</p>
+<p>
+At this point, it pretty much worked, although it was sometimes difficult to get curl to work with the non-punyied name.
+</p>
+<p>
+One thing that was weird was that I found that a <b>lot</b> of domains I wanted to try were taken or not available (with no explanation).  Often it seemed like the punycode version was a normal looking URL that was taken; I tried several IDNs that had a unicode character with a wierd "5", and they punyied to an ascii 5.  Not sure what the deal is there, but I eventually found the one I wanted.
+</p>
+
+          </section>
+        
+      
+    </article>
   
   
     <article>
@@ -545,57 +670,6 @@ expectLastCall.andReturn(enumeration)
 ```
 
 Kinda cheesy, and I kinda feel stupid for not thinking of it sooner.  
-
-          </section>
-        
-      
-    </article>
-  
-  
-    <article>
-      <header>
-        
-        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2009/10/17/moved-to-jekyll.html">Moved my blog to Jekyll</a></h1>
-        
-        <h2 class="f6 mtneg">October 17, 2009</h2>
-      </header>
-      
-        
-          <section class="section-break complete-article mb1">
-            <p>
-Kinda wanted a change of pace, so I moved my website over to <a href="http://www.github.com/mojombo/jekyll">Jekyll</a>, which has been fun to set up.  Plus, I actually spent more than 10 seconds on a site design.  I'm assuming my many hours of labour could've been done by a real designer.  
-</p>
-<p>
-At any rate, Jekyll seems reasonably easy to deal with.  I got a very small taste of Capistrano as well; I push my site to a remote bare git repo on this server and then have the capfile update it.  I suppose it could be more sophisticiated, but this seems to work for now.
-</p>
-
-          </section>
-        
-      
-    </article>
-  
-  
-    <article>
-      <header>
-        
-        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2009/09/10/my-own-personal-tour-of-scala.html">My own personal tour of Scala</a></h1>
-        
-        <h2 class="f6 mtneg">September 10, 2009</h2>
-      </header>
-      
-        
-          <section class="section-break complete-article mb1">
-            <p>So, the <a href="http://www.scala-lang.org">Main Scala Website</a> has a "tour" of the features of Scala.  I liked the idea, but found a lot of the examples and descriptions a bit terse and uninspiring (some of them are downright confusing).  However, I really wanted to learn about these features.  So, I set about understanding each feature, trying to answer the question "What problem does this solve?".  The results are here at <a href="http://www.naildrivin5.com/scalatour">www.naildrivin5.com/scalatour</a>.  This site was constructed using my homebrew wiki software, <a href="http://github.com/davetron5000/halen/tree/master">Halen</a> (which I created to test out my <a href="http://github.com/davetron5000/gliffy/tree/master">Gliffy Ruby client</a>).
-</p>
-<p>
-It was a fun experience.  As someone coming from Java application development (and who knows enough Ruby to feel some pain in Java), I tried hard to map the features to real-world problems a "blue-collar developer" might be facing.  A lot of Scala enthusiasts seem to be functional programming nerds, and I know FP can turn a lot of people off.  I think Scala is a great way to learn and appreciate functional programming without having to swallow a huge amount of info at once.  So, I figured approaching Scala's features from a different angle would be useful.
-</p>
-<p>
-I <b>did</b> have to supplement my learning with info from Odersky's awesome <a href="http://www.amazon.com/Programming-Scala-Comprehensive-Step-step/dp/0981531601/ref=sr_1_1?ie=UTF8&s=books&qid=1252628682&sr=8-1">Programming Scala</a> book, but most of what I learned, I learned by playing around with code; all the code on the site should compile and run (at least in Scala 2.7.x).  The coolest thing was that by "touring" all of Scala's (often weird) features, I got a good feel for how they all fit together.  The language feels like a very elaborate Rube-Goldberg Machine that ends up being rather elegant.  I feel that instead of casting Scala as a functional language, or a hybrid language, I would say that Scala is "static typing done right (or as right as is possible)".  
-</p>
-<p>The way Scala allows for <a href="http://www.naildrivin5.com/scalatour/wiki_pages/DuckTyping">duck typing</a>, for example, is really cool, and something I think Ruby code could benefit from.
-Stuff like <a href="http://www.naildrivin5.com/scalatour/wiki_pages/TypeVariance">type variance</a> is pretty heavy stuff, but when you dig into, and understand how functions are implemented, it ends up making some sense.  I even found a "real world" use for <a href="http://www.naildrivin5.com/scalatour/wiki_pages/ExplcitlyTypedSelfReferences">explictly-typed self-references</a>, which I thought was actually a sick joke for a while  :) Anyway, I hope that what I've learned doing this will be helpful to others.
-</p>
 
           </section>
         
