@@ -16,6 +16,10 @@ To my mind, then, it stands to reason that as more and more practices become com
 
 A great, and simple example is presenters.  Developers have recognized that views often need to expose more data than is in an Active Record and that sometimes that data is view-specific.  There are myriad gems to address this.  They are all more or less the samed, and they all seem to indicate that developers are making pointless decisions—which presenter framework or pattern should I use?  If Rails adopted such as mechanism, it would remove that decision for most developers and be a win for the framework and its users.
 
-So, let's explore my imagined features/changes to Rails.  We'll go in order of the keynote, and each bit will be its own blog post. I'll update this post with links to the posts as I post them.
+So, let's explore my imagined features/changes to Rails.  We'll go in order of the keynote, and each bit will be its own blog post.
+
+* [No More Per-View CSS](/blog/2016/06/13/imagined-rails-6-no-more-per-view-css.html)
+
+Check back for updates.
 
 [rails6post]: http://naildrivin5.com/blog/2016/05/17/announcing-rails-6-an-imagined-roadmap.html

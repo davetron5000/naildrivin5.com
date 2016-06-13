@@ -1,0 +1,191 @@
+
+<!DOCTYPE html>
+<html language="en"><head>
+  <meta charset="utf-8">
+  <title>Imagined Rails 6: No More Per-View CSS - naildrivin5.com - David Bryant Copeland's Website</title>
+  <meta name="author" content="David Bryant Copeland">
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/images/favicons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/images/favicons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/images/favicons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicons/favicon-16x16.png">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/images/favicons/ms-icon-144x144.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  
+
+  
+  <meta name="description" content="
+
+  
+    Imagined Rails 6: No More Per-View CSS
+    
+      June 13, 2016
+    
+  
+  
+    This is a series of posts about why I recommended the chang...">
+  
+
+  
+  <link rel="canonical" href="http://naildrivin5.com/blog/2016/06/13/imagined-rails-6-no-more-per-view-css.html">
+  <link href="/favicon.png" rel="icon">
+  <link href="/atom.xml" rel="alternate" title="naildrivin5.com - David Bryant Copeland's Website" type="application/atom+xml">
+  <link href="/css/styles.css" rel="stylesheet">
+  <script src="https://use.typekit.net/ylm4zpa.js"></script>
+  <script>try{Typekit.load({ async: true });}catch(e){}</script>
+            
+  <meta name="google-site-verification" content="h_yTpXa6N3ebHj8DYmgX4lIFGHBW1NtGMVHfXuu7i_4" />
+</head>
+<body>
+  <header class="site-header pb2 mb2 center">
+    <h1 class="uc ls2 f1"><a href="/">naildrivin5.com</a></h1>
+    <h2 class="ls1"><small class="uc h4">Website of</small> David Bryant Copeland</h2>
+    <nav>
+      <ul>
+        <li class="text-c w-1-3"><a class="ib w-100 button" href="/">Blog</a></li>
+        <li class="text-c w-1-3"><a class="ib w-100 button" href="/bio">About</a></li>
+        <li class="text-c w-1-3"><a class="ib w-100 button" href="/books">Books</a></li>
+        <li class="text-c w-1-3"><a class="ib w-100 button" href="/talks">Talks</a></li>
+      </ul>
+      <div style="clear: both"></div>
+    </nav>
+  </header>
+  <main>
+    <section>
+      <div>
+<article role="article" class="blog-post">
+  <header class="border-bottom border-light">
+    <h1>Imagined Rails 6: No More Per-View CSS</h1>
+    <h2 class="f5 ls2 fw-bold mtnone uc ib">
+      June 13, 2016
+    </h2>
+  </header>
+  <section class="blog-content">
+    <p>This is a series of posts about <a href="http://naildrivin5.com/blog/2016/06/12/why-did-i-recommend-XX-for-rails-6.html">why I recommended the changes I did for Rails 6</a>, in my <a href="http://naildrivin5.com/blog/2016/05/17/announcing-rails-6-an-imagined-roadmap.html">imagined keynote
+for Rails 6</a>.</p>
+
+<p>In this one, we’ll explore why I recommended the removal of per-view CSS and the inclusion of an “OOCSS”-style framework.</p>
+
+<!-- more -->
+
+<p>When you create a new resource/controller/scaffold with Rails, say one called “widgets”, Rails creates a lot of files.  One of them is <code class="highlighter-rouge">widgets.css</code> and, because of how the asset pipeline works, this file is included in the CSS bundle.</p>
+
+<p>This gives a very false sense of encapsulation.  In no way are the CSS classes in that file encapsulated and in no way are they applied only to “widgets”.  This is unlike the Ruby artifacts the generator produces, which <em>do</em> have encapsulation: the methods in <code class="highlighter-rouge">WidgetsControllers</code> are not global to all of your app, nor are the methods in <code class="highlighter-rouge">Widget</code>.  Even the stuff in <code class="highlighter-rouge">WidgetsHelper</code> isn’t global.</p>
+
+<p>There are ways to do modular CSS.  They are nasty, but Rails could bake in support for them if it truly believed that modular CSS was the way developers should be working.</p>
+
+<p>Modular CSS isn’t quite the state of the art, though perhaps it will be some day.  Instead, many front-end developers are using something called “Object-Oriented CSS” or OOCSS.  While the technique has nothing to do with objects and bears no resemblance to “object-oriented programming”, this is the term that’s been adopted.  And, it’s a vast depature from what many of us learned about how write CSS.</p>
+
+<p>Instead of creating single classes per thing-you-want-to-style and then adding CSS to that class, you create single-purpose re-usable classes and apply them to your HTML.  Let me demonstrate.</p>
+
+<p>Suppose we are styling the <code class="highlighter-rouge">widgets/show.html.erb</code> template.  We know that it will show the widget’s name as the most important thing on the page outside of the general application layout.  That’s enough to write some HTML.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;article&gt;</span>
+  <span class="nt">&lt;h1&gt;</span><span class="cp">&lt;%=</span> <span class="vi">@widget</span><span class="p">.</span><span class="nf">name</span> <span class="cp">%&gt;</span><span class="nt">&lt;/h1&gt;</span>
+<span class="nt">&lt;/article&gt;</span>
+</code></pre>
+</div>
+
+<p>Since we’ll consider this content “self-contained”, we use <code class="highlighter-rouge">article</code>, and the correct tag for the most important header in an <code class="highlighter-rouge">article</code> is an <code class="highlighter-rouge">h1</code>, so we use that for the widget’s name.</p>
+
+<p>Note that this completely describes the semantics of our content.  No additional markup is needed.</p>
+
+<p>Now, suppose our designer (which is a role—we could be the designer, too) wants this displayed in bold, all uppercase, and using the second-biggest font in our <a href="http://alistapart.com/article/more-meaningful-typography">type scale</a>.</p>
+
+<p>In “semantic” CSS (the type I’m discouraging in this post), we give our <code class="highlighter-rouge">h1</code> a single class, like so:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;article&gt;</span>
+  <span class="nt">&lt;h1</span> <span class="na">class=</span><span class="s">"widget-name"</span><span class="nt">&gt;</span><span class="cp">&lt;%=</span> <span class="vi">@widget</span><span class="p">.</span><span class="nf">name</span> <span class="cp">%&gt;</span><span class="nt">&lt;/h1&gt;</span>
+<span class="nt">&lt;/article&gt;</span>
+</code></pre>
+</div>
+
+<p>We then use that class to attach our needed styles:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nc">.widget-name</span> <span class="p">{</span>
+  <span class="nl">font-size</span><span class="p">:</span>     <span class="err">$</span><span class="n">font-size-2</span><span class="p">;</span>
+  <span class="nl">font-weight</span><span class="p">:</span>    <span class="nb">bold</span><span class="p">;</span>
+  <span class="nl">text-transform</span><span class="p">:</span> <span class="nb">uppercase</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Note again that the addition of the <code class="highlighter-rouge">widget-name</code> class adds no semantics not already present in the original HTML.  It merely exists for us to use a hook for styling.  If we didn’t need to style it, we would have no reason to add that class.</p>
+
+<p>In OOCSS, we work in the opposite direction.  We start from a set of small, re-usable classes that we can apply and use anywhere.  So, we’d have CSS like so:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nc">.f1</span> <span class="p">{</span> <span class="nl">font-size</span><span class="p">:</span> <span class="err">$</span><span class="n">font-size-1</span><span class="p">;</span> <span class="p">}</span>
+<span class="nc">.f2</span> <span class="p">{</span> <span class="nl">font-size</span><span class="p">:</span> <span class="err">$</span><span class="n">font-size-2</span><span class="p">;</span> <span class="p">}</span>
+<span class="nc">.f3</span> <span class="p">{</span> <span class="nl">font-size</span><span class="p">:</span> <span class="err">$</span><span class="n">font-size-3</span><span class="p">;</span> <span class="p">}</span>
+
+<span class="nc">.fwb</span> <span class="p">{</span> <span class="nl">font-weight</span><span class="p">:</span> <span class="nb">bold</span><span class="p">;</span> <span class="p">}</span>
+
+<span class="nc">.ttu</span> <span class="p">{</span> <span class="nl">text-transform</span><span class="p">:</span> <span class="nb">uppercase</span><span class="p">;</span> <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>With these re-usable classes, we can then style our widget header like so:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;article&gt;</span>
+  <span class="nt">&lt;h1</span> <span class="na">class=</span><span class="s">"f2 fwb ttu"</span><span class="nt">&gt;</span><span class="cp">&lt;%=</span> <span class="vi">@widget</span><span class="p">.</span><span class="nf">name</span> <span class="cp">%&gt;</span><span class="nt">&lt;/h1&gt;</span>
+<span class="nt">&lt;/article&gt;</span>
+</code></pre>
+</div>
+
+<p>Since our original HTML contains sufficient semantics for the content, these display-specific classes have no effect on the semantics of our markup.  Remember, we have no reason to add classes to this markup in order to clarify the semanatics.  The only reason we would ever have to add classes to this markup is to afford visual styling.</p>
+
+<p>I know what you’re thinking.  This is weird.  It’s wrong!  We’re mixing presentation and content!  This will not stand!</p>
+
+<p>I had the same reactions. But, this way of styling markup is better than the “semantic” way we’ve all learned.
+I’ve been working this wawy for over three years and have <em>very</em> rarely had to actually write any CSS, and have very rarely become confused about why my pages were laying out the way they were.</p>
+
+<p>You may think that in a sizeable app, you’d end up duplicating a lot of classes.  For example, what if all of our headers were to be bold, upper-case, and set in the second-largest font?  Wouldn’t we have <code class="highlighter-rouge">f2 fwb ttu</code> littered everywhere?</p>
+
+<p>Don’t forget: Rails includes a powerful templating framework that supports partials.  You can easily remove duplication by ust using that.</p>
+
+<p>Further, because this type of styling doesn’t use the cascade, it’s always very clear why an element is being rendered in the browser a certain way and what the application of these classes will do to an element. Once you learn the terse classnames, you can look at any element and see immediately what the intention is for how it is to be displayed.</p>
+
+<p>This is a deep topic and you should read <a href="http://mrmrs.io/writing/2016/03/24/scalable-css/">this post by Adam Morse</a> and/or <a href="http://nicolasgallagher.com/about-html-semantics-front-end-architecture/">this post by Nicolas Gallagher</a>.  If you have any feelings or opinions about what I’ve written here, you need to read these posts first.  And then take your issue up with their authors.  I’m just the messenger.</p>
+
+<p>And the message is this:  writing CSS this way is awesome.  It’s empowering.  It reduces the decisions you must make down to only those about your design and not how to structure your CSS.  It is very much the Rails Way.</p>
+
+<p>I specified <a href="http://tachyons.io">Tachyons</a> as it is a small full-featured framework that allows you to work this way.  You could also use <a href="http://www.basscss.com/">BassCSS</a>.  If Rails should include CSS and have an opinion on how to write it, either of these frameworks would be great.</p>
+
+<p>If, on the other hand, Rails doesn’t believe in having an opinion on CSS, it should not create blank <code class="highlighter-rouge">.css</code> files that imply encapsulation which doesn’t exist nor should it include SAAS.</p>
+
+
+  </section>
+</article>
+</div>
+
+    </section>
+  </main>
+  <footer class="center">
+    <p class="f6">
+      Copyright &copy; 2006-2016, by David Bryant Copeland, All Rights Reserved
+    </p>
+  </footer>
+  <script type="text/javascript">
+    var _gauges = _gauges || [];
+    (function() {
+      var t   = document.createElement('script');
+      t.type  = 'text/javascript';
+      t.async = true;
+      t.id    = 'gauges-tracker';
+      t.setAttribute('data-site-id', '56a22cd9c88d90284f000861');
+      t.setAttribute('data-track-path', 'https://track.gaug.es/track.gif');
+      t.src = 'https://d36ee2fcip1434.cloudfront.net/track.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script>
+</body></html>
