@@ -1,0 +1,157 @@
+
+<!DOCTYPE html>
+<html language="en"><head>
+  <meta charset="utf-8">
+  <title>Imagined Rails 6: Out with JQuery, in With ES6 - naildrivin5.com - David Bryant Copeland's Website</title>
+  <meta name="author" content="David Bryant Copeland">
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/images/favicons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/images/favicons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/images/favicons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicons/favicon-16x16.png">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/images/favicons/ms-icon-144x144.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  
+
+  
+  <meta name="description" content="
+
+  
+    Imagined Rails 6: Out with JQuery, in With ES6
+    
+      June 14, 2016
+    
+  
+  
+    This is a series of posts about why I recommended t...">
+  
+
+  
+  <link rel="canonical" href="http://naildrivin5.com/blog/2016/06/14/imagined-rails-6-removes-jquery-and-favors-es6.html">
+  <link href="/favicon.png" rel="icon">
+  <link href="/atom.xml" rel="alternate" title="naildrivin5.com - David Bryant Copeland's Website" type="application/atom+xml">
+  <link href="/css/styles.css" rel="stylesheet">
+  <script src="https://use.typekit.net/ylm4zpa.js"></script>
+  <script>try{Typekit.load({ async: true });}catch(e){}</script>
+            
+  <meta name="google-site-verification" content="h_yTpXa6N3ebHj8DYmgX4lIFGHBW1NtGMVHfXuu7i_4" />
+</head>
+<body>
+  <header class="site-header pb2 mb2 center">
+    <h1 class="uc ls2 f1"><a href="/">naildrivin5.com</a></h1>
+    <h2 class="ls1"><small class="uc h4">Website of</small> David Bryant Copeland</h2>
+    <nav>
+      <ul>
+        <li class="text-c w-1-3"><a class="ib w-100 button" href="/">Blog</a></li>
+        <li class="text-c w-1-3"><a class="ib w-100 button" href="/bio">About</a></li>
+        <li class="text-c w-1-3"><a class="ib w-100 button" href="/books">Books</a></li>
+        <li class="text-c w-1-3"><a class="ib w-100 button" href="/talks">Talks</a></li>
+      </ul>
+      <div style="clear: both"></div>
+    </nav>
+  </header>
+  <main>
+    <section>
+      <div>
+<article role="article" class="blog-post">
+  <header class="border-bottom border-light">
+    <h1>Imagined Rails 6: Out with JQuery, in With ES6</h1>
+    <h2 class="f5 ls2 fw-bold mtnone uc ib">
+      June 14, 2016
+    </h2>
+  </header>
+  <section class="blog-content">
+    <p>This is a series of posts about <a href="http://naildrivin5.com/blog/2016/06/12/why-did-i-recommend-XX-for-rails-6.html">why I recommended the changes I did for Rails 6</a>, in my <a href="http://naildrivin5.com/blog/2016/05/17/announcing-rails-6-an-imagined-roadmap.html">imagined keynote
+for Rails 6</a>.</p>
+
+<p>In this one, we’ll explore why I recommended the removal of jQuery, and the change from CoffeeScript to ES6.</p>
+
+<!-- more -->
+
+<h2 id="es6-is-where-its-at">ES6 is Where It’s At</h2>
+
+<p>I see the appeal of CoffeeScript.  I advocated hard for it on my team and we have a lot of code using it.  JavaScript ES5 is a very verbose language, wrought with easy-to-make errors.  CoffeeScript takes a lot of the pain away.  But, so does ES6.</p>
+
+<p>ES6 has the virtue of being somewhat standard and supportable in modern browsers without compiling down to ES5, but it compiles down to ES5 just fine.  It’s the state of the art.  The reasons to use CoffeeScript all apply to ES6, but ES6 is more standard and has support for modules.  CoffeeScript (and the Rails asset pipeline) do not support modules in any direct way.</p>
+
+<p>Modules in JavaScript are roughly equivalent to Ruby classes or perhaps gems, depending on how much you put in them.</p>
+
+<p>Currently, Rails produces per-view CoffeeScript files similar to what it does with CSS.  So, for a widgets resource, we get <code class="highlighter-rouge">widgets.coffee</code>.  This does not create any artifact in JavaScript code related to widgets.  Similar to the sibling <code class="highlighter-rouge">.css</code> file, these files are compiled into one <code class="highlighter-rouge">application.js</code> at runtime and included <em>and executed</em> on every single page, not just the widgets pages.</p>
+
+<p>Since it’s run on every page, you have to be careful that any code that’s executed and grabs DOM elements does so in a way that doesn’t inadvertenly grab slimilar DOM elements that might exist elsewhere in your application.  The bigger your app gets, the harder it is to be sure you’ve done this right.  The only way to be sure is to maintain extensive browser-based tests—something Rails provides no support for out of the box.</p>
+
+<p>Where I work, we solve this by doing two things:</p>
+
+<ul>
+  <li>All code to be run on a controller action gets put into a shared namespace rather than executed, e.g. <code class="highlighter-rouge">window.StitchFix.widgets.show</code> is the function to run when the <code class="highlighter-rouge">show</code> page is rendered.</li>
+  <li>We have boilerplate that sets up the necessary jQuery handlers to execute that function at the right time.</li>
+</ul>
+
+<p>But that’s not all!  Since the code gets wrapped in an immediately-invoked function, if you want to create library code to share, you have to put your code into <code class="highlighter-rouge">window</code>, which is global.  You have to be careful you don’t squash something else.  Typically, you create a namespace.  We use <code class="highlighter-rouge">window.StitchFix.lib</code> where I work.</p>
+
+<p>ES6 modules would solve these problems much more cleanly, and are the way most front-enders are solving it.  Modules are the state-of-the-art, and ES6’s version is the standard.  Rails developers would benefit from this, and it would remove a source of bugs as well as several decisions to make about managing ap app’s JavaScript.</p>
+
+<p>I’m also advocated removing jQuery and a new library to interact with the Rails back-end.</p>
+
+<h2 id="jquery-out-railsjs-in">jQuery out, <code class="highlighter-rouge">rails.js</code> in</h2>
+
+<p><strong>Note</strong>: Rails 5.1 will allegedly <a href="https://github.com/rails/rails/issues/25208">ship without jQuery</a>.  This is great news!  No word yet if the replacement will have user-facing features or will just implement Rails-provided features.</p>
+
+<p>jQuery was great, and while it’s powerful, it is not very Rails-like, and requires developers to make a lot of unnecessary decisions when used in earnest.  It also encourages a style of coding where view logic is intermixed with DOM manipulation and event attachment.  It’s the equivalent of the “SQL statements in your <code class="highlighter-rouge">.php</code> files” that Rails got people away from.</p>
+
+<p>It’s also hard to unit test jQuery code, because you must either do a full end-to-end browser test, or a <a href="http://naildrivin5.com/blog/2013/04/10/the-painful-world-of-javascript-testing.html">JavaScript unit test using duplicative markup fixtures</a>.  Rails provides no facilities for either of these types of tests.</p>
+
+<p>With the removal of jQuery, Rails could reasonably ship a simple <code class="highlighter-rouge">rails.js</code> library to allow interacting with Rails endpoints in a Rails-like fashion.</p>
+
+<p>Instead of requiring developers to use <code class="highlighter-rouge">$.ajax()</code>, <code class="highlighter-rouge">rails.js</code> could have a simple and straightforward mechanism to trigger Rails endpoints:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nx">Rails</span><span class="p">.</span><span class="nx">widgets</span><span class="p">.</span><span class="nx">show</span><span class="p">(</span><span class="nx">widgetId</span><span class="p">,</span> <span class="p">(</span><span class="nx">widget</span><span class="p">)</span><span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// do whatever with widget</span>
+<span class="p">});</span>
+
+<span class="nx">Rails</span><span class="p">.</span><span class="nx">frobnosticators</span><span class="p">.</span><span class="nx">destroy</span><span class="p">(</span><span class="nx">frobnosticatorId</span><span class="p">,</span> <span class="p">(</span><span class="nx">frobnosticator</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// whatever</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+
+<p>This would have a lot of advantages.  First, it’s a better API to Rails than jQuery’s <code class="highlighter-rouge">$ajax</code> function.  Second, it would be lightweight and dependency free, thus easily usable with other front-end frameworks if that meets the developer’s needs.  It could work easily with React, Angular, or Ember, if a developer chose to use those frameworks.  Finally, it defines the AJAX interface to a Rails app the same way <code class="highlighter-rouge">config/routes.rb</code> defines the HTTP interface.</p>
+
+<p>This would remove a decision developers have to make, and simplify a very common interaction.</p>
+
+
+  </section>
+</article>
+</div>
+
+    </section>
+  </main>
+  <footer class="center">
+    <p class="f6">
+      Copyright &copy; 2006-2016, by David Bryant Copeland, All Rights Reserved
+    </p>
+  </footer>
+  <script type="text/javascript">
+    var _gauges = _gauges || [];
+    (function() {
+      var t   = document.createElement('script');
+      t.type  = 'text/javascript';
+      t.async = true;
+      t.id    = 'gauges-tracker';
+      t.setAttribute('data-site-id', '56a22cd9c88d90284f000861');
+      t.setAttribute('data-track-path', 'https://track.gaug.es/track.gif');
+      t.src = 'https://d36ee2fcip1434.cloudfront.net/track.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script>
+</body></html>

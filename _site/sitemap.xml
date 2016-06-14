@@ -2,6 +2,15 @@
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
     <url>
+      <loc>http://naildrivin5.com/blog/2016/06/14/imagined-rails-6-removes-jquery-and-favors-es6.html</loc>
+      
+        <lastmod>2016-06-14T00:00:00-07:00</lastmod>
+      
+      <changefreq>weekly</changefreq>
+      <priority>1.0</priority>
+    </url>
+  
+    <url>
       <loc>http://naildrivin5.com/blog/2016/06/13/imagined-rails-6-no-more-per-view-css.html</loc>
       
         <lastmod>2016-06-13T00:00:00-07:00</lastmod>
@@ -1675,8 +1684,6 @@
       <priority>1.0</priority>
     </url>
   
-  
-    
   
     
   

@@ -30,13 +30,16 @@
     
       
         
-        DC's New 52 Review
+        My Book's in Beta!
         
-        October 21, 2011
+        October 25, 2011
       
       
         
-          I’ve always liked supe...">
+          
+            
+
+Build A...">
   
 
   
@@ -67,6 +70,45 @@
     <section>
       <div class="blog-index">
   
+  
+  
+    <article>
+      <header>
+        
+        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2011/10/25/awesome-command-line-apps-in-ruby-in-beta.html">My Book's in Beta!</a></h1>
+        
+        <h2 class="f6 mtneg">October 25, 2011</h2>
+      </header>
+      
+        
+          <section class="section-break complete-article mb1">
+            <p><a href="http://www.awesomecommandlineapps.com/"><img src="http://imagery.pragprog.com/products/249/dccar_xlargebeta.jpg?1319573406" /></a></p>
+
+<h3 id="build-awesome-command-line-applications-in-ruby">Build Awesome Command-Line Applications in Ruby</h3>
+<p>#### Control your Computer, Simplify your Life</p>
+
+<p>Woot!</p>
+
+<p><a href="http://www.awesomecommandlineapps.com/">My Book</a> is in Beta!  Whoohoo!  It’s all about writing amazing command-line apps in Ruby.  This isn’t about hacking
+together UNIX commands, or bash scripting…this is about making apps that are easy to learn, easy to use, easy to write, and
+that will delight their users.  Seriously, stop making crappy command-line scripts, read my book, and start kicking ass.</p>
+
+<p>It’s been a <strong>long</strong> time coming.  Please stop now, and go <a href="http://www.awesomecommandlineapps.com/">check it out</a>.  I started this almost a year ago during
+<a href="http://forums.pragprog.com/forums/190">PragProWriMo</a>, where I wrote (almost) every single day in November of 2010.  When I saw that <a href="http://www.travisswicegood.com/">Travis
+Swicegood</a> (one of the few who made it all the way through) had gotten his manuscript accepted, I cleaned up a chapter
+and submitted and the <a href="http://www.pragprog.com">Prags</a> accepted!</p>
+
+<p>I’ve spent my time since then writing, re-writing, re-organizing, and working hard to get this thing done.  It’s in beta,
+meaning that you can buy the e-book and read the work in progress.  It’s <em>almost</em> complete, just a few chapters to go, and by
+reading it in beta, you can give me valuable feedback to make the book even better.</p>
+
+<p><a href="http://www.awesomecommandlineapps.com/">Check it out</a> now!</p>
+
+
+          </section>
+        
+      
+    </article>
   
   
     <article>
@@ -339,138 +381,6 @@ step ahead of me.  While it’s handy that I have a compiler to catch these type
 <p><em>(Sure, you could leave off the comment, but do you really hate your fellow developers (*and* future you) that much?)</em></p>
 
 <p><em>Now</em> which language is more verbose?  Perhaps the static/dynamic typing debate is really just about entering text?</p>
-
-          </section>
-        
-      
-    </article>
-  
-  
-    <article>
-      <header>
-        
-        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2010/07/30/in-offense-of-scala-option.html">In "Offense" of Scala's Option class; a guarded defense of Cédric's rant</a></h1>
-        
-        <h2 class="f6 mtneg">July 30, 2010</h2>
-      </header>
-      
-        
-          <section class="section-break complete-article mb1">
-            <p>In a <a href="http://beust.com/weblog/2010/07/28/why-scalas-option-and-haskells-maybe-types-wont-save-you-from-null/">recent blog entry</a>, Cédric Beust calls out scala’s <code>Option</code> class as nothing more significant than null checks.  Commenters rightly set him straight that the thesis of his blog post was marred by an ignorance of idiomatic use of the class.</p>
-
-<p>But, it’s hard to really blame Cédric, when you look at what he had to go on.  Odersky’s book states that one should use pattern matching with <code>Option</code>, and the scaladoc for Option is just abysmal:</p>
-
-<blockquote>
-  <p>This class represents optional values. Instances of Option are either instances of case class Some or it is case object None.</p>
-</blockquote>
-
-<p>That is the <em>entire</em> description of the class, no examples, nothing.  Worse, the method that commenters called out as idiomatic, <code>flatMap</code>, has the following description:</p>
-
-<blockquote>
-  <p>If the option is nonempty, return a function applied to its value. Otherwise return None.</p>
-</blockquote>
-
-<p>This is <em>not</em> what <code>Option#flatMap</code> actually appears to do (nor is documented to do; it’s documented to return an <code>Option[B]</code>!):</p>
-
-<figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="n">s</span><span class="k">:</span><span class="kt">Option</span><span class="o">[</span><span class="kt">String</span><span class="o">]</span> <span class="k">=</span> <span class="nc">Some</span><span class="o">(</span><span class="s">"foo"</span><span class="o">)</span>
-<span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="n">n</span><span class="k">:</span><span class="kt">Option</span><span class="o">[</span><span class="kt">String</span><span class="o">]</span> <span class="k">=</span> <span class="nc">None</span>
-<span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="n">f</span> <span class="k">=</span> <span class="o">{</span> <span class="o">(</span><span class="n">x</span><span class="k">:</span><span class="kt">String</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="nc">Some</span><span class="o">(</span><span class="n">x</span> <span class="o">+</span> <span class="s">"bar"</span><span class="o">)</span> <span class="o">}</span>
-<span class="n">scala</span><span class="o">&gt;</span> <span class="n">s</span><span class="o">.</span><span class="n">flatMap</span><span class="o">(</span><span class="n">f</span><span class="o">)</span>
-<span class="nc">Some</span><span class="o">(</span><span class="n">foobar</span><span class="o">)</span>
-<span class="n">scala</span><span class="o">&gt;</span> <span class="n">n</span><span class="o">.</span><span class="n">flatMap</span><span class="o">(</span><span class="n">f</span><span class="o">)</span>
-<span class="nc">None</span>
-<span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="n">result</span> <span class="k">=</span> <span class="n">s</span><span class="o">.</span><span class="n">flatMap</span><span class="o">(</span><span class="n">f</span><span class="o">)</span>
-<span class="n">r</span><span class="k">:</span> <span class="kt">Option</span><span class="o">[</span><span class="kt">java.lang.String</span><span class="o">]</span> <span class="k">=</span> <span class="nc">Some</span><span class="o">(</span><span class="n">foobar</span><span class="o">)</span>
-<span class="n">scala</span><span class="o">&gt;</span> <span class="n">r</span><span class="o">.</span><span class="n">getClass</span>
-<span class="n">res6</span><span class="k">:</span> <span class="kt">java.lang.Class</span><span class="o">[</span><span class="k">_</span><span class="o">]</span> <span class="k">=</span> <span class="k">class</span> <span class="nc">scala</span><span class="o">.</span><span class="nc">Some</span></code></pre></figure>
-
-<p>It certainly doesn’t call itself out as “the way” to use Option.  A simple example in the scaladoc could have gone a long way.</p>
-
-<p>So, angry post + helpful commenters == problem solved, right?</p>
-
-<p>Wrong.</p>
-
-<p>The <code>Option</code> class is, really, an implementation of the <a href="http://en.wikipedia.org/wiki/Null_Object_pattern">NullObject</a> pattern, and a more elegant way to handle optional values.  In scala, we might have this method signature:</p>
-
-<figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="cm">/**
- * Updates the full name
- * @param lastName the last name
- * @param firstName the first name
- */</span>
-<span class="k">def</span> <span class="n">updateName</span><span class="o">(</span><span class="n">lastName</span><span class="k">:</span><span class="kt">String</span><span class="o">,</span> <span class="n">firstName</span><span class="k">:</span><span class="kt">Option</span><span class="o">[</span><span class="kt">String</span><span class="o">])</span></code></pre></figure>
-
-<p>This means “update my name; lastName is required and firstName is optional”.  In java, this method might look like this:</p>
-
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="cm">/**
- * Updates the full name
- * @param lastName the last name, may not be null
- * @param firstName the first name, may be null
- */</span>
-<span class="kd">public</span> <span class="kt">void</span> <span class="nf">updateName</span><span class="p">(</span><span class="n">String</span> <span class="n">lastName</span><span class="o">,</span> <span class="n">String</span> <span class="n">firstName</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">lastName</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalArgumentException</span><span class="o">(</span><span class="s">"lastName required"</span><span class="o">);</span>
-    <span class="o">}</span>
-    <span class="n">StringBuffer</span> <span class="n">b</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuffer</span><span class="o">(</span><span class="n">lastName</span><span class="o">);</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">firstName</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">b</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">", "</span><span class="o">);</span>
-        <span class="n">b</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">firstName</span><span class="o">);</span>
-    <span class="o">}</span>
-    <span class="k">this</span><span class="o">.</span><span class="na">fullName</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
-<span class="o">}</span></code></pre></figure>
-
-<p>So, what’s the right way to do it in Scala?  According to the commentors:</p>
-
-<figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">def</span> <span class="n">updateName</span><span class="o">(</span><span class="n">lastName</span><span class="k">:</span><span class="kt">String</span><span class="o">,</span> <span class="n">firstName</span><span class="k">:</span><span class="kt">Option</span><span class="o">[</span><span class="kt">String</span><span class="o">])</span><span class="k">:</span><span class="kt">Unit</span> <span class="o">=</span> <span class="o">{</span>
-  <span class="k">val</span> <span class="n">b</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">StringBuffer</span><span class="o">(</span><span class="n">lastName</span><span class="o">)</span>
-  <span class="n">firstName</span><span class="o">.</span><span class="n">foreach</span><span class="o">(</span> <span class="o">(</span><span class="n">name</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">b</span><span class="o">.</span><span class="n">append</span><span class="o">(</span><span class="s">", "</span><span class="o">);</span> <span class="n">b</span><span class="o">.</span><span class="n">append</span><span class="o">(</span><span class="n">firstName</span><span class="o">)</span> <span class="o">)</span>
-<span class="o">}</span></code></pre></figure>
-
-<p>Yech.  Does anyone else think that calling a method called “foreach” on our “optional value” is just nonsensical?  Or that the <em>idiomatic way</em> to treat an optional value is <em>as a collection</em>, e.g. by using the <code>for</code> comprehension?  This just feels hacky.  Naming is one of the most important (and challenging) things in software engineering, and <code>Option</code>’s API is an utter failure (even its name is wrong; when one has <em>an option</em>, one typicaly has many choices, not just one or nothing.  <em>Optional</em> is really what is meant here, so why are we afraid of adding a few more letters?  Especially given how “precise” some of the documentation is, mathematically speaking, why are we not being precise with English?). If <code>Option</code> is just shorthand for a “list of zero or one elements”, and we get no better methods than what comes with <code>List</code>, then what’s even the point of the class?</p>
-
-<p>I’m not saying we remove all the collection methods from <code>Option</code>, but how about a throwing us a bone to make our code readable and learnable without running to the scaladoc (or REPL) to see what’s going on?  I mean, there’s a method on <code>Option</code> called <code>withFilter</code> whose documented purpose (I’m not making this up) is: “Necessary to keep Option from being implicitly converted to Iterable in for comprehensions”.  Am I expected to believe that it’s ok to have <em>this</em> hacky pile of cruft, but we can’t get a readable method for “do something to the contents if they are there”?</p>
-
-<figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">class</span> <span class="nc">Option</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span> <span class="o">{</span> 
-  <span class="k">def</span> <span class="n">ifValue</span><span class="o">[</span><span class="kt">U</span><span class="o">](</span> <span class="n">f</span><span class="k">:</span> <span class="o">(</span><span class="kt">A</span><span class="o">)</span> <span class="o">=&gt;</span> <span class="n">U</span> <span class="o">)</span><span class="k">:</span><span class="kt">Unit</span> <span class="o">=</span> <span class="n">foreach</span><span class="o">(</span><span class="n">f</span><span class="o">)</span>
-  <span class="k">def</span> <span class="n">unlessValue</span><span class="o">[</span><span class="kt">U</span><span class="o">](</span> <span class="n">f</span><span class="k">:</span> <span class="o">()</span> <span class="o">=&gt;</span> <span class="n">U</span><span class="o">)</span><span class="k">:</span><span class="kt">Unit</span> <span class="o">=</span> <span class="k">if</span> <span class="o">(</span><span class="n">self</span><span class="o">.</span><span class="n">isEmpty</span><span class="o">)</span> <span class="n">f</span>
-<span class="o">}</span>
-
-<span class="k">def</span> <span class="n">updateName</span><span class="o">(</span><span class="n">lastName</span><span class="k">:</span><span class="kt">String</span><span class="o">,</span> <span class="n">firstName</span><span class="k">:</span><span class="kt">Option</span><span class="o">[</span><span class="kt">String</span><span class="o">])</span><span class="k">:</span><span class="kt">Unit</span> <span class="o">=</span> <span class="o">{</span>
-  <span class="k">val</span> <span class="n">b</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">StringBuffer</span><span class="o">(</span><span class="n">lastName</span><span class="o">)</span>
-  <span class="n">firstName</span><span class="o">.</span><span class="n">ifValue</span><span class="o">(</span> <span class="o">(</span><span class="n">name</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">b</span><span class="o">.</span><span class="n">append</span><span class="o">(</span><span class="s">", "</span><span class="o">);</span> <span class="n">b</span><span class="o">.</span><span class="n">append</span><span class="o">(</span><span class="n">firstName</span><span class="o">)</span> <span class="o">)</span>
-<span class="o">}</span></code></pre></figure>
-
-<p>Which would be less surprising?  Couple this with some better scaladoc:</p>
-
-<figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="cm">/** This class represents an optional value.  
- *
- * To use as a null object:
- * val optional = getSomePossiblyOptionalValue
- * &lt;pre&gt;
- * option.ifValue { (actualValue) =&gt; 
- *   // do things with the value, if it was there
- * }
- * &lt;/pre&gt;
- * or
- * &lt;pre&gt;
- * optional.unlessValue { log.debug("missing optional value") }
- * &lt;/pre&gt;
- * 
- * To use as a Monad or collection:
- * &lt;pre&gt;
- * val first8upper = option.flatMap( (y) =&gt; Some(y.toUpperCase) ).
- *                          flatMap( (y) =&gt; Some(y.substring(0,8)) )
- * &lt;/pre&gt;
- */</span>
-<span class="k">class</span> <span class="nc">Option</span><span class="o">[</span><span class="kt">T</span><span class="o">]</span> <span class="o">{</span>
-  <span class="c1">// etc.
-</span><span class="o">}</span></code></pre></figure>
-
-<p>With these examples, you cover the two main uses of this class, show newcomers how to use it, and demonstrate its superiority over null checks.</p>
-
-<p>It’s frustrating to see this, because Scala has so much potential to be a lucid, accessible, readable language, but API usability and learnability are just not prioties.  Scala needs to take some lessons from Ruby in terms of API design (and Java in terms of API documentation).</p>
-
-<p>Of course, none of this <em>does</em> save you from null, because Scala is perfectly happy to assign null to anything.  It kinda makes the whole thing seem a bit pointless.</p>
-
 
           </section>
         

@@ -19,6 +19,7 @@ A great, and simple example is presenters.  Developers have recognized that view
 So, let's explore my imagined features/changes to Rails.  We'll go in order of the keynote, and each bit will be its own blog post.
 
 * [No More Per-View CSS](/blog/2016/06/13/imagined-rails-6-no-more-per-view-css.html)
+* [jQuery out, ES6 in + rails.js](/blog/2016/06/14/imagined-rails-6-removes-jquery-and-favors-es6.html)
 
 Check back for updates.
 
