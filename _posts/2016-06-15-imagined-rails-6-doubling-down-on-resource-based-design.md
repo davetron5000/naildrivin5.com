@@ -40,7 +40,7 @@ This tells Rails that your application responds to all the magic seven routes fo
 
 I also see developers rush through their controller design and add RPC-style endpoints.  For example, if we wanted to
 distinguish archiving a widget from deleting it, most developers would make an `archive` method.  If, instead, you created a
-resource called `ArchivedWidgets` and accepted a POST, that would be more resourceful and likely much cleander design.
+resource called `ArchivedWidgets` and accepted a POST, that would be more resourceful and likely much cleaner design.
 
 If resourceful routes were derived from controllers, it would also make it very easy to spot deviations and have conversations around them.  In an ideal Rails application, `config/routes.rb` wouldn't change that often, so if it did, it's a big red flag to talk about the design of the feature that changed it.
 
@@ -52,7 +52,7 @@ If it were just as easy to create non-ActiveRecord resources as it were ActiveRe
 
 The first is how to provide a non-ActiveRecord object all the needed functionality that Rails' form and URL helpers expect.  This can be achieved with Active Model, though Active Model is a pretty large interface.
 
-The second problem is how to properly assemble such a resource using possibly disparite bits of Active Records.  In my post, I listed an "Account" resource as an example.  In our hypothetical application, the account view shows some user information, such as their name and email, but also information about their most recent order.
+The second problem is how to properly assemble such a resource using possibly disparate bits of Active Records.  In my post, I listed an "Account" resource as an example.  In our hypothetical application, the account view shows some user information, such as their name and email, but also information about their most recent order.
 
 This is typically solved via some sort of presenter framework, and there are a **lot** of them.  Their existence says to me that Rails developers want such a framework, and Rails could greatly help us by providing one that was easy to use and full-featured.
 
