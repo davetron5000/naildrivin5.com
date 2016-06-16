@@ -21,6 +21,7 @@ So, let's explore my imagined features/changes to Rails.  We'll go in order of t
 * [No More Per-View CSS](/blog/2016/06/13/imagined-rails-6-no-more-per-view-css.html)
 * [jQuery out, ES6 in + rails.js](/blog/2016/06/14/imagined-rails-6-removes-jquery-and-favors-es6.html)
 * [Encouraging Resource-based Design](/blog/2016/06/15/imagined-rails-6-doubling-down-on-resource-based-design.html)
+* [Why a Service Layer?](/blog/2016/06/16/imagined-rails-6-active-service.html)
 
 Check back for updates.
 

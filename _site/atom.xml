@@ -4,13 +4,65 @@
   <title><![CDATA[naildrivin5.com - David Bryant Copeland's Website]]></title>
   <link href="http://naildrivin5.com/atom.xml" rel="self"/>
   <link href="http://naildrivin5.com/"/>
-  <updated>2016-06-15T06:44:43-07:00</updated>
+  <updated>2016-06-16T08:17:32-07:00</updated>
   <id>http://naildrivin5.com/</id>
   <author>
     <name><![CDATA[David Bryant Copeland]]></name>
     <email><![CDATA[davec@naildrivin5.com]]></email>
   </author>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Imagined Rails 6: Why A Service Layer?]]></title>
+    
+    <link href="http://naildrivin5.com/blog/2016/06/16/imagined-rails-6-active-service.html"/>
+    
+    <updated>2016-06-16T00:00:00-07:00</updated>
+    <id>http://naildrivin5.com/blog/2016/06/16/imagined-rails-6-active-service</id>
+    <content type="html"><![CDATA[<p>This is a series of posts about <a href="http://naildrivin5.com/blog/2016/06/12/why-did-i-recommend-XX-for-rails-6.html">why I recommended the changes I did for Rails 6</a>, in my <a href="http://naildrivin5.com/blog/2016/05/17/announcing-rails-6-an-imagined-roadmap.html">imagined keynote
+for Rails 6</a>.</p>
+
+<p>In this one, we’ll explore why I think having explicit support for creating non-model service objects would be a good thing.</p>
+
+<!-- more -->
+
+<p>I hypothesized ActiveService, which is a lightweight library that basically allows you to specify the dependencies of an object to other objects.</p>
+
+<p>For example, if you have code to charge a customer some money, that code depends on your payment processor’s Ruby library and also on your Rails mailer (to email a receipt).  Rather than simply use those two classes directly, you’d use Active Service’s imagined DSL:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Purchaser</span> <span class="o">&lt;</span> <span class="no">ActiveService</span><span class="o">::</span><span class="no">Base</span>
+  <span class="n">needs</span> <span class="ss">:braintree</span>
+  <span class="n">needs</span> <span class="ss">:receipt_mailer</span>
+
+  <span class="k">def</span> <span class="nf">purchase!</span><span class="p">(</span><span class="n">order</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">braintree</span><span class="p">.</span><span class="nf">charge_card</span><span class="p">(</span><span class="n">order</span><span class="p">.</span><span class="nf">customer</span><span class="p">,</span><span class="n">order</span><span class="p">.</span><span class="nf">amount</span><span class="p">)</span>
+      <span class="n">receipt_mailer</span><span class="p">.</span><span class="nf">receipt</span><span class="p">(</span><span class="n">order</span><span class="p">).</span><span class="nf">deliver!</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>This is admittedly not very Ruby and <em>definitely</em> not very Rails.  I also think this part of my imagined keynote has the weakest evidence to justify it.  But, I did want to talk about why I think this is useful, despite this not being very idiomatic Ruby.</p>
+
+<p>Rails (and Ruby) code tends to involved hard-coding inter-object dependencies, usually by directly referencing global symbols.  In theory, this is bad because if you need to modify those dependencies it’s difficult to do.  It’s also bad, in theory, because it makes testing more difficult.</p>
+
+<p>In practice, neither of these are real problems.  Ruby allows you to easily mock/stub/replace hard-coded dependencies in tests, and I’ve rarely encountered a case where the primary problem in making a change was in modifying a dependency on another class.</p>
+
+<p>As a way to author classes, I don’t think Active Service is super-compelling.  I think it has some small benefits, and I would use it if it existed, but generally for the production code, it’s not a big win.</p>
+
+<p>Where I think it <em>could</em> be a big win is for testing.</p>
+
+<p>Because our class’ dependencies are made explicit, the testing framework can examine them and set up mocks/stubs/doubles/whatevers.</p>
+
+<p>In theory, the test support included with ActiveService would be able to example a class’ dependent objects, look at their type, and stub out all their methods.  It could then allow the test author to make assertions about how those methods were called (and, of course, control what they do to orchestrate a test).</p>
+
+<p>This should be a superior experience to using a mocking framework, since it would be baked into Rails and would be default behavior.  It would also encourage test isolation, basically by making it really hard to write an integration test-masquerading-as-a-unit test.</p>
+
+<p>This somewhat flies in the face of what I had discussed about resource-orientation.  The existence of Active Serivce sends the message “code doesn’t go in model objects”.  I believe this very strongly, but it’s not The Rails Way.</p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Imagined Rails 6: Doubling-down on Resource-based Design]]></title>
@@ -54,7 +106,7 @@ for Rails 6</a>.</p>
 
 <p>I also see developers rush through their controller design and add RPC-style endpoints.  For example, if we wanted to
 distinguish archiving a widget from deleting it, most developers would make an <code class="highlighter-rouge">archive</code> method.  If, instead, you created a
-resource called <code class="highlighter-rouge">ArchivedWidgets</code> and accepted a POST, that would be more resourceful and likely much cleander design.</p>
+resource called <code class="highlighter-rouge">ArchivedWidgets</code> and accepted a POST, that would be more resourceful and likely much cleaner design.</p>
 
 <p>If resourceful routes were derived from controllers, it would also make it very easy to spot deviations and have conversations around them.  In an ideal Rails application, <code class="highlighter-rouge">config/routes.rb</code> wouldn’t change that often, so if it did, it’s a big red flag to talk about the design of the feature that changed it.</p>
 
@@ -66,7 +118,7 @@ resource called <code class="highlighter-rouge">ArchivedWidgets</code> and accep
 
 <p>The first is how to provide a non-ActiveRecord object all the needed functionality that Rails’ form and URL helpers expect.  This can be achieved with Active Model, though Active Model is a pretty large interface.</p>
 
-<p>The second problem is how to properly assemble such a resource using possibly disparite bits of Active Records.  In my post, I listed an “Account” resource as an example.  In our hypothetical application, the account view shows some user information, such as their name and email, but also information about their most recent order.</p>
+<p>The second problem is how to properly assemble such a resource using possibly disparate bits of Active Records.  In my post, I listed an “Account” resource as an example.  In our hypothetical application, the account view shows some user information, such as their name and email, but also information about their most recent order.</p>
 
 <p>This is typically solved via some sort of presenter framework, and there are a <strong>lot</strong> of them.  Their existence says to me that Rails developers want such a framework, and Rails could greatly help us by providing one that was easy to use and full-featured.</p>
 
@@ -333,6 +385,7 @@ I’ve been working this wawy for over three years and have <em>very</em> rarely
   <li><a href="/blog/2016/06/13/imagined-rails-6-no-more-per-view-css.html">No More Per-View CSS</a></li>
   <li><a href="/blog/2016/06/14/imagined-rails-6-removes-jquery-and-favors-es6.html">jQuery out, ES6 in + rails.js</a></li>
   <li><a href="/blog/2016/06/15/imagined-rails-6-doubling-down-on-resource-based-design.html">Encouraging Resource-based Design</a></li>
+  <li><a href="/blog/2016/06/16/imagined-rails-6-active-service.html">Why a Service Layer?</a></li>
 </ul>
 
 <p>Check back for updates.</p>
@@ -1040,65 +1093,6 @@ store—whichever brand it might be.</p>
 
 <p>Static type checking <em>can</em> be a benefit.  It can identify bugs that are difficult or impossible to detect with 100% unit test coverage, and do so much more simply and easily.  The Type Wars are far from over.</p>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Technology is Terrible]]></title>
-    
-    <link href="http://naildrivin5.com/blog/2016/04/10/technology-is-terrible.html"/>
-    
-    <updated>2016-04-10T09:00:00-07:00</updated>
-    <id>http://naildrivin5.com/blog/2016/04/10/technology-is-terrible</id>
-    <content type="html"><![CDATA[<p>I get into my hotel at around 8:30pm. I want to watch NXT Takeover on the WWE network and then go to bed. I unpack and then put my Amazon Fire Stick in the HDMI port on the TV.</p>
-
-<p>I start looking for an outlet to plug it in. Nothing close. The armoire weighs a ton and both of the plugs behind it are used up anyway.</p>
-
-<p>Ok, I can just watch on my laptop. Open it up. Keyboard and trackpad not responding. Reboot. No Mac Startup Chime. Keyboard still not working. Reboot. Same. Reboot and hold down Option. Nothin. Repeat with Shift. Repeat with Command Option P M. Wait. Reboot into recovery mode. Computer insists I turn on my Bluetooth keyboard and mouse. Which I don’t have. Fuck.</p>
-
-<p>I just want to watch an hour of pro wrestling.</p>
-
-<p>Pour myself a drink.</p>
-
-<p>Plug the Amazon Fire Stick into my USB battery. Turn on Tv and it works.</p>
-
-<p>Connect to hotel wi-fi. Amazon browser not compatible with the OMNI’s interstitial. Go into “cursor mode” and I’m literally surfing the web with up/down/left/right/submit.</p>
-
-<p>Select premium Internet. Fuck it, I want this to work. Enter my name and room number. I’m in!</p>
-
-<p>Navigate passed about 20 apps that I could download, but have not. WWE is at the end and it’s already downloaded.</p>
-
-<p>OF COURSE I have to sign in! Otherwise, someone might have stolen my Fire stick and started watching 1990’s WCW repeats on my dime!</p>
-
-<p>Open phone, launch 1Password to get my login details. Sometime in the past my phone rebooted so I can’t use TouchID to get in. Enter my very long and easy to mistype pass phrase. Thankfully I get it right the first time.</p>
-
-<p>Back to the Fire stick, I log in to the WWE network. It’s really. really. slow.</p>
-
-<p>Find NXT Takeover and start it up. Stuttering and buffering would be an understatement. I let it ride. After about 10 minutes, I’ve seen 2 minutes of the event, doled out in 5 second bursts. Fuck.</p>
-
-<p>Second drink is poured.</p>
-
-<p>Ok, I’ll watch something else. Maybe it’s WWE. The tech behind their network is not very robust.</p>
-
-<p>Hulu! I can catch up on the terrible superhero shows I like. Or Netflix! Can watch Walking Dead. Both require downloading an app and surely logging in. I’m done logging into things for the night.</p>
-
-<p>Oh, I’m still in season 1 of Veronica Mars! And it’s only on Amazon Prime!</p>
-
-<p>Amazingly, it remembers the last episode I watched (God knows I don’t). Start it up.</p>
-
-<p>“Previously on Veronica Mars…” and then the screen turns solid green and does nothing but glitch.</p>
-
-<p>Ok, maybe it’s this episode. I’ll skip it and not worry about missing too much. Start the next episode.</p>
-
-<p>“Previously on Veronica Mars…” and then the screen turns solid green and does nothing but glitch.</p>
-
-<p>I just want to watch TV and go to bed.</p>
-
-<p>Ok, what else is there? The Wire season 1. Haven’t watched it in ages and could honestly settle for Idris Elba reading he phone book for 2 hours. You know what would be awesome? A sitcom around all the time Stringer Bell spent in community college. I mean, they had to have group projects so I can see hours of fun watching him and three 19 year olds try to make business plans for video stores or whatever.</p>
-
-<p>Anyway, this finally works. I watch a couple episodes without incident. Finally. It’s bleaker than I remember.</p>
-
-<p>It’s 11pm and I still want to watch wrestling. Flip back to WWE and now it’s working. But I’m tired. Fast forward to Baylee vs Asuka for the women’s title. Baylee loses. Fucking hell.</p>
 ]]></content>
   </entry>
   

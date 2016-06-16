@@ -30,13 +30,14 @@
     
       
         
-        EMMA and TestNG for Simple Java Code Coverage
+        Gliffy updated their site!
         
-        December 07, 2008
+        December 09, 2008
       
       
         
-    ...">
+          
+            ...">
   
 
   
@@ -67,6 +68,29 @@
     <section>
       <div class="blog-index">
   
+  
+  
+    <article>
+      <header>
+        
+        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2008/12/09/gliffy-updated-their-site.html">Gliffy updated their site!</a></h1>
+        
+        <h2 class="f6 mtneg">December 09, 2008</h2>
+      </header>
+      
+        
+          <section class="section-break complete-article mb1">
+            <p>
+Though I'm no longer working for <a href="http://www.gliffy.com">Gliffy</a>, I'm excited to see that <a href="http://www.gliffy.com/blog/2008/12/08/gliffy-online-release-bpmn-symbols-and-folder-management/">they updated their site</a> with some of what I worked on!  Awesome!
+</p>
+<p>
+Specifically, I worked on the folder organization system that they added to replace the tagging system.  This fell out of the API work that I did (which I'm assuming is in private beta right now, but I'm not sure).  I also worked on a feature that, while painful as a developer, is my favorite new thing about Gliffy: the basic account no longer has a five-diagram limit!  That means for free, you can create unlimited diagrams.  The catch is that your diagrams are all public, but I think it's a great way to enhance the functionality while subversively getting their name out to more people.
+</p>
+
+          </section>
+        
+      
+    </article>
   
   
     <article>
@@ -592,31 +616,6 @@ Examining the source code, a task named for the directory created by <tt>:packag
 <span class="k">end</span></code></pre></figure>
 
 This is definitely a hack, because I'm depending on the internal implementation of the <tt>PackageTask</tt>.  It really needs a facility for including generated files.  In <tt>make</tt>, I could just send the directory <tt>DOC_DIR</tt> to <tt>tar</tt> and it would pick up everything.  In Ant, I'd probably have to spawn another ant, since ant sets all property vaules at startup time.
-
-          </section>
-        
-      
-    </article>
-  
-  
-    <article>
-      <header>
-        
-        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2008/09/17/better-open-source-hosting-sourceforge-is-looking-weak.html">Better open-source hosting: SourceForge is looking weak</a></h1>
-        
-        <h2 class="f6 mtneg">September 17, 2008</h2>
-      </header>
-      
-        
-          <section class="section-break complete-article mb1">
-            <p>I currently host <a href="http://vimdoclet.sf.net">my Vim Javadoc doclet</a> on <a href="http://www.sourceforge.net">SourceForge</a> and <b>every</b> time I have to deal with it, it's just a monumental pain.  The documentation is insanely long and detailed, the website looks horribly out of date and cruddy, and when compared to stuff like <a href="http://www.github.com">GitHub</a> and <a href="http://www.lighthouseapp.com">Lighthouse</a>, it's almost embarrassing how difficult it is to deal with and how bad the UI is (despite my best efforts, it <b>still</b> insists that the featured download is the vimdoc samples and not the doclet itself.  WTF?).
-</p>
-<p>
-I'm already hosting the code in GitHub and just moved my tickets to Lighthouse.  The only thing left is where to host binary downloads and static assets.  For <a href="http://www.googlecode.com/p/restunit">RESTUnit</a>, I'm using <a href="http://code.google.com">Google Code</a>, which is pretty easy to deal with (about a zillion times simpler and easier than SourceForge), however it has no facility for hosting arbitrary HTML.  Currently, I'm just using my website for static assets.
-</p>
-<p>
-While I do like the new Web-2.0 way of doing things (one site like GitHub really focusing on source, another like Lighthouse just does ticketing, etc. and they integrate via web services), I'm not sure where the best place is to host downloads and static assets.  I would need programmatic access and some liberal download/diskspace quotas for sure.  It would also be nice to be able to connect to other services, for example generate a changelog based on commits or tickets closed since the last release.
-</p>
 
           </section>
         

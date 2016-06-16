@@ -105,7 +105,7 @@ for Rails 6</a>.</p>
 
 <p>I also see developers rush through their controller design and add RPC-style endpoints.  For example, if we wanted to
 distinguish archiving a widget from deleting it, most developers would make an <code class="highlighter-rouge">archive</code> method.  If, instead, you created a
-resource called <code class="highlighter-rouge">ArchivedWidgets</code> and accepted a POST, that would be more resourceful and likely much cleander design.</p>
+resource called <code class="highlighter-rouge">ArchivedWidgets</code> and accepted a POST, that would be more resourceful and likely much cleaner design.</p>
 
 <p>If resourceful routes were derived from controllers, it would also make it very easy to spot deviations and have conversations around them.  In an ideal Rails application, <code class="highlighter-rouge">config/routes.rb</code> wouldn’t change that often, so if it did, it’s a big red flag to talk about the design of the feature that changed it.</p>
 
@@ -117,7 +117,7 @@ resource called <code class="highlighter-rouge">ArchivedWidgets</code> and accep
 
 <p>The first is how to provide a non-ActiveRecord object all the needed functionality that Rails’ form and URL helpers expect.  This can be achieved with Active Model, though Active Model is a pretty large interface.</p>
 
-<p>The second problem is how to properly assemble such a resource using possibly disparite bits of Active Records.  In my post, I listed an “Account” resource as an example.  In our hypothetical application, the account view shows some user information, such as their name and email, but also information about their most recent order.</p>
+<p>The second problem is how to properly assemble such a resource using possibly disparate bits of Active Records.  In my post, I listed an “Account” resource as an example.  In our hypothetical application, the account view shows some user information, such as their name and email, but also information about their most recent order.</p>
 
 <p>This is typically solved via some sort of presenter framework, and there are a <strong>lot</strong> of them.  Their existence says to me that Rails developers want such a framework, and Rails could greatly help us by providing one that was easy to use and full-featured.</p>
 
