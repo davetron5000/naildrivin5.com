@@ -18,6 +18,8 @@ active:
   - title: "Test Drive the Development of Your Command-Line Applications"
     link: "https://speakerdeck.com/davetron5000/test-drive-the-development-of-your-ruby-command-line-applications"
     from: "RubyConf 2012"
+  - title: "Build Awesome Command Line Applications with Ruby"
+    link: "https://speakerdeck.com/davetron5000/build-awesome-command-line-applications-with-ruby"
   - title: "Lessons Learned from the Rails Rumble"
 scala:
   - title: "Convince Your Boss to Let You Use Scala"
