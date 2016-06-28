@@ -4,7 +4,7 @@
   <title><![CDATA[naildrivin5.com - David Bryant Copeland's Website]]></title>
   <link href="http://naildrivin5.com/atom.xml" rel="self"/>
   <link href="http://naildrivin5.com/"/>
-  <updated>2016-06-16T08:17:32-07:00</updated>
+  <updated>2016-06-28T18:24:10-04:00</updated>
   <id>http://naildrivin5.com/</id>
   <author>
     <name><![CDATA[David Bryant Copeland]]></name>
@@ -17,7 +17,7 @@
     
     <link href="http://naildrivin5.com/blog/2016/06/16/imagined-rails-6-active-service.html"/>
     
-    <updated>2016-06-16T00:00:00-07:00</updated>
+    <updated>2016-06-16T00:00:00-04:00</updated>
     <id>http://naildrivin5.com/blog/2016/06/16/imagined-rails-6-active-service</id>
     <content type="html"><![CDATA[<p>This is a series of posts about <a href="http://naildrivin5.com/blog/2016/06/12/why-did-i-recommend-XX-for-rails-6.html">why I recommended the changes I did for Rails 6</a>, in my <a href="http://naildrivin5.com/blog/2016/05/17/announcing-rails-6-an-imagined-roadmap.html">imagined keynote
 for Rails 6</a>.</p>
@@ -69,7 +69,7 @@ for Rails 6</a>.</p>
     
     <link href="http://naildrivin5.com/blog/2016/06/15/imagined-rails-6-doubling-down-on-resource-based-design.html"/>
     
-    <updated>2016-06-15T00:00:00-07:00</updated>
+    <updated>2016-06-15T00:00:00-04:00</updated>
     <id>http://naildrivin5.com/blog/2016/06/15/imagined-rails-6-doubling-down-on-resource-based-design</id>
     <content type="html"><![CDATA[<p>This is a series of posts about <a href="http://naildrivin5.com/blog/2016/06/12/why-did-i-recommend-XX-for-rails-6.html">why I recommended the changes I did for Rails 6</a>, in my <a href="http://naildrivin5.com/blog/2016/05/17/announcing-rails-6-an-imagined-roadmap.html">imagined keynote
 for Rails 6</a>.</p>
@@ -195,7 +195,7 @@ and <code class="highlighter-rouge">Subscription</code> models, we could do this
     
     <link href="http://naildrivin5.com/blog/2016/06/14/imagined-rails-6-removes-jquery-and-favors-es6.html"/>
     
-    <updated>2016-06-14T00:00:00-07:00</updated>
+    <updated>2016-06-14T00:00:00-04:00</updated>
     <id>http://naildrivin5.com/blog/2016/06/14/imagined-rails-6-removes-jquery-and-favors-es6</id>
     <content type="html"><![CDATA[<p>This is a series of posts about <a href="http://naildrivin5.com/blog/2016/06/12/why-did-i-recommend-XX-for-rails-6.html">why I recommended the changes I did for Rails 6</a>, in my <a href="http://naildrivin5.com/blog/2016/05/17/announcing-rails-6-an-imagined-roadmap.html">imagined keynote
 for Rails 6</a>.</p>
@@ -263,7 +263,7 @@ for Rails 6</a>.</p>
     
     <link href="http://naildrivin5.com/blog/2016/06/13/imagined-rails-6-no-more-per-view-css.html"/>
     
-    <updated>2016-06-13T00:00:00-07:00</updated>
+    <updated>2016-06-13T00:00:00-04:00</updated>
     <id>http://naildrivin5.com/blog/2016/06/13/imagined-rails-6-no-more-per-view-css</id>
     <content type="html"><![CDATA[<p>This is a series of posts about <a href="http://naildrivin5.com/blog/2016/06/12/why-did-i-recommend-XX-for-rails-6.html">why I recommended the changes I did for Rails 6</a>, in my <a href="http://naildrivin5.com/blog/2016/05/17/announcing-rails-6-an-imagined-roadmap.html">imagined keynote
 for Rails 6</a>.</p>
@@ -365,7 +365,7 @@ I’ve been working this wawy for over three years and have <em>very</em> rarely
     
     <link href="http://naildrivin5.com/blog/2016/06/12/why-did-i-recommend-XX-for-rails-6.html"/>
     
-    <updated>2016-06-12T00:00:00-07:00</updated>
+    <updated>2016-06-12T00:00:00-04:00</updated>
     <id>http://naildrivin5.com/blog/2016/06/12/why-did-i-recommend-XX-for-rails-6</id>
     <content type="html"><![CDATA[<p>In my <a href="http://naildrivin5.com/blog/2016/05/17/announcing-rails-6-an-imagined-roadmap.html">imagined keynote for Rails 6</a>, I imagined a lot of wacky new features for Rails.  My Rails 6 had lots of big changes, and I thought it might be interesting to dig into why I think those changes are useful for Rails.</p>
 
@@ -398,7 +398,7 @@ I’ve been working this wawy for over three years and have <em>very</em> rarely
     
     <link href="http://naildrivin5.com/blog/2016/06/10/dont-use-ENV-directly.html"/>
     
-    <updated>2016-06-10T00:00:00-07:00</updated>
+    <updated>2016-06-10T00:00:00-04:00</updated>
     <id>http://naildrivin5.com/blog/2016/06/10/dont-use-ENV-directly</id>
     <content type="html"><![CDATA[<p>Getting configuration from the UNIX environment is a hallmark of <a href="http://12factor.net/">12-factor application design</a>, and is a great practice.  Problems arise, however, when your code is littered with direct references to it.  This is because the UNIX environment is a very poor database, but we need to treat it as a better one.</p>
 
@@ -555,7 +555,7 @@ Flag disabled.
     
     <link href="http://confreaks.tv/videos/railsconf2016-can-time-travel-keep-you-from-blowing-up-the-enterprise"/>
     
-    <updated>2016-05-31T00:00:00-07:00</updated>
+    <updated>2016-05-31T00:00:00-04:00</updated>
     <id>http://naildrivin5.com/blog/2016/05/31/scaling-rails-talk-from-railsconf</id>
     <content type="html"><![CDATA[<p>I gave a talk at <a href="http://railsconf.com/">RailsConf ‘16</a> called “Can Time-Travel Keep You From Blowing Up the Enterprise”.  The talk is really about scaling Rails on a growing team, and attempts to stop the discussion around “monolith vs microservices” by showing how a team can take hold of its destiny.</p>
 
@@ -571,7 +571,7 @@ Flag disabled.
     
     <link href="http://naildrivin5.com/blog/2016/05/23/test-behavior-not-configuration.html"/>
     
-    <updated>2016-05-23T08:00:00-07:00</updated>
+    <updated>2016-05-23T08:00:00-04:00</updated>
     <id>http://naildrivin5.com/blog/2016/05/23/test-behavior-not-configuration</id>
     <content type="html"><![CDATA[<p>I’ve become re-acquainted with the pattern of testing ActiveRecord classes using stuff like <code class="highlighter-rouge">expect(parent).to belong_to(:child)</code> and I just don’t understand why anyone would ever write a test like that.  It provides no value, and the implementation provided by <a href="https://github.com/thoughtbot/shoulda-matchers">shoulda</a> isn’t actually testing the behavior.  It’s testing configuration.</p>
 
@@ -676,7 +676,7 @@ Flag disabled.
     
     <link href="http://naildrivin5.com/blog/2016/05/17/announcing-rails-6-an-imagined-roadmap.html"/>
     
-    <updated>2016-05-17T12:00:00-07:00</updated>
+    <updated>2016-05-17T12:00:00-04:00</updated>
     <id>http://naildrivin5.com/blog/2016/05/17/announcing-rails-6-an-imagined-roadmap</id>
     <content type="html"><![CDATA[<p>Just got back from RailsConf.  It was a great Ruby &amp; Rails conference, but I was struck by the dearth of talks about new features of Rails 5—because there just aren’t many.  I thought back to what excited me about Rails in the first place—the baked-in conventions, convenience, encouragement of good practices.</p>
 
@@ -986,7 +986,7 @@ store—whichever brand it might be.</p>
     
     <link href="http://naildrivin5.com/blog/2016/05/03/type-wars-are-far-from-over.html"/>
     
-    <updated>2016-05-03T12:00:00-07:00</updated>
+    <updated>2016-05-03T12:00:00-04:00</updated>
     <id>http://naildrivin5.com/blog/2016/05/03/type-wars-are-far-from-over</id>
     <content type="html"><![CDATA[<p>Uncle Bob penned an <a href="http://blog.cleancoder.com/uncle-bob/2016/05/01/TypeWars.html">interesting piece called Type Wars</a>.  It’s ostensibly a history of the fashion around how types are handled in programming languages.  It, unfortunately, comes to the conclusion that “TDD and unit tests means you don’t need statically-enforced types”.  This is not true.</p>
 
