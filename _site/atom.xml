@@ -4,7 +4,7 @@
   <title><![CDATA[naildrivin5.com - David Bryant Copeland's Website]]></title>
   <link href="http://naildrivin5.com/atom.xml" rel="self"/>
   <link href="http://naildrivin5.com/"/>
-  <updated>2016-06-28T18:24:10-04:00</updated>
+  <updated>2016-10-19T08:18:05-07:00</updated>
   <id>http://naildrivin5.com/</id>
   <author>
     <name><![CDATA[David Bryant Copeland]]></name>
@@ -13,11 +13,67 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Rails, Angular, Postgres, Bootrap Second Edition in Beta!]]></title>
+    
+    <link href="http://naildrivin5.com/blog/2016/10/19/angular-rails-postgres-bootstrap-second-edition.html"/>
+    
+    <updated>2016-10-19T08:09:00-07:00</updated>
+    <id>http://naildrivin5.com/blog/2016/10/19/angular-rails-postgres-bootstrap-second-edition</id>
+    <content type="html"><![CDATA[<p>The second edition of <a href="https://pragprog.com/book/dcbang2/rails-angular-postgres-and-bootstrap-second-edition">Rails, Angular, Postgres, Bootstrap is in beta</a>.</p>
+
+<p>There’s a lot of new content, mostly around Angular 2.</p>
+
+<p>Of particular interest is that we aren’t using the Asset Pipeline, but are using Webpack.  I tried hard to get Angular 2 working with Sprockets, but as <a href="http://gilesbowkett.blogspot.com/2016/10/let-asset-pipeline-die.html">Giles
+Bowkett</a> points o ut in a recent post, Sprockets is not a modern tool for modern
+JavaScript.</p>
+
+<p>The current beta is about 75% complete and includes:</p>
+
+<ul>
+  <li>Rails
+    <ul>
+      <li>End-to-end unit testing with PhantomJS</li>
+      <li>Making your end-to-end tests work with Webpack</li>
+    </ul>
+  </li>
+  <li>Angular 2
+    <ul>
+      <li>Setting up Webpack to serve CSS and JS</li>
+      <li>Intro to Angular 2, including routing <em>and unit testing</em>.</li>
+    </ul>
+  </li>
+  <li>Postgres
+    <ul>
+      <li>Using and testing Postgres check constraints</li>
+      <li>Content-specific indexed (e.g. index on a lower-cased version of a field)</li>
+      <li>Materialized Views</li>
+    </ul>
+  </li>
+  <li>Bootstrap
+    <ul>
+      <li>Simple styling with Bootstrap</li>
+      <li>Grid-based design with Bootstrap</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Angular 2’s setup was painful, but it’s a much nicer framework than Angular 1, and requires a lot less plumbing and decision-making than React (based on my
+limited experience with React).</p>
+
+<p>The skills you learn in this book will let you sole a <em>wide</em> variety of problems quickly, cleanly, and efficiently, using modern and powerful tools.</p>
+
+<p><a href="https://pragprog.com/book/dcbang2/rails-angular-postgres-and-bootstrap-second-edition">Buy the beta now!</a></p>
+
+<p><em>Note: if you bought the first edition, stay tuned—I’m not sure what accomodations will be made</em></p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Imagined Rails 6: Why A Service Layer?]]></title>
     
     <link href="http://naildrivin5.com/blog/2016/06/16/imagined-rails-6-active-service.html"/>
     
-    <updated>2016-06-16T00:00:00-04:00</updated>
+    <updated>2016-06-16T00:00:00-07:00</updated>
     <id>http://naildrivin5.com/blog/2016/06/16/imagined-rails-6-active-service</id>
     <content type="html"><![CDATA[<p>This is a series of posts about <a href="http://naildrivin5.com/blog/2016/06/12/why-did-i-recommend-XX-for-rails-6.html">why I recommended the changes I did for Rails 6</a>, in my <a href="http://naildrivin5.com/blog/2016/05/17/announcing-rails-6-an-imagined-roadmap.html">imagined keynote
 for Rails 6</a>.</p>
@@ -69,7 +125,7 @@ for Rails 6</a>.</p>
     
     <link href="http://naildrivin5.com/blog/2016/06/15/imagined-rails-6-doubling-down-on-resource-based-design.html"/>
     
-    <updated>2016-06-15T00:00:00-04:00</updated>
+    <updated>2016-06-15T00:00:00-07:00</updated>
     <id>http://naildrivin5.com/blog/2016/06/15/imagined-rails-6-doubling-down-on-resource-based-design</id>
     <content type="html"><![CDATA[<p>This is a series of posts about <a href="http://naildrivin5.com/blog/2016/06/12/why-did-i-recommend-XX-for-rails-6.html">why I recommended the changes I did for Rails 6</a>, in my <a href="http://naildrivin5.com/blog/2016/05/17/announcing-rails-6-an-imagined-roadmap.html">imagined keynote
 for Rails 6</a>.</p>
@@ -195,7 +251,7 @@ and <code class="highlighter-rouge">Subscription</code> models, we could do this
     
     <link href="http://naildrivin5.com/blog/2016/06/14/imagined-rails-6-removes-jquery-and-favors-es6.html"/>
     
-    <updated>2016-06-14T00:00:00-04:00</updated>
+    <updated>2016-06-14T00:00:00-07:00</updated>
     <id>http://naildrivin5.com/blog/2016/06/14/imagined-rails-6-removes-jquery-and-favors-es6</id>
     <content type="html"><![CDATA[<p>This is a series of posts about <a href="http://naildrivin5.com/blog/2016/06/12/why-did-i-recommend-XX-for-rails-6.html">why I recommended the changes I did for Rails 6</a>, in my <a href="http://naildrivin5.com/blog/2016/05/17/announcing-rails-6-an-imagined-roadmap.html">imagined keynote
 for Rails 6</a>.</p>
@@ -263,7 +319,7 @@ for Rails 6</a>.</p>
     
     <link href="http://naildrivin5.com/blog/2016/06/13/imagined-rails-6-no-more-per-view-css.html"/>
     
-    <updated>2016-06-13T00:00:00-04:00</updated>
+    <updated>2016-06-13T00:00:00-07:00</updated>
     <id>http://naildrivin5.com/blog/2016/06/13/imagined-rails-6-no-more-per-view-css</id>
     <content type="html"><![CDATA[<p>This is a series of posts about <a href="http://naildrivin5.com/blog/2016/06/12/why-did-i-recommend-XX-for-rails-6.html">why I recommended the changes I did for Rails 6</a>, in my <a href="http://naildrivin5.com/blog/2016/05/17/announcing-rails-6-an-imagined-roadmap.html">imagined keynote
 for Rails 6</a>.</p>
@@ -365,7 +421,7 @@ I’ve been working this wawy for over three years and have <em>very</em> rarely
     
     <link href="http://naildrivin5.com/blog/2016/06/12/why-did-i-recommend-XX-for-rails-6.html"/>
     
-    <updated>2016-06-12T00:00:00-04:00</updated>
+    <updated>2016-06-12T00:00:00-07:00</updated>
     <id>http://naildrivin5.com/blog/2016/06/12/why-did-i-recommend-XX-for-rails-6</id>
     <content type="html"><![CDATA[<p>In my <a href="http://naildrivin5.com/blog/2016/05/17/announcing-rails-6-an-imagined-roadmap.html">imagined keynote for Rails 6</a>, I imagined a lot of wacky new features for Rails.  My Rails 6 had lots of big changes, and I thought it might be interesting to dig into why I think those changes are useful for Rails.</p>
 
@@ -398,7 +454,7 @@ I’ve been working this wawy for over three years and have <em>very</em> rarely
     
     <link href="http://naildrivin5.com/blog/2016/06/10/dont-use-ENV-directly.html"/>
     
-    <updated>2016-06-10T00:00:00-04:00</updated>
+    <updated>2016-06-10T00:00:00-07:00</updated>
     <id>http://naildrivin5.com/blog/2016/06/10/dont-use-ENV-directly</id>
     <content type="html"><![CDATA[<p>Getting configuration from the UNIX environment is a hallmark of <a href="http://12factor.net/">12-factor application design</a>, and is a great practice.  Problems arise, however, when your code is littered with direct references to it.  This is because the UNIX environment is a very poor database, but we need to treat it as a better one.</p>
 
@@ -555,7 +611,7 @@ Flag disabled.
     
     <link href="http://confreaks.tv/videos/railsconf2016-can-time-travel-keep-you-from-blowing-up-the-enterprise"/>
     
-    <updated>2016-05-31T00:00:00-04:00</updated>
+    <updated>2016-05-31T00:00:00-07:00</updated>
     <id>http://naildrivin5.com/blog/2016/05/31/scaling-rails-talk-from-railsconf</id>
     <content type="html"><![CDATA[<p>I gave a talk at <a href="http://railsconf.com/">RailsConf ‘16</a> called “Can Time-Travel Keep You From Blowing Up the Enterprise”.  The talk is really about scaling Rails on a growing team, and attempts to stop the discussion around “monolith vs microservices” by showing how a team can take hold of its destiny.</p>
 
@@ -571,7 +627,7 @@ Flag disabled.
     
     <link href="http://naildrivin5.com/blog/2016/05/23/test-behavior-not-configuration.html"/>
     
-    <updated>2016-05-23T08:00:00-04:00</updated>
+    <updated>2016-05-23T08:00:00-07:00</updated>
     <id>http://naildrivin5.com/blog/2016/05/23/test-behavior-not-configuration</id>
     <content type="html"><![CDATA[<p>I’ve become re-acquainted with the pattern of testing ActiveRecord classes using stuff like <code class="highlighter-rouge">expect(parent).to belong_to(:child)</code> and I just don’t understand why anyone would ever write a test like that.  It provides no value, and the implementation provided by <a href="https://github.com/thoughtbot/shoulda-matchers">shoulda</a> isn’t actually testing the behavior.  It’s testing configuration.</p>
 
@@ -676,7 +732,7 @@ Flag disabled.
     
     <link href="http://naildrivin5.com/blog/2016/05/17/announcing-rails-6-an-imagined-roadmap.html"/>
     
-    <updated>2016-05-17T12:00:00-04:00</updated>
+    <updated>2016-05-17T12:00:00-07:00</updated>
     <id>http://naildrivin5.com/blog/2016/05/17/announcing-rails-6-an-imagined-roadmap</id>
     <content type="html"><![CDATA[<p>Just got back from RailsConf.  It was a great Ruby &amp; Rails conference, but I was struck by the dearth of talks about new features of Rails 5—because there just aren’t many.  I thought back to what excited me about Rails in the first place—the baked-in conventions, convenience, encouragement of good practices.</p>
 
@@ -978,121 +1034,6 @@ store—whichever brand it might be.</p>
 <p>I don’t know.</p>
 
 <p>What I do know is that we all better prepare ourselves to write a lot more JavaScript if things don’t change.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[The 'Type Wars' Are Far From Over]]></title>
-    
-    <link href="http://naildrivin5.com/blog/2016/05/03/type-wars-are-far-from-over.html"/>
-    
-    <updated>2016-05-03T12:00:00-04:00</updated>
-    <id>http://naildrivin5.com/blog/2016/05/03/type-wars-are-far-from-over</id>
-    <content type="html"><![CDATA[<p>Uncle Bob penned an <a href="http://blog.cleancoder.com/uncle-bob/2016/05/01/TypeWars.html">interesting piece called Type Wars</a>.  It’s ostensibly a history of the fashion around how types are handled in programming languages.  It, unfortunately, comes to the conclusion that “TDD and unit tests means you don’t need statically-enforced types”.  This is not true.</p>
-
-<p>He initially describes how C had types, but they weren’t enforced at compile- or run-time.  This is bad (he says and I agree) and then talks about two ways to enforce type safety (i.e. require that the you are using the correct types).  In Java, the compiler requires it or the code won’t even run.  In Smalltalk, the runtime requires it only at runtime.  And, according to Uncle Bob, the latter is preferable because you have unit tests.  This is not true (he also overstates the burden required in having types enforced at compile time—just because Java is terrible doesn’t mean the concept is).</p>
-
-<p>In particular, he creates a false equivalence between unit testing and static type checking:</p>
-
-<blockquote>
-  <p>You don’t need static type checking if you have 100% unit test coverage.</p>
-</blockquote>
-
-<p>Not true.</p>
-
-<!-- more -->
-
-<h2 id="its-not-true-but-suppose-it-is">It’s Not True, but Suppose It IS</h2>
-
-<p>If this is true (it’s not), it doesn’t imply that 100% test coverage is a better method of ensuring program correctness than static type checking.  Consider a routine to format a name for a person in the US:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">UsaNameFormatter</span>
-  <span class="k">def</span> <span class="nf">format</span><span class="p">(</span><span class="n">first_name</span><span class="p">,</span> <span class="n">last_name</span><span class="p">)</span>
-    <span class="n">first_name</span> <span class="o">+</span> <span class="s2">" "</span> <span class="o">+</span> <span class="n">last_name</span>
-  <span class="k">end</span>
-<span class="k">end</span>
-</code></pre>
-</div>
-
-<p>Here is a test that achieves 100% test coverage (I’m assuming Uncle Bob means “statement coverage” due to his assertion that “unit test coverage close to 100% can, and is, being achieved”; <a href="https://en.wikipedia.org/wiki/Code_coverage">other types of coverage</a> are very difficult to achieve at 100% and very difficult to measure.).</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">test_format</span>
-  <span class="n">formatter</span> <span class="o">=</span> <span class="no">UsaNameFormatter</span><span class="p">.</span><span class="nf">new</span>
-  <span class="n">assert_equals</span> <span class="s2">"Dave Copeland"</span><span class="p">,</span> <span class="n">formatter</span><span class="p">.</span><span class="nf">format</span><span class="p">(</span><span class="s2">"Dave"</span><span class="p">,</span><span class="s2">"Copeland"</span><span class="p">)</span>
-<span class="k">end</span>
-</code></pre>
-</div>
-
-<p>Despite 100% test coverage, our <code class="highlighter-rouge">format</code> call still feels buggy, especially around the types of data we pass in.  If we pass in <code class="highlighter-rouge">nil</code> for either value, it blows up.  If we pass in non-strings, it blows up (unless those values support <code class="highlighter-rouge">+</code> in all the ways it’s being used, in which case it returns a possibly unexpected value).</p>
-
-<p>In order to ensure we aren’t making these type errors, it’s not sufficient to just test <code class="highlighter-rouge">UsaNameFormatter</code>, we must ensure that the unit tests of very single <em>use</em> of this class pass in the correct arguments. This means at least one test per callsite and those tests must be carefully written so that if future changes to the code pass in nil or non-Strings, those tests fail.</p>
-
-<p>Now consider if we had static type-checking, particularly something like Swift that prevents nil values if you haven’t opted into them:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">func</span> <span class="nf">format</span><span class="p">(</span><span class="nv">firstName</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">lastName</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="n">firstName</span> <span class="o">+</span> <span class="s">" "</span> <span class="o">+</span> <span class="n">lastName</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre>
-</div>
-
-<p>We still need a test that the name is formatted correct, but <em>that’s it</em>.  We never have to worry about this being called incorrectly, and we don’t have to test the <em>use</em> of this function, because it’s impossible to mis-use.</p>
-
-<p>So, I would say that even <em>if</em> you could obviate the need for static type checking by having 100% unit test coverage, it’s not the best way to model correctness: it’s difficult and costly.</p>
-
-<p>Of course, it’s not actually true that 100% unit test coverage obviates the need for static type checking.</p>
-
-<h2 id="its-not-true">It’s Not True</h2>
-
-<p>Consider <code class="highlighter-rouge">UsaNameFormatter</code> above.  Suppose that it’s part of a name-formatting library.  In that case, our existing unit test provides 100% test coverage for our library.  If the “you” is “the person that wrote the library” then, I guess you could say that we don’t need static type checks, because our hands are clean.  If you use the code the way we told you, it’s fine.</p>
-
-<p>If “you” is “the user of the library” then things don’t look so good.  First, you don’t have any way to know what you are supposed to pass in.  You could look at the code or unit tests to see what you <em>can</em> pass in, but you can’t possibly know what the intention is of the routine or library.  The library author has to tell you, with words and text and prose and hopefully in a way that you can understand.  And even then, if you mess it up, you can get cryptic runtime errors.  It’s hard to think of this situation as “the program is correct”.</p>
-
-<p>Our unit tests should not test the correctness of our third-party name-formatting library.  This is a common rule of thumb and I don’t know of any reasonable guidance that says the consumer of a third-party library should write unit tests for that library.  Instead, we tend to mock our use of said third-party library.</p>
-
-<p>Suppose we used <code class="highlighter-rouge">UsaNameFormatter</code> in a presenter to format the name of our <code class="highlighter-rouge">Person</code> object.</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Presenter</span>
-  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">person</span><span class="p">)</span>
-    <span class="vi">@person</span> <span class="o">=</span> <span class="n">person</span>
-  <span class="k">end</span>
-  
-  <span class="k">def</span> <span class="nf">display_name</span>
-    <span class="no">UsaNameFormatter</span><span class="p">.</span><span class="nf">new</span><span class="p">.</span><span class="nf">format</span><span class="p">(</span><span class="n">person</span><span class="p">.</span><span class="nf">given_name</span><span class="p">,</span><span class="n">person</span><span class="p">.</span><span class="nf">sirname</span><span class="p">)</span>
-  <span class="k">end</span>
-<span class="k">end</span>
-</code></pre>
-</div>
-
-<p>To test it, we mock <code class="highlighter-rouge">UsaNameFormatter</code>, because again, we don’t normally test our third-party code in <em>our</em> unit tests.</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">person</span> <span class="o">=</span> <span class="no">Person</span><span class="p">.</span><span class="nf">new</span>
-<span class="n">presenter</span> <span class="o">=</span> <span class="no">Presenter</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">person</span><span class="p">)</span>
-
-<span class="n">expect_any_instance_of</span><span class="p">(</span><span class="no">UsaNameFormatter</span><span class="p">).</span>
-  <span class="nf">to</span> <span class="n">receive</span><span class="p">(</span><span class="n">first</span><span class="p">,</span><span class="n">last</span><span class="p">).</span><span class="nf">and_return</span><span class="p">(</span><span class="s2">"Dave Copeland"</span><span class="p">)</span>
-
-<span class="n">expect</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="nf">display_name</span><span class="p">).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span><span class="s2">"Dave Copeland"</span><span class="p">)</span>
-</code></pre>
-</div>
-
-<p>100% (passing) test coverage!  Unless the constructor of <code class="highlighter-rouge">Person</code> sets default names (and in almost all cases, it wouldn’t), we have a passing test where we pass in <code class="highlighter-rouge">nil</code> to <code class="highlighter-rouge">UsaNameFormatter#format</code>—a situation that would certainly cause a runtime error.  We have a bug.  How could this be?  Both our code and the third-party library have 100% unit test coverage.  What could static typing have done here that we have not already done?</p>
-
-<p>Consider a Swift version of this.  The compiler would see that our Person’s <code class="highlighter-rouge">last_name</code> field is of type “nullable String”, and that our formatter requires the type “non-nullable String”.  It would refuse to compile or execute the code.  The bug would be impossible to write.</p>
-
-<p>Therefore, it’s still possible to write bugs (bad ones!) that would be caught by static type-checking, despite having 100% unit test coverage.</p>
-
-<p>But it gets worse.</p>
-
-<h2 id="everything-is-a-string-right">Everything is A String, Right?</h2>
-
-<p>When you write code with the notion that “you don’t need types because you have 100% unit test coverage” (a flawed, but not unreasonable, interpretation of what Uncle Bob is saying), you end up not using types, and instead making everything a String or a Hashtable.  And isn’t this the problem with our name-formatting in the first place?</p>
-
-<p>Think of every possible <code class="highlighter-rouge">first_name</code> a person in the US could possible have.  Is this the <strong>exact same list</strong> as every possible string in the known universe?  No it’s not.  So why are we using Strings?!?!?  And if if that <em>were</em> true, the formatter code says that everyone must have a first name, so <code class="highlighter-rouge">nil</code> is not a valid first name, yet we have chosen types that allow it.</p>
-
-<p>We do this all the time, because in dynamic languages, we don’t get the full benefits of static type checking, and thus there is less incentive to create custom data types.  In some static languages, like Java or C#, the type system is weak and verbose, so this, too, puts up a barrier to using custom data types.  Instead, we use Strings for everything.  This is terrible.</p>
-
-<p>Static type checking <em>can</em> be a benefit.  It can identify bugs that are difficult or impossible to detect with 100% unit test coverage, and do so much more simply and easily.  The Type Wars are far from over.</p>
-
 ]]></content>
   </entry>
   

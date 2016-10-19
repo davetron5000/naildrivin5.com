@@ -30,13 +30,12 @@
     
       
         
-        Imagined Rails 6: Why A Service Layer?
+        Rails, Angular, Postgres, Bootrap Second Edition in Beta!
         
-        June 16, 2016
+        October 19, 2016
       
       
-        
-          This ...">
+  ...">
   
 
   
@@ -67,6 +66,69 @@
     <section>
       <div class="blog-index">
   
+  
+  
+    <article>
+      <header>
+        
+        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2016/10/19/angular-rails-postgres-bootstrap-second-edition.html">Rails, Angular, Postgres, Bootrap Second Edition in Beta!</a></h1>
+        
+        <h2 class="f6 mtneg">October 19, 2016</h2>
+      </header>
+      
+        
+          <section class="section-break complete-article mb1">
+            <p>The second edition of <a href="https://pragprog.com/book/dcbang2/rails-angular-postgres-and-bootstrap-second-edition">Rails, Angular, Postgres, Bootstrap is in beta</a>.</p>
+
+<p>There’s a lot of new content, mostly around Angular 2.</p>
+
+<p>Of particular interest is that we aren’t using the Asset Pipeline, but are using Webpack.  I tried hard to get Angular 2 working with Sprockets, but as <a href="http://gilesbowkett.blogspot.com/2016/10/let-asset-pipeline-die.html">Giles
+Bowkett</a> points o ut in a recent post, Sprockets is not a modern tool for modern
+JavaScript.</p>
+
+<p>The current beta is about 75% complete and includes:</p>
+
+<ul>
+  <li>Rails
+    <ul>
+      <li>End-to-end unit testing with PhantomJS</li>
+      <li>Making your end-to-end tests work with Webpack</li>
+    </ul>
+  </li>
+  <li>Angular 2
+    <ul>
+      <li>Setting up Webpack to serve CSS and JS</li>
+      <li>Intro to Angular 2, including routing <em>and unit testing</em>.</li>
+    </ul>
+  </li>
+  <li>Postgres
+    <ul>
+      <li>Using and testing Postgres check constraints</li>
+      <li>Content-specific indexed (e.g. index on a lower-cased version of a field)</li>
+      <li>Materialized Views</li>
+    </ul>
+  </li>
+  <li>Bootstrap
+    <ul>
+      <li>Simple styling with Bootstrap</li>
+      <li>Grid-based design with Bootstrap</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Angular 2’s setup was painful, but it’s a much nicer framework than Angular 1, and requires a lot less plumbing and decision-making than React (based on my
+limited experience with React).</p>
+
+<p>The skills you learn in this book will let you sole a <em>wide</em> variety of problems quickly, cleanly, and efficiently, using modern and powerful tools.</p>
+
+<p><a href="https://pragprog.com/book/dcbang2/rails-angular-postgres-and-bootstrap-second-edition">Buy the beta now!</a></p>
+
+<p><em>Note: if you bought the first edition, stay tuned—I’m not sure what accomodations will be made</em></p>
+
+          </section>
+        
+      
+    </article>
   
   
     <article>
@@ -269,36 +331,6 @@ for Rails 6</a>.</p>
 </div>
           <footer class="mb2 text-l">
             <a rel="full-article" class="no-ul pill" href="/blog/2016/05/17/announcing-rails-6-an-imagined-roadmap.html">Read More…</a>
-          </footer>
-        </section>
-      
-    </article>
-  
-  
-    <article>
-      <header>
-        
-        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2016/05/03/type-wars-are-far-from-over.html">The 'Type Wars' Are Far From Over</a></h1>
-        
-        <h2 class="f6 mtneg">May 03, 2016</h2>
-      </header>
-      
-        <section class="mb1">
-          <div class="excerpt"><p>Uncle Bob penned an <a href="http://blog.cleancoder.com/uncle-bob/2016/05/01/TypeWars.html">interesting piece called Type Wars</a>.  It’s ostensibly a history of the fashion around how types are handled in programming languages.  It, unfortunately, comes to the conclusion that “TDD and unit tests means you don’t need statically-enforced types”.  This is not true.</p>
-
-<p>He initially describes how C had types, but they weren’t enforced at compile- or run-time.  This is bad (he says and I agree) and then talks about two ways to enforce type safety (i.e. require that the you are using the correct types).  In Java, the compiler requires it or the code won’t even run.  In Smalltalk, the runtime requires it only at runtime.  And, according to Uncle Bob, the latter is preferable because you have unit tests.  This is not true (he also overstates the burden required in having types enforced at compile time—just because Java is terrible doesn’t mean the concept is).</p>
-
-<p>In particular, he creates a false equivalence between unit testing and static type checking:</p>
-
-<blockquote>
-  <p>You don’t need static type checking if you have 100% unit test coverage.</p>
-</blockquote>
-
-<p>Not true.</p>
-
-</div>
-          <footer class="mb2 text-l">
-            <a rel="full-article" class="no-ul pill" href="/blog/2016/05/03/type-wars-are-far-from-over.html">Read More…</a>
           </footer>
         </section>
       
