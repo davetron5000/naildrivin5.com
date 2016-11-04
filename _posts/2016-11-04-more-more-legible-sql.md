@@ -22,6 +22,8 @@ you'd think so code _looks_ great.
 * Be consistent to a degree you never thought possible.
 * Almost always one thing per line.  Exceptions are `AND` and not much else.
 
+## Example
+
 Craig writes:
 
 ```sql
@@ -61,6 +63,8 @@ HAVING
 ```
 
 Let's take a more extreme case, because when I say "align, align, align, align", and “be consistent to a degree you never thought possible” I'm not kidding.
+
+## A Realer Example
 
 Suppose we have a table `transactions` that contains credit card transactions, `users` containing, well, users and `addresses` containing
 addresses (to which a user has a shipping address).  We want to get a report of transactions that includes pre-tax amount, tax amount, username, and shipping zipcode. We only want to show successful transactions and only those that used PayPal and only for users who signed up recently.
