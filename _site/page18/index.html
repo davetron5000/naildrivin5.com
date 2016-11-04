@@ -30,12 +30,11 @@
     
       
         
-        Getting Rake's PackageTask to depend on generated files
+        Are you emailing yourself your log errors?  You should be.
         
-        September 17, 2008
+        September 26, 2008
       
-      
-  ...">
+      ...">
   
 
   
@@ -66,6 +65,57 @@
     <section>
       <div class="blog-index">
   
+  
+  
+    <article>
+      <header>
+        
+        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2008/09/26/are-you-emailing-yourself-your-log-errors-you-should-be.html">Are you emailing yourself your log errors?  You should be.</a></h1>
+        
+        <h2 class="f6 mtneg">September 26, 2008</h2>
+      </header>
+      
+        
+          <section class="section-break complete-article mb1">
+            <p>
+Time and time again, users complain about an application crashing on them or otherwise not working.  They don't provide you any info and it's hard to repeat.  You check out the log, but there's thousands (or millions) of entries and you have no clue where their error occured.  Worse, if you are deploying a RIA, the log  may be on their computer and not available.
+</p>
+<p>
+On my last project we experienced this scenario so much that we instituted two things
+<ul>
+<li>All messages logged with <tt>Level.ERROR</tt> in log4j would be emailed to us</li>
+<li>All exceptions caught on the client would be packaged and sent back to the server and logged at <tt>Level.ERROR</tt> level (thus emailing them to us</li>
+</ul>
+After the initial deluge of emails, we <b>found a lot of bugs</b>.  I mean <b>a lot</b> of bugs.  The annoying, intermittent kind that are hard to reproduce.  Further, by judicious use of logging, we discovered a lot of mis-configured environments and other problems without having to get users to mail us their logs.
+</p>
+<p>At <a href="http://www.gliffy.com">Gliffy</a>, they are doing the same thing.  Right now, we're testing a bunch of new features and the stage instance just sent me a bunch of emails, all indicating configuration problems, which is the exact kind of thing that can be hard to track down.
+</p>
+<p>
+Setting it up using log4j is dead simple:
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">log4j</span><span class="o">.</span><span class="na">appender</span><span class="o">.</span><span class="na">mail</span><span class="o">=</span><span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">log4j</span><span class="o">.</span><span class="na">net</span><span class="o">.</span><span class="na">SMTPAuthenticateAppender</span>
+<span class="n">log4j</span><span class="o">.</span><span class="na">appender</span><span class="o">.</span><span class="na">mail</span><span class="o">.</span><span class="na">SMTPHost</span><span class="o">=</span><span class="nd">@SMTP_HOST</span><span class="err">@</span>
+<span class="n">log4j</span><span class="o">.</span><span class="na">appender</span><span class="o">.</span><span class="na">mail</span><span class="o">.</span><span class="na">UserName</span><span class="o">=</span><span class="nd">@SMTP_USER</span><span class="err">@</span>
+<span class="n">log4j</span><span class="o">.</span><span class="na">appender</span><span class="o">.</span><span class="na">mail</span><span class="o">.</span><span class="na">Password</span><span class="o">=</span><span class="nd">@SMTP_PASS</span><span class="err">@</span>
+<span class="n">log4j</span><span class="o">.</span><span class="na">appender</span><span class="o">.</span><span class="na">mail</span><span class="o">.</span><span class="na">Authenticate</span><span class="o">=</span><span class="kc">true</span>
+<span class="n">log4j</span><span class="o">.</span><span class="na">appender</span><span class="o">.</span><span class="na">mail</span><span class="o">.</span><span class="na">From</span><span class="o">=</span><span class="n">errors</span><span class="nd">@gliffy</span><span class="o">.</span><span class="na">com</span>
+<span class="n">log4j</span><span class="o">.</span><span class="na">appender</span><span class="o">.</span><span class="na">mail</span><span class="o">.</span><span class="na">To</span><span class="o">=</span><span class="nd">@SMTP_LOGGER_FAILURE</span><span class="err">@</span>
+<span class="n">log4j</span><span class="o">.</span><span class="na">appender</span><span class="o">.</span><span class="na">mail</span><span class="o">.</span><span class="na">Subject</span><span class="o">=</span><span class="n">Errors</span> <span class="n">from</span> <span class="nd">@SMTP_DESC</span><span class="err">@</span>
+<span class="n">log4j</span><span class="o">.</span><span class="na">appender</span><span class="o">.</span><span class="na">mail</span><span class="o">.</span><span class="na">BufferSize</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">log4j</span><span class="o">.</span><span class="na">appender</span><span class="o">.</span><span class="na">mail</span><span class="o">.</span><span class="na">Threshold</span><span class="o">=</span><span class="n">ERROR</span>
+<span class="n">log4j</span><span class="o">.</span><span class="na">appender</span><span class="o">.</span><span class="na">mail</span><span class="o">.</span><span class="na">LocationInfo</span><span class="o">=</span><span class="kc">true</span> 
+<span class="n">log4j</span><span class="o">.</span><span class="na">appender</span><span class="o">.</span><span class="na">mail</span><span class="o">.</span><span class="na">layout</span><span class="o">=</span><span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">log4j</span><span class="o">.</span><span class="na">PatternLayout</span> 
+<span class="n">log4j</span><span class="o">.</span><span class="na">appender</span><span class="o">.</span><span class="na">mail</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">ConversionPattern</span><span class="o">=%</span><span class="n">d</span> <span class="o">%</span><span class="n">p</span><span class="o">%</span><span class="n">n</span><span class="o">%</span><span class="n">t</span><span class="o">%</span><span class="n">n</span><span class="o">%</span><span class="nl">c:</span><span class="o">%</span><span class="nl">M:</span><span class="o">%</span><span class="n">L</span><span class="o">%</span><span class="n">n</span><span class="o">---%</span><span class="n">n</span><span class="o">%</span><span class="n">m</span><span class="o">%</span><span class="n">n</span><span class="o">---%</span><span class="n">n</span><span class="o">%</span><span class="n">n</span> </code></pre></figure>
+
+In my previous job I even created a customized layout to format the emails in such a way that our code was highlighted and GMail didn't compress things into threads.
+</p>
+<p>
+If you aren't doing this, you should be.  Now.
+</p>
+
+          </section>
+        
+      
+    </article>
   
   
     <article>
@@ -688,37 +738,6 @@ I also believe there might be some transaction issues with this, but I can't fig
 <span class="n">emf</span><span class="o">.</span><span class="na">close</span><span class="o">();</span></code></pre></figure>
 
 Again, this is <b> not production code</b> as <b>no</b> error handling has been done at all, but you get the point.
-
-          </section>
-        
-      
-    </article>
-  
-  
-    <article>
-      <header>
-        
-        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2008/04/28/git-and-svn-connecting-git-branches-to-svn-branches.html">Git and SVN: connecting git branches to svn branches</a></h1>
-        
-        <h2 class="f6 mtneg">April 28, 2008</h2>
-      </header>
-      
-        
-          <section class="section-break complete-article mb1">
-            Currently working on a project where Subversion is the CM system of choice.  I'd like to use git, as it's faster and doesn't require so much network access.  Plus, I'm hoping when it comes time to merge, I can simplify the entire process by using git's allegedly superior merging technique.  At any rate, I've got a branch on SVN to work on, and I want to track both that branch and the entire svn tree.
-
-Saturday morning, I did a <tt>git-svn init</tt> from their repository.  Today, after lunch, it finished.  After doing a <tt>git-gc</tt> to clean up the checkout, it wasn't clear how to connect branches.  Following is what I did (assume my subversion branch is <tt>branches/FOO</tt>):
-
-<blockquote><pre>
-git-checkout -b local-trunk trunk
-git branch local-foo FOO
-</pre></blockquote>
-
-The first thing creates a new branch called "local-trunk" started at "trunk" (which is the remote branch mapping to the subversion main trunk).  The second command creates a new branch called "local-foo", which is rooted at remote branch "FOO".  I have no clue why I couldn't do the same thing twice, as both commands seem to do the same thing (the first switches to the branch "local-trunk" after creating it).  But, this is what worked for me.
-
-Now, to develop, I <tt>git checkout local-foo</tt> and commit all day long.  a <tt>git-svn dcommit</tt> will send my changes to subversion on the FOO branch.  I can update the trunk via <tt>git checkout local-trunk</tt> and <tt>git-svn rebase</tt>.  My hope is that I can merge from the trunk to my branch periodically and then, when my code is merged to the trunk, things will be pretty much done and ready to go.  We'll see.
-
-On a side note, the git repository, which contains <b>every revision of every file in the subversion repository</b> is 586,696 bytes.  The subversion checkout of <b>just the FOO branch</b> is 1,242,636 bytes; over double the size, and there's still not enough info in that checkout to do a log or diff between versions.
 
           </section>
         
