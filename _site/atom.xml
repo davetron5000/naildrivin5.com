@@ -4,13 +4,184 @@
   <title><![CDATA[naildrivin5.com - David Bryant Copeland's Website]]></title>
   <link href="http://naildrivin5.com/atom.xml" rel="self"/>
   <link href="http://naildrivin5.com/"/>
-  <updated>2016-11-04T08:41:03-04:00</updated>
+  <updated>2016-12-06T08:19:29-05:00</updated>
   <id>http://naildrivin5.com/</id>
   <author>
     <name><![CDATA[David Bryant Copeland]]></name>
     <email><![CDATA[davec@naildrivin5.com]]></email>
   </author>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Configuration Design is User Experience Design…and it's hard]]></title>
+    
+    <link href="http://naildrivin5.com/blog/2016/12/06/configuration-is-user-experience.html"/>
+    
+    <updated>2016-12-06T09:00:00-05:00</updated>
+    <id>http://naildrivin5.com/blog/2016/12/06/configuration-is-user-experience</id>
+    <content type="html"><![CDATA[<p>In exploring the modern front-end ecosystem for my new book, I’ve gotten to experience some truly difficult configuration formats (Webpack) and to work around aspects of Rails that aren’t configurable (Sprockets).  Configuration is hard, and it’s an overlooked part of the user experience often designed to make the software library author’s job easier at the expense of ease-of-use.</p>
+
+<p>It doesn’t have to be this way.</p>
+
+<!-- more -->
+
+<p>Rails is famous for popularizing “convention over configuration”, which boils down to two things:</p>
+
+<ul>
+  <li>Don’t make everything configurable.</li>
+  <li>Set sensible defaults for everything that <em>is</em> configurable.</li>
+</ul>
+
+<p>This is often referred to as “opinionated software”, but it’s really “software that is easy to use”.  This is because I strongly feel developers should be
+spending time solving problems for their users and not making pointless decisions like where files go, how to name database tables, or what HTML templating language to use.  No project failed because the developers didn’t think long and hard enough about the merits of HAML vs Slim.</p>
+
+<p>But, this concern is orthogonal to the <em>user experience</em> of configuring software.  Software configuration is, on a whole, a total nightmare.  Rails shields
+itself from some criticism because it doesn’t make you actually configure things very often, but when you do, it’s needlessly complex.</p>
+
+<p>Here’s how to configure the JavaScript minifier in Sprockets:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">environment</span><span class="p">.</span><span class="nf">js_compressor</span>  <span class="o">=</span> <span class="ss">:uglify</span>
+</code></pre>
+</div>
+
+<p>What does the symbol <code class="highlighter-rouge">:uglify</code> mean?  What does it do?  The documentation for <code class="highlighter-rouge">js_compressor</code> is:</p>
+
+<blockquote>
+  <p>Assign a compressor to run on <code class="highlighter-rouge">application/javascript</code> assets.  The compressor object must respond to <code class="highlighter-rouge">compress</code>.</p>
+</blockquote>
+
+<p>Although you can make a <code class="highlighter-rouge">Symbol</code> respond to <code class="highlighter-rouge">compress</code>, that’s clearly that’s not what happening here. Turns out there is a lookup table in the code that maps
+that symbol to the actual compressor, <code class="highlighter-rouge">Sprockets::UglifierCompressor</code> (which, strangely, does not respond to <code class="highlighter-rouge">compress</code>; the docs are out of date and the
+object must actually respond to <code class="highlighter-rouge">call</code>).  So, to specify another value than the default, you have to <em>configure the configuration</em>.</p>
+
+<p>A UI like this isn’t learnable.  You can’t simply figure out what other options are available.  It’s also not predictable, because you have no way to know
+what different values will do (without reading the source code and even then it’s not clear—what’s being passed to <code class="highlighter-rouge">call</code>?).</p>
+
+<p>Typically, a UI or API has to trade-off learnability with usability.  <a href="http://naildrivin5.com/blog/2013/04/24/how-to-switch-to-vim.html">vim</a> is a classic
+example of leaning toward usability.  It’s very difficult to learn, but once you do learn it, you’re more efficient than with most other editors.</p>
+
+<p>Configuration APIs <em>must</em> lean toward learnability, because there is no steady-state where you are editing configuration every day.  The <em>usability</em> of
+configuration doesn’t matter nearly as much as its learnability.</p>
+
+<p>And, because Ruby uses code for configuration, I would argue it makes the framework developer’s life easier.  Consider if <em>this</em> were the way to configure the
+JS compressor:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">environment</span><span class="p">.</span><span class="nf">js_compressor_class</span> <span class="o">=</span> <span class="no">Sprockets</span><span class="o">::</span><span class="no">UglifierCompressor</span>
+</code></pre>
+</div>
+
+<p>This is eminently more learnable.  We know that we’re expected to provide a class.  We can also see that the default value is…a class!  We can much more
+easily locate that class than we could a symbol.  In fact, if we’re lucky, that class has documentation that we can consult instead of looking at the source.</p>
+
+<p>I should note that you <em>can</em> pass a class to <code class="highlighter-rouge">js_compressor=</code>.  There’s just all this extra code in Sprockets to handle a Symbol.  I can’t understand why.
+It’s more work for the library maintainer and more difficult in every way for the user.</p>
+
+<p>But, there is a strong culture in Rails for playing code golf at every turn.  Anything verbose is “ugly” and not “clean” and therefore must be eliminated.
+This is not in the interest of users.</p>
+
+<p>The way configuration is used is different than, say, Active Support.  I would argue that Rails is right to create APIs like <code class="highlighter-rouge">3.days.ago</code>.  But, these opaque
+and undiscoverable affordances have no place in configuration.</p>
+
+<p>Configuration should be explicit, and if making it more verbose is required to make it explicit, so be it. Note that explicit doesn’t require being verbose.</p>
+
+<p>An explicit configuration is more learnable and readable.  It also makes the library author’s job simpler, meaning they can provide more help to the user in
+properly configuring the library.</p>
+
+<p>For example, what if <code class="highlighter-rouge">js_compressor_class=</code> worked like this:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">js_compressor_class</span><span class="o">=</span><span class="p">(</span><span class="n">klass</span><span class="p">)</span>
+  <span class="nb">method</span> <span class="o">=</span> <span class="n">klass</span><span class="p">.</span><span class="nf">instance_method</span><span class="p">(</span><span class="ss">:call</span><span class="p">)</span>
+  <span class="k">if</span> <span class="nb">method</span> <span class="o">&amp;&amp;</span> <span class="nb">method</span><span class="p">.</span><span class="nf">arity</span> <span class="o">==</span> <span class="mi">1</span>
+    <span class="vi">@js_compressor_class</span> <span class="o">=</span> <span class="n">klass</span>
+  <span class="k">elsif</span> <span class="nb">method</span><span class="p">.</span><span class="nf">nil?</span>
+    <span class="k">raise</span> <span class="s2">"</span><span class="si">#{</span><span class="n">klass</span><span class="si">}</span><span class="s2"> does not implement `call`"</span>
+  <span class="k">else</span>
+    <span class="k">raise</span> <span class="s2">"</span><span class="si">#{</span><span class="n">klass</span><span class="si">}</span><span class="s2"> implements call, but it takes </span><span class="si">#{</span><span class="nb">method</span><span class="p">.</span><span class="nf">arity</span><span class="si">}</span><span class="s2"> "</span> <span class="o">+</span>
+          <span class="s2">"arguments.  It should take exactly 1"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>How helpful would that be?  A lot more so than being able to specify a Symbol to save a few seconds of typing.  I know that Ruby and Rails eschew this sort
+of safety net, but, again, users aren’t in the configuration very often and won’t ever really learn the subtleties of how it works.  They <em>need</em> safety checks and helpful error messages far more than in the “regular” Rails API.</p>
+
+<p>Leaving Rails, it’s all downhill, but I think the same lessons could be applied.</p>
+
+<p>Let’s look at Webpack, the current asset-pipeline-du-jour.</p>
+
+<p>Webpack is highly powerful and eminently functional.  But its configuration is bordering on performance art.  Here’s how the docs recommend you get CSS into
+your asset bundle:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span>
+  <span class="nl">module</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nl">loaders</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="na">test</span><span class="p">:</span> <span class="sr">/</span><span class="se">\.</span><span class="sr">css$/</span><span class="p">,</span>
+        <span class="na">loader</span><span class="p">:</span> <span class="s1">'style-loader!css-loader'</span> 
+      <span class="p">},</span>
+      <span class="c1">// ...</span>
+    <span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>This is impossible for a newcomer to derive, and pretty difficult to retain.  Even if you understand the concept of loaders (which are, roughly, a way to
+tell Webpack how to handle a file given to <code class="highlighter-rouge">require()</code>), this is still incredibly opaque and error-prone.  It doesn’t have to be and, honestly, a
+better format would likely make the code that manages this easier to write and maintain.</p>
+
+<p>So, what is this configuration doing?  It says that if someone <code class="highlighter-rouge">require()</code>s a file whose name ends in <code class="highlighter-rouge">.css</code>, then to run it through some code attached to the string
+“css-loader” and then run <em>that</em> result through some code attached to the string “style-loader”.</p>
+
+<p>Where did “css-loader” and “style-loader” come from?  And how do we know we can combine them in this way?  We have only documentation to tell us that this
+could possibly work and is correct.</p>
+
+<p>That the configuration requires a mini-language embedded in a string is telling us that there’s a lot of room for improvement.</p>
+
+<p>Whatever “style-loader” and “css-loader” mean, they eventualy lead to some piece of code we’ve brought down from NPM.  Why not use that piece of code as the
+configuration?  Further, why are we hiding the idea of multiple loaders?  And why bury the ordering inside a string?  And why order the backwards from how
+both UNIX and English-speakers read?</p>
+
+<p>Instead, what if we were more honest about what’s being configured.  We want to configure a pipeline of loaders, which are functions that we pull in from a
+dependency:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">CssLoader</span>   <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"css-loader"</span><span class="p">);</span>   <span class="err">#</span> <span class="nx">a</span> <span class="kr">package</span> <span class="nx">from</span> <span class="kr">package</span><span class="p">.</span><span class="nx">json</span>
+<span class="kd">var</span> <span class="nx">StyleLoader</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"style-loader"</span><span class="p">);</span> <span class="err">#</span> <span class="nx">a</span> <span class="kr">package</span> <span class="nx">from</span> <span class="kr">package</span><span class="p">.</span><span class="nx">json</span>
+
+<span class="nl">module</span><span class="p">:</span> <span class="p">{</span>
+  <span class="nl">loaders</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="na">test</span><span class="p">:</span> <span class="sr">/</span><span class="se">\.</span><span class="sr">css$/</span><span class="p">,</span>
+      <span class="na">loaderPipeline</span><span class="p">:</span> <span class="p">[</span>
+        <span class="nx">CssLoader</span><span class="p">,</span>
+        <span class="nx">StyleLoader</span>
+      <span class="p">]</span>
+    <span class="p">},</span>
+</code></pre>
+</div>
+
+<p>This requires much less context to get right.  If we assume some knowledge of what a loader is as well as some basics of JavaScript, we can not only quickly
+understand this configuration, but we can modify it more easily.  I can dig into the css-loader package and see what it exports.  I can also easily see the
+ordering of how my loaders will be used, because we’re using a data structure for ordering things: an array.</p>
+
+<p>Notice how much more clear this actually is.  I would also be willing to bet that the code that interprets this configuration would be much simpler,
+because it’s being handed the actual pieces of code to execute and doesn’t have parse out that ridiculous exclamation point or look up “style-loader” in
+some internal data structure to find the actual code.</p>
+
+<p>Designing a configuration system is like designing an API, but it’s even harder, because it’s an API that is crucially important to use properly, and
+something that by definition developers will not be using very frequently.  It’s one of the few cases where <em>learnability</em> matters.</p>
+
+<p>But, it could be worse.  Here’s how to specify a project dependency in SBT, the Scala Build Tool:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">libraryDependencies</span> <span class="o">+=</span> <span class="s">"org.apache.derby"</span> <span class="o">%</span> <span class="s">"derby"</span> <span class="o">%</span> <span class="s">"10.4.1.3"</span>
+<span class="n">libraryDependencies</span> <span class="o">+=</span> <span class="s">"org.scala-tools"</span> <span class="o">%%</span> <span class="s">"scala-stm"</span> <span class="o">%</span> <span class="s">"0.3"</span>
+</code></pre>
+</div>
+
+<p>Any ideas what those strings are?  Or why the first line uses single percent-signs and the second line uses one double-one?  Good luck googling that.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Writing even more legible SQL]]></title>
@@ -38,6 +209,8 @@ you’d think so code <em>looks</em> great.</p>
   <li>Be consistent to a degree you never thought possible.</li>
   <li>Almost always one thing per line.  Exceptions are <code class="highlighter-rouge">AND</code> and not much else.</li>
 </ul>
+
+<h2 id="example">Example</h2>
 
 <p>Craig writes:</p>
 
@@ -77,6 +250,8 @@ you’d think so code <em>looks</em> great.</p>
 </div>
 
 <p>Let’s take a more extreme case, because when I say “align, align, align, align”, and “be consistent to a degree you never thought possible” I’m not kidding.</p>
+
+<h2 id="a-realer-example">A Realer Example</h2>
 
 <p>Suppose we have a table <code class="highlighter-rouge">transactions</code> that contains credit card transactions, <code class="highlighter-rouge">users</code> containing, well, users and <code class="highlighter-rouge">addresses</code> containing
 addresses (to which a user has a shipping address).  We want to get a report of transactions that includes pre-tax amount, tax amount, username, and shipping zipcode. We only want to show successful transactions and only those that used PayPal and only for users who signed up recently.</p>
@@ -732,111 +907,6 @@ Flag disabled.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/23NhP4x3AAE" frameborder="0" allowfullscreen=""></iframe>
 <p> </p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Test Behavior, not Configuration]]></title>
-    
-    <link href="http://naildrivin5.com/blog/2016/05/23/test-behavior-not-configuration.html"/>
-    
-    <updated>2016-05-23T08:00:00-04:00</updated>
-    <id>http://naildrivin5.com/blog/2016/05/23/test-behavior-not-configuration</id>
-    <content type="html"><![CDATA[<p>I’ve become re-acquainted with the pattern of testing ActiveRecord classes using stuff like <code class="highlighter-rouge">expect(parent).to belong_to(:child)</code> and I just don’t understand why anyone would ever write a test like that.  It provides no value, and the implementation provided by <a href="https://github.com/thoughtbot/shoulda-matchers">shoulda</a> isn’t actually testing the behavior.  It’s testing configuration.</p>
-
-<!-- more -->
-
-<p>In Rails, the following code is configuration:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Address</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
-  <span class="n">belongs_to</span> <span class="ss">:country</span>
-<span class="k">end</span>
-
-<span class="k">class</span> <span class="nc">Country</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
-<span class="k">end</span>
-</code></pre>
-</div>
-
-<p>There is literally no reason to write this test:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">describe</span> <span class="no">Address</span> <span class="k">do</span>
-  <span class="n">it</span> <span class="s2">"belongs to a country"</span> <span class="k">do</span>
-    <span class="n">expect</span><span class="p">(</span><span class="no">Address</span><span class="p">.</span><span class="nf">new</span><span class="p">).</span><span class="nf">to</span> <span class="n">belong_to</span><span class="p">(</span><span class="ss">:country</span><span class="p">)</span>
-  <span class="k">end</span>
-<span class="k">end</span>
-</code></pre>
-</div>
-
-<p>Why?</p>
-
-<p>First, it’s basically asserting the exact code that it’s testing.  It could just as well be:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">describe</span> <span class="no">Address</span> <span class="k">do</span>
-  <span class="n">it</span> <span class="s2">"belongs to a country"</span> <span class="k">do</span>
-    <span class="n">source_code</span> <span class="o">=</span> <span class="no">File</span><span class="p">.</span><span class="nf">read</span><span class="p">(</span><span class="no">File</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span>
-                              <span class="kp">__FILE__</span><span class="p">,</span>
-                              <span class="s2">"../../app/models/address.rb"</span><span class="p">))</span>
-    <span class="n">expect</span><span class="p">(</span><span class="n">source_code</span><span class="p">).</span><span class="nf">to</span> <span class="o">=~</span><span class="p">(</span><span class="sr">/^  belongs_to :country$/</span><span class="p">)</span>
-  <span class="k">end</span>
-<span class="k">end</span>
-</code></pre>
-</div>
-
-<p>Second, it actually doesn’t test the configuration behavior.  It uses a <a href="https://github.com/thoughtbot/shoulda-matchers/blob/b58f0a1807a4346399aa3b9bb5b88923ab9aa2e5/lib/shoulda/matchers/active_record/association_matcher.rb">ridiculous</a> <a href="https://github.com/thoughtbot/shoulda-matchers/blob/b58f0a1807a4346399aa3b9bb5b88923ab9aa2e5/lib/shoulda/matchers/active_record/association_matchers/model_reflector.rb">amount of</a> <a href="https://github.com/thoughtbot/shoulda-matchers/blob/b58f0a1807a4346399aa3b9bb5b88923ab9aa2e5/lib/shoulda/matchers/active_record/association_matchers/model_reflection.rb">logic and meta-programming</a> to determine what Active Record methods appear in the class under test.</p>
-
-<p>It does not assert any particular behavior.</p>
-
-<p>This means that it actually doesn’t test the one thing that most people mess up with ActiveRecord, which is putting the <code class="highlighter-rouge">belongs_to</code> on the wrong class.</p>
-
-<p>It’s also <em>highly</em> unlikely that this test would ever find a real bug, and I can’t imagine a TDD scenario in which this test takes our code from red to green.</p>
-
-<p>But, since it <em>doesn’t test behavior</em> it makes refactoring difficult.</p>
-
-<p>What if we tested the behavior instead?</p>
-
-<p>Here’s one way to do that:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">describe</span> <span class="no">Address</span> <span class="k">do</span>
-  <span class="n">it</span> <span class="s2">"has a country"</span> <span class="k">do</span>
-    <span class="n">address</span> <span class="o">=</span> <span class="no">Address</span><span class="p">.</span><span class="nf">new</span>
-    <span class="n">country</span> <span class="o">=</span> <span class="no">Country</span><span class="p">.</span><span class="nf">new</span>
-    <span class="n">address</span><span class="p">.</span><span class="nf">country</span> <span class="o">=</span> <span class="n">country</span>
-
-    <span class="n">expect</span><span class="p">(</span><span class="n">address</span><span class="p">.</span><span class="nf">country</span><span class="p">).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span><span class="n">country</span><span class="p">)</span>
-  <span class="k">end</span>
-<span class="k">end</span>
-</code></pre>
-</div>
-
-<p>This is how we expect <code class="highlighter-rouge">Address</code> instances to behave.  We want to give them countries, and have them return them to us.  It’s almost certain that most uses of an address and a country will do it this way.</p>
-
-<p>Now, suppose we’ve decided that storing countries in its own table is too difficult, becuase the geo-political situtation on our planet is chaotic.  Instead, we’ll store it as a string on <code class="highlighter-rouge">addresses</code> called <code class="highlighter-rouge">country_code</code>.  This way, when countries change, we don’t have to maintain our <code class="highlighter-rouge">countries</code> list.</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Address</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
-
-  <span class="n">belongs_to</span> <span class="ss">:legacy_country</span><span class="p">,</span> <span class="n">foreign_key</span> <span class="ss">:country_id</span>
-
-  <span class="k">def</span> <span class="nf">country</span>
-    <span class="no">Country</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">code: </span><span class="nb">self</span><span class="p">.</span><span class="nf">country_code</span><span class="p">)</span>
-  <span class="k">end</span>
-
-  <span class="k">def</span> <span class="nf">country</span><span class="o">=</span><span class="p">(</span><span class="n">new_country</span><span class="p">)</span>
-    <span class="nb">self</span><span class="p">.</span><span class="nf">country_code</span> <span class="o">=</span> <span class="n">new_country</span><span class="p">.</span><span class="nf">code</span>
-  <span class="k">end</span>
-<span class="k">end</span>
-
-<span class="k">class</span> <span class="nc">Country</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
-  <span class="k">def</span> <span class="nf">==</span><span class="p">(</span><span class="n">other_country</span><span class="p">)</span>
-    <span class="nb">self</span><span class="p">.</span><span class="nf">code</span> <span class="o">==</span> <span class="n">other_country</span><span class="p">.</span><span class="nf">code</span>
-  <span class="k">end</span>
-<span class="k">end</span>
-</code></pre>
-</div>
-
-<p>With this change, the <em>behavior</em> of our <code class="highlighter-rouge">Address</code> stays the same, and our test still passes.  If we had asserted the configuration instead, our test would break, even though the behavior was the same.</p>
-
-<p>Don’t test configuration.  Test behavior.</p>
-
 ]]></content>
   </entry>
   

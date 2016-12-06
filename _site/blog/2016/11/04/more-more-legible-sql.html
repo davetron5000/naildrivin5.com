@@ -90,6 +90,8 @@ you’d think so code <em>looks</em> great.</p>
   <li>Almost always one thing per line.  Exceptions are <code class="highlighter-rouge">AND</code> and not much else.</li>
 </ul>
 
+<h2 id="example">Example</h2>
+
 <p>Craig writes:</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">foo</span><span class="p">,</span>
@@ -128,6 +130,8 @@ you’d think so code <em>looks</em> great.</p>
 </div>
 
 <p>Let’s take a more extreme case, because when I say “align, align, align, align”, and “be consistent to a degree you never thought possible” I’m not kidding.</p>
+
+<h2 id="a-realer-example">A Realer Example</h2>
 
 <p>Suppose we have a table <code class="highlighter-rouge">transactions</code> that contains credit card transactions, <code class="highlighter-rouge">users</code> containing, well, users and <code class="highlighter-rouge">addresses</code> containing
 addresses (to which a user has a shipping address).  We want to get a report of transactions that includes pre-tax amount, tax amount, username, and shipping zipcode. We only want to show successful transactions and only those that used PayPal and only for users who signed up recently.</p>
