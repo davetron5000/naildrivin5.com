@@ -4,7 +4,7 @@ title: "Configuration Design is User Experience Design…and it's hard"
 date: 2016-12-06 9:00
 ---
 
-In exploring the modern front-end ecosystem for my new book, I've gotten to experience some truly difficult configuration formats (Webpack) and to work around aspects of Rails that aren't configurable (Sprockets).  Configuration is hard, and it's an overlooked part of the user experience often designed to make the software library author's job easier at the expense of ease-of-use.
+In exploring the modern front-end ecosystem for my [new book](https://pragprog.com/book/dcbang2/rails-angular-postgres-and-bootstrap-second-edition), I've gotten to experience some truly difficult configuration formats (Webpack) and to work around aspects of Rails that aren't configurable (Sprockets).  Configuration is hard, and it's an overlooked part of the user experience often designed to make the software library author's job easier at the expense of ease-of-use.
 
 It doesn't have to be this way.
 
