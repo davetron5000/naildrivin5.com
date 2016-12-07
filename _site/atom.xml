@@ -4,7 +4,7 @@
   <title><![CDATA[naildrivin5.com - David Bryant Copeland's Website]]></title>
   <link href="http://naildrivin5.com/atom.xml" rel="self"/>
   <link href="http://naildrivin5.com/"/>
-  <updated>2016-12-07T10:18:55-05:00</updated>
+  <updated>2016-12-07T10:20:24-05:00</updated>
   <id>http://naildrivin5.com/</id>
   <author>
     <name><![CDATA[David Bryant Copeland]]></name>
@@ -58,7 +58,7 @@ comments?  How happy am I to see a Git commit message of “updated”?  Did tha
 
 <h2 id="on-call-must-be-an-explicit-requirement">“On Call” Must be an Explicit Requirement</h2>
 
-<p>If you are hiring developers, mention the oncall requirements.  If you are looking for a job, ask about it.  You need a sense of the frequency of when you’ll
+<p>If you are hiring developers, mention the on-call requirements.  If you are looking for a job, ask about it.  You need a sense of the frequency of when you’ll
 be on call, and a baseline for how often you’ll be woken up while you are on call (this is also a great question to reveal the actual quality of the software
 you’ll be working on).</p>
 
@@ -67,11 +67,11 @@ developer for not wanting to be on call.</p>
 
 <p>But, if your job requires it, then it requires it.  That’s why it’s better to explicit up front.</p>
 
-<p>It also makes it hard to suddenly put developers into an oncall rotation when the expectation has been set that this is not a job requirement.  While it’s
+<p>It also makes it hard to suddenly put developers into an on-call rotation when the expectation has been set that this is not a job requirement.  While it’s
 perfectly normal for a company’s needs to change as the company changes, you have to be cognizant of the people who now have a new job requirement being
 thrust upon them.</p>
 
-<p>If you decided that your Ruby shop is now going to write 100% Go, you’ll need to accomodate the team during that transition.  Adding an on-call requirement is an even more drastic change.  You have to prepare yourself for people that are unable (or unwilling) to take on this new requirement.  Whatever gain you feel you may get from adding an oncall rotation must be weighed against the downsides.</p>
+<p>If you decided that your Ruby shop is now going to write 100% Go, you’ll need to accommodate the team during that transition.  Adding an on-call requirement is an even more drastic change.  You have to prepare yourself for people that are unable (or unwilling) to take on this new requirement.  Whatever gain you feel you may get from adding an on-call rotation must be weighed against the downsides.</p>
 
 <h2 id="conclusion">Conclusion</h2>
 
