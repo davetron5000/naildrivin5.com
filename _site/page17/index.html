@@ -30,13 +30,14 @@
     
       
         
-        GitHub does it again; another killer feature
+        Command line interface for Gliffy
         
-        December 18, 2008
+        January 14, 2009
       
       
         
-     ...">
+          
+      ...">
   
 
   
@@ -67,6 +68,39 @@
     <section>
       <div class="blog-index">
   
+  
+  
+    <article>
+      <header>
+        
+        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2009/01/14/command-line-interface-for-gliffy.html">Command line interface for Gliffy</a></h1>
+        
+        <h2 class="f6 mtneg">January 14, 2009</h2>
+      </header>
+      
+        
+          <section class="section-break complete-article mb1">
+            <p>
+<a href="http://github.com/davetron5000/gliffy/tree/master">My command line interface</a> for Gliffy is relatively complete.  It works pretty well, though the error handling isn't very clean.  It's written in Ruby (<a href="http://davetron5000.github.com/gliffy">RDoc here</a>) and can be used as a Ruby client for Gliffy.</p>
+<p>
+I decided on Ruby since that would be the most fun and didn't require learning a new programming language.  I initially tried to make an ActiveRecord-style domain-based interface, but it was just too difficult and it was hard to see the real benefit.  At the end of the day, I think integrating Gliffy into another application is a relatively simple thing, and a procedural interface would probably be the easiest way to do that.  So, I modeled it after the PHP client library, more or less.
+</p>
+<p>
+The command line interface uses the Ruby client library and provides just the basic functions I need:
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">&amp;gt; gliffy ls
+321654 Some Diagram
+987654 Some Other Diagram
+&amp;gt; gliffy edit 321654
+<span class="c"># Takes you to your browser to edit the diagram</span></code></pre></figure>
+I live on the command line, so this is much more expedient than logging into Gliffy and navigating the UI to edit a diagram.
+</p>
+<p>I'm already feeling like providing access to the folders via the command line would be helpful (they are exposed in the Ruby client of course).  Not sure how much the API will ultimately change (it's in private beta now), but hopefully not too much.  
+</p>
+
+          </section>
+        
+      
+    </article>
   
   
     <article>
@@ -363,32 +397,6 @@ Criteria is only useful when you have to narrow down a lot of choices.  I'd love
 <p><i>
 <sup>1</sup>API developers should be allowed to declare that they throw <tt>Exception</tt> to allow subclasses to throw whatever they want with impunity, however <tt>Throwable</tt> is the preferred thing to catch for catch-alls, and the entire exception mechanism in Java is woefully broken.</i>
 <p>
-
-          </section>
-        
-      
-    </article>
-  
-  
-    <article>
-      <header>
-        
-        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2008/10/14/ruby-and-dead-simple-code-coverage.html">Ruby and dead simple code coverage</a></h1>
-        
-        <h2 class="f6 mtneg">October 14, 2008</h2>
-      </header>
-      
-        
-          <section class="section-break complete-article mb1">
-            <p>
-I haven't used a code coverage tool for Java, but in my spare time I've been working up some Ruby code (mostly to learn the language).  I'm using Test Driven Development, which is slightly simpler with Ruby than with Java (mostly due to Ruby's interpreted nature).
-</p>
-<p>
-I had heard about <a href="http://eigenclass.org/hiki.rb?rcov ">rcov</a> and decided to give it a shot.  Within literally <b>5 minutes</b> I had it installed and a report showing my tests were not covering all my code!  Amazing.  I could then easily see <b>exactly</b> where I need to to test and, sure enough, found some bugs that would've gone unnoticed.  
-</p>
-<p>
-Even the best tool with Java would've required some painful ant tweaking (not to mention hopes and prayers that it worked with TestNG).  I already cannot imagine writing tests without being able to view the coverage....
-</p>
 
           </section>
         

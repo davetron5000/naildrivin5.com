@@ -4,7 +4,7 @@
   <title><![CDATA[naildrivin5.com - David Bryant Copeland's Website]]></title>
   <link href="http://naildrivin5.com/atom.xml" rel="self"/>
   <link href="http://naildrivin5.com/"/>
-  <updated>2016-12-06T08:19:29-05:00</updated>
+  <updated>2016-12-07T10:18:55-05:00</updated>
   <id>http://naildrivin5.com/</id>
   <author>
     <name><![CDATA[David Bryant Copeland]]></name>
@@ -13,13 +13,82 @@
 
   
   <entry>
+    <title type="html"><![CDATA[On Being On Call]]></title>
+    
+    <link href="http://naildrivin5.com/blog/2016/12/07/on-call.html"/>
+    
+    <updated>2016-12-07T09:00:00-05:00</updated>
+    <id>http://naildrivin5.com/blog/2016/12/07/on-call</id>
+    <content type="html"><![CDATA[<p>There was a conversation on Twitter about developers being on call, started (I think) from <a href="https://twitter.com/as_w/status/806169588161544192">this tweet</a>:</p>
+
+<blockquote>
+  <table>
+    <tbody>
+      <tr>
+        <td>Put your developers on-call. You’ll be surprised what stops breaking.— Aaron</td>
+        <td>אהרן (@as_w)</td>
+      </tr>
+    </tbody>
+  </table>
+</blockquote>
+
+<p>I 100% agree with this (for a particular interpretation of “put”, see below).</p>
+
+<!-- more -->
+
+<h2 id="what-you-learn-on-call">What You Learn On Call</h2>
+
+<p>I’ve observed, both in myself and others, that being on call leads to honing skills that are otherwise difficult to gain <em>and</em> are useful in writing software.</p>
+
+<p>As I said in <a href="http://naildrivin5.com/blog/2013/06/16/production-is-all-that-matters.html">Production is All That Matters</a>:</p>
+
+<blockquote>
+  <p>How your software runs in production is <strong>all that matters</strong>. The most amazing abstractions, cleanest code, or beautiful algorithms are meaningless if your code doesn’t run well on production.</p>
+</blockquote>
+
+<p>Where I’ve grown as a developer in relation to being on call is in seeing how my code works in production and what happens when it breaks down.  When code I
+wrote experiences a problem, I get very valuable feedback about my code.  Was it really as simple as I thought when I was writing it?  Do I regret omitting
+comments?  How happy am I to see a Git commit message of “updated”?  Did that failure case that “should” never happen actually happen?  Did a think through the user experience as well I thought I had?</p>
+
+<p>These are hard questions to answer, but being directly responsible for your code in production helps answer them.</p>
+
+<p>Putting developers on call also fosters a DevOps culture that avoids an us-vs-them mentality with the technical operations team.  In fact, a great reason to use a service like <a href="https://heroku.com">Heroku</a> is that you don’t (initially) <em>need</em> an ops team, and developers <em>have</em> to be on call. Heroku is a really powerful tool for a developer to learn what it’s like to be on call, because the scope of your responsibility is greatly reduced as compared to a more classic hosting setup.</p>
+
+<p>But, being on call should not be assumed to be part of your job.</p>
+
+<h2 id="on-call-must-be-an-explicit-requirement">“On Call” Must be an Explicit Requirement</h2>
+
+<p>If you are hiring developers, mention the oncall requirements.  If you are looking for a job, ask about it.  You need a sense of the frequency of when you’ll
+be on call, and a baseline for how often you’ll be woken up while you are on call (this is also a great question to reveal the actual quality of the software
+you’ll be working on).</p>
+
+<p>The reason for this is that not everyone can actually <em>be</em> on call.  Not everyone actually <em>wants</em> to be on call either, and that’s OK.  You aren’t a bad
+developer for not wanting to be on call.</p>
+
+<p>But, if your job requires it, then it requires it.  That’s why it’s better to explicit up front.</p>
+
+<p>It also makes it hard to suddenly put developers into an oncall rotation when the expectation has been set that this is not a job requirement.  While it’s
+perfectly normal for a company’s needs to change as the company changes, you have to be cognizant of the people who now have a new job requirement being
+thrust upon them.</p>
+
+<p>If you decided that your Ruby shop is now going to write 100% Go, you’ll need to accomodate the team during that transition.  Adding an on-call requirement is an even more drastic change.  You have to prepare yourself for people that are unable (or unwilling) to take on this new requirement.  Whatever gain you feel you may get from adding an oncall rotation must be weighed against the downsides.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>If you have the opportunity to be on call, and have the bandwidth in your life to do it, I highly recommend it.  You might hate it, but I’ll bet you’ll learn
+things about software development, and you won’t always be in a place in your life to do it.</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Configuration Design is User Experience Design…and it's hard]]></title>
     
     <link href="http://naildrivin5.com/blog/2016/12/06/configuration-is-user-experience.html"/>
     
     <updated>2016-12-06T09:00:00-05:00</updated>
     <id>http://naildrivin5.com/blog/2016/12/06/configuration-is-user-experience</id>
-    <content type="html"><![CDATA[<p>In exploring the modern front-end ecosystem for my new book, I’ve gotten to experience some truly difficult configuration formats (Webpack) and to work around aspects of Rails that aren’t configurable (Sprockets).  Configuration is hard, and it’s an overlooked part of the user experience often designed to make the software library author’s job easier at the expense of ease-of-use.</p>
+    <content type="html"><![CDATA[<p>In exploring the modern front-end ecosystem for my <a href="https://pragprog.com/book/dcbang2/rails-angular-postgres-and-bootstrap-second-edition">new book</a>, I’ve gotten to experience some truly difficult configuration formats (Webpack) and to work around aspects of Rails that aren’t configurable (Sprockets).  Configuration is hard, and it’s an overlooked part of the user experience often designed to make the software library author’s job easier at the expense of ease-of-use.</p>
 
 <p>It doesn’t have to be this way.</p>
 
@@ -891,22 +960,6 @@ Flag disabled.
 
 <p>Don’t litter your code with references to the environment.  It’s easy to create bugs because the environment is a somewhat degenerate settings database.  It also makes your code harder to follower because you are using <code class="highlighter-rouge">SCREAMING_SNAKE_CASE</code> instead of nice, readable methods.  It also makes it hard to centralize type coercions and default values.</p>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[My talk on scaling Rails from RailsConf 2016]]></title>
-    
-    <link href="http://confreaks.tv/videos/railsconf2016-can-time-travel-keep-you-from-blowing-up-the-enterprise"/>
-    
-    <updated>2016-05-31T00:00:00-04:00</updated>
-    <id>http://naildrivin5.com/blog/2016/05/31/scaling-rails-talk-from-railsconf</id>
-    <content type="html"><![CDATA[<p>I gave a talk at <a href="http://railsconf.com/">RailsConf ‘16</a> called “Can Time-Travel Keep You From Blowing Up the Enterprise”.  The talk is really about scaling Rails on a growing team, and attempts to stop the discussion around “monolith vs microservices” by showing how a team can take hold of its destiny.</p>
-
-<p>It’s also the exact way Stitch Fix engineering evolved, and while we have some large Rails apps, none are the monstrosities I’ve seen elsewhere.</p>
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/23NhP4x3AAE" frameborder="0" allowfullscreen=""></iframe>
-<p> </p>
 ]]></content>
   </entry>
   

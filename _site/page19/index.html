@@ -30,13 +30,12 @@
     
       
         
-        Using Java Persistence with Tomcat and no EJBs
+        Time Machine almost saved me, but git won out in the end
         
-        May 08, 2008
+        May 09, 2008
       
       
-        
-        ...">
+       ...">
   
 
   
@@ -67,6 +66,33 @@
     <section>
       <div class="blog-index">
   
+  
+  
+    <article>
+      <header>
+        
+        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2008/05/09/time-machine-almost-saved-me-but-git-won-out-in-the-end.html">Time Machine almost saved me, but git won out in the end</a></h1>
+        
+        <h2 class="f6 mtneg">May 09, 2008</h2>
+      </header>
+      
+        
+          <section class="section-break complete-article mb1">
+            So, I'm working on a project that's using Subversion for version control.  My network connection isn't great, plus subversion is slow, plus git is (so far) pretty awesomely awesome. The way to interact with an SVN repository is via <tt>git-svn</tt>, <a href="http://www.naildrivin5.com/daveblog5000/?p=36">that I talked about setting up previously</a>.  Everything's been going great, however I don't frequently commit to subversion.  This week, we started setting up continuous integration for my work, so I did an <tt>git-svn dcommit</tt>, committing two days worth of changes.  I had forgotten that I had made so many changes (including adding <a href="http://www.naildrivin5.com/daveblog5000/?p=37">hibernate support</a>).  I misread the commit messages and thought something bad was happening.  Control-C.  <tt>git log</tt>.  HEAD is recent.  Last commit was....yesterday.  Oh. Fuck.
+
+I figure <tt>git-svn</tt> borked something, so I <tt>git-rest --hard</tt>.  No effect.  I'm starting to panic, now.  almost 2 days of work lost is not something I'm looking forward to.  I hasitly go into Time Machine and get the previous hours' backup.  But, I just <b>hate</b> that solution.  I have no idea what happened, and my trust in Git (or my ability to use it) has to be restored.  After IM'ing with a co-worker, I got to the bottom of it.
+
+It turns out that I wasn't paying attention to how <tt>git-svn</tt> works.  What it does when you do a <tt>rebase</tt> or <tt>dcommit</tt> (which implicitly does a <tt>rebase</tt>), is to first undo all your changes since your last <tt>rebase</tt>/<tt>dcommit</tt>, and get the changes made to the SVN repository (it even says as much as the first line of the output).  It then "replays" your commits to make sure there's no conflicts.
+
+By hitting Control-C in the middle of that, I manually caused the same situation that would happen if there were conflicts.  Git stops, tells you to resolve conflicts, and asks you to <tt>git-rebase --continue</tt>.  If I had just <tt>git-rebase --continue</tt>'ed, I would be fine. Since I did a hard rest, I figured I was fucked.  Enter the log.
+
+<tt>.git/logs/HEAD</tt> contained information about all activity, including my missing commits.  I grab the version numbers (which, in Git, are hashes of the entire repository), do a <tt>git-reset --hard big.honkin.git.hash.version</tt> and <b>viola!</b> everything's back to how it was (the command ran instanteously, to boot).
+
+
+          </section>
+        
+      
+    </article>
   
   
     <article>
@@ -546,54 +572,6 @@ I'm not saying I want a Microsoft Enterprise Application Wizard, but a little co
         
           <section class="section-break complete-article mb1">
             I love <a href="http://www.gmap-pedometer.com">this thing, it's a </a><a href="http://maps.google.com">Google Maps</a> hack that allows you to plot a course, with waypoints, and show you the distance as well as mile markers.  I've been using it to plot different paths for running specific distances.  You can even save the path for later viewing.  <a href="http://www.gmap-pedometer.com/?r=263601">Here's</a> a course I ran the other day for a three mile run.
-
-          </section>
-        
-      
-    </article>
-  
-  
-    <article>
-      <header>
-        
-        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2006/06/28/the-power-of-digital-audio.html">The Power of Digital Audio</a></h1>
-        
-        <h2 class="f6 mtneg">June 28, 2006</h2>
-      </header>
-      
-        
-          <section class="section-break complete-article mb1">
-            So, <a href="http://www.supercadedc.com">my  band</a> has been recording an E.P. and we did all the tracking ourselves.  Before taking things into a studio for mixing, I went through and did all the editing.  I guess in the old days of actual tape, things would be done differently while tracking, because editing tape involves razors, scotch tape and rulers.  With something like Pro Tools, a lot of things can just be handled after the fact.  I dunno, maybe that makes us crappy musicians, but in my mind, it's just something that enables us to get our musical ideas recorded with a minima of hassle.
-
-I had figured that editing the vocals together would be the  biggest task.   Basically taking the best phrase from multiple vocal takes and creating a final "comped" take for the vocals.  It turns out that a much trickier part involved the drums.  We didn't use a click track or metronome, as Michelle keeps reasonably steady time and we just didn't have time to rehearse to the click.  The tricky part about this is that anywhere in a song where she's not playing, she has to click her sticks so we have a time reference.  See, Tony, Devon and I would be recording our tracks later when she wasn't there, so we need a beat at all times during the song.
-
-We've got a couple songs with some multiple-measure stops in them, where Michelle hits a big cymbal crash, the band plays and then she comes back in.  The first thing I noticed was that her stick clicks are in the middle of the decay of the cymal crash, like so:
-
-<img src="images/protools/Original.jpg"/>
-
-Now, I could just fade out right before the first click, but that would be highly awkward sounding.  I could simply remove the click, but then there would be a noticable gap in the cymbal decay.  So, Time Expansion to the rescue!  First step, cut out the portion with the click sound:
-
-<img src="images/protools/SectionToFix.jpg"/>
-
-Next step, select an area of the cymbal decay adjacent and previous to the area I just removed, and use the time expansion/compression plug in to stretch it to fill the remaining space, without modifying the pitch:
-
-<img src="images/protools/Plugin.jpg"/>
-
-Note that I had to calculate the amount of space to fill via samples, and ensure that the "Sound vs. Rhythm" slider was all the way on Sound, or you get a noticable flanging effect.  Once that's done, we get this:
-
-<img src="images/protools/AfterExpansion.jpg"/>
-
-which works OK, but there's noticeable clicks when we pass from the edited audio to the unedited audio.  A quick crossfade of both sections gives us
-
-<img src="images/protools/Faded.jpg"/>
-
-and then we do it about 11 more times.  The result
-
-<img src="images/protools/Fixed.jpg"/>
-
-is a smooth cymbal decay without any sound of stick clicks!
-
-I guess if we'd been doing this with tape, we would either have had to use a click track or have someone else click the missing rhythm in Michelle's headphones.  Either way, I didn't even think about this problem at the time and thank God I was able to fix it.  Go Pro Tools!
 
           </section>
         
