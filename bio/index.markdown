@@ -3,7 +3,7 @@ layout: page
 title: About me
 ---
 
-<img class="fl pr2 pb3" src="/images/DavidCopeland.jpeg" height="150">
+<img class="fl pr2 pb3" src="/images/DavidCopeland.png" height="150">
 I'm a programmer, musician, and author of [“Rails, Angular, Postgres, and Bootstrap”][fullstackbook], [“The Senior Software Engineer”][sweng], and [“Build Awesome Command-Line Applications in Ruby 2”][clibook].  I speak frequently at national and regional conferences and spend my days currently as a Director of Engineering at [Stitch Fix][stitchfix]. I've written applications in C, Java, Ruby, Scala, and many others, on large and small teams. As a developer, I believe in clean code, making it right, providing a great user experience and using the right tool for the job.  As a bass player, I believe in using a pick, locking it down, and ripping off Peter Hook.  As an author, I insist on the Oxford Comma, try to avoid semi-colons, and have removed “very” and “thing” from my dictionary.
 
 <nav>
@@ -37,7 +37,7 @@ I'm a programmer, musician, and author of [“Rails, Angular, Postgres, and Boot
 [typography]: /blog/2013/05/17/source-code-typography.html
 [pragpub]: http://pragprog.com/magazines/2012-05/what-makes-an-awesome-commandline-application
 [sweng]: http://www.theseniorsoftwareengineer.com
-[fullstackbook]: https://pragprog.com/titles/dcbang
+[fullstackbook]: https://pragprog.com/titles/dcbang2
 
 ## My Software
 
