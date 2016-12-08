@@ -14,7 +14,7 @@ pocket to do so.
 <!-- more -->
 
 Graphviz is an amazing piece of technology.  It takes, as input, a text file and produces a diagram of that input.  It treats everything as a graph, but this
-is sufficent semantics to create most software diagrams you might need.
+is sufficient semantics to create most software diagrams you might need.
 
 Here's an example that shows a class hierarchy:
 
