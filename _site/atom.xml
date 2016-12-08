@@ -4,13 +4,201 @@
   <title><![CDATA[naildrivin5.com - David Bryant Copeland's Website]]></title>
   <link href="http://naildrivin5.com/atom.xml" rel="self"/>
   <link href="http://naildrivin5.com/"/>
-  <updated>2016-12-08T09:01:47-05:00</updated>
+  <updated>2016-12-08T13:49:13-05:00</updated>
   <id>http://naildrivin5.com/</id>
   <author>
     <name><![CDATA[David Bryant Copeland]]></name>
     <email><![CDATA[davec@naildrivin5.com]]></email>
   </author>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Learn Graphviz and Up Your Diagramming Game]]></title>
+    
+    <link href="http://naildrivin5.com/blog/2016/12/08/learn-graphviz-and-up-your-diagramming-game.html"/>
+    
+    <updated>2016-12-08T09:00:00-05:00</updated>
+    <id>http://naildrivin5.com/blog/2016/12/08/learn-graphviz-and-up-your-diagramming-game</id>
+    <content type="html"><![CDATA[<p>Learning to write is one of the best skills you can learn as a developer.  It takes up an entire chapter <a href="http://theseniorsoftwareengineer.com">in my book on being a great software engineer</a>.  Writing is a specific way to communicate ideas, but <em>diagramming</em> is a powerful tool as well, often moreso.</p>
+
+<p>Being able to quickly create a diagram can make all the difference in expressing yourself clearly.  And <a href="http://www.graphviz.org/">Graphviz</a> is a great tool to have in your
+pocket to do so.</p>
+
+<!-- more -->
+
+<p>Graphviz is an amazing piece of technology.  It takes, as input, a text file and produces a diagram of that input.  It treats everything as a graph, but this
+is sufficent semantics to create most software diagrams you might need.</p>
+
+<p>Here’s an example that shows a class hierarchy:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>digraph classes {
+  rankdir=BT
+  node[shape=record]
+
+  User           -&gt; ActiveRecordBase
+  Address        -&gt; ActiveRecordBase
+  Product        -&gt; ActiveRecordBase
+  SpecialProduct -&gt; Product
+}
+</code></pre>
+</div>
+
+<p>Running <code class="highlighter-rouge">dot -Tpng -oclasses.png classes.dot</code> produces:</p>
+
+<p><img src="/images/graphviz/classes.png" alt="classes" /></p>
+
+<p>Graphviz can handle highly complex information.  Suppose you wish to diagram a complex user flow for an online checkout.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>digraph checkout {
+  ProductPage  -&gt; Checkout
+  Checkout     -&gt; CalculateTax
+  Checkout     -&gt; ApplyCredit [label="[tax holiday]"]
+  CalculateTax -&gt; ApplyCredit
+  ApplyCredit  -&gt; ChargeCard
+  ChargeCard   -&gt; Checkout [label="[processor declined]"]
+  ChargeCard   -&gt; Success
+}
+</code></pre>
+</div>
+
+<p>Running <code class="highlighter-rouge">dot -Tpng -ocheckout.png checkout.dot</code> produces:</p>
+
+<p><img src="/images/graphviz/checkout.png" alt="checkout" /></p>
+
+<p>Typing out that checkout flow would be a bear.  Sometimes, it’s easier to do in a diagram.  Creating this diagram in a tool like OmniGraffle wouldn’t be <em>too</em>
+bad but it would still be cumbersome.  You’d also get lost in fonts, lines, and arrangement.</p>
+
+<p>Begin able to quickly create a diagram like this reduces friction between your ideas and their expression to others.</p>
+
+<p>Beyond figuring out how to layout a diagram, Graphviz allows you to highly customize the output.  Suppose you want a better font.  Or maybe you want the
+actions happening on a webpage to be boxes and not ovals.  Or you want the exceptional flows to be bright red dotted lines.  Graphviz has you covered.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>digraph checkout {
+  node[fontname="Avenir"]
+  edge[fontname="Avenir"]
+
+  ProductPage  -&gt; Checkout
+  Checkout     -&gt; CalculateTax
+  Checkout     -&gt; ApplyCredit [label="[tax holiday]"
+                               color=red
+                               penwidth=2
+                               style=dotted]
+  CalculateTax -&gt; ApplyCredit
+  ApplyCredit  -&gt; ChargeCard
+  ChargeCard   -&gt; Checkout [label="[processor declined]"
+                            color=red
+                            penwidth=2
+                            style=dotted]
+  ChargeCard   -&gt; Success
+
+  ProductPage [ shape=Mrecord
+                label="{&lt;f0&gt; Product Page| &lt;f1&gt; Checkout Button}"]
+  Checkout    [ shape=Mrecord
+                label="{&lt;f0&gt; Checkout Page | &lt;f1&gt; Shows current cart}"]
+  Success     [ shape=Mrecord
+                label="{&lt;f0&gt; Success Page| &lt;h1&gt; Order number shown }"]
+}
+</code></pre>
+</div>
+
+<p>Produces:</p>
+
+<p><img src="/images/graphviz/checkout_better.png" alt="Better Checkout Flow" /></p>
+
+<p>The language is called <em>DOT</em> and it may seem archaic, but it’s quite powerful.</p>
+
+<p>DOT has <a href="http://www.graphviz.org/doc/info/lang.html">a formal specification</a>, but I find it easier to start with a simple example (like the diagrams here) and
+then tweak it by using <a href="http://www.graphviz.org/doc/info/attrs.html">the attributes</a> reference.</p>
+
+<p>Next time you are having trouble expressing an idea, try a diagram, and try Graphviz.  I’ll leave you with an example of using Graphviz to draw a “death star”
+microservices architecture diagram.</p>
+
+<p>In this diagram, any service that is dependent upon another is connected, and we use the <em>circo</em> layout to arrange things radially.  We further hack the graph
+to lay out all services in a circle.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>digraph g1 {
+  // Use the radial layout instead
+  // of the hierarchical one
+  layout="circo";
+
+  // The meat: these are the dependencies between
+  // applications and services
+  WMS -&gt; InvLocService
+  WMS -&gt; CustomerService
+  WMS -&gt; ShippingLabels
+  WMS -&gt; ProductService
+  WMS -&gt; Checkout
+  WMS -&gt; Metrics
+  WMS -&gt; AddressService
+
+  Clearance -&gt; OrderService
+  Clearance -&gt; InvLocService
+  PickAndShip -&gt; PickingService
+  PickAndShip -&gt; Metrics
+  PickingService -&gt; OrderService
+  PickingService -&gt; InvLocService
+
+  Admin -&gt; SchedulingService
+  Admin -&gt; OrderService
+  Admin -&gt; ShippingLabels
+  Admin -&gt; ProductService
+  Admin -&gt; CustomerService
+
+  OrderService -&gt; ProductService
+  OrderService -&gt; ShippingLabels
+  ProductService -&gt; InvLocService
+
+  // This forces a circular layout.
+  // The "penwidth" and "arrowhead" settings
+  // at the end of this ensure these
+  // edges won't be visible.  But, they
+  // will ensure the services are arranged
+  // in a circle
+  WMS -&gt;
+    Checkout -&gt;
+    InvLocService -&gt;
+    AddressService -&gt;
+    Metrics -&gt;
+    PickAndShip -&gt;
+    PickingService -&gt;
+    Clearance -&gt;
+    OrderService -&gt;
+    ShippingLabels -&gt;
+    Admin -&gt;
+    SchedulingService -&gt;
+    CustomerService -&gt;
+    ProductService -&gt; WMS [penwidth=0 arrowhead=none];
+
+  // Now, configure visuals for the apps and services.
+  // We'll have the user-facing apps use a double circle
+  // and the headless services use a single one
+
+  WMS               [ shape=doublecircle];
+  Clearance         [ shape=doublecircle];
+  PickAndShip       [ shape=doublecircle];
+  Admin             [ shape=doublecircle];
+  Metrics           [ shape=doublecircle];
+
+  InvLocService     [ shape=circle label="Inventory Locations"];
+  PickingService    [ shape=circle label="Picking"];
+  Checkout          [ shape=circle label="Financial Transactions"];
+  OrderService      [ shape=circle label="Orders"];
+  ShippingLabels    [ shape=circle label="Shippinng Labels"];
+  SchedulingService [ shape=circle label="Scheduling"];
+  CustomerService   [ shape=circle label="Customers"];
+  ProductService    [ shape=circle label="Products"];
+  AddressService    [ shape=circle label="Addresses"];
+}
+</code></pre>
+</div>
+
+<p>And, it works!</p>
+
+<p><img src="/images/graphviz/death_star.png" alt="death star diagram" /></p>
+
+<p>Like I said, Graphviz is awesome.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[On Being On Call]]></title>
@@ -802,163 +990,6 @@ I’ve been working this wawy for over three years and have <em>very</em> rarely
 </ul>
 
 <p>Check back for updates.</p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Don't Use the UNIX Environment Directly]]></title>
-    
-    <link href="http://naildrivin5.com/blog/2016/06/10/dont-use-ENV-directly.html"/>
-    
-    <updated>2016-06-10T00:00:00-04:00</updated>
-    <id>http://naildrivin5.com/blog/2016/06/10/dont-use-ENV-directly</id>
-    <content type="html"><![CDATA[<p>Getting configuration from the UNIX environment is a hallmark of <a href="http://12factor.net/">12-factor application design</a>, and is a great practice.  Problems arise, however, when your code is littered with direct references to it.  This is because the UNIX environment is a very poor database, but we need to treat it as a better one.</p>
-
-<!-- more -->
-
-<p>Instead of having your code that needs configuration grab values directly from the environment, you should use a lightweight abstraction layer that your code depends on.  This has three advantages:</p>
-
-<ul>
-  <li>It allows you to deal with the fact that the UNIX environment is essentially typeless.</li>
-  <li>It’s a centralized place for all default values needed for optional settings.</li>
-  <li>It’s a single place for things that might need to be configurable, but aren’t yet.</li>
-</ul>
-
-<h2 id="environment-variables-are-strings">Environment Variables are Strings</h2>
-
-<p>Most programming languages vend environment variables as strings.  This leads to errors like so:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">if</span> <span class="no">ENV</span><span class="p">[</span><span class="s2">"SOME_FLAG"</span><span class="p">]</span>
-  <span class="nb">puts</span> <span class="s2">"Flag enabled!"</span>
-<span class="k">else</span>
-  <span class="nb">puts</span> <span class="s2">"Flag disabled."</span>
-<span class="k">end</span>
-</code></pre>
-</div>
-
-<p>In Ruby, all non-nil, non-false values are “truthy”.  Since <code class="highlighter-rouge">ENV#[]</code> will only ever return either <code class="highlighter-rouge">nil</code> or a String, the “Flag disabled” path wil never execute:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>&gt; SOME_FLAG=false ./test.rb
-Flag enabled!
-</code></pre>
-</div>
-
-<p>This means that you have to coerce your environment variables to a type you want.  Often, developers do this:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">if</span> <span class="no">ENV</span><span class="p">[</span><span class="s2">"SOME_FLAG"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"true"</span>
-  <span class="nb">puts</span> <span class="s2">"Flag enabled!"</span>
-<span class="k">else</span>
-  <span class="nb">puts</span> <span class="s2">"Flag disabled."</span>
-<span class="k">end</span>
-</code></pre>
-</div>
-
-<p>This is somewhat verbose, easy to mess up, and creates other problems when you have someone who prefers “0” and “1” instead of “true” and “false”:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>&gt; SOME_FLAG=1 ./test.rb
-Flag disabled.
-</code></pre>
-</div>
-
-<p>If you have a layer between your code and the environment, you can handle that in a common way.</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Settings</span>
-  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">some_flag?</span>
-    <span class="p">(</span><span class="s2">"1"</span><span class="p">,</span><span class="s2">"true"</span><span class="p">).</span><span class="nf">include?</span><span class="p">(</span><span class="no">ENV</span><span class="p">[</span><span class="s2">"SOME_FLAG"</span><span class="p">].</span><span class="nf">downcase</span><span class="p">)</span>
-  <span class="k">end</span>
-
-  <span class="c1"># or maybe</span>
-
-  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">some_flag?</span>
-    <span class="n">boolean</span><span class="p">(</span><span class="s2">"SOME_FLAG"</span><span class="p">)</span>
-  <span class="k">end</span>
-
-<span class="kp">private</span>
-
-  <span class="k">def</span> <span class="nf">boolean</span><span class="p">(</span><span class="n">env_var</span><span class="p">)</span>
-    <span class="sx">%("1","true")</span><span class="p">.</span><span class="nf">include?</span><span class="p">(</span><span class="no">ENV</span><span class="p">[</span><span class="n">env_var</span><span class="p">].</span><span class="nf">downcase</span><span class="p">)</span>
-  <span class="k">end</span>
-<span class="k">end</span>
-</code></pre>
-</div>
-
-<p>Your code then becomes much cleaner:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">if</span> <span class="no">Settings</span><span class="p">.</span><span class="nf">some_flag?</span>
-  <span class="nb">puts</span> <span class="s2">"Flag enabled!"</span>
-<span class="k">else</span>
-  <span class="nb">puts</span> <span class="s2">"Flag disabled."</span>
-<span class="k">end</span>
-</code></pre>
-</div>
-
-<p>It also works :)</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>&gt; SOME_FLAG=1 ./test.rb
-Flag enabled!
-&gt; SOME_FLAG=True ./test.rb
-Flag enabled!
-&gt; SOME_FLAG=false ./test.rb
-Flag disabled.
-</code></pre>
-</div>
-
-<p>With an abstraction layer, we can also handle default values for optional environment variables.</p>
-
-<h2 id="centralizing-defaults">Centralizing Defaults</h2>
-
-<p>Suppose we want to allow the configuration of a timeout for talking to our payment processor.  We have an idea of what the right value is, but we may need to tweak it in production, so we don’t want to have to do a code change every time.  So, we’ll grab it from the environment, but set a reasonable default.</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Settings</span>
-  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">payment_processor_timeout</span>
-    <span class="no">ENV</span><span class="p">[</span><span class="s2">"PAYMENT_PROCESSOR_TIMEOUT"</span><span class="p">].</span><span class="nf">try</span><span class="p">(</span><span class="ss">:to_i</span><span class="p">)</span> <span class="o">||</span> <span class="mi">2000</span>
-  <span class="k">end</span>
-<span class="k">end</span>
-</code></pre>
-</div>
-
-<p>Not we have to use <code class="highlighter-rouge">try</code> because <code class="highlighter-rouge">nil.to_i</code> returns 0, not <code class="highlighter-rouge">nil</code>.  So, we’re saying “if a value has been set, coerce it to an integer, otherwise use 2000”.</p>
-
-<p>With such a system set up, you can use this to centralize all your application’s configurable bits, even if you don’t need or want them overridden by the environment.</p>
-
-<h2 id="centralizing-configuration">Centralizing Configuration</h2>
-
-<p>For example, you might be using S3 to store files, and want all code that uses S3 to use the same bucket, but you have no real need to configure that bucket in the environment.</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Settings</span>
-  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">s3_bucket_name</span>
-    <span class="s2">"my-app-files"</span>
-  <span class="k">end</span>
-<span class="k">end</span>
-</code></pre>
-</div>
-
-<p>This now means the code that needs the bucket name can just ask the settings for it, and if you later need it to be configurable, it can easily be extracted from the environment.</p>
-
-<h2 id="isnt-this-a-solved-problem">Isn’t this a solved problem?</h2>
-
-<p>We use the <a href="https://github.com/modcloth/mc-settings">mc-settings</a> gem, that uses an ERB-ized YAML file:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="s">some_flag</span><span class="pi">:</span> <span class="s">&lt;%= ("1","true",).include?(ENV["SOME_FLAG"].downcase) %&gt;</span>
-<span class="s">payment_processor_timeout</span><span class="pi">:</span> <span class="s">&lt;%= ENV["PAYMENT_PROCESSOR_TIMEOUT"].try(:to_i) || 2000 %&gt;</span>
-<span class="s">s3_bucket_name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">my-app-files"</span>
-</code></pre>
-</div>
-
-<p>This allows us to write <code class="highlighter-rouge">Setting.some_flag</code>.  It even supports nested settings, like so:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="s">payment_processing</span><span class="pi">:</span>
-  <span class="pi">-</span> <span class="s">timeout</span><span class="pi">:</span> <span class="s">&lt;%= ENV["PAYMENT_PROCESSOR_TIMEOUT"].try(:to_i) || 2000 %&gt;</span>
-  <span class="pi">-</span> <span class="s">api_key</span><span class="pi">:</span> <span class="s">&lt;%= ENV["PAYMENT_PROCESSOR_API_KEY"] %&gt;</span>
-</code></pre>
-</div>
-
-<p>We can then do <code class="highlighter-rouge">Setting.payment_processing(:timeout)</code> to access the configured value.</p>
-
-<h2 id="conclusions">Conclusions</h2>
-
-<p>Don’t litter your code with references to the environment.  It’s easy to create bugs because the environment is a somewhat degenerate settings database.  It also makes your code harder to follower because you are using <code class="highlighter-rouge">SCREAMING_SNAKE_CASE</code> instead of nice, readable methods.  It also makes it hard to centralize type coercions and default values.</p>
 
 ]]></content>
   </entry>
