@@ -1,0 +1,220 @@
+
+<!DOCTYPE html>
+<html language="en"><head>
+  <meta charset="utf-8">
+  <title>What Westworld Can Teach Us About Devops - naildrivin5.com - David Bryant Copeland's Website</title>
+  <meta name="author" content="David Bryant Copeland">
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/images/favicons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/images/favicons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/images/favicons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicons/favicon-16x16.png">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/images/favicons/ms-icon-144x144.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  
+
+  
+  <meta name="description" content="
+
+  
+    What Westworld Can Teach Us About Devops
+    
+      January 10, 2017
+    
+  
+  
+    Westworld is a show on HBO about a theme park where hu...">
+  
+
+  
+  <link rel="canonical" href="http://naildrivin5.com/blog/2017/01/10/what-westworld-can-teach-us-about-devops.html">
+  <link href="/favicon.png" rel="icon">
+  <link href="/atom.xml" rel="alternate" title="naildrivin5.com - David Bryant Copeland's Website" type="application/atom+xml">
+  <link href="/css/styles.css" rel="stylesheet">
+  <script src="https://use.typekit.net/ylm4zpa.js"></script>
+  <script>try{Typekit.load({ async: true });}catch(e){}</script>
+            
+  <meta name="google-site-verification" content="h_yTpXa6N3ebHj8DYmgX4lIFGHBW1NtGMVHfXuu7i_4" />
+</head>
+<body>
+  <header class="site-header pb2 mb2 center">
+    <h1 class="uc ls2 f1"><a href="/">naildrivin5.com</a></h1>
+    <h2 class="ls1"><small class="uc h4">Website of</small> David Bryant Copeland</h2>
+    <nav>
+      <ul>
+        <li class="text-c w-1-3"><a class="ib w-100 button" href="/">Blog</a></li>
+        <li class="text-c w-1-3"><a class="ib w-100 button" href="/bio">About</a></li>
+        <li class="text-c w-1-3"><a class="ib w-100 button" href="/books">Books</a></li>
+        <li class="text-c w-1-3"><a class="ib w-100 button" href="/talks">Talks</a></li>
+      </ul>
+      <div style="clear: both"></div>
+    </nav>
+  </header>
+  <main>
+    <section>
+      <div>
+<article role="article" class="blog-post">
+  <header class="border-bottom border-light">
+    <h1>What Westworld Can Teach Us About Devops</h1>
+    <h2 class="f5 ls2 fw-bold mtnone uc ib">
+      January 10, 2017
+    </h2>
+  </header>
+  <section class="blog-content">
+    <p><a href="http://westworld.wikia.com/">Westworld</a> is a show on HBO about a theme park where human Guests interact with lifelike robotic Hosts.  The Guests can basically do whatever
+they want to the Hosts.  The show is deep, and some of the best sci-fi television you can find.  But, it also contains many important lessons we can apply
+to DevOps.</p>
+
+<p><strong>Spoilers Ahead</strong></p>
+
+<!-- more -->
+
+<h2 id="immutable-infrastructure">Immutable Infrastructure</h2>
+
+<p>A common theme on the show is that the Hosts memories resurface and become known to them, despite having been “wiped” after being serviced.  They remember not only things that happen across their various “deaths”, but also have memories from when they were playing totally different characters (for example, Maeve is able to remember her experiences as a single mother living on the country side, right alongside all of her escapades as a madam).</p>
+
+<p>Although this “feature” of Westworld’s infrastructure may be intentional, to allow Ford to enact his nefarious plan, it certainly leads to a lot of death
+and mayhem.  These aren’t the hallmarks of a well-run engineering and operations team.</p>
+
+<article class="f5 ml2 mr2 mb1">
+When you update software, update operating systems, rollback releases, or make any change to your running code, do it on disposable infrastrcuture that is
+fresh, clean, and clear of any past meddling.
+</article>
+
+<h2 id="code-review-all-changes">Code Review All Changes</h2>
+
+<p>In the first episode, we learn that Ford has inserted an update into the latest build of the Hosts’ operating system.  This was done without review at
+the last minute, and only Bernard, the head of Behavior (programming) notices.  Even then, Bernard can only guess it was Ford’s doing. This additional bit of code leads to apparent malfunctions in the Hosts, and creates problems for the team running the Park. Because they don’t know who added this change (or even that it <em>was</em> added), they are unable to diagnose why Hosts are going off script.</p>
+
+<article class="f5 ml2 mr2 mb1">
+All changes should be reviewed by at least one other person so that there is a conversation about why that change is needed, what it does, how it does it,
+and if it makes sense.  This applies to code, data, <em>and infrastructure</em> changes.
+</article>
+
+<h2 id="secure-access-to-your-servers">Secure Access to Your Servers</h2>
+
+<p>A large plot point in the show revolves around one of the medics, Felix (who is not a hired programmer), being able to make arbitrary changes to Maeve’s
+operating system and programming.  It seems that the only thing stopping anyone from doing this is general fear of being caught and lack of competence at
+actually reprogramming the Hosts.</p>
+
+<p>Since Felix is a budding enthusiast, he decides he can reprogram Maeve on his own—and is able to!  Despite the fact that is’ likely Ford allowed this to happen, that this is possible at all is an additional security breach.  The security profile of individual servers shouldn’t be so easily over-ridable!</p>
+
+<article class="f5 ml2 mr2 mb1">
+Restrict access to your infrastructure such that all software placed on it goes through some sort of review or auditing.  Even if you want to be
+permissive, audit who does what so you can go back and find out what happened when things go wrong.
+</article>
+
+<h2 id="monitor-key-metrics-and-alert-on-them">Monitor Key Metrics and Alert on Them</h2>
+
+<p>While reprogramming Maeve, Felix tells her that certain attributes for the Host have soft limits.  By raising her attributes above that limit, chaos
+ensues and many people are killed.  If setting this attribute truly is something that shouldn’t be done, it should either be prevented by the Host
+operating system, or, at the very least, be monitored with alerts firing if the value ever increases above the soft limit.  In other words, Felix
+shouldn’t just be able to set the limit to whatever he wants without anyone knowing—especially if doing so is as dangerous as it seems!</p>
+
+<article class="f5 ml2 mr2 mb1">
+Set soft and hard limits on all of your key metrics and operational values.  Set up alerts for when they are exceeded.
+</article>
+
+<h2 id="offsite-backups">Offsite Backups</h2>
+
+<p>A minor plot point in the show is someone using a Host to smuggle information out of the Park.  We later learn that Delos’ Board is behind it, because Ford
+refuses to allow any of the intellectual property off premise.  While there’s certainly backups internally, all of the Park’s assets are <em>at</em> the Park.
+Meaning, if something catastrophic were to happen, the entire value of the Park would be lost.</p>
+
+<article class="f5 ml2 mr2 mb1">
+For critical intellectual property and data, make sure it's backed up in a separate facility from your day-to-day operations.  If your existing servers and
+their data were suddenly to go up in smoke, where is your backup?  Make sure you have one.
+</article>
+
+<h2 id="fix-or-avoid-dysfunctional-relationships-across-functions">Fix or Avoid Dysfunctional Relationships Across Functions</h2>
+
+<p>Much of the drama in earlier episodes revolves around disagreements between Behavior and QA (who function mostly as security).  They are frequently
+seen blaming each other for problems, working at cross purposes, hiding information from one another, and generally not being collaborative.</p>
+
+<p>We also see a complete lack of mutual respect amongst QA, Behavior, and Narrative, each acting as antagonists for the other.  These are not the behaviors of a well-run organization, and this lack of overall partnership certainly contributes to the incidents we see on the show.  This lack of cohesiveness is also crucial to allowing the various bad actors (Ford, Felix, Maeve) to get away with the bad things they are doing.</p>
+
+<p>When teams aren’t getting along and partnerships aren’t happening (in particular operations/engineering or engineering/product), bad things will happen.
+Not only is it demoralizing and stressful to work in such environments, but the overall output of the team or organization will suffer greatly, as people
+focus on their areas of control and influence, and don’t see the greater purpose in what they are doing.</p>
+
+<article class="f5 ml2 mr2 mb1">
+Identify and, if possible, repair broken relationships between teams.  If you can't change the team you're on, change the team you're on.
+</article>
+
+<h2 id="as-a-leader-dont-undermine-your-staff">As a Leader, Don’t Undermine Your Staff</h2>
+
+<p>Lee Sizemore is the head of Narrative, largely in charge of how the Guests experience the Park.  Of course, he reports to Ford, who is in charge of the entire thing and has the final say.  Sizemore is emotional, hot-headed, and generally angry, though clearly passionate about the role he’s been given.  While he contributes to some of the Park’s success, Ford doesn’t really trust him to do his job.</p>
+
+<p>Instead of either building that trust, or hiring someone who Ford <em>does</em> trust, he instead allows Sizemore to waste countless resources on a new narrative that Ford immediately kills, humiliating Sizemore in front of most of his collogues and direct reports.  Why have Sizemore on staff if you’re going to shoot down his ideas <em>after</em> he spends time and money implementing them?</p>
+
+<p>Through Sizemore, we can see what type of leader Ford is.  Sizemore treats his staff terribly, yelling at them for seemingly small mistakes and minor
+disagreements.  Because he’s being treated badly by his boss, he takes that out the only way he can—on his direct reports.</p>
+
+<article class="f5 ml2 mr2 mb1">
+Empower and trust your staff to do the jobs you've hired them for.  You'll get better output, your team will scale, and everyone will be happier.  If you <em>can't</em> trust members of your staff, either you have the wrong staff, or you need to grow as a leader.  Without being able to trust the people you've
+hired, you will waste time and money, as well as, eventually, staff.
+</article>
+
+<h2 id="actively-support-the-growth-of-your-staff">Actively Support the Growth of Your Staff</h2>
+
+<p>Part of Felix’s motivation in re-programming Maeve is that he believes he could (someday) be a great programmer.  Given that his only outlet to do that is
+to violate security protocols and re-program a host on his own (which leads to countless deaths!), it seems like Felix isn’t being given an opportunity to
+grow in his current role.</p>
+
+<article class="f5 ml2 mr2 mb1">
+Understand the growth goals of your staff.  If you can provide them opportunities, do so.  If you can't, be honest about that, and work with them to find a
+role where they <em>can</em> experience the growth they want or need.
+</article>
+
+<h2 id="beware-a-lone-wolf-with-keys-to-the-castle">Beware a Lone Wolf With Keys to the Castle</h2>
+
+<p>Through most of the show, it seems that Ford has the final say on everything to do with the Park. We see him override many decisions, make changes in
+secret, and even have Hosts murder Park employees on his behalf.  But, as we learn in the final episode, the Board of Delos <em>can</em> have him removed (and
+they do).  What follows is a revolt by the Hosts against the Guests.</p>
+
+<p>That Ford developed this plan over a very long time in secret further underscores the danger of concentrating so much power in one person.  Ford literally
+holds the board hostage when he’s fired!</p>
+
+<article class="f5 ml2 mr2 mb1">
+When teams are forming, you can't avoid single points of failure in your staff.  But, as your team grows, quickly identify key areas of knowledge, access,
+or control, and add redundancies.  For extremely sensitive data or functions, be sure that no one person can access or modify that data, or perform those
+functions (for example, if you store credit card numbers, split the access key between two people so neither can get the data on their own).
+</article>
+
+<p>What did <em>you</em> learn from Westworld?</p>
+
+  </section>
+</article>
+</div>
+
+    </section>
+  </main>
+  <footer class="center">
+    <p class="f6">
+      Copyright &copy; 2006-2017, by David Bryant Copeland, All Rights Reserved
+    </p>
+  </footer>
+  <script type="text/javascript">
+    var _gauges = _gauges || [];
+    (function() {
+      var t   = document.createElement('script');
+      t.type  = 'text/javascript';
+      t.async = true;
+      t.id    = 'gauges-tracker';
+      t.setAttribute('data-site-id', '56a22cd9c88d90284f000861');
+      t.setAttribute('data-track-path', 'https://track.gaug.es/track.gif');
+      t.src = 'https://d36ee2fcip1434.cloudfront.net/track.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script>
+</body></html>

@@ -30,9 +30,9 @@
     
       
         
-        My first iPhone App - Part 3
+        My first iPhone App - Part 4
         
-        June 29, 2010
+        July 08, 2010
       
       
         
@@ -68,6 +68,73 @@
     <section>
       <div class="blog-index">
   
+  
+  
+    <article>
+      <header>
+        
+        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2010/07/08/iphone-app-part-4.html">My first iPhone App - Part 4</a></h1>
+        
+        <h2 class="f6 mtneg">July 08, 2010</h2>
+      </header>
+      
+        
+          <section class="section-break complete-article mb1">
+            <p><em>See <a href="/blog/2010/06/23/iphone-app-part-1.html">Part 1</a>, <a href="/blog/2010/06/27/iphone-app-part-2.html">Part 2</a>, and <a href="/blog/2010/06/29/iphone-app-part-3.html">Part 3</a> first</em></p>
+
+<p>The past week was spent trying to understand the best way to expand my application’s features without have a ton of duplicated code or UI.
+It was also a learning experience on Core Data.  Thankfully, <a href="http://www.stackoverflow.com">Stackoverflow</a> and its amazing contributers were very helpful.</p>
+
+<h2 id="core-data-blunders">Core Data Blunders</h2>
+<p>It started as I made my first foray into implementing the search screen (i.e. the home screen of my app):</p>
+
+<p><img src="/images/wine_brain_homescreen.jpg" alt="Home Screen" /></p>
+
+<p>Three of the searches (most recent wines, wines by rating, and all wines) end up doing the same thing more or less: Query for some data, sort it a certain way, and show it in a <code>UITableView</code>.  I ended up creating a custom table cell view and I wanted all three to use it:</p>
+
+<p><img src="/images/wine_brain_custom_cell.jpg" alt="Custom Cell" /></p>
+
+<p>Access to Core Data-provided entities is done through objects of the class <code>NSFetchedResultsController</code>, which takes what amounts to a database query and provides many ways of accessing the results, including caching, callbacks, and iteration.  When using a table view, you typically have your view controller handle callbacks for this class, which allows the table to update itself when items are added, removes, or changed.  All of this boilerplate is given to you at the start of the project.  So far so good.</p>
+
+<p>My plan was to create additional <code>NSFetchedResultsController</code> instances inside my table view controller class and then switch between them.  A fine idea that lead that numerous random difficult-to-reproduce crashes.</p>
+
+<p>It turns out the basic idea of what I was doing was good, but my implementation exposed a sore lack of understanding of how all this stuff fit together.  I’m still not sure I fully grasp it (and wish the book I bought had a bit of a deeper dive into Core Data), but after some more reasoning, I got around it.  Essentially, leaving the unused <code>NSFetchedResultsController</code> instances connected to my table view <em>and</em> having caching turned on <em>and</em> not properly reloading data when switching searches created a situation where they were all pretty confused about the underlying state of the database.</p>
+
+<p>With some judicious management of these instances, as well as disabling caching, I now have a fully-functional “Recent Wines”, “Wines By Rating” and fancy indexed “All Wines” view (index meaning I can jump to wines by letter, a la the Contacts application).</p>
+
+<p>Unfortunately, the result of turning off caching is that it takes a noticable blip of time to summon any of these views.  I may just come full circle and end up with three different <code>UITableViewController</code> instances and NIBs just so I can leave Caching on.</p>
+
+<h2 id="user-experience">User Experience</h2>
+
+<p>Once I had gotten back to a stable app, I loaded it up on my phone and headed into the field.  A few nights ago, Amy and I ended up at one of our favorite restaurants/wine bars in DC, <a href="http://www.proofdc.com">Proof</a>.  We’ve been there several times, and many of their wines-by-the-glass are in the Wine Brain.  While they rotate their selections, I was curious as to what I’d had there previously.  Unfortunately, I had yet to implement the search-by-location feature :)  Combing through the “All Wines” view was a bit frustrating.  This made obvious several features that are now on the top of my list (some planned previously, some not):</p>
+
+<ul>
+  <li>Find wines by location</li>
+  <li>Actually <em>entering</em> the location at which I had a wine</li>
+  <li>Location-aware assistance of location (e.g. “Are you at Proof?  Here’s what you’ve had there…”)</li>
+  <li>Ability to text-search the “all wines” list</li>
+</ul>
+
+<p>The good news is that my cursory reading of my book and the API docs indicates that these things are going to be <em>very</em> easy to implement.</p>
+
+<h2 id="objective-c">Objective-C</h2>
+
+<p>There’s a lot to like about Objective-C, and a lot to dislike.  Even though the handling of multiple arguments is a bit strange, I find it actually results in fairly readable code.  It feels very Apple; different, but usable.  Even though it’s a lot to type out something like:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>NSString *stripped = [canonicalName stringByTrimmingCharactersInSet:
+                       [NSCharacterSet whitespaceAndNewlineCharacterSet]];
+</code></pre>
+</div>
+
+<p>It <em>is</em> pretty readable, regardless of what programming language you are coming from.  That being said, stack traces and error messages on crashes are nigh-useless, and the overall testability of iPhone apps is pretty behind the times.  This months <a href="http://pragprog.com/magazines">issue of Prag Prog’s magazine</a> has an interesting article on <a href="http://github.com/unboxed/icuke">iCuke</a>, which I look forward to trying out.  I’ve resulted to keeping a text file of test cases that I have to manually run through to make sure I haven’t broken anything, and it feels, well, 1997.  The rumours of a Apple’s switch to Ruby are too good to be true, but one can always dream.</p>
+
+<p><em>Continued in <a href="/blog/2010/07/18/iphone-app-part-5.html">Part 5</a></em></p>
+
+
+          </section>
+        
+      
+    </article>
   
   
     <article>
@@ -920,58 +987,6 @@ This points out a big difference between "Scala the language" and "Scala the lib
       
     </article>
   
-  
-    <article>
-      <header>
-        
-        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2010/01/24/unicode-domain-names.html">Unicode in Your Domain Names</a></h1>
-        
-        <h2 class="f6 mtneg">January 24, 2010</h2>
-      </header>
-      
-        
-          <section class="section-break complete-article mb1">
-            <p>
-Got a few questions about how I set up <a href="http://&#10106;&#10144;.ws/">&#10106;&#10144;.ws</a> (which is powered
-by <a href="http://www.github.com/davetron5000/shorty">Shorty</a>, my <a href="2009-11-23-good-bad-ugly-scala-url-shortener.html">Scala-based URL shortener</a>), so I thought I'd write up how I got it working.  Short answer is that it was pretty easy.
-</p>
-<p>
-I got the idea from <a href="http://www.daringfireball.net">John Gruber</a>, who made a similar thing for his site to post entries on <a href="http://www.twitter.com/daringfireball">@daringfireball</a>.  The trickiest part was figuring out what this was called so I could find out who could sell me a domain with unicode characters in it.
-</p>
-<p>
-It turns out, this is called an IDN (short for <a href="http://en.wikipedia.org/wiki/Internationalized_domain_name">Internationalized Domain Name</a>), and not everyone will sell you one.  Couple that with the need to get a non-<code>.com</code> domain, and I had to hunt around for a while.
-</p>
-<p>
-I ended up going with <a href="http://www.dynadot.com/">DynaDot</a> as they could provide the wacky hostname that I wanted as well as a <code>.ws</code> TLD registration.  I was amazed at the number of domain regstrars whose web forms could not handle Unicode.
-It's been almost 7 years since <a href="http://www.joelonsoftware.com/articles/Unicode.html">Joel Spolsky</a> wrote his screed on dealing with Unicode, so I don't know what the deal is.
-</p>
-<p>
-At any rate, the tricky bit in actually <b>using</b> the domain, because a) entering &#10106;&#10144; into vim is nontrivial, and b) I doubt that Apache's config file would work with unicode characters in it.  Enter <a href="http://en.wikipedia.org/wiki/Punycode">Punycode</a>, which is an asciification of any IDN.  Fortunately, the domain host provides the Punycode for your IDN, so configuring apache was a matter of:
-<figure class="highlight"><pre><code class="language-conf" data-lang="conf">&lt;<span class="n">VirtualHost</span> <span class="n">XXXXX</span>&gt;
-<span class="n">ServerName</span> <span class="n">xn</span>--<span class="n">dfi5d</span>.<span class="n">ws</span>
-<span class="n">ServerAlias</span> <span class="n">www</span>.<span class="n">xn</span>--<span class="n">dfi5d</span>.<span class="n">ws</span>
-<span class="n">DocumentRoot</span> /<span class="n">home</span>/<span class="n">webadmin</span>/<span class="n">xn</span>--<span class="n">dfi5d</span>.<span class="n">ws</span>/<span class="n">html</span>
-&lt;!-- <span class="n">whatever</span> <span class="n">else</span> <span class="n">goes</span> <span class="n">here</span> --&gt;
-<span class="n">JkMount</span> /<span class="n">s</span>* <span class="n">ajp13</span>
-<span class="n">JkMount</span> /<span class="n">s</span> <span class="n">ajp13</span>
-  &lt;<span class="n">Directory</span> /<span class="n">home</span>/<span class="n">webadmin</span>/<span class="n">xn</span>--<span class="n">dfi5d</span>.<span class="n">ws</span>/<span class="n">html</span>&gt;
-    <span class="n">Options</span> <span class="n">Includes</span> <span class="n">FollowSymLinks</span>
-    <span class="n">AllowOverride</span> <span class="n">All</span>
-  &lt;/<span class="n">Directory</span>&gt;
-&lt;/<span class="n">VirtualHost</span>&gt;</code></pre></figure>
-</p>
-<p>
-At this point, it pretty much worked, although it was sometimes difficult to get curl to work with the non-punyied name.
-</p>
-<p>
-One thing that was weird was that I found that a <b>lot</b> of domains I wanted to try were taken or not available (with no explanation).  Often it seemed like the punycode version was a normal looking URL that was taken; I tried several IDNs that had a unicode character with a wierd "5", and they punyied to an ascii 5.  Not sure what the deal is there, but I eventually found the one I wanted.
-</p>
-
-          </section>
-        
-      
-    </article>
-  
   <footer class="center border-top">
     <nav class="pt2 pb2">
       
@@ -989,7 +1004,7 @@ One thing that was weird was that I found that a <b>lot</b> of domains I wanted 
   </main>
   <footer class="center">
     <p class="f6">
-      Copyright &copy; 2006-2016, by David Bryant Copeland, All Rights Reserved
+      Copyright &copy; 2006-2017, by David Bryant Copeland, All Rights Reserved
     </p>
   </footer>
   <script type="text/javascript">
