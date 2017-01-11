@@ -89,7 +89,7 @@ Identify and, if possible, repair broken relationships between teams.  If you ca
 
 Lee Sizemore is the head of Narrative, largely in charge of how the Guests experience the Park.  Of course, he reports to Ford, who is in charge of the entire thing and has the final say.  Sizemore is emotional, hot-headed, and generally angry, though clearly passionate about the role he's been given.  While he contributes to some of the Park's success, Ford doesn't really trust him to do his job.
 
-Instead of either building that trust, or hiring someone who Ford _does_ trust, he instead allows Sizemore to waste countless resources on a new narrative that Ford immediately kills, humiliating Sizemore in front of most of his collogues and direct reports.  Why have Sizemore on staff if you're going to shoot down his ideas *after* he spends time and money implementing them?
+Instead of either building that trust, or hiring someone who Ford _does_ trust, he instead allows Sizemore to waste countless resources on a new narrative that Ford immediately kills, humiliating Sizemore in front of most of his colleagues and direct reports.  Why have Sizemore on staff if you're going to shoot down his ideas *after* he spends time and money implementing them?
 
 Through Sizemore, we can see what type of leader Ford is.  Sizemore treats his staff terribly, yelling at them for seemingly small mistakes and minor
 disagreements.  Because he's being treated badly by his boss, he takes that out the only way he can—on his direct reports.
