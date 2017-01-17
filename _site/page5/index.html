@@ -30,13 +30,15 @@
     
       
         
-        Thinking In Types
         
-        June 30, 2014
+          ☞ Dealing With Resque Failure
+        
+        
+        July 02, 2014
       
       
         
-          In a previous post about S...">
+    ...">
   
 
   
@@ -67,6 +69,39 @@
     <section>
       <div class="blog-index">
   
+  
+  
+    <article>
+      <header>
+        
+        <h1 class="f4">
+          <a class="no-ul" href="http://technology.stitchfix.com/blog/2014/07/02/how-we-deal-with-failing-resque-jobs/">☞ <span class="ul-hover">Dealing With Resque Failure</span></a>
+        </h1>
+        
+        <h2 class="f6 mtneg">July 02, 2014</h2>
+      </header>
+      
+        
+          <section class="section-break">
+            <p>Over on <a href="http://technology.stitchfix.com/blog">Stitch Fix’s engineering blog</a>, I wrote a <a href="http://technology.stitchfix.com/blog/2014/07/02/how-we-deal-with-failing-resque-jobs/">new post</a> on how we deal with tricky job failures.
+Namely, make your jobs idempotent:</p>
+
+<blockquote>
+  <p>Trapping <code class="highlighter-rouge">Resque::TermException</code> is really just kicking the can down the road. You might prevent some of your jobs from failing, but you’ll still get failed jobs. Granted, they will fail at a lower rate, but it’s still a rate correlated to the scale of your business.</p>
+
+  <p>The underlying problem is that jobs aren’t <strong>idempotent</strong>.</p>
+</blockquote>
+
+<p>Check out the entire thing <a href="http://technology.stitchfix.com/blog/2014/07/02/how-we-deal-with-failing-resque-jobs/">here</a>.</p>
+
+
+          </section>
+          <footer class="mtneg mb1">
+            <h1 class="f7"><a class="no-ul ul-hover" href="/blog/2014/07/02/dealing-with-resque-failure.html">#</a></h1>
+          </footer>
+        
+      
+    </article>
   
   
     <article>
@@ -349,170 +384,6 @@ I was able to find answers by piecing together information from Stack Overflow a
             <a rel="full-article" class="no-ul pill" href="/blog/2014/03/07/what-rails-says-about-your-application-design.html">Read More…</a>
           </footer>
         </section>
-      
-    </article>
-  
-  
-    <article>
-      <header>
-        
-        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2014/02/09/a-defense-of-ivars-in-rails-controllers.html">A defense of ivars in Rails controllers</a></h1>
-        
-        <h2 class="f6 mtneg">February 09, 2014</h2>
-      </header>
-      
-        
-          <section class="section-break complete-article mb1">
-            <p>Had a discussion with another developer at a meetup about testing Rails controllers.  I test controllers <em>a lot</em>.  In fact, I start most new features with a controller test.  I also use ivars as the means of passing data from controller to view.  Ex-colleague Adam Keys recently wrote a <a href="http://therealadam.com/2014/02/09/a-tale-of-two-rails-views/">good piece about not using ivars</a>:</p>
-
-<blockquote>
-  <p>If you stick with ivars long enough, you’re going to end up with two kinds of misadventures.
-Most commonly, you’ll wonder why @user is nil for some view or edge case…
-This leads to the second misadventure: where did this @user thing come from2?</p>
-</blockquote>
-
-<p>He then goes onto propose creating methods, since it makes testing and experimentation easier.</p>
-
-<p>Personally, I would find this far more confusing.  Ruby’s tagline could be “where did <em>that</em> come from?”.  You can’t write Ruby
-without <code class="highlighter-rouge">grep</code>ping.  A lot.  And the string “@user” is going to be a lot easier to grep for than “current_user”.
-Finding “@user =” moreso.</p>
-
-<p>But this is all beside the point.  Fighting controllers and avoiding ivars unnecessarily adds complexity to Rails to solve a problem that is created not by Rails but by bad programming practices.  Hiding those practices behind methods, helpers, and objects is just that - hiding.  If want to avoid sloppy controllers and views, don’t fight Rails, instead do this:</p>
-
-<ul>
-  <li>Adjust your mindset about what Controllers are.</li>
-  <li>Adhere to three simple practices when writing controllers and views.</li>
-</ul>
-
-<h2 id="what-rails-controllers-really-are">What Rails Controllers Really Are</h2>
-
-<p>Stop thinking of controllers as regular objects/classes in the traditional Ruby sense.  The way they are written, tested, and
-used gives no indication that they are conventional.  Instead, think of controllers as
-namespaces for functions, each having a single input—<code class="highlighter-rouge">params</code>—whose purpose is to render a view given some data:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">show</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
-  <span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
-  <span class="n">render</span> <span class="s1">'show'</span><span class="p">,</span> <span class="ss">values: </span><span class="p">{</span> <span class="ss">user: </span><span class="n">user</span> <span class="p">}</span>
-<span class="k">end</span>
-</code></pre>
-</div>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;h1&gt;</span><span class="cp">&lt;%=</span> <span class="n">user</span><span class="p">.</span><span class="nf">name</span> <span class="cp">%&gt;</span><span class="nt">&lt;/h1&gt;</span>
-</code></pre>
-</div>
-
-<p>As Rails is a DSL for making web applications, it uses the “specialness” of a controller to abstract away boilerplate so that all
-we need to write is what’s specific to our application.</p>
-
-<p>First, there’s no need to have <code class="highlighter-rouge">params</code> passed in explicitly:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">show</span>
-  <span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
-  <span class="n">render</span> <span class="s1">'show'</span><span class="p">,</span> <span class="ss">values: </span><span class="p">{</span> <span class="ss">user: </span><span class="n">user</span> <span class="p">}</span>
-<span class="k">end</span>
-</code></pre>
-</div>
-
-<p>Next, we can automatically handle rendering:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">show</span>
-  <span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
-  <span class="n">values</span> <span class="o">=</span> <span class="p">{</span> <span class="ss">user: </span><span class="n">user</span> <span class="p">}</span>
-<span class="k">end</span>
-</code></pre>
-</div>
-
-<p>Finally, we can condense the passing of values to mere assignment:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">show</span>
-  <span class="vi">@user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
-<span class="k">end</span>
-</code></pre>
-</div>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;h1&gt;</span><span class="cp">&lt;%=</span> <span class="vi">@user</span><span class="p">.</span><span class="nf">name</span> <span class="cp">%&gt;</span><span class="nt">&lt;/h1&gt;</span>
-</code></pre>
-</div>
-
-<p>This description of what controllers really are is borne out in a canonical controller test:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1"># Setup our test data</span>
-<span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">create!</span><span class="p">(</span><span class="ss">name: </span><span class="s1">'Dave'</span><span class="p">)</span>
-
-<span class="c1"># call our function, giving it a value for `params`</span>
-<span class="n">get</span> <span class="ss">:show</span><span class="p">,</span> <span class="ss">id: </span><span class="n">user</span><span class="p">.</span><span class="nf">id</span>
-
-<span class="c1"># assert something about the assigned values</span>
-<span class="n">assert_equal</span> <span class="n">user</span><span class="p">,</span> <span class="n">assigns</span><span class="p">(</span><span class="ss">:user</span><span class="p">)</span>
-</code></pre>
-</div>
-
-<p>If you are comfortable using <code class="highlighter-rouge">let</code> to assign values in RSpec, you should be totally OK with this.</p>
-
-<p>Because a controller isn’t a conventional object or class, but is instead a namespace for functions, it has no need of ivars.
-Knowing this, Rails co-opts the ivar mechanism to make our lives easier and our code easier to read and write.
-That you can declare an ivar anywhere in a controller and that doing so causes
-confusion is <em>your problelm</em>, not Rails.  Avoiding ivars in favor of a custom mechanism seems more difficult in the long run than
-just making a commitment to just three simple practices.</p>
-
-<h2 id="three-practices-to-keep-your-controllers-and-views-clean">Three Practices to Keep Your Controllers and Views Clean</h2>
-
-<p>When you take care with your views and controllers, the Rails Way results in code that is easy to read and modify.</p>
-
-<h3 id="assign-ivars-only-in-controller-actions-or-if-you-must-filters">Assign ivars only in controller actions or, if you must, filters.</h3>
-
-<p>Since your controller methods should be short, as should your filters, you can easily see all ivars assigned by a controller in one screenful of text.  Yes, you can assign ivars anywhere you want.  Don’t do that.  You wouldn’t do that in any other class in your system, so why does the ability to do it in controllers necessitate a deviation from Rails idioms?</p>
-
-<h3 id="assign-as-few-ivars-as-possible">Assign as few ivars as possible.</h3>
-
-<p>Ideally, you have a single type describing the contract between controller action and
-view and that value is always expected to have a value. If that “type” isn’t a database-backed ActiveRecord model, you know what: spend 60 seconds <a href="http://technology.stitchfix.com/blog/2013/12/20/presenters-delegation-vs-structs/">making a class</a>. If it takes you longer to create a model describing what your view expects, sharpen your tools.</p>
-
-<p>But, there’s a reason I didn’t say “Assign one ivar”.  Sometimes you need orthogonal data, such as reference data for select
-boxes, and assigning it in the controller as a second ivar can end up being much simpler that either putting it into your
-model object or as a helper.</p>
-
-<h3 id="do-not-use-ivars-in-partials">Do not use ivars in partials.</h3>
-
-<p>This is usually the source of a lot of confusion and problems in Rails views.  It’s not the fault of Rails, but it’s another bad
-programming practice.  Using ivars in partials is akin to this Ruby code:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Greeter</span>
-  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">person</span><span class="p">)</span>
-    <span class="vi">@person</span> <span class="o">=</span> <span class="n">person</span>
-  <span class="k">end</span>
-
-  <span class="k">def</span> <span class="nf">greet</span>
-    <span class="vi">@first_name</span> <span class="o">=</span> <span class="vi">@person</span><span class="p">.</span><span class="nf">first_name</span>
-    <span class="s2">"Hello </span><span class="si">#{</span><span class="n">normalize_name</span><span class="si">}</span><span class="s2">"</span>
-  <span class="k">end</span>
-
-  <span class="k">def</span> <span class="nf">normalize_name</span>
-    <span class="vi">@first_name</span><span class="p">.</span><span class="nf">strip</span><span class="p">.</span><span class="nf">downcase</span><span class="p">.</span><span class="nf">capitalize</span>
-  <span class="k">end</span>
-<span class="k">end</span>
-</code></pre>
-</div>
-
-<p>Treat calls to <code class="highlighter-rouge">render partial:</code> as a method call and pass in arguments that that partial needs to work.  Design that partial to
-require (and document) what should be passed in.  Inside a view, think of ivars as global data.  We don’t use global data to pass
-arguments to methods.</p>
-
-<p>It may seem braindead to write <code class="highlighter-rouge">render partial:'form', locals: { user: @user }</code>, but you will thank yourself later
-for spending 5 seconds being explicit.  The partial can now be moved around and re-used easily, because its contract is explicit.</p>
-
-<h2 id="dont-fear-ivars---fear-bad-coding-practices">Don’t Fear ivars - Fear Bad Coding Practices</h2>
-
-<p>These rules are incredibly simple to follow, and make your code easy to write, read, and maintain.  Your controller tests are
-easy to write, and your partials can be easily extracted if needed.</p>
-
-<p>You see time and time again that Rails conventions are designed around making readable and maintainable code in the context of
-good programming practices.   Rails was never intended to make it hard to write bad code, but to make us productive.  If we are
-comfortable making a mess and ignoring years of lessons learned about programming, Rails isn’t going to help us.</p>
-
-
-          </section>
-        
       
     </article>
   

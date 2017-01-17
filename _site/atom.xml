@@ -4,13 +4,77 @@
   <title><![CDATA[naildrivin5.com - David Bryant Copeland's Website]]></title>
   <link href="http://naildrivin5.com/atom.xml" rel="self"/>
   <link href="http://naildrivin5.com/"/>
-  <updated>2017-01-10T09:32:48-05:00</updated>
+  <updated>2017-01-17T09:42:14-05:00</updated>
   <id>http://naildrivin5.com/</id>
   <author>
     <name><![CDATA[David Bryant Copeland]]></name>
     <email><![CDATA[davec@naildrivin5.com]]></email>
   </author>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Articulating a Vision]]></title>
+    
+    <link href="http://naildrivin5.com/blog/2017/01/17/articulating-a-vision.html"/>
+    
+    <updated>2017-01-17T09:00:00-05:00</updated>
+    <id>http://naildrivin5.com/blog/2017/01/17/articulating-a-vision</id>
+    <content type="html"><![CDATA[<p>In <a href="http://theseniorsoftwareengineer.com">my book</a>, I talk about making technical decisions and, in particular, understanding the priorities of everyone involved in the
+decision-making.  A more powerful way to lead teams to execution is to <em>clearly articulate a vision</em> of what you are trying to achieve.  It’s also much more
+difficult.</p>
+
+<!-- more -->
+
+<p>Imagine if you worked on the hardware team for the iPhone.  One day, your manager says “OK, for iPhone 7, omit the headphone jack”.  You’d be confused.  Why would we remove the audio jack for a <em>phone</em> that doubles as a <em>music player</em>?!?!</p>
+
+<p>Now, suppose this went down another way.  Your manger instead says: “We believe the future of mobile audio is
+wireless.  We further believe that wireless headphones can be an area of new product development—a new wearable computer.  We feel the way to make that future a
+reality is to free ourselves from the legacy headphone port.  We’re planning to introduce the first version of our vision for wireless headphones, and we
+think removing the headphone port in iPhone 7 is the way to ensure that product gets traction in the market.  We feel this is the way to achieve the future we’re envisioning.”</p>
+
+<p>What’s the difference here?</p>
+
+<p>In the first scenario, the manager is handing down directives and projects with no context or explanation.  In the later, the manager is <em>articulating a vision</em> and that vision helps the team understand what they
+are being asked to do and why it’s important.</p>
+
+<p>Articulating a vision is crucial for product development, and vital for managing healthy teams.</p>
+
+<p>Handing down directives makes the job of a manager more difficult. Without context, teams can’t make many decisions on their own, and require micromanagement, lest the deliver on the wrong thing.  This lack of
+vision also sends the message that the manager either has no vision (making them a poor leader) or doesn’t trust the team to execute.  Who wants to be on <em>that</em> team?</p>
+
+<p>Even if you aren’t a manager, being able to articulate a vision is still a useful skill, as it allows you to clearly express ideas to others.  For example, if you’re a junior developer faced with a bugfix that’s more complex than you initially thought, <em>articulating a vision</em> of how to fix that bug—as opposed to just writing some code—means you can give context and clarity about what you want to do.  Instead of struggling to communicate your intent and context, you’ll become quickly aligned and can discuss the fitness of your proposal more directly.</p>
+
+<p>How can we learn to do this?</p>
+
+<h2 id="have-a-vision-in-the-first-place">Have a Vision in the First Place</h2>
+
+<p>Developing a vision is much easier than articulating it.  You merely imagine the world in some future state based on what you’d like to achieve.</p>
+
+<p>Think about what you want to do. What are your goals?  What needs to exist that doesn’t?  What should happen that isn’t?</p>
+
+<p>Think about your life, system, or team in this future state.  What is it like? What sorts of things become possible?  What becomes <em>difficult</em>?</p>
+
+<p>I like to imagine giving a keynote presentation, and think about all the exciting stuff I’m announcing.</p>
+
+<p>However you do it, you next need to find a way to articulate it to others.</p>
+
+<h2 id="articulate-your-vision-to-others">Articulate Your Vision to Others</h2>
+
+<p>When others already share your vision—or helped you develop it—articulating that vision is easy.  You have shared context and opinions that allow almost everything to go unsaid.  But, as you bring in people with less context, it’s harder to get them to understand.  They weren’t there with you developing the vision and are coming in cold, possibly with their own vision or opinions about the matter at hand.</p>
+
+<p>Your primary goal is to get others to really understand your vision at the level you do.  With that understanding, you can get feedback to refine that vision, get help in further articulating it, and, most
+importantly, get others to help you execute on it.</p>
+
+<p>A simple way to do this is to start with the specific things you want done or want to exist.   Ask yourself why it’s important?  Keep asking “why”.  These explanations give context and lead others through your
+line of thinking.  When you talk about what’s important, explicitly state what’s <em>not</em> important, or what you are willing to sacrifice to achieve your vision.  Finally, outline pie-in-the-sky benefits that become
+possible only when your vision is achieved.</p>
+
+<p>This should create a story that you can tell others that brings them from nothing to understanding your vision.</p>
+
+<p>The grander your vision, the more work this is, but the more focused your vision, the easier.  And it works for just about anything, from leading a massive organization to a simple bugfix.</p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[What Westworld Can Teach Us About Devops]]></title>
@@ -103,7 +167,7 @@ Identify and, if possible, repair broken relationships between teams.  If you ca
 
 <p>Lee Sizemore is the head of Narrative, largely in charge of how the Guests experience the Park.  Of course, he reports to Ford, who is in charge of the entire thing and has the final say.  Sizemore is emotional, hot-headed, and generally angry, though clearly passionate about the role he’s been given.  While he contributes to some of the Park’s success, Ford doesn’t really trust him to do his job.</p>
 
-<p>Instead of either building that trust, or hiring someone who Ford <em>does</em> trust, he instead allows Sizemore to waste countless resources on a new narrative that Ford immediately kills, humiliating Sizemore in front of most of his collogues and direct reports.  Why have Sizemore on staff if you’re going to shoot down his ideas <em>after</em> he spends time and money implementing them?</p>
+<p>Instead of either building that trust, or hiring someone who Ford <em>does</em> trust, he instead allows Sizemore to waste countless resources on a new narrative that Ford immediately kills, humiliating Sizemore in front of most of his colleagues and direct reports.  Why have Sizemore on staff if you’re going to shoot down his ideas <em>after</em> he spends time and money implementing them?</p>
 
 <p>Through Sizemore, we can see what type of leader Ford is.  Sizemore treats his staff terribly, yelling at them for seemingly small mistakes and minor
 disagreements.  Because he’s being treated badly by his boss, he takes that out the only way he can—on his direct reports.</p>
@@ -986,108 +1050,6 @@ for Rails 6</a>.</p>
 <p>This would have a lot of advantages.  First, it’s a better API to Rails than jQuery’s <code class="highlighter-rouge">$ajax</code> function.  Second, it would be lightweight and dependency free, thus easily usable with other front-end frameworks if that meets the developer’s needs.  It could work easily with React, Angular, or Ember, if a developer chose to use those frameworks.  Finally, it defines the AJAX interface to a Rails app the same way <code class="highlighter-rouge">config/routes.rb</code> defines the HTTP interface.</p>
 
 <p>This would remove a decision developers have to make, and simplify a very common interaction.</p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Imagined Rails 6: No More Per-View CSS]]></title>
-    
-    <link href="http://naildrivin5.com/blog/2016/06/13/imagined-rails-6-no-more-per-view-css.html"/>
-    
-    <updated>2016-06-13T00:00:00-04:00</updated>
-    <id>http://naildrivin5.com/blog/2016/06/13/imagined-rails-6-no-more-per-view-css</id>
-    <content type="html"><![CDATA[<p>This is a series of posts about <a href="http://naildrivin5.com/blog/2016/06/12/why-did-i-recommend-XX-for-rails-6.html">why I recommended the changes I did for Rails 6</a>, in my <a href="http://naildrivin5.com/blog/2016/05/17/announcing-rails-6-an-imagined-roadmap.html">imagined keynote
-for Rails 6</a>.</p>
-
-<p>In this one, we’ll explore why I recommended the removal of per-view CSS and the inclusion of an “OOCSS”-style framework.</p>
-
-<!-- more -->
-
-<p>When you create a new resource/controller/scaffold with Rails, say one called “widgets”, Rails creates a lot of files.  One of them is <code class="highlighter-rouge">widgets.css</code> and, because of how the asset pipeline works, this file is included in the CSS bundle.</p>
-
-<p>This gives a very false sense of encapsulation.  In no way are the CSS classes in that file encapsulated and in no way are they applied only to “widgets”.  This is unlike the Ruby artifacts the generator produces, which <em>do</em> have encapsulation: the methods in <code class="highlighter-rouge">WidgetsControllers</code> are not global to all of your app, nor are the methods in <code class="highlighter-rouge">Widget</code>.  Even the stuff in <code class="highlighter-rouge">WidgetsHelper</code> isn’t global.</p>
-
-<p>There are ways to do modular CSS.  They are nasty, but Rails could bake in support for them if it truly believed that modular CSS was the way developers should be working.</p>
-
-<p>Modular CSS isn’t quite the state of the art, though perhaps it will be some day.  Instead, many front-end developers are using something called “Object-Oriented CSS” or OOCSS.  While the technique has nothing to do with objects and bears no resemblance to “object-oriented programming”, this is the term that’s been adopted.  And, it’s a vast depature from what many of us learned about how write CSS.</p>
-
-<p>Instead of creating single classes per thing-you-want-to-style and then adding CSS to that class, you create single-purpose re-usable classes and apply them to your HTML.  Let me demonstrate.</p>
-
-<p>Suppose we are styling the <code class="highlighter-rouge">widgets/show.html.erb</code> template.  We know that it will show the widget’s name as the most important thing on the page outside of the general application layout.  That’s enough to write some HTML.</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;article&gt;</span>
-  <span class="nt">&lt;h1&gt;</span><span class="cp">&lt;%=</span> <span class="vi">@widget</span><span class="p">.</span><span class="nf">name</span> <span class="cp">%&gt;</span><span class="nt">&lt;/h1&gt;</span>
-<span class="nt">&lt;/article&gt;</span>
-</code></pre>
-</div>
-
-<p>Since we’ll consider this content “self-contained”, we use <code class="highlighter-rouge">article</code>, and the correct tag for the most important header in an <code class="highlighter-rouge">article</code> is an <code class="highlighter-rouge">h1</code>, so we use that for the widget’s name.</p>
-
-<p>Note that this completely describes the semantics of our content.  No additional markup is needed.</p>
-
-<p>Now, suppose our designer (which is a role—we could be the designer, too) wants this displayed in bold, all uppercase, and using the second-biggest font in our <a href="http://alistapart.com/article/more-meaningful-typography">type scale</a>.</p>
-
-<p>In “semantic” CSS (the type I’m discouraging in this post), we give our <code class="highlighter-rouge">h1</code> a single class, like so:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;article&gt;</span>
-  <span class="nt">&lt;h1</span> <span class="na">class=</span><span class="s">"widget-name"</span><span class="nt">&gt;</span><span class="cp">&lt;%=</span> <span class="vi">@widget</span><span class="p">.</span><span class="nf">name</span> <span class="cp">%&gt;</span><span class="nt">&lt;/h1&gt;</span>
-<span class="nt">&lt;/article&gt;</span>
-</code></pre>
-</div>
-
-<p>We then use that class to attach our needed styles:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="nc">.widget-name</span> <span class="p">{</span>
-  <span class="nl">font-size</span><span class="p">:</span>     <span class="err">$</span><span class="n">font-size-2</span><span class="p">;</span>
-  <span class="nl">font-weight</span><span class="p">:</span>    <span class="nb">bold</span><span class="p">;</span>
-  <span class="nl">text-transform</span><span class="p">:</span> <span class="nb">uppercase</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre>
-</div>
-
-<p>Note again that the addition of the <code class="highlighter-rouge">widget-name</code> class adds no semantics not already present in the original HTML.  It merely exists for us to use a hook for styling.  If we didn’t need to style it, we would have no reason to add that class.</p>
-
-<p>In OOCSS, we work in the opposite direction.  We start from a set of small, re-usable classes that we can apply and use anywhere.  So, we’d have CSS like so:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="nc">.f1</span> <span class="p">{</span> <span class="nl">font-size</span><span class="p">:</span> <span class="err">$</span><span class="n">font-size-1</span><span class="p">;</span> <span class="p">}</span>
-<span class="nc">.f2</span> <span class="p">{</span> <span class="nl">font-size</span><span class="p">:</span> <span class="err">$</span><span class="n">font-size-2</span><span class="p">;</span> <span class="p">}</span>
-<span class="nc">.f3</span> <span class="p">{</span> <span class="nl">font-size</span><span class="p">:</span> <span class="err">$</span><span class="n">font-size-3</span><span class="p">;</span> <span class="p">}</span>
-
-<span class="nc">.fwb</span> <span class="p">{</span> <span class="nl">font-weight</span><span class="p">:</span> <span class="nb">bold</span><span class="p">;</span> <span class="p">}</span>
-
-<span class="nc">.ttu</span> <span class="p">{</span> <span class="nl">text-transform</span><span class="p">:</span> <span class="nb">uppercase</span><span class="p">;</span> <span class="p">}</span>
-</code></pre>
-</div>
-
-<p>With these re-usable classes, we can then style our widget header like so:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;article&gt;</span>
-  <span class="nt">&lt;h1</span> <span class="na">class=</span><span class="s">"f2 fwb ttu"</span><span class="nt">&gt;</span><span class="cp">&lt;%=</span> <span class="vi">@widget</span><span class="p">.</span><span class="nf">name</span> <span class="cp">%&gt;</span><span class="nt">&lt;/h1&gt;</span>
-<span class="nt">&lt;/article&gt;</span>
-</code></pre>
-</div>
-
-<p>Since our original HTML contains sufficient semantics for the content, these display-specific classes have no effect on the semantics of our markup.  Remember, we have no reason to add classes to this markup in order to clarify the semanatics.  The only reason we would ever have to add classes to this markup is to afford visual styling.</p>
-
-<p>I know what you’re thinking.  This is weird.  It’s wrong!  We’re mixing presentation and content!  This will not stand!</p>
-
-<p>I had the same reactions. But, this way of styling markup is better than the “semantic” way we’ve all learned.
-I’ve been working this wawy for over three years and have <em>very</em> rarely had to actually write any CSS, and have very rarely become confused about why my pages were laying out the way they were.</p>
-
-<p>You may think that in a sizeable app, you’d end up duplicating a lot of classes.  For example, what if all of our headers were to be bold, upper-case, and set in the second-largest font?  Wouldn’t we have <code class="highlighter-rouge">f2 fwb ttu</code> littered everywhere?</p>
-
-<p>Don’t forget: Rails includes a powerful templating framework that supports partials.  You can easily remove duplication by ust using that.</p>
-
-<p>Further, because this type of styling doesn’t use the cascade, it’s always very clear why an element is being rendered in the browser a certain way and what the application of these classes will do to an element. Once you learn the terse classnames, you can look at any element and see immediately what the intention is for how it is to be displayed.</p>
-
-<p>This is a deep topic and you should read <a href="http://mrmrs.io/writing/2016/03/24/scalable-css/">this post by Adam Morse</a> and/or <a href="http://nicolasgallagher.com/about-html-semantics-front-end-architecture/">this post by Nicolas Gallagher</a>.  If you have any feelings or opinions about what I’ve written here, you need to read these posts first.  And then take your issue up with their authors.  I’m just the messenger.</p>
-
-<p>And the message is this:  writing CSS this way is awesome.  It’s empowering.  It reduces the decisions you must make down to only those about your design and not how to structure your CSS.  It is very much the Rails Way.</p>
-
-<p>I specified <a href="http://tachyons.io">Tachyons</a> as it is a small full-featured framework that allows you to work this way.  You could also use <a href="http://www.basscss.com/">BassCSS</a>.  If Rails should include CSS and have an opinion on how to write it, either of these frameworks would be great.</p>
-
-<p>If, on the other hand, Rails doesn’t believe in having an opinion on CSS, it should not create blank <code class="highlighter-rouge">.css</code> files that imply encapsulation which doesn’t exist nor should it include SAAS.</p>
 
 ]]></content>
   </entry>

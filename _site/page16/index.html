@@ -30,14 +30,15 @@
     
       
         
-        My own personal tour of Scala
+        Moved my blog to Jekyll
         
-        September 10, 2009
+        October 17, 2009
       
       
         
           
-        ...">
+            
+Kin...">
   
 
   
@@ -68,6 +69,29 @@
     <section>
       <div class="blog-index">
   
+  
+  
+    <article>
+      <header>
+        
+        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2009/10/17/moved-to-jekyll.html">Moved my blog to Jekyll</a></h1>
+        
+        <h2 class="f6 mtneg">October 17, 2009</h2>
+      </header>
+      
+        
+          <section class="section-break complete-article mb1">
+            <p>
+Kinda wanted a change of pace, so I moved my website over to <a href="http://www.github.com/mojombo/jekyll">Jekyll</a>, which has been fun to set up.  Plus, I actually spent more than 10 seconds on a site design.  I'm assuming my many hours of labour could've been done by a real designer.  
+</p>
+<p>
+At any rate, Jekyll seems reasonably easy to deal with.  I got a very small taste of Capistrano as well; I push my site to a remote bare git repo on this server and then have the capfile update it.  I suppose it could be more sophisticiated, but this seems to work for now.
+</p>
+
+          </section>
+        
+      
+    </article>
   
   
     <article>
@@ -544,58 +568,6 @@ Thank GODS that REST doesn't have a spec.  If it did, it would still be in devel
 <hr />
 <p>
 P.S. If you are going to coin a term and you want to <a href="http://roy.gbiv.com/untangled/2008/rest-apis-must-be-hypertext-driven">bitch about it being misused</a>, maybe calling it a "style" isn't the best idea.
-</p>
-
-          </section>
-        
-      
-    </article>
-  
-  
-    <article>
-      <header>
-        
-        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2009/03/11/java-annotations-javas-love-of-configuration-over-convention.html">Java Annotations - Java's love of configuration over convention</a></h1>
-        
-        <h2 class="f6 mtneg">March 11, 2009</h2>
-      </header>
-      
-        
-          <section class="section-break complete-article mb1">
-            <p>In the beginning, EJB was a bloated mess of XML configuration files that allowed some sort of ultimate flexibility that absolutely no one needed nor cared about.  And it sucked.  So developers started using conventions to keep track of the four classes required to make a remote method call, and XDoclet was created to automate the creation of the XML configuration files.  And it sucked less.  Following in EJB's footsteps, Hibernate did the same thing.  And XDoclet followed.  And it still sucked. 
-</p>
-<p>
-So, annotations were created to essentially formalize what XDoclet was doing, instead of considering how horribly broken the implementation of J2EE or Hibernate was.  And now that we have annotations, the "implementation pattern" of "ultimate flexibility through annotations" has made its way into numerous Java frameworks, such as JAX-RS and JPA.</p>
-<p>
-Regarding JPA:
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Id</span>
-<span class="nd">@GeneratedValue</span>
-<span class="nd">@Column</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">"person_id"</span><span class="o">)</span>
-<span class="kd">public</span> <span class="kt">int</span> <span class="nf">getPersonId</span><span class="p">(</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> <span class="n">personId</span><span class="o">;</span> <span class="o">}</span></code></pre></figure>
-This is not a significant improvement over XDoclet; the only benefit is if you mistype "GeneratedValue", the compiler will catch it.  I shouldn't have to type "GeneratedValue" in the first place.  Unless I'm doing something non-standard.  Which I almost never do.
-</p>
-<p>
-I have a <tt>Person</tt> class with a <tt>getPersonId</tt> method.  Can JPA just assume that it maps to the <tt>PERSON</tt> table, and the <tt>PERSON_ID</tt>, respectively.  Further, couldn't it figure out that it's the auto-generated primary key since the schema says <tt>primary key auto increment</tt>.  All the information is there and available to the framework to figure this out.
-</p>
-<p>
-The same goes for EJB.  I have a class named <tt>FooStatelessBean</tt>.  How about we assume it's a stateless session bean, and it's interface is defined by its public methods?  It can then provide <tt>FooRemote</tt> and <tt>FooLocal</tt> for me, and I don't need to configure anything or keep three classes in sync.
-</p>
-<p>
-Just because Java doesn't have all the Ruby dynamic magic doesn't mean we can't make things easy.  In reading <a href="http://www.suryasuravarapu.com/2009/03/rest-crud-with-jax-rs-jersey.html">Surya Suravarapu’s blog post about CRUD via JAX-RS</a> I can't help wondering why it takes so much code to call a few methods on a class?
-</p>
-<p>
-Did the designers of JAX-RS not even <b>look</b> at how Rails does things?  I get a <tt>PUT</tt> to the url <tt>/customers/45</tt>.  We should default to calling <tt>put(45)</tt> on the class <tt>CustomersResource</tt>.  Only if I want to obfuscate what's going (e.g. by having <tt>FooBar.frobnosticate()</tt> handle the request) should I be required to provide configuration.</p>
-<p>Even in Surya's example code, he's following some conventions: His resource class is suffixed with <tt>Resource</tt> and his <tt>POST</tt> method is prefixed <tt>add</tt>.  This should be baked into the spec.  It's like EJB all over again with the common conventions that aren't supported by the framework because of too much useless flexibilty.
-</p>
-<p>
-Supporting convention over configuration is easy in Java.  In just a few hours, <a href="http://github.com/davetron5000/fwf/tree/master">I had a tiny web framework</a> that proves it<sup>1</sup>.  It wouldn't take much more effort to allow the default behavior to be overridden, but, unlike JAX-RS, EJB, or even the Servlet spec itself, it doesn't punish developers who follow conventions.  It makes their lives easier and thus encourages good behavior.
-</p>
-<p>
-So, the point of all this is that annotations encourage bad framework design; unnecessary configuration is a major part of many Java frameworks and specs.  And I have no idea why.
-</p>
-<hr />
-<p>
-<i><sup>1</sup>it unfortunately breaks down at the UI layer, due to a statically typed and compiled language not being a great choice for implementing web UIs, but that's another issue.</i>
 </p>
 
           </section>
