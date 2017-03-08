@@ -4,13 +4,27 @@
   <title><![CDATA[naildrivin5.com - David Bryant Copeland's Website]]></title>
   <link href="http://naildrivin5.com/atom.xml" rel="self"/>
   <link href="http://naildrivin5.com/"/>
-  <updated>2017-01-17T09:42:14-05:00</updated>
+  <updated>2017-03-08T11:35:39-05:00</updated>
   <id>http://naildrivin5.com/</id>
   <author>
     <name><![CDATA[David Bryant Copeland]]></name>
     <email><![CDATA[davec@naildrivin5.com]]></email>
   </author>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Appearance on the Tech Done Right Podcast]]></title>
+    
+    <link href="http://www.techdoneright.io/005-javascript-apps"/>
+    
+    <updated>2017-03-08T09:00:00-05:00</updated>
+    <id>http://naildrivin5.com/blog/2017/03/08/appearance-on-tech-done-right-podcast</id>
+    <content type="html"><![CDATA[<p>I was fortunate enough to be on the <a href="http://www.techdoneright.io/005-javascript-apps">Tech Done Right Podcast</a> hosted by <a href="https://twitter.com/noelrap">Noel Rappin</a>.  I was on
+with <a href="https://twitter.com/theotherzach">Zach Briggs</a> to talk about JavaScript with and without frameworks, something I’ve been exploring quite
+a bit working on the second edition of <a href="https://pragprog.com/book/dcbang2/rails-angular-postgres-and-bootstrap-second-edition">my book</a>.  Take <a href="http://www.techdoneright.io/005-javascript-apps">a listen</a>!</p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Articulating a Vision]]></title>
@@ -982,74 +996,6 @@ and <code class="highlighter-rouge">Subscription</code> models, we could do this
 <p>To be clear, I don’t think this is necessarily the best way to write code in a Rails app, but this is <em>much</em> better than just throwing everything into your User model.  In fact, if a complex Rails app aggressively pursued this sort of design, it might result in fairly clean code, comprised of objects that don’t do all that much (which is what we’re all after by making services).</p>
 
 <p>I can only assume this is the sort of thing DHH has in mind and why he tends to eschew any “blessing” of objects that aren’t models.  It’s too bad that there hasn’t been clearer instruction and explanation as to how it would work for non-trivial cases.  But, by encouraging a resource-based view of controllers and making it dead-simple to create non-ActiveRecord models, Rails might more naturally encourage the type of design it seems to favor.</p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Imagined Rails 6: Out with JQuery, in With ES6]]></title>
-    
-    <link href="http://naildrivin5.com/blog/2016/06/14/imagined-rails-6-removes-jquery-and-favors-es6.html"/>
-    
-    <updated>2016-06-14T00:00:00-04:00</updated>
-    <id>http://naildrivin5.com/blog/2016/06/14/imagined-rails-6-removes-jquery-and-favors-es6</id>
-    <content type="html"><![CDATA[<p>This is a series of posts about <a href="http://naildrivin5.com/blog/2016/06/12/why-did-i-recommend-XX-for-rails-6.html">why I recommended the changes I did for Rails 6</a>, in my <a href="http://naildrivin5.com/blog/2016/05/17/announcing-rails-6-an-imagined-roadmap.html">imagined keynote
-for Rails 6</a>.</p>
-
-<p>In this one, we’ll explore why I recommended the removal of jQuery, and the change from CoffeeScript to ES6.</p>
-
-<!-- more -->
-
-<h2 id="es6-is-where-its-at">ES6 is Where It’s At</h2>
-
-<p>I see the appeal of CoffeeScript.  I advocated hard for it on my team and we have a lot of code using it.  JavaScript ES5 is a very verbose language, wrought with easy-to-make errors.  CoffeeScript takes a lot of the pain away.  But, so does ES6.</p>
-
-<p>ES6 has the virtue of being somewhat standard and supportable in modern browsers without compiling down to ES5, but it compiles down to ES5 just fine.  It’s the state of the art.  The reasons to use CoffeeScript all apply to ES6, but ES6 is more standard and has support for modules.  CoffeeScript (and the Rails asset pipeline) do not support modules in any direct way.</p>
-
-<p>Modules in JavaScript are roughly equivalent to Ruby classes or perhaps gems, depending on how much you put in them.</p>
-
-<p>Currently, Rails produces per-view CoffeeScript files similar to what it does with CSS.  So, for a widgets resource, we get <code class="highlighter-rouge">widgets.coffee</code>.  This does not create any artifact in JavaScript code related to widgets.  Similar to the sibling <code class="highlighter-rouge">.css</code> file, these files are compiled into one <code class="highlighter-rouge">application.js</code> at runtime and included <em>and executed</em> on every single page, not just the widgets pages.</p>
-
-<p>Since it’s run on every page, you have to be careful that any code that’s executed and grabs DOM elements does so in a way that doesn’t inadvertenly grab slimilar DOM elements that might exist elsewhere in your application.  The bigger your app gets, the harder it is to be sure you’ve done this right.  The only way to be sure is to maintain extensive browser-based tests—something Rails provides no support for out of the box.</p>
-
-<p>Where I work, we solve this by doing two things:</p>
-
-<ul>
-  <li>All code to be run on a controller action gets put into a shared namespace rather than executed, e.g. <code class="highlighter-rouge">window.StitchFix.widgets.show</code> is the function to run when the <code class="highlighter-rouge">show</code> page is rendered.</li>
-  <li>We have boilerplate that sets up the necessary jQuery handlers to execute that function at the right time.</li>
-</ul>
-
-<p>But that’s not all!  Since the code gets wrapped in an immediately-invoked function, if you want to create library code to share, you have to put your code into <code class="highlighter-rouge">window</code>, which is global.  You have to be careful you don’t squash something else.  Typically, you create a namespace.  We use <code class="highlighter-rouge">window.StitchFix.lib</code> where I work.</p>
-
-<p>ES6 modules would solve these problems much more cleanly, and are the way most front-enders are solving it.  Modules are the state-of-the-art, and ES6’s version is the standard.  Rails developers would benefit from this, and it would remove a source of bugs as well as several decisions to make about managing ap app’s JavaScript.</p>
-
-<p>I’m also advocated removing jQuery and a new library to interact with the Rails back-end.</p>
-
-<h2 id="jquery-out-railsjs-in">jQuery out, <code class="highlighter-rouge">rails.js</code> in</h2>
-
-<p><strong>Note</strong>: Rails 5.1 will allegedly <a href="https://github.com/rails/rails/issues/25208">ship without jQuery</a>.  This is great news!  No word yet if the replacement will have user-facing features or will just implement Rails-provided features.</p>
-
-<p>jQuery was great, and while it’s powerful, it is not very Rails-like, and requires developers to make a lot of unnecessary decisions when used in earnest.  It also encourages a style of coding where view logic is intermixed with DOM manipulation and event attachment.  It’s the equivalent of the “SQL statements in your <code class="highlighter-rouge">.php</code> files” that Rails got people away from.</p>
-
-<p>It’s also hard to unit test jQuery code, because you must either do a full end-to-end browser test, or a <a href="http://naildrivin5.com/blog/2013/04/10/the-painful-world-of-javascript-testing.html">JavaScript unit test using duplicative markup fixtures</a>.  Rails provides no facilities for either of these types of tests.</p>
-
-<p>With the removal of jQuery, Rails could reasonably ship a simple <code class="highlighter-rouge">rails.js</code> library to allow interacting with Rails endpoints in a Rails-like fashion.</p>
-
-<p>Instead of requiring developers to use <code class="highlighter-rouge">$.ajax()</code>, <code class="highlighter-rouge">rails.js</code> could have a simple and straightforward mechanism to trigger Rails endpoints:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="nx">Rails</span><span class="p">.</span><span class="nx">widgets</span><span class="p">.</span><span class="nx">show</span><span class="p">(</span><span class="nx">widgetId</span><span class="p">,</span> <span class="p">(</span><span class="nx">widget</span><span class="p">)</span><span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="c1">// do whatever with widget</span>
-<span class="p">});</span>
-
-<span class="nx">Rails</span><span class="p">.</span><span class="nx">frobnosticators</span><span class="p">.</span><span class="nx">destroy</span><span class="p">(</span><span class="nx">frobnosticatorId</span><span class="p">,</span> <span class="p">(</span><span class="nx">frobnosticator</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="c1">// whatever</span>
-<span class="p">});</span>
-</code></pre>
-</div>
-
-<p>This would have a lot of advantages.  First, it’s a better API to Rails than jQuery’s <code class="highlighter-rouge">$ajax</code> function.  Second, it would be lightweight and dependency free, thus easily usable with other front-end frameworks if that meets the developer’s needs.  It could work easily with React, Angular, or Ember, if a developer chose to use those frameworks.  Finally, it defines the AJAX interface to a Rails app the same way <code class="highlighter-rouge">config/routes.rb</code> defines the HTTP interface.</p>
-
-<p>This would remove a decision developers have to make, and simplify a very common interaction.</p>
 
 ]]></content>
   </entry>

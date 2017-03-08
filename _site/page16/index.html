@@ -30,15 +30,13 @@
     
       
         
-        Moved my blog to Jekyll
+        Mocking Enumeration in Scala with EasyMock
         
-        October 17, 2009
+        October 21, 2009
       
       
         
-          
-            
-Kin...">
+        ...">
   
 
   
@@ -69,6 +67,67 @@ Kin...">
     <section>
       <div class="blog-index">
   
+  
+  
+    <article>
+      <header>
+        
+        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2009/10/21/mocking-enumeration-in-scala.html">Mocking Enumeration in Scala with EasyMock</a></h1>
+        
+        <h2 class="f6 mtneg">October 21, 2009</h2>
+      </header>
+      
+        
+          <section class="section-break complete-article mb1">
+            I'm working on a Scala url shortener (to be hosted at my awesomely problem-causing &#10106;&#10144;.ws domain).  Since this is such a small application, I'm rolling it ground-up from the Servlet spec only, to get a feel for Scala without having to worry about a lot of dependencies.  As such, one of the things I need to do is parse the requestor's "representation", i.e. determine if I'm serving JSON, XML, or HTML.  Since this comes from the <tt>Accept:</tt> header, my tests will need to mock <tt>HttpServletRequest</tt>.
+
+```scala
+val enumeration = createMock(
+    classOf[java.util.Enumeration[String]])
+
+expect(enumeration.hasMoreElements).andReturn(true)
+expect(enumeration.nextElement).andReturn("TEXT/HTML")
+expect(enumeration.hasMoreElements).andReturn(false)
+// the following call doesn't compile!!!
+expect(request.getHeaders(parser.ACCEPT_HEADER))
+  .andReturn(enumeration)
+expect(request.getParameter(parser.TYPE_PARAM))
+  .andReturn(null)
+
+replay(request)
+replay(enumeration)
+
+val t = parser.determineRepresentation(request)
+t should equal (Some("text/html"))
+```
+
+When I compile this test, I get the following baffling error message:
+
+```scala
+TestRepresentationParser.scala:21: type mismatch;
+found   : java.util.Enumeration[String]
+required: java.util.Enumeration[?0] where type ?0
+    EasyMock.expect(request.getHeaders(parser.ACCEPT_HEADER))
+        .andReturn(enumeration)
+```
+
+Um, OK?  I tried zillions of ways to cast things, even creating my own implementation of <tt>Enumeration[String]</tt>, to no avail.  There seems to be
+some problem with the fact that <tt>HttpServletRequest</tt> returns a non-parameterized <tt>Enumeration</tt> in its interface, but Scala won't
+let me create such a thing.
+
+I had given up on testing this for a while, but eventually the simple solution prevailed:
+```scala
+EasyMock.expect(request.getHeaders(parser.ACCEPT_HEADER))
+// this call is obviously not type-checked, so it works
+expectLastCall.andReturn(enumeration)
+```
+
+Kinda cheesy, and I kinda feel stupid for not thinking of it sooner.  
+
+          </section>
+        
+      
+    </article>
   
   
     <article>
@@ -532,43 +591,6 @@ With Git, you typically commit frequently and you restrict the scope of each rev
 </ol>
 You now will back up your repository on every commit to the other box.  Or, use <a href="http://www.github.com">GitHub</a>!
 
-
-          </section>
-        
-      
-    </article>
-  
-  
-    <article>
-      <header>
-        
-        <h1 class="f4"><a class="no-ul ul-hover" href="/blog/2009/03/17/mustbecompliant.html">REST Compliance Officer</a></h1>
-        
-        <h2 class="f6 mtneg">March 17, 2009</h2>
-      </header>
-      
-        
-          <section class="section-break complete-article mb1">
-            <p>With regard to <a href="http://www.jroller.com/Solomon/entry/the_road_to_real_rest">this blog on REST compliance</a>
-<p>
-<blockquote>
-<b>Me:</b> The Gliffy API is RESTFul<br />
-<b>REST Compliance Officer:</b> Does a "PUT" update the data at the given URL?<br />
-<b>Me:</b> Yes.<br />
-<b>RCO:</b> Trick Question!  It's "URI".  Is the only way to create a new resource done with a "POST"?<br />
-<b>Me:</b> Yes.<br />
-<b>RCO:</b> Is there exactly one endpoint, from which any and all resource locators are discoverable?<br />
-<b>Me:</b> Um, no, that puts undue burden on the client libraries, and over-complicates what we were trying to accomp....<br />
-<b>RCO:</b> <i>YOU ARE NOT RESTFUL!  READ FIELDING'S DISSERTATION, THE HTTP SPEC AND IMPLEMENT AN RFC-COMPLIANT URI  PARSER IN THREE DIFFERENT LANGUAGES.  NEXT!</i>
-</blockquote>
-</p>
-<p>
-Thank GODS that REST doesn't have a spec.  If it did, it would still be in development.
-</p>
-<hr />
-<p>
-P.S. If you are going to coin a term and you want to <a href="http://roy.gbiv.com/untangled/2008/rest-apis-must-be-hypertext-driven">bitch about it being misused</a>, maybe calling it a "style" isn't the best idea.
-</p>
 
           </section>
         
