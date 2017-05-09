@@ -4,13 +4,30 @@
   <title><![CDATA[naildrivin5.com - David Bryant Copeland's Website]]></title>
   <link href="http://naildrivin5.com/atom.xml" rel="self"/>
   <link href="http://naildrivin5.com/"/>
-  <updated>2017-03-08T11:35:39-05:00</updated>
+  <updated>2017-05-09T09:10:36-04:00</updated>
   <id>http://naildrivin5.com/</id>
   <author>
     <name><![CDATA[David Bryant Copeland]]></name>
     <email><![CDATA[davec@naildrivin5.com]]></email>
   </author>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Patterns of Service-Oriented Architecture]]></title>
+    
+    <link href="http://multithreaded.stitchfix.com/blog/2017/05/09/patterns-of-service-oriented-architecture/"/>
+    
+    <updated>2017-03-08T09:00:00-05:00</updated>
+    <id>http://naildrivin5.com/blog/2017/03/08/patterns-of-service-oriented-architecture</id>
+    <content type="html"><![CDATA[<p>Fresh on the Stitch Fix Engineering blog, the first in a several-part series on the patterns we use in our service-oriented architecture.  From <a href="http://multithreaded.stitchfix.com/blog/2017/05/09/patterns-of-service-oriented-architecture/">the intro</a>:</p>
+
+<blockquote>
+  <p>Over the last four years, we’ve gone from a team of two developers and one Rails app, to almost 80 developers managing 40+ applications. These applications are a mixture of user-facing and headless services. While our technical architecture isn’t perfect, we’ve had relatively few major problems. Part of the reason for that is that we’ve done a decent job of identifying and re-applying patterns to solve similar technical challenges.</p>
+</blockquote>
+
+<p>The first pattern is also up: <a href="http://multithreaded.stitchfix.com/blog/2017/05/09/patterns-of-soa-asynchronous-transaction/">Asynchronous Transaction</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Appearance on the Tech Done Right Podcast]]></title>
@@ -870,132 +887,6 @@ for Rails 6</a>.</p>
 <p>This should be a superior experience to using a mocking framework, since it would be baked into Rails and would be default behavior.  It would also encourage test isolation, basically by making it really hard to write an integration test-masquerading-as-a-unit test.</p>
 
 <p>This somewhat flies in the face of what I had discussed about resource-orientation.  The existence of Active Serivce sends the message “code doesn’t go in model objects”.  I believe this very strongly, but it’s not The Rails Way.</p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Imagined Rails 6: Doubling-down on Resource-based Design]]></title>
-    
-    <link href="http://naildrivin5.com/blog/2016/06/15/imagined-rails-6-doubling-down-on-resource-based-design.html"/>
-    
-    <updated>2016-06-15T00:00:00-04:00</updated>
-    <id>http://naildrivin5.com/blog/2016/06/15/imagined-rails-6-doubling-down-on-resource-based-design</id>
-    <content type="html"><![CDATA[<p>This is a series of posts about <a href="http://naildrivin5.com/blog/2016/06/12/why-did-i-recommend-XX-for-rails-6.html">why I recommended the changes I did for Rails 6</a>, in my <a href="http://naildrivin5.com/blog/2016/05/17/announcing-rails-6-an-imagined-roadmap.html">imagined keynote
-for Rails 6</a>.</p>
-
-<p>In this one, we’ll explore why I recommended changes that encourage a more resource-based design.</p>
-
-<!-- more -->
-
-<h2 id="resourceful-design-is-cleaner">Resourceful Design is Cleaner</h2>
-
-<p>I agree with DHH that <a href="http://jeromedalbert.com/how-dhh-organizes-his-rails-controllers/">if you firmly stick to a resource-based design, and avoid RPC-style routes, you will have cleaner code and cleaner controllers</a>.  Because of this, It’s surprising to me that Rails requires you to use <code class="highlighter-rouge">config/routes.rb</code> for basic, resourceful routing.</p>
-
-<p>To my mind, creating a class named <code class="highlighter-rouge">WidgetsController</code> in <code class="highlighter-rouge">app/controllers</code> that inherits from <code class="highlighter-rouge">ApplicationController</code> and contains a method <code class="highlighter-rouge">index</code> is a pretty strong and unambiguous message from a developer that they want the route <code class="highlighter-rouge">/widgets</code> to respond to an HTTP <code class="highlighter-rouge">GET</code>.</p>
-
-<p>The way I see a lot of developers deal with this (admittedly tiny) boilerplate is to declare that a resource responds to all verbs, like so:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1"># config/routes.rb</span>
-
-<span class="n">resources</span> <span class="ss">:widgets</span>
-
-<span class="c1"># app/controllers/widgets_controller.rb</span>
-<span class="k">class</span> <span class="nc">WidgetsController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
-
-  <span class="k">def</span> <span class="nf">show</span>
-    <span class="vi">@widget</span> <span class="o">=</span> <span class="no">Widgets</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
-  <span class="k">end</span>
-
-  <span class="c1"># that's it</span>
-<span class="k">end</span>
-</code></pre>
-</div>
-
-<p>This tells Rails that your application responds to all the magic seven routes for a widget, yet implements only one of them.  It makes <code class="highlighter-rouge">rake routes</code> confusing.  Developers do it because doing <code class="highlighter-rouge">resources :widgets, only: [ :show ]</code> is a pain in the ass.</p>
-
-<p>I also see developers rush through their controller design and add RPC-style endpoints.  For example, if we wanted to
-distinguish archiving a widget from deleting it, most developers would make an <code class="highlighter-rouge">archive</code> method.  If, instead, you created a
-resource called <code class="highlighter-rouge">ArchivedWidgets</code> and accepted a POST, that would be more resourceful and likely much cleaner design.</p>
-
-<p>If resourceful routes were derived from controllers, it would also make it very easy to spot deviations and have conversations around them.  In an ideal Rails application, <code class="highlighter-rouge">config/routes.rb</code> wouldn’t change that often, so if it did, it’s a big red flag to talk about the design of the feature that changed it.</p>
-
-<p>One hard part about doing this is if your resource isn’t an ActiveRecord, there is a bit of friction you have to fight through.</p>
-
-<h2 id="encouraging-non-activerecord-resources">Encouraging Non-ActiveRecord Resources</h2>
-
-<p>If it were just as easy to create non-ActiveRecord resources as it were ActiveRecord-based ones, this would further encourage resource-based design.  There are two problems to solve here.</p>
-
-<p>The first is how to provide a non-ActiveRecord object all the needed functionality that Rails’ form and URL helpers expect.  This can be achieved with Active Model, though Active Model is a pretty large interface.</p>
-
-<p>The second problem is how to properly assemble such a resource using possibly disparate bits of Active Records.  In my post, I listed an “Account” resource as an example.  In our hypothetical application, the account view shows some user information, such as their name and email, but also information about their most recent order.</p>
-
-<p>This is typically solved via some sort of presenter framework, and there are a <strong>lot</strong> of them.  Their existence says to me that Rails developers want such a framework, and Rails could greatly help us by providing one that was easy to use and full-featured.</p>
-
-<p>The “presenter” situation in real Rails apps isn’t good.  Where I work, across our Rails apps, we have:</p>
-
-<ul>
-  <li>Hand-created presenters just using <code class="highlighter-rouge">class</code></li>
-  <li>Presenters using our <a href="http://github.com/stitchfix/immutable-struct">immutable-struct</a> library</li>
-  <li>View Models created by hand</li>
-  <li>Mixins that add view-specific methods to ActiveRecords</li>
-  <li>Methods in ActiveRecords only for displaying derived or formatted data in a view</li>
-  <li>Classes that mix in some of Active Model’s modules (these were created before Rails 4 added a single ActiveModel mixin)</li>
-  <li>A base presenter that delegates to a wrapped ActiveRecord using <code class="highlighter-rouge">method_missing</code>.</li>
-</ul>
-
-<p>My team has done a good job of keeping things consistent in many other areas, but none of these solutions are great, which is probably why we have used so many.</p>
-
-<p>My post postulated a DSL to create these resources.  I’m not hooked on that, but I think the general needs developers have are:</p>
-
-<ul>
-  <li>works with form and URL helpers</li>
-  <li>allows delegation of methods directly to other objects</li>
-  <li>easily use Rails helpers to implement methods for derived or formatted values</li>
-</ul>
-
-<p>I don’t think ActiveModel is this.  ActiveModel is both too much and not enough, and I think it fails at encouraging both
-resource-based design as well as another Rails-ism that most people ignore: model-driven design.</p>
-
-<p>Up until Rails 4.2, a model was a database table was a model.  With ActiveModel this isn’t the case, however Rails has totally
-failed at helping developers adopt model-driven design.</p>
-
-<p>But, encouraging resource-oriented design for controllers, and providing a simple framework for creating non-ActiveRecord
-models, I think this could be saved.</p>
-
-<p>Taking our account example, suppose that the account screen wants to allow users to modify some of those details.  Suppose further that we show a user’s subscription frequency on this page, too, and that it is modifiable.</p>
-
-<p>Most Rails developers would solve this in one of these ways:</p>
-
-<ul>
-  <li>Put the update logic in the controller - call into the <code class="highlighter-rouge">User</code> and then the <code class="highlighter-rouge">Subscription</code>.</li>
-  <li>Create a service object or command object that does the work</li>
-  <li>Put it all into either <code class="highlighter-rouge">User</code> or <code class="highlighter-rouge">Subscription</code></li>
-</ul>
-
-<p>The Rails way is to put the logic on a model, and if we could create an <code class="highlighter-rouge">Account</code> model just as easily as we created our <code class="highlighter-rouge">User</code>
-and <code class="highlighter-rouge">Subscription</code> models, we could do this the Rails way, but without bloating our ActiveRecords:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Account</span> <span class="o">&lt;</span> <span class="no">ActionResource</span>
-  <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
-    <span class="no">User</span><span class="p">.</span><span class="nf">transaction</span> <span class="k">do</span>
-      <span class="n">user</span><span class="p">.</span><span class="nf">email</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="ss">:email</span><span class="p">]</span>
-      <span class="n">subscription</span><span class="p">.</span><span class="nf">cadence</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="ss">:subscription_cadence</span><span class="p">]</span>
-      <span class="k">if</span> <span class="n">valid?</span> <span class="c1"># provided by ActionResource</span>
-        <span class="n">user</span><span class="p">.</span><span class="nf">save</span>
-        <span class="n">subscription</span><span class="p">.</span><span class="nf">save</span>
-      <span class="k">end</span>
-    <span class="k">end</span>    
-  <span class="k">end</span>
-<span class="k">end</span>
-</code></pre>
-</div>
-
-<p>This very much follows the Rails Way of “model-driven design” and/or Rails’ interpretation of what OO is.</p>
-
-<p>To be clear, I don’t think this is necessarily the best way to write code in a Rails app, but this is <em>much</em> better than just throwing everything into your User model.  In fact, if a complex Rails app aggressively pursued this sort of design, it might result in fairly clean code, comprised of objects that don’t do all that much (which is what we’re all after by making services).</p>
-
-<p>I can only assume this is the sort of thing DHH has in mind and why he tends to eschew any “blessing” of objects that aren’t models.  It’s too bad that there hasn’t been clearer instruction and explanation as to how it would work for non-trivial cases.  But, by encouraging a resource-based view of controllers and making it dead-simple to create non-ActiveRecord models, Rails might more naturally encourage the type of design it seems to favor.</p>
 
 ]]></content>
   </entry>
