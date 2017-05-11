@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Patterns of Service-Oriented Architecture"
-date: 2017-03-08 9:00
+title: "I'm Co-authoring Agile Web Development With Rails"
+date: 2017-05-11 9:00
 link: https://pragprog.com/book/rails51/agile-web-development-with-rails-5-1
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Patterns of Service-Oriented Architecture"
-date: 2017-03-08 9:00
+date: 2017-05-09 9:00
 link: http://multithreaded.stitchfix.com/blog/2017/05/09/patterns-of-service-oriented-architecture/
 ---
 
