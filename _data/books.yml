@@ -1,3 +1,7 @@
+- title: "Agile Web Development With <span class='nowrap'>Rails 5.1</span>"
+  subtitle: "New edition of this seminal classic"
+  image: /images/rails51.jpg
+  site: "https://pragprog.com/book/rails51/agile-web-development-with-rails-51"
 - title: "Rails, Angular, Postgres, and Bootstrap, Second Edition"
   subtitle: "Powerful, Effective, and Efficient Full-Stack Web Development"
   image: /images/dcbang2.jpg

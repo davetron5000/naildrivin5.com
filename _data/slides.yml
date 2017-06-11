@@ -1,7 +1,4 @@
 active:
-  - title: "The Effective Remote Developer"
-    link: "http://naildrivin5.com/effective-remote/"
-    where: "RailsConf 2018"
   - title: "Developer Experience After Three Years of SAAS and PAAS for Everything"
     link: "https://speakerdeck.com/davetron5000/developer-of-experience-after-3-dot-5-years-of-saas-and-paas"
     where: "DevOps Days DC 2016"
