@@ -55,7 +55,7 @@ If you have a layer between your code and the environment, you can handle that i
 ```ruby
 class Settings
   def self.some_flag?
-    ("1","true").include?(ENV["SOME_FLAG"].downcase)
+    ["1","true"].include?(ENV["SOME_FLAG"].to_s.downcase)
   end
 
   # or maybe
@@ -67,7 +67,7 @@ class Settings
 private
 
   def boolean(env_var)
-    %("1","true").include?(ENV[env_var].downcase)
+    ["1","true"].include?(ENV[env_var].to_s.downcase)
   end
 end
 ```
@@ -107,7 +107,17 @@ class Settings
 end
 ```
 
-Not we have to use `try` because `nil.to_i` returns 0, not `nil`.  So, we're saying "if a value has been set, coerce it to an integer, otherwise use 2000".
+Note we have to use `try` because `nil.to_i` returns 0, not `nil`.  So, we're saying "if a value has been set, coerce it to an integer, otherwise use 2000".
+
+Without `try`, you can do:
+
+```ruby
+class Settings
+  def self.payment_processor_timeout
+    (ENV["PAYMENT_PROCESSOR_TIMEOUT"] || 2000).to_i
+  end
+end
+```
 
 With such a system set up, you can use this to centralize all your application's configurable bits, even if you don't need or want them overridden by the environment.
 
@@ -131,7 +141,7 @@ This now means the code that needs the bucket name can just ask the settings for
 We use the [mc-settings][mc-settings] gem, that uses an ERB-ized YAML file:
 
 ```yaml
-some_flag: <%= ("1","true",).include?(ENV["SOME_FLAG"].downcase) %>
+some_flag: <%= ["1","true"].include?(ENV["SOME_FLAG"].to_s.downcase) %>
 payment_processor_timeout: <%= ENV["PAYMENT_PROCESSOR_TIMEOUT"].try(:to_i) || 2000 %>
 s3_bucket_name: "my-app-files"
 ```
