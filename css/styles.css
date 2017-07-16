@@ -9,7 +9,7 @@ $f11: 5.836px;
 $f12: 4.250px;
 */
 .sans {
-  font-family: "futura-pt", "Futura", "Avenir", "Helvetica", sans-serif; }
+  font-family: "Futura", "Avenir", "Helvetica", sans-serif; }
 
 b, strong, .fw-bold {
   font-weight: 500; }
@@ -18,28 +18,52 @@ b, strong, .fw-bold {
   font-size: 64.72px; }
 
 h1, .h1, .f2 {
-  font-size: 47.123px; }
+  font-size: 47.123px;
+  font-weight: normal; }
+  h1 strong, .h1 strong, .f2 strong {
+    font-weight: bold; }
 
 h2, .h2, .f3 {
-  font-size: 40px; }
+  font-size: 40px;
+  font-weight: normal; }
+  h2 strong, .h2 strong, .f3 strong {
+    font-weight: bold; }
 
 .f4 {
-  font-size: 29.124px; }
+  font-size: 29.124px;
+  font-weight: normal; }
+  .f4 strong {
+    font-weight: bold; }
 
 h3, .h3, .f5 {
-  font-size: 24.722px; }
+  font-size: 24.722px;
+  font-weight: normal; }
+  h3 strong, .h3 strong, .f5 strong {
+    font-weight: bold; }
 
 .f6 {
-  font-size: 18px; }
+  font-size: 18px;
+  font-weight: normal; }
+  .f6 strong {
+    font-weight: bold; }
 
 h4, .h4, .f7 {
-  font-size: 15.279px; }
+  font-size: 15.279px;
+  font-weight: normal; }
+  h4 strong, .h4 strong, .f7 strong {
+    font-weight: bold; }
 
 h5, .h5, .f8 {
-  font-size: 11.125px; }
+  font-size: 11.125px;
+  font-weight: normal; }
+  h5 strong, .h5 strong, .f8 strong {
+    font-weight: bold; }
 
 h6, .h6, .f9 {
-  font-size: 9.443px; }
+  font-size: 9.443px;
+  font-weight: normal; }
+  h6 strong, .h6 strong, .f9 strong {
+    font-weight: bold; }
 
 header nav ul {
   padding: 0; }
@@ -49,19 +73,19 @@ header li {
   display: block;
   text-align: center;
   font-size: 24.722px;
-  font-family: "futura-pt", "Futura", "Avenir", "Helvetica", sans-serif; }
+  font-family: "Futura", "Avenir", "Helvetica", sans-serif; }
 
 @media (min-width: 40em) {
   header li {
     display: inline-block;
     padding-right: 25.2px; } }
 h1, h2, h3, h4, h5, h6 {
-  font-family: "futura-pt", "Futura", "Avenir", "Helvetica", sans-serif;
-  font-weight: 500;
+  font-family: "Futura", "Avenir", "Helvetica", sans-serif;
+  font-weight: normal;
   margin-top: 0;
   text-rendering: optimizeLegibility; }
   h1.fw-bold, h1 .fw-bold, h2.fw-bold, h2 .fw-bold, h3.fw-bold, h3 .fw-bold, h4.fw-bold, h4 .fw-bold, h5.fw-bold, h5 .fw-bold, h6.fw-bold, h6 .fw-bold {
-    font-weight: 500; }
+    font-weight: normal; }
   h1.wf-loading, h2.wf-loading, h3.wf-loading, h4.wf-loading, h5.wf-loading, h6.wf-loading {
     visibility: hidden; }
 
@@ -90,11 +114,11 @@ h4, h5, h6 {
   font-size: 18px; }
 
 body, p, li, td {
-  font-family: "kepler-std", "Baskerville", serif;
+  font-family: "Baskerville", serif;
   font-size: 24.722px;
   line-height: 1.5;
   text-rendering: optimizeLegibility;
-  font-weight: 300; }
+  font-weight: normal; }
 
 @media (min-width: 40em) {
   body, p, li, td {
@@ -124,7 +148,7 @@ main {
     margin: 0 auto;
     overflow-x: hidden; } }
 pre, code {
-  font-family: "anonymous-pro", monospace; }
+  font-family: "Courier New", "Courier", monospace; }
 
 pre {
   overflow-x: scroll; }
@@ -174,6 +198,46 @@ footer.footnotes {
 
 .blog-post .blog-content > p:first-child {
   font-size: 24.722px; }
+
+.mailing-list {
+  text-align: center;
+  width: 80%;
+  margin: auto;
+  padding-left: 25.2px;
+  padding-right: 25.2px;
+  padding-top: 12.6px;
+  padding-bottom: 12.6px; }
+  .mailing-list h1 {
+    font-size: 24.722px; }
+  .mailing-list h2 {
+    font-size: 15.279px;
+    margin-top: 0; }
+  .mailing-list .form-elements {
+    padding: 6.3px;
+    font-size: 18px; }
+  .mailing-list .form-element {
+    display: block; }
+    .mailing-list .form-element input[type="text"], .mailing-list .form-element input[type="email"] {
+      font-family: "Baskerville", serif;
+      font-size: 18px;
+      padding: 6.3px;
+      width: 100%; }
+    .mailing-list .form-element label {
+      margin-top: 6.3px;
+      text-align: left;
+      display: block; }
+  .mailing-list .submit {
+    padding-top: 12.6px;
+    padding-bottom: 6.3px; }
+  .mailing-list input[type="submit"] {
+    padding-top: 6.3px;
+    padding-bottom: 6.3px;
+    font-size: 18px;
+    font-family: "Futura", "Avenir", "Helvetica", sans-serif;
+    font-weight: 100;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    width: 100%; }
 
 .pb1 {
   padding-bottom: 50.4px; }
@@ -247,6 +311,9 @@ footer.footnotes {
 .fl {
   float: left; }
 
+.fr {
+  float: right; }
+
 img {
   max-width: 100%;
   max-height: 100%; }
@@ -313,9 +380,28 @@ hr {
 .pill {
   padding: 12.6px;
   background: #faf8fa;
-  font-family: "futura-pt", "Futura", "Avenir", "Helvetica", sans-serif; }
+  font-family: "Futura", "Avenir", "Helvetica", sans-serif; }
   .pill:hover {
     background: #eeeaee; }
+
+.mailing-list {
+  background: #483b48;
+  color: #fffeff;
+  border: solid thin;
+  border-radius: 6.3px; }
+  .mailing-list .form-element label {
+    font-color: #665666; }
+  .mailing-list input[type="submit"] {
+    border: solid thin #fffeff;
+    border-radius: 3.15px;
+    background: #483b48;
+    color: #fffeff;
+    width: 100%; }
+    .mailing-list input[type="submit"]:hover {
+      background: #100d10; }
+
+.light {
+  color: #645264; }
 
 .highlight .hll {
   background-color: #222; }

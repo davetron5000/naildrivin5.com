@@ -9,10 +9,12 @@ single: true
     <h1>{{ page.title }}</h1>
     <h2 class="f5 ls2 fw-bold mtnone uc ib">
       {{ page.date | date: '%B %d, %Y' }}
+      <h3 class="f6 fr"><a href="#mailing_list"><span class="light">Join my mailing list…</span></a></h3>
     </h2>
   </header>
   <section class="blog-content">
     {{ content }}
   </section>
 </article>
+{% include mailing_list.html %}
 </div>

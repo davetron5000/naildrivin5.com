@@ -1,8 +1,9 @@
 <article>
   <h1 class="f3 mbnone">
-    <a class="no-ul ul-hover" href="{{ root_url }}{{ post.url }}">{{post.title}}</a>
+    <a class="no-ul ul-hover" href="{{ root_url }}{{ post.url }}">☞ {{post.title}}</a>
   </h1>
-  <h2 class="f5">
-    {{ post.date | date: "%b %d, %Y" }}
+  <h2 class="f5 ls2 mtnone uc ib">
+    {{ post.date | date: '%B %d, %Y' }}
   </h2>
+  <hr>
 </article>

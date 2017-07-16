@@ -1,35 +1,13 @@
-// Font Library
-$baskerville: 'Baskerville';
-$avenir: 'Avenir';
-$anonymous: 'anonymous-pro';
-$freight: 'freight-text-pro';
-$hypatia: 'hypatia-sans-pro';
-$underground-pc: 'p22-underground-pc';
-$underground: 'p22-underground';
-$cronos: 'cronos-pro';
-$quatro-slab: "quatro-slab";
-$jubilat: "jubilat";
-$ff-enzo: "ff-enzo-web";
-$futura: "futura-pt";
-$futura-book-weight: 400;
-$futura-medium-weight: 500;
-$freight-sans: "freight-sans-pro";
-$freight-sans-light-weight: 300;
-$freight-sans-book-weight: 400;
-$kepler-std: "kepler-std";
-$kepler-std-light-weight: 300;
-$kepler-std-medium-weight: 500;
-
 // Font Assignments
-$serif: $kepler-std, $baskerville, serif;
-$serif-normal-weight: $kepler-std-light-weight;
-$serif-bold-weight: $kepler-std-medium-weight;
+$serif: "Baskerville", serif;
+$serif-normal-weight: normal;
+$serif-bold-weight: 500;
 
-$sans: $futura, "Futura", "Avenir", "Helvetica", sans-serif;
-$sans-normal-weight: $futura-book-weight;
-$sans-bold-weight: $futura-medium-weight;
+$sans: "Futura", "Avenir", "Helvetica", sans-serif;
+$sans-normal-weight: normal;
+$sans-bold-weight: normal;
 
-$monospace: $anonymous, monospace;
+$monospace: "Courier New", "Courier", monospace;
 
 // Font Choices
 $header-font: $sans;
@@ -82,14 +60,14 @@ b, strong, .fw-bold {
 }
 
 .f1 { font-size: $f1; }
-h1, .h1, .f2 { font-size: $f2; }
-h2, .h2, .f3 { font-size: $f3; }
-.f4          { font-size: $f4; }
-h3, .h3, .f5 { font-size: $f5; }
-.f6          { font-size: $f6; }
-h4, .h4, .f7 { font-size: $f7; }
-h5, .h5, .f8 { font-size: $f8; }
-h6, .h6, .f9 { font-size: $f9; }
+h1, .h1, .f2 { font-size: $f2; font-weight: normal; strong { font-weight: bold }}
+h2, .h2, .f3 { font-size: $f3; font-weight: normal; strong { font-weight: bold }}
+.f4          { font-size: $f4; font-weight: normal; strong { font-weight: bold }}
+h3, .h3, .f5 { font-size: $f5; font-weight: normal; strong { font-weight: bold }}
+.f6          { font-size: $f6; font-weight: normal; strong { font-weight: bold }}
+h4, .h4, .f7 { font-size: $f7; font-weight: normal; strong { font-weight: bold }}
+h5, .h5, .f8 { font-size: $f8; font-weight: normal; strong { font-weight: bold }}
+h6, .h6, .f9 { font-size: $f9; font-weight: normal; strong { font-weight: bold }}
 
 header nav ul {
   padding: 0;
@@ -246,4 +224,52 @@ footer.footnotes {
 
 .blog-post .blog-content > p:first-child {
   font-size: $f5;
+}
+.mailing-list {
+  text-align: center;
+  width: 80%;
+  margin: auto;
+  padding-left: $sz2;
+  padding-right: $sz2;
+  padding-top: $sz3;
+  padding-bottom: $sz3;
+  h1 {
+    font-size: $f5;
+  }
+  h2 {
+    font-size: $f7;
+    margin-top: 0;
+  }
+  .form-elements {
+    padding: $sz4;
+    font-size: $f6;
+  }
+  .form-element {
+    display: block;
+    input[type="text"], input[type="email"] {
+      font-family: $serif;
+      font-size: $f6;
+      padding: $sz4;
+      width: 100%;
+    }
+    label {
+      margin-top: $sz4;
+      text-align: left;
+      display: block;
+    }
+  }
+  .submit {
+    padding-top: $sz3;
+    padding-bottom: $sz4;
+  }
+  input[type="submit"] {
+    padding-top: $sz4;
+    padding-bottom: $sz4;
+    font-size: $f6;
+    font-family: $sans;
+    font-weight: 100;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    width: 100%;
+  }
 }

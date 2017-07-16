@@ -78,3 +78,28 @@ hr {
     background: lighten($ink,87%);
   }
 }
+
+.mailing-list {
+  background: lighten($ink,20%);
+  color: $paper;
+  border: solid thin;
+  border-radius: $sz4;
+  .form-element {
+    label {
+      font-color: $ink-light;
+    }
+  }
+  input[type="submit"] {
+    border: solid thin $paper;
+    border-radius: $sz5;
+    background: lighten($ink,20%);
+    color: $paper;
+    width: 100%;
+    &:hover {
+      background: $ink;
+    }
+  }
+}
+.light {
+  color: lighten($ink,30%);
+}

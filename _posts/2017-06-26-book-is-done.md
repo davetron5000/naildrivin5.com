@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Rails, Angular, Postgres, and Bootstrap is DONE and IN PRINT!"
+title: "Rails, Angular, Postgres, and Bootstrap is <strong>Done</strong> and <strong>in Print</strong>!"
 date: 2017-06-25 9:00
 ---
 
