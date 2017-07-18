@@ -23,7 +23,7 @@ In my experience, there are four main impediments to feeling or being perceived 
 * Over-engineering
 * Not solving the right problem
 
-Mental health issues are also a likely contribute to a lack of productivity, and I won't get into them here—I have very little
+Mental health issues are also a likely contributors to a lack of productivity, and I won't get into them here—I have very little
 experience or expertise here, other than to know that a) there is no shame in having a mental health issue, and b) they are often
 treatable.  I have seen treatment work in others and if this is something that afflicts you, do your best to get the necessary
 treatment.
