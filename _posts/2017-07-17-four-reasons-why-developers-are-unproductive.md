@@ -91,7 +91,7 @@ if we solve that in the simplest way possible.  Simple, tested code that solves 
 understand, and maintain than abstract code that can be applied to a larger variety of problems.
 
 I try to follow the “rule of three”, which essentially means that you should not seek to abstract, extract, or genericise
-anything until you've seen a solid pattern, often evidenced by seeing the same thing a third time.  My college Patrick Joyce [has
+anything until you've seen a solid pattern, often evidenced by seeing the same thing a third time.  My collegue Patrick Joyce [has
 a more detailed post](http://pragmati.st/2013/07/19/build-it-twice/) on this.
 
 Duplication is likely better than a complex, over-engineered, generic solution that took too long to ship.  Sandi Metz has [a great blog post](https://www.sandimetz.com/blog/2016/1/20/the-wrong-abstraction) on the subject.  And, finally, I [wrote in more detail on detecting and avoiding over-engineering](http://multithreaded.stitchfix.com/blog/2016/08/15/avoiding-over-engineering/) at Stitch Fix's tech blog.
