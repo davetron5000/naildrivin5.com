@@ -2,6 +2,12 @@
 layout: post
 title: "Articulating a Vision"
 date: 2017-01-17 9:00
+ad:
+  title: "Articulate Your Technical Vision"
+  subtitle: "11 Practices of an Effective Leader"
+  link: "http://transactions.sendowl.com/products/24086/D8D2ED13/add_to_cart"
+  image: "/images/sweng-cover.png"
+  cta: "Buy Now $25"
 ---
 
 In [my book][swengbook], I talk about making technical decisions and, in particular, understanding the priorities of everyone involved in the
@@ -46,6 +52,8 @@ I like to imagine giving a keynote presentation, and think about all the excitin
 However you do it, you next need to find a way to articulate it to others.
 
 ## Articulate Your Vision to Others
+
+<div data-ad></div>
 
 When others already share your vision—or helped you develop it—articulating that vision is easy.  You have shared context and opinions that allow almost everything to go unsaid.  But, as you bring in people with less context, it's harder to get them to understand.  They weren't there with you developing the vision and are coming in cold, possibly with their own vision or opinions about the matter at hand.
 

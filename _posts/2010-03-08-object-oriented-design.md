@@ -1,6 +1,12 @@
 --- 
 title: The only four types of classes in your OO system
 layout: post
+ad:
+  title: "Grow Beyond Software Design"
+  subtitle: "11 Practices of an Effective Engineer"
+  link: "http://transactions.sendowl.com/products/24086/D8D2ED13/add_to_cart"
+  image: "/images/sweng-cover.png"
+  cta: "Buy Now $25"
 ---
 Object-Oriented design is hard, especially in a large application.  It's not always clear where logic should go, and there's often no "right place" to  put a piece of code.  I've found that there are four distinct types of classes that, if you stick to them, can make your code a lot more understandable, and can provide clear direction as to the age-old question of "where does this code go?"
 
@@ -43,7 +49,9 @@ public class Person {
 ```
 
 ## 2. The Immutable Object
+
 This is the closest to a pure "object-oriented" design.  Classes of this type are immutable and should hold data you will use a lot in your system.  They may also probably have some business-logic attached as methods; this business logic should be entirely focused on the object and its contents.  Typical methods will give you more complex information about the data the object contains, or will vend new objects of the same type, based on the method and parameters called.  
+
 
 This is the most clear distinction (in my mind) between functional programming and object-oriented programming.  In an FP world, the data being operated on would be loosely defined (if at all) and you'd have functions that transform it.  In an OO world, your object's data is clearly defined (by the class fields/accessors), and the operations available are the methods of the class.  When you require that the objects of the class be immutable, you have a very nice encapsulated package of data and operations.  This, to me, seems a lot easier to deal with than a "module" of functions and some tuples (or lists of tuples) that the functions operate on.  Scala makes it very easy to create classes like this.  It's probably one of the few languages that does so (Java certainly is no help, but it <b>can</b> be done).
 
@@ -110,6 +118,8 @@ public class Appointment {
 }
 ```
 
+<div data-ad></div>
+
 The benefits here are huge; immutability allows your codebase to be much more comprehensible, and allows you to use these objects in concurrent situations without worry.  Since they are immutable, their methods are immediate targets for caching if you discover you need to do this to improve performance.
 
 ## 3. The Builder
@@ -167,3 +177,9 @@ public class Calendaring {
   }
 }
 ```
+
+## Update from 2017
+
+I don't write a lot of Java in 2017, but I do write a lot of Rails, and these patterns have served me well.  Every bit of code
+I've written and watched grow over 4+ years that was disciplined, and followed the above patterns, has been easier to understand
+and test.  Code that didn't—for example, mixing a record and a service into one class—has been harder to evolve and manage.

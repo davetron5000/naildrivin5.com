@@ -2,6 +2,12 @@
 layout: post
 title: "Announcing Rails 6: An Imagined Keynote"
 date: 2016-05-17 12:00
+ad:
+  title: "Rails 5.1 is here"
+  subtitle: "It Hits These Notes"
+  link: "https://pragprog.com/book/rails51/agile-web-development-with-rails-51"
+  image: "/images/rails51.jpg"
+  cta: "Buy Now $29.95"
 ---
 
 Just got back from RailsConf.  It was a great Ruby & Rails conference, but I was struck by the dearth of talks about new features of Rails 5—because there just aren't many.  I thought back to what excited me about Rails in the first place—the baked-in conventions, convenience, encouragement of good practices.
@@ -47,6 +53,8 @@ In Rails 6:
 * Rails 6 no longer includes jQuery by default.  Instead, Rails includes a library called `rails.js` that provides a simple and standard way to access Rails resources via AJAX without using jQuery.  Rails.js can be used standalone, or in conjunction with existing front-end frameworks like React.
 * Source maps will be generated for any front-end compiled assets or code, if the source language supports it.
 * A new focus on simple plugability and transparent behavior.  The one constant in front-end tooling is change, and a full-stack web application framework like Rails should give you the ability to keep up.
+
+<div data-ad></div>
 
 What Rails 6 doesn't ship with is a front-end framework. There's value in server-generated views, and a light sprinkling of JavaScript can get you a long way.
 

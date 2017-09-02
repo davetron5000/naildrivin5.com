@@ -239,6 +239,60 @@ footer.footnotes {
     letter-spacing: 1px;
     width: 100%; }
 
+aside.ad {
+  width: 100%;
+  margin: 0;
+  text-align: center;
+  max-width: 90%; }
+  @media (min-width: 40em) {
+    aside.ad {
+      max-width: 40%;
+      float: left;
+      margin-top: 12.6px;
+      margin-left: 25.2px;
+      margin-right: 25.2px;
+      margin-bottom: 25.2px; } }
+  aside.ad .banner {
+    display: block;
+    font-style: italic;
+    border: none;
+    padding-top: 12.6px;
+    padding-bottom: 12.6px;
+    margin-bottom: 12.6px;
+    text-align: center;
+    width: 100%; }
+  aside.ad h1 {
+    font-size: 18px;
+    text-transform: uppercase;
+    margin-bottom: 0; }
+  aside.ad h2 {
+    font-size: 15.279px;
+    letter-spacing: -0.315px; }
+  aside.ad a {
+    text-decoration: none;
+    padding: 3.15px;
+    margin-left: -3.15px;
+    margin-right: -3.15px;
+    font-weight: 200; }
+    aside.ad a img {
+      max-width: 100%; }
+  aside.ad h3 {
+    font-size: 15.279px;
+    margin-top: 25.2px;
+    margin-bottom: 25.2px; }
+    aside.ad h3 a {
+      text-decoration: none;
+      padding: 3.15px;
+      margin-left: -3.15px;
+      margin-right: -3.15px;
+      font-weight: 200;
+      text-transform: uppercase;
+      padding-left: 25.2px;
+      padding-right: 25.2px;
+      padding-top: 12.6px;
+      padding-bottom: 12.6px;
+      font-weight: bold; }
+
 .pb1 {
   padding-bottom: 50.4px; }
 
@@ -402,6 +456,36 @@ hr {
 
 .light {
   color: #645264; }
+
+aside.ad {
+  border-radius: 6.3px;
+  border: solid thin;
+  background: #b4c5dd; }
+  aside.ad .banner {
+    background: #fffeff;
+    border-radius: 6.3px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border: none; }
+  aside.ad h2 {
+    color: #2c242c; }
+  aside.ad a {
+    border-radius: 3.15px;
+    color: #100d10; }
+    aside.ad a img {
+      background: #fffeff;
+      -webkit-box-shadow: 0.7875px 0.7875px 6.3px 0px rgba(0, 0, 0, 0.75);
+      -moz-box-shadow: 0.7875px 0.7875px 6.3px 0px rgba(0, 0, 0, 0.75);
+      box-shadow: 0.7875px 0.7875px 6.3px 0px rgba(0, 0, 0, 0.75); }
+  aside.ad h3 a {
+    border-radius: 3.15px;
+    color: #100d10;
+    background: #fffeff;
+    border: solid thin grey;
+    border-radius: 12.6px; }
+    aside.ad h3 a:hover {
+      color: #483b48;
+      background: #fff9ff; }
 
 .highlight .hll {
   background-color: #222; }

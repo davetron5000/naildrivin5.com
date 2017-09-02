@@ -2,6 +2,12 @@
 layout: post
 title: "Rails Validations vs Postgres Check Constraints"
 date: 2015-11-15
+ad:
+  title: "Use DB Constraints with Rails and Postgres"
+  subtitle: "Never Worry about Your Data"
+  link: "https://pragprog.com/book/dcbang2/rails-angular-postgres-and-bootstrap-second-edition"
+  image: "/images/dcbang2.jpg"
+  cta: "Buy Now $24.95"
 ---
 Before using Postgres, I would have to rely heavily on Rails validations to ensure data integrity—MySQL simply doesn't provide the tools
 to do this.  This always felt wrong.  Outside of rogue processes connecting to the database, there's also application bugs
@@ -108,6 +114,7 @@ Sure enough, this prevents us violating the validation:
 Of course, we can route around this with ActiveRecord's methods that allow it, or by calling `save(false)`, or by just going into the
 database.
 
+
 **This** means that any code reading from this table must account for the bad data.
 
 This presents us a few choices for how to deal with it:
@@ -138,6 +145,8 @@ which will create some duplication.
 If we use both the ActiveRecord validation *and* the check constraint, we achieve what we need: a good user experience, and ther
 assurance of data integrity.  The *problem* is that this creates duplication.  We have the same regexp in two places and they both have
 to be changed together.
+
+<div data-ad></div>
 
 While I could imagine a more sophisticated data layer handling this, we don't have one.  That means we have to live with the duplication
 or sacrifice our system requirements.  For me, the job of a programmer is to make the system work properly, even if that means that the
@@ -216,7 +225,7 @@ Think about Rails validations as purely something for user experience.  Think ab
 Often they are the same thing, but not always.  And don't fret about a bit of duplication.
 
 _Read more in my new book [“Rails, Angular, Postgres, and Bootstrap
-Powerful, Effective, and Efficient Full-Stack Web Development”](https://pragprog.com/book/dcbang/rails-angular-postgres-and-bootstrap)_
+Powerful, Effective, and Efficient Full-Stack Web Development”](https://pragprog.com/book/dcbang2_
 
 ---
 

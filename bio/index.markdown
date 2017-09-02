@@ -24,7 +24,9 @@ I'm a programmer, musician, and author of [“Rails, Angular, Postgres, and Boot
 
 ## My Writing
 
-* [Rails, Angular, Postgres, and Bootstrap: Powerful, Effective, and Efficient Full-Stack Web Development][fullstackbook] - Book on Full Stack web development to level up your Rails skills, published July 2015
+* [Agile Web Development with Rails 5.1][railsbook] - *The* book on learning Ruby on Rails.  I'm co-author of the latest version
+that covers Rails 5.1.
+* [Rails, Angular, Postgres, and Bootstrap: Powerful, Effective, and Efficient Full-Stack Web Development][fullstackbook] - Book on Full Stack web development to level up your Rails skills, published July 2015, updated March 2017
 * [The Senior Software Engineer][clibook] - Book on being an amazing developer, published July 2013
 * [Build Awesome Command-Line Applications in Ruby][clibook] - Programming book, published in late 2011 by the Pragmatic Programmers.
 * [Why I'd Never Work for Google, Twitter, or Facebook][nogoogle] - most popular of my blog posts on Hacker News.
@@ -32,6 +34,7 @@ I'm a programmer, musician, and author of [“Rails, Angular, Postgres, and Boot
 * [What Makes an Awesome Command-line Application][pragpub] - Article for PragPub, Pragmatic Programmer's monthly online magazine.
 * [My Blog](/blog/archives) - My Blog - mostly programming stuff.
 
+[railsbook]: https://pragprog.com/book/rails51/agile-web-development-with-rails-51
 [clibook]: http://pragprog.com/book/dccar2
 [nogoogle]: http://naildrivin5.com/blog/2011/08/01/why-i-wont-work-for-google-twitter-facebook.html
 [typography]: /blog/2013/05/17/source-code-typography.html
@@ -44,7 +47,6 @@ I'm a programmer, musician, and author of [“Rails, Angular, Postgres, and Boot
 * [GLI][gli] - a DSL for making more complex command line apps in Ruby
 * [Adventure][adventure] - My "cover" of classic 2600 game Adventure
 * [Methadone][methadone] - a simple way to make command line apps in Ruby
-* [Trickster][trickster] - the best in-browser presentation software ever
 * [Ruby Style Guide][ruby-style] - My personal Ruby style guide + tools to make your own
 
 [methadone]: https://github.com/davetron5000/methadone

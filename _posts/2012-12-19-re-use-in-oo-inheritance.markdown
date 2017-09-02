@@ -3,7 +3,12 @@ layout: post
 title: "Re-use in OO: Inheritance, Composition and Mixins"
 date: 2012-12-19 09:30
 comments: true
-categories: 
+ad:
+  title: "Learn Rails the Right Way"
+  subtitle: "Clean Web Architecture"
+  link: "https://pragprog.com/book/rails51/agile-web-development-with-rails-51"
+  image: "/images/rails51.jpg"
+  cta: "Buy Now $29.95"
 ---
 Over the past several months, the Rails community, at least to my eyes, has become increasingly concerned with managing the
 complexity that appears when following the "fat model, skinny controller" advice prescribed by many Rails experts.  The real
@@ -65,6 +70,8 @@ of the superclass.
 Often, however, we subclass to simply pull in code we'd like to re-use.  In a rails app, all controllers inherit from
 `ApplicationController`.  In an aging, complex Rails app, `ApplicationController` becomes a dumping ground of random methods that
 are needed by "a lot" of controllers - it's effectively a global scope for code that doesn't have an obvious place to go.
+
+<div data-ad></div>
 
 On good days, inheritance is a powerful tool to describe the types that make up your system.  Code can be re-used and customized,
 often in ways not intended by the designer of the super class.  This can be very powerful, but it can also lead to a mess.
@@ -193,6 +200,10 @@ Mixins *do* hit a sweet spot, practically speaking, but they aren't a panacea.  
   it's more verbose.  Better to use composition when a mixin would do than to create a poorly-conceived mixin.
 * Please be wary of copy and paste.
 
+### Update from 2017
+
+I've been working on many Rails codebases over a 4+ year period and have almost never used mixins to
+wrangle code re-use.  Inheritenace is also quite rare.  In almost every case, extracting to a basic Ruby class has been much simpler.
 
 [dhh]: http://37signals.com/svn/posts/3372-put-chubby-models-on-a-diet-with-concerns
 [jimgay]: http://saturnflyer.com/blog/jim/2011/10/04/oop-dci-and-ruby-what-your-system-is-vs-what-your-system-does/

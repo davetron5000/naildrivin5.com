@@ -2,6 +2,12 @@
 layout: post
 title: "Four Reasons Developers are Unproductive"
 date: 2017-07-17 9:00
+ad:
+  title: "Be Productive With Rails"
+  subtitle: "Rails Just Works"
+  link: "https://pragprog.com/book/rails51/agile-web-development-with-rails-51"
+  image: "/images/rails51.jpg"
+  cta: "Buy Now $29.95"
 ---
 
 We all feel unproductive at times, and we can be sure that our bosses, clients, or co-workers feel we are being unproductive at times as well.  And, because developer productivity is so hard to measure or talk about, it can feel frustrating to be in a situation where you are feeling or perceived to be unproductive.  Rather than dwell on these feelings or postulate new broken ways to measure productivity, I want to talk about the *reasons* a developer might be unproductive.  With some self-awareness, you can improve your situation.
@@ -61,6 +67,8 @@ because intermediate results are hard to describe or demonstrate.
 
 To work in an organized way, you must have some sort of plan and system for working.  Although each task you work on is somewhat
 unique, there are high-level steps to take in order to work in an organized way.
+
+<div data-ad></div>
 
 You need to spend time figuring out how you are going to do the work.  If you don't know immediately how you are going to write
 the code you need to write, you have to spend time figuring that out first.  Coding is not necessarily the best way to do

@@ -18,3 +18,26 @@ single: true
 </article>
 {% include mailing_list.html %}
 </div>
+{% if page.ad != null %}
+<aside class="ad" id="ad">
+  <div class="banner">Promotion</div>
+  <h1>{{ page.ad.title }}</h1>
+  <h2>{{ page.ad.subtitle }}</h2>
+  <a href="{{ page.ad.link }}">
+    <img src="{{page.ad.image}}" width="200">
+  </a>
+  <h3>
+    <a href="{{ page.ad.link }}">
+      {{ page.ad.cta }}
+    </a>
+  </h3>
+</aside>
+{% endif %}
+<script>
+  var ad         = document.getElementById("ad");
+  var adLocation = document.querySelector("[data-ad]");
+
+  if ((ad !== null) && (adLocation !== null)) {
+    adLocation.appendChild(ad);
+  }
+</script>

@@ -273,3 +273,71 @@ footer.footnotes {
     width: 100%;
   }
 }
+
+aside.ad {
+  width: 100%;
+  margin: 0;
+  text-align: center;
+  max-width: 90%;
+  @media (min-width: 40em) {
+    max-width:40%;
+    float:left;
+    margin-top: $sz3;
+    margin-left: $sz2;
+    margin-right: $sz2;
+    margin-bottom: $sz2;
+  }
+
+  .banner {
+    display: block;
+    font-style: italic;
+    border: none;
+    padding-top: $sz3;
+    padding-bottom: $sz3;
+    margin-bottom: $sz3;
+    text-align: center;
+    width: 100%;
+  }
+
+  h1 {
+    font-size: $f6;
+    text-transform:uppercase;
+    margin-bottom: 0;
+  }
+
+  h2 {
+    font-size: $f7;
+    letter-spacing: -1 * ($sz5 / 10);
+  }
+
+  a {
+    text-decoration: none;
+    padding: $sz5;
+    margin-left: -$sz5;
+    margin-right: -$sz5;
+    font-weight: 200;
+
+    img {
+      max-width: 100%;
+    }
+  }
+
+  h3 {
+    font-size: $f7;
+    margin-top: $sz2;
+    margin-bottom: $sz2;
+    a {
+      text-decoration: none;
+      padding: $sz5;
+      margin-left: -$sz5;
+      margin-right: -$sz5;
+      font-weight: 200;
+      text-transform: uppercase;
+      padding-left: $sz2;
+      padding-right: $sz2;
+      padding-top: $sz3;
+      padding-bottom: $sz3;
+      font-weight: bold;
+    }
+  }
+}

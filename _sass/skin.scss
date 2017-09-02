@@ -103,3 +103,45 @@ hr {
 .light {
   color: lighten($ink,30%);
 }
+aside.ad {
+  border-radius: $sz4;
+  border:solid thin;
+  background: $blue;
+
+  .banner {
+    background: $paper;
+    border-radius: $sz4;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border: none;
+  }
+
+  h2 {
+    color: lighten($ink,10%);
+  }
+
+  a {
+    border-radius: $sz5;
+    color: $ink;
+    img {
+      background: $paper;
+      -webkit-box-shadow: 0.7875px 0.7875px 6.3px 0px rgba(0, 0, 0, 0.75);
+      -moz-box-shadow: 0.7875px 0.7875px 6.3px 0px rgba(0, 0, 0, 0.75);
+      box-shadow: 0.7875px 0.7875px 6.3px 0px rgba(0, 0, 0, 0.75);
+    }
+  }
+
+  h3 {
+    a {
+      border-radius: $sz5;
+      color: $ink;
+      background: $paper;
+      border: solid thin grey;
+      border-radius: $sz3;
+      &:hover {
+        color: lighten($ink,20%);
+        background: darken($paper,1%);
+      }
+    }
+  }
+}
