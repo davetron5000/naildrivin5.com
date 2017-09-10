@@ -6,7 +6,7 @@ comments: true
 ad:
   title: "Learn Rails the Right Way"
   subtitle: "Clean Web Architecture"
-  link: "https://pragprog.com/book/rails51/agile-web-development-with-rails-51"
+  link: "http://bit.ly/dcrails51"
   image: "/images/rails51.jpg"
   cta: "Buy Now $29.95"
 ---

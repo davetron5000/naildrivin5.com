@@ -2,6 +2,12 @@
 layout: post
 title: "Learn Graphviz and Up Your Diagramming Game"
 date: 2016-12-08 9:00
+ad:
+  title: "Diagraming is one part of beeing full-stack"
+  subtitle: "Create webapps as awesome as your diagrams"
+  link: "http://bit.ly/dcbang2"
+  image: "/images/dcbang2.jpg"
+  cta: "Buy Now $24.95"
 ---
 
 Learning to write is one of the best skills you can learn as a developer.  It takes up an entire chapter [in my book on being a great software engineer](http://theseniorsoftwareengineer.com).  Writing is a specific way to communicate ideas, but _diagramming_ is a powerful tool as well, often moreso.
@@ -182,5 +188,7 @@ digraph g1 {
 And, it works!
 
 ![death star diagram](/images/graphviz/death_star.png)
+
+<div data-ad></div>
 
 Like I said, Graphviz is awesome.

@@ -5,7 +5,7 @@ date: 2017-07-17 9:00
 ad:
   title: "Be Productive With Rails"
   subtitle: "Rails Just Works"
-  link: "https://pragprog.com/book/rails51/agile-web-development-with-rails-51"
+  link: "http://bit.ly/dcrails51"
   image: "/images/rails51.jpg"
   cta: "Buy Now $29.95"
 ---

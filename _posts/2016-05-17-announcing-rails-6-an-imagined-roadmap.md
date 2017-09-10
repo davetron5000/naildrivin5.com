@@ -5,7 +5,7 @@ date: 2016-05-17 12:00
 ad:
   title: "Rails 5.1 is here"
   subtitle: "It Hits These Notes"
-  link: "https://pragprog.com/book/rails51/agile-web-development-with-rails-51"
+  link: "http://bit.ly/dcrails51"
   image: "/images/rails51.jpg"
   cta: "Buy Now $29.95"
 ---

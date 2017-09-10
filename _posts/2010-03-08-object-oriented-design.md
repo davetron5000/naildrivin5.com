@@ -4,7 +4,7 @@ layout: post
 ad:
   title: "Grow Beyond Software Design"
   subtitle: "11 Practices of an Effective Engineer"
-  link: "http://transactions.sendowl.com/products/24086/D8D2ED13/add_to_cart"
+  link: "http://bit.ly/dcsweng"
   image: "/images/sweng-cover.png"
   cta: "Buy Now $25"
 ---

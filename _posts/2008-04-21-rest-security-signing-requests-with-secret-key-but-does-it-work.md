@@ -6,7 +6,7 @@ layout: post
 ad:
   title: "Rails is truly full-stack"
   subtitle: "Create SPAs backed by APIs with Rails"
-  link: "https://pragprog.com/book/dcbang2/rails-angular-postgres-and-bootstrap-second-edition"
+  link: "http://bit.ly/dcbang2"
   image: "/images/dcbang2.jpg"
   cta: "Buy Now $24.95"
 ---

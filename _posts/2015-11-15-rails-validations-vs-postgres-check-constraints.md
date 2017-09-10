@@ -5,7 +5,7 @@ date: 2015-11-15
 ad:
   title: "Use DB Constraints with Rails and Postgres"
   subtitle: "Never Worry about Your Data"
-  link: "https://pragprog.com/book/dcbang2/rails-angular-postgres-and-bootstrap-second-edition"
+  link: "http://bit.ly/dcbang2"
   image: "/images/dcbang2.jpg"
   cta: "Buy Now $24.95"
 ---
