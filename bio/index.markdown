@@ -4,7 +4,11 @@ title: About me
 ---
 
 <img class="fl pr2 pb3" src="/images/DavidCopeland.png" height="150">
-I'm a programmer, musician, and author of [“Rails, Angular, Postgres, and Bootstrap”][fullstackbook], [“The Senior Software Engineer”][sweng], and [“Build Awesome Command-Line Applications in Ruby 2”][clibook].  I speak frequently at national and regional conferences and spend my days currently as a Director of Engineering at [Stitch Fix][stitchfix]. I've written applications in C, Java, Ruby, Scala, and many others, on large and small teams. As a developer, I believe in clean code, making it right, providing a great user experience and using the right tool for the job.  As a bass player, I believe in using a pick, locking it down, and ripping off Peter Hook.  As an author, I insist on the Oxford Comma, try to avoid semi-colons, and have removed “very” and “thing” from my dictionary.
+I'm a programmer, musician, and author.  I'm co-author of [“Agile Web Development with Rails 5.1”][railsbook] as well as the author of [“Rails, Angular, Postgres, and Bootstrap”][fullstackbook], [“The Senior Software Engineer”][sweng], and [“Build Awesome Command-Line Applications in Ruby 2”][clibook].  I speak frequently at national and regional conferences and spend my days currently as a Director of Engineering at [Stitch Fix][stitchfix], where I helped take us from a team of 3 developers and one application to a public company powered by a message-based, microservices architecture, generating almost a billion dollars in revenue (I had a lot of help :).
+
+I value delivering results and business value, and see technology as a powerful tool in service to those goals.  I've delivered
+results to users using Ruby, C, Java, SQL, Messaging, and Microservices, and look forward to using whatever is within my means to
+make technology work.  I fight for the users.  Also a huge fan of Peter Hook and the Oxford comma.
 
 <nav>
 <ul class="list-inline ml0 pl0">
