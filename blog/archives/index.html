@@ -5,7 +5,7 @@ footer: false
 ---
 
 <div id="blog-archives">
-{% for post in site.posts reverse %}
+{% for post in site.posts reversed %}
   {% include archive_post.html %}
 {% endfor %}
 </div>
