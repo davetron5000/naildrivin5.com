@@ -4,5 +4,6 @@ source 'https://rubygems.org' do
 
   group :development do
     gem 'sass'
+    gem 'rake'
   end
 end
