@@ -1,4 +1,6 @@
 require "date"
+
+desc "Create a new post via [title,date,link] with date being 'today', 'tomorrow', or a specific date"
 task :new_post, [:title,:date,:link] do |t,args|
   date = if args[:date].nil? || args[:date] == "today"
            Date.today
