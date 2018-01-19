@@ -249,7 +249,7 @@ aside.ad {
       max-width: 40%;
       float: left;
       margin-top: 12.6px;
-      margin-left: 25.2px;
+      margin-left: 0;
       margin-right: 25.2px;
       margin-bottom: 25.2px; } }
   aside.ad .banner {
@@ -292,6 +292,21 @@ aside.ad {
       padding-top: 12.6px;
       padding-bottom: 12.6px;
       font-weight: bold; }
+
+.pullquote {
+  display: none; }
+  @media (min-width: 40em) {
+    .pullquote {
+      display: block;
+      margin: 6.3px;
+      margin-top: 0;
+      font-weight: bold;
+      width: 50%;
+      max-width: 50%;
+      font-size: 29.124px;
+      text-align: right;
+      float: right;
+      margin-right: 0; } }
 
 .pb1 {
   padding-bottom: 50.4px; }
