@@ -283,7 +283,7 @@ aside.ad {
     max-width:40%;
     float:left;
     margin-top: $sz3;
-    margin-left: $sz2;
+    margin-left: 0;
     margin-right: $sz2;
     margin-bottom: $sz2;
   }
@@ -339,5 +339,21 @@ aside.ad {
       padding-bottom: $sz3;
       font-weight: bold;
     }
+  }
+}
+
+.pullquote {
+  display: none;
+  @media (min-width: 40em) {
+    display: block;
+    margin: $sz4;
+    margin-top: 0;
+    font-weight: bold;
+    width: 50%;
+    max-width: 50%;
+    font-size: $f4;
+    text-align: right;
+    float: right;
+    margin-right: 0;
   }
 }
