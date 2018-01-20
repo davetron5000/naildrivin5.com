@@ -59,7 +59,7 @@ Learn about the things you want to change before changing them
 </div>
 
 Once you do, you are now in the position to make the right trade-offs about meta-work.  These trade-offs have to be made
-consciously and with your team.  For example, I see teams that maintain old code (2+ years :), brig on  a new member that wants
+consciously and with your team.  For example, I see teams that maintain old code (2+ years :), bring on  a new member that wants
 to set up a style-checking system like Rubocop or Checkstyle.
 
 These systems are classic examples of meta-work. Setting them up
