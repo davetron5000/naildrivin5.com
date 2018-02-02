@@ -35,7 +35,7 @@ end
 Here's how we'd do this in a fairly “functional” way (and that way I'd likely write this):
 
 ```ruby
-refund_amout = transactions.reject { |transaction|
+refund_amout = transactions.select { |transaction|
                  transaction.type == :refund
                }.map(&:amount).reduce(&:+)
 ```
@@ -72,7 +72,7 @@ What if we counted up all the concepts you have to know to understand the code?
 
 In our first example, you must understand:
 
-* What `reject` does
+* What `select` does
 * What the block of curly brackets does
 * What a variable inside pipes means
 * What `map` does
@@ -92,7 +92,7 @@ In our second example, you must understand:
 
 Not only does the second example require fewer concepts to know, but many of these concepts are fairly universal: most programmers understand `+` and `if`.
 
-You could argue that a Ruby programmer *should* know `reject`, `map` and friends, and that by avoiding them we're “dumbing down” the code. This is a perfect example of the [No True Scotsman fallacy](https://en.wikipedia.org/wiki/No_true_Scotsman).  Even if you *do* believe that we must code to some base level of Ruby knowledge, such a belief excludes non-Ruby programmers.
+You could argue that a Ruby programmer *should* know `select`, `map` and friends, and that by avoiding them we're “dumbing down” the code. This is a perfect example of the [No True Scotsman fallacy](https://en.wikipedia.org/wiki/No_true_Scotsman).  Even if you *do* believe that we must code to some base level of Ruby knowledge, such a belief excludes non-Ruby programmers.
 
 And this is the point: fancy code is exclusionary.  The cost of changing that code is higher because the pool of developers that can work on it is lower, and the cost of increasing the size of that pool is higher.
 
