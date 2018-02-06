@@ -42,7 +42,7 @@ meta-work in getting things done.  They over-prioritize tasks that improve the d
 [“refactor” tests](/blog/2012/11/16/why-you-cant-refactor-test-code.html), or
 modernize some code that's perfectly functional, despite being years old.
 
-In almost every case case, struggling engineers fail to deliver results because they over-focus on meta-work. My advice to new
+In almost every case, struggling engineers fail to deliver results because they over-focus on meta-work. My advice to new
 engineers—new to the trade or veterans new to a company—is to aggressively focus on _work_: deliver results.
 
 By [focusing on delivering results](http://theseniorsoftwareengineer.com/focus_on_delivering_results_excerpt.html), an engineer
