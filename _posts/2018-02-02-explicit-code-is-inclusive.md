@@ -14,7 +14,7 @@ Python [famously holds as a value](https://www.python.org/dev/peps/pep-0020/#id3
 something Rubyists (or many functional programmers) value, instead favoring compactness or “elegance”. I believe senior
 developers undervalue explicit code that uses fewer features than it could.  Compact code that uses many language, library, and
 framework features excludes people from understanding and contributing to it, and I believe this is a serious consideration when
-writing code.  What better judge of a codebase's maintainable could there be than “fewest concepts needed to understand it”?
+writing code.  What better judge of a codebase's maintainability could there be than “fewest concepts needed to understand it”?
 
 <!-- more -->
 
@@ -32,7 +32,7 @@ class Transaction
 end
 ```
 
-Here's how we'd do this in a fairly “functional” way (and that way I'd likely write this):
+Here's how we'd do this in a fairly “functional” way (and the way I'd likely write this):
 
 ```ruby
 refund_amout = transactions.select { |transaction|
