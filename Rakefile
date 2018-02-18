@@ -57,3 +57,22 @@ task :new_post, [:title,:date,:link] do |t,args|
   end
   puts post_filename
 end
+
+task :build do
+  sh "jekyll build"
+  sh "sass _sass/styles.scss:css/styles.css"
+end
+
+task :deploy => :build do
+  fail "Must be run from root" unless Dir.exist?("_site")
+  [
+    "--cache-control=\"max-age=3600\"",
+  ].each do |args|
+    args = ""
+    command = "aws s3 sync #{args} --profile=personal _site/ s3://naildrivin5.com"
+    puts command
+    sh(command) do |ok,res|
+      fail res.inspect unless ok
+    end
+  end
+end
