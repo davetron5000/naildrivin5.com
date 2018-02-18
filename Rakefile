@@ -58,17 +58,23 @@ task :new_post, [:title,:date,:link] do |t,args|
   puts post_filename
 end
 
+desc "Build the site into _site"
 task :build do
   sh "jekyll build"
   sh "sass _sass/styles.scss:css/styles.css"
 end
 
+desc "Serve up the site locally"
+task serve: :build do
+  sh "jekyll serve --future --watch"
+end
+
+desc "Deploy to AWS"
 task :deploy => :build do
   fail "Must be run from root" unless Dir.exist?("_site")
   [
     "--cache-control=\"max-age=3600\"",
   ].each do |args|
-    args = ""
     command = "aws s3 sync #{args} --profile=personal _site/ s3://naildrivin5.com"
     puts command
     sh(command) do |ok,res|
