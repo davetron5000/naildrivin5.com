@@ -81,4 +81,5 @@ task :deploy => :build do
       fail res.inspect unless ok
     end
   end
+  sh "aws cloudfront create-invalidation --profile=personal --distribution-id=E19I9AKMQP8NDQ --paths=/index.html"
 end
