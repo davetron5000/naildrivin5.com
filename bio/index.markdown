@@ -4,7 +4,7 @@ title: About me
 ---
 
 <img class="fl pr2 pb3" src="/images/DavidCopeland.png" height="150">
-I'm a programmer, musician, and author.  I'm co-author of [“Agile Web Development with Rails 5.1”][railsbook] as well as the author of [“Rails, Angular, Postgres, and Bootstrap”][fullstackbook], [“The Senior Software Engineer”][sweng], and [“Build Awesome Command-Line Applications in Ruby 2”][clibook].  I speak frequently at national and regional conferences and spend my days currently as a Director of Engineering at [Stitch Fix][stitchfix], where I helped take us from a team of 3 developers and one application to a public company powered by a message-based, microservices architecture, generating almost a billion dollars in revenue (I had a lot of help :).
+I'm a Director of Engineering at Stitch Fix, having helped grow the engineering team from 3 to 100+, monolith to microservices, startup to IPO.  I'm also an author of several programming books such as [“Agile Web Development with Rails 5.1”][railsbook], [“Rails, Angular, Postgres, and Bootstrap”][fullstackbook], [“The Senior Software Engineer”][sweng], and [“Build Awesome Command-Line Applications in Ruby 2”][clibook].  I've spoken at regional and national programming conferences and have over 20 years of experience in the industry.
 
 I value delivering results and business value, and see technology as a powerful tool in service to those goals.  I've delivered
 results to users using Ruby, C, Java, SQL, Messaging, and Microservices, and look forward to using whatever is within my means to
@@ -64,3 +64,4 @@ that covers Rails 5.1.
 * [The Courtesans](http://www.facebook.com/courtesans) - My power-pop band where I sing and play bass.
 * [Remix](http://www.reverbnation.com/davetron5000) of a friend's rap homage to pro-wrestler Kurt Angle.
 * [Pardon the Solar Interruption](http://www.cdbaby.com/cd/secretpopband) - An awesome power-pop record by The Secret Pop Band that I mixed and recorded.
+
