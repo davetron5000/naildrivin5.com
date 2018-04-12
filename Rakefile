@@ -60,13 +60,13 @@ end
 
 desc "Build the site into _site"
 task :build do
-  sh "jekyll build"
-  sh "sass _sass/styles.scss:css/styles.css"
+  sh "bundle exec jekyll build"
+  sh "bundle exec sass _sass/styles.scss:css/styles.css"
 end
 
 desc "Serve up the site locally"
 task serve: :build do
-  sh "jekyll serve --future --watch"
+  sh "bundle exec jekyll serve --future --watch"
 end
 
 desc "Deploy to AWS"
