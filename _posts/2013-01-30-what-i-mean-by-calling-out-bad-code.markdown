@@ -9,7 +9,7 @@ categories:
 In my [earlier post][codepost] on how the [replace] command-line app isn't "bad code", I said:
 
 > Now, I'm all for bad projects and bad code being called out.  Our industry produces some shitty code, and a general lack of
-> craftsmanship can kill business, or even people.  So bad code needs to be pointed out.
+> respect for  craft can kill business, or even people.  So bad code needs to be pointed out.
 
 The words I'm using here are a bit loaded, and actually distract from my real meaning.  I don't want to change the post, but
 thought it was worth explaining what I meant and why it's important.
@@ -20,7 +20,7 @@ Uncle Bob actually weighed in on this debate [in a recent post][bobpost], and pu
 
 > (BTW, There is nothing wrong with politely pointing out what you believe to be deficiencies in someone else's code. You don't want to be rude or condescending when you do this; but you do want to do it. How else can we learn unless someone points out where we've gone wrong? So please don't let this event stop you from valid review and critique.)
 
-This is much more precisely what I mean, although this, too, carries the air of "I, the craftsman, am *correct*, and you, the
+This is much more precisely what I mean, although this, too, carries the air of "I, the artisan, am *correct*, and you, the
 mere code monkey, have *much to learn*".  What I'm really talking about is code review.
 
 Code review (or code inspection) is one of the few software development techniques whose effectiveness at defect removal has been

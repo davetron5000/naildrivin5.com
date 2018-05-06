@@ -11,7 +11,7 @@ there were [some][steve] [apologies][corey] about it.  I saw those snarky tweets
 project, didn't understand what the issue was, and went back to work.
 
 Now, I'm all for bad projects and bad code being called out.  Our industry produces some shitty code, and a general lack of
-craftsmanship can kill business, or even people.  So bad code needs to be pointed out.  The question is, is this bad code?  I
+repsect for craft can kill business, or even people.  So bad code needs to be pointed out.  The question is, is this bad code?  I
 think we can all agree that if it *is* bad code, we should try to point it out in a more constructive way (and I know it's easier
 said than done), but let's forget the tone and focus on the message.  Is `replace` a silly project, or implemented in a stupid
 way?
