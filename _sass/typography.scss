@@ -357,3 +357,13 @@ aside.ad {
     margin-right: 0;
   }
 }
+
+tfoot p {
+  font-size: $f7;
+  font-style: italic;
+  &:before {
+    font-style: normal;
+    text-transform: uppercase;
+    content: "Table ";
+  }
+}

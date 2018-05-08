@@ -308,6 +308,14 @@ aside.ad {
       float: right;
       margin-right: 0; } }
 
+tfoot p {
+  font-size: 15.279px;
+  font-style: italic; }
+  tfoot p:before {
+    font-style: normal;
+    text-transform: uppercase;
+    content: "Table "; }
+
 .pb1 {
   padding-bottom: 50.4px; }
 
@@ -422,6 +430,14 @@ a {
   color: #100d10; }
   a:visited {
     color: #100d10; }
+
+table.border-rows {
+  border-collapse: collapse; }
+  table.border-rows thead th, table.border-rows thead td, table.border-rows tbody th, table.border-rows tbody td {
+    padding-top: 6.3px;
+    border-bottom: solid thin #100d10; }
+  table.border-rows thead th, table.border-rows tbody th {
+    padding-right: 12.6px; }
 
 .image-border {
   border: solid thin #100d10; }

@@ -42,6 +42,18 @@ a {
   }
 }
 
+table.border-rows {
+  border-collapse: collapse;
+  thead, tbody {
+    th, td {
+      padding-top: $sz4;
+      border-bottom: solid thin $ink;
+    }
+    th {
+      padding-right: $sz3;
+    }
+  }
+}
 .image-border {
   border: solid thin $ink;
 }
