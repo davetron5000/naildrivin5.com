@@ -52,10 +52,10 @@ My original post contains a good deal of information about what it's like to wor
 
 Let's delve a bit deeper into some of these, because they are relevant to the self-publishing process.
 
-<div class='has-pullquote'>
+<div class='pullquote'> The development editor is the only person you can be sure will read your book in great detail </div>
+
 The day-to-day writing and revising is done by me, the author, with the help of a _development editor_.  The development
-editor isn't concerned with commas, spelling, or grammar. Instead, they're charged with ensuring that the quality of the writing is high.  They will focus on flow, consistency and general "interestingness".   <span class='pullquote'> The development editor is the only person you can be sure will read your book in great detail </span> , which is a handy person to have around.
-</div>
+editor isn't concerned with commas, spelling, or grammar. Instead, they're charged with ensuring that the quality of the writing is high.  They will focus on flow, consistency and general "interestingness".   The development editor is the only person you can be sure will read your book in great detail, which is a handy person to have around.
 
 So, if the development editor isn't worried about commas and grammar, who does?  The answer is the copy-editor.  God bless
 these people, because it sounds like an awful job.  They comb through the manuscript fixing all of the typos the author has
@@ -78,9 +78,11 @@ printed book, readers also get an ePUB  and a MOBI for reading on a wide variety
 tweaking they do to this part, but given my experience with these formats (below), they've created some powerful tools that
 produce really great e-reader formats.
 
-<div class='has-pullquote'>
-If this sounds like a lot of process, it *is*!   <span class='pullquote'> It's all focused on producing the best book you can, in terms of both content and presentation. </span>   Since the publisher is fronting the money to pay the staff and produce the book before any copies are sold, they rightly want regular check-ins that progress is being made and that the quality is sufficient.  In other words, this process makes a lot of sense to me.
-</div>
+
+<div class='pullquote'> It's all focused on producing the best book you can, in terms of both content and presentation. </div>
+
+
+If this sounds like a lot of process, it *is*!   It's all focused on producing the best book you can, in terms of both content and presentation.  Since the publisher is fronting the money to pay the staff and produce the book before any copies are sold, they rightly want regular check-ins that progress is being made and that the quality is sufficient.  In other words, this process makes a lot of sense to me.
 
 Let's talk about what's good and what's bad with this process.
 
@@ -92,17 +94,18 @@ In terms of presentation, the end product looks beautiful on paper, and looks gr
 
 They also have the setup to get your book into stores, listed on Amazon, etc.  As we'll see later, this is no small feat and while most of my sales were from the Pragmatic Programmers website, I still sold over 1400 copies from "somewhere else".
 
-<div class='has-pullquote'>
-Finally, the publisher is a known entity that people look to for technical books.  The same book listed on their website vs only on an author's website is going to sell far more, simply because it becomes known to many more people.   <span class='pullquote'> Having a book published by a real publisher is a form of promotion that can be hard to match. </span>   And it's the detailed process I've just described that creates that reputation for quality.
-</div>
+<div class='pullquote'> Having a book published by a real publisher is a form of promotion that can be hard to match. </div>
+
+
+Finally, the publisher is a known entity that people look to for technical books.  The same book listed on their website vs only on an author's website is going to sell far more, simply because it becomes known to many more people.   Having a book published by a real publisher is a form of promotion that can be hard to match.  And it's the detailed process I've just described that creates that reputation for quality.
 
 ### The Bad
 
 Firstly, all of this costs money, so my royalty per copy is roughly 50% of what the publisher collects from buyers.  Although we are in the "The Bad" section, let me be clear that *a 50% royalty is far above average*.  No other publisher that I know of is paying this high a rate.  To be honest, 50% seems way too generous, given what's provided for me and the support I get.  But, as great as their royalty rate is, it's still a cost—the wonderful staff and tools don't come free, and this is the price.
 
-<div class='has-pullquote'>
-Secondly, all the check-ins and reviews are forms of gate-keeping.  Editor approvals, copy-editing, indexing, and typesetting are gate-keeping activities, meaning that my ability to work on, promote, and sell the book is _dependent on others_.   <span class='pullquote'> In effect, I need permission to work on the book. </span>  I learned very quickly that working on Chapter 4 while Chapter 3 was still being reviewed and revised was a Very Bad Idea™.  Changes in one affect the other, and so while my work is being reviewed, there isn't a whole lot I can do while I'm waiting.  Remember, the vast majority of the time spent creating a book is in revising and editing, not "getting it down".
-</div>
+<div class='pullquote'> In effect, I need permission to work on the book. </div>
+
+Secondly, all the check-ins and reviews are forms of gate-keeping.  Editor approvals, copy-editing, indexing, and typesetting are gate-keeping activities, meaning that my ability to work on, promote, and sell the book is _dependent on others_.   In effect, I need permission to work on the book. I learned very quickly that working on Chapter 4 while Chapter 3 was still being reviewed and revised was a Very Bad Idea™.  Changes in one affect the other, and so while my work is being reviewed, there isn't a whole lot I can do while I'm waiting.  Remember, the vast majority of the time spent creating a book is in revising and editing, not "getting it down".
 
 Intellectually, I know that these gatekeepers are there for a reason, and that we are all on the same team, and that this process is designed to produce great results.  And it *does* do that, however it can still be frustrating. Particularly because I do this in my free time, which has to be carefully managed and budgeted.  If I have time to write, but feel unable to do so, it feels like a waste.  It also made the entire process _feel_ slow.  Even if it really needed to take that long, the feeling of slowness can be de-motivating.
 
@@ -124,9 +127,10 @@ and reduces the process to:
 
 Nope.  Turns out it's *more* work.
 
-<div class='has-pullquote'>
-Although the gate-keeping aspects of the professional process are frustrating at times, the process itself is a good one.  Even though I wouldn't have a team helping me, I still wanted to produce a book of comparable quality.  That means  <span class='pullquote'> I had to play the role of development editor, managing editor, publisher, copy-editor and typesetter all on my own. </span>  
-</div>
+
+<div class='pullquote'> I had to play the role of development editor, managing editor, publisher, copy-editor and typesetter all on my own. </div>
+
+Although the gate-keeping aspects of the professional process are frustrating at times, the process itself is a good one.  Even though I wouldn't have a team helping me, I still wanted to produce a book of comparable quality.  That means  I had to play the role of development editor, managing editor, publisher, copy-editor and typesetter all on my own. 
 
 At this point, I had a first draft done, so I decided on this process:
 
@@ -160,9 +164,10 @@ Other than actually getting the book written, I needed to handle typesetting it,
 
 I created a spreadsheet of about six different ways I could distribute the eBook and collect payments.  I actually did this before I got too far into the writing, because [LeanPub] was one of my options, and they provide a tool-chain along with distribution and payments.  Not surprisingly, they were by far the most expensive, costing 10% of the sale price plus 50 cents per copy sold<a name="back-1"></a><sup><a href="#1">1</a></sup>.  Still, *way* cheaper than professional publishing, but for going on your own (and being willing to deal with the toolchain yourself—no small task as we'll see), any other way is going to be cheaper.
 
-<div class='has-pullquote'>
-I looked at Square Space, Shopify, Fetch App, Digital Delivery (now called Send Owl), and DPD.  They were all comparable in price, charging small monthly fees for distribution, with the payment processor (in most cases, Stripe), charging around 3% of the sale.  I went with Send Owl as they had the cheapest monthly rate, a good variety of coupon and discounting options, and the nicest looking default UI for the buying experience.   <span class='pullquote'> Setting up accounts with Send Owl and Stripe was incredibly simple, and the integration worked flawlessly. </span> 
-</div>
+
+<div class='pullquote'> Setting up accounts with Send Owl and Stripe was incredibly simple, and the integration worked flawlessly. </div>
+
+I looked at Square Space, Shopify, Fetch App, Digital Delivery (now called Send Owl), and DPD.  They were all comparable in price, charging small monthly fees for distribution, with the payment processor (in most cases, Stripe), charging around 3% of the sale.  I went with Send Owl as they had the cheapest monthly rate, a good variety of coupon and discounting options, and the nicest looking default UI for the buying experience.   Setting up accounts with Send Owl and Stripe was incredibly simple, and the integration worked flawlessly.
 
 If only the toolchain would've been that easy.
 
@@ -192,12 +197,12 @@ and that would also fit the page size I planned to use for the print version.  I
 painful and time-consuming to get right.  The world of TeX and LaTeX is not well-traveled, and so documentation is hard to
 come by.
 
-<div class='has-pullquote'>
- <span class='pullquote'> Other than Memoir and LaTeX, I ended up being incredibly disappointed with every other element of the toolchain </span> .  pandoc
+
+<div class='pullquote'> Other than Memoir and LaTeX, I ended up being incredibly disappointed with every other element of the toolchain </div>
+
+Other than Memoir and LaTeX, I ended up being incredibly disappointed with every other element of the toolchain.  pandoc
 stripped out all the cross-references and any other feature that its internal representation didn't support (I added them
-back via some *very* hacky Ruby scripts).  pandoc's epub was bare-bones and underwhelming, despite the power of the format (at least on iPad).
-Calibre's Kindle output was downright awful.
-</div>
+back via some *very* hacky Ruby scripts).  pandoc's epub was bare-bones and underwhelming, despite the power of the format (at least on iPad).  Calibre's Kindle output was downright awful.
 
 MOBI is fairly terrible and inflexible, and Calibre generated a pretty awful-looking book.  If you look at any bullet-list in
 my book on a real Kindle, you'll see what I mean.  It looks terrible.  And I didn't realize it until I was completely done and
@@ -209,11 +214,9 @@ the typography of the PDFs is not very good, in my opinion. It's better than a w
 
 When I was mostly done with the book, I discovered [Tablo], which is a cloud-based toolchain aimed at getting your book into Amazon and the iBookstore.  I do not like writing in degenerate web-based editors without version control, and they provide no PDF option that I can see, so I would not use this service.   They are a better option than exporting from a word processor, though.
 
+<div class='pullquote'> Do not underestimate the amount of effort required to produce a nicely typeset book. </div>
 
-<div class='has-pullquote'>
-To make a longer story short, this is a rathole.   <span class='pullquote'> Do not underestimate the amount of effort required to produce a nicely typeset book. </span>   But please,
-   do not produce a poorly typeset book.  They are a chore to read.
-</div>
+To make a longer story short, this is a rathole.   Do not underestimate the amount of effort required to produce a nicely typeset book.  But please, do not produce a poorly typeset book.  They are a chore to read.
 
 ### The Print Version
 
@@ -235,13 +238,15 @@ I also couldn't do it the other way around, because LuLu will not provide you wi
 So, I ordered 20 copies at cost and decided to fulfill them myself.  Of course, Send Owl has no way to calculate shipping, so I had to set a price that
 included shipping, but still appeared to be a good deal.  To date, I've made $135 on the package deal, and spent $35 on shipping.  Not good.
 
-<div class='has-pullquote'>
+
+
+<div class='pullquote'> The extra step of requiring a decision hurt conversion</div>
+
 Interestingly, once I started offering the package, it required buyers to make a choice: do they get the ebook or the package?
-It turns out that many of them decide to get neither.   <span class='pullquote'> The extra step of requiring a decision hurt conversion</span> , so I killed the package.
+It turns out that many of them decide to get neither.   The extra step of requiring a decision hurt conversio, so I killed the package.
 Now, readers who buy the ebook get an email to buy direct form LuLu, at a reduced price.  That link is good for anyone, so
 anyone with the link can get the book for that price, making it not really that "reduced".  And now I have 17 books sitting in my
 closet.
-</div>
 
 That covers direct sales, but what about other channels?
 
@@ -262,9 +267,9 @@ channels, so I was on my own.
 
 On launch day, I posted a link on my blog, posted twice on Twitter (once in the morning, once in the afternoon), and submitted links to both Hacker News and Reddit.
 
-<div class='has-pullquote'>
-Hacker News generated some discussion about how awful my website was (it was awful, since redesigned by a very kind friend), but didn't generate many conversions (nor did Reddit).  Almost all traffic and purchases were from my blog or Twitter.   <span class='pullquote'> I sold about 100 copies on day 1, which was a good feeling</span> .  After that, I've been getting a handful of sales every week in steady fashion.
-</div>
+<div class='pullquote'> I sold about 100 copies on day 1, which was a good feeling</div>
+
+Hacker News generated some discussion about how awful my website was (it was awful, since redesigned by a very kind friend), but didn't generate many conversions (nor did Reddit).  Almost all traffic and purchases were from my blog or Twitter.   I sold about 100 copies on day 1, which was a good feeling.  After that, I've been getting a handful of sales every week in steady fashion.
 
 I posted coupon codes on Facebook and LinkedIn for $10 off.  This resulted in exactly one sale.
 
@@ -283,12 +288,12 @@ As you can see, this is not so straightforward.  Going it on my own, I have a lo
 
 The downside of a publisher is that I must first choose a topic they wish to publish a book on, and then deal with the process and gate-keeping that goes along with it.  But, that process produces a higher quality result.  How *much* higher is unknown.
 
-<div class='has-pullquote'>
-It's worth mentioning that  <span class='pullquote'> it doesn't seem feasible to make a living entirely on writing tech books</span> .  While I've made some
+<div class='pullquote'>It doesn't seem feasible to make a living entirely on writing tech books</div>
+
+It's worth mentioning that  it doesn't seem feasible to make a living entirely on writing tech book.  While I've made some
 good money on both efforts, neither would pay the rent or sustain even a modest lifestyle.  To do so, I would have to produce
 very popular books on a frequent schedule.  There are very few tech books one would consider "seminal", and their authors tend to
 either have day jobs or a more diversified offering of services beyond writing.
-</div>
 
 All that to say that writing books for me is a side project; something I do in my free time. Because of that, the
 self-publishing route _felt_ better.  It felt more agile, and much simpler.

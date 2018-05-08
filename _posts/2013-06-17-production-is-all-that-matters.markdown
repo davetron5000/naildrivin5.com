@@ -3,6 +3,12 @@ layout: post
 title: "Production is all that matters"
 date: 2013-06-16 12:53
 Feature: true
+ad:
+  title: "Focus on Results"
+  subtitle: "11 Practices You Can Start Doing Now"
+  link: "http://bit.ly/dcsweng"
+  image: "/images/sweng-cover.png"
+  cta: "Buy Now $25"
 ---
 This is important.  It has to do with your treatment and reaction to how your software runs in production. How your software runs in production is **all that matters**.  The most amazing abstractions, cleanest code, or beautiful algorithms are meaningless if your code doesn't run well on production.
 
@@ -29,6 +35,7 @@ Your application serves a purpose.  It meets the needs of its users.  When it en
 
 Let's take an example.  Suppose that every time a user signs up, they must activate their account by clicking on a link sent by an automated email from your application.  Suppose a user signs up and, at the exact moment the welcome email is to be sent, there is a network error and the email isn't sent.
 
+
 The user will never get their activation email unless steps are taken.  If no steps are taken,
 this customer won't use your service, which means you aren't making money from them.  This user *could* have
 been a happy customer, even one that was an advocate for your company, one who could drive
@@ -42,9 +49,11 @@ service people and that costs money.
 
 All because a very basic production error wasn't handled.
 
-<div class='has-pullquote'>
-You may think that a few missing users won't matter in the grand scheme of things.  That's bad customer service, but it's also foolish and lazy thinking.  Every customer matters.  Someone wants to pay the company money, your job as a developer is to  <span class='pullquote'> make sure there's no software standing in their way </span> .  And don't think it doesn't matter for internal users.  If their jobs are inefficient because of buggy software, they will cost more, and the business will be less successful.
-</div>
+<div class='pullquote'>Make sure there's no software standing in their way</div>
+
+You may think that a few missing users won't matter in the grand scheme of things.  That's bad customer service, but it's also foolish and lazy thinking.  Every customer matters.  Someone wants to pay the company money, your job as a developer is to  make sure there's no software standing in their way.  And don't think it doesn't matter for internal users.  If their jobs are inefficient because of buggy software, they will cost more, and the business will be less successful.
+
+<div data-ad></div>
 
 Dismissing errors like this sets a dangerous precedent.  You must begin to make judgement calls.
 Which production errors *matter*?  How many failures is "too many"?  How much loss of revenue/increase in cost is it OK for the engineering team to create before something needs to be done?
@@ -84,9 +93,9 @@ Your log statements should have, at a minimum:
 * **Request identifier** - this allows you to associate multiple log messages with a particular request.  Often, your web server can handle this, although you could use the currently-logged-in user id as a proxy.
 * **Some information** - a description of what you'd like to know if things go wrong.  Likely, you'll want database identifiers and descriptions of what is happening or why.
 
-<div class='has-pullquote'>
- <span class='pullquote'> Log every request and what the response was </span> , along with anything else that's relevant to what went on during the request.  Log edge cases in your logic, warnings, or other events that are outside the "happy path".  You might also log the results of complex calculations whose results are important (i.e. show your work).
-</div>
+<div class='pullquote'>Log every request and what the response was</div>
+
+Log every request and what the response was, along with anything else that's relevant to what went on during the request.  Log edge cases in your logic, warnings, or other events that are outside the "happy path".  You might also log the results of complex calculations whose results are important (i.e. show your work).
 
 Don't worry about performance - you can remove logging if you need to, but your primary duty is to understand how your application is working, and the log is a great place to do that.
 
@@ -135,11 +144,11 @@ For example, your database might store records of customer purchases.  You might
 You should then write a script that checks all successful purchases for an
 authorization code - any purchase that has been in a successful state for more than, say, a few minutes, but that doesn't have an authorization code, should trigger an alert.  Someone might be getting something for free.  Loss of revenue.
 
-<div class='has-pullquote'>
-One final note:  <span class='pullquote'> do not ignore alerts </span> .  If you are filtering out or ignoring alerts, you are
+<div class='pullquote'>Do not ignore alerts</div>
+
+One final note: do not ignore alerts.  If you are filtering out or ignoring alerts, you are
 not doing your job.  You are ignoring your system telling you that you might be losing revenue.
 If you have so many alerts that you are overwhelmed with them, you either have a terrible system, or you are alerting for non-actionable things.  Fix those issues before reaching for your email filters.  Fix them before adding features, because your business is starting to tank.
-</div>
 
 There is a third output stream, and it's related to the aggregation of non-alertable system
 events.  For example, a 404 is not an alertable event, however 5,000 over the course of 2 minutes
@@ -193,9 +202,9 @@ job that failed due to intermittent issues), perform the procedure immediately.
   * What was the user's experience?  Is there some intent that we can capture and manually address? (for example, a customer makes a purchase, but the system fails - we could re-make that purchase on their behalf to ensure capturing the revenue)
   * Can the code that broke be enhanced to avoid this problem?  If so, do it.
 
-<div class='has-pullquote'>
-Your results might be different, but understand the theme here: restore service and then put the system back into a valid state.  ** <span class='pullquote'> Do not stop until the problem is fixed </span>  or you've handed it off to someone who will follow this rule**.  Sometimes, it takes a while to recover from a production error.  When you need a break, hand it off, but do not stop.
-</div>
+<div class='pullquote'> Do not stop until the problem is fixed </div>
+
+Your results might be different, but understand the theme here: restore service and then put the system back into a valid state.  **Do not stop until the problem is fixed or you've handed it off to someone who will follow this rule**.  Sometimes, it takes a while to recover from a production error.  When you need a break, hand it off, but do not stop.
 
 We had a problem once at LivingSocial where thousands of attempted purchases failed due
 to issues with our promo code back-end service.  The users were all left with the impression they'd made a successful purchase discounted by the promo code they provided.  Because of proper logging and alerting, we saw the problem, fixed the systems so it would stop happening, and then re-created all the customer purchases behind the scenes without them ever knowing it.  We protected the revenue.
@@ -272,10 +281,9 @@ I'll leave it as an exercise to the reader as to what happens here (and how to f
 
 The key to fault-tolerant code is to take a step back from your code and re-cast the concept of success.  Many devs conflate non-happy-path code with actual errors.  Any time you see an API that uses exceptions for control flow, you can be sure the developer of that API doesn't understand the difference. 
 
-<div class='has-pullquote'>
-A "negative case" in business logic is normal - it is a success when it happens.  Failure is the
-code's inability to complete execution.  This should be your mindset when creating fault-tolerant code.  Every line of code is a ticking time-bomb.   <span class='pullquote'> Your job is to figure out how likely it is to go off, and how much damage it will do if it does. </span> 
-</div>
+<div class='pullquote'> Your job is to figure out how likely it is to go off, and how much damage it will do if it does. </div> 
+
+A "negative case" in business logic is normal - it is a success when it happens.  Failure is the code's inability to complete execution.  This should be your mindset when creating fault-tolerant code.  Every line of code is a ticking time-bomb.  Your job is to figure out how likely it is to go off, and how much damage it will do if it does.
 
 Consider a bit of code to read the current user's name out of the database in order to display it
 in the upper-right corner when they're logged in.  A network outage could prevent this database
@@ -289,9 +297,11 @@ however, are far more dire.  The user not only won't get their welcome email, bu
 their email recorded in the database, preventing them from fixing the issue themselves by signing
 up again.  In this case, I'd be proactive in my code.
 
-<div class='has-pullquote'>
- <span class='pullquote'> Fault-tolerant code is ugly.  It requires conditionals.  </span>  It won't look like code in programming books, screencasts, or blog entries.  This is the way it has to be, I'm sorry.
+<div class="pullquote">
+Fault-tolerant code is ugly.  It requires conditionals.
 </div>
+
+Fault-tolerant code is ugly.  It requires conditionals. It won't look like code in programming books, screencasts, or blog entries.  This is the way it has to be, I'm sorry.
 
 If you can't outright prevent a production error, you can often find a way to turn it into a
 production error that's easier to resolve.  For example, consider this Rails code:

@@ -25,10 +25,8 @@ problems.  Customers don't purchase progress reports, and developers can't ship 
 reason, LivingSocial gets this, and gets it deeply.  When Mark Zuckerburg [told Facebook's shareholders][fbletter] that "code wins arguments",
 I believe this is what he meant.
 
-<div class='has-pullquote'>
 This cultural value leads to what I believe is the true essence of the "agile" movement.  Consider for a moment if *all* you are
 as a developer is what you've shipped<a name="back-1"></a><sup><a href="#1">1</a></sup>.  This is going to fundamentally change how you work. {" You're going to ship smaller features and you're going to ship them more quickly. "}  You're going to deliver value to the business as quickly and frequently as possible.
-</div>
 
 Because of this, big projects - which is a project that might take more than a couple months - are unusual at LivingSocial and cause a fair amount of trepidation.  In general, I believe this is a good thing.  Big projects have a way of not shipping.  Big projects have a way of getting bigger and more expensive.
 
@@ -58,9 +56,9 @@ was initially a mask of my lingering bad attitude.
 
 After a while, I started to notice that the stereotypical programmer attitude was not *nearly* as strong at LivingSocial as anywhere else I had worked.  The relationships between the developers and every other part of the company - customer service, IT, product, accounting - were far healthier than I'd ever experienced.
 
-<div class='has-pullquote'>
-The result was a high functioning team that made decisions rationally, not politically.  Developers were not rude nor disrespectful to their "non-techie" counterparts, and, surprise surprise, were treated with respect themselves.  I don't know how this evolved, but it seemed that  <span class='pullquote'> everyone's default assumption was that every member of the team was skilled, useful, and dependable </span>  - innocent until proven guilty.
-</div>
+<div class='pullquote'>Everyone's default assumption was that every member of the team was skilled, useful, and dependable</div>
+
+The result was a high functioning team that made decisions rationally, not politically.  Developers were not rude nor disrespectful to their "non-techie" counterparts, and, surprise surprise, were treated with respect themselves.  I don't know how this evolved, but it seemed that  everyone's default assumption was that every member of the team was skilled, useful, and dependable  - innocent until proven guilty.
 
 As I realized this, and began to adjust my attitude, it became easier and easier to work with other people.  Where in the past I would've dreaded having a meeting with the "idiot business guy", I now went into these situations with an open mind, and a positive attitude - what business problem can I help solve?  Turns out that people who don't code are pretty smart and know stuff I don't. The end result was that, in any discussion, the best idea would almost always win (and it wasn't necessarily the developer's :)
 
