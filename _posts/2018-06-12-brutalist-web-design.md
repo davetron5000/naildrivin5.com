@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Brutalist Web Design"
-date: 2018-06-12 9:00
+date: 2018-06-12 8:00
 link: https://brutalist-web.design
 ---
 
