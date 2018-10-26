@@ -11,7 +11,11 @@ I've spoken at several tech conferences and user groups.  This page is an archiv
   {% for talk in site.data.talks %}
     <article class="mb2">
       <h1 class="h3">
+        {% if talk.link %}
         <a class="no-ul ul-hover" href="{{ talk.link }}">{{ talk.title }}</a>
+        {% else %}
+        <a class="no-ul ul-hover" href="{{ talk.slides }}">{{ talk.title }}</a>
+        {% endif %}
       </h1>
       <h2 class="h4 mtnone">
         from {{ talk.where }}
