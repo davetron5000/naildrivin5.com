@@ -4,7 +4,7 @@ title: About me
 ---
 
 <img class="fl pr2 pb3" src="/images/DavidCopeland.png" height="150">
-I'm a Director of Engineering at Stitch Fix, having helped grow the engineering team from 3 to 100+, monolith to microservices, startup to IPO.  I'm also an author of several programming books such as [“Agile Web Development with Rails 5.1”][railsbook], [“Rails, Angular, Postgres, and Bootstrap”][fullstackbook], [“The Senior Software Engineer”][sweng], and [“Build Awesome Command-Line Applications in Ruby 2”][clibook].  I've spoken at regional and national programming conferences and have over 20 years of experience in the industry.
+I'm the Chief Software Architect and Director of Engineering at Stitch Fix.  I helped grow the engineering team and technology from 3 to 200+, establishing technology and process to help the company grow for years.  I'm also an author of several programming books such as [“Agile Web Development with Rails 5.1”][railsbook], [“The Senior Software Engineer”][sweng], and [“Build Awesome Command-Line Applications in Ruby 2”][clibook].  I've spoken at regional and national programming conferences and have over 20 years of experience in the industry. Previously at LivingSocial and Opower.
 
 I value delivering results and business value, and see technology as a powerful tool in service to those goals.  I've delivered
 results to users using Ruby, C, Java, SQL, Messaging, and Microservices, and look forward to using whatever is within my means to
@@ -28,15 +28,20 @@ make technology work.  I fight for the users.  Also a huge fan of Peter Hook and
 
 ## My Writing
 
-* [Agile Web Development with Rails 5.1][railsbook] - *The* book on learning Ruby on Rails.  I'm co-author of the latest version
-that covers Rails 5.1.
-* [Rails, Angular, Postgres, and Bootstrap: Powerful, Effective, and Efficient Full-Stack Web Development][fullstackbook] - Book on Full Stack web development to level up your Rails skills, published July 2015, updated March 2017
-* [The Senior Software Engineer][clibook] - Book on being an amazing developer, published July 2013
-* [Build Awesome Command-Line Applications in Ruby][clibook] - Programming book, published in late 2011 by the Pragmatic Programmers.
+* [Webpack from Nothing][webpack] - WTF even is a webpack and how does it all work?
+* [Guidelines for Brutalist Web Design][brutalist] - Web design doesn't have to be boring to be usable.
 * [Why I'd Never Work for Google, Twitter, or Facebook][nogoogle] - most popular of my blog posts on Hacker News.
 * [Source Code Typography][typography] - popular post on typesetting computer source code.
 * [What Makes an Awesome Command-line Application][pragpub] - Article for PragPub, Pragmatic Programmer's monthly online magazine.
-* [My Blog](/blog/archives) - My Blog - mostly programming stuff.
+* [My Blog](/blog/archives) - mostly programming stuff.
+
+## My Books
+
+* [Agile Web Development with Rails 5.1][railsbook] - *The* book on learning Ruby on Rails.  I'm co-author of the latest version
+that covers Rails 5.1.
+* [The Senior Software Engineer][sweng] - Book on being an amazing developer, published July 2013
+* [Rails, Angular, Postgres, and Bootstrap: Powerful, Effective, and Efficient Full-Stack Web Development][fullstackbook] - Book on Full Stack web development to level up your Rails skills, published July 2015, updated March 2017
+* [Build Awesome Command-Line Applications in Ruby][clibook] - Programming book, published in late 2011 by the Pragmatic Programmers.
 
 [railsbook]: https://pragprog.com/book/rails51/agile-web-development-with-rails-51
 [clibook]: http://pragprog.com/book/dccar2
@@ -45,8 +50,10 @@ that covers Rails 5.1.
 [pragpub]: http://pragprog.com/magazines/2012-05/what-makes-an-awesome-commandline-application
 [sweng]: http://www.theseniorsoftwareengineer.com
 [fullstackbook]: https://pragprog.com/titles/dcbang2
+[webpack]: https://what-problem-does-it-solve.com/webpack/index.html
+[brutalist]: https://brutalist-web.design
 
-## My Software
+## My Open Source Software
 
 * [GLI][gli] - a DSL for making more complex command line apps in Ruby
 * [Adventure][adventure] - My "cover" of classic 2600 game Adventure
