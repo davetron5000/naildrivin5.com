@@ -4,7 +4,7 @@ title: About me
 ---
 
 <img class="fl pr2 pb3" src="/images/DavidCopeland.png" height="150">
-I'm the Chief Software Architect and Director of Engineering at Stitch Fix.  I helped grow the engineering team and technology from 3 to 200+, establishing technology and process to help the company grow for years.  I'm also an author of several programming books such as [“Agile Web Development with Rails 5.1”][railsbook], [“The Senior Software Engineer”][sweng], and [“Build Awesome Command-Line Applications in Ruby 2”][clibook].  I've spoken at regional and national programming conferences and have over 20 years of experience in the industry. Previously at LivingSocial and Opower.
+I'm the Chief Software Architect and Director of Engineering at Stitch Fix.  I helped grow the engineering team and technology from 3 to 200+, establishing technology and process to help the company grow for years.  I'm also an author of several programming books such as [“Agile Web Development with Rails 6”][railsbook], [“The Senior Software Engineer”][sweng], and [“Build Awesome Command-Line Applications in Ruby 2”][clibook].  I've spoken at regional and national programming conferences and have over 20 years of experience in the industry. Previously at LivingSocial and OPower.
 
 I value delivering results and business value, and see technology as a powerful tool in service to those goals.  I've delivered
 results to users using Ruby, C, Java, SQL, Messaging, and Microservices, and look forward to using whatever is within my means to
@@ -37,13 +37,12 @@ make technology work.  I fight for the users.  Also a huge fan of Peter Hook and
 
 ## My Books
 
-* [Agile Web Development with Rails 5.1][railsbook] - *The* book on learning Ruby on Rails.  I'm co-author of the latest version
-that covers Rails 5.1.
+* [Agile Web Development with Rails 6][railsbook] - *The* book on learning Ruby on Rails.  I'm co-author of the latest version that covers Rails 6.
 * [The Senior Software Engineer][sweng] - Book on being an amazing developer, published July 2013
 * [Rails, Angular, Postgres, and Bootstrap: Powerful, Effective, and Efficient Full-Stack Web Development][fullstackbook] - Book on Full Stack web development to level up your Rails skills, published July 2015, updated March 2017
 * [Build Awesome Command-Line Applications in Ruby][clibook] - Programming book, published in late 2011 by the Pragmatic Programmers.
 
-[railsbook]: https://pragprog.com/book/rails51/agile-web-development-with-rails-51
+[railsbook]: https://pragprog.com/book/rails6
 [clibook]: http://pragprog.com/book/dccar2
 [nogoogle]: http://naildrivin5.com/blog/2011/08/01/why-i-wont-work-for-google-twitter-facebook.html
 [typography]: /blog/2013/05/17/source-code-typography.html
