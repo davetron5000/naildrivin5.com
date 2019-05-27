@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Database Design for Beginners Talk at RailsConf"
-date: 2019-05-27 9:00
+date: 2019-05-27 8:30
 link: https://www.youtube.com/watch?v=1VsSXRPEBo0
 ---
 
