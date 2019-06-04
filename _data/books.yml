@@ -1,11 +1,7 @@
-- title: "Agile Web Development With <span class='nowrap'>Rails 5.1</span>"
+- title: "Agile Web Development With <span class='nowrap'>Rails 6</span>"
   subtitle: "New edition of this seminal classic"
-  image: /images/rails51.jpg
-  site: "https://pragprog.com/book/rails51/agile-web-development-with-rails-51"
-- title: "Rails, Angular, Postgres, and Bootstrap, Second Edition"
-  subtitle: "Powerful, Effective, and Efficient Full-Stack Web Development"
-  image: /images/dcbang2.jpg
-  site: "http://full-stack-rails.com"
+  image: /images/rails6.jpg
+  site: "https://pragprog.com/book/rails6"
 - title: "The Senior Software Engineer"
   subtitle: "11 Practices of an Effective Technical Leader"
   buy_link: "http://transactions.sendowl.com/products/24086/D8D2ED13/add_to_cart"
@@ -16,3 +12,11 @@
   buy_link: "https://pragprog.com/cart/add/skus?sku_id=693_694"
   image: /images/dccar2.jpg
   site: "http://www.awesomecommandlineapps.com/"
+- title: "Rails, Angular, Postgres, and Bootstrap, Second Edition"
+  subtitle: "Powerful, Effective, and Efficient Full-Stack Web Development"
+  image: /images/dcbang2.jpg
+  site: "http://full-stack-rails.com"
+- title: "Agile Web Development With <span class='nowrap'>Rails 5.1</span>"
+  subtitle: "New edition of this seminal classic"
+  image: /images/rails51.jpg
+  site: "https://pragprog.com/book/rails51/agile-web-development-with-rails-51"
