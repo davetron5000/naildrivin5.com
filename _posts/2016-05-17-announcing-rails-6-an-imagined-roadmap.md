@@ -5,8 +5,8 @@ date: 2016-05-17 12:00
 ad:
   title: "Rails 5.1 is here"
   subtitle: "It Hits These Notes"
-  link: "http://bit.ly/dcrails51"
-  image: "/images/rails51.jpg"
+  link: "http://bit.ly/dcrails6"
+  image: "/images/rails6.jpg"
   cta: "Buy Now $29.95"
 ---
 

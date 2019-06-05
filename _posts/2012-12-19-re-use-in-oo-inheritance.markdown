@@ -6,8 +6,8 @@ comments: true
 ad:
   title: "Learn Rails the Right Way"
   subtitle: "Clean Web Architecture"
-  link: "http://bit.ly/dcrails51"
-  image: "/images/rails51.jpg"
+  link: "http://bit.ly/dcrails6"
+  image: "/images/rails6.jpg"
   cta: "Buy Now $29.95"
 ---
 Over the past several months, the Rails community, at least to my eyes, has become increasingly concerned with managing the

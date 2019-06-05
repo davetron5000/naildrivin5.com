@@ -5,8 +5,8 @@ date: 2017-07-17 9:00
 ad:
   title: "Be Productive With Rails"
   subtitle: "Rails Just Works"
-  link: "http://bit.ly/dcrails51"
-  image: "/images/rails51.jpg"
+  link: "http://bit.ly/dcrails6"
+  image: "/images/rails6.jpg"
   cta: "Buy Now $29.95"
 ---
 
