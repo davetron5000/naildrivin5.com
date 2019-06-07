@@ -55,14 +55,14 @@ types](https://en.wikipedia.org/wiki/Data_type).  It could be as complex is an a
 Regardless, we have no hope of successfully writing and managing computer software without some way to create and use abstractions.  As with our need to
 execute code, our need to create abstractions can be met in a variety of ways.  Technically, jumping to a pre-defined memory location that contains a subroutine is a form of abstraction.  This is far less convenient than calling a named function.
 
-When our need for abstracting code is met, we can accomplish a great deal.  But the moment we must collaborate with another person (including ourselves in the future!), we'll run into problems.  With two distinct minds working on a piece of software, there will be different ways to accomplish things, different possible abstractions.  This leads to inconsistency, which a codebase hard to deal with, as you must understand more than you need to.
+When our need for abstracting code is met, we can accomplish a great deal.  But the moment we must collaborate with another person (including ourselves in the future!), we'll run into problems.  With two distinct minds working on a piece of software, there will be different ways to accomplish things, different possible abstractions.  This leads to inconsistency, which makes a codebase hard to deal with, as you must understand more than you need to.
 
 ### Need for Consistency
 
 Sometimes, the lack of consistency is merely annoying. Sometimes, however, it can be disastrous.  We've all heard about the [Mars probe that crashed because half the team was using Metric and the other half Imperial](https://en.wikipedia.org/wiki/Mars_Climate_Orbiter#Cause_of_failure).  Their need for consistency wasn't being met, and all the great abstractions in the world couldn't help.
 
 The way to manage consistency is to establish _conventions_, but they need to be put into code.  The need for consistency is only met when it's difficult (or
-ideally impossible) circumvent conventions and be inconsistent.
+ideally impossible) to circumvent conventions and be inconsistent.
 
 For example, here are two ways to define a function in JavaScript:
 
