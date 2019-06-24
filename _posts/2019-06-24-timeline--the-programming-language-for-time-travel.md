@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Timeline: the programming language for time travel"
-date: 2019-06-24 9:00
+date: 2019-06-24 8:00
 ad:
   title: "Rails is Productive"
   subtitle: "Focus on the problem you are soling"
