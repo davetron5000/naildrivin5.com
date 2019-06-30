@@ -196,9 +196,6 @@ footer.footnotes {
 .blog-post .blog-content > p:last-of-type:after, .complete-article > p:last-of-type:after {
   content: " ❺"; }
 
-.blog-post .blog-content > p:first-child {
-  font-size: 24.722px; }
-
 .mailing-list {
   text-align: center;
   width: 80%;
