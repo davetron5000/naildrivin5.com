@@ -5,7 +5,7 @@ date: 2019-06-29 9:00
 ---
 
 In the imagined [Timeline Programming Language][timeline], there are some unusual restrictions on the type of code
-you can write that I thought might be worth seeing if they can help us with real code.  I find that when you apply
+you can write.  I thought might be worth seeing if they can help us with real code.  I find that when you apply
 constraints to your work, you often get forced into novel solutions, and occasionally even superior ones.  So
 let's take Timeline's restrictions on expressions.  In Timeline, you cannot have a compound or nested expression,
 and the *only* thing you can do with an expression is assign it to a variable. You cannot use them in control
