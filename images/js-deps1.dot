@@ -1,0 +1,13 @@
+digraph jsdeps{
+
+  nodesep=0.5
+  rankdir="LR"
+
+  node[fontname="Futura" fontsize="16" margin="0.4,0.3" shape="tab"]
+  edge[fontname="Futura" fontsize="16"]
+
+  stringCompare [ label="string-compare" ]
+
+  auth -> stringCompare
+  quicksort -> stringCompare
+}

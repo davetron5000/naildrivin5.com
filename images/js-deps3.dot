@@ -1,0 +1,42 @@
+digraph jsdeps{
+
+  nodesep=0.5
+  rankdir="LR"
+
+  node[fontname="Futura" fontsize="16" margin="0.4,0.3" shape="tab"]
+  edge[fontname="Futura" fontsize="16"]
+
+
+  subgraph cluster_prod {
+    label="Production Artifact"
+    prod[color="white" fontcolor="white"]
+    nodeModulesProd[label="node_modules"]
+    nodeModulesProd -> dependenciesProd
+    nodeModulesProd -> devDependenciesProd
+    dependenciesProd[label="dependencies"]
+    devDependenciesProd[label="devDependencies" style="dotted" color="grey" ]
+  }
+  note -> devDependenciesProd[style="dashed"]
+  note[shape="note" style=filled color=black fillcolor=black fontcolor=white label="Inadvertently deployed to prod" fontname="Baskerville" fontsize="14"]
+
+  subgraph cluster_test {
+    label="Artifact used for Testing & CI"
+    test[color="white" fontcolor="white"]
+    nodeModulesTest[label="node_modules" ]
+    nodeModulesTest -> dependenciesTest
+    nodeModulesTest -> devDependenciesTest
+    dependenciesTest[label="dependencies"]
+    devDependenciesTest[label="devDependencies"]
+  }
+
+  test -> prod [ label="Ideally the exact same artifact" style="dotted" dir="both" ]
+  subgraph cluster_dev {
+    label="Dev Artifact"
+    dev[color="white" fontcolor="white"]
+    nodeModulesDev[label="node_modules"]
+    nodeModulesDev -> dependenciesDev
+    nodeModulesDev -> devDependenciesDev
+    dependenciesDev[label="dependencies"]
+    devDependenciesDev[label="devDependencies"]
+  }
+}
