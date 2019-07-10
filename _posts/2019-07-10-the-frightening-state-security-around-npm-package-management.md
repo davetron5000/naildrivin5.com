@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "The Frightening State Security Around NPM Package Management"
+title: "The Frightening State of Security Around NPM Package Management"
 date: 2019-07-10 9:00
 ad:
   title: "Focus on Results"
