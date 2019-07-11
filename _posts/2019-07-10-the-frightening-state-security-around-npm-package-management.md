@@ -10,8 +10,8 @@ ad:
   cta: "Buy Now $25"
 ---
 
-I take GitHub's new security vulnerability notifications serious, and try to patch my apps whenever something
-comes up.  I recently had trouble doing so for a JavaScript dependencies, and uncovered just how utterly complex
+I take GitHub's new security vulnerability notifications seriously, and try to patch my apps whenever something
+comes up.  I recently had trouble doing so for a JavaScript dependency, and uncovered just how utterly complex
 management of NPM modules is, and how difficult it must be to manage vulnerable packages.  And I'm left wanting.
 I'm also left more concerned than ever that the excessive use of the NPM ecosystem is risky and dangerous.
 
