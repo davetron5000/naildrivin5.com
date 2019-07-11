@@ -82,4 +82,5 @@ task :deploy => :build do
     end
   end
   sh "aws cloudfront create-invalidation --profile=personal --distribution-id=E19I9AKMQP8NDQ --paths=/index.html"
+  sh "aws cloudfront create-invalidation --profile=personal --distribution-id=E19I9AKMQP8NDQ --paths=/atom.xml"
 end
