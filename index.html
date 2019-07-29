@@ -43,11 +43,11 @@ layout: default
   <footer class="center border-top">
     <nav class="pt2 pb2">
       {% if paginator.next_page %}
-        <a class="fw-bold prev pr2" href="/page{{paginator.next_page}}">&larr; Older</a>
+        <a class="fw-bold prev pr2" href="/page{{paginator.next_page}}/index.html">&larr; Older</a>
       {% endif %}
-      <a class="" href="/blog/archives">All Posts…</a>
+      <a class="" href="/blog/archives/index.html">All Posts…</a>
       {% if paginator.previous_page %}
-        <a class="fw-bold next pl2" href="/page{{paginator.previous_page}}">Newer &rarr;</a>
+        <a class="fw-bold next pl2" href="/page{{paginator.previous_page}}/index.html">Newer &rarr;</a>
       {% endif %}
     </nav>
   </footer>
