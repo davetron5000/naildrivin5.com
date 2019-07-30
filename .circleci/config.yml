@@ -5,12 +5,20 @@ jobs:
       - image: circleci/ruby:2.6
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - gem-cache-v1-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+            - gem-cache-v1-{{ arch }}-{{ .Branch }}
+            - gem-cache-v1
       - run:
-          name: bundle install
+          name: bundle install --path=vendor/bundle
           command: "bundle install"
+      - save_cache:
+          key: gem-cache-v1-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
       - run:
           name: Build the site
           command: "bundle exec rake build"
       - store_artifacts:
           path: "_site"
-          prefix: "site"
