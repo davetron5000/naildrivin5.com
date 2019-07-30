@@ -19,7 +19,7 @@ I'm also left more concerned than ever that the excessive use of the NPM ecosyst
 
 The problem stems from three issues, each compounding the other:
 
-* NPMs management of transitive dependencies that allows many versions of the same module to be active in one app.
+* NPM's management of transitive dependencies that allows many versions of the same module to be active in one app.
 * Core tooling lacking support to identify and remediate the inclusion if insecure modules.
 * Common use of the same `package.json` for client and server side bundles.
 

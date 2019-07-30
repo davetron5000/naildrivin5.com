@@ -15,7 +15,7 @@ which I think could be improved upon (and, which can lead programmers down the w
 
 Kent's rules, from [Extreme Programming Explained][xpbook] are:
 
-* Kent says “Runs all the tests
+* Runs all the tests
 * Has no duplicated logic. Be wary of hidden duplication like parallel class hierarchies
 * States every intention important to the programmer
 * Has the fewest possible classes and methods
