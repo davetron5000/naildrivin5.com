@@ -5,6 +5,15 @@ jobs:
       - image: circleci/ruby:2.6
     steps:
       - checkout
+      - run:
+          name: Install AWS CLI
+          working_directory: /
+          command: |
+            apt-get -y -qq update
+            apt-get -y -qq install python3.4-dev
+            curl -O https://bootstrap.pypa.io/get-pip.py
+            python3.4 get-pip.py --user
+            pip install awscli --upgrade --user
       - restore_cache:
           keys:
             - gem-cache-v1-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
@@ -22,3 +31,5 @@ jobs:
           command: "bundle exec rake build"
       - store_artifacts:
           path: "_site"
+      - deploy:
+          command: "bundle exec rake preview"

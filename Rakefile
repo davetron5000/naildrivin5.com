@@ -75,12 +75,22 @@ task :deploy => :build do
   [
     "--cache-control=\"max-age=3600\"",
   ].each do |args|
-    command = "aws s3 sync #{args} --profile=personal _site/ s3://naildrivin5.com"
+    command = "aws s3 sync #{args} _site/ s3://naildrivin5.com"
     puts command
     sh(command) do |ok,res|
       fail res.inspect unless ok
     end
   end
-  sh "aws cloudfront create-invalidation --profile=personal --distribution-id=E19I9AKMQP8NDQ --paths=/index.html"
-  sh "aws cloudfront create-invalidation --profile=personal --distribution-id=E19I9AKMQP8NDQ --paths=/atom.xml"
+  sh "aws cloudfront create-invalidation --distribution-id=E19I9AKMQP8NDQ --paths=/index.html"
+  sh "aws cloudfront create-invalidation --distribution-id=E19I9AKMQP8NDQ --paths=/atom.xml"
+end
+
+desc "Preview on S3"
+task :preview => :build do
+  fail "Must be run from root" unless Dir.exist?("_site")
+  command = "aws s3 sync _site/ s3://naildrivin5.com-preview"
+  puts command
+  sh(command) do |ok,res|
+    fail res.inspect unless ok
+  end
 end
