@@ -6,14 +6,21 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install AWS CLI
+          name: "Update apt-get"
           working_directory: /
-          command: |
-            apt-get -y -qq update
-            apt-get -y -qq install python3.4-dev
-            curl -O https://bootstrap.pypa.io/get-pip.py
-            python3.4 get-pip.py --user
-            pip install awscli --upgrade --user
+          command: "sudo apt-get -y -qq update"
+      - run:
+          name: "Install pythong"
+          working_directory: /
+          command: "sudo apt-get -y -qq install python3.4-dev"
+      - run:
+          name: "Install PIP"
+          working_directory: /
+          command: "sudo curl -O https://bootstrap.pypa.io/get-pip.py && sudo python3.4 get-pip.py --user"
+      - run:
+          name: "Install awscli"
+          working_directory: /
+          command: "sudo pip install awscli --upgrade --user"
       - restore_cache:
           keys:
             - gem-cache-v1-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
