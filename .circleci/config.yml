@@ -1,26 +1,12 @@
 version: 2.1
+orbs:
+  aws-cli: circleci/aws-cli@0.1.13
 jobs:
   build:
     docker:
       - image: circleci/ruby:2.6
     steps:
       - checkout
-      - run:
-          name: "Update apt-get"
-          working_directory: /
-          command: "sudo apt-get -y -qq update"
-      - run:
-          name: "Install pythong"
-          working_directory: /
-          command: "sudo apt-get -y -qq install python3.4-dev"
-      - run:
-          name: "Install PIP"
-          working_directory: /
-          command: "sudo curl -O https://bootstrap.pypa.io/get-pip.py && sudo python3.4 get-pip.py --user"
-      - run:
-          name: "Install awscli"
-          working_directory: /
-          command: "sudo pip install awscli --upgrade --user"
       - restore_cache:
           keys:
             - gem-cache-v1-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
