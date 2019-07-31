@@ -99,6 +99,7 @@ task :deploy => :build do
   end
   sh "aws cloudfront create-invalidation --distribution-id=E19I9AKMQP8NDQ --paths=/index.html"
   sh "aws cloudfront create-invalidation --distribution-id=E19I9AKMQP8NDQ --paths=/atom.xml"
+  echo "Site is up on http://naildrivin5.com"
 end
 
 desc "Preview on S3"
@@ -109,4 +110,5 @@ task :preview => :build do
   sh(command) do |ok,res|
     fail res.inspect unless ok
   end
+  echo "Site is up on http://naildrivin5.com-preview.s3.amazonaws.com/index.html"
 end
