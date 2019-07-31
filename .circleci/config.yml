@@ -1,0 +1,29 @@
+version: 2.1
+orbs:
+  aws-cli: circleci/aws-cli@0.1.13
+jobs:
+  build:
+    docker:
+      - image: circleci/ruby:2.6
+    steps:
+      - aws-cli/install
+      - checkout
+      - restore_cache:
+          keys:
+            - gem-cache-v1-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+            - gem-cache-v1-{{ arch }}-{{ .Branch }}
+            - gem-cache-v1
+      - run:
+          name: "bundle install"
+          command: "bundle check --path=vendor/bundle || bundle install --path=vendor/bundle"
+      - save_cache:
+          key: gem-cache-v1-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+      - run:
+          name: Build the site
+          command: "bundle exec rake build"
+      - deploy:
+          command: "bundle exec rake ci:deploy"
+      - run:
+          command: "echo 'http://naildrivin5.com-preview.s3.amazonaws.com/index.html'"
