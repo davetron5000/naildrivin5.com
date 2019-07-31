@@ -69,6 +69,22 @@ task serve: :build do
   sh "bundle exec jekyll serve --future --watch"
 end
 
+
+deploy_task = if ENV["CIRCLE_BRANCH"] == "master"
+                :deploy
+              elsif ENV["CIRCLE_BRANCH"].to_s.strip != ""
+                :preview
+              else
+                :not_on_ci
+              end
+
+desc "Deploy to prod or preview from CI"
+task "ci:deploy" => deploy_task
+
+task :not_on_ci do
+  fail "You are not on CI so cannot deploy"
+end
+
 desc "Deploy to AWS"
 task :deploy => :build do
   fail "Must be run from root" unless Dir.exist?("_site")

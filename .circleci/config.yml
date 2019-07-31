@@ -24,7 +24,6 @@ jobs:
           name: Build the site
           command: "bundle exec rake build"
       - deploy:
-          command: "bundle exec rake preview"
+          command: "bundle exec rake ci:deploy"
       - run:
-          name: "Print Preview URL"
           command: "echo 'http://naildrivin5.com-preview.s3.amazonaws.com/index.html'"
