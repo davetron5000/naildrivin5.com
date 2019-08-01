@@ -85,7 +85,7 @@ Given this, we have several violations, namely the two `unless` constructs (but 
 ```ruby
 def show
   user_id = params[:id]
-  @user = User.find(user_id)
+  @user   = User.find(user_id)
 
   current_user_is_not_admin = current_user.admin? == false
   if current_user_is_not_admin
@@ -103,7 +103,7 @@ expression:
 ```ruby
 def show
   user_id = params[:id]
-  @user = User.find(user_id)
+  @user   = User.find(user_id)
 
   current_user_is_not_admin = current_user.admin? == false
   user_resource_is_not_current_user = @user != current_user
@@ -128,7 +128,7 @@ Let's remove them and rewrite the logic to be more positively focused:
 ```ruby
 def show
   user_id = params[:id]
-  @user = User.find(user_id)
+  @user   = User.find(user_id)
 
   current_user_is_admin         = current_user.admin? == true
   user_resource_is_current_user = @user == current_user

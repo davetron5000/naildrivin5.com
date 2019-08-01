@@ -99,7 +99,7 @@ There are three main techniques to accomplish this:
 * Documentation
 * Tooling
 
-Each begets the next, and each has a tradeoff, summarized in the table below:
+Each begets the next, and each has a trade off, summarized in the table below:
 
 <table class="border-rows">
   <thead>
