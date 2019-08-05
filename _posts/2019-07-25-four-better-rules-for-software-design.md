@@ -9,9 +9,9 @@ ad:
   image: "/images/sweng-cover.png"
   cta: "Buy Now $25"
 related_posts:
-  - link: /2019/07/25/simple-expressions-only.html
+  - link: /blog/2019/07/25/simple-expressions-only.html
     title: Coding without (many) Expressions
-  - link: /2018/05/06/creating-a-culture-of-consistency.html
+  - link: /blog/2018/05/06/creating-a-culture-of-consistency.html
     title: Creating a Culture of Consistency
 ---
 

@@ -3,9 +3,9 @@ layout: post
 title: "Coding without (many) Expressions"
 date: 2019-06-29 9:00
 related_posts:
-  - link: /2018/05/06/creating-a-culture-of-consistency.html
+  - link: /blog/2018/05/06/creating-a-culture-of-consistency.html
     title: Creating a Culture of Consistency
-  - link: /2019/07/25/four-better-rules-for-software-design.html
+  - link: /blog/2019/07/25/four-better-rules-for-software-design.html
     title: "Four Better Rules for Software Design"
 ---
 

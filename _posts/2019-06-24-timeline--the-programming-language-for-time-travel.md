@@ -9,11 +9,11 @@ ad:
   image: "/images/rails6.jpg"
   cta: "In Beta for $29.95"
 related_posts:
-  - link: /2018/05/06/creating-a-culture-of-consistency.html
+  - link: /blog/2018/05/06/creating-a-culture-of-consistency.html
     title: Creating a Culture of Consistency
-  - link: /2019/07/25/simple-expressions-only.html
+  - link: /blog/2019/07/25/simple-expressions-only.html
     title: Coding without (many) Expressions
-  - link: /2019/07/25/four-better-rules-for-software-design.html
+  - link: /blog/2019/07/25/four-better-rules-for-software-design.html
     title: "Four Better Rules for Software Design"
 ---
 
