@@ -15,6 +15,16 @@ single: true
   <section class="blog-content">
     {{ content }}
   </section>
+  {% if page.related_posts.size > 0 %}
+  <footer>
+    <h1 class="f4 center">You Might Also Like</h1>
+    <ul>
+      {% for post in page.related_posts %}
+      <li><a href="{{ post.link }}">{{ post.title }}</a></li>
+      {% endfor %}
+    </ul>
+  </footer>
+  {% endif %}
 </article>
 {% include mailing_list.html %}
 </div>

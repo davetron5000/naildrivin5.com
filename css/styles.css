@@ -313,6 +313,19 @@ tfoot p {
     text-transform: uppercase;
     content: "Table "; }
 
+.blog-post footer {
+  margin-top: 25.2px;
+  margin-bottom: 25.2px; }
+  .blog-post footer ul {
+    margin: 0;
+    padding-left: 12.6px;
+    padding-right: 12.6px;
+    list-style: none; }
+    .blog-post footer ul li {
+      line-height: 1.2;
+      margin-top: 12.6px;
+      text-align: center; }
+
 .pb1 {
   padding-bottom: 50.4px; }
 

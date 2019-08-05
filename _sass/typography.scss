@@ -364,3 +364,19 @@ tfoot p {
     content: "Table ";
   }
 }
+
+.blog-post footer {
+  margin-top: $sz2;
+  margin-bottom: $sz2;
+  ul {
+    margin: 0;
+    padding-left: $sz3;
+    padding-right: $sz3;
+    list-style: none;
+    li {
+      line-height: 1.2;
+      margin-top: $sz3;
+      text-align: center;
+    }
+  }
+}
