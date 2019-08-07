@@ -305,6 +305,21 @@ aside.ad {
       float: right;
       margin-right: 0; } }
 
+.pullquote-left {
+  display: none; }
+  @media (min-width: 40em) {
+    .pullquote-left {
+      display: block;
+      margin: 6.3px;
+      margin-top: 0;
+      font-weight: bold;
+      width: 50%;
+      max-width: 50%;
+      font-size: 29.124px;
+      text-align: left;
+      float: left;
+      margin-left: 0; } }
+
 tfoot p {
   font-size: 15.279px;
   font-style: italic; }

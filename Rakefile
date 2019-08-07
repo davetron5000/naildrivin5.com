@@ -60,13 +60,23 @@ end
 
 desc "Build the site into _site"
 task :build do
-  sh "bundle exec jekyll build"
+  drafts = if ENV["DRAFTS"] == "true"
+             "--drafts"
+           else
+             ""
+           end
+  sh "bundle exec jekyll build #{drafts}"
   sh "bundle exec sass _sass/styles.scss:css/styles.css"
 end
 
 desc "Serve up the site locally"
 task serve: :build do
-  sh "bundle exec jekyll serve --future --watch"
+  drafts = if ENV["DRAFTS"] == "true"
+             "--drafts"
+           else
+             ""
+           end
+  sh "bundle exec jekyll serve --future --watch #{drafts} --livereload"
 end
 
 

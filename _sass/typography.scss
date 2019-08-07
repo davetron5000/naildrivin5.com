@@ -355,6 +355,22 @@ aside.ad {
   }
 }
 
+.pullquote-left {
+  display: none;
+  @media (min-width: 40em) {
+    display: block;
+    margin: $sz4;
+    margin-top: 0;
+    font-weight: bold;
+    width: 50%;
+    max-width: 50%;
+    font-size: $f4;
+    text-align: left;
+    float: left;
+    margin-left: 0;
+  }
+}
+
 tfoot p {
   font-size: $f7;
   font-style: italic;

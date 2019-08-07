@@ -13,6 +13,8 @@ related_posts:
     title: Coding without (many) Expressions
   - link: /blog/2018/05/06/creating-a-culture-of-consistency.html
     title: Creating a Culture of Consistency
+  - link: /blog/2019/08/08/choosing-technology.html
+    title: Choosing Technology
 ---
 
 Martin Fowler recently tweeted a link to [his blog post][fowler] about Kent Beck's four rules of simple design,

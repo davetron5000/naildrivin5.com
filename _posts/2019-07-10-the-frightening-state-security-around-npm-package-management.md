@@ -8,6 +8,11 @@ ad:
   link: "http://bit.ly/dcsweng"
   image: "/images/sweng-cover.png"
   cta: "Buy Now $25"
+related_posts:
+  - link: /blog/2018/05/06/creating-a-culture-of-consistency.html
+    title: Creating a Culture of Consistency
+  - link: /blog/2019/08/08/choosing-technology.html
+    title: Choosing Technology
 ---
 
 I take GitHub's new security vulnerability notifications seriously, and try to patch my apps whenever something
