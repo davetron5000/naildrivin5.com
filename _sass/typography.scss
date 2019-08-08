@@ -214,6 +214,19 @@ footer.footnotes {
     }
   }
 }
+
+footer.related-posts {
+  h1 {
+    font-size: $f4;
+    text-align: center;
+  }
+  .post-date {
+    display: block;
+    color: $ink-light;
+    text-transform: uppercase;
+    font-size: $f7;
+  }
+}
 .text-l { text-align: left; }
 .text-c { text-align: center; }
 .text-r { text-align: right; }

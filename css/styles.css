@@ -184,6 +184,15 @@ footer.footnotes {
       font-style: normal;
       padding-right: 6.3px; }
 
+footer.related-posts h1 {
+  font-size: 29.124px;
+  text-align: center; }
+footer.related-posts .post-date {
+  display: block;
+  color: #665666;
+  text-transform: uppercase;
+  font-size: 15.279px; }
+
 .text-l {
   text-align: left; }
 

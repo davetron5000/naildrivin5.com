@@ -8,11 +8,9 @@ ad:
   link: "http://bit.ly/dcrails6"
   image: "/images/rails6.jpg"
   cta: "Buy Now $29.95"
-related_posts:
-  - link: /blog/2018/05/06/creating-a-culture-of-consistency.html
-    title: Creating a Culture of Consistency
-  - link: /blog/2019/07/10/the-frightening-state-security-around-npm-package-management.html
-    title: "The Frightening State of Security Around NPM Package Management"
+related:
+  - "Creating a Culture of Consistency"
+  - "The Frightening State of Security Around NPM Package Management"
 ---
 
 Choosing technology has a huge impact on a  team's performance, and when you are starting out, you have a lot of

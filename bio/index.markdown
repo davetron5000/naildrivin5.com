@@ -28,6 +28,7 @@ make technology work.  I fight for the users.  Also a huge fan of Peter Hook and
 
 ## My Writing
 
+* [Four Better Rules for Software Design][four_rules] - Four rules I think make good code.
 * [Webpack from Nothing][webpack] - WTF even is a webpack and how does it all work?
 * [Guidelines for Brutalist Web Design][brutalist] - Web design doesn't have to be boring to be usable.
 * [Why I'd Never Work for Google, Twitter, or Facebook][nogoogle] - most popular of my blog posts on Hacker News.
@@ -51,6 +52,7 @@ make technology work.  I fight for the users.  Also a huge fan of Peter Hook and
 [fullstackbook]: https://pragprog.com/titles/dcbang2
 [webpack]: https://what-problem-does-it-solve.com/webpack/index.html
 [brutalist]: https://brutalist-web.design
+[four_rules]: /blog/2019/07/25/four-better-rules-for-software-design.html
 
 ## My Open Source Software
 
@@ -71,3 +73,4 @@ make technology work.  I fight for the users.  Also a huge fan of Peter Hook and
 * [Remix](http://www.reverbnation.com/davetron5000) of a friend's rap homage to pro-wrestler Kurt Angle.
 * [Pardon the Solar Interruption](http://www.cdbaby.com/cd/secretpopband) - An awesome power-pop record by The Secret Pop Band that I mixed and recorded.
 
+[About this Site](/colophon.html)
