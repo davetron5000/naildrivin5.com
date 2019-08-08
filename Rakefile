@@ -107,8 +107,14 @@ task :deploy => :build do
       fail res.inspect unless ok
     end
   end
-  sh "aws cloudfront create-invalidation --distribution-id=E19I9AKMQP8NDQ --paths=/index.html"
-  sh "aws cloudfront create-invalidation --distribution-id=E19I9AKMQP8NDQ --paths=/atom.xml"
+  [
+    "index.html",
+    "atom.xml",
+    "blog/2019/07/10/the-frightening-state-security-around-npm-package-management.html",
+    "blog/2019/07/25/four-better-rules-for-software-design.html",
+  ].each do |file_to_invalidate|
+    sh "aws cloudfront create-invalidation --distribution-id=E19I9AKMQP8NDQ --paths=/#{file_to_invalidate}"
+  end
   puts "Site is up on http://naildrivin5.com"
 end
 
