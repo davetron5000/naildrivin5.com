@@ -26,7 +26,7 @@ one.
 
 Teams don't decide to adopt a framework or install a bunch of libraries - teams always build their own framework
 out of the tools, technologies, libraries, practices, and conventions they need to do their work and deliver
-value.  Technology choices are always about building or enhancing this custom framework.  Event something as
+value.  Technology choices are always about building or enhancing this custom framework.  Even something as
 comprehensive as Ruby on Rails doesn't included everything a team could possibly need.
 
 So, before you start asking "what is the best programming language?" or "what testing tool do we need?", you need to have answers to these questions first:
