@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Choosing Technology"
-date: 2019-08-08 9:00
+date: 2019-08-08 8:30
 ad:
   title: "Low Opportunity Cost"
   subtitle: "Ruby on Rails Has You Covered"
