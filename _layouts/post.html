@@ -35,12 +35,14 @@ single: true
     <h1>Latest Posts</h1>
     <ul>
       {% for latest_post in site.posts limit:3 %}
-      <li>
-        <a href="{{ latest_post.url }}">{{ latest_post.title }}</a>
-        <span class="post-date">
-          {{ latest_post.date | date: "%B %d, %Y" }}
-        </span>
-      </li>
+        {% if latest_post.url != page.url %}
+          <li>
+            <a href="{{ latest_post.url }}">{{ latest_post.title }}</a>
+            <span class="post-date">
+              {{ latest_post.date | date: "%B %d, %Y" }}
+            </span>
+          </li>
+        {% endif %}
       {% endfor %}
     </ul>
   {% endif %}
