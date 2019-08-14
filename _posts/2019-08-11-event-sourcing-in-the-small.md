@@ -24,6 +24,8 @@ introduces some friction, as well as complication for building a UI.
 
 Let's see how.
 
+<!-- more -->
+
 ## What is “Event-Sourcing”?
 
 [Martin Fowler](https://martinfowler.com/eaaDev/EventSourcing.html) has a good overview of the concept, but for
