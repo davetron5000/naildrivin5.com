@@ -350,6 +350,12 @@ tfoot p {
       margin-top: 12.6px;
       text-align: center; }
 
+figure {
+  text-align: center; }
+  figure figcaption {
+    font-size: 15.279px;
+    font-style: italic; }
+
 .pb1 {
   padding-bottom: 50.4px; }
 

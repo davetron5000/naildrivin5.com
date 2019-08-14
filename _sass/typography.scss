@@ -409,3 +409,11 @@ tfoot p {
     }
   }
 }
+
+figure {
+  text-align: center;
+  figcaption {
+    font-size: $f7;
+    font-style: italic;
+  }
+}

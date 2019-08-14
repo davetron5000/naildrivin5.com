@@ -1,0 +1,36 @@
+digraph eventsourced {
+
+  nodesep=0.5
+  rankdir="TB"
+
+  node[fontname="Futura" fontsize="18" margin="0.4,0.3" shape="tab"]
+  edge[fontname="Baskerville" fontsize="15"]
+
+  Events                      [ shape=rarrow]
+  EventDispatcher             [ shape=box label="Background Job"]
+  NewContactForm              [ shape=signature label="/contacts/new" fontname="courier"]
+  ViewContactUI               [ shape=signature label="/contacts/1234" fontname="courier" ]
+
+  ContactController           [ shape=component fontname="courier"]
+
+  ContactProjector            [ shape=component label="Contact Projector\n«event handler»"]
+  MeetingNotesEmailProjector  [ shape=component label="Meeting Notes Email Projector\n«event handler»" ]
+
+  ProjectedContact            [ shape=tab label="Projected Contact\n«projection»"]
+  ProjectedMeetingNotesEmails [ shape=tab label="Projected Meeting Notes Emails\n«projection»"]
+
+  NewContactForm             -> ContactController[label="submit to back-end"]
+  ContactController          -> Events[label="fires contact-created event"]
+  EventDispatcher            -> Events[label="queries unprocessed events"]
+  EventDispatcher            -> ContactProjector[label="fire event"]
+  EventDispatcher            -> MeetingNotesEmailProjector[label="fire event"]
+  ContactProjector           -> ProjectedContact[label="update"]
+  MeetingNotesEmailProjector -> ProjectedMeetingNotesEmails[label="update"]
+  ViewContactUI              -> ProjectedContact[label="renders"]
+
+  { rank = same; NewContactForm; ContactController; ViewContactUI }
+  { rank = same; Events; EventDispatcher }
+  { rank = same; ProjectedMeetingNotesEmails; ProjectedContact }
+
+
+}

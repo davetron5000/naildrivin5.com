@@ -65,7 +65,12 @@ task :build do
            else
              ""
            end
-  sh "bundle exec jekyll build #{drafts}"
+  future = if ENV["CI"] && ENV["CIRCLE_BRANCH"] != "master"
+             "--future"
+           else
+             ""
+           end
+  sh "bundle exec jekyll build --future #{drafts}"
   sh "bundle exec sass _sass/styles.scss:css/styles.css"
 end
 
