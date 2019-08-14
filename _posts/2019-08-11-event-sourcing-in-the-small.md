@@ -224,16 +224,17 @@ So, this is generally how the application works.  Below is an overview of the en
 
 So what did I learn from all this?
 
-## Learnings
 <a name="learnings"></a>
+## Learnings
 
 My key takeaways were:
 
-* More up-front data modeling is required, both for message schemas and the overall system domain model.
-* There is less up-front design when adding a feature, because the projection concept separates concerns.
-* There are a lot of moving parts.
-* Keeping UIs up-to-date is a pain.
+* <a href="#up-front-data-modeling">More up-front data modeling is required</a>, both for message schemas and the overall system domain model.
+* <a href="#simpler-feature-design">There is less up-front design when adding a feature</a>, because the projection concept separates concerns.
+* <a href="#lots-of-moving-parts">There are a lot of moving parts</a>.
+* <a href="#ui-pain">Keeping UIs up-to-date is a pain</a>.
 
+<a name="up-front-data-modeling"></a>
 ### More Up-Front Data Modeling
 
 There are two bits of up-front design that I felt were critical to working effectively in this system.  The first and most obvious was the schema for the message payloads.  I've worked in a distributed system that heavily used
@@ -283,6 +284,7 @@ and make tons of changes, it feels like more of a hassle than a benefit.
 
 That said, I think this does reduce the burden around adding new features.
 
+<a name="simpler-feature-design"></a>
 ### Adding Features Requires a Bit Less Data Modeling
 
 If you have a solid data model, and clear schemas for your events, adding a new feature is a bit simpler, because
@@ -313,6 +315,7 @@ medium or larger scale, it seems critical.
 
 Of course, this comes at a cost as you can tell, which is a lot more moving parts.
 
+<a name="lots-of-moving-parts"></a>
 ### Lots of Moving Parts
 
 In a classic CRUD-style application, you have your normalized data model, which you hydrate into model objects, and
@@ -338,6 +341,7 @@ separation.
 
 But none of this was as painful as keeping the UI updated.
 
+<a name="ui-pain"></a>
 ### Updating the UI is Painful
 
 This is a classic case of “stupid computer”.  *Of course* when I edit a contact, my edits should show up when I
