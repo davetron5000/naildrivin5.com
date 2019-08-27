@@ -24,7 +24,7 @@ make technology work.  I fight for the users.  Also a huge fan of Peter Hook and
 </ul>
 </nav>
 
-[stitchfix]: http://www.stitchfix.com
+[stitchfix]: https://www.stitchfix.com
 
 ## My Writing
 
@@ -45,7 +45,7 @@ make technology work.  I fight for the users.  Also a huge fan of Peter Hook and
 
 [railsbook]: https://pragprog.com/book/rails6
 [clibook]: http://pragprog.com/book/dccar2
-[nogoogle]: http://naildrivin5.com/blog/2011/08/01/why-i-wont-work-for-google-twitter-facebook.html
+[nogoogle]: https://naildrivin5.com/blog/2011/08/01/why-i-wont-work-for-google-twitter-facebook.html
 [typography]: /blog/2013/05/17/source-code-typography.html
 [pragpub]: http://pragprog.com/magazines/2012-05/what-makes-an-awesome-commandline-application
 [sweng]: http://www.theseniorsoftwareengineer.com
@@ -65,7 +65,7 @@ make technology work.  I fight for the users.  Also a huge fan of Peter Hook and
 [gli]: https://github.com/davetron5000/gli
 [trickster]: https://github.com/davetron5000/trickster
 [ruby-style]: https://github.com/davetron5000/ruby-style
-[adventure]: http://naildrivin5.com/adventure/
+[adventure]: https://naildrivin5.com/adventure/
 
 ## My Music
 
