@@ -27,7 +27,7 @@ like and am best at.
 
 So, rather than get sullen, angry and jaded while making a half-assed attempt to find another job, I decided to
 take some time off to recharge and figure out what's next (and I realize this is not something most are able to do
-and am thankful for the stars aligned so I have the privilege to do so).
+and am thankful for the stars having aligned so I have the privilege to do so).
 
 In my mind, this is the right way to leave a job - on my terms, without burning bridges, and leaving the company
 better off than I found it.  My role will get filled by other, more interested people. They can amplify my good
