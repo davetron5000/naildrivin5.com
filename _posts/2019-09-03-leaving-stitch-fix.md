@@ -10,7 +10,7 @@ It's been an amazing six years, so this post is a hopefully short one about why,
 
 ## Why leave?
 
-I joined Stitch Fix [in Feb 2013](https://naildrivin5.com/blog/2013/02/19/stitch-fix-slash.html) as the third engineer.  In that team, the team grew to over 200 people, the company grew to become a public, profitable, intentional business, and I learned a *ton* about a lot of things. I certainly got more than six years' experience out my time there.
+I joined Stitch Fix [in Feb 2013](https://naildrivin5.com/blog/2013/02/19/stitch-fix-slash.html) as the third engineer.  In that time, the team grew to over 200 people, the company grew to become a public, profitable, intentional business, and I learned a *ton* about a lot of things. I certainly got more than six years' experience out my time there.
 
 I also was fortunate enough to grow with the company. I started as a lead engineer, writing code. I eventually
 became a manager of a team, then a director managing multiple teams, before settling into a chief architect and
