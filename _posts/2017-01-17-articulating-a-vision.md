@@ -32,7 +32,7 @@ are being asked to do and why it's important.
 
 Articulating a vision is crucial for product development, and vital for managing healthy teams.
 
-Handing down directives makes the job of a manager more difficult. Without context, teams can't make many decisions on their own, and require micromanagement, lest the deliver on the wrong thing.  This lack of
+Handing down directives makes the job of a manager more difficult. Without context, teams can't make many decisions on their own, and require micromanagement, lest they deliver on the wrong thing.  This lack of
 vision also sends the message that the manager either has no vision (making them a poor leader) or doesn't trust the team to execute.  Who wants to be on *that* team?
 
 Even if you aren't a manager, being able to articulate a vision is still a useful skill, as it allows you to clearly express ideas to others.  For example, if you're a junior developer faced with a bugfix that's more complex than you initially thought, _articulating a vision_ of how to fix that bug—as opposed to just writing some code—means you can give context and clarity about what you want to do.  Instead of struggling to communicate your intent and context, you'll become quickly aligned and can discuss the fitness of your proposal more directly.
