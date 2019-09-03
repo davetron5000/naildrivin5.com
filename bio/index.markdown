@@ -4,11 +4,9 @@ title: About me
 ---
 
 <img class="fl pr2 pb3" src="/images/DavidCopeland.png" height="150">
-I'm the Chief Software Architect and Director of Engineering at Stitch Fix.  I helped grow the engineering team and technology from 3 to 200+, establishing technology and process to help the company grow for years.  I'm also an author of several programming books such as [“Agile Web Development with Rails 6”][railsbook], [“The Senior Software Engineer”][sweng], and [“Build Awesome Command-Line Applications in Ruby 2”][clibook].  I've spoken at regional and national programming conferences and have over 20 years of experience in the industry. Previously at LivingSocial and OPower.
+I've most recently been the Chief Software Architect and Director of Engineering at Stitch Fix.  I helped grow the engineering team and technology from 3 to 200+, establishing technology and process to help the company grow for years.  I'm also an author of several programming books such as [“Agile Web Development with Rails 6”][railsbook], [“The Senior Software Engineer”][sweng], and [“Build Awesome Command-Line Applications in Ruby 2”][clibook].  I've spoken at regional and national programming conferences and have over 20 years of experience in the industry. Previously at LivingSocial and OPower.
 
-I value delivering results and business value, and see technology as a powerful tool in service to those goals.  I've delivered
-results to users using Ruby, C, Java, SQL, Messaging, and Microservices, and look forward to using whatever is within my means to
-make technology work.  I fight for the users.  Also a huge fan of Peter Hook and the Oxford comma.
+I value delivering results and business value, and see technology as a powerful tool in service to those goals.  I've delivered results to users using Ruby, C, Java, SQL, Messaging, and Microservices, and look forward to using whatever is within my means to make technology work.  I fight for the users.  Also a huge fan of Peter Hook and the Oxford comma.
 
 <nav>
 <ul class="list-inline ml0 pl0">
