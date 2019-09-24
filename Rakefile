@@ -58,30 +58,36 @@ task :new_post, [:title,:date,:link] do |t,args|
   puts post_filename
 end
 
+def build(future: false, drafts: false)
+  flags = []
+  flags << "--future"     if future
+  flags << "--drafts"     if drafts
+
+  sh "bundle exec jekyll build #{flags.join(' ')}"
+  sh "bundle exec sass _sass/styles.scss:css/styles.css"
+end
+
 desc "Build the site into _site"
 task :build do
-  drafts = if ENV["DRAFTS"] == "true"
-             "--drafts"
-           else
-             ""
-           end
-  future = if ENV["CI"] && ENV["CIRCLE_BRANCH"] != "master"
-             "--future"
-           else
-             ""
-           end
-  sh "bundle exec jekyll build --future #{drafts}"
-  sh "bundle exec sass _sass/styles.scss:css/styles.css"
+  build(future: ENV["CI"] && ENV["CIRCLE_BRANCH"] != "master")
+end
+
+def serve(drafts: false, watch: false)
+  flags = []
+  flags << "--drafts"     if drafts
+  flags << "--watch"      if watch
+  flags << "--livereload" if watch
+  sh "bundle exec jekyll serve --future #{flags.join(' ')}"
 end
 
 desc "Serve up the site locally"
 task serve: :build do
-  drafts = if ENV["DRAFTS"] == "true"
-             "--drafts"
-           else
-             ""
-           end
-  sh "bundle exec jekyll serve --future --watch #{drafts} --livereload"
+  serve(drafts: false, watch: true)
+end
+
+desc "Serve up the site locally"
+task "serve:drafts" => :build do
+  serve(drafts: true, watch: true)
 end
 
 
