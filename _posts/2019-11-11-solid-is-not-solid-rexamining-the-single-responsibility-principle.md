@@ -130,7 +130,7 @@ as an objective measure that must be adhered to.
 The lack of a strong prescriptive measure means we can stop counting responsibilities and start talking about the code we have
 and the change we want to make to it.  Let's look at two changes to our original controller.  These changes will both violate
 the Single Responsibility Principle, because they add responsibilities to the class.  But only one materially affects the
-classes cohesion.
+class' cohesion.
 
 In our first example, we add a line of code to send an email every time a widget is created.
 
