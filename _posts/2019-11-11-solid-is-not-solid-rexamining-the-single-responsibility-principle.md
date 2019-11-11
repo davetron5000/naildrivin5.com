@@ -13,14 +13,14 @@ related:
   - "What is 'better' code?"
   - "The 'Type Wars' Are Far From Over"
 ---
-Been thinking about the SOLID principals recently, and I'm questioning their usefulness.  They are vague, over-reaching,
+Been thinking about the SOLID principles recently, and I'm questioning their usefulness.  They are vague, over-reaching,
 confusing and, in some cases, totally wrong.  But they come from the right place.  The problem is that they attempt to
 reduce nuanced concepts into pithy statements and lose a ton of the value in translation.  This sends programmers down the wrong path (it certainly did for me).
 
 As a review, the [SOLID](https://en.wikipedia.org/wiki/SOLID) principles are:
 
-* Single responsibility principle
-* Open-closed principle
+* Single Responsibility Principle
+* Open/Closed Principle
 * Liskov Substitution Principle
 * Interface Segregation Principle
 * Dependency Inversion Principle
@@ -73,7 +73,7 @@ This is a very vanilla implementation that saves a new widget to the database if
 sends the user back to the form to fix the validation problems.
 
 
-Setting aside the "bug fix and new feature" reasons to change, this class sure sounds like it has lots reasons to change.  We
+Setting aside the "bug fix and new feature" reasons to change, this class sure sounds like it has lots of reasons to change.  We
 might add more params needed to require a widget.  We might decide we need to route the user somewhere else when a widget gets
 created.  We may decided that we should send an email to an admin every time a Widget is created.  So clearly this code
 violates the Single Responsibility Principle and thus is bad and should be changed. Right?
