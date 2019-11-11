@@ -2,7 +2,6 @@
 layout: post
 title: "Single Responsibility Principle and Rails"
 date: 2012-06-10 14:24
-title: "SOLID Is Not Solid - Examining the Single Responsibility Principle"
 related:
   - "SOLID Is Not Solid - Examining the Single Responsibility Principle"
   - "Four Better Rules for Software Design"
