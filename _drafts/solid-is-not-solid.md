@@ -14,6 +14,7 @@ that solid; I don't think they represent necessarily good advice and I think fol
 unintended consequences.  Part of the reason is that some of them are stated so unclearly that it becomes hard
 to even know if the principal is being adhered to, but some or just, well, wrong.
 
+
 <!-- more -->
 
 As a review, SOLID principles are:

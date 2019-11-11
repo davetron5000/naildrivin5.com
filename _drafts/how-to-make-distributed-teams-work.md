@@ -14,6 +14,7 @@ successful.  The very short answer is that there must be trust, that trust must 
 to be comprised of people that can work effectively without being co-located. I want to talk some about each of
 these.
 
+
 <!-- more -->
 
 Making a distributed team work is not necessarily easy, but it's not that much different than just having an

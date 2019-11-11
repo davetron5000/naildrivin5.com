@@ -15,6 +15,7 @@ this actually meant and how to do this. I am a pretty laissez-faire manager, and
 at a certain scale, say beyond 50 or so engineers, this wasn't super effective.  I've had time to think about a
 better way.
 
+
 <!-- more -->
 
 First, let's clarify the problem.  You have a team of engineers writing code to produce features to solve
