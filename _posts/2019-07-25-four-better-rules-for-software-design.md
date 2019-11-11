@@ -155,7 +155,7 @@ classes.
 
 ## Conceptual Overhead Creates Confusion and Complexity
 
-To understand what code will actually do, we need to understand not only the domain, but also all of the concepts involved in that code (for example, our standard deviation code, you must understand assignment, addition, multiplication, `for` loops, and array lengths).  It stands to reason that the more concepts exist in a design, the harder that design will be to understand.
+To understand what code will actually do, we need to understand not only the domain, but also all of the concepts involved in that code (for example, our React code above, you must understand React, `if` statements, `return`, why you can put HTML tags in the source, and what the `{ ... }` syntax does, along with where `props` comes from).  It stands to reason that the more concepts exist in a design, the harder that design will be to understand.
 
 I've [written before][inclusive] about [conceptual overhead][timeline], and a nice side effect of reducing the
 number of concepts in a system is that you increase the number of people who can understand the system.  This, then, increases the number of people who can make changes to the system.  Certainly, a software design that can be safely modified by a large group of people is better than one that can only be modified by fewer.<a name="back-1"></a><sup><a href="#1">1</a></sup>.
