@@ -1,98 +1,14 @@
 ---
 layout: post
-title: "SOLID Is Not Solid"
+title: "The Open/Close Principle is Just Wrong"
 date: 2019-10-13 9:00
 ad:
   title: "Focus on Results"
   subtitle: "11 Practices You Can Start Doing Now"
   link: "http://bit.ly/dcsweng"
   image: "/images/sweng-cover.png"
-  cta:"Buy Now $25"
+  cta: "Buy Now $25"
 ---
-Been thinking about the SOLID principals and I don't think they are actually
-that solid; I don't think they represent necessarily good advice and I think following them can have some
-unintended consequences.  Part of the reason is that some of them are stated so unclearly that it becomes hard
-to even know if the principal is being adhered to, but some or just, well, wrong.
-
-
-<!-- more -->
-
-As a review, SOLID principles are:
-
-* *S*ingle responsibility principle
-* *O*pen-closed principle
-* *L*iskov Substitution Principle
-* *I*nterface Segregation Principle
-* *D*ependency Inversion Principle
-
-Let's talk about each one and what the problems are.
-
-## Single Responsibility Principle
-
-Wikipedia states that "A class should only have a single responsibility, that is, only changes to one of the
-software's specifications should be able to affect the specification of the class"
-
-This is full of ambiguous concepts.  What is a "specification"? What if there isn't one? 
-What about stuff in my software that isn't a class?  What is the unit of "thing" that should have only one
-responsibility?
-
-It does feel good to think about a bit of code having only one job, but it's actually quite difficult to agree
-on what a "job" even is.  Consider this Rails controller:
-
-```ruby
-class WidgetsController < ApplicationController
-  def create
-    @widget = Widget.create(widget_params)
-    if @widget.valid?
-      redirect_to :index
-    else
-      render :new
-    end
-  end
-end
-```
-
-This is a very vanilla implementation that saves a new widget to the database if it's valid, and if it's not, it
-sends the user back to the form to fix the validation problems.
-
-Sounds like this class has more than one job, right?  You might think "well, the job of this class is to save
-new widgets", but it definitely does more. It routes the user through the application, too.  So it doesn't seem
-to have a single job, but it also seems like there's nothing wrong with this class.
-
-Suppose now that we need to send an email whenever a widget is created and we choose to add that code to the
-controller:
-
-```ruby
-class WidgetsController < ApplicationController
-  def create
-    @widget = Widget.create(widget_params)
-    if @widget.valid?
-      WidgetMailer.notify_on_new_widget(@widget)
-      redirect_to :index
-    else
-      render :new
-    end
-  end
-end
-```
-
-Even if the previous version had only one responsibility, this new one *definitely* has a new responsibility. Is
-this a problem?  Not obviously, no.
-
-So what do we make of this Single Responsibility Principle?   It seems fairly difficult to apply in a general
-way.  We could say that the above code "violates" this principle, but there's nothing wrong with the above code.
-
-That said, The Single Responsibility Principle *is* trying to address a real problem, namely having classes,
-functions, modules, etc. that do too much.  It's just pretty hard to say what that is in a general way.
-
-And why, exactly, *is it* a bad thing when code does "too much"?  It can make the code hard to read, hard to test, hard to change, etc.  But these concepts are similarly fraught with ambiguity.  What is "hard" in this
-context?  It probably depends on who is trying to read, test, or change the code as much as the code itself.
-
-Ultimately, I think it's better to speak about a specific bit of code and what is problematic about that.  It's
-likely going to produce a better outcome if everyone discusses the code itself and not what the Single
-Responsibility Principle actually means or how to apply it.
-
-Next is the most confusing of the SOLID principles: the Open/Closed Principle.
 
 ## Open/Closed Principle
 
