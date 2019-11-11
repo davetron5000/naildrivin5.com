@@ -58,15 +58,36 @@ task :new_post, [:title,:date,:link] do |t,args|
   puts post_filename
 end
 
+def build(future: false, drafts: false)
+  flags = []
+  flags << "--future"     if future
+  flags << "--drafts"     if drafts
+
+  sh "bundle exec jekyll build #{flags.join(' ')}"
+  sh "bundle exec sass _sass/styles.scss:css/styles.css"
+end
+
 desc "Build the site into _site"
 task :build do
-  sh "bundle exec jekyll build"
-  sh "bundle exec sass _sass/styles.scss:css/styles.css"
+  build(future: ENV["CI"] && ENV["CIRCLE_BRANCH"] != "master")
+end
+
+def serve(drafts: false, watch: false)
+  flags = []
+  flags << "--drafts"     if drafts
+  flags << "--watch"      if watch
+  flags << "--livereload" if watch
+  sh "bundle exec jekyll serve --future #{flags.join(' ')}"
 end
 
 desc "Serve up the site locally"
 task serve: :build do
-  sh "bundle exec jekyll serve --future --watch"
+  serve(drafts: false, watch: true)
+end
+
+desc "Serve up the site locally"
+task "serve:drafts" => :build do
+  serve(drafts: true, watch: true)
 end
 
 
@@ -97,8 +118,13 @@ task :deploy => :build do
       fail res.inspect unless ok
     end
   end
-  sh "aws cloudfront create-invalidation --distribution-id=E19I9AKMQP8NDQ --paths=/index.html"
-  sh "aws cloudfront create-invalidation --distribution-id=E19I9AKMQP8NDQ --paths=/atom.xml"
+  [
+    "index.html",
+    "atom.xml",
+    "css/styles.css",
+  ].each do |file_to_invalidate|
+    sh "aws cloudfront create-invalidation --distribution-id=E19I9AKMQP8NDQ --paths=/#{file_to_invalidate}"
+  end
   puts "Site is up on http://naildrivin5.com"
 end
 

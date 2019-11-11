@@ -8,6 +8,10 @@ ad:
   link: "http://bit.ly/dcsweng"
   image: "/images/sweng-cover.png"
   cta: "Buy Now $25"
+related:
+  - "Coding without (many) Expressions"
+  - "Creating a Culture of Consistency"
+  - "Choosing Technology"
 ---
 
 Martin Fowler recently tweeted a link to [his blog post][fowler] about Kent Beck's four rules of simple design,

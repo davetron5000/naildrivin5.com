@@ -1,0 +1,90 @@
+digraph crmdatamodel {
+
+  nodesep=0.5
+  rankdir="TB"
+
+  node[fontname="Futura" fontsize="18" margin="0.4,0.3" shape="tab"]
+  edge[fontname="Baskerville" fontsize="15"]
+
+  Contact [ shape="Mrecord" label=<
+  <TABLE>
+    <TR><TD COLSPAN="3">Contacts</TD></TR>
+    <TR><TD COLSPAN="3"><FONT POINT-SIZE="12">A person to stay in contact with</FONT></TD></TR>
+    <TR>
+      <TD>name</TD>
+      <TD>text</TD>
+      <TD>«key»</TD>
+    </TR>
+    <TR>
+      <TD>account</TD>
+      <TD>Account</TD>
+      <TD>«key»</TD>
+    </TR>
+    <TR>
+      <TD>description</TD>
+      <TD>text</TD>
+    </TR>
+    <TR>
+      <TD>contact_method</TD>
+      <TD>text</TD>
+    </TR>
+  </TABLE>
+  > ]
+
+  Account [ shape="Mrecord" label=<
+  <TABLE>
+    <TR><TD COLSPAN="3">Accounts</TD></TR>
+    <TR><TD COLSPAN="3"><FONT POINT-SIZE="12">A user of the system</FONT></TD></TR>
+    <TR>
+      <TD>email</TD>
+      <TD>email</TD>
+      <TD>«key»</TD>
+    </TR>
+  </TABLE>
+  > ]
+
+  Interaction [ shape="Mrecord" label=<
+  <TABLE>
+    <TR><TD COLSPAN="3">Contact Interactions</TD></TR>
+    <TR><TD COLSPAN="3"><FONT POINT-SIZE="12">An interaction with a contact</FONT></TD></TR>
+    <TR>
+      <TD>contact</TD>
+      <TD>Contact</TD>
+      <TD>«key»</TD>
+    </TR>
+    <TR>
+      <TD>interacted_on</TD>
+      <TD>Date</TD>
+      <TD>«key»</TD>
+    </TR>
+    <TR>
+      <TD>interaction_notes</TD>
+      <TD>Text</TD>
+    </TR>
+  </TABLE>
+  > ]
+  
+  NextMeetingNotes [ shape="Mrecord" label=<
+  <TABLE>
+    <TR><TD COLSPAN="3">Next Meeting Notes</TD></TR>
+    <TR><TD COLSPAN="3"><FONT POINT-SIZE="12">Notes for the next meeting with a contact</FONT></TD></TR>
+    <TR>
+      <TD>contact</TD>
+      <TD>Contact</TD>
+      <TD>«key»</TD>
+    </TR>
+    <TR>
+      <TD>meeting_on</TD>
+      <TD>Date</TD>
+    </TR>
+    <TR>
+      <TD>meeting_notes</TD>
+      <TD>Text</TD>
+    </TR>
+  </TABLE>
+  > ]
+  
+  Account -> Contact [ label="has many" arrowhead="diamond"]
+  Contact -> Interaction [ label="has many" arrowhead="diamond" ]
+  Contact:contacts -> NextMeetingNotes [ label="has one" arrowhead="diamond" ]
+}

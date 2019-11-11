@@ -214,6 +214,19 @@ footer.footnotes {
     }
   }
 }
+
+footer.related-posts {
+  h1 {
+    font-size: $f4;
+    text-align: center;
+  }
+  .post-date {
+    display: block;
+    color: $ink-light;
+    text-transform: uppercase;
+    font-size: $f7;
+  }
+}
 .text-l { text-align: left; }
 .text-c { text-align: center; }
 .text-r { text-align: right; }
@@ -355,6 +368,22 @@ aside.ad {
   }
 }
 
+.pullquote-left {
+  display: none;
+  @media (min-width: 40em) {
+    display: block;
+    margin: $sz4;
+    margin-top: 0;
+    font-weight: bold;
+    width: 50%;
+    max-width: 50%;
+    font-size: $f4;
+    text-align: left;
+    float: left;
+    margin-left: 0;
+  }
+}
+
 tfoot p {
   font-size: $f7;
   font-style: italic;
@@ -362,5 +391,29 @@ tfoot p {
     font-style: normal;
     text-transform: uppercase;
     content: "Table ";
+  }
+}
+
+.blog-post footer {
+  margin-top: $sz2;
+  margin-bottom: $sz2;
+  ul {
+    margin: 0;
+    padding-left: $sz3;
+    padding-right: $sz3;
+    list-style: none;
+    li {
+      line-height: 1.2;
+      margin-top: $sz3;
+      text-align: center;
+    }
+  }
+}
+
+figure {
+  text-align: center;
+  figcaption {
+    font-size: $f7;
+    font-style: italic;
   }
 }

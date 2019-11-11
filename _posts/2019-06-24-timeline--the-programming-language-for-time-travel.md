@@ -8,6 +8,10 @@ ad:
   link: "http://bit.ly/dcrails6"
   image: "/images/rails6.jpg"
   cta: "In Beta for $29.95"
+related:
+  - "Coding without (many) Expressions"
+  - "Four Better Rules for Software Design"
+  - "Creating a Culture of Consistency"
 ---
 
 I gave a talk at Pittsburgh Tech Fest that I'd been wanting to do for a while, which is a talk about how to program a time machine and what the programming

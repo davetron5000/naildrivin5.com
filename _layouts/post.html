@@ -15,6 +15,38 @@ single: true
   <section class="blog-content">
     {{ content }}
   </section>
+  <footer class="related-posts">
+  {% if page.related.size > 0 %}
+    <h1>You Might Also Like</h1>
+    <ul>
+      {% for title in page.related %}
+      {% assign posts = site.posts | where: "title", title %}
+      {% for related_post in posts %}
+      <li>
+        <a href="{{ related_post.url }}">{{ related_post.title }}</a>
+        <span class="post-date">
+          {{ related_post.date | date: "%B %d, %Y" }}
+        </span>
+      </li>
+      {% endfor %}
+      {% endfor %}
+    </ul>
+  {% else %}
+    <h1>Latest Posts</h1>
+    <ul>
+      {% for latest_post in site.posts limit:3 %}
+        {% if latest_post.url != page.url %}
+          <li>
+            <a href="{{ latest_post.url }}">{{ latest_post.title }}</a>
+            <span class="post-date">
+              {{ latest_post.date | date: "%B %d, %Y" }}
+            </span>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  {% endif %}
+  </footer>
 </article>
 {% include mailing_list.html %}
 </div>

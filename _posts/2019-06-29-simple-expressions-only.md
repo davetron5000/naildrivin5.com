@@ -2,6 +2,9 @@
 layout: post
 title: "Coding without (many) Expressions"
 date: 2019-06-29 9:00
+related:
+  - "Creating a Culture of Consistency"
+  - "Four Better Rules for Software Design"
 ---
 
 In the imagined [Timeline Programming Language][timeline], there are some unusual restrictions on the type of code

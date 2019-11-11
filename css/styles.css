@@ -184,6 +184,15 @@ footer.footnotes {
       font-style: normal;
       padding-right: 6.3px; }
 
+footer.related-posts h1 {
+  font-size: 29.124px;
+  text-align: center; }
+footer.related-posts .post-date {
+  display: block;
+  color: #665666;
+  text-transform: uppercase;
+  font-size: 15.279px; }
+
 .text-l {
   text-align: left; }
 
@@ -305,6 +314,21 @@ aside.ad {
       float: right;
       margin-right: 0; } }
 
+.pullquote-left {
+  display: none; }
+  @media (min-width: 40em) {
+    .pullquote-left {
+      display: block;
+      margin: 6.3px;
+      margin-top: 0;
+      font-weight: bold;
+      width: 50%;
+      max-width: 50%;
+      font-size: 29.124px;
+      text-align: left;
+      float: left;
+      margin-left: 0; } }
+
 tfoot p {
   font-size: 15.279px;
   font-style: italic; }
@@ -312,6 +336,25 @@ tfoot p {
     font-style: normal;
     text-transform: uppercase;
     content: "Table "; }
+
+.blog-post footer {
+  margin-top: 25.2px;
+  margin-bottom: 25.2px; }
+  .blog-post footer ul {
+    margin: 0;
+    padding-left: 12.6px;
+    padding-right: 12.6px;
+    list-style: none; }
+    .blog-post footer ul li {
+      line-height: 1.2;
+      margin-top: 12.6px;
+      text-align: center; }
+
+figure {
+  text-align: center; }
+  figure figcaption {
+    font-size: 15.279px;
+    font-style: italic; }
 
 .pb1 {
   padding-bottom: 50.4px; }

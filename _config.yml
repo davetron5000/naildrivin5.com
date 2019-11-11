@@ -4,8 +4,8 @@ description: >
   This the website of programmer and author David Bryant Copeland.
   It includes his blog, bio, talks, and other resources.
 baseurl: ""
-url: "http://naildrivin5.com"
-production_url: "http://naildrivin5.com"
+url: "https://naildrivin5.com"
+production_url: "https://naildrivin5.com"
 twitter_username: davetron5000
 github_username:  davetron5000
 atom_path: "atom.xml"

@@ -1,0 +1,22 @@
+digraph uioutofdate {
+
+  nodesep=0.5
+  rankdir="LR"
+
+  node[fontname="Futura" fontsize="18" margin="0.4,0.3" shape="component"]
+  edge[fontname="Baskerville" fontsize="15"]
+
+  EditContact[label="Edit Contact"]
+  FireContactEditedEvent[label="contact-edited Event Fired" shape="rarrow"]
+  ProcessContactEditedEvent[label="Process contact-edited Event" shape="rarrow"]
+  ProjectionUpdated[label="projected_contacts Updated"]
+
+  subgraph cluster_ood {
+    label="UI out of date"
+    fontname="Futura"
+    fontsize="14"
+    FireContactEditedEvent
+    ProcessContactEditedEvent
+  }
+  EditContact -> FireContactEditedEvent -> ProcessContactEditedEvent -> ProjectionUpdated
+}

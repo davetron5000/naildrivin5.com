@@ -4,11 +4,9 @@ title: About me
 ---
 
 <img class="fl pr2 pb3" src="/images/DavidCopeland.png" height="150">
-I'm the Chief Software Architect and Director of Engineering at Stitch Fix.  I helped grow the engineering team and technology from 3 to 200+, establishing technology and process to help the company grow for years.  I'm also an author of several programming books such as [“Agile Web Development with Rails 6”][railsbook], [“The Senior Software Engineer”][sweng], and [“Build Awesome Command-Line Applications in Ruby 2”][clibook].  I've spoken at regional and national programming conferences and have over 20 years of experience in the industry. Previously at LivingSocial and OPower.
+I've most recently been the Chief Software Architect and Director of Engineering at Stitch Fix.  I helped grow the engineering team and technology from 3 to 200+, establishing technology and process to help the company grow for years.  I'm also an author of several programming books such as [“Agile Web Development with Rails 6”][railsbook], [“The Senior Software Engineer”][sweng], and [“Build Awesome Command-Line Applications in Ruby 2”][clibook].  I've spoken at regional and national programming conferences and have over 20 years of experience in the industry. Previously at LivingSocial and OPower.
 
-I value delivering results and business value, and see technology as a powerful tool in service to those goals.  I've delivered
-results to users using Ruby, C, Java, SQL, Messaging, and Microservices, and look forward to using whatever is within my means to
-make technology work.  I fight for the users.  Also a huge fan of Peter Hook and the Oxford comma.
+I value delivering results and business value, and see technology as a powerful tool in service to those goals.  I've delivered results to users using Ruby, C, Java, SQL, Messaging, and Microservices, and look forward to using whatever is within my means to make technology work.  I fight for the users.  Also a huge fan of Peter Hook and the Oxford comma.
 
 <nav>
 <ul class="list-inline ml0 pl0">
@@ -24,10 +22,11 @@ make technology work.  I fight for the users.  Also a huge fan of Peter Hook and
 </ul>
 </nav>
 
-[stitchfix]: http://www.stitchfix.com
+[stitchfix]: https://www.stitchfix.com
 
 ## My Writing
 
+* [Four Better Rules for Software Design][four_rules] - Four rules I think make good code.
 * [Webpack from Nothing][webpack] - WTF even is a webpack and how does it all work?
 * [Guidelines for Brutalist Web Design][brutalist] - Web design doesn't have to be boring to be usable.
 * [Why I'd Never Work for Google, Twitter, or Facebook][nogoogle] - most popular of my blog posts on Hacker News.
@@ -44,13 +43,14 @@ make technology work.  I fight for the users.  Also a huge fan of Peter Hook and
 
 [railsbook]: https://pragprog.com/book/rails6
 [clibook]: http://pragprog.com/book/dccar2
-[nogoogle]: http://naildrivin5.com/blog/2011/08/01/why-i-wont-work-for-google-twitter-facebook.html
+[nogoogle]: https://naildrivin5.com/blog/2011/08/01/why-i-wont-work-for-google-twitter-facebook.html
 [typography]: /blog/2013/05/17/source-code-typography.html
 [pragpub]: http://pragprog.com/magazines/2012-05/what-makes-an-awesome-commandline-application
 [sweng]: http://www.theseniorsoftwareengineer.com
 [fullstackbook]: https://pragprog.com/titles/dcbang2
 [webpack]: https://what-problem-does-it-solve.com/webpack/index.html
 [brutalist]: https://brutalist-web.design
+[four_rules]: /blog/2019/07/25/four-better-rules-for-software-design.html
 
 ## My Open Source Software
 
@@ -63,7 +63,7 @@ make technology work.  I fight for the users.  Also a huge fan of Peter Hook and
 [gli]: https://github.com/davetron5000/gli
 [trickster]: https://github.com/davetron5000/trickster
 [ruby-style]: https://github.com/davetron5000/ruby-style
-[adventure]: http://naildrivin5.com/adventure/
+[adventure]: https://naildrivin5.com/adventure/
 
 ## My Music
 
@@ -71,3 +71,4 @@ make technology work.  I fight for the users.  Also a huge fan of Peter Hook and
 * [Remix](http://www.reverbnation.com/davetron5000) of a friend's rap homage to pro-wrestler Kurt Angle.
 * [Pardon the Solar Interruption](http://www.cdbaby.com/cd/secretpopband) - An awesome power-pop record by The Secret Pop Band that I mixed and recorded.
 
+[About this Site](/colophon.html)
