@@ -198,7 +198,7 @@ Next up is the Liskov Substitution Principle.
 <ol>
 <li>
 <a name='1'></a>
-<sup>1</sup>Robert Martin aka Uncle Bob has made statements online that are inconsistent with my personal values, so I do not follow his work closely and do not hold him in any high regard.  Nevertheless, he has been influential in the world of software and object-oriented design and there is value in criticizing his ideas, since they are taught to many developers.  If you would like to know more about Uncle Bob's online behavior, find him on Twitter.<a href='#back-1'>↩</a>
+<sup>1</sup>Robert Martin AKA “Uncle Bob” has made statements online that are inconsistent with my personal values, so I do not follow his work closely and do not hold him in any high regard.  Nevertheless, he has been influential in the world of software and object-oriented design and there is value in criticizing his ideas, since they are taught to many developers.  If you would like to know more about Uncle Bob's online behavior, find him on Twitter.<a href='#back-1'>↩</a>
 </li>
 </ol>
 </footer>

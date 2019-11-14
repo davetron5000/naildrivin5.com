@@ -11,7 +11,7 @@ ad:
 related:
   - "Four Better Rules for Software Design"
   - "What is 'better' code?"
-  - "The 'Type Wars' Are Far From Over"
+  - "The Open/Close Principle is Confusing and, well, Wrong (SOLID is not solid)"
 ---
 Been thinking about the SOLID principles recently, and I'm questioning their usefulness.  They are vague, over-reaching,
 confusing and, in some cases, totally wrong.  But they come from the right place.  The problem is that they attempt to
@@ -182,7 +182,9 @@ Yet in both cases, the Single Responsibility Principle has been violated.  This 
 
 My advice: **Stop talking about Single Responsibility and start talking about cohesion**.
 
-In the next article, I'll tackle the Open/Closed Principle, which is so confusing as to be utterly useless.
+In the next article, I'll tackle the [Open/Closed Principle][ocpost], which is so confusing as to be utterly useless.
+
+[ocpost]: /blog/2019/11/14/open-closed-principle-is-confusing-and-well-wrong.html#more
 
 ---
 
@@ -190,8 +192,7 @@ In the next article, I'll tackle the Open/Closed Principle, which is so confusin
 <ol>
 <li>
 <a name='1'></a>
-<sup>1</sup>Robert Martin aka Uncle Bob has made statements online that are inconsistent with my personal values, so I do not
-follow his work closely, however he has been prolific and influential in the world of OO design and architecture.<a href='#back-1'>↩</a>
+<sup>1</sup>Robert Martin AKA “Uncle Bob” has made statements online that are inconsistent with my personal values, so I do not follow his work closely and do not hold him in any high regard.  Nevertheless, he has been influential in the world of software and object-oriented design and there is value in criticizing his ideas, since they are taught to many developers.  If you would like to know more about Uncle Bob's online behavior, find him on Twitter.<a href='#back-1'>↩</a>
 </li>
 <li>
 <a name='2'></a>
