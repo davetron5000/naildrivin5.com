@@ -20,9 +20,9 @@ as it would seem.  In [that post][original], I outlined the problems I see with 
 Principle, and in the [second][open-closed], I recommended ignoring the Open/Closed Principle, since it is 
 confusing and most reasonable interpretations give bad advice.  In the [third post][liskov], I talk about how the Liskov Substitution Principle is too narrowly focused on the wrong problem, and doesn't really give usable design guidance.
 
-Now, I want to talk about the Interface Segregation Principle, which states that "no client should be forced to
-depend on methods it does not use". This principle, like the others, is vaguely stated and I'm not sure it
-addresses a real problem or presents a clear solution.
+Now, I want to talk about the Interface Segregation Principle, which prescribes are very strange solution to the
+problem of coupling, and the reality is, we should just be talking directly about coupling *and* cohesion and be
+very careful about over-optimizing for one or the other.
 
 [original]: /blog/2019/11/11/solid-is-not-solid-rexamining-the-single-responsibility-principle.html
 [open-closed]: /blog/2019/11/14/open-closed-principle-is-confusing-and-well-wrong.html
