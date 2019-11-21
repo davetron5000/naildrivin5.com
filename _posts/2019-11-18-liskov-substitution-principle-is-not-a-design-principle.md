@@ -9,6 +9,7 @@ ad:
   image: "/images/sweng-cover.png"
   cta: "Buy Now $25"
 related:
+  - "Interface Segregation Principle is Unhelpful but Inoffensive (SOLID is not solid)"
   - "SOLID Is Not Solid - Examining the Single Responsibility Principle"
   - "Four Better Rules for Software Design"
   - "What is 'better' code?"
