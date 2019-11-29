@@ -1,0 +1,21 @@
+digraph client_server {
+  rankdir="LR"
+
+  node[fontname="Futura" fontsize="18"]
+  edge[fontname="Baskerville" fontsize="15"]
+
+  Client[ shape="record" label=<
+    <TABLE BORDER="0" CELLSPACING="0">
+      <TR BORDER="0"><TD BORDER="1"><FONT POINT-SIZE="25">Client</FONT><BR />«class»</TD></TR>
+      <TR BORDER="0"><TD BORDER="1">+saveSomeData(data:String)</TD></TR>
+    </TABLE>
+  >]
+  Server[ shape="record" label=<
+    <TABLE BORDER="0" CELLSPACING="0">
+      <TR BORDER="0"><TD BORDER="1"><FONT POINT-SIZE="25">Server</FONT><BR />«class»</TD></TR>
+      <TR BORDER="0"><TD BORDER="1">+post(url:String, data:String)</TD></TR>
+    </TABLE>
+  >]
+
+  Client -> Server[ label="depends-on" style="dashed" arrowhead="open" ]
+}

@@ -2,11 +2,20 @@
 layout: post
 title: "Single Responsibility Principle and Rails"
 date: 2012-06-10 14:24
-comments: true
-categories: 
+related:
+  - "SOLID Is Not Solid - Examining the Single Responsibility Principle"
+  - "Four Better Rules for Software Design"
+  - "What is 'better' code?"
 ---
 
 Was reading [the slides][slides] from Aaron Patterson's Magma Rails talk and noticed some pretty innocuous Rails code that, upon further reflection is the beginning of disaster for a growing application.  As many other Rubyists are beginning to realize, spreading your application logic across only models and controllers leads to a mess.  Let's look at the code, understand why it's bad, and create a better version.
+
+<aside style="padding: 1rem; border: solid thin #888; border-radius: 0.5rem; ">
+<strong>Update Nov, 2019</strong> I've somewhat changed by thinking about the Single Responsibility Principle, which you can
+read <a href="/blog/2019/11/11/solid-is-not-solid-rexamining-the-single-responsibility-principle.html">in this post</a>.  That
+said, I don't think the Single Responsibility Principle is the only thing in play here and I think there are a lot of good
+reasons to make the changes this post suggest you change.  But do read the updated article.
+</aside>
 
 <!-- more -->
 

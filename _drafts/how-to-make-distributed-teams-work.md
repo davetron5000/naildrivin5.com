@@ -7,7 +7,7 @@ ad:
   subtitle: "11 Practices You Can Start Doing Now"
   link: "http://bit.ly/dcsweng"
   image: "/images/sweng-cover.png"
-  cta:"Buy Now $25"
+  cta: "Buy Now $25"
 ---
 I periodically talk to people who wonder how distributed teams and remote actually works and what it takes to be
 successful.  The very short answer is that there must be trust, that trust must be replenished, and the team has

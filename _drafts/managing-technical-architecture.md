@@ -7,7 +7,7 @@ ad:
   subtitle: "11 Practices You Can Start Doing Now"
   link: "http://bit.ly/dcsweng"
   image: "/images/sweng-cover.png"
-  cta:"Buy Now $25"
+  cta: "Buy Now $25"
 ---
 I played a lot of roles at Stitch Fix, but one was as the Chief Software Architect, which means that I was
 ostensibly responsible for all the technical architecture on the engineering team.  I struggled a lot with what
