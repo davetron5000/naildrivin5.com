@@ -9,6 +9,87 @@ ad:
   image: "/images/sweng-cover.png"
   cta:"Buy Now $25"
 ---
+
+The SOLID principles are a very commonly referred-to set of guiding principles for doing good object-oriented
+design. I have previously sworn by them and seen other developers do the same.  I have observed many designs
+that are done in particular way because SOLID said to. While it is a common refrain that these principles are
+just guidelines, and that there is nuance, and you should only apply them when you need them, I find this
+wanting. 
+
+A _principle_ is not a guideline or a pattern. What a principle is has a very
+specific meaning:
+
+> [a principle is a ] fundamental truth or proposition that serves as the foundation for a system of belief or behavior or for a chain of reasoning.  
+
+To this end, I find the SOLID principles wanting. In some cases, their absolute
+adherence can lead to systems that are hard to understand and change, and in
+others there is actually no real design guidance at all.
+
+And when I dug into them,reading the formative papers upon which they are based, I find a combination of specious reasoning, occasionally-needed design patterns, and a bit of dogma, all wrapped up in the very real problems of doing object-oriented programming in C++ or Java.
+
+So what I'd like to do is go through each principle, one by one, and talk about what the problems are.  What is
+the basis for these prciniples, and is that basis sound?  What solutions do these prinicples drive us toward,
+and are those solutions alwayst he best?  Or are the sometimes the best? Or just worthless.
+
+What we'll find, beyond the flimsy assertions and questionable solutions *is* a kernel of truth. These
+principles have their hearts in the right place, because designing code (OO or not) is not easy. It's difficult
+to know what decisions are better than others.
+
+In my almost 25 years as a professional developer, I have come to realize that pithy principles, rules of thumb,
+or other context-free protestations can lead people down the wrong path if they don't understand the underlying
+reasoning.  My feelings are that we should be talking about those reasons and why they are important, and
+we should talk about them in the context of the code and the application and the system and the product and the
+users.
+
+There is just so much context that a principle cannot account for, that to drive our discussions of design
+around these principles seems misguided at best, and dangerous at worst.
+
+What you will learn is partly that these SOLID principles aren't really that solid to start with, but I hope
+you'll also learn a bit of critical  thinking, and feel emboldened to question authority and seek the truth and
+reality behind what you hear and are told.
+
+Unfortunately, much of the source material where these principles were developed is not online.  Some of it is
+available in the Internet Archive, and that is where I've referenced much of the material.  Reading this source
+material adds a ton of context to where these things came from, because their principle author was working a lot
+in C++ (and later Java), and if you have used these languages, they do not conform to several norms of what
+object-oriented is.  And you begin to see these patterns as defense mechanisms against the constraints of those
+languages.
+
+As patterns, some of what is layed out in SOLID *are* useful. But patterns and principles are not the same
+thing.
+
+
+## A Note on Robert C Martin
+
+Much of the work around SOLID came from Robert C Martin AKA Uncle Bob.  He has been prolific in the world of
+software engineering, object-oriented design, and agile software development. There is no denying that he has
+shaped many things that those of us that came after him take for granted.
+
+This does not mean that his ideas are beyond criticism, and it also does not mean we must hold him in any
+particular regard.  In fact, appeals to authority are highly dangerous in my view, and since I am in every way
+less of an authority on this subject than Martin, the existence of this criticism should demonstrate this.
+Either you are persuaded by my arguments, or you are not.  But just because Uncle Bob said something does not
+make it inherently correct.
+
+I would be remiss in not stating that I am aware of much of Martin's Twitter postings unrelated to technology
+and am aware of many of his talks and their contents. For me, they paint a picture of someone who says things in
+conflict with my personal values. I won't tell you how to feel and in the spirit of appealing to evidence,
+reason, and reality, I would encourage you to form your own opinion. To be clear, whatever your opinion is, I'm
+not interested in it, and no matter how awful you think he is, or how great you think he might be, it has no
+bearing on the contents of this book.
+
+If you are an Uncle Bob fan, I'd ask you to set that aside and join me as we critically examine some of his work
+that has been quite prolific.  The remainder of this book will be quite technical and will not have anything to
+say about Martin's twitter stream or conference talks.  If you have feelings the other way-as I do-I'd ask that you do the same, because there are kernels of wisdom in this that we shouldn't be blind to.
+
+With that out of the way, let's tear open the first SOLID principle, the Single Responsibility Principle and see
+what it's all about.
+
+
+
+
+----
+
 Been thinking about the SOLID principals and I don't think they are actually
 that solid; I don't think they represent necessarily good advice and I think following them can have some
 unintended consequences.  Part of the reason is that some of them are stated so unclearly that it becomes hard
