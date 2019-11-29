@@ -85,6 +85,97 @@ say about Martin's twitter stream or conference talks.  If you have feelings the
 With that out of the way, let's tear open the first SOLID principle, the Single Responsibility Principle and see
 what it's all about.
 
+## Infantilisng Agilisms That Lead Us Astray
+
+A theme running across my criticism of the SOLID principles is that, as written, they are unclear, vague, and open to potentially dangerous interpretations. It would be better for everyone if the advice they claim to impart was just stated clearly.
+
+But they have *nothing* on some of the other slogans used in the agile community. Let's learn more.
+
+### KISS - Sorry, but I'm not stupid
+
+"KISS" is often used when code is complex.  KISS stands for Keep It Simple Stupid.  You know what? I'm not stupid.  I'm just not. And neither are you. I don't need to be insulted in order to discuss code. Maybe you think it should be "Keep It Simple Silly", but I don't think it's silly to overcomplicate code.  It is, in fact, normal.
+
+KISS is trying to tell us a good thing - keep your solutions simple.  And we often need to be reminded of this when thinking through solutions or writing code. And you know what? I don't think calling me stupid is the best way to do that.
+
+I also don't think it's too hard to just say "Keep it simple" or "don't build software to solve problems you don't have" or "build for only what you need".  Sure, they don't create nice acronyms in English that we can scream at junior developers who are just trying their best, but if we just said directly what we mean and explain why, wouldn't that be better than calling everyone stupid?
+
+### YAGNI - You Aren't Gonna Need It
+
+You know what, Ron Jeffries (who coined the phrase)? You don't know what I need, do you?  And if you *did* know what I need, maybe talk about that instead of sloganizing me and shaming me?
+
+Like KISS, YAGNI's heart is in the right place.  It says to not build things you don't need, or to not solve problems you don't have.  This is the same lesson taught to us by KISS.  Talk about not repeating yourself.
+
+YAGNI is pernicious, because the words as written can't be properly understood without a ton of context.  Most developers lack this context, so they use YAGNI to excuse a lack of tests, lack of writing log statements, not improving variable names when writing code, writing messy code, etc.
+
+As with KISS, it is far more useful to talk plainly about the issue, which is if you build software to meet needs you don't have, that software will have a carrying cost that might make it harder to add features or fix bugs later, and it is unlikely to save time in the future.  Thus, building for things you don't know you need is not a good tradeoff.
+
+### DRY - Don't Repeat Yourself
+
+These three words on their own are pretty terrible advice. It is super normal to repeat yourself when explaining something.  People don't necessarily hear you, or they don't understand something the way it's written, or it doesn't make sense the first time.  Repeating ourselves helps us explain ourselves.  Repetition is also a tool for mastery. Repetition is how we gain experience.
+
+Of course, this isn't exactly what the authors of the Pragmatic Programmer meant when they put this in the book.  As with YAGNI, more context is needed.  But even that context is suspect.  That DRY principle states:
+
+> Every piece of knowledge must have a single, unambiguous, authoritative representation within a system
+
+Depending on how we interpret this phrase, it could mean different things.  Most programmers interpret this to mean "don't duplicate anything".  If we follow that to the letter of the law, we can't have caching.
+
+Often developers will point at code that uses literal values and say "DRY this up", as if the value of `0` is going to change and thus must be abstracted into a constant called `ZERO`.
+
+What's really going on with DRY is that you should avoid situations where you have to make the same change multiple times.  However even this can lead to problematic outcomes, because our test code often must duplicate some logic in some way as our real code. Often, if we "DRY up" our test code, we are left with tests woefully coupled to the code they are testing, which can result in tests that don't break when the code under test has a bug.
+
+Instead of yelling "DRY" in a code review, we should be talking about the cost of a particular duplication and being clear that it is.  For example, when thinking about data in a database, there should be a single authoritative representation of a fact in the system, but there can be (and often must be) several non-authoritative representations i.e. caches.  That is duplication.  That is a form of "repeating yourself", but it is necessary.
+
+### The Simplest Thing That Could Possibly Work
+
+You know, I've had a lot of jobs as a programmer over my 24 years of Experience, and in all of those jobs, it was expected that I make—or try to make—software that *actually did* work. If I had turned in code and say "it's possible that this could work", I would've not lasted too long.
+
+Again, the specific words of this phrase lead us astray.  We should be trying to write software that actually does work, and setting that part of this aside, we are left with "simple", and thus we have a *third* agile maxim telling us to keep our code simple and to not solve problems we don't have.  Perhaps of the progenitors of XP had just said this directly, we wouldn't have wound ourselves around *three* silly acronyms that don't provide real guidance.
+
+### User Stories
+
+What is a "story"?  According to the dictionary, it is:
+
+> an account of imaginary or real people and events told for entertainment.
+
+That does not sound like the basis for breaking down the requirements of a software system to me.  So already we are off on the wrong foot here, but the phrase "user story" has a quite murky definition.
+
+The coiner of the phrase defines it as a "promise for a conversation".  Uh, ok? More conventionally, a user story is something written down about how the software should work, from the perspective of the user.
+
+Being user-focused is a good thing, and coercing requirements to be written from a user's perspective makes sense.  But we are not children attending grade school who must be coddled into doing our jobs, nor are the people asking us to write software.  In fact,we are all adults and professionals.
+
+I'm actually not sure why we can't just saying "user requirements".  The barest interpretation of this phrase is "stuff that the user requires of the software", and that *is* what we are trying to suss out, right?
+
+A secondary goal of user stories is to encourage developers to break down complex requirements into small, shippable units that can be demonstrated.  The reality of software is that users don't exactly know what they want until they have something to react to.  So the way user stories are defined encourages that.
+
+But again, why must we mis-use language and be overly cute and dance around the point?  Is it *really* so hard to explain it directly? "Let's break this feature down into small, shippable chunks we can demonstrate because then we can get feedback quickly about how well we're doing"
+
+If you've been on an agile project, you have no doubt wasted a sizeable chunk of your life debating what is a "story" and what is a "task" and what is a "chore" and on and on.  This is telling you that the language we've chosen to adopt is failing us.
+
+Would it not be simpler to call each and every thing a developer does a "task"? A "task" is "a piece of work to be done". Simple, right?  Aren't we all about simple? 
+
+And how do we figure out the tasks?  We write down what the requirements are in plain language, and try to ship some of that.  Calling those "user stories" and fitting them to a template isn't exactly helping.  We really do have to think it through, and no cutesy language is going to keep us from having to do that.  And no templates will make us magically good at it when we otherwise aren't.  We have to do it.  We have to repeat ourselves, right?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
