@@ -561,6 +561,14 @@ aside.ad {
       color: #483b48;
       background: #fff9ff; }
 
+.discount-code {
+  margin-right: 6.3px;
+  padding: 3.15px 6.3px;
+  border: solid thin;
+  border-radius: 6.3px;
+  background-color: #dfdfdf;
+  font-weight: bold; }
+
 .highlight .hll {
   background-color: #222; }
 

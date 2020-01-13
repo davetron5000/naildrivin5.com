@@ -3,11 +3,11 @@ layout: post
 title: "Dependency Inversion Principle…is a Tradeoff (SOLID is not solid)"
 date: 2019-12-02 9:00
 ad:
-  title: "Focus on Results"
-  subtitle: "11 Practices You Can Start Doing Now"
-  link: "http://bit.ly/dcsweng"
-  image: "/images/sweng-cover.png"
-  cta: "Buy Now $25"
+  title: "Miss XML?"
+  subtitle: "I'll Remind you Why You Don't"
+  link: "http://bit.ly/buy-not-solid"
+  image: "/images/not-solid-cover.png"
+  cta: "Buy Now $5.99"
 related:
   - "SOLID Is Not Solid - Examining the Single Responsibility Principle"
   - "Interface Segregation Principle is Unhelpful but Inoffensive (SOLID is not solid)"

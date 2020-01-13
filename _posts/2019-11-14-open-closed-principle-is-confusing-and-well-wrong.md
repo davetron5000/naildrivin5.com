@@ -3,11 +3,11 @@ layout: post
 title: "The Open/Close Principle is Confusing and, well, Wrong (SOLID is not solid)"
 date: 2019-11-14 9:00
 ad:
-  title: "Stop Over-engineering"
-  subtitle: "11 Practices To Get Things Done"
-  link: "http://bit.ly/dcsweng"
-  image: "/images/sweng-cover.png"
-  cta: "Buy Now $25"
+  title: "Is It all Too Serious?"
+  subtitle: "Read The Snarky Take"
+  link: "http://bit.ly/buy-not-solid"
+  image: "/images/not-solid-cover.png"
+  cta: "Buy Now $5.99"
 related:
   - "SOLID Is Not Solid - Examining the Single Responsibility Principle"
   - "Four Better Rules for Software Design"

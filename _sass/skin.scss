@@ -158,3 +158,12 @@ aside.ad {
     }
   }
 }
+
+.discount-code {
+  margin-right: $sz4;
+  padding: $sz5 $sz4;
+  border: solid thin;
+  border-radius: $sz4;
+  background-color: #dfdfdf;
+  font-weight: bold;
+}

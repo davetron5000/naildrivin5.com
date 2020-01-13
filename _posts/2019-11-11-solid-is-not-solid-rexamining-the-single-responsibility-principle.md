@@ -3,11 +3,11 @@ layout: post
 title: "SOLID Is Not Solid - Examining the Single Responsibility Principle"
 date: 2019-11-11 10:30
 ad:
-  title: "Get Things Done"
-  subtitle: "11 Practices You Can Start Doing Now"
-  link: "http://bit.ly/dcsweng"
-  image: "/images/sweng-cover.png"
-  cta: "Buy Now $25"
+  title: "Want a Sillier Take?"
+  subtitle: "More Snark, Less Code"
+  link: "http://bit.ly/buy-not-solid"
+  image: "/images/not-solid-cover.png"
+  cta: "Buy Now $5.99"
 related:
   - "Four Better Rules for Software Design"
   - "What is 'better' code?"

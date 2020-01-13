@@ -3,11 +3,11 @@ layout: post
 title: "Interface Segregation Principle is Unhelpful but Inoffensive (SOLID is not solid)"
 date: 2019-11-21 10:30
 ad:
-  title: "Learn About Tradeoffs"
-  subtitle: "11 Practices You Can Start Doing Now"
-  link: "http://bit.ly/dcsweng"
-  image: "/images/sweng-cover.png"
-  cta: "Buy Now $25"
+  title: "Want a Hotter Take?"
+  subtitle: "Put On Your Oven Mitt"
+  link: "http://bit.ly/buy-not-solid"
+  image: "/images/not-solid-cover.png"
+  cta: "Buy Now $5.99"
 related:
   - "SOLID Is Not Solid - Examining the Single Responsibility Principle"
   - "Four Better Rules for Software Design"

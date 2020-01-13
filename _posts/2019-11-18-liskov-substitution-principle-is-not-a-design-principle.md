@@ -3,11 +3,11 @@ layout: post
 title: "Liskov Substitution Principle is…Not a Design Principle (SOLID is not solid)"
 date: 2019-11-18 12:00
 ad:
-  title: "Focus on Results"
-  subtitle: "Pragmatic Advice to Get Things Done"
-  link: "http://bit.ly/dcsweng"
-  image: "/images/sweng-cover.png"
-  cta: "Buy Now $25"
+  title: "Need more Snark?"
+  subtitle: "70 Pages You Won't Regret"
+  link: "http://bit.ly/buy-not-solid"
+  image: "/images/not-solid-cover.png"
+  cta: "Buy Now $5.99"
 related:
   - "Interface Segregation Principle is Unhelpful but Inoffensive (SOLID is not solid)"
   - "SOLID Is Not Solid - Examining the Single Responsibility Principle"
