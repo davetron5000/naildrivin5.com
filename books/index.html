@@ -3,10 +3,27 @@ layout: page
 title: Books & Publications
 ---
 <section class="">
-  {% for book in site.data.books %}
+  {% for book in site.data.books.inprint %}
   <section class="pl2 border-bottom mb1 border-light">
     <h1 class="h2 mbnone">{{ book.title }}</h1>
     <h2 class="h3 mtnone"> {{ book.subtitle }} </h2>
+    <p>
+      <a href="{{ book.buy_link }}">
+        <img class="image-border border-light" src="{{ book.image }}" width="300">
+      </a>
+    </p>
+    <p>
+      <a href="{{ book.site }}">Learn More…</a>
+    </p>
+  </section>
+  {% endfor %}
+</section>
+<section class="">
+  <h2>Out of Print</h2>
+  {% for book in site.data.books.outofprint %}
+  <section class="pl2 border-bottom mb1 border-light">
+    <h1 class="h3 mbnone">{{ book.title }}</h1>
+    <h2 class="h4 mtnone"> {{ book.subtitle }} </h2>
     <p>
       <a href="{{ book.buy_link }}">
         <img class="image-border border-light" src="{{ book.image }}" width="300">
