@@ -2,12 +2,13 @@
 layout: post
 title: "Four Better Rules for Software Design"
 date: 2019-07-25 9:00
+jjjj
 ad:
-  title: "Focus on Results"
-  subtitle: "11 Practices You Can Start Doing Now"
-  link: "http://bit.ly/dcsweng"
-  image: "/images/sweng-cover.png"
-  cta: "Buy Now $25"
+  title: "SOLID Ain't Solid"
+  subtitle: "These five rules will make it worse"
+  link: "http://bit.ly/not-solid"
+  image: "/images/not-solid-cover.png"
+  cta: "Buy Now $5.99"
 related:
   - "Coding without (many) Expressions"
   - "Creating a Culture of Consistency"

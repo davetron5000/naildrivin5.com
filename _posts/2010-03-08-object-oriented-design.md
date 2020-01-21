@@ -2,11 +2,11 @@
 title: The only four types of classes in your OO system
 layout: post
 ad:
-  title: "Grow Beyond Software Design"
-  subtitle: "11 Practices of an Effective Engineer"
-  link: "http://bit.ly/dcsweng"
-  image: "/images/sweng-cover.png"
-  cta: "Buy Now $25"
+  title: "SOLID Doesn't Help"
+  subtitle: "Learn how much worse it makes things"
+  link: "http://bit.ly/not-solid"
+  image: "/images/not-solid-cover.png"
+  cta: "Buy Now $5.99"
 ---
 Object-Oriented design is hard, especially in a large application.  It's not always clear where logic should go, and there's often no "right place" to  put a piece of code.  I've found that there are four distinct types of classes that, if you stick to them, can make your code a lot more understandable, and can provide clear direction as to the age-old question of "where does this code go?"
 
