@@ -2,7 +2,6 @@
 layout: post
 title: "Four Better Rules for Software Design"
 date: 2019-07-25 9:00
-jjjj
 ad:
   title: "SOLID Ain't Solid"
   subtitle: "These five rules will make it worse"
