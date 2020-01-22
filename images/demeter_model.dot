@@ -1,0 +1,16 @@
+digraph G {
+    rankdir="TB"
+    node[shape=record]
+
+    Person  [ label="{ Person\l|+id\l|+name\l|+contractor?\l|<address_id>+address_id\l }"]
+    Address [ label="{ Address\l|<id>+id\l|+city\l|<country_id>+country_id\l }"]
+    Country [ label="{ Country\l|<id>+id\l|+name\l|<address_id>+code\l }"]
+
+    Person:address_id -> Address:id  [ arrowhead=none    arrowtail=none     dir=both ]
+    Address:country_id -> Country:id [ arrowhead=diamond arrowtail=odiamond dir=both headlabel="1      " taillabel="1..*  "]
+
+    /* Make the graph a bit better laid-out */
+    Person -> Foo     [ style=invis]
+    Foo    -> Country [ style=invis]
+    Foo[shape=none label=""]
+}
