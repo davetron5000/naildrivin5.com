@@ -27,10 +27,22 @@ couching as "principles" and the overcomplex code that resulted from their overs
 
 ## What *is* this Law of Demeter?
 
-It's hard to find a real source for the Law of Demeter, but the closest I could find is [this page on
-Northeastern's
-webstie](https://www2.ccs.neu.edu/research/demeter/demeter-method/LawOfDemeter/general-formulation.html), which
-says:
+**Update Jan 24, 2020**: My former collegue [Glenn Vanderburg](https://twitter.com/glv) pointed me to what he
+believes it he source of the "Law of Demeter", which looks like a fax of the IEEE Software magazine in which it
+appears!  It's [on the Universitatea Politehnica Timisoara's website](http://labs.cs.upt.ro/labs/acs/html/lectures/6/res/Lieberherr-LawOfDemeter.pdf).
+
+It *does* specifically mention object-oriented programming, and it states a few interesting things.  First, it mentions pretty explicitly that they have no actual proof this law does what it says it does (maybe then don't call it law?  I dunno. That's just me).  Second, it presents a much more elaborate and nuanced definition than the paper linked below.  The definitions of terms alone is almost a page long and somewhat dense.
+
+Suffice it to say, I stand even more firm that this should not be called a "Law" and that the way most programmers
+understand by counting dots is absolutely wrong.  This paper is hard to find and pretty hard to read (both due to
+its text, but also its presentation). I would be surprised if anyone invoking Demeter in a code review has
+read and understood it.
+
+~~It's hard to find a real source for the Law of Demeter, but the closest I could find is [this page on Northeastern's webstie](https://www2.ccs.neu.edu/research/demeter/demeter-method/LawOfDemeter/general-formulation.html), which says:~~
+
+**End of Update**
+
+[This page on Northeastern's webstie](https://www2.ccs.neu.edu/research/demeter/demeter-method/LawOfDemeter/general-formulation.html), summarizes the Law as stated in the paper above:
 
 > Each unit should have only limited knowledge about other units: only units "closely" related to the current unit.
 
