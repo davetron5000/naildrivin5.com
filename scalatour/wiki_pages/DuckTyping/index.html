@@ -32,7 +32,7 @@
 <p>In my haste, I actually forgot to put a dummy implementation of <code>save</code> in <code>EmployeeJDBCDAO</code>. It doesn’t matter; this code is statically checked and compiles fine.</p>
 <h2>My Thoughts on This Feature</h2>
 <p>I love duck typing in Ruby. It is one of the main features in Ruby that allows clean and concise code. The major drawback is that you can quickly find yourself with <strong>very</strong> difficult-to-understand interactions if you don’t document the type of objects you expect to receive (or which methods those objects must support).</p>
-<p>While Scala certainly allows you to declare interfaces the Java way (by creating <a href="/scalatour/wiki_pages/ScalaTraits">traits</a> ), you can also use this syntax and declare, right in your method, what interface you expect objects to provide.</p>
+<p>While Scala certainly allows you to declare interfaces the Java way (by creating <a href="/scalatour/wiki_pages/ScalaTraits/index.html">traits</a> ), you can also use this syntax and declare, right in your method, what interface you expect objects to provide.</p>
 <p>You certainly wouldn’t design your code this way, as a general rule, but if you need (or want) to support different implementations of the same interface, and are not able to pull out one explicitly, this sure beats creating a bunch of proxy and adapter classes.</p>
 </article>
 <div class="copyright">

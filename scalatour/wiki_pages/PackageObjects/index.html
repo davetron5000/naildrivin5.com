@@ -31,7 +31,7 @@
 <p>Further, we tend to use <code>BaseController</code> as a dumping ground for common functions that don’t really have much to do with the controller classes. This is somewhat common in Java, as is the creation of “Util” classes that have a bunch of static methods; there simply isn’t a better place to put functions related to certain classes, but that don’t belong in any particular class. We can also include some implicits that are generally useful, but potentially dangerous to have in every class of our application:</p>
 <script src="http://gist.github.com/478781.js?file=richer_controller.scala">
 </script>
-<p>Note that we’ve used an implicit conversion to turn our nullable java <code>Long</code> into a handy Scala <a href="/scalatour/wiki_pages/OptionType">OptionType</a> .</p>
+<p>Note that we’ve used an implicit conversion to turn our nullable java <code>Long</code> into a handy Scala <a href="/scalatour/wiki_pages/OptionType/index.html">OptionType</a> .</p>
 <p>Now, our controller could look like this:</p>
 <script src="http://gist.github.com/478781.js?file=RichController.scala">
 </script>

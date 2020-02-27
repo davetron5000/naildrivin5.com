@@ -29,7 +29,7 @@ val fake = new TwitterUser("davetron5001")
 assertEquals(0,fake.recentTweets)
 {% endhighlight %}
 
-and so forth.  It's going to get a bit tedious writing <tt>new TwitterUser</tt> over and over again.  We could just make a shorter-named method in our test class, but why not use <a href="http://www.naildrivin5.com/scalatour/wiki_pages/ScalaBasics#Literals_and_Syntactic_Sugar">the <tt>apply()</tt> sugar</a> along with a <a href="http://www.naildrivin5.com/scalatour/wiki_pages/ScalaObject">singleton object</a> to make our own literal?
+and so forth.  It's going to get a bit tedious writing <tt>new TwitterUser</tt> over and over again.  We could just make a shorter-named method in our test class, but why not use <a href="http://www.naildrivin5.com/scalatour/wiki_pages/ScalaBasics/index.html#Literals_and_Syntactic_Sugar">the <tt>apply()</tt> sugar</a> along with a <a href="http://www.naildrivin5.com/scalatour/wiki_pages/ScalaObject/index.html">singleton object</a> to make our own literal?
 
 {% highlight scala %}
 // Along with our TwitterUser class def
@@ -55,7 +55,7 @@ case class @@(val username:String) {
 }
 {% endhighlight %}
 
-This takes advantage of (the unfortunately named) <a href="http://www.naildrivin5.com/scalatour/wiki_pages/CaseClasses">case classes</a> and now our Twitter user class <b>and</b> literal-like factory are called <tt>@@</tt>.  This allows, among other things, some more readable case statements.
+This takes advantage of (the unfortunately named) <a href="http://www.naildrivin5.com/scalatour/wiki_pages/CaseClasses/index.html">case classes</a> and now our Twitter user class <b>and</b> literal-like factory are called <tt>@@</tt>.  This allows, among other things, some more readable case statements.
 {% highlight scala %}
 user match {
   case @@("davetron5000") => "it's you, dude"

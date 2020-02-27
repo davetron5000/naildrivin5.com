@@ -3,10 +3,10 @@ title: Deconstructing the Scala Map Literal
 layout: post
 ---
 <p class="first">
-I find that Scala is one giant <a href="">Rube Goldberg Machine</a> that manages to do something not easily be done otherwise.  By this I mean that Scala has many features that, by themselves, seem very strange, but, in combination, enable some very cool functionality.  This is why I initially started my <a href="http://www.naildrivin5.com/scalatour">personal tour of Scala</a>.  I read stuff like <a href="http://www.naildrivin5.com/scalatour/wiki_pages/ExplcitlyTypedSelfReferences">explicitly typed self-references</a> and was left scratching my head.
+I find that Scala is one giant <a href="">Rube Goldberg Machine</a> that manages to do something not easily be done otherwise.  By this I mean that Scala has many features that, by themselves, seem very strange, but, in combination, enable some very cool functionality.  This is why I initially started my <a href="http://www.naildrivin5.com/scalatour/index.html">personal tour of Scala</a>.  I read stuff like <a href="http://www.naildrivin5.com/scalatour/wiki_pages/ExplcitlyTypedSelfReferences/index.html">explicitly typed self-references</a> and was left scratching my head.
 </p>
 <p>
-I thought it might be fun to deconstruct the "map literal" in Scala and observie how the features interact to create a very handy piece of code that isn't baked into the language.  This assumes and understanding of some <a href="http://www.naildrivin5.com/scalatour/wiki_pages/ScalaBasics">Scala basics</a>.
+I thought it might be fun to deconstruct the "map literal" in Scala and observie how the features interact to create a very handy piece of code that isn't baked into the language.  This assumes and understanding of some <a href="http://www.naildrivin5.com/scalatour/wiki_pages/ScalaBasics/index.html">Scala basics</a>.
 </p>
 <p>
 Although Java 7 is getting map literals, Scala already has it (or so it appears):
@@ -21,8 +21,8 @@ This is not actually a literal, but enabled by Scala features to make it look li
 <p>
 Most surprising to a Java programmer is the <tt>-&gt;</tt> operator.  This makes use of two Scala features:
 <ul>
-    <li><a href="http://www.naildrivin5.com/scalatour/wiki_pages/ScalaOperators">Operator-like method naming</a></li>
-    <li><a href="http://www.naildrivin5.com/scalatour/wiki_pages/ImplicitConversions">Implicit Conversions</a></li>
+    <li><a href="http://www.naildrivin5.com/scalatour/wiki_pages/ScalaOperators/index.html">Operator-like method naming</a></li>
+    <li><a href="http://www.naildrivin5.com/scalatour/wiki_pages/ImplicitConversions/index.html">Implicit Conversions</a></li>
 </ul>
 </p>
 <p>
@@ -61,9 +61,9 @@ It's not hard to imagine a <tt>Map</tt> constructor taking <tt>Tuple2</tt>, usin
 <p>
 This use two additional Scala features:
 <ol>
-    <li><a href="http://www.naildrivin5.com/scalatour/wiki_pages/ScalaBasics#Literals_and_Syntactic_Sugar"><tt>apply()</tt>
+    <li><a href="http://www.naildrivin5.com/scalatour/wiki_pages/ScalaBasics/index.html#Literals_and_Syntactic_Sugar"><tt>apply()</tt>
         shortcutting</a>
-    <li><a href="http://www.naildrivin5.com/scalatour/wiki_pages/ScalaObject">Scala singleton objects</a></li>
+    <li><a href="http://www.naildrivin5.com/scalatour/wiki_pages/ScalaObject/index.html">Scala singleton objects</a></li>
 </ol>
 This is much simpler to decode than the <tt>-&gt;</tt> method; there is simply an object in scope named <tt>Map</tt>, and it has an <tt>apply</tt> method that takes a variable list of <tt>Tuple2</tt> objects.  Scala interprets a method-call syntax on an object, but lacking a method name, as a call to the <tt>apply</tt> method of that object (if it exists).  So, removing this, we have:
 {% highlight scala %}

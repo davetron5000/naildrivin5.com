@@ -15,9 +15,9 @@
 <article>
 <h1>AdvancedScalaObjects</h1>
 <h2>The Gist</h2>
-<p>The tour doesn’t include this detail on what <a href="/scalatour/wiki_pages/ScalaObject">Scala objects</a> are used for.</p>
+<p>The tour doesn’t include this detail on what <a href="/scalatour/wiki_pages/ScalaObject/index.html">Scala objects</a> are used for.</p>
 <h2>My Interpretation</h2>
-<p>You may recall that creating a <a href="/scalatour/wiki_pages/CaseClasses">case class</a> automatically creates a singleton object of the same name that can be used to create and “de-create” (in a <code>case</code> statement) instances of that class.</p>
+<p>You may recall that creating a <a href="/scalatour/wiki_pages/CaseClasses/index.html">case class</a> automatically creates a singleton object of the same name that can be used to create and “de-create” (in a <code>case</code> statement) instances of that class.</p>
 <p>This ties together the two main purposes of a singleton object: as a factory and as an extractor.</p>
 <h3>Factory</h3>
 <p>Suppose we want to be able to create a <code>Person</code> object from either a known first name and last name, or a “friendly” string that takes a full name. In Java, you might create multiple constructors. While you can also do so in Scala, multiple constructors are a bit cumbersome, syntax-wise, so a factory is a bit easier (as an aside, Ruby does not allow multiple constructors, so you would need this pattern there as well).</p>
@@ -28,7 +28,7 @@
 <script src="http://gist.github.com/170796.js">
 </script>
 <h3>Extractor</h3>
-<p>The more powerful use of objects is via a companion method to <code>apply</code>, called <code>unapply</code>, which Scala treats specially in a <code>case</code> statement. We saw in <a href="/scalatour/wiki_pages/CaseClasses">CaseClasses</a> that you can “extract” the elements of an object as part of a case statement. In those examples, we created case classes using the <code>case</code> keyword. This tells Scala to automatically create some canonical structures for us. We could create those ourselves, however.</p>
+<p>The more powerful use of objects is via a companion method to <code>apply</code>, called <code>unapply</code>, which Scala treats specially in a <code>case</code> statement. We saw in <a href="/scalatour/wiki_pages/CaseClasses/index.html">CaseClasses</a> that you can “extract” the elements of an object as part of a case statement. In those examples, we created case classes using the <code>case</code> keyword. This tells Scala to automatically create some canonical structures for us. We could create those ourselves, however.</p>
 <p>Suppose we extend our <code>Person</code> class to have an optional middle name:</p>
 <pre>class Person(val last:String, val first:String, val middle:String)</pre>
 <p>Now, suppose we wanted to match on people without a middle name:</p>
@@ -40,7 +40,7 @@
 <script src="http://gist.github.com/170800.js">
 </script>
 <p>When Scala encounters the first <code>case</code> statement, it reads it as “if there is a method <code>apply</code> of object <code>Person</code> that takes a object <strong>of type</strong> <code>Person</code> and returns an <code>Option[Tuple3[String,String,String]]</code>, call that method and <strong>if</strong> the <code>Option</code> it returns <strong>is not</strong> <code>None</code>, set <code>last</code>, <code>first</code>, and <code>middle</code> to the tuple’s values and execute the code to the right of the <code>=&gt;</code>. Otherwise, proceed to the next <code>case</code> statement and start over”.</p>
-<p>That’s quite a mouthful. And it may take a second to sink in, but this is what’s going on under the covers of Scala’s powerful <code>case</code> classes and <a href="/scalatour/wiki_pages/PatternMatching">PatternMatching</a> .</p>
+<p>That’s quite a mouthful. And it may take a second to sink in, but this is what’s going on under the covers of Scala’s powerful <code>case</code> classes and <a href="/scalatour/wiki_pages/PatternMatching/index.html">PatternMatching</a> .</p>
 <p>Fortunately, you don’t need to implement a lot of <code>unapply</code> methods; rather you take advantage of the <code>case</code> keyword creating them for you.</p>
 <h2>My Interpretation of This Feature</h2>
 <p>While this is a pretty advanced concept that might smack of a bit too much “magic”, it is actually quite logical and, more importantly, highly useful in aid of readable code.</p>

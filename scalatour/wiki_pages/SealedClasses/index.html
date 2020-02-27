@@ -17,7 +17,7 @@
 <h2>The Gist</h2>
 <p><a href="http://www.scala-lang.org/node/123">Sealed Classes</a> gives a really, really short overview, with no real code explaining sealed classes.</p>
 <h2>My Interpretation</h2>
-<p>Suppose we implemented our <a href="/scalatour/wiki_pages/CaseClasses">case-classes-based</a> logger as such:</p>
+<p>Suppose we implemented our <a href="/scalatour/wiki_pages/CaseClasses/index.html">case-classes-based</a> logger as such:</p>
 <script src="http://gist.github.com/155942.js">
 </script>
 <p>Notice that in our <code>log</code> method, we forgot the case for BothMessage. Scala will happily compile this code, but we’ll get a MatchError at runtime. If we add the keyword <code>sealed</code> to our abstract base class:</p>

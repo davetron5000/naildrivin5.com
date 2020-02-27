@@ -26,7 +26,7 @@
 <p>we would get a compile error, since there is no <strong>implicit</strong> object of type <code>ListLogger[Boolean]</code> in scope.</p>
 <p>Also note how we have packaged the implicit objects inside the <code>logger</code> package; by importing them via <code>import logger.Implicits._</code>, Scala can find them wherever we are using the <code>Logger</code> class.</p>
 <h2>My Thoughts on this Feature</h2>
-<p>Like <a href="/scalatour/wiki_pages/ImplicitConversions">ImplicitConversions</a> , this is a pretty cool feature, although it requires a lot of droppings to work correctly; I can see this being useful for creating DSLs. I’m not a fan of the alternate method call syntax; I don’t see why the compiler can’t just figure it out.</p>
+<p>Like <a href="/scalatour/wiki_pages/ImplicitConversions/index.html">ImplicitConversions</a> , this is a pretty cool feature, although it requires a lot of droppings to work correctly; I can see this being useful for creating DSLs. I’m not a fan of the alternate method call syntax; I don’t see why the compiler can’t just figure it out.</p>
 </article>
 <div class="copyright">
   <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/us/">

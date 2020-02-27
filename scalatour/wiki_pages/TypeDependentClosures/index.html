@@ -35,7 +35,7 @@ BREADCRUMB
 RED ALERT...</pre>
 <p>Notice how the value of “complex” changes between the calls, and the closures use the correct value. In Java, this would not be possible; the variables would have to be declared <code>final</code>.</p>
 <h3>Another Level</h3>
-<p>We can take this to the next level by applying <a href="/scalatour/wiki_pages/FunctionCurrying">FunctionCurrying</a> . Suppose we wanted to bring back the ternary operator that Scala doesn’t seem to include.</p>
+<p>We can take this to the next level by applying <a href="/scalatour/wiki_pages/FunctionCurrying/index.html">FunctionCurrying</a> . Suppose we wanted to bring back the ternary operator that Scala doesn’t seem to include.</p>
 <script src="http://gist.github.com/155936.js">
 </script>
 <p>So, we define a method named <code>?</code> that takes three expressions. The first must evaluate to a boolean, and the second two must evaluate to the same type (that we don’t know). When the method is called, we evaluate the first expression. If it returns true, we evaluate the second expression, otherwise we evaluate the third.</p>

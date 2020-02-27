@@ -25,7 +25,7 @@
 <p>This is pretty much what you’d get from Java, however it’s important to note that each of the four values we created are all typed, and each call to <code>.value</code> returns a typed object that can be checked at runtime. If you were to try:</p>
 <pre>new Connector(desc.value,attempts.value,url.value,failonerror.value)</pre>
 <p>you would get a compile error.</p>
-<p>Also note that, like in Java, if a class <code>Child</code> extends a class <code>Parent</code>, <code>Configuration[Child]</code> <strong>is not</strong> a subclass of <code>Configuration[Parent]</code> (although you can <a href="/scalatour/wiki_pages/TypeVariance">change this behavior</a> ).</p>
+<p>Also note that, like in Java, if a class <code>Child</code> extends a class <code>Parent</code>, <code>Configuration[Child]</code> <strong>is not</strong> a subclass of <code>Configuration[Parent]</code> (although you can <a href="/scalatour/wiki_pages/TypeVariance/index.html">change this behavior</a> ).</p>
 <h3>Generic Methods</h3>
 <p>Methods can also be genericized, as they can be in Java:</p>
 <pre>def doit[T](thing: T):String = thing.toString</pre>

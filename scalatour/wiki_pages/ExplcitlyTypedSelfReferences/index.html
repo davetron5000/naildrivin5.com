@@ -28,7 +28,7 @@
 </script>
 <p>The line <code>self =&gt;</code> establishes the symbol <code>self</code> as a reference to the instance of <code>LoginDialog</code> that encloses the instance of <code>LoginButton</code>, thus providing a cleaner way of accessing it. <code>self</code> could be anything, though using “self” is considered idiomatic (despite, in my opinion, being extremely confusing).</p>
 <h3>Alternative to Inheritance</h3>
-<p>One use of <a href="/scalatour/wiki_pages/ScalaTraits">ScalaTraits</a> is to better organize your code; you can logically group code that has separate concerns in different traits. At times, however, you will always use certain traits together. Consider a very simple web application framework design:</p>
+<p>One use of <a href="/scalatour/wiki_pages/ScalaTraits/index.html">ScalaTraits</a> is to better organize your code; you can logically group code that has separate concerns in different traits. At times, however, you will always use certain traits together. Consider a very simple web application framework design:</p>
 <p><img src="/scalatour/diagrams/1800756.png" alt="" /></p>
 <p>Here we have a <code>Page</code> that represents a web page we’ll render, and we have a trait called <code>HtmlHelpers</code> which contains some useful helper methods.</p>
 <p>Suppose that our web framework wants to take advantage of some popular CSS layout frameworks, like Blueprint. There’s a couple of obvious ways to do this. We could subclass <code>HtmlHelpers</code> to add Blueprint-specific helpers (and create additional subclasses for other CSS frameworks we wished to support). Or, we could create another trait for the Blueprint-specific helpers only.</p>
