@@ -1,4 +1,8 @@
 inprint:
+  - title: "Sustainable Web Development with Ruby on Rails"
+    subtitle: "Practical Tips for Building Web Applications that Last"
+    image: /images/sustainable-rails.png
+    site: "https://sustainable-rails.com"
   - title: "SOLID is not Solid"
     subtitle: "Five Object-Oriented Principles to Create a Codebase Everyone will Hate"
     image: /images/not-solid-cover.png
