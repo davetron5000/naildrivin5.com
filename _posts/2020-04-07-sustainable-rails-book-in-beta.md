@@ -3,7 +3,7 @@ layout: post
 title: "Sustainable Web Development with Ruby on Rails now in Beta"
 date: 2020-04-07 9:00
 ---
-At RubyConf last year, I announced [a new book I was working](https://sustinable-rails.com) on that outlines the way to write Ruby on Rails apps
+At RubyConf last year, I announced [a new book I was working](https://sustainable-rails.com) on that outlines the way to write Ruby on Rails apps
 _sustainably_, so that teams, orgs, and code could continue to be valueable and easy to work with over time.
 
 <!-- more -->
