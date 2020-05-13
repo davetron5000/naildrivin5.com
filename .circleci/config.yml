@@ -4,7 +4,7 @@ orbs:
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.6
+      - image: circleci/ruby:2.7
     steps:
       - aws-cli/install
       - checkout
