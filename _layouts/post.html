@@ -50,8 +50,9 @@ single: true
 </article>
 {% include mailing_list.html %}
 </div>
-{% if page.ad != null %}
-<aside class="ad" id="ad">
+{{ page.ad }}
+{% if page.ad %}
+<aside class="promo" id="promo">
   <div class="banner">Promotion</div>
   <h1>{{ page.ad.title }}</h1>
   <h2>{{ page.ad.subtitle }}</h2>
@@ -66,10 +67,10 @@ single: true
 </aside>
 {% endif %}
 <script>
-  var ad         = document.getElementById("ad");
-  var adLocation = document.querySelector("[data-ad]");
+  var promo         = document.getElementById("promo");
+  var promoLocation = document.querySelector("[data-ad]");
 
-  if ((ad !== null) && (adLocation !== null)) {
-    adLocation.appendChild(ad);
+  if ((promo !== null) && (promoLocation !== null)) {
+    promoLocation.appendChild(promo);
   }
 </script>
