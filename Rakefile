@@ -63,8 +63,8 @@ def build(future: false, drafts: false)
   flags << "--future"     if future
   flags << "--drafts"     if drafts
 
-  sh "bundle exec jekyll build #{flags.join(' ')}"
-  sh "bundle exec sass _sass/styles.scss:css/styles.css"
+  sh "RUBYOPT=-W0 bundle exec jekyll build #{flags.join(' ')}"
+  sh "RUBYOPT=-W0 bundle exec sass _sass/styles.scss:css/styles.css"
 end
 
 desc "Build the site into _site"
@@ -77,7 +77,7 @@ def serve(drafts: false, watch: false)
   flags << "--drafts"     if drafts
   flags << "--watch"      if watch
   flags << "--livereload" if watch
-  sh "bundle exec jekyll serve --future #{flags.join(' ')}"
+  sh "RUBYOPT=-W0 bundle exec jekyll serve --future #{flags.join(' ')}"
 end
 
 desc "Serve up the site locally"
