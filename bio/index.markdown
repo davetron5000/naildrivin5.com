@@ -45,7 +45,7 @@ it. Based on my 6+ years at Stitch Fix. Currently in beta!.
 * [Build Awesome Command-Line Applications in Ruby][clibook] - Programming book, published in late 2011 by the Pragmatic Programmers.
 
 [sus-rails]: https://sustainable-rails.com
-[soild]: https://solid-is-not-solid.com
+[solid]: https://solid-is-not-solid.com
 [railsbook]: https://pragprog.com/book/rails6
 [clibook]: http://pragprog.com/book/dccar2
 [nogoogle]: https://naildrivin5.com/blog/2011/08/01/why-i-wont-work-for-google-twitter-facebook.html
