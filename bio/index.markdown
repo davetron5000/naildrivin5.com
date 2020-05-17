@@ -36,11 +36,16 @@ I value delivering results and business value, and see technology as a powerful 
 
 ## My Books
 
+* [Sustainable Web Development with Ruby on Rails][sus-rails] - How to get the best out of Rails without abandoning
+it. Based on my 6+ years at Stitch Fix. Currently in beta!.
+* [SOLID is not Solid][solid] - A cynical rant on how actually harmful the SOLID principles are.
 * [Agile Web Development with Rails 6][railsbook] - *The* book on learning Ruby on Rails.  I'm co-author of the latest version that covers Rails 6.
 * [The Senior Software Engineer][sweng] - Book on being an amazing developer, published July 2013
 * [Rails, Angular, Postgres, and Bootstrap: Powerful, Effective, and Efficient Full-Stack Web Development][fullstackbook] - Book on Full Stack web development to level up your Rails skills, published July 2015, updated March 2017
 * [Build Awesome Command-Line Applications in Ruby][clibook] - Programming book, published in late 2011 by the Pragmatic Programmers.
 
+[sus-rails]: https://sustainable-rails.com
+[soild]: https://solid-is-not-solid.com
 [railsbook]: https://pragprog.com/book/rails6
 [clibook]: http://pragprog.com/book/dccar2
 [nogoogle]: https://naildrivin5.com/blog/2011/08/01/why-i-wont-work-for-google-twitter-facebook.html
@@ -57,13 +62,12 @@ I value delivering results and business value, and see technology as a powerful 
 * [GLI][gli] - a DSL for making more complex command line apps in Ruby
 * [Adventure][adventure] - My "cover" of classic 2600 game Adventure
 * [Methadone][methadone] - a simple way to make command line apps in Ruby
-* [Ruby Style Guide][ruby-style] - My personal Ruby style guide + tools to make your own
 
 [methadone]: https://github.com/davetron5000/methadone
 [gli]: https://github.com/davetron5000/gli
 [trickster]: https://github.com/davetron5000/trickster
 [ruby-style]: https://github.com/davetron5000/ruby-style
-[adventure]: https://naildrivin5.com/adventure/
+[adventure]: https://naildrivin5.com/adventure/index.html
 
 ## My Music
 
