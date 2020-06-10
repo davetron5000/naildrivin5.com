@@ -356,6 +356,13 @@ figure {
     font-size: 15.279px;
     font-style: italic; }
 
+.list-style-none {
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+  .list-style-none li {
+    margin-bottom: 6.3px; }
+
 .pb1 {
   padding-bottom: 50.4px; }
 

@@ -417,3 +417,13 @@ figure {
     font-style: italic;
   }
 }
+
+.list-style-none {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  li {
+    margin-bottom: $sz4;
+  }
+}
+
