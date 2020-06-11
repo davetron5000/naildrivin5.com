@@ -181,7 +181,12 @@ pre code {
 }
 
 p code {
-  font-size: $f7;
+  font-size: $f6;
+}
+@media (min-width: 40em) {
+  p code {
+    font-size: $f7;
+  }
 }
 
 pre {

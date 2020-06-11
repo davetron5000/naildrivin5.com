@@ -158,8 +158,11 @@ pre code {
   font-size: 18px; }
 
 p code {
-  font-size: 15.279px; }
+  font-size: 18px; }
 
+@media (min-width: 40em) {
+  p code {
+    font-size: 15.279px; } }
 pre {
   margin: 0;
   line-height: 1.2; }
