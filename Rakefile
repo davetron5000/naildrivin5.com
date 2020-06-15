@@ -69,7 +69,7 @@ end
 
 desc "Build the site into _site"
 task :build do
-  build(future: ENV["CI"] && ENV["CIRCLE_BRANCH"] != "master")
+  build(future: ENV["CI"] && ENV["CIRCLE_BRANCH"] != "main")
 end
 
 def serve(drafts: false, watch: false)
@@ -91,7 +91,7 @@ task "serve:drafts" => :build do
 end
 
 
-deploy_task = if ENV["CIRCLE_BRANCH"] == "master"
+deploy_task = if ENV["CIRCLE_BRANCH"] == "main"
                 :deploy
               elsif ENV["CIRCLE_BRANCH"].to_s.strip != ""
                 :preview
