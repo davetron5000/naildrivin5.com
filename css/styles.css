@@ -381,6 +381,9 @@ figure {
 .pt2 {
   padding-top: 25.2px; }
 
+.pt3 {
+  padding-top: 12.6px; }
+
 .pr2 {
   padding-right: 25.2px; }
 
@@ -447,6 +450,22 @@ figure {
 img {
   max-width: 100%;
   max-height: 100%; }
+
+.cf:before, .cf:after {
+  content: " ";
+  display: table; }
+
+.cf:after {
+  clear: both; }
+
+.cf {
+  *zoom: 1; }
+
+@media (min-width: 501px) {
+  .responsive-post .fl-ns {
+    float: left; }
+  .responsive-post .w-50-ns {
+    width: 50%; } }
 
 .list-inline {
   list-style: none; }

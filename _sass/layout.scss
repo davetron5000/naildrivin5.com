@@ -13,6 +13,9 @@
 .pt2 {
   padding-top: $sz2;
 }
+.pt3 {
+  padding-top: $sz3;
+}
 .pr2 {
   padding-right: $sz2;
 }
@@ -84,4 +87,19 @@
 img {
   max-width: 100%;
   max-height: 100%;
+}
+
+.cf:before, .cf:after { content: " "; display: table; }
+.cf:after { clear: both; }
+.cf { *zoom: 1; }
+
+.responsive-post {
+  @media (min-width: 501px) {
+    .fl-ns {
+      float: left;
+    }
+    .w-50-ns {
+      width: 50%;
+    }
+  }
 }
