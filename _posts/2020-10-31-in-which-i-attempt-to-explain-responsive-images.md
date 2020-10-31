@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "In Which I Attempt to Explain Responsive Images"
-date: 2020-10-26 9:00
+date: 2020-10-31 9:00
 ad:
   title: "Sustainable Web Development"
   subtitle: "A Deep Dive into Ruby on Rails"
