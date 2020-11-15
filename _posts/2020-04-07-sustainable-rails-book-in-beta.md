@@ -6,6 +6,10 @@ date: 2020-04-07 9:00
 At RubyConf last year, I announced [a new book I was working](https://sustainable-rails.com) on that outlines the way to write Ruby on Rails apps
 _sustainably_, so that teams, orgs, and code could continue to be valueable and easy to work with over time.
 
+<aside style="padding: 1rem; border: solid thin #888; border-radius: 0.5rem; ">
+  <strong>Update Nov, 2020</strong> The book has now been released and is $49.95.
+</aside>
+
 <!-- more -->
 
 From the [first chapter of the new book](https://sustainable-rails.com):

@@ -7,7 +7,7 @@ ad:
   subtitle: "Build Apps to Last for Years"
   link: "http://bit.ly/sus-rails"
   image: "/images/sustainable-rails-cover.png"
-  cta: "Buy Beta Now $29.95"
+  cta: "Buy Now $49.95"
 ---
 Names of things matter.  How we react to the realization that some names of some things offend some people is
 important.  Unlike the names of countries, towns, or Army forts, computer software can actually be renamed

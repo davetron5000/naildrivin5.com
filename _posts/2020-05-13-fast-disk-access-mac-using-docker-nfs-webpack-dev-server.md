@@ -7,7 +7,7 @@ ad:
   subtitle: "Build Apps to Last for Years"
   link: "http://bit.ly/sus-rails"
   image: "/images/sustainable-rails-cover.png"
-  cta: "Buy Beta Now $29.95"
+  cta: "Buy Now $49.95"
 ---
 
 I am somewhat obsessed with clean, repeatable, maintainable dev environments and Docker has all the pieces to

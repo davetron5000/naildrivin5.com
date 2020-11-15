@@ -7,7 +7,7 @@ ad:
   subtitle: "A Deep Dive into Ruby on Rails"
   link: "https://sustainable-rails.com"
   image: "/images/sustainable-rails-cover.png"
-  cta: "Buy Beta for $29.95"
+  cta: "Buy for $49.95"
 ---
 
 Getting responsive images to work via the `srcset` and `size` attributes to `img` is not easy, especially because
