@@ -155,7 +155,7 @@ your source code to make it happen.
 But like we discussed in the open/closed principle post, this added flexibility doesn't come for free.  It has a
 cost, which is to make the overall system harder to understand, because you can no longer look at
 `ShipmentIntake`'s source code and know what objects it will use at runtime. If we didn't *need* the ability to
-swap out implementations, this is needless flexibility for now benefit.
+swap out implementations, this is needless flexibility for no benefit.
 
 And remember, we introduced this not to make our code "better", but to solve a problem with how we do testing in
 Java.  If we were using Ruby, we would not have the original problem.  Here is the original `ShipmentIntake` in
