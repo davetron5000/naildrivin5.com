@@ -6,7 +6,7 @@ ad:
   title: "Sustainable Web Development"
   subtitle: "Rely on Ruby on Rails"
   link: "http://bit.ly/sus-rails"
-  image: "/images//sustainable-rails-cover.png"
+  image: "/images/sustainable-rails-cover.png"
   cta: "Buy Now $49.95"
 ---
 
