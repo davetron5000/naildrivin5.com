@@ -7,7 +7,12 @@ task :new_post, [:title,:date,:link] do |t,args|
          elsif args[:date] == 'tomorrow'
            Date.today + 1
          else
-           Date.parse(args[:date])
+           begin
+             Date.parse(args[:date])
+           rescue Date::Error => ex
+             puts "#{ex}: '#{args[:date]}'"
+             fail
+           end
          end
 
   title = args[:title]
