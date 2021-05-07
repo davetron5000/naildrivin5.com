@@ -17,7 +17,7 @@ sometimes.  I want to talk about how we do it, why we think it works, and how it
 
 <!-- more -->
 
-Two of our team values are *autonomy* and *respect*.  This concepts are the foundation of our current process of creating pull
+Two of our team values are *autonomy* and *respect*.  These concepts are the foundation of our current process of creating pull
 requests, possibly reviewing them, and when we merge them to the main branch for deployment.
 
 ## Autonomy to Ship, Respect When to Get or Give Feedback
