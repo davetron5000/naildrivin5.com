@@ -73,7 +73,7 @@ def build(future: false, drafts: false)
 end
 
 desc "Build the site into _site"
-task :build do
+task :build => :swot do
   build(future: ENV["CI"] && ENV["CIRCLE_BRANCH"] != "main")
 end
 
@@ -143,4 +143,63 @@ task :preview => :build do
     fail res.inspect unless ok
   end
   puts "Site is up on http://naildrivin5.com-preview.s3.amazonaws.com/index.html"
+end
+
+desc "Generate SWOTs"
+task :swot do
+  require "erb"
+  require "active_support/core_ext/string/inflections"
+  heroku_lines = File.read("swot/heroku.md").split(/\n/)
+
+  swot_name = "Heroku"
+  swot = {
+    strengths: [],
+    weaknesses: [],
+    opportunities: [],
+    threats: [],
+  }
+  current_swot = nil
+  current_thing = nil
+  heroku_lines.each do |line|
+    if line =~ /^# (.+$)/ # new SWOT top-level
+      which_one = $1
+      if !current_swot.nil? # if switching
+        if !current_thing.nil?
+          current_swot << current_thing
+          current_thing = nil
+        end
+      end
+      current_swot = swot[which_one.downcase.strip.to_sym]
+      if current_swot.nil?
+        raise "#{which_one} isn't a SWOT thingy"
+      end
+    elsif current_swot.nil?
+      next
+    else
+      if line =~ /^## (.+$)/
+        if !current_thing.nil?
+          current_swot << current_thing
+        end
+        name = $1.strip
+        current_thing = {
+          name: name,
+          id: name.parameterize,
+          content: []
+        }
+      elsif current_thing.nil?
+        next
+      elsif  line =~ /^\s*$/
+        next
+      else
+        current_thing[:content] << line
+      end
+    end
+  end
+  current_swot << current_thing
+
+  template = ERB.new(File.read("swot/template.html.erb"))
+  File.open("swot/heroku.html","w") do |file|
+    b = binding
+    file.puts(template.result(b))
+  end
 end

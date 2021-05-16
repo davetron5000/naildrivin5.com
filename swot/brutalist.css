@@ -1,0 +1,68 @@
+/* 
+ https://components.ai/color-scale/NZSJ2MrapZraEfwWv7jr?tab=editor 
+ */
+:root {
+  --brutalist-darkest: #000000;
+  --brutalist-dark: #070707;
+  --brutalist-darkish: #2f2f2f;
+  --color-3: #575757;
+  --color-4: #7f7f7f;
+  --color-5: #a6a6a6;
+  --brutalist-lightish: #cecece;
+  --brutalist-light: #f6f6f6;
+  --brutalist-lightest: #ffffff;
+}
+.brutalist {
+  font-family: "helvetica", sans-serif;
+}
+body.brutalist {
+  background-color: var(--brutalist-light);
+  color: var(--brutalist-dark);
+}
+.brutalist a,
+.brutalist a:visited {
+  color: var(--brutalist-dark);
+}
+.brutalist a:hover {
+  color: var(--brutalist-darkish);
+}
+
+.brutalist header,
+.brutalist footer {
+  color: var(--brutalist-light);
+  background-color: var(--brutalist-dark);
+}
+.brutalist header a,
+.brutalist header a:visited,
+.brutalist footer a,
+.brutalist footer a:visited {
+  color: var(--brutalist-light);
+}
+.brutalist header a:hover,
+.brutalist footer a:hover {
+  color: var(--brutalist-lightest);
+}
+
+.brutalist .subnav {
+  background-color: var(--brutalist-darkish);
+  color: var(--brutalist-light);
+}
+.brutalist .subnav a,
+.brutalist .subnav a:visited {
+  color: var(--brutalist-light);
+  border-color: var(--brutalist-lightish);
+}
+.brutalist .subnav a:hover {
+  background-color: var(--brutalist-lightish);
+  color: var(--brutalist-darkish);
+  border-color: var(--brutalist-darkish);
+}
+
+.brutalist aside {
+  color: var(--brutalist-lightish);
+  background-color: var(--brutalist-dark);
+}
+.brutalist aside a,
+.brutalist aside a:visited {
+  color: var(--brutalist-lightish);
+}

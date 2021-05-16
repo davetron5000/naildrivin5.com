@@ -1,0 +1,76 @@
+/* 
+ https://components.ai/color-scale/NZSJ2MrapZraEfwWv7jr?tab=editor 
+ */
+:root {
+        --hotdog-darkest: #ff0000;
+--hotdog-dark: #fd2000;
+--hotdog-darkish: #fb4000;
+--hotdog-lightish: #f2bf00;
+--hotdog-light: #f0df00;
+--hotdog-lightest: #eeff00;
+}
+.hotdog {
+  font-family: "comic sans", "Chalkboard",  cursive;
+}
+body.hotdog {
+  background-color: var(--hotdog-light);
+  color: var(--hotdog-dark);
+}
+.hotdog a,
+.hotdog a:visited {
+  color: var(--hotdog-dark);
+}
+.hotdog a:hover {
+  color: var(--hotdog-darkish);
+}
+
+.hotdog header,
+.hotdog footer {
+  color: var(--hotdog-light);
+  background-color: var(--hotdog-dark);
+}
+.hotdog header a,
+.hotdog header a:visited,
+.hotdog footer a,
+.hotdog footer a:visited {
+  color: var(--hotdog-light);
+}
+.hotdog header a:hover,
+.hotdog footer a:hover {
+  color: var(--hotdog-lightest);
+}
+
+.hotdog .subnav {
+  background-color: var(--hotdog-darkish);
+  color: var(--hotdog-light);
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+.hotdog .subnav nav {
+  border: groove 3px var(--hotdog-light);
+}
+.hotdog .subnav a,
+.hotdog .subnav a:visited {
+  color: var(--hotdog-light);
+  border-color: var(--hotdog-lightish);
+}
+.hotdog .subnav a:hover {
+  background-color: var(--hotdog-lightish);
+  color: var(--hotdog-darkish);
+  border-color: var(--hotdog-darkish);
+}
+
+.hotdog .opportunities,
+.hotdog .weaknesses,
+.hotdog .strengths,
+.hotdog .threats {
+  border: inset 5px #eee;
+}
+
+.hotdog aside {
+  border: groove 5px var(--hotdog-light);
+}
+.hotdog a.br3 {
+  border-radius: 0 !important;
+  border: outset 10px var(--hotdog-lightish) !important;
+}

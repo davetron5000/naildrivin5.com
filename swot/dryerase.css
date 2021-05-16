@@ -1,0 +1,165 @@
+/*
+ https://components.ai/color-scale/OOpQtNrPYmlzG8q7tBlu?tab=editor
+ https://components.ai/color-scale/N0xOTrl7KkOAcUzAWm0F?tab=editor
+ */
+:root {
+  --dryerase-lightest: #fff;
+  --dryerase-light: #fefefe;
+  --dryerase-lightish: #ededed;
+  
+  --color-3: #f038de;
+  --color-4: #e802d1;
+  --color-5: #b1019e;
+  --dryerase-darkish: #212121;
+  
+  --dryerase-dark: #111;
+  --dryerase-darkest: #000;
+
+  --dryerase-blue: #3434eb;
+  --dryerase-red: #ff0e0a;
+  --dryerase-green: #29b32b;
+  --dryerase-purple: #b459ff;
+  --dryerase-dark-purple: #7015bb;
+}
+
+.dryerase {
+  font-family: "gochi hand", courier, cursive;
+}
+
+.dryerase .strengths {
+  background:transparent;
+  padding:0.5rem 0.5rem;
+  margin:0 0.5rem;
+
+  border-top-left-radius: 255px 15px;
+  border-top-right-radius: 15px 225px;
+  border-bottom-right-radius: 225px 15px;
+  border-bottom-left-radius:15px 255px;
+  border:solid 3px;
+  border-color: var(--dryerase-green);
+}
+
+.dryerase a.br3 {
+  background:transparent;
+  border-top-left-radius: 55px 15px;
+  border-top-right-radius: 15px 25px;
+  border-bottom-right-radius: 25px 15px;
+  border-bottom-left-radius:15px 55px;
+  border:solid 3px;
+  border-color: var(--dryerase-dark-purple) !important;
+}
+
+.dryerase .weaknesses {
+  background:transparent;
+  padding:0.51rem 0.43rem;
+  margin:0 0.52rem;
+
+  border-top-right-radius: 245px 15px;
+  border-top-left-radius: 15px 235px;
+  border-bottom-left-radius: 315px 45px;
+  border-bottom-right-radius:15px 235px;
+  border:solid 3px;
+  border-color: var(--dryerase-blue);
+}
+.dryerase .opportunities {
+  background:transparent;
+  padding:0.5rem 0.5rem;
+  margin:0 0.5rem;
+
+  border-top-left-radius: 255px 15px;
+  border-top-right-radius: 15px 225px;
+  border-bottom-left-radius: 225px 15px;
+  border-bottom-right-radius:15px 255px;
+  border:solid 3px;
+  border-color: var(--dryerase-purple);
+}
+.dryerase .threats {
+  background:transparent;
+  padding:0.5rem 0.5rem;
+  margin:0 0.5rem;
+
+  border-top-left-radius: 355px 35px;
+  border-top-right-radius: 65px 125px;
+  border-bottom-left-radius: 285px 35px;
+  border-bottom-right-radius: 75px 455px;
+  border:solid 3px;
+  border-color: var(--dryerase-red);
+}
+
+
+body.dryerase {
+  background-color: var(--dryerase-light);
+  color: var(--dryerase-dark);
+}
+.dryerase a,
+.dryerase a:visited {
+  color: var(--dryerase-dark);
+}
+.dryerase a:hover {
+  color: var(--dryerase-darkish);
+}
+
+.dryerase header,
+.dryerase footer {
+  background-color: var(--dryerase-light);
+  color: var(--dryerase-dark);
+}
+.dryerase header a,
+.dryerase header a:visited,
+.dryerase footer a,
+.dryerase footer a:visited {
+  color: var(--dryerase-dark);
+}
+.dryerase header a:hover,
+.dryerase footer a:hover {
+  color: var(--dryerase-darkest);
+}
+
+.dryerase .strengths h2,
+.dryerase a[href='#strengths'] {
+  color: var(--dryerase-green) !important;
+}
+.dryerase .weaknesses h2,
+.dryerase a[href='#weaknesses'] {
+  color: var(--dryerase-blue) !important;
+}
+.dryerase .opportunities h2,
+.dryerase a[href='#opportunities'] {
+  color: var(--dryerase-purple) !important;
+}
+.dryerase .threats h2,
+.dryerase a[href='#threats'] {
+  color: var(--dryerase-red) !important;
+}
+
+.dryerase .dryerase-red { color: var(--dryerase-red) !important; }
+.dryerase .dryerase-blue { color: var(--dryerase-blue) !important; }
+.dryerase .dryerase-green { color: var(--dryerase-green) !important; }
+.dryerase .dryerase-purple { color: var(--dryerase-purple) !important; }
+
+.dryerase .subnav {
+  background-color: var(--dryerase-light);
+  color: var(--dryerase-dark);
+}
+.dryerase .subnav a,
+.dryerase .subnav a:visited {
+  color: var(--dryerase-dark);
+  border-color: var(--dryerase-darkish);
+}
+.dryerase .subnav a:hover {
+  background-color: var(--dryerase-darkish);
+  color: var(--dryerase-lightish);
+  border-color: var(--dryerase-lightish);
+}
+
+.dryerase aside {
+  background:transparent;
+
+  border-top-left-radius: 355px 35px;
+  border-top-right-radius: 65px 125px;
+  border-bottom-left-radius: 285px 35px;
+  border-bottom-right-radius: 75px 455px;
+  border:solid 3px;
+  border-color: var(--dryerase-darkish);
+  margin-bottom: 2rem;
+}

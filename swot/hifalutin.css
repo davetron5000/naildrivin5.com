@@ -1,0 +1,92 @@
+/*
+ https://components.ai/color-scale/GuYiN7pYF6x3dzdOPcH2?tab=export
+ */
+
+:root {
+  --hifalutin-lightest: #f9f9d2;
+  --hifalutin-light: #dedeb8;
+  --hifalutin-lightish: #c4c49e;
+  --color-3: #a9a985;
+  --color-4: #8f8f6b;
+  --color-5: #747451;
+  --hifalutin-darkish: #5a5a37;
+  --hifalutin-dark: #3f3f1e;
+  --hifalutin-darkest: #252504;
+}
+
+.hifalutin {
+  font-family: "Cinzel Decorative", serif;
+}
+.hifalutin p,
+.hifalutin li {
+  font-family: Georgia, serif;
+}
+
+body.hifalutin {
+  background-color: var(--hifalutin-light);
+  color: var(--hifalutin-dark);
+}
+.hifalutin a,
+.hifalutin a:visited {
+  color: var(--hifalutin-dark);
+}
+.hifalutin a:hover {
+  color: var(--hifalutin-darkish);
+}
+
+.hifalutin header,
+.hifalutin footer {
+  color: var(--hifalutin-light);
+  background-color: var(--hifalutin-dark);
+}
+.hifalutin header a,
+.hifalutin header a:visited,
+.hifalutin footer a,
+.hifalutin footer a:visited {
+  color: var(--hifalutin-light);
+}
+.hifalutin header a:hover,
+.hifalutin footer a:hover {
+  color: var(--hifalutin-lightest);
+}
+
+.hifalutin .subnav {
+  background-color: var(--hifalutin-darkish);
+  color: var(--hifalutin-light);
+}
+.hifalutin .subnav a,
+.hifalutin .subnav a:visited {
+  color: var(--hifalutin-light);
+  border-color: var(--hifalutin-lightish);
+}
+.hifalutin .subnav a:hover {
+  background-color: var(--hifalutin-lightish);
+  color: var(--hifalutin-darkish);
+  border-color: var(--hifalutin-darkish);
+}
+
+.hifalutin .strengths:after,
+.hifalutin .weaknesses:after,
+.hifalutin .opportunities:after,
+.hifalutin .threats:after {
+  width: 100%;
+  display: block;
+  text-align: center;
+  content: "❧";
+  font-size: 4rem;
+}
+
+@media screen and (min-width:30em) {
+  .hifalutin .strengths:after,
+  .hifalutin .weaknesses:after,
+  .hifalutin .opportunities:after,
+  .hifalutin .threats:after {
+    display:none;
+  }
+  .hifalutin h2:after {
+    content: "❧";
+  }
+}
+.hifalutin a.br3 {
+  border-radius: 0;
+}

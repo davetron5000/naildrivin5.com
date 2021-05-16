@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="tachyons.css">
+    <link rel="stylesheet" href="brutalist.css">
+    <link rel="stylesheet" href="dryerase.css">
+    <link rel="stylesheet" href="hifalutin.css">
+    <link rel="stylesheet" href="hotdog.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com"> 
+    <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com"> 
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap" rel="stylesheet">
+    <script src="index.js"></script>
+  </head>
+  <body class="brutalist ma0 pa0">
+    <header class="ma0 pt3">
+      <div class="ph3">
+        <h1 class="tc f2 ma0">SWOT <%= swot_name %></h1>
+        <nav class="w-100 dn-ns mv4">
+          <div class="flex items-start justify-between">
+            <a class="f4 b color-link-on-body-inverse link underline" href="#strengths">Strengths</a>
+            <a class="f4 b color-link-on-body-inverse link underline" href="#weaknesses">Weaknesses</a>
+          </div>
+          <div class="flex items-start justify-between mt3">
+            <a class="f4 b color-link-on-body-inverse link underline" href="#opportunities">Opportunities</a>
+            <a class="f4 b color-link-on-body-inverse link underline" href="#threats">Threats</a>
+          </div>
+        </nav>
+        <nav class="w-50 center dn db-ns mv4">
+          <div class="flex items-start justify-between">
+            <a class="f4 b color-link-on-body-inverse link underline" href="#strengths">Strengths</a>
+            <a class="f4 b color-link-on-body-inverse link underline" href="#weaknesses">Weaknesses</a>
+            <a class="f4 b color-link-on-body-inverse link underline" href="#opportunities">Opportunities</a>
+            <a class="f4 b color-link-on-body-inverse link underline" href="#threats">Threats</a>
+          </div>
+        </nav>
+      </div>
+      <div class="subnav">
+        <nav class="w-50-ns w-100 center pa3 tc">
+          <a data-show-all class="dib f5 fw5 ba br3 br--left pa3 pv2 link ma0" href="#">Show All</a><a data-hide-all class="dib f5 fw5 ba br3 br--right pa3 pv2 link ma0" href="#">Hide All</a>
+        </nav>
+      </div>
+    </header>
+    <main class="">
+      <section class="pa2">
+      <% [:strengths, :weaknesses, :opportunities, :threats ].each_with_index do |swot_name,i| %>
+        <% if i == 0 || i == 2 %>
+          <div class="swot-row-ns flex flex-wrap flex-nowrap-ns mb3-ns">
+        <% end %>
+        <div class="w-100 w-50-ns br2 ma3-ns mt2 <%= swot_name.downcase %>">
+          <a name="<%= swot_name %>"></a>
+          <h2 class="f2 f1-ns tl tc-ns mv0 pv2 ttu tracked"><%= swot_name.capitalize %></h2>
+          <div class="ph3">
+            <ul class="list ma0 pa0">
+              <% swot[swot_name].each_with_index do |one_swot,i| %>
+                <li data-swot="<%= one_swot[:id] %>">
+                  <a name="<%= one_swot[:id] %>"></a>
+                  <h3 class="lh-title <%= i == 0 ? 'mt1' : '' %>">
+                    <%= one_swot[:name] %>
+                    <a data-show-link class="f6 fw4 link underline" href="#">why?</a>
+                    <a data-permalink class="dn f6 fw4 link underline ml2" href="#stability">Permalink</a>
+                  </h3>
+                  <section class="dn">
+                    <% one_swot[:content].each do |p| %>
+                      <p class="measure lh-copy center">
+                        <%= p %>
+                      </p>
+                    <% end %>
+                    <div class="ml3 measure lh-copy center" data-hide="why_12">
+                      (<a data-hide-link class="f6 fw4 link underline" href="#">hide this</a>)
+                    </div>
+                  </section>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+        <% if i == 1 || i == 3 %>
+          </div>
+          <% if i == 1 %>
+            <aside class="w-100 w-50-ns center ba br2 pa3">
+              <div class="tc f7 i">Promotion</div>
+              <h4 class="tc f3 ttu tracked fw3">Sustainable Web Development Can Be Yours</h4>
+              <h5 class="tc mt0 mb0 f5"><span role="presentation">📘</span> Sustainable Web Development with Ruby on Rails</h5>
+              <p class="lh-copy measure center mt0">
+                Over 450 Pages of Practical Tips for Building Rails Apps that Last
+              </p>
+              <nav class="flex items-center justify-center">
+                <a target="_blank" class="db mr2 ph3 pv2 ba br3 link" href="https://sowl.co/boqdo7">Buy Now for $49.95</a>
+                <a target="_blank" class="db mr2 ph3 pv2 link underline" href="https://sustainable-rails.com">Learn More</a>
+              </nav>
+            </aside>
+          <% end %>
+        <% end %>
+      <% end %>
+      </section>
+    </main>
+    <footer class="pb5 pt3 ph2 ph4-ns">
+      <nav class="w-50-ns w-100 tl mb3">
+        <h4 class="ma0 f7 mb1">Change Theme:</h4>
+        <div class="flex flex-wrap items-center">
+          <a data-theme="brutalist" class="brutalist mb2 dib color-link-on-body-inverse link underline tl" href="#">Brutalist</a>
+          <span role="presentation" class="dib mh2">&middot;</span>
+          <a data-theme="dryerase" class="dryerase mb2 dib color-link-on-body-inverse link underline tl" href="#">Dry-Erase</a>
+          <span role="presentation" class="dib mh2">&middot;</span>
+          <a data-theme="hifalutin" class="hifalutin mb2 dib color-link-on-body-inverse link underline tl" href="#">Hifalutin</a>
+          <span role="presentation" class="dib mh2">&middot;</span>
+          <a data-theme="hotdog" class="hotdog mb2 dib color-link-on-body-inverse link underline tl" href="#">Hot Dog Stand</a>
+        </div>
+      </nav>
+      <nav class="w-50-ns w-100 mb4">
+        <a class="link underline color-link-on-body-inverse f5 fw3 dib tc" href="/">naildrivin5.com</a>
+        <span role="presentation" class="dib mh2">|</span>
+        <a class="link underline color-link-on-body-inverse f5 fw3 dib tc" href="https://www.youtube.com/watch?v=XfB0g_JDIds">What is a SWOT Analysis?</a>
+      </nav>
+      <p>
+        Copyright &copy; 2021 by David Bryant Copeland, <span class="dib">All Rights Reserved</span>
+      </p>
+    </footer>
+  </body>
+</html>
