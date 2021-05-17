@@ -96,21 +96,27 @@ Heroku have added more metrics and monitoring over the years, but it's still in 
 
 To put it bluntly, you cannot use Heroku without also paying a third party APM or observability vendor.  Why Heroku is happy to just let this money go straight to New Relic is beyond me.  New Relic is not a good service, and Heroku could certainly build something of this level of quality and keep us on their platform.
 
-##  The Web UI
+## The Global App Namespace
 
-At some point, Heroku turned their web UI into a single-page app (SPA) and the result is a sluggish, flaky experience that requires frequent full page reloads to fix.  I have never been able to use the Data Web UI without at least one refresh.  If I become logged out, the entire UI does not work at all and I have to reload, then re log in, then try to find wherever I was.  I feel like I spend more time watching busy animations than using the UI. 
+This may sound like a minor annoyance, but when you have more than a few apps in your Heroku organization, it becomes very difficult to manage them.  You have to make your own namespacing to ensure that your app names are available, since Heroku's apps are named from a shared global namespace.
 
-To be fair to the team that built this, almost every SPA I've ever used suffers from this. GMail exhibits all of these failure modes, and it's been an SPA for over a decade.  This was a poor architecture decision and the result is what once was a snappy and easy-to-use web UI is now mired in complexity and confusion.
+If you are in the dark ages of using a staging environment, this, too, must be namespaces, so you end up with `acme-www` and `acme-www-staging` and run out of letters real quick.
 
-If there was full parity with Terraform, it might not be so bad—Heroku's web UI is light years ahead of the AWS console—but as it stands, you need to be in that UI a lot and it's a frustrating place to be.
+##  Heroku Marketing
+
+Most developers think Heroku is toy.  It is not. I met with a junior dev at a startup who was setting up fucking <strong>ECS</strong> to run his tiny app that was in beta and serving < 100 users.  He thought Heroku was not a serious consideration. I told him that Stitch Fix almost went public on Heroku and that it would absolutely work for his use-case.  I asked him to give a try.  He later told me that after an hour he had migrated everything from AWS to Heroku…and was very happy about it.
+
+This perception exists because of the Heroku either doesn't so any marketing or markets to…I guess legacy enterprise?  I realize legacy enterprises have tons of money, but there is an entire generation of developers who will be leaders and decision makers in a few years who think Heroku is a toy.  The fact is, a team can go from startup to going concern on Heroku and this is not something Heroku successfully promote.
+
+Why is there no chart on their website that explains the true cost of ownership of an AWS-based deployment pipeline? Why does the homepage say nothing about what Heroku actually is or does?  Perhaps the startup market isn't large, but it is by definition growing.  Successful startups become big companies. Unsuccesful ones mint engineers who will make decisions at their next job and you want them choosing Heroku.
 
 # Opportunities
 
 ##  Eat Vercel, Netlify, and Friends for Lunch
 
-These tools could all be described as "Heroku for JAMStack apps".  While I think JAMStack is not a good architecture for most teams, there is no reason Heroku should allow these companies to take share away. Heroku should be <em>the</em> name in "single click deploy".  There should be an easy way to run a "static" site, run a single-page site, and everything these services provide.
+These tools could all be described as "Heroku for JAMStack apps".  While I think JAMStack is not a good architecture for most teams, there is no reason Heroku should allow these companies to take share away. Heroku should be <em>the</em> name in "single click deploy".  There should be an easy way to run a static site, run a single-page site, and everything these services provide.
 
-There is an entire generation of developers who believe a web app is a monstrous React codebase that makes a bunch of API calls, and Heroku should absolutely support this use case and make Heroku the best place to build and deploy such an app.  The opportunity is now becuase Vercel and friends are <strong>way</strong> behind Heroku for end-to-end management of a web app. But they are catching up.
+There is an entire generation of developers who believe a web app is a monstrous React codebase that makes a bunch of API calls, and Heroku should absolutely support this use case, making Heroku the best place to build and deploy such an app.  The opportunity is now becuase Vercel and friends are <strong>way</strong> behind Heroku for end-to-end management of a web app. But they are catching up.
 
 
 ##  Postgres as GraphQL/SPA API
@@ -172,11 +178,10 @@ Render are making a product very similar to Heroku, and they have the second-mov
 
 Render could, if they wanted, position themselves as <em>the</em> PAAS for startups. This would leave Heroku with lucrative but uninspiring legacy enterprise clients only. They'd eventually fade away into a tiny little feature blurb on Salesforce's webpage.
 
-##  Heroku Marketing Team
+##  Vercel, Netlify, and Friends
 
-Most developers think Heroku is toy.  It is not. I met with a junior dev at a startup who was setting up fucking ECS to run his app.  He thought Heroku was not a series consideration. I told him that Stitch Fix almost went public on Heroku and that it would absolutely work for his use-case.  I asked him to give a try.  He later told me that after an hour, he had migrated everything from AWS to Heroku…and was very happy about it.
+These companies aren't constrained by Salesforce and they are captializing on current fashion trends in app development.  That means they are getting developer mindshare and, when the JAMStack lie comes crashing down, will probably be a in good position to expand their offerings.  Imagine if Netlify launched a managed GraphQL backed by a real database like Postgres.  Suddenly, they become a platform for a <em>ton</em> of developers to deploy apps backed by a powerful datastore that can be integrated into any backend.
 
-This perception exists because of the Heroku marketing team. They can shift this perception.  Just imagine all of the engineers right now who will be leaders and decision makers in a few years thinking Heroku is a toy.
 
 ##  Carrying Cost for Supporting Pipelines and its Legacy Workflows
 

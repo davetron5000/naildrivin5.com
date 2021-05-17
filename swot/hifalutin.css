@@ -21,6 +21,12 @@
 .hifalutin li {
   font-family: Georgia, serif;
 }
+.hifalutin p:first-child:first-letter {
+  font-size: 3rem;
+  line-height: 3rem;
+  font-weight: 400;
+  letter-spacing: 0.125rem;
+}
 
 body.hifalutin {
   background-color: var(--hifalutin-light);
