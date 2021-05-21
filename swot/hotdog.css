@@ -10,7 +10,7 @@
 --hotdog-lightest: #eeff00;
 }
 .hotdog {
-  font-family: "comic sans", "Chalkboard",  cursive;
+  font-family: "comic sans", "Chalkboard SE Regular", arial, sans-serif;
 }
 body.hotdog {
   background-color: var(--hotdog-light);

@@ -114,16 +114,23 @@ Why is there no chart on their website that explains the true cost of ownership 
 
 ##  Eat Vercel, Netlify, and Friends for Lunch
 
-These tools could all be described as "Heroku for JAMStack apps".  While I think JAMStack is not a good architecture for most teams, there is no reason Heroku should allow these companies to take share away. Heroku should be <em>the</em> name in "single click deploy".  There should be an easy way to run a static site, run a single-page site, and everything these services provide.
+If you think of what's needed to build, deploy, and maintain a web app these days, it's not just a ball of React and a Firebase connection, but a solid database, observability, background workers, caching, etc etc.
 
-There is an entire generation of developers who believe a web app is a monstrous React codebase that makes a bunch of API calls, and Heroku should absolutely support this use case, making Heroku the best place to build and deploy such an app.  The opportunity is now becuase Vercel and friends are <strong>way</strong> behind Heroku for end-to-end management of a web app. But they are catching up.
+Heroku provide the best-in-breed of 75% of this: the backend, deployment, monitoring, security, routing, and networking.  This used to be 100%, but front-end tools and techniques have now come to be a bigger part of any app, and the Vercels of the world want to be the Heroku of that 25%.
 
+This is Heroku's opportunity: commoditize this by providing a Heroku-like developer experience for the new 25% of front-end.  Push a button and I have a Webpack-powered, CDN-hosted React app making API calls to a Postgres database.
+
+Heroku can then differentiate its new commodity by providing best-in-class front-end observability.  The observability space with front-end <strong>sucks</strong>. New Relic is useless. Honeycomb says roll your own.  And I Vercel's analytics <em>marketing</em> page has some of the worse front-end performance I've seen, so what does that say about their offering?
 
 ##  Postgres as GraphQL/SPA API
 
 While the JAMStack architecture is not appropriate for many use-cases, there is a lot of excitement around using GraphQL as a backing API for multiple views (e.g. iOS, Android, Web).  Managing GraphQL is no joke and most teams aren't equipped to do it or do it well.  Even the armchair devops can't claim AWS has a cheap version!
 
-Heroku could leverage their Postgres expertise and provide a sophisticated, performant, managed GraphQL on top of Postgres.  This would be a huge unlock for a ton of teams who can't afford to hire 30 mobile developers to build their app. It would also allow a clean mixture of the often messy front-end state management with sophisticated and reliable data modeling of the back-end.
+Heroku could leverage their Postgres expertise and provide a sophisticated, performant, managed GraphQL on top of Postgres.  Why
+comb through something like Apollo server and re-learn <strong>it's</strong> way of doing things when you already know and can
+rely on an RDBMS like Postgres?
+
+This would be a huge unlock for a ton of teams who can't afford to hire 30 mobile developers to build their app. It would also allow a clean mixture of the often messy front-end state management with sophisticated and reliable data modeling of the back-end.
 
 ##  Canary Deploys
 
