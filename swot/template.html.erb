@@ -60,7 +60,7 @@
                   <h3 class="lh-title <%= i == 0 ? 'mt1' : '' %>">
                     <%= one_swot[:name] %>
                     <a data-show-link class="f6 fw4 link underline" href="#">why?</a>
-                    <a data-permalink class="dn f6 fw4 link underline ml2" href="#<%= swot_name %>">Permalink</a>
+                    <a data-permalink class="dn f6 fw4 link underline ml2" href="#<%= one_swot[:id] %>">Permalink</a>
                   </h3>
                   <section class="dn">
                     <% one_swot[:content].each do |p| %>

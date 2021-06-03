@@ -1,8 +1,9 @@
 class OneSWOT {
-  constructor(element, location, open) {
-    this.element  = element
-    this.location = location
-    this.id       = element.dataset.swot
+  constructor(element, anchor, open, onOpen) {
+    this.element = element
+    this.anchor  = anchor
+    this.onOpen  = onOpen
+    this.id      = element.dataset.swot
 
     if (!this.id) {
       throw "Element had data-swot but without a value"
@@ -21,11 +22,10 @@ class OneSWOT {
       event.preventDefault()
       this.hide()
     }
-    const anchor = location.hash.substr(1)
     if (open) {
       this.show(false)
     }
-    else if (anchor == this.id) {
+    else if (this.anchor == this.id) {
       this.show()
     }
   }
@@ -46,7 +46,7 @@ class OneSWOT {
     this.showLink.classList.add("dn")
     this.showLink.classList.remove("di")
     if (set_anchor) {
-      this.location.hash = this.id
+      this.onOpen(this.id)
     }
   }
   hide() {
@@ -60,11 +60,10 @@ class OneSWOT {
 }
 
 class Themer {
-  constructor(body, window, open) {
+  constructor(body, initialTheme, onChange) {
     this.body       = body
-    this.window     = window
     this.themeNames = []
-    this.open       = open
+    this.onChange   = onChange
 
     this.body.querySelectorAll("[data-theme]").forEach( (link) => {
       const themeName = link.dataset.theme
@@ -78,15 +77,17 @@ class Themer {
       }
     })
 
-    const url_params = new URLSearchParams(window.location.search);
-    const theme = url_params.get("theme")
+    this.theme = this.themeNames[0]
+    if (initialTheme) {
+      if (this.themeNames.indexOf(initialTheme) != -1) {
+        this.theme = initialTheme
+      }
+      else {
+        console.log(`No such theme ${initialTheme}`)
+      }
+    }
 
-    if (theme && this.themeNames.indexOf(theme) >= 0) {
-      this.switchToTheme(theme)
-    }
-    else {
-      this.switchToTheme(this.themeNames[0])
-    }
+    this.switchToTheme(this.theme)
   }
 
   switchToTheme(themeName) {
@@ -94,10 +95,7 @@ class Themer {
       this.body.classList.remove(name)
     })
     this.body.classList.add(themeName)
-    const url_with_theme = this.window.location.protocol + "//" + 
-      this.window.location.host + 
-      this.window.location.pathname + `?theme=${themeName}&open=${this.open}`;
-    this.window.history.pushState({theme: themeName},"",url_with_theme)
+    console.log(`this.body.classList.add(${themeName})`)
 
     if (themeName == "dryerase") {
       document.querySelectorAll("h3").forEach( (element) => {
@@ -132,6 +130,7 @@ class Themer {
         element.style.transform = `rotate(0deg) skew(0deg)`
       })
     }
+    this.onChange(themeName)
   }
 
   _randomColor() {
@@ -145,14 +144,43 @@ class Themer {
   }
 }
 
+class SWOTUrl {
+  constructor(location) {
+    const url_params = new URLSearchParams(location.search);
+
+    this.anchor = location.hash.substr(1)
+    this.theme  = url_params.get("theme")
+    this.open   = url_params.get("open") === "true"
+  }
+
+
+  updateURL(state, window) {
+    const query_string = `?theme=${this.theme}&open=${this.open}#${this.anchor}`
+    const new_url = window.location.protocol + "//" +
+      window.location.host + 
+      window.location.pathname + query_string
+    window.history.pushState(state,"",new_url)
+  }
+
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   let swots = []
 
-  const url_params = new URLSearchParams(this.location.search);
-  const open = url_params.get("open") === "true"
+  const swotURL = new SWOTUrl(window.location)
+
+  const onThemeChange = (themeName) => {
+    swotURL.theme = themeName
+    swotURL.updateURL({ theme: themeName }, window)
+  }
+
+  const onOpen = (anchor) => {
+    swotURL.anchor = anchor
+    swotURL.updateURL({ anchor: anchor }, window)
+  }
 
   document.querySelectorAll("[data-swot]").forEach( (element) => {
-    swots.push(new OneSWOT(element,location,open))
+    swots.push(new OneSWOT(element,swotURL.anchor,swotURL.open, onOpen))
   })
   document.querySelectorAll("[data-show-all]").forEach( (element) => {
     element.onclick = (event) => {
@@ -168,8 +196,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   })
 
-  let themeLinks = {}
+  const themer = new Themer(document.body, swotURL.theme, onThemeChange)
 
-  const themer = new Themer(document.body, window, open)
 })
 
