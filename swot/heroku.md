@@ -126,9 +126,7 @@ Heroku can then differentiate its new commodity by providing best-in-class front
 
 While the JAMStack architecture is not appropriate for many use-cases, there is a lot of excitement around using GraphQL as a backing API for multiple views (e.g. iOS, Android, Web).  Managing GraphQL is no joke and most teams aren't equipped to do it or do it well.  Even the armchair devops can't claim AWS has a cheap version!
 
-Heroku could leverage their Postgres expertise and provide a sophisticated, performant, managed GraphQL on top of Postgres.  Why
-comb through something like Apollo server and re-learn <strong>it's</strong> way of doing things when you already know and can
-rely on an RDBMS like Postgres?
+Heroku could leverage their Postgres expertise and provide a sophisticated, performant, managed GraphQL on top of Postgres.  Why comb through something like Apollo server and re-learn <strong>it's</strong> way of doing things when you already know and can rely on an RDBMS like Postgres?
 
 This would be a huge unlock for a ton of teams who can't afford to hire 30 mobile developers to build their app. It would also allow a clean mixture of the often messy front-end state management with sophisticated and reliable data modeling of the back-end.
 
