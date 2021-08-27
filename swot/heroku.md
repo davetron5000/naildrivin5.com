@@ -120,7 +120,7 @@ Heroku provide the best-in-breed of 75% of this: the backend, deployment, monito
 
 This is Heroku's opportunity: commoditize this by providing a Heroku-like developer experience for the new 25% of front-end.  Push a button and I have a Webpack-powered, CDN-hosted React app making API calls to a Postgres database.
 
-Heroku can then differentiate its new commodity by providing best-in-class front-end observability.  The observability space with front-end <strong>sucks</strong>. New Relic is useless. Honeycomb says roll your own.  And I Vercel's analytics <em>marketing</em> page has some of the worse front-end performance I've seen, so what does that say about their offering?
+Heroku can then differentiate its new commodity by providing best-in-class front-end observability.  The observability space with front-end <strong>sucks</strong>. New Relic is useless. Honeycomb says roll your own.  And Vercel's analytics <em>marketing</em> page has some of the worse front-end performance I've seen, so what does that say about their offering?
 
 ##  Postgres as GraphQL/SPA API
 
