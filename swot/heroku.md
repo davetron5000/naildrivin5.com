@@ -134,7 +134,7 @@ This would be a huge unlock for a ton of teams who can't afford to hire 30 mobil
 
 Manually examining a staging app and clicking a deploy button is not the best way to ensure the quality of code to be deployed.  But it's easy to understand and set up.  A much better approach are so-called "canary" deploys where your new code runs alongside the old and has limited traffic routed to it.
 
-Setting this up can be difficult because there's a lot of ways to do it, and it requires a pretty heavy investment in tooling across the entire stack to make it work well.  Heroku are positioned to provide a solution, because they <em>do</em> control the entire stack and <em>don't</em> have to support a milling AWS services.
+Setting this up can be difficult because there's a lot of ways to do it, and it requires a pretty heavy investment in tooling across the entire stack to make it work well.  Heroku are positioned to provide a solution, because they <em>do</em> control the entire stack and <em>don't</em> have to support a million AWS services.
 
 They have the foundation: dynos, autoscaling, the router, preboot, and metrics.
 
