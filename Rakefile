@@ -128,6 +128,7 @@ task :deploy => :build do
     "atom.xml",
     "css/styles.css",
     "blm.html",
+    "books/index.html",
   ].each do |file_to_invalidate|
     sh "aws cloudfront create-invalidation --distribution-id=E19I9AKMQP8NDQ --paths=/#{file_to_invalidate}"
   end
