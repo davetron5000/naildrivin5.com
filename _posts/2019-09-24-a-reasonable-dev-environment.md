@@ -5,9 +5,9 @@ date: 2019-09-24 9:00
 ad:
   title: "A Ready-Made Toolchain"
   subtitle: "Ruby on Rails Lets You Focus"
-  link: "http://bit.ly/dcrails6"
-  image: "/images/rails6.jpg"
-  cta: "Buy Now $29.95"
+  link: "http://bit.ly/sus-rails"
+  image: "/images//sustainable-rails-cover.png"
+  cta: "Buy Now $49.95"
 related:
   - "Choosing Technology"
   - "Creating a Culture of Consistency"

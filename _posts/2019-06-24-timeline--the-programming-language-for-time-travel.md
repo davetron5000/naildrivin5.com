@@ -3,11 +3,11 @@ layout: post
 title: "Timeline: the programming language for time travel"
 date: 2019-06-24 8:00
 ad:
-  title: "Rails is Productive"
-  subtitle: "Focus on the problem you are soling"
-  link: "http://bit.ly/dcrails6"
-  image: "/images/rails6.jpg"
-  cta: "In Beta for $29.95"
+  title: "Be Productive With Rails"
+  subtitle: "Rails Just Works"
+  link: "http://bit.ly/sus-rails"
+  image: "/images//sustainable-rails-cover.png"
+  cta: "Buy Now $49.95"
 related:
   - "Coding without (many) Expressions"
   - "Four Better Rules for Software Design"

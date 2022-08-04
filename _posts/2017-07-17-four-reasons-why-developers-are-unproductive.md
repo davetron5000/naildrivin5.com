@@ -5,9 +5,9 @@ date: 2017-07-17 9:00
 ad:
   title: "Be Productive With Rails"
   subtitle: "Rails Just Works"
-  link: "http://bit.ly/dcrails6"
-  image: "/images/rails6.jpg"
-  cta: "Buy Now $29.95"
+  link: "http://bit.ly/sus-rails"
+  image: "/images//sustainable-rails-cover.png"
+  cta: "Buy Now $49.95"
 ---
 
 We all feel unproductive at times, and we can be sure that our bosses, clients, or co-workers feel we are being unproductive at times as well.  And, because developer productivity is so hard to measure or talk about, it can feel frustrating to be in a situation where you are feeling or perceived to be unproductive.  Rather than dwell on these feelings or postulate new broken ways to measure productivity, I want to talk about the *reasons* a developer might be unproductive.  With some self-awareness, you can improve your situation.
