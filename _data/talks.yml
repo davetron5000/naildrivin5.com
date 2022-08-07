@@ -1,3 +1,7 @@
+- title: "Your Service Layer Needn't Be Fancy, It Just Needs to Exist"
+  embed: "https://www.youtube.com/embed/CRboMkFdZfg"
+  where: "RailsConf 2022"
+  link: "https://davetron5000.github.io/service-layer-railsconf-2022/"
 - title: "The fewer the concepts, the better the code?"
   embed: "https://www.youtube.com/embed/unpJ9qRjdMw"
   where: "Ruby Conf 2019"
