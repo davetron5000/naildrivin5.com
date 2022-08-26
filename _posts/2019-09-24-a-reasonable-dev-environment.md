@@ -6,7 +6,7 @@ ad:
   title: "A Ready-Made Toolchain"
   subtitle: "Ruby on Rails Lets You Focus"
   link: "http://bit.ly/sus-rails"
-  image: "/images//sustainable-rails-cover.png"
+  image: "/images/sustainable-rails-cover.png"
   cta: "Buy Now $49.95"
 related:
   - "Choosing Technology"

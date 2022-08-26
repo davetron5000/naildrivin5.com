@@ -6,7 +6,7 @@ ad:
   title: "Rails Makes a Great Customer Support Platform"
   subtitle: "A Deep Dive into Sustainability"
   link: "http://bit.ly/sus-rails"
-  image: "/images//sustainable-rails-cover.png"
+  image: "/images/sustainable-rails-cover.png"
   cta: "Buy Now $49.95"
 ---
 

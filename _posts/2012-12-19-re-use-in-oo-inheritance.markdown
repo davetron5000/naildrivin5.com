@@ -7,7 +7,7 @@ ad:
   title: "Get the Most out of Rails"
   subtitle: "Clean Web Architecture"
   link: "http://bit.ly/sus-rails"
-  image: "/images//sustainable-rails-cover.png"
+  image: "/images/sustainable-rails-cover.png"
   cta: "Buy Now $49.95"
 ---
 Over the past several months, the Rails community, at least to my eyes, has become increasingly concerned with managing the

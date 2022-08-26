@@ -6,7 +6,7 @@ ad:
   title: "Low Opportunity Cost"
   subtitle: "Ruby on Rails Has You Covered"
   link: "http://bit.ly/sus-rails"
-  image: "/images//sustainable-rails-cover.png"
+  image: "/images/sustainable-rails-cover.png"
   cta: "Buy Now $49.95"
 related:
   - "Creating a Culture of Consistency"

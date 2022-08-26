@@ -6,7 +6,7 @@ ad:
   title: "Be Productive With Rails"
   subtitle: "Rails Just Works"
   link: "http://bit.ly/sus-rails"
-  image: "/images//sustainable-rails-cover.png"
+  image: "/images/sustainable-rails-cover.png"
   cta: "Buy Now $49.95"
 ---
 
