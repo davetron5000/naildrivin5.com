@@ -2,8 +2,8 @@
 <!DOCTYPE html>
 <html language="en"><head>
   <meta charset="utf-8">
-  <title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}</title>
-  <meta property="og:title" content="{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}" />
+  <title>{% if page.title %}{{ page.title }}{ % else % }{{site.title}}{% endif %}</title>
+  <meta property="og:title" content="{% if page.title %}{{ page.title }}{ % else % }{{site.title}}{% endif %}" />
   <meta property="twitter:site" content="@davetron5000" />
   <meta name="author" content="{{ site.author }}">
 
@@ -24,7 +24,7 @@
   <meta name="msapplication-TileImage" content="/images/favicons/ms-icon-144x144.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  {% capture description %}{% if page.description %}{{ page.description }}{% else %}{{ content | raw_content }}{% endif %}{% endcapture %}
+  {% capture description %}{% if page.description %}{{ page.description }}{% else %}{{ page.title }}{% endif %}{% endcapture %}
   <meta name="description" content="{{ description | strip_html | condense_spaces | truncate:150 }}">
   <meta property="og:description" content="{{ description |strip_html|condense_spaces}}" />
   <meta property="og:type" content="article" />
