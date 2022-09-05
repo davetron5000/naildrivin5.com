@@ -35,7 +35,7 @@ task :new_post, [:title,:date,:link] do |t,args|
       file.puts "  title: \"Get the Most out of Rails\""
       file.puts "  subtitle: \"A Deep Dive into Sustainability\""
       file.puts "  link: \"http://bit.ly/sus-rails\""
-      file.puts "  image: \"/images//sustainable-rails-cover.png\""
+      file.puts "  image: \"/images/sustainable-rails-cover.png\""
       file.puts "  cta: \"Buy Now $49.95\""
     end
     file.puts "---"
