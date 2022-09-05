@@ -2,8 +2,8 @@
 <!DOCTYPE html>
 <html language="en"><head>
   <meta charset="utf-8">
-  <title>{% if page.title %}{{ page.title }}{ % else % }{{site.title}}{% endif %}</title>
-  <meta property="og:title" content="{% if page.title %}{{ page.title }}{ % else % }{{site.title}}{% endif %}" />
+  <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
+  <meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}{{site.title}}{% endif %}" />
   <meta property="twitter:site" content="@davetron5000" />
   <meta name="author" content="{{ site.author }}">
 
