@@ -2,6 +2,8 @@
 layout: post
 title: "A Framework for Product Design Beyond the Happy Path"
 date: 2022-08-15 9:00
+description: "A Framework for Product Design Beyond the Happy Path"
+card_image: "/images/ProductDevFlow-og.jpeg"
 ad:
   title: "Rails Makes a Great Customer Support Platform"
   subtitle: "A Deep Dive into Sustainability"

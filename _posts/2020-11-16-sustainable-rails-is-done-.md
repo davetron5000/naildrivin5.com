@@ -1,6 +1,8 @@
 ---
 layout: post
 title: "Sustainable Rails is DONE!"
+description: "My book 'Sustainable Rails' is complete"
+card_image: "/images/sustainable-rails-cover.png"
 date: 2020-11-16 9:00
 ---
 
