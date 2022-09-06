@@ -26,7 +26,7 @@ that's what it does (yes, it's about testing).
 <!-- more -->
 
 You can't measure developer productivity, and you can't analyze a design to see if it's
-good, or even better as compared to some other design.  You can't even get two engineers to agree on subjective traits of a good design.  I can't understand why TDD's proponent spromise this stuff.  They don't need to.
+good, or even better as compared to some other design.  You can't even get two engineers to agree on subjective traits of a good design.  I can't understand why TDD's proponents promise this stuff.  They don't need to.
 
 What TDD—in the more literal interpretation of using tests to drive development—*can* do
 is provide a process to produce reliable, automated tests that provide great coverage of
