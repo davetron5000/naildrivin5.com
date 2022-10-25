@@ -4,3 +4,4 @@ drafts
 _site
 .DS_Store
 .*.sw?
+.direnv
