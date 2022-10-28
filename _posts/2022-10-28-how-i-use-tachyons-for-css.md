@@ -16,7 +16,7 @@ I've long come to prefer the "functional" style of CSS, where each class represe
 
 One benefit of Tachyhons-like frameworks is that you don't have to create a named component or
 semantic class for everything you want to style.  If you only ever need a padded box with a grey
-roudend border one time in your app, you can just create it directly:
+rounded border one time in your app, you can just create it directly:
 
 ```html
 <div class="pa2 ba br3 b--gray">
@@ -24,7 +24,7 @@ Some Stuff
 </div>
 ```
 
-But even modest apps will end up with resuable components.  A common exmaple is a button.   You might have a button like so:
+But even modest apps will end up with reusable components.  A common example is a button.   You might have a button like so:
 
 ```html
 <a href="#" class="ph3 pv2 ba br3 white b--green bg-green">
@@ -150,8 +150,8 @@ We could use CSS variables, assuming Tachyons makes them available:
 }
 ```
 
-This re-uses our design system, but now we have two ways to specify values: the classes taht
-Tacyons provides, and the variables it uses to produce its classes.
+This re-uses our design system, but now we have two ways to specify values: the classes that
+Tachyons provides, and the variables it uses to produce its classes.
 
 [SASS](https://sass-lang.com) allows us to address this.
 
@@ -171,8 +171,8 @@ If we use the Tachyons SASS port, we can do this:
 This is the best of all worlds:
 
 * Whenever we specify a CSS property, we have exactly one way to do it: using the Tachyons class, either directly in our HTML, or via `@extend` in SASS.
-* We don't have to name components that aren't resuable just so we can style them.
-* We *can* name components that *are* resuable to control how our design system evolves and allow new code to more easily know what standard styles are in place: any class defined in our main `.scss` file is an intended-to-be-reused component.
+* We don't have to name components that aren't reusable just so we can style them.
+* We *can* name components that *are* reusable to control how our design system evolves and allow new code to more easily know what standard styles are in place: any class defined in our main `.scss` file is an intended-to-be-reused component.
 
 
 This technique also provides benefits when you need to write CSS to solve a problem Tachyons
@@ -180,7 +180,7 @@ cannot.
 
 ## SASS `@extend` Works for Complex Components, too
 
-An example of something that Tachyons alone cannot easily style is a custom checkbox, where you need to style against pseudoselectors to achieve the design.  I'm sure there are other ways to do this, but this is a way I have done it that demonstrates the technqiue.
+An example of something that Tachyons alone cannot easily style is a custom checkbox, where you need to style against pseudo-selectors to achieve the design.  I'm sure there are other ways to do this, but this is a way I have done it that demonstrates the technique.
 
 Instead of using Tachyons classes in our HTML, we change to a [BEM-like](https://getbem.com/introduction/) style:
 
@@ -247,5 +247,5 @@ the best of all worlds because we *can* do this if we need to, with a minimum of
 we don't have to.
 
 And, we don't need a complicated JavaScript toolchain. We just need SASS, which is
-a battle-hardended, build-time-only, stable tool.
+a battle-hardened, build-time-only, stable tool.
 
