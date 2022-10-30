@@ -1,0 +1,19 @@
+digraph G {
+
+  node [ shape=record ]
+
+  Order    -> ShippingMethod
+  Customer -> Order
+  Order    -> Product
+  Customer -> PaymentMethod [ label="has many     "]
+  Order    -> Charge
+
+  ShippingMethod [ label="ShippingMethod\l\l+price_cents\l"]
+  Product        [ label="Product\l\l+price_cents\l"]
+  Customer       [ label="Customer\l\l+email\l"]
+  PaymentMethod  [ label="PaymentMethod\l\l+primary?\l+stripe_id\l"]
+  Charge         [ label="Charge\l\l+externalizable_id\l+stripe_id\l"]
+
+  { rank=same ; ShippingMethod ; Product       ; Customer ; }
+  { rank=same ; Charge         ; PaymentMethod ; }
+}
