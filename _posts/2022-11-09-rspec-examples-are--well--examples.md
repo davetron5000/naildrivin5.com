@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "RSpec Examples are, well, Examples"
-date: 2022-11-09 9:00
+date: 2022-11-09 8:00
 ---
 RSpec's internal DSL allows creating some difficult-to-sustain structures and code, but there is one guiding principle that has helped me avoid making tests that are *too* weird:
 
