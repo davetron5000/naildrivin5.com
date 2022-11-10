@@ -40,7 +40,7 @@ subject(:order) { described_class.new }
 
 This is better than `let` because it indicates that this particular variable is special: it's the object under test.
 
-Using `subject` in this way means you won't be able to use the [one-liner syntax](https://relishapp.com/rspec/rspec-core/v/3-11/docs/subject/one-liner-syntax), which is a good thing. Tests that use it are not examples of the code under test and hide a lot of useful information inside implicit behavior:
+Another use of `subject` is to enable the [one-liner syntax](https://relishapp.com/rspec/rspec-core/v/3-11/docs/subject/one-liner-syntax), which hides a ton of information about what is being tested inside implicit behavior (*note*: a previous version of this post erroneously claimed you could not use this syntax with a named subject):
 
 ```ruby
 it { is_expected_to be_empty }
