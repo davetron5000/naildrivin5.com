@@ -13,7 +13,7 @@ ad:
 Avdi Grimm has created great videos about Ruby called Ruby Tapas, and put up an older one
 as a video for his new [Graceful Dev](https://graceful.dev) offering.  The video is called [Barewords in Ruby](https://www.youtube.com/watch?v=9bIyldX-wEc) and it's a good demonstration how to make changes to a system without changing a core piece of logic.
 
-While I like how Avid approaches it, I'd make different trade-offs and make changes that result
+While I like how Avdi approaches it, I'd make different trade-offs and make changes that result
 in code with behavior more easy to predict than code that requires fewer changes.  Let's see.
 
 <!-- more -->
