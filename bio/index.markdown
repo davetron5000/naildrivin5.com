@@ -8,16 +8,16 @@ I'm currently CTO at mental health startup Mood Health.  Previously, I was the C
 
 I value delivering results and business value, and see technology as a powerful tool in service to those goals.  I've delivered results to users using Ruby, C, Java, SQL, Messaging, and Microservices, and look forward to using whatever is within my means to make technology work.  I fight for the users.  Also a huge fan of Peter Hook and the Oxford comma.
 
-<nav>
+<nav style="text-align: center;">
 <ul class="list-inline ml0 pl0">
-<li>
-<a href="https://github.com/davetron5000"><img src="/images/github-icon.png" height="36"></a>
+<li style="margin-right: 36px;">
+<a href="https://github.com/davetron5000"><img alt="Icon for Github" src="/images/github-icon.png" height="36"></a>
+</li>
+<li style="margin-right: 36px;">
+<a rel="me" href="https://ruby.social/@davetron5000"><img alt="Icon for Mastodon" src="/images/mastodon-logo.png" height="36"></a>
 </li>
 <li>
-<a href="https://twitter.com/davetron5000"><img src="/images/twitter-icon.png" height="36"></a>
-</li>
-<li>
-<a href="https://www.linkedin.com/in/davidcopeland"><img src="/images/linkedin-icon.png" height="36"></a>
+<a href="https://www.linkedin.com/in/davidcopeland"><img alt="Icon for Linkedin" src="/images/linkedin-icon.png" height="36"></a>
 </li>
 </ul>
 </nav>
@@ -71,8 +71,6 @@ it. Based on my 6+ years at Stitch Fix. Currently in beta!.
 
 ## My Music
 
-* [The Courtesans](http://www.facebook.com/courtesans) - My power-pop band where I sing and play bass.
-* [Remix](http://www.reverbnation.com/davetron5000) of a friend's rap homage to pro-wrestler Kurt Angle.
-* [Pardon the Solar Interruption](http://www.cdbaby.com/cd/secretpopband) - An awesome power-pop record by The Secret Pop Band that I mixed and recorded.
+Stay Tuned
 
 [About this Site](/colophon.html)
