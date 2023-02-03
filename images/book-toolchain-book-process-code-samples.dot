@@ -1,0 +1,26 @@
+digraph G {
+
+  rankdir="LR"
+  compound=true
+  ordering=out
+  node[shape=box fontname=baskerville]
+ 
+  InitialEdition -> NewEdition -> NewerEdition
+  
+  InitialEdition -> CodeSamples [dir=none style=dashed]
+  
+  NewEdition -> UpdatedCodeSamples [dir=none style=dashed]
+  NewerEdition -> MoreUpdatedCodeSamples [dir=none style=dashed]
+  
+  InitialEdition[label="Initial Edition"]
+  NewEdition[label="Second Edition"]
+  NewerEdition[label="Third Edition"]
+  
+  CodeSamples[shape=folder label="Code Samples"]
+  UpdatedCodeSamples[shape=folder label="Updated\lCode Samples"]
+  MoreUpdatedCodeSamples[shape=folder label="More Updated\lCode Samples"]
+  
+  { rank=same InitialEdition; CodeSamples }
+  { rank=same NewEdition; UpdatedCodeSamples }
+  { rank=same NewerEdition; MoreUpdatedCodeSamples }
+}

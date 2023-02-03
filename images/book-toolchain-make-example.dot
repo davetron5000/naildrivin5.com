@@ -1,0 +1,23 @@
+digraph G {
+
+  rankdir="TB"
+  compound=true
+  ordering=out
+  node[shape=box fontname=baskerville]
+
+  HelloMD -> Pandoc -> HelloTex
+  HelloTex -> PdfLaTeX -> HelloPDF
+  CoverTif -> ImageMagick -> CoverPNG
+  CoverPNG -> PdfLaTeX
+  
+  HelloMD[label="hello.md" shape="tab" fontname=courier]
+  HelloTex[label="hello.tex" shape="tab" fontname=courier]
+  HelloPDF[label="hello.pdf" shape="tab" fontname=courier]
+  CoverPNG[label="cover.png" shape="tab" fontname=courier]
+  CoverTif[label="cover.tif" shape="tab" fontname=courier]
+  Pandoc[shape=rarrow label="pandoc" fontname=courier]
+  PdfLaTeX[shape=rarrow label="pdflatex" fontname=courier]
+  ImageMagick[shape=rarrow]
+
+}
+

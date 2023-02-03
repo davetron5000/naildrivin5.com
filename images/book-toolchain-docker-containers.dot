@@ -1,0 +1,41 @@
+digraph G {
+
+  rankdir="LR"
+  compound=true
+  ordering=out
+  node[shape=box fontname=baskerville]
+
+  subgraph cluster_toolchain {
+      label="Toolchain Continer"
+    MyToolChain[label="My Toolchain"]
+    
+    MyToolChain -> Graphviz
+    MyToolChain -> NodeJS
+    MyToolChain -> Puppeteer
+    MyToolChain -> LaTeX
+  }
+  
+  subgraph cluster_devenv {
+    label="Dev Environment Container"
+    
+    Rails
+    Ruby
+    SSHD
+    
+    ExampleApp -> Rails -> Ruby
+    
+    ExampleApp[label="Running Example"]
+    SSHD -> Rails[label="cli invocations"]
+    SSHD -> ExampleApp[label="code edits"]
+    
+    { rank=same; Rails; Ruby }
+    { rank=same; SSHD; ExampleApp }
+  }
+  ExampleApp -> Postgres
+  Postgres[label="Postgres Container"]
+  Puppeteer -> ExampleApp[label="screenshots"]
+  
+  MyToolChain -> SSHD[label="ssh «command»"]
+
+}
+

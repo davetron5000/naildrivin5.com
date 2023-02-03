@@ -1,0 +1,15 @@
+digraph G {
+
+  rankdir="LR"
+  compound=true
+  ordering=out
+  node[shape=box fontname=baskerville]
+ 
+  Draft -> Edit -> Revise -> CopyEdit -> TypeSet -> Ship
+  Revise -> Edit
+  CopyEdit[label="Fix Typos and\lMisspellings"]
+  TypeSet[label="Format for Printing &\lDistrbution"]
+  { rank=same Edit; Draft }
+  { rank=same Revise; CopyEdit; }
+  { rank=same  TypeSet; Ship }
+}

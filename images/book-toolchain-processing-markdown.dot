@@ -1,0 +1,35 @@
+digraph G {
+
+  rankdir="LR"
+  compound=true
+  ordering=out
+  node[shape=box fontname=baskerville]
+
+  AugmentedMarkdown -> MarkdownProcessor
+  MarkdownProcessor -> VanillaMarkdown
+  MarkdownProcessor -> Screenshots
+  MarkdownProcessor -> CodeSamples
+  MarkdownProcessor -> RenderedGraphvizDiagrams
+
+  AugmentedMarkdown[label="Markdown with\ldirectives"]
+  MarkdownProcessor[label="Ruby Processor to\lexecute directives" shape="rarrow"]
+  VanillaMarkdown[label="Standard Markdown\lwith code and diagram\lreferences inserted"]
+  Screenshots[label="Screenshots based\lon running the actual code"]
+  CodeSamples[label="Code samples that\lwere snapshots of the code\lat that point in the book" shape="folder"]
+  RenderedGraphvizDiagrams[label="Rendered Graphviz\ldiagrams"]
+
+  VanillaMarkdown -> Pandoc
+  Screenshots -> Pandoc
+  CodeSamples -> Website
+  RenderedGraphvizDiagrams -> Pandoc
+
+  Pandoc[label="pandoc" shape="rarrow"]
+  Website[label="Book website"]
+  Pandoc -> EPUB
+  Pandoc -> PDF
+  Pandoc -> PrintPDF
+  EPUB[label="EPUB version" shape="note"]
+  PDF[label="PDF for screens" shape="note"]
+  PrintPDF[label="PDF for print editions" shape="note"]
+
+}
