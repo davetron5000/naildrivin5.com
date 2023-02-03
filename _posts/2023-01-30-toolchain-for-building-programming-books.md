@@ -71,9 +71,9 @@ on it, I had to maintain focus on getting a real book written and into the hands
 of inspiration from others and scrapped many failed attempts.  What I created—and will demonstrate in detail—is basically a giant script that gets executed. That script produces the titles, chapters, sections, paragraphs, diagrams, screenshots, and code that all comprise a programming book.
 
 The reason to do this, instead of writing some Markdown and keeping a separate folder of code samples and diagrams
-is best understand by an example.  When I was writing the second version of [Rails, Angular, Postgres, and Bootstrap](https://pragprog.com/titles/dcbang2/rails-angular-postgres-and-bootstrap-second-edition/), I was updating the book for major new versions of Rails and Angular. It was painful, but since the Rails and Angular don't have breaking changes often, it didn't feel *too* bad to go through and update everything by hand.
+is best understood by an example.  When I was writing the second version of [Rails, Angular, Postgres, and Bootstrap](https://pragprog.com/titles/dcbang2/rails-angular-postgres-and-bootstrap-second-edition/), I was updating the book for major new versions of Rails and Angular. It was painful, but since the Rails and Angular don't have breaking changes often (LOL ANGULAR), it didn't feel *too* bad to go through and update everything by hand.
 
-Until I was ready to release and  both Rails *and* Angular created breaking changes in some configuration. These
+Until I was ready to release and  both Rails *and* Angular created *new* breaking changes in some configuration. These
 changes both happened to affect code samples early in the book.  Meaning: I had to apply these changes to pretty
 much every copy of the downloadable code samples.  By hand. After just having done it already.
 
@@ -109,7 +109,7 @@ necessary typographic features available are supported.  For example:
 * Parts, Chapters, Sections, Subsections are a given
 * Code examples need look good and highlight changes the reader is expected to make or pay attention to
 * Command line invocations should show their output when needed
-* Liberal screenshots to show the affect of visual aspects of the software being discussed
+* Liberal screenshots to show the effect of visual aspects of the software being discussed
 * Technical diagrams to explain difficult concepts
 * Footnotes for links and short asides
 * Sidebars for longer asides
@@ -119,22 +119,22 @@ necessary typographic features available are supported.  For example:
 In addition, however I did *not* want to:
 
 * Maintain separate code by hand
-* Have to manually run command line invocations and copy/paste their output
-* Have to create downloadable samples by hand
+* Manually run command line invocations and copy/paste their output
+* Create downloadable samples by hand
 * Fire up a web browser to take screenshots
 * Run Graphviz on the command line whenever a diagram needed updating
 
 I wanted the tool to allow me to write the entire book - text, code, screenshots, and diagrams, all together and
 have it do all the work for me.
 
-I knew that my typesetting requirements could be met by LaTeX.  LaTeX sucks to write in. It sucks hard.  But, I knew that [Pandoc](https://pandoc.org) could take in myriad  formats and produce LaTeX, which could then be used to produce a PDF.  Pandoc could also produce EPUB which I could use for general e-Readers and Kindle.  And while not ever source format supported the typographic features I wanted, LaTeX and EPUB definitely did.
+I knew that my typesetting requirements could be met by LaTeX.  LaTeX sucks to write in. It sucks hard.  But, I knew that [Pandoc](https://pandoc.org) could take in myriad  formats and produce LaTeX, which could then be used to produce a PDF.  Pandoc could also produce EPUB which I could use for general e-Readers and Kindle.  And, while not every source format supported the typographic features I wanted, LaTeX and EPUB definitely did.
 
 When writing [The Senior Software Engineer](https://sweng.me), I wrote it in Asciidoc and converted it to LaTeX via
 Pandoc, so was familiar with the workflow. I didn't like Asciidoc and wanted to write generally in Markdown.
 However Markdown does not support the typographic features LaTeX does and it certainly doesn't support my
 automation needs.
 
-My applying the following modest list of tools, I was able to get it all work:
+By applying the following modest list of tools, I was able to get it all work:
 
 * Docker
 * Ruby
@@ -203,7 +203,7 @@ block. It can't be confused with any sort of normal Markdown. The contents of th
 * `setup_command` - optional command to run before that gets things set up. In this case, it deletes any Rails app
 it might find from before
 * `command` - what to run. It has some options:
-  - `command' is the command line invocation to run, just as the book expects the user to run it.
+  - `command` is the command line invocation to run, just as the book expects the reader to run it.
   - `output` can be true (include the output in the book) or false (don't include it).
 
 The idea is that when the file containing this directive is processed, the setup command is run to set the stage,
@@ -232,7 +232,7 @@ This leads to the obvious quesiton of *where* exactly this command gets run.
 
 ## Docker Docker Docker Docker Docker
 
-When writing _The Senior Software Engineer_, I had the tools running on my computer. With each update of macOS, everything broke and at this point, I have no idea how I could possibly recreate it all to build book if I had to.  For _Sustainable Rails_, I wanted a VM-like solution so I could document the setup and preserve the results of doing so, safe from Cupertino's meddling with my computer.
+When writing _The Senior Software Engineer_, I had the tools running on my computer. With each update of macOS, everything broke and at this point, I have no idea how I could possibly recreate it all to build the book if I had to.  For _Sustainable Rails_, I wanted a VM-like solution so I could document the setup and preserve the results of doing so, safe from Cupertino's meddling with my computer.
 
 <div data-ad></div>
 
@@ -241,7 +241,7 @@ I was asking the reader to write executed inside the computer running my toolcha
 simulation of what the reader was doing. I really needed to be able to do all the Rails stuff in a fresh
 environment, ideally one I could share with the reader.
 
-Thus, a second Docker container was needed for the dev environment.  The toolchain Docker container would use ssh to execute commands inside the dev-environment Docker container.  That container could be shipped to the user so they could follow along with the book. I could be confident that if the book said it worked, it worked, and the reader could rely on that.  This has largely turned out to be true.
+Thus, a second Docker container was needed for the dev environment (you can see it [here](https://github.com/sustainable-rails/sustainable-rails-docker).  The toolchain Docker container would use ssh to execute commands inside the dev-environment Docker container.  That container could be shipped to the reader so they could follow along with the book. I could be confident that if the book said it worked, it worked, and the reader could rely on that.  This has largely turned out to be true.
 
 I also had a Postgres container running since the example app needed a database.  They were all available to each
 other over a network created by Docker Compose.
@@ -263,12 +263,12 @@ other over a network created by Docker Compose.
 </figure>
 
 I learned a lot about Docker getting this going, and my SSHD configuration is 100% not ready for production, but it
-all worked.  But, the ability to run commands is insignificant next to the power of editing code and showing the reader exactly what and where to make changes.
+all worked.  However, the ability to run commands is insignificant next to the power of editing code and showing the reader exactly what and where to make changes.
 
 ## Editing Code is Messy
 
 There are two challenges when thinking about editing code in a programming book, especially when you are actually
-*editing* i.e. changing an existing file.  First, is how to explain to the user where to make what change.  Second
+*editing* i.e. changing an existing file.  First, is how to explain to the reader where to make what change.  Second
 is how to make sure that explanation is resilient to minor changes in the file.
 
 What I decided was that each code snippet would show exactly one change at a time.  It could show multiple lines
@@ -286,7 +286,7 @@ regular expressions to do this.  It worked well enough when you got it right, bu
 under- or over-specify the regular expression, and it didn't produce error messages that I liked when things went
 wrong.
 
-I decided on a more explicit, less featurful, easier to parse directive written in JSON.  I knew I'd been using
+I decided on a more explicit, less featurful, easier to parse directive written in JSON.  I knew I'd be using
 this infrequently after the first edition was released and didn't want to have to re-learn an API or debug complex
 interactions.
 
@@ -430,7 +430,8 @@ recent than `hello.pdf` and re-run `pdflatex`.
 With a sufficiently complex system, a carefully-crafted web of dependencies can result in very fast incremental
 builds and very little waste.  This means fast feedback cycles.  It works best when everything is file-based.
 
-So, I made sure that my agumented-markdown-to-plain-markdown toolchain operated *per file*.  It knew that if
+So, I made sure that my agumented-markdown-to-plain-markdown toolchain operated *per file* and that I created one
+file per section of the book (as opposed to one per chapter or one big file).  It knew that if
 `12-03.md` had not changed, there was no reason to process it.  Thus, if I changed `12-04.md`, along with the
 snapshotting system, my `Makefile` would *not* process `12-03.md`, would restore `12-03`'s snapshot, then process
 `12-04.md`.
@@ -606,7 +607,7 @@ The only thing left was to do the sidebars
 
 ## Deep Dive Into Pandoc Filters
 
-I love sidebars. I love when books have these detailed asides to go deep on something unrelated to the concepts at hand, but still relevant to the overall book. In my case, I wanted to be able to tell some anecdotes about my experience writing Rails without it being a diversion.  Sidebars are a typographic technique to let the reader know they can skip a big block of text and come back to it.
+I love sidebars. I love when books have these detailed asides to go deep on something unrelated to the concepts at hand, but still relevant to the overall book. In my case, I wanted to be able to tell some anecdotes about my experience writing Rails without it being a diversion.  Sidebars are a typographic technique to let the reader know they can skip a big block of text and come back to it later.
 
 The main issue is that LaTeX and EPUB have no particular concept of a sidebar. This meant that I couldn't use my
 Markdown processing to craft some vanilla Markdown that produced sidebars. I'd need to instead embed something in
@@ -650,9 +651,7 @@ There's more to it than that to properly detect a block of code, but basically i
 check if I was outputing LaTeX or HTML and replace the content appropriately.  For EPUB, I just needed to insert an
 `<a id=>` tag for cross-referencing and put the title into the output.
 
-For LaTeX, I spent quite a while tailoring the `tcolorbox` module to produce a fancy box with different fonts and
-colors. After several test printings I eventually kept the color as black text on a white background, but was able
-to use different fonts and a border to give it the look I wanted.
+For LaTeX, I spent quite a while tailoring the `tcolorbox` module to produce a fancy box with different typography and colors. After several test printings I eventually kept the color as black text on a white background, using slightly altered typography (smaller font with shorter leading).
 
 And behold:
 
@@ -669,7 +668,7 @@ simpler to undersatand since it parses standalone augmented Markdown files and p
 ## Other Bits and Bobs
 
 For the index, I put raw LaTeX in the Markdown. I couldn't find a better way to do it, but an index is only
-relevant for a printed book anyway (since you can't search a physical book), so I was fine with that.  I did that at the end because it greatly disrupts the text. Here's a paragraph that is creating index entries for "database -> lookup tables" and "lookup
+relevant for a printed book anyway (since you can't search a physical book), so I was fine with that.  I did that at the end because it greatly disrupts the text. Here's a paragraph that is creating index entries for "database → lookup tables" and "lookup
 tables":
 
 ```
@@ -701,7 +700,7 @@ to make sure the PDF avoided a few things:
 
 * I don't want to have to use page numbers in cross-referencing for diagrams unless necessary. It's much better, in
 my opinion, to say "the screenshot below" or "the screenshot on the next page".  Knowing which phrase can be used
-require the final book to be typset, then updated, then re-typeset to make sure it still works.
+requires the final book to be typset, then updated, then re-typeset to make sure it still works.
 * You may have noticed I offset codeblocks with horizontal lines.  The book also has numerous footnotes and they
 are shown in the bottom margin with a line above the note. I didn't want a page to end with a codeblock and also
 have a footnote line right after. I also didn't want the line for code to appear on its own without any code with
