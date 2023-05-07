@@ -142,11 +142,19 @@ main {
   margin: 0 auto;
   overflow-x: hidden; }
 
+.readable {
+  width: 90%;
+  margin: 0 auto; }
+
 @media (min-width: 40em) {
   main {
     width: 720px;
     margin: 0 auto;
-    overflow-x: hidden; } }
+    overflow-x: hidden; }
+
+  .readable {
+    width: 720px;
+    margin: 0 auto; } }
 pre, code {
   font-family: "Courier New", "Courier", monospace; }
 

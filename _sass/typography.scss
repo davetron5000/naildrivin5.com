@@ -161,11 +161,20 @@ main {
   margin: 0 auto;
   overflow-x: hidden;
 }
+
+.readable {
+  width: $text-width;
+  margin: 0 auto;
+}
 @media (min-width: 40em) {
   main {
     width: $desktop-text-width;
     margin: 0 auto;
     overflow-x: hidden;
+  }
+  .readable {
+    width: $desktop-text-width;
+    margin: 0 auto;
   }
 }
 
