@@ -6,6 +6,8 @@
   <meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}{{site.title}}{% endif %}" />
   <meta property="twitter:site" content="@davetron5000" />
   <meta name="author" content="{{ site.author }}">
+  <meta itemprop="ai-content-declaration:version" content="1.0.0-alpha1">
+  <meta itemprop="ai-content-declaration:level" content="none">
 
   <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-icon-57x57.png">
   <link rel="apple-touch-icon" sizes="60x60" href="/images/favicons/apple-icon-60x60.png">
@@ -68,8 +70,9 @@
     </section>
   </main>
   <footer class="center">
-    <p class="f6">
-      Copyright &copy; 2006-{{ site.time | date: '%Y' }}, by David Bryant Copeland, All Rights Reserved
+    <p class="f6 readable pb3">
+      Copyright &copy; 2006-{{ site.time | date: '%Y' }}, by David Bryant Copeland, All Rights Reserved.
+      Unless otherwise stated, all content on this page was <a href="http://declare-ai.org/1.0.0-alpha1/none.html">created without any assistance from a Generative AI</a>.
     </p>
     <p class="readable f7">
       Typos or other issues? Feel free to <a rel=me href="https://ruby.social/@davetron5000">reach out on Mastodon</a>, or <a href="mailto:davec@naildrivin5.com">email me</a> (yes, I read and respond to all my email). To discuss the content, consider doing so on Hacker News, Reddit, Mastodon, or lobste.rs
