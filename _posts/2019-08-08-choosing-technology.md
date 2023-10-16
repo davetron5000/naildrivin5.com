@@ -11,6 +11,7 @@ ad:
 related:
   - "Creating a Culture of Consistency"
   - "The Frightening State of Security Around NPM Package Management"
+  - "The Katz Conjecture: You Must Understand What an Abstraction Abstracts"
 ---
 
 Choosing technology has a huge impact on a  team's performance, and when you are starting out, you have a lot of
