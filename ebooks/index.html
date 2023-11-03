@@ -1,0 +1,136 @@
+---
+layout: page
+title: eBooks and eReaders HOWTO
+---
+<p>
+  As an author and typesetter of <a href="/books/index.html">eBooks</a>, I wanted to capture notes and instructions on getting eBooks into various eReaders.  I also want to capture some notes about what the experience reading is like. It can be a nightmare.
+</p>
+<p>
+  Following are all the eReaders I have tried and my notes on getting a <code>.epub</code> file into them and reading it.  I have actually done the steps here to verify them. If you have an eReading device or website not listed, please <a href="mailto:davec@naildrivin5.com">email me</a> and I'll look at adding it.
+</p>
+<ul>
+  <li><a href="#kindle">Amazon Kindle</a></li>
+  <li><a href="#kobo">Rakuten kobo</a></li>
+  <li><a href="#ibooks">Apple iBooks</a></li>
+  <li><a href="#play">Google Play Books</a></li>
+  <li><a href="#calibre">calibre</a></li>
+</ul>
+<section>
+  <h2 id="kindle">Kindle</h2>
+  <p>
+    Kindles support <code>.epub</code> files, but they must go through Amazon's infrastructure in order to be viewed on a Kindle.
+  </p>
+  <h3>Getting Content Onto the Device</h3>
+  <p>These instructions are summarized from <a href="https://kindlepreneur.com/epub-to-kindle/">Kindlepreneur's article</a> on this subject. Kindles allow you to email <code>.epub</code> files to a special email address and this will—eventually—get the file onto your Kindle. You also need to approve your own email to be able to send to this address.</p>
+  <ol>
+    <li><p>
+        On <code>amazon.com</code>, go to <em>Account &amp; Lists</em>, then <em>Manage Content &amp; Devices</em> (which is <strong>buried</strong> way below the fold in a giant wall of links)
+    </p></li>
+    <li><p>
+      Click <em>Preferences</em>.</p>
+    </li>
+    <li><p>
+      Scroll way down to a section (that has no text in it) named “Personal Document Settings”. This is actually a link you must click. Click it, and it should reveal some text. And by <em>some</em>, I mean <strong>a lot</strong>
+    </p></li>
+    <li><p>
+      There should be a new section labeled “Send-to-Kindle Email Settings”. You should see your Kindle there, along with a special email address <code>@kindle.com</code>.  Save that for later.
+    </p></li>
+    <li><p>
+      Next, there is a section labeled “Personal Document Archiving”.  Make sure that is <em>enabled</em>, as this will store your <code>.epub</code> with Amazon, and make syncing it to other devices much easier.  And, to be honest, I am not positive any of this works if you don't have this set.
+    </p></li>
+    <li><p>
+      Below that should be a section labeled “Approved Personal Document E-mail List”, and a link labeled “Add a new approved e-mail address”. Click that link.
+    </p></li>
+    <li><p>
+        A modal popup will appear where you can enter an email. Enter the <em>email address you plan to use to send the document from</em>, then click “Add Address”.
+    </p></li>
+    <li><p>
+      <strong>Now</strong>, you can email the <code>.epub</code> to your Kindle. From the email address you just configured, send the document as an attachment to the special <code>@kindle.com</code> email address above.  To be safe, make a subject and add some text in the body.
+    </p></li>
+    <li><p>
+      Assuming your Kindle is connected to the Internet, the document will eventually show up.  For me, sometimes it can take 30 or more minutes, but it does seem to eventually get there.  The bigger the document, the longer it will take.  The PDF of one of my books took over an hour to show up.  Amazon.com follows the Alan Dye school of UX design which is that you are given no information about anything that's happening.  I mean, what can you expect from one of the world's richest, most powerful companies, right?
+    </p></li>
+  </ol>
+  <h3>The Reading Experience</h3>
+  <p>
+    Kindle generally has a good reading experience.  I suggest you turn <strong>off</strong> full justification, because the hyphentation and typesetting is garbage, but once you have that off, it's not bad.
+  </p>
+  <p>
+    The Kindle does a good job with basic typograph features like bold, italic, fonts, and sidebars.  It doesn't do so great with images or source code, mostly because it's very narrow.
+  </p>
+</section>
+<section>
+  <h2 id="kobo">Rakuten kobo</h2>
+  <p>
+    Kobos support <code>.epub</code> files and you can copy them directly onto it!
+  </p>
+  <h3>Getting Content Onto the Device</h3>
+  <ol>
+    <li><p>
+      Connect your kobo to your computer via a USB cable.
+    </p></li>
+    <li><p>
+      Copy the <code>.epub</code> directly onto the drive that is mounted. Not sure what it will look like on your OS, but hopefully it will be obvious.
+    </p></li>
+    <li><p>
+      Unmount or eject the drive.  How you do this depends on your OS.
+    </p></li>
+    <li><p>
+      Unmounting will trigger the kobo to process the <code>.epub</code> and add it to the device.
+    </p></li>
+  </ol>
+  <h3>The Reading Experience</h3>
+  <p>
+    The kobo reading experience for technical books is pretty bad.   It ignores all sidebar formatting, boxes, etc.  Diagrams look OK, source code looks OK.
+  </p>
+  <p>
+    Following a footnote or link is problematic. There is no way to return to where you clicked the link.  Turning pages is very slow and you will get text randomly underlined or randomly inside a box.  Sometimes rotating the kobo fixes this.
+  </p>
+</section>
+<section>
+  <h2 id="ibooks">Apple iBooks</h2>
+  <p>
+    Apple's iBooks is pretty easy to use and works well.
+  </p>
+  <h3>Getting Content Onto the Device</h3>
+  <ol>
+    <li><p>Open the file with iBooks on a Mac, or send the file to iBooks on an iOS device.  This will add it to your library and sync it everywhere via iCloud.</p></li>
+  </ol>
+  <h3>The Reading Experience</h3>
+  <p>
+    The reading experience is great, since it's using a modern web browser.  Everything seems to work well, formatting looks good.  It's obviously not typeset as well as a real book, but it's the best you are going to get on a non-eInk screen.
+  </p>
+</section>
+<section>
+  <h2 id="play">Google Play Books</h2>
+  <p>
+    I rarely use the Google Play ecosystem, however it seems to read <code>.epub</code> files well and seems to work well.
+  </p>
+  <h3>Getting Content Onto the Device</h3>
+  <p>
+    These are for using the website at <a href="https://play.google.com/books"><code>https://play.google.com/books</code></a>.
+  </p>
+  <ol>
+    <li><p>Navigate to <a href="https://play.google.com/books"><code>https://play.google.com/books</code></a> in your web browser. I have tested Safari and Chrome.</p></li>
+    <li><p>Click on “Upload Files”, then follow the instructions to upload the file</p></li>
+  </ol>
+  <h3>The Reading Experience</h3>
+  <p>
+    The reading experience is great, since it's inside a web browser.  Everything seems to work well, formatting looks good.  It's obviously not typeset as well as a real book, but it's pretty good.
+  </p>
+</section>
+<section>
+  <h2 id="calibre">calibre</h2>
+  <p>
+    <a href="https://calibre-ebook.com/download">Calibre</a> is an old-school eBook management system and reader.  It has the feel of a 1990's Java program, probably because it is.  But it is fully featured.
+  </p>
+  <h3>Getting Content Onto the Device</h3>
+  <ol>
+    <li><p>Start the app</p></li>
+    <li><p>Click on “Add books” and follow the instructions</p></li>
+  </ol>
+  <h3>The Reading Experience</h3>
+  <p>
+    The reading experience is pretty good—it appears to use some sort of web browser.  The typography is not better than a web browser, but all the borders, fonts, and other typographical features seemed to work pretty well.
+  </p>
+</section>

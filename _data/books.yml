@@ -1,4 +1,8 @@
 inprint:
+  - title: "Ruby on Rails Background Jobs with Sidekiq"
+    subtitle: "Run Code Later without Complicating Your App"
+    image: /images/sidekiq-rails-cover.jpg
+    site: "https://sidekiqrails.com"
   - title: "Sustainable Web Development with Ruby on Rails"
     subtitle: "Practical Tips for Building Web Applications that Last"
     image: /images/sustainable-rails-cover.png
