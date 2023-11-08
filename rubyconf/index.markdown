@@ -1,6 +1,6 @@
 ---
 layout: page
-title: <span role="img" aria-label="coffee cup">☕️</span> RubyConf Coffee Swap <span role="img" aria-label="coffee cup">☕️</span>
+title: RubyConf Coffee Swap
 ---
 
 ### Wed, Nov 15, 12:45pm @ Gold State Ballroom (Lunch)
