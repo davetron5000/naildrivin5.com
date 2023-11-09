@@ -1,0 +1,18 @@
+digraph G {
+
+  rankdir="LR"
+  compound=true
+  node[shape=box]
+
+  ChargeSubscriptionsJob[fontname="Courier New"]
+  ChargeSubscriptionsJob -> ChargeOneSubscriptionJob1
+  ChargeSubscriptionsJob -> ChargeOneSubscriptionJob2
+  ChargeSubscriptionsJob -> ChargeOneSubscriptionJob3
+  ChargeSubscriptionsJob -> ChargeOneSubscriptionJob4
+  ChargeSubscriptionsJob -> ChargeOneSubscriptionJob5
+  ChargeOneSubscriptionJob1[label="ChargeJob" fontname="Courier New"]
+  ChargeOneSubscriptionJob2[label="ChargeJob" fontname="Courier New"]
+  ChargeOneSubscriptionJob3[label="ChargeJob" fontname="Courier New"]
+  ChargeOneSubscriptionJob4[label="ChargeJob" fontname="Courier New"]
+  ChargeOneSubscriptionJob5[label="ChargeJob" fontname="Courier New"]
+}

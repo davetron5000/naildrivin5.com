@@ -1,0 +1,16 @@
+digraph G {
+
+  rankdir="TB"
+  nodesep=1
+  compound=true
+  node[shape=Mrecord fontname="Courier New"]
+
+  Subscriptions:customer_id -> Customers:id
+  Invoices:subscription_id  -> Subscriptions:id
+
+  Subscriptions[label="{SUBSCRIPTIONS|<id>id\l|<customer_id>customer_id\l|month_charge_cents\l|next_charge_on\l}"]
+  Customers[label="{CUSTOMERS|<id>id\l|payment_processor_id\l}"]
+  Invoices[label="{INVOICES|<id>id\l|<subscription_id>subscription_id\l|charge_cents\l|charge_on\l|charged_at\l}"]
+  { rank=same; Invoices; Customers }
+}
+
