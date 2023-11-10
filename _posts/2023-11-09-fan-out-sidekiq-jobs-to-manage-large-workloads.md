@@ -83,8 +83,9 @@ complete a charge.  If we had 1,000 customers to charge on any given day, that m
 complete.
 
 If you were to deploy, or cycle infrastructure (as is common with cloud-hosted services) it could fail partway through.  What if
-there is some bug or problem with the data such that a particular subscription always causes a failure?  The job would retry
-forever, never getting past that one errant subscription (a so-called "poison pill").
+there is some bug or problem with the data such that a particular subscription always causes a failure?  If the job processes
+subscriptions in the same order, it would always fail at the errant subscription, preventing the entire batch from ever
+completing (a so-called "poison pill").
 
 Large jobs that operate on a lot of data and run for a long time are magnets for failures.  It can be often difficult to unwind
 what went wrong and correct it.  If we could break up the logic into manageable chunks, that might make it easier.
@@ -149,8 +150,8 @@ for Sidekiq. These are under our control and less likely to fail.  And, since we
 successfully queue `ChargeJob`, if `ChargeSubscriptionsJob` gets retried, it won't queue the same subscription twice.
 
 This also means that any problematic subscription won't spoil the entire batch.  The so-called poison pill subscription would
-continue to fail, but each time it got retried, other subscriptions would get processed first. Eventually only the poison pill
-would remain and, presumably, we'd be notified of a failure and could address it.
+continue to fail, but each time it got retried, other subscriptions would get processed first. This failed job no longer prevents
+the entire batch from failing, turning it into just another failed job and not a traditional poison pill.
 
 Of course, changing our design to fan out jobs introduce other failure modes we need to address.
 
