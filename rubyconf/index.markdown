@@ -12,4 +12,9 @@ You like coffee, right? <span role="img" aria-label="coffee cup">☕️</span> L
 1. At **1:00pm**, we'll combine all the bags and randomly swap yours for someone else's by drawing numbers or something easy.
 1. Feel free to swap after with others to refine your selection.
 
-<img src="/images/DavidCopeland.png" id="me">
+<figure style="text-align:center">
+<figcaption>
+This is what I look like, but I may not be smiling, depending on how much coffee I have had.
+</figcaption>
+<img src="/images/DavidCopelandAvatar-512.jpeg" id="me" style="border-radius: 0.5rem;">
+</figure>
