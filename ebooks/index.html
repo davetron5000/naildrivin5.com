@@ -62,7 +62,7 @@ title: e-books and e-readers HOWTO
 <section>
   <h2 id="kobo">Rakuten kobo</h2>
   <p>
-    Kobos support <code>.epub</code> files and you can copy them directly onto it!
+    Kobos support <code>.epub</code> files and you can copy them directly onto it! <strong>However</strong>, you must rename the file to have a <code>.kepub.epub</code> file extension. If don't, it'l use some default garbage renderer. 
   </p>
   <h3>Getting Content Onto the Device</h3>
   <ol>
@@ -70,7 +70,10 @@ title: e-books and e-readers HOWTO
       Connect your kobo to your computer via a USB cable.
     </p></li>
     <li><p>
-      Copy the <code>.epub</code> directly onto the drive that is mounted. Not sure what it will look like on your OS, but hopefully it will be obvious.
+        Rename the file to have a <code>.kepub.epub</code> extension. For example, if your file is <code>solid-is-not-solid.epub</code>, change it to <code>solid-is-not-solid.kepub.epub</code>.
+    </p></li>
+    <li><p>
+      Copy the <code>.kepub.epub</code> directly onto the drive that is mounted. Not sure what it will look like on your OS, but hopefully it will be obvious.
     </p></li>
     <li><p>
       Unmount or eject the drive.  How you do this depends on your OS.
@@ -81,10 +84,10 @@ title: e-books and e-readers HOWTO
   </ol>
   <h3>The Reading Experience</h3>
   <p>
-    The kobo reading experience for technical books is pretty bad.   It ignores all sidebar formatting, boxes, etc.  Diagrams look OK. Source code is not formatted in a monospace font, since the Kobo does not include one.  Some of my books embed a monospace font which is then used, but generally the Kobo is not good for reading technical books.
+    The kobo reading experience for technical books is good, as long as you rename the file as directed above. If you just put a <code>.epub</code> onto it, it will look terrible.
   </p>
   <p>
-    Further, following a footnote or link is problematic. There is no way to return to where you clicked the link.  Turning pages is very slow and you will get text randomly underlined or randomly inside a box.  Sometimes rotating the kobo fixes this.
+    If you do use the proper extension, the reading experience is on-par with the Kindle.
   </p>
 </section>
 <section>
