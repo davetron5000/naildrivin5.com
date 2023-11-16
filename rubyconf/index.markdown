@@ -14,7 +14,7 @@ You like coffee, right? <span role="img" aria-label="coffee cup">☕️</span> L
 
 <figure style="text-align:center">
 <figcaption>
-This is what I look like, but I may not be smiling, depending on how much coffee I have had.
+This is the coffee we exchanged!  It was great!
 </figcaption>
-<img src="/images/DavidCopelandAvatar-512.jpeg" id="me" style="border-radius: 0.5rem;">
+<img src="/images/coffee.jpg">
 </figure>
