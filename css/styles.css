@@ -469,6 +469,12 @@ img {
 .cf {
   *zoom: 1; }
 
+@media (min-width: 40em) {
+  .dn-ns {
+    display: none; }
+
+  .db-ns {
+    display: block; } }
 @media (min-width: 501px) {
   .responsive-post .fl-ns {
     float: left; }
