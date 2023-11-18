@@ -20,15 +20,18 @@ framework churn.
 
 <!-- more -->
 
-Here's Jim's code.  HTML would look like so:
+<strong>Update on Nov 18, 2023:</strong> Added CodePens for all code + slight tweaks to the code to make it more clear what
+behavior is dynamic.
+
+Here's Jim's code, slightly modified.  HTML would look like so:
 
 ```html
 <user-avatar>
   <img
     src="/images/DavidCopelandAvatar-512.jpeg"
     alt="Profile photo of Dave Copeland"
-    width="32"
-    height="32"
+    width="64"
+    height="64"
     title="Dave Copeland"
   />
 </user-avatar>
@@ -52,13 +55,16 @@ The call to `customElements.define` is what registers the custom element, which 
       // Append it to the DOM
       this.insertAdjacentHTML(
         'beforeend', 
-        '<!-- code for tooltip here -->'
+        `<div>tooltip ${name}</div>`,
       );
     }
   }
   customElements.define('user-avatar', UserAvatar);
 </script>
 ```
+
+[Here is the CodePen](https://codepen.io/davetron5000/pen/zYeRYYJ) of this code.  I did change Jim's code slightly so you
+could see the effect of the custom element (the `<div>`).
 
 Jim is making a case for progressive enhancement and showing how to do that with a custom element.
 
@@ -67,14 +73,14 @@ But, most of the code is using the browser's API for DOM manipulation, which has
 We could achieve the same thing without a custom element. We can add `data-tooltip` to the `<img>` tag to indicate it should have the fancy tooltip, like so:
 
 ```html
-<img
-  src="/images/DavidCopelandAvatar-512.jpeg"
-  alt="Profile photo of Dave Copeland"
-  width="32"
-  height="32"
-  title="Dave Copeland"
-  data-tooltip
-/>
+<div data-tooltip>
+<img src="https://naildrivin5.com/images/DavidCopelandAvatar-512.jpeg"
+     alt="Profile photo of Dave Copeland"
+     width="64"
+     height="64"
+     title="Dave Copeland"
+     />
+</div>
 ```
 
 To progressively enhance this, we can use the same code, without the use of custom elements:
@@ -84,19 +90,21 @@ To progressively enhance this, we can use the same code, without the use of cust
 document.querySelectorAll("[data-tooltip]").
   forEach( (element) => {
     // Get the data for the component from exisiting markup
-    const src = element.getAttribute("src");
-    const name = element.getAttribute("title");
+    const $img = element.querySelector("img")
+    const src = $img.getAttribute("src");
+    const name = $img.getAttribute("title");
 
     // Create the markup and event listeners for tooltip...
 
     // Append it to the DOM
     element.insertAdjacentHTML(
       'beforeend', 
-      '<!-- code for tooltip here -->'
+      `<div>tooltip ${name}</div>`
     );
   })
-</script>
 ```
+
+Here is the [CodePen](https://codepen.io/davetron5000/pen/dyadyPx) of this.
 
 I'm struggling to see what the benefit is of the custom element.  It doesn't affect accessibility as far as I can tell.  I
 suppose it stands out more in the HTML that something extra is happening.
@@ -110,40 +118,45 @@ insights to be had if we handle them.
 
 There are two things that can go wrong with Jim's code:
 
-* If the `<user-avatar>` element doesn't contain an `<img>` element, calls to `getAttribute()` will produce "undefined is not
+* If the `<user-avatar>` element doesn't contain an `<img>` element, calls to `getAttribute()` will produce "null is not
 an object".
 * If the `<img>` attribute *is* present, but is missing a `src` or `name`, presumably the tooltip cannot be created.
+
+You can see both issues [in this CodePen](https://codepen.io/davetron5000/pen/jOdZOra?editors=1111)
 
 Addressing these issues requires deciding what should happen in these error cases.  Let's follow the general vibe of
 progressive enhancement—and the web in general—by silently failing.
 
 ```javascript
 class UserAvatar extends HTMLElement {
-  connectedCallback() {                 
+  connectedCallback() {
+    // Get the data for the component from exisiting markup
     const $img = this.querySelector("img");
     if (!$img) {
       return
     }
     const src   = $img.getAttribute("src");
     const title = $img.getAttribute("title");
-    if (!src) {
-      return
-    }
-    if (!title) {
-      return
-    }
+     if (!src) {
+       return
+     }
+     if (!title) {
+       return
+     }
 
     // Create the markup and event listeners for tooltip...
 
     // Append it to the DOM
     this.insertAdjacentHTML(
       'beforeend', 
-      '<!-- code for tooltip here -->'
+      `<div>tooltip ${name}</div>`
     );
   }
 }
 customElements.define('user-avatar', UserAvatar);
 ```
+
+(see [CodePen](https://codepen.io/davetron5000/pen/rNPJNMq?editors=1111) version)
 
 This has made the routine more complex, and I wish the browser provided an API to help make this not so verbose.  This is why
 people make frameworks.
@@ -152,21 +165,25 @@ The vanilla version needs to perform these checks as well.  Interestingly, it ca
 crafting a more specific selector to `querySelectorAll`:
 
 ```javascript
-document.querySelectorAll("[data-tooltip][src][title]").
+document.querySelectorAll("[data-tooltip]:has(img[src][title])").
   forEach( (element) => {
     // Get the data for the component from exisiting markup
-    const src = element.getAttribute("src");
-    const name = element.getAttribute("title");
+    const $img = element.querySelector("img")
+
+    const src  = $img.getAttribute("src");
+    const name = $img.getAttribute("title");
 
     // Create the markup and event listeners for tooltip...
 
     // Append it to the DOM
     element.insertAdjacentHTML(
       'beforeend', 
-      '<!-- code for tooltip here -->'
+      `<div>tooltip ${name}</div>`
     );
   })
 ```
+
+(see [CodePen](https://codepen.io/davetron5000/pen/Jjxpjbq?editors=1011) version).
 
 It is perhaps happenstance that this example can be made more defensive with just a specific selector.  I don't want to imply
 the vanilla version would never need `if` statements, but it certainly wouldn't require any more than the Web Components
@@ -452,6 +469,8 @@ Of note:
 
 I can't see why you would use slots, given all this. Having to adopt the Shadow DOM is incredibly constraining. You cannot
 use your site's CSS without hacky solutions to bring it in.
+
+See this in action in [this CodePen](https://codepen.io/davetron5000/pen/zYepgVZ).
 
 As a vehicle for re-use, Web Components, `<template>`, `<slot>`, and the Shadow DOM don't seem to provide any real
 benefit over the browser's existing DOM-manipualtion APIs.
