@@ -425,15 +425,15 @@ you have this HTML
 </template>
 ```
 
-Assuming you manually load the template, manuall clone it, manually add it to the Shadow DOM, it allows this:
+Assuming you manually load the template, manually clone it, manually add it to the Shadow DOM, it allows this:
 
 ```html
 <my-component>
-  <span name="subtitle">Pat</span>
+  <span slot="subtitle">Pat</span>
 </my-component>
 ```
 
-Which would generate this HTML:
+to generate this HTML:
 
 ```html
 <h2>Hello</h2>
