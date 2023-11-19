@@ -8,6 +8,9 @@ ad:
   link: "http://bit.ly/sus-rails"
   image: "/images/sustainable-rails-cover.png"
   cta: "Buy Now $49.95"
+related:
+  - "Web Components Custom Elements Lifecycle is What Makes Them Useful"
+  - "Ruby on Rails: Still the Best Web App Framework for Most Teams"
 ---
 
 People saying that "Web Components are having a moment" should look at the difference between Web Components and just using
@@ -19,6 +22,11 @@ his implementation to one that doesn't use Web Components.  This will help us un
 framework churn.
 
 <!-- more -->
+
+<aside style="padding: 1rem; border: solid thin #770000; background-color: #fffdfd; border-radius: 0.5rem">
+    <strong style="color: #770000">Update on Nov 19, 2023:</strong> Based on reader feedback, I don't think custom elements are completely useless. See <a href="/blog/2023/11/19/web-components-custom-elements-lifecycle-is-what-makes-them-useful.html"> the follow up</a> for more details. Leaving this post as-is for posterity.
+</aside>
+
 
 <strong>Update on Nov 18, 2023:</strong> Added CodePens for all code + slight tweaks to the code to make it more clear what
 behavior is dynamic.
@@ -474,6 +482,10 @@ See this in action in [this CodePen](https://codepen.io/davetron5000/pen/zYepgVZ
 
 As a vehicle for re-use, Web Components, `<template>`, `<slot>`, and the Shadow DOM don't seem to provide any real
 benefit over the browser's existing DOM-manipualtion APIs.
+
+<aside style="padding: 1rem; border: solid thin #770000; background-color: #fffdfd; border-radius: 0.5rem">
+    <strong style="color: #770000">Update on Nov 19, 2023:</strong> Based on reader feedback, I don't think custom elements are completely useless. See <a href="/blog/2023/11/19/web-components-custom-elements-lifecycle-is-what-makes-them-useful.html"> the follow up</a> for more details. Leaving this post as-is for posterity.
+</aside>
 
 ----
 
