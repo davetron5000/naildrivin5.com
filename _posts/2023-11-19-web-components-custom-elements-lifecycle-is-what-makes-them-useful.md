@@ -10,6 +10,7 @@ ad:
   cta: "Buy Now $49.95"
 related:
   - "What is WebComponents Buying Us?"
+  - "Web Components: Templates, Slots, and Shadow DOM Aren't Great"
   - "Ruby on Rails: Still the Best Web App Framework for Most Teams"
 ---
 

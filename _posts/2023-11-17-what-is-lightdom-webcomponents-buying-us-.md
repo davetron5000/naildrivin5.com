@@ -11,6 +11,7 @@ ad:
 related:
   - "Web Components Custom Elements Lifecycle is What Makes Them Useful"
   - "Ruby on Rails: Still the Best Web App Framework for Most Teams"
+  - "Web Components: Templates, Slots, and Shadow DOM Aren't Great"
 ---
 
 People saying that "Web Components are having a moment" should look at the difference between Web Components and just using
