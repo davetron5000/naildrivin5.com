@@ -505,8 +505,18 @@ This is…gross. It's not sustainable at all.  If you use utility CSS, this beco
 Konnor Rogers has a [detailed blog post](https://konnor.netlify.app/posts/2023/web-components-tailwind-and-ssr/)  on various
 options to do this with Tailwind, which are somewhat generalizable.  They will at least give you an example of what you are up against.  Some options are better than others, but this seems like there is friction no matter what.  They all seem like using the Shadow DOM in a way that was not intended.
 
-To be honest, I'm not sure *how* the Shadow DOM is intended to be used or *how* styles are intended to be managed. Even if you use semantic CSS everywhere (e.g. hanging styles off of a semantic `class=` value), you still need access to a shared set of custom properties that define the design system's fonts, colors, sizes, and spacings.  There's no obvious way to share
-that with elements inside a Shadow DOM.
+~~To be honest, I'm not sure *how* the Shadow DOM is intended to be used or *how* styles are intended to be managed. Even if you use semantic CSS everywhere (e.g. hanging styles off of a semantic `class=` value), you still need access to a shared set of custom properties that define the design system's fonts, colors, sizes, and spacings.  There's no obvious way to share
+that with elements inside a Shadow DOM.~~
+
+**Update Based on Feedback**: It seems the way CSS is to be shared with the Shadow DOM is *only* via custom properties.  The
+Shadow DOM *does* have access to custom properties, though I am unable to find any documentation that this is true.  You can
+see this in action in [this CodePen](https://codepen.io/davetron5000/pen/ZEwxQVE). From what I can tell, only properties set
+on the `:root` pseuduo-selector are available.  I had forgotten about this and, it just doesn't seem documented anywhere.
+
+But, what it means is that to create truly re-usable components using `<template>` and Shadow DOM, you basically *cannot* use
+utility CSS and *must* use a CSS strategy where *all* re-use is done through custom properties.  This is limiting.
+
+**End of Update**
 
 *And* it is super odd to me that these two features are intertwined.  Why does using templates and slots require using a
 Shadow DOM?  It makes no sense to me.
