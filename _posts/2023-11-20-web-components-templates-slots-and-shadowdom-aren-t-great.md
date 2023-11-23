@@ -518,6 +518,27 @@ utility CSS and *must* use a CSS strategy where *all* re-use is done through cus
 
 **End of Update**
 
+**Second Update on Nov 23, 2023** Per [PointlessOne](https://status.pointless.one/@pointlessone) on Mastodon, the CSS
+property inheritance rules do apply to the ShadowDOM elements, though I cannot piece together how this is documented.  If you
+look at [this CodePen](https://codepen.io/davetron5000/pen/jOdxQKB) you can see a few things:
+
+* Custom Properties declared on the custom element properly override the `:root` custom properties and are used inside the
+ShadowDOM.  I tried to do this before and must've messed it up and thought it didn't work. Silent failures are the worst.
+* Inheritable properties like `color` do get inherited inside the ShadowDOM.  You can see this in the CodePen where the text
+color on a parent element and on the custom element itself do affect the text inside.  This is unexpected behavior since I
+thought the entire point of ShadowDOM was isolation.  Essentially, this seems to mean that if your custom element that uses
+ShadowDOM needs to display text, it has to be really careful about the colors, otherwise you could end up with the main
+document setting white text on your white background.
+* You can expose `part=` on any element and *that* can be styled externally.  This seems to be how you would achieve
+customization.
+* You can use the `:host` selector inside the shadowDOM to reset things, but this falls victim to specificity issues and
+requires `!important`.
+
+This new information makes the rules around isolation even more convoluted and confusing, which I guess is consistent with
+most of CSS.
+
+**End of Second Update**
+
 *And* it is super odd to me that these two features are intertwined.  Why does using templates and slots require using a
 Shadow DOM?  It makes no sense to me.
 
