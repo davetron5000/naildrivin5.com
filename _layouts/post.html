@@ -7,8 +7,11 @@ single: true
 <article role="article" class="blog-post">
   <header class="border-bottom border-light">
     <h1>{{ page.title }}</h1>
-    <h2 class="f5 ls2 fw-bold mtnone uc ib">
+    <h2 class="f5 ls2 fw-bold mtnone ib" style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 1rem;">
+      <span class="uc">
       {{ page.date | date: '%B %d, %Y' }}
+      </span>
+      <a class="f6 fw-normal" style="color: #555;" href="/mailing_list/index.html"><span role="img" aria-label="mailbox">📬 Get My Weekly Newsletter <span role="img" aria-label="manicule">&#x261E;</span></a>
     </h2>
   </header>
   <section class="blog-content">
@@ -18,6 +21,12 @@ single: true
   {% if page.related.size > 0 %}
     <h1>You Might Also Like</h1>
     <ul>
+      <li>
+        <a href="/mailing_list/index.html"><span role="img" aria-label="mailbox">📬 My Weekly Newsletter <span role="img" aria-label="manicule">&#x261E;</span></a>
+          <span class="post-date">
+            Short-form, Quick Reads on Tech
+          </span>
+      </li>
       {% for title in page.related %}
       {% assign posts = site.posts | where: "title", title %}
       {% for related_post in posts %}
@@ -33,6 +42,12 @@ single: true
   {% else %}
     <h1>Latest Posts</h1>
     <ul>
+      <li>
+        <a href="/mailing_list/index.html"><span role="img" aria-label="mailbox">📬 My Weekly Newsletter <span role="img" aria-label="manicule">&#x261E;</span></a>
+          <span class="post-date">
+            Short-form, Quick Reads on Tech
+          </span>
+      </li>
       {% for latest_post in site.posts limit:3 %}
         {% if latest_post.url != page.url %}
           <li>

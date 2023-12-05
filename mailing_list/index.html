@@ -1,9 +1,25 @@
 ---
 layout: page
-title: Mailing List
+title: Periodic, Short, Email Newsletter
 ---
-<section>
-  <p>
-    My mailing list is offline for a while as I figure out how to manage it without MailChimp, who have turned out to be not very good people.
-  </p>
+<section class="mailing-list">
+  <h2 class="h3">Sustainable development. Ruby. JavaScript. Other Tech Stuff.</h2>
+  <form action="https://buttondown.email/api/emails/embed-subscribe/davetron5000"
+        method="post"
+        target="popupwindow"
+        onsubmit="window.open('https://buttondown.email/davetron5000', 'popupwindow')"
+        class="embeddable-buttondown-form" >
+    <label for="bd-email">
+      <span>
+        Your Email
+      </span>
+      <input autofocus class="form-element" autocomplete="email" placeholder="e.g. pat@example.com" type="email" name="email" id="bd-email"
+      />
+    </label>
+
+    <input type="submit" value="Subscribe">
+    <p class="text-c">
+      <a href="https://buttondown.email/davetron5000/archive">Check out previous emails</a>
+    </p>
+  </form>
 </section>

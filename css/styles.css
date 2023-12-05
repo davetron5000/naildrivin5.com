@@ -216,45 +216,45 @@ footer.related-posts .post-date {
 .blog-post .blog-content > p:last-of-type:after, .complete-article > p:last-of-type:after {
   content: " ❺"; }
 
-.mailing-list {
-  text-align: center;
+.mailing-list form label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 25.2px;
+  margin-top: 25.2px;
+  margin-bottom: 25.2px;
+  flex-direction: column;
+  width: 100%; }
+
+@media (min-width: 40em) {
+  .mailing-list form label {
+    flex-direction: row; } }
+.mailing-list form label span {
+  white-space: nowrap; }
+
+.mailing-list form input[type='email'] {
   width: 80%;
-  margin: auto;
-  padding-left: 25.2px;
-  padding-right: 25.2px;
-  padding-top: 12.6px;
-  padding-bottom: 12.6px; }
-  .mailing-list h1 {
-    font-size: 24.722px; }
-  .mailing-list h2 {
-    font-size: 15.279px;
-    margin-top: 0; }
-  .mailing-list .form-elements {
-    padding: 6.3px;
-    font-size: 18px; }
-  .mailing-list .form-element {
-    display: block; }
-    .mailing-list .form-element input[type="text"], .mailing-list .form-element input[type="email"] {
-      font-family: "Baskerville", serif;
-      font-size: 18px;
-      padding: 6.3px;
-      width: 100%; }
-    .mailing-list .form-element label {
-      margin-top: 6.3px;
-      text-align: left;
-      display: block; }
-  .mailing-list .submit {
-    padding-top: 12.6px;
-    padding-bottom: 6.3px; }
-  .mailing-list input[type="submit"] {
-    padding-top: 6.3px;
-    padding-bottom: 6.3px;
-    font-size: 18px;
-    font-family: "Futura", "Avenir", "Helvetica", sans-serif;
-    font-weight: 100;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    width: 100%; }
+  padding: 12.6px;
+  font-size: 24.722px;
+  font-family: "Courier New", "Courier", monospace;
+  border: none;
+  border-radius: 3.15px;
+  background-color: #fffeff;
+  color: #222;
+  box-shadow: 0px 0px 26px -6px rgba(0, 0, 0, 0.46) inset; }
+
+.mailing-list form input[type='submit'] {
+  display: inline-block;
+  width: 100%;
+  padding: 12.6px;
+  font-size: 24.722px;
+  text-align: center;
+  border: solid thin;
+  border-radius: 12.6px;
+  background-color: #111;
+  color: #ddd;
+  font-family: "Futura", "Avenir", "Helvetica", sans-serif;
+  text-shadow: rgba(135, 251, 255, 0.68) 0px 0px 8px; }
 
 aside.promo {
   width: 100%;
@@ -554,22 +554,6 @@ hr {
   font-family: "Futura", "Avenir", "Helvetica", sans-serif; }
   .pill:hover {
     background: #eeeaee; }
-
-.mailing-list {
-  background: #483b48;
-  color: #fffeff;
-  border: solid thin;
-  border-radius: 6.3px; }
-  .mailing-list .form-element label {
-    font-color: #665666; }
-  .mailing-list input[type="submit"] {
-    border: solid thin #fffeff;
-    border-radius: 3.15px;
-    background: #483b48;
-    color: #fffeff;
-    width: 100%; }
-    .mailing-list input[type="submit"]:hover {
-      background: #100d10; }
 
 .light {
   color: #645264; }

@@ -249,53 +249,48 @@ footer.related-posts {
   content: " ❺";
 }
 
-.mailing-list {
-  text-align: center;
+.mailing-list form label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $sz2;
+  margin-top: $sz2;
+  margin-bottom: $sz2;
+  flex-direction: column;
+  width: 100%;
+}
+@media (min-width: 40em) {
+  .mailing-list form label {
+    flex-direction: row;
+  }
+}
+.mailing-list form label span {
+  white-space: nowrap;
+}
+
+.mailing-list form input[type='email'] {
   width: 80%;
-  margin: auto;
-  padding-left: $sz2;
-  padding-right: $sz2;
-  padding-top: $sz3;
-  padding-bottom: $sz3;
-  h1 {
-    font-size: $f5;
-  }
-  h2 {
-    font-size: $f7;
-    margin-top: 0;
-  }
-  .form-elements {
-    padding: $sz4;
-    font-size: $f6;
-  }
-  .form-element {
-    display: block;
-    input[type="text"], input[type="email"] {
-      font-family: $serif;
-      font-size: $f6;
-      padding: $sz4;
-      width: 100%;
-    }
-    label {
-      margin-top: $sz4;
-      text-align: left;
-      display: block;
-    }
-  }
-  .submit {
-    padding-top: $sz3;
-    padding-bottom: $sz4;
-  }
-  input[type="submit"] {
-    padding-top: $sz4;
-    padding-bottom: $sz4;
-    font-size: $f6;
-    font-family: $sans;
-    font-weight: 100;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    width: 100%;
-  }
+  padding: $sz3;
+  font-size: $f5;
+  font-family: $monospace;
+  border: none;
+  border-radius: $sz5;
+  background-color: #fffeff;
+  color: #222;
+  box-shadow: 0px 0px 26px -6px rgba(0,0,0,0.46) inset;
+}
+.mailing-list form input[type='submit'] {
+  display: inline-block;
+  width: 100%;
+  padding: $sz3;
+  font-size: $f5;
+  text-align:center;
+  border: solid thin;
+  border-radius: $sz3;
+  background-color: #111;
+  color: #ddd;
+  font-family: $sans;
+  text-shadow: rgba(135,251,255,0.68) 0px 0px 8px;
 }
 
 aside.promo {
