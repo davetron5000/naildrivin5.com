@@ -58,6 +58,7 @@ $sz5: $body-font-size * $line-height / 8;
 b, strong, .fw-bold {
   font-weight: $body-font-bold-weight;
 }
+.f-serif { font-family: $serif !important; }
 
 .f1 { font-size: $f1; }
 h1, .h1, .f2 { font-size: $f2; font-weight: normal; strong { font-weight: bold }}

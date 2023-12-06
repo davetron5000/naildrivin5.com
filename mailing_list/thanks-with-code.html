@@ -1,0 +1,31 @@
+---
+layout: page
+title: Thanks for Confirming!
+---
+<section class="mailing-list">
+  <p>
+    Thanks for confirming your interst in my newsletter!  As a thank you, please use the code <code class="discount-code">NEWSLETTER20</code> to receive 20% off any of my self-published books. This will apply to any books I publish in the future as well<a href="#note"><sup>&dagger;</sup></a>.
+  </p>
+  <ul>
+    {% for book in site.data.books.inprint %}
+    {% if book.self_published %}
+    <li style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+      <img class="image-border border-light" src="{{ book.image }}" width="150" style="box-shadow: 0.7875px 0.7875px 6.3px 0px rgba(0, 0, 0, 0.75);">
+      <div>
+        <h3 class="f5 f-serif"><strong>{{book.title}}</strong></h3>
+        <h4 class="f-body f-serif">{{book.subtitle}}</h3>
+        <nav style="display:flex; gap: 1rem; margin-top: 1rem;">
+          <a href="{{ book.buy_link }}">Buy Now</a>
+          <a href="{{ book.site }}">Learn More…</a>
+        </nav>
+      </div>
+    </li>
+    {% endif %}
+    {% endfor %}
+  </ul>
+  <hr>
+  <p id="note" style="font-style: italic; padding: 1rem; border: solid thin navy; background: #fafaff; border-radius: 1rem;" class="f6">
+    <sup>&dagger;</sup>
+    Note that due to the way <a href="/books/index.html#pricing">purchasing power parity (PPP) is implemented</a>, you cannot use two discount codes, so this code only applies to the full list price.
+  </p>
+</section>

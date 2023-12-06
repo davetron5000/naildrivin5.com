@@ -14,6 +14,9 @@ $f12: 4.250px;
 b, strong, .fw-bold {
   font-weight: 800; }
 
+.f-serif {
+  font-family: "Baskerville", serif !important; }
+
 .f1 {
   font-size: 64.72px; }
 

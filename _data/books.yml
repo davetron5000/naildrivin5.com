@@ -3,23 +3,32 @@ inprint:
     subtitle: "Run Code Later without Complicating Your App"
     image: /images/sidekiq-rails-cover.jpg
     site: "https://sidekiqrails.com"
+    buy_link: "https://pragprog.com/titles/dcsidekiq/ruby-on-rails-background-jobs-with-sidekiq/"
+    self_published: false
   - title: "Sustainable Web Development with Ruby on Rails"
     subtitle: "Practical Tips for Building Web Applications that Last"
     image: /images/sustainable-rails-cover.png
     site: "https://sustainable-rails.com"
+    buy_link: "https://sowl.co/boqdo7"
+    self_published: true
   - title: "SOLID is not Solid"
     subtitle: "Five Object-Oriented Principles to Create a Codebase Everyone will Hate"
     image: /images/not-solid-cover.png
     site: "http://bit.ly/not-solid"
+    buy_link: "http://bit.ly/buy-not-solid"
+    self_published: true
   - title: "Agile Web Development With <span class='nowrap'>Rails 6</span>"
     subtitle: "New edition of this seminal classic"
     image: /images/rails6.jpg
     site: "https://pragprog.com/book/rails6"
+    buy_link: "https://pragprog.com/titles/rails6/agile-web-development-with-rails-6/"
+    self_published: false
   - title: "The Senior Software Engineer"
     subtitle: "11 Practices of an Effective Technical Leader"
     buy_link: "http://transactions.sendowl.com/products/24086/D8D2ED13/add_to_cart"
     image: /images/sweng-cover.png
     site: "http://theseniorsoftwareengineer.com/"
+    self_published: true
 outofprint:
   - title: "Build Awesome Command-Line Apps in <span class='nowrap'>Ruby 2</span>"
     subtitle: "Control Your Computer, Simplify Your Life"
