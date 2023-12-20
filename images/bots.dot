@@ -1,0 +1,18 @@
+digraph G {
+
+  rankdir="TB"
+  nodesep=0.25
+  compound=true
+  
+  node[shape=box]
+
+  Picard -> Riker
+  Riker -> Worf
+  Worf -> Locutus
+
+  Picard[shape=rectangle label="" image="picard-tips.png"]
+  Riker[shape=rectangle label="" image="riker-googling.png"]
+  Worf[shape=rectangle label="" image="worf-email.png"]
+  Locutus[shape=rectangle label="" image="locutus-tips.png"]
+}
+

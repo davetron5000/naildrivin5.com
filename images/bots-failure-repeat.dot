@@ -1,0 +1,31 @@
+digraph G {
+
+  rankdir="TB"
+  nodesep=0.25
+  compound=true
+  node[shape=box fontsize="18pt" font=baskerville]
+  edge[font=baskerville fontsize="14pt"]
+
+  Picard[shape=rectangle label="" image="picard-tips.png"]
+  Riker[shape=rectangle label="" image="riker-googling.png"]
+  Worf[shape=rectangle label="" image="worf-email.png"]
+  Locutus[shape=rectangle label="" image="locutus-tips.png"]
+  Riker2[shape=rectangle label="" image="riker-googling.png"]
+  Worf2[shape=rectangle label="" image="worf-email.png"]
+  Note[shape=note label="Sadly, never ran" fontsize="12pt" style=filled color="#EDDCD2"]
+  Error[shape="doubleoctagon" style=filled color=red fontcolor=white]
+
+  Note -> Locutus[dir=none style=dotted]
+
+  Picard -> Riker
+  Riker -> Worf
+  Worf -> Error
+  Error -> Riker2[label="  skips Picard \l  due to logic\l  in Picard's code\l"]
+  Riker2 -> Worf2
+  Worf2 -> Error
+  Error -> Locutus[style=invis]
+  { rank=same; Worf; Worf2 }
+  { rank=same; Riker; Riker2 }
+  { rank=same; Note; Locutus }
+}
+

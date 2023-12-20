@@ -1,0 +1,31 @@
+digraph G {
+
+  rankdir="TB"
+  nodesep=0.25
+  compound=true
+  node[shape=box fontsize="18pt" font=baskerville]
+  edge[font=baskerville fontsize="14pt"]
+
+  TNGJob[shape=none label="" image="lcars.png"]
+  Picard[shape=rectangle label="" image="picard-tips.png"]
+  Riker[shape=rectangle label="" image="riker-googling.png"]
+  Worf[shape=rectangle label="" image="worf-email.png"]
+  Locutus[shape=rectangle label="" image="locutus-tips.png"]
+  Worf2[shape=rectangle label="" image="worf-email.png"]
+  Error[shape="doubleoctagon" style=filled color=red fontcolor=white]
+
+  TNGJob -> Picard
+  TNGJob -> Riker
+  TNGJob -> Worf
+  TNGJob -> Locutus
+  Worf -> Error
+  Error -> Worf2
+
+  Picard -> EndPicard
+  Riker -> EndRiker
+  Locutus -> EndLocutus
+
+  EndPicard[label="Made So" shape=circle style=filled color=green fontcolor=black]
+  EndRiker[label="Jazzed" shape=circle style=filled color=green fontcolor=black]
+  EndLocutus[label="Assimilated" shape=circle style=filled color=green fontcolor=black]
+}
