@@ -43,7 +43,7 @@ aside who he is for a moment and just watch the leader of Rails outline a vision
 ### Conference Kicker-Offer
 
 Only DHH can give that sort of keynote.  But DHH isn't the only person who can get a crowd ready for a conference they are at.  There
-are plenty of widely-repsected, well-known people who can give the audience a mixture of technology, inspiration, and a sense of
+are plenty of widely-respected, well-known people who can give the audience a mixture of technology, inspiration, and a sense of
 community, built around a specific group of attendees at a specific RailsConf.
 
 *(I didn't see Eileen's talk this year, so maybe she did all these things. If so, great! Invite her back!)*
@@ -63,7 +63,7 @@ His contributions to these conferences over the years are truly unique.  They al
 
 I also enjoy having one "inspiring talk that is tech adjacent but not about code or managing people" as a keynote.  Marco Rogers' keynote a few years back was life changing for me.
 
-The ideal number of these keynotes is "1".  With "0", you miss out on something throught-provoking for the attendees and "2" results
+The ideal number of these keynotes is "1".  With "0", you miss out on something thought-provoking for the attendees and "2" results
 in both talks feeling watered-down.  For a four-day conference, just give us one morning off.
 
 ## The Program
@@ -150,7 +150,9 @@ worth it.
 My personality is, when asked for my thoughts, I tend to share, shall we say, "areas of improvement".  So let me just be clear that I
 think RailsConfs are generally really good.  They are professionally run, with speakers who are well prepared.  The staff are always
 great and it's clear that everyone involved truly cares about making a great experience for as many as possible. And that they care
-about Ruby.  Like I said at the start, I would recommend that every practicing Rubyist attend RailsConf at least once.
+about Ruby.
+
+Like I said at the start, I would recommend that every practicing Rubyist attend RailsConf at least once.
 
 ---
 
