@@ -92,6 +92,10 @@ h1, h2, h3, h4, h5, h6 {
   h1.wf-loading, h2.wf-loading, h3.wf-loading, h4.wf-loading, h5.wf-loading, h6.wf-loading {
     visibility: hidden; }
 
+h4 code {
+  font-weight: bold;
+  font-size: 110%; }
+
 .no-ul {
   text-decoration: none; }
 
@@ -369,6 +373,9 @@ figure {
   figure figcaption {
     font-size: 15.279px;
     font-style: italic; }
+
+figure.tl {
+  text-align: left; }
 
 .list-style-none {
   list-style: none;

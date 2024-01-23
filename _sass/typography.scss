@@ -99,6 +99,10 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+h4 code {
+  font-weight: bold;
+  font-size: 110%;
+}
 .no-ul {
   text-decoration: none;
 }
@@ -426,6 +430,9 @@ figure {
     font-size: $f7;
     font-style: italic;
   }
+}
+figure.tl {
+  text-align: left;
 }
 
 .list-style-none {
