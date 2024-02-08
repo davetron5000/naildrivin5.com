@@ -576,7 +576,7 @@ class AttributeCheckboxComponent extends HTMLElement {
 
   constructor() {
     super()
-    this.element = document.getElemetById(
+    this.element = document.getElementById(
       this.getAttribute("element")
     )
   }
@@ -592,7 +592,7 @@ class AttributeCheckboxComponent extends HTMLElement {
   attributeChangedCallback(name,newValue,oldValue) {
     if (name == "element") {
       if (newValue) {
-        this.element = document.getElemetById(newValue)
+        this.element = document.getElementById(newValue)
       }
       else {
         this.element = null
@@ -614,7 +614,7 @@ attributeChangedCallback(name,newValue,oldValue) {
   }
   if (this.attributeName && this.newValue) {
     const checkbox = this.querySelector("input[type=checkbox]")
-    const element = document.getElemetById(this.elementId)
+    const element = document.getElementById(this.elementId)
     if (checkbox && element) {
       const update = () => {
         if (checkbox.checked) {
@@ -644,7 +644,7 @@ configured at the time the listener is called.
 constructor() {
   super()
   this.checkboxChangeListener = (event) => {
-    const element = document.getElemetById(this.elementId)
+    const element = document.getElementById(this.elementId)
     if (element && event.target.checked) {
       element.setAttribute(this.attributeName,true)
     }
@@ -691,7 +691,7 @@ attributeChangedCallback(name,newValue,oldValue) {
 }
 
 _updateElement() {
-  const element = document.getElemetById(this.elementId)
+  const element = document.getElementById(this.elementId)
   if (element && event.target.checked) {
     element.setAttribute(this.attributeName,true)
   }
@@ -735,7 +735,7 @@ render() {
 }
 
 _updateElement(checkbox) {
-  const element = document.getElemetById(this.elementId)
+  const element = document.getElementById(this.elementId)
   if (element && checkbox.checked) {
     element.setAttribute(this.attributeName,true)
   }
@@ -1596,7 +1596,7 @@ testCase("preview-text-colors",
          ({setup,teardown,test,assert,assertEqual}) => {
 ```
 
-`setup` expects a function that can be passed arguments in the same style as `teatCase`.  It can be passed:
+`setup` expects a function that can be passed arguments in the same style as `testCase`.  It can be passed:
 
 * `subject` - an `HTMLElement` of the `<g-test-subject>` (`subject.tagName` would be `G-TEST-SUBJECT`).
 * `require` - a function that returns its argument or raises an error if the argument is null. Useful for blowing up when expected
