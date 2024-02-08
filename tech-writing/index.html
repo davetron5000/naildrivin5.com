@@ -1,0 +1,124 @@
+---
+layout: page
+title: Technical Writing Portfolio
+---
+<nav style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+  <a class="f5" href="#books">Books</a>
+  <span role="image" aria-description="dot">&middot;</span>
+  <a class="f5" href="#documentation">Technical Documentation</a>
+  <span role="image" aria-description="dot">&middot;</span>
+  <a class="f5" href="#blog">Blog Posts &amp; Websites</a>
+</nav>
+<section id="books">
+  <h2>Published Books</h2>
+  <p>
+    Review copies in PDF format are availble <a href="mailto:davec@naildrivin5.com">upon request</a>. Links below are to websites with links to samples you can download on your own.
+  </p>
+  {% for book in site.data.books.inprint %}
+  {% if book.portfolio == true %}
+  <section class="pl2  mb1 border-light">
+    <h3 class="h3 mbnone">{{ book.title }}</h3>
+    <h4 class="h4 mtnone"> {{ book.subtitle }} </h4>
+    <div style="display: flex">
+    <p>
+      <a href="{{ book.site }}">
+        <img class="image-border border-light" src="{{ book.image }}" width="150">
+      </a>
+    </p>
+    <ul>
+      <li><strong>Released:</strong> {{book.publication_date}}</li>
+      <li><strong>Publisher:</strong>
+        {% if book.self_published == true %}
+        Self
+        {% else %}
+        Pragmatic Programmers
+        {% endif %}
+      </li>
+      <li><strong>Length:</strong> {{book.length}}</li>
+      <li><strong>Style:</strong> {{book.style}}</li>
+      <li><strong>Website:</strong> <a href="{{ book.site }}">{{ book.site }}</a></li>
+    </ul>
+    </div>
+  </section>
+  {% endif %}
+  {% endfor %}
+</section>
+<section id="documentation">
+  <h2>Technical Documentation</h2>
+  <p><strong>Note:</strong> I have written many pages of documentation for companies I've worked for that is closed source and I cannot access or release.  This is has covered tutorials, API documentation, project plans, HOWTOs and more. It covers a wide variety of tools such as Ruby, Rails, Java, JavaScript, Docker, and proprietary systems.
+  </p>
+  <section class="pl2  mb1 border-light">
+    <h3 class="h3 mbnone">MelangeCSS</h3>
+    <h4 class="h4 mtnone">Utility-based CSS framework</h4>
+    <div style="display: flex">
+    <ul>
+      <li><strong>Contribution:</strong> Wrote all documentation and code.</li>
+      <li><strong>Period:</strong> 2023– </li>
+      <li><strong>Link:</strong> <a href="https://melangecss.com">melangecss.com</a></li>
+      <li><strong>Notes:</strong> Documentation is written in a combination of HTML and information extracted from the code itself</li>
+    </ul>
+    </div>
+  </section>
+  <section class="pl2  mb1 border-light">
+    <h3 class="h3 mbnone">Stitches RubyGem</h3>
+    <h4 class="h4 mtnone"> Rails library for creating RESTful API-only microservices </h4>
+    <div style="display: flex">
+    <ul>
+      <li><strong>Contribution:</strong> Wrote draft of Wiki documentation and Project README. Current status appears very close to my original draft.</li>
+      <li><strong>Period:</strong> 2015–2019 </li>
+      <li><strong>Link:</strong> <a href="https://github.com/stitchfix/stitches/wiki">github.com/stitchfix/stitches/wiki</a></li>
+      <li><strong>Link:</strong> <a href="https://github.com/stitchfix/stitches/blob/main/README.md">github.com/stitchfix/stitches/blob/main/README.md</a></li>
+    </ul>
+    </div>
+  </section>
+</section>
+<section id="blog">
+  <h2>Blog Posts / Web Links</h2>
+  <section class="pl2  mb1 border-light">
+    <h3 class="h3 mbnone">Getting Save to Home Screen to Work on iOS</h3>
+    <h4 class="h4 mtnone">Short technical tutorial on progressive web apps and iOS</.h4>
+    <div style="display: flex">
+    <ul>
+      <li><strong>Contribution:</strong> Wrote everything</li>
+      <li><strong>Period:</strong> 2023 </li>
+      <li><strong>Style:</strong> Short Tutorial w/ Code </li>
+      <li><strong>Link:</strong> <a href="https://naildrivin5.com/blog/2023/08/24/braindump-of-pwa-on-ios.html">blog/2023/08/24/braindump-of-pwa-on-ios.html</a>
+    </ul>
+    </div>
+  </section>
+  <section class="pl2  mb1 border-light">
+    <h3 class="h3 mbnone">Brutalist Web Design</h3>
+    <div style="display: flex">
+    <ul>
+      <li><strong>Contribution:</strong> Wrote everything</li>
+      <li><strong>Period:</strong> 2018– </li>
+      <li><strong>Style:</strong> Opinion </li>
+      <li><strong>Link:</strong> <a href="https://brutalist-web.design">brutalist-web.design</a></li>
+    </ul>
+    </div>
+  </section>
+  <section class="pl2  mb1 border-light">
+    <h3 class="h3 mbnone">Picard Sidekiq Tip: Split Up Independant Operations</h3>
+    <h4 class="h4 mtnone">Blog post about managing background processing</h4>
+    <div style="display: flex">
+    <ul>
+      <li><strong>Contribution:</strong>Wrote all.</li>
+      <li><strong>Period:</strong> 2024 </li>
+      <li><strong>Style:</strong> Technical deep dive with diagrams and code</li>
+      <li><strong>Link:</strong> <a href="http://naildrivin5.com/blog/2023/12/20/picard-sidekiq-tip-split-up-independant-operations.html">blog/2023/12/20/picard-sidekiq-tip-split-up-independant-operations.html</a></li>
+    </ul>
+    </div>
+  </section>
+  <section class="pl2  mb1 border-light">
+    <h3 class="h3 mbnone">Names Matter</h3>
+    <h4 class="h4 mtnone">Blog post about naming and its impact on the wider world outside tech</h4>
+    <div style="display: flex">
+    <ul>
+      <li><strong>Contribution:</strong>Wrote all.</li>
+      <li><strong>Period:</strong> 2020 </li>
+      <li><strong>Style:</strong> Opinion and Analysis</li>
+      <li><strong>Link:</strong> <a href="http://naildrivin5.com/blog/2020/06/11/names-matter.html">blog/2020/06/11/names-matter.html</a>
+    </ul>
+    </div>
+  </section>
+</section>
