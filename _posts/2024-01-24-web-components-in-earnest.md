@@ -26,7 +26,7 @@ functionality related to the normal elements it contains.  My custom elements do
 
 What I found effective in using this API:
 
-* Thinking of an element has enhancing its innards is much simpler than considering a full-fledge "component" that renders itself.  It
+* Thinking of an element as enhancing its innards is much simpler than considering a full-fledged "component" that renders itself.  It
 allows more flexibility and simpler code.
 * Code defensively.  The lifecycle methods like `connectedCallback` and `attributeChangedCallback` can be called at any time and in
 any order.
@@ -96,7 +96,7 @@ custom elements.  The *code* of those elements is discussed in the [next section
 
 * A *palette* is a set of one or more *base colors*, each with various *shades*
 * The *shades* of a *base color* are brighter or darker versions of that *base color*, and this is a *color scale*.
-* A *color scale* has a name for its *base color*, e.g. "Red"
+* A *color scale* as a name for its *base color*, e.g. "Red"
 * A *palette* has a *primary color* that drives the other colors.
 * One scale's *base color* can be *derived* from the *primary color*, e.g. its complement.
 
@@ -410,8 +410,7 @@ I tried very hard not to make generic, reusable components, because this usually
 case, however, it seemed easier to make it more generic.  This component wraps a checkbox element and intercepts its state.  It
 accepts an `element` attribute, expected to be the id of another element, and an `attribute-name` attribute.
 
-When the interior checkbox is checked, `elements` has `attribute-name` set to true.  When the checkbox is unchecked, the attribute
-is removed.
+When the interior checkbox is checked, the element the id from `element` has the attributed named from `attribute-name` set to true.  When the checkbox is unchecked, the attribute is removed.
 
 I used this to add or remove the `compact` attribute to the `<g-palette>`, then drove the visual appearance of compact mode
 entirely in CSS.  This was *far* simpler to achieve than having each component modify its behavior or appearance programmatically.
@@ -490,7 +489,7 @@ This component works just like `<g-preview-text>`, but it calculates the WCAG co
 `data-ratio` element, and sets its `textContent` to the ratio.  It then locates elements with attributes `data-enhanced`,
 `data-minimal`, and `data-insufficient`, and shows or hides them based on the ratio.
 
-Here's a demo that doesn't require JavaScript.  Since the element gets its values from any named form that has `text-color` and
+Here's a demo that doesn't require additional JavaScript beyond what's implementing the elements.  Since the element gets its values from any named form that has `text-color` and
 `background-color`, it can be paired with `<g-color-swatch>` elements and just work.
 
 <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="result" data-slug-hash="XWGaqmo" data-user="davetron5000" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
@@ -1760,7 +1759,7 @@ tool that was built for this job decades ago: `make`.
 If you haven't used `make`, it is a tool that allows you to specify dependencies between source and destination files, and provide
 commands to make a destination from a source.  Here are two examples.
 
-First, we have the way to build our JavaScript using `esbuild`.  Earlier in the file `JS_DEST_FILE` is defined as `site/dev/js/main.js` and `JS_SRC_FILES` are defined as all the `*.js` files in `src/js`.  `JS_SRC_FILE` (no plural) is `src/js/index.js`, which is what we input to `esbuild` (it uses `import` to bring in the other files os `esbuild` doesn't need to know which specific file changed). `MINIFY_JS_FLAG` is defined as empty for a dev build, but `--minify --keep-names` for a production build.
+First, we have the way to build our JavaScript using `esbuild`.  Earlier in the file `JS_DEST_FILE` is defined as `site/dev/js/main.js` and `JS_SRC_FILES` are defined as all the `*.js` files in `src/js`.  `JS_SRC_FILE` (no plural) is `src/js/index.js`, which is what we input to `esbuild` (it uses `import` to bring in the other files as `esbuild` doesn't need to know which specific file changed). `MINIFY_JS_FLAG` is defined as empty for a dev build, but `--minify --keep-names` for a production build.
 
 ```make
 $(JS_DEST_FILE) : $(JS_SRC_FILES)
@@ -1769,7 +1768,7 @@ $(JS_DEST_FILE) : $(JS_SRC_FILES)
                     --outfile=$@
 ```
 
-Make is quirky, for sure. The space before `npx` as to be a tab.  `$@` represents the thing on the left-hand side of the colon.  But, like any system, you can learn this stuff easily enough (or, more realistically, learn how to quickly navigate its extensive documentation).
+Make is quirky, for sure. The space before `npx` has to be a tab.  `$@` represents the thing on the left-hand side of the colon.  But, like any system, you can learn this stuff easily enough (or, more realistically, learn how to quickly navigate its extensive documentation).
 
 What this code does is allow me to execute `make site/dev/js/main.js`. If any of the files in `JS_SRC_FILES` are newer than
 `site/dev/js/main.js`, the `npx esbuild` command is executed.  But, if `site/dev/js/main.js` is actually newer, nothing is
