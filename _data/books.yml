@@ -1,4 +1,14 @@
 inprint:
+  - title: "Sustainable Dev Environments with Docker and Bash"
+    subtitle: "Build a Stable and Maintainable Place to Code"
+    image: /images/docker-book-cover.jpg
+    site: "https://devbox.computer"
+    buy_link: "https://sowl.co/bhKWwy"
+    self_published: true
+    portfolio: true
+    publication_date: "Apr 2024"
+    length: 70 pages
+    style: Expert Tutorial with Sample App and Code; neutral opinions
   - title: "Ruby on Rails Background Jobs with Sidekiq"
     subtitle: "Run Code Later without Complicating Your App"
     image: /images/sidekiq-rails-cover.jpg

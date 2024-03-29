@@ -3,11 +3,11 @@ layout: post
 title: "Web Components in Earnest"
 date: 2024-01-24 9:00
 ad:
-  title: "Server-Side Rendering Never Went Away"
-  subtitle: "Sustain your Development with Rails"
-  link: "http://bit.ly/sus-rails"
-  image: "/images/sustainable-rails-cover.png"
-  cta: "Buy Now $49.95"
+  title: "Sustainable Dev Environments with Docker"
+  subtitle: "Run Any Stack on Any OS"
+  link: "https://sowl.co/bhKWwy"
+  image: "/images/docker-book-cover.jpg"
+  cta: "Buy Now $19.99"
 related:
   - "What is WebComponents Buying Us?"
   - "Web Components Custom Elements Lifecycle is What Makes Them Useful"

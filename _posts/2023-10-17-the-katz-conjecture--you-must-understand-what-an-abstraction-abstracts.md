@@ -3,11 +3,11 @@ layout: post
 title: "The Katz Conjecture: You Must Understand What an Abstraction Abstracts"
 date: 2023-10-17 9:00
 ad:
-  title: "Manage Complexity and Performance with Sidekiq"
-  subtitle: "The Best Background Job System for Most Teams"
-  link: "https://pragprog.com/titles/dcsidekiq/ruby-on-rails-background-jobs-with-sidekiq/"
-  image: "/images/sidekiq-rails-cover.jpg"
-  cta: "Buy Now $9.99"
+  title: "Sustainable Dev Environments with Docker"
+  subtitle: "Build a Dev Environment You Can Understand"
+  link: "https://sowl.co/bhKWwy"
+  image: "/images/docker-book-cover.jpg"
+  cta: "Buy Now $19.99"
 related:
   - "Wrap Third Party APIs in Service Wrappers to Simplify Your Code"
   - "Choosing Technology"

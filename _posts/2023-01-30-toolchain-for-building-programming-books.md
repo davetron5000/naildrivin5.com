@@ -3,11 +3,11 @@ layout: post
 title: "My Toolchain for Building Programming Books"
 date: 2023-02-03 9:00
 ad:
-  title: "Read the Book Produced By This Blog Post"
-  subtitle: "A Deep Dive into Ruby on Rails"
-  link: "http://bit.ly/sus-rails"
-  image: "/images/sustainable-rails-cover.png"
-  cta: "Buy Now $49.95"
+  title: "Sustainable Dev Environments"
+  subtitle: "Docker Makes This Toolchain Reliable"
+  link: "https://sowl.co/bhKWwy"
+  image: "/images/docker-book-cover.jpg"
+  cta: "Buy Now $19.99"
 ---
 
 This is a bit of a long post describe the custom toolchain I created—and philosophy behind it—for the [books that

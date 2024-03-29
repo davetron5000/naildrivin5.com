@@ -3,11 +3,11 @@ layout: post
 title: "Docker on Mac for Development with Fast Disk Access and Webpack Dev Server"
 date: 2020-05-13 09:00:00
 ad:
-  title: "Sustainable Rails"
-  subtitle: "Build Apps to Last for Years"
-  link: "http://bit.ly/sus-rails"
-  image: "/images/sustainable-rails-cover.png"
-  cta: "Buy Now $49.95"
+  title: "Sustainable Dev Environments"
+  subtitle: "Docker Creates Stability"
+  link: "https://sowl.co/bhKWwy"
+  image: "/images/docker-book-cover.jpg"
+  cta: "Buy Now $19.99"
 ---
 
 I am somewhat obsessed with clean, repeatable, maintainable dev environments and Docker has all the pieces to
