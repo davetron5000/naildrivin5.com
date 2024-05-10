@@ -22,4 +22,17 @@ PNG_FILES = $(patsubst %.dot,%.png,$(DOT_FILES))
 	@echo	"  </figcaption>"
 	@echo	"</figure>"
 
+%.svg : %.dot
+	dot -Gdpi=300 -Tsvg $< -o$@
+	#@open $@:
+	@echo "<figure>"
+	@echo	"  <a href=\"/images/$@\">"
+	@echo	"    <img src=\"/images/$@\""
+	@echo "         alt=\"alt text here\">"
+	@echo	"  </a>"
+	@echo	"  <figcaption class=\"\">"
+	@echo	"    Caption goes here (<a target=\"_new\" href=\"/images/$@\">Open bigger version in new window</a>)"
+	@echo	"  </figcaption>"
+	@echo	"</figure>"
+
 all: $(PNG_FILES)

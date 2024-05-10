@@ -384,6 +384,9 @@ figure.tl {
   .list-style-none li {
     margin-bottom: 6.3px; }
 
+svg a {
+  text-decoration: underline; }
+
 .pb1 {
   padding-bottom: 50.4px; }
 

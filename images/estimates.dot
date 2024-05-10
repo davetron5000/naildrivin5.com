@@ -1,0 +1,49 @@
+digraph docker {
+  rankdir="TB"
+  nodesep=0.5
+  node[shape=rectangle fontname=baskerville]
+
+  WhyEstimate -> DoEstimate
+  DoEstimate -> NegotiateEstimate
+  NegotiateEstimate -> ReduceScope
+  NegotiateEstimate -> RemoveUncertainty
+  RemoveUncertainty -> DoEstimate[style=dotted label="as needed"]
+  ReduceScope -> DoEstimate[style=dotted label="as needed"]
+  
+  NegotiateEstimate -> PrioritizeTasks
+  PrioritizeTasks -> SplitTasks
+  SplitTasks -> DeliverTasks
+  DeliverTasks -> ReviseEstimate 
+  ReviseEstimate -> SplitTasks
+  
+  
+  WhyEstimate[label="Align on Why\nWe are Estimating"]
+  DoEstimate[label="Estimate the Work"]
+  NegotiateEstimate[label="Present and Explain\nthe Estimate"]
+  ReduceScope[label="Reduce Scope\nfrom Project" style=dashed]
+  RemoveUncertainty[label="Clarify areas\nof Uncertainty" style=dashed]
+  PrioritizeTasks[label="Hard-prioritize\nEvery Feature or Task"]
+  DeliverTasks[label="Deliver and Demonstrate\nOne Week's Work"]
+  ReviseEstimate[label="Revise Estimate\nGiven Work Done"]
+  SplitTasks[label="Split Tasks\nas needed" style=dashed]
+  
+  
+  subgraph cluster_estimate {
+    label="Estimation & Planning"
+    labeljust="left"
+    DoEstimate
+    NegotiateEstimate
+    RemoveUncertainty
+    ReduceScope
+    PrioritizeTasks
+  }
+  
+  subgraph cluster_exec {
+    label="Execution (weekly cadence)"
+    labeljust="right"
+    DeliverTasks
+    ReviseEstimate
+    SplitTasks
+    { rank=same DeliverTasks; SplitTasks }
+  }
+}
