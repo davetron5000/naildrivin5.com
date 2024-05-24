@@ -32,11 +32,11 @@ task :new_post, [:title,:date,:link] do |t,args|
       file.puts "link: #{args[:link]}"
     else
       file.puts "ad:"
-      file.puts "  title: \"Get the Most out of Rails\""
-      file.puts "  subtitle: \"A Deep Dive into Sustainability\""
-      file.puts "  link: \"http://bit.ly/sus-rails\""
-      file.puts "  image: \"/images/sustainable-rails-cover.png\""
-      file.puts "  cta: \"Buy Now $49.95\""
+      file.puts "  title: \"Fix Your Dev Environment for Good\""
+      file.puts "  subtitle: \"Stop Re-installing and Start Coding\""
+      file.puts "  link: \"https://sowl.co/bhKWwy\""
+      file.puts "  image: \"/images/docker-book-cover.jpg\""
+      file.puts "  cta: \"Buy Now $19.95\""
     end
     file.puts "---"
     file.puts
