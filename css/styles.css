@@ -491,6 +491,8 @@ img {
 @media (min-width: 501px) {
   .responsive-post .fl-ns {
     float: left; }
+  .responsive-post .fr-ns {
+    float: right; }
   .responsive-post .w-50-ns {
     width: 50%; } }
 
