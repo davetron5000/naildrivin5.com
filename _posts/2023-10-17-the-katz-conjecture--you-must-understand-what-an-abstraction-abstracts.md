@@ -49,7 +49,7 @@ It means the gains provided by an abstraction don't have to be erased when there
 The Katz Conjecture also provides you two useful tools for managing software: an easy way to identify risk, and a reliable way to
 evaluate the potential gains of an abstraction you are evaluating.
 
-## Abstractions the Feel Magical are Risk
+## Abstractions that Feel Magical are Risky
 
 Using a new library or framework can feel magical, especially when it allows you to achieve great things quickly and simply.
 But, this magic is not actual magic, it's just a sufficiently advanced abstraction.  And, because it leaks—because of the Katz
@@ -141,7 +141,7 @@ the Conjecture when evaluating new technologies, especially when you don't under
 
 ----
 
-### Appendix: The Katz Conjecture is *not* Transitive
+### Appendix: The Katz Conjecture is *Not* Transitive
 
 If you must understand SQL to use an ORM, and you must understand your database's internals to use SQL, then does it not imply
 that you must understand your database's internals to use an ORM? No.
