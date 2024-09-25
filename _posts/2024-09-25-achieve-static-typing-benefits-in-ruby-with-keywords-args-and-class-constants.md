@@ -7,6 +7,12 @@ ad:
   link: "https://sowl.co/bhKWwy"
   image: "/images/docker-book-cover.jpg"
   cta: "Buy Now $19.95"
+related:
+  - "Configuration Design is User Experience Design…and it's hard"
+  - "The 'Type Wars' Are Far From Over"
+  - "It's not Naming That's Hard—It's Types"
+  - "Thinking In Types"
+  - "Is Your DSL Really a Type System?"
 ---
 
 [Noel Rappin][noel] wrote [an article on static typing in Ruby](https://noelrappin.com/blog/2024/09/how-not-to-use-static-typing-in-ruby/) that does a great job outlining the various techniques to achieve the benefits often ascribed to static typing.  I have two more techniques that address the 80% case of typing problems in Ruby: keyword arguments and class constants.
