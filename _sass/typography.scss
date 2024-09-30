@@ -60,13 +60,13 @@ b, strong, .fw-bold {
 }
 .f-serif { font-family: $serif !important; }
 
-.f1 { font-size: $f1; }
+.f1          { font-size: $f1; }
 h1, .h1, .f2 { font-size: $f2; font-weight: normal; strong { font-weight: bold }}
 h2, .h2, .f3 { font-size: $f3; font-weight: normal; strong { font-weight: bold }}
 .f4          { font-size: $f4; font-weight: normal; strong { font-weight: bold }}
 h3, .h3, .f5 { font-size: $f5; font-weight: normal; strong { font-weight: bold }}
-.f6          { font-size: $f6; font-weight: normal; strong { font-weight: bold }}
-h4, .h4, .f7 { font-size: $f7; font-weight: normal; strong { font-weight: bold }}
+h4, .h4, .f6 { font-size: $f6; font-weight: normal; strong { font-weight: bold }}
+.f7          { font-size: $f7; font-weight: normal; strong { font-weight: bold }}
 h5, .h5, .f8 { font-size: $f8; font-weight: normal; strong { font-weight: bold }}
 h6, .h6, .f9 { font-size: $f9; font-weight: normal; strong { font-weight: bold }}
 
@@ -89,7 +89,6 @@ header li {
 h1, h2, h3, h4, h5, h6 {
   font-family: $header-font;
   font-weight: $header-font-bold-weight;
-  margin-top: 0;
   text-rendering: optimizeLegibility;
   &.fw-bold, .fw-bold {
     font-weight: $header-font-bold-weight;
@@ -97,6 +96,10 @@ h1, h2, h3, h4, h5, h6 {
   &.wf-loading {
     visibility: hidden;
   }
+}
+
+h1, h2, h3 {
+  margin-top: 0;
 }
 
 h4 code {

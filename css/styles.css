@@ -44,16 +44,16 @@ h3, .h3, .f5 {
   h3 strong, .h3 strong, .f5 strong {
     font-weight: bold; }
 
-.f6 {
+h4, .h4, .f6 {
   font-size: 18px;
   font-weight: normal; }
-  .f6 strong {
+  h4 strong, .h4 strong, .f6 strong {
     font-weight: bold; }
 
-h4, .h4, .f7 {
+.f7 {
   font-size: 15.279px;
   font-weight: normal; }
-  h4 strong, .h4 strong, .f7 strong {
+  .f7 strong {
     font-weight: bold; }
 
 h5, .h5, .f8 {
@@ -85,12 +85,14 @@ header li {
 h1, h2, h3, h4, h5, h6 {
   font-family: "Futura", "Avenir", "Helvetica", sans-serif;
   font-weight: normal;
-  margin-top: 0;
   text-rendering: optimizeLegibility; }
   h1.fw-bold, h1 .fw-bold, h2.fw-bold, h2 .fw-bold, h3.fw-bold, h3 .fw-bold, h4.fw-bold, h4 .fw-bold, h5.fw-bold, h5 .fw-bold, h6.fw-bold, h6 .fw-bold {
     font-weight: normal; }
   h1.wf-loading, h2.wf-loading, h3.wf-loading, h4.wf-loading, h5.wf-loading, h6.wf-loading {
     visibility: hidden; }
+
+h1, h2, h3 {
+  margin-top: 0; }
 
 h4 code {
   font-weight: bold;
