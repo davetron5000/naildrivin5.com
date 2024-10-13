@@ -154,3 +154,4 @@ This can be extremely helpful if you are setting time zones in your code. It's n
 change the time zone to display values to a user in their time zone.  If you write a timestamp to the database
 while doing this, `TIMESTAMP WITH TIME ZONE` will always store the correct value.
 
+Note that [Postgres](https://wiki.postgresql.org/wiki/Don%27t_Do_This#Don.27t_use_timestamp_.28without_time_zone.29) also recommends you use `TIMESTAMP WITH TIME ZONE`.
