@@ -14,7 +14,7 @@ I've spoken at several tech conferences and user groups.  This page is an archiv
         {% if talk.link %}
         <a class="no-ul ul-hover" href="{{ talk.link }}">{{ talk.title }}</a>
         {% else %}
-        <a class="no-ul ul-hover" href="{{ talk.slides }}">{{ talk.title }}</a>
+          {{ talk.title }}
         {% endif %}
       </h1>
       <h2 class="h4 mtnone">
@@ -27,7 +27,16 @@ I've spoken at several tech conferences and user groups.  This page is an archiv
         {% if talk.embed %}
           <iframe width="560" height="315" src="{{ talk.embed }}" frameborder="0" allowfullscreen></iframe>
         {% elsif talk.image %}
-          <a class="no-ul" href="{{ talk.link }}"><img src="{{ talk.image }}" width="400"></a>
+          {% if talk.link %}
+            <a class="no-ul" href="{{ talk.link }}"><img src="{{ talk.image }}" width="400"></a>
+          {% else %}
+          <figure class="tl">
+            <img src="{{ talk.image }}" width="400">
+            <figcaption>
+              Talk no longer available
+            </figcaption>
+          </figure>
+          {% endif %}
         {% endif %}
       </p>
     </article>

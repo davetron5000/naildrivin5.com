@@ -1,11 +1,13 @@
 - title: "Your Service Layer Needn't Be Fancy, It Just Needs to Exist"
   embed: "https://www.youtube.com/embed/CRboMkFdZfg"
+  link: "https://www.youtube.com/watch?v=CRboMkFdZfg"
   where: "RailsConf 2022"
-  link: "https://davetron5000.github.io/service-layer-railsconf-2022/"
+  slides: "https://davetron5000.github.io/service-layer-railsconf-2022/"
 - title: "The fewer the concepts, the better the code?"
   embed: "https://www.youtube.com/embed/unpJ9qRjdMw"
+  link: "https://www.youtube.com/watch?v=unpJ9qRjdMw"
   where: "Ruby Conf 2019"
-  link: "https://speakerdeck.com/davetron5000/the-fewer-the-concepts-the-better-the-code"
+  slides: "https://speakerdeck.com/davetron5000/the-fewer-the-concepts-the-better-the-code"
 - title: "Programming a Time Machine with the Timeline Programming Languages"
   slides: "https://speakerdeck.com/davetron5000/programming-a-time-machine"
   where: "Pittsburgh Tech Fest 2019"
@@ -28,18 +30,17 @@
   slides: "https://speakerdeck.com/davetron5000/the-effective-remote-developer"
 - title: "Can Time-Travel Keep You From Blowing Up The Enterprise?"
   where: "RailsConf 2016"
-  embed: https://www.youtube.com/embed/23NhP4x3AAE
-  link: http://confreaks.tv/videos/railsconf2016-can-time-travel-keep-you-from-blowing-up-the-enterprise
+  embed: //www.youtube.com/embed/23NhP4x3AAE
+  link: https://www.youtube.com/watch?v=23NhP4x3AAE
   slides: "https://speakerdeck.com/davetron5000/can-time-travel-keep-you-from-blowing-up-the-enterprise"
 - title: "Rails, Postgres, Angular, and Bootstrap - The Power Stack"
   where: "Full Stack Toronto 2015"
   embed: "//www.youtube.com/embed/QbUZnb0rPdY"
+  link: "https://www.youtube.com/watch?v=QbUZnb0rPdY"
 - title: "Storytelling via the Psychology of Professional Wrestling"
   where: "RubyConf 2015"
-  link: http://confreaks.tv/videos/rubyconf2015-storytelling-via-the-psychology-of-professional-wrestling
-  embed: //www.youtube.com/embed/FplG2HLe3y0
 - title: "Overcoming our Obsession with Stringly-Typed Ruby"
-  link: http://confreaks.tv/videos/rubyconf2014-overcoming-our-obsession-with-stringly-typed-ruby
+  link: https://www.youtube.com/watch?v=7Obobjq8g_U
   where: "RubyConf 2014"
   embed: //www.youtube.com/embed/7Obobjq8g_U
   slides: http://naildrivin5.com/stringly-typed-ruby/
@@ -50,13 +51,13 @@
 - title: "Services, Scale, Backgrounding and WTF is going on here?!??!"
   where: "Golden Gate Ruby Conf 2012"
   slides: "http://davetron5000.github.io/services-wtf-gogaruco/"
-  link: http://confreaks.com/videos/1119-gogaruco2012-services-scale-backgrounding-and-wtf-is-going-on-here
+  link: https://www.youtube.com/watch?v=swgub0239Y0
   embed: //www.youtube.com/embed/swgub0239Y0
 - title: "Make Awesome Command-line Apps with Ruby"
   where: "Ruby Midwest 2011"
   slides: "https://speakerdeck.com/davetron5000/build-awesome-command-line-applications-with-ruby"
-  link: "http://confreaks.tv/videos/rubymidwest2011-make-awesome-command-line-apps-with-ruby"
   embed: "//www.youtube.com/embed/eYk2Otz4X4I"
+  link: "https://www.youtube.com/watch?v=eYk2Otz4X4I"
 - title: "Beyond the Web"
   where: "Ruby Midwest 2011"
   link: http://rubyrogues.com/028-beyond-the-web/
@@ -66,6 +67,5 @@
   link: http://days2010.scala-lang.org/node/138/169
   image: /images/scaladays_talk.jpg
 - title: "Make Awesome Command-Line Applications in Ruby"
-  link: http://www.everytalk.tv/talks/371-RubyNation-Make-Awesome-Command-Line-Applications-in-Ruby
   image: /images/rubynation_talk.png
   where: "Ruby Nation 2010"
