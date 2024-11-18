@@ -1,0 +1,75 @@
+==================================================================
+https://keybase.io/davetron5000
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://naildrivin5.com
+  * I am davetron5000 (https://keybase.io/davetron5000) on keybase.
+  * I have a public key with fingerprint FE49 0FEA 2F68 D0B9 2AC7  EBEB 7DE5 A739 E451 4828
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "0101c17cb189af9167a9343646d0d591491833321551db3c771c0297ede31467ab730a",
+      "fingerprint": "fe490fea2f68d0b92ac7ebeb7de5a739e4514828",
+      "host": "keybase.io",
+      "key_id": "7de5a739e4514828",
+      "kid": "0101c17cb189af9167a9343646d0d591491833321551db3c771c0297ede31467ab730a",
+      "uid": "7f180d0cf30316dde8e98666eab5ec19",
+      "username": "davetron5000"
+    },
+    "service": {
+      "hostname": "naildrivin5.com",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 1
+  },
+  "ctime": 1731937702,
+  "expire_in": 157680000,
+  "prev": "b14df67ecc4f1443f112e5a3887b9b6e6f527f79824a2de52767e4bc4c6757c2",
+  "seqno": 16,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.1.13
+Comment: https://keybase.io/crypto
+
+yMNIAnicrZJrUFRlGMd35TK5hspQVKiZJ2RUGDzvuR90dJqGWWEYREYxgXHnXN4D
+R3bPWXbPbigtSZBpNGM20qjMCDZyUVNuBqKL6MZFWqfBK3jJsrSS0C7gpFFs55h9
+62Of3nnf5/f/P//nmbc3KsxkMfvuNrJ31qxaZA6erfWYCpalNpQivCpuRlJKkSL4
+5IB2Ebo1W5EsIikIClAgAFrgAcNyEgsommNxAqcISkRFkgUECxgcxzFAkkDkcYGm
+gYBiLA1FiANCp3kaRzkkCZFkpQC6nC5Z0XRbCRIsKkEOkyhGRHkW4wQa8pCnRUhy
+NM5CggQEgzG6sFB1Gwo9HM+5YbKs6m/6xfYk3n/w/3Nuzz99JMCgIipIOIoDShQh
+A1mGoijI8SQUAGuAbuhSOAfUaZHzQs2lKiSKoogvCdErXlmAxnKNaZ5SCifbRZfs
+lRUyWVAduoXTpWqqoNr1YqGmOd0phljb7DToNyFve+pj42VF1NepK7zQ5ZZVBUkB
+OilosmEMaBywOE2jWBICS5yyC9pkgyBpitEDoUYf6NUteUCIEkVDQSAkQBC4BACm
+rxNnGJpneQpSEonREs0yGMFh+qIxWocJXiAEiiZpAUOMyYoVVfem9Jxcge7plgsU
+TvO4IOILnM0PN5ktpsiIacY/M1mmz/739xUtnxXKiSdfzdjX99F6f+mZWe7Aae3C
+0fgD4XLEgu+LbS98Gtc1WNybzWQVPQqTNrp9CXUrZ7fH+Mxh5l++2P35B+gF8ueO
+0bWqr/ydQMnCGLPV0X8op+Lkis6XTjdRaeVjW0c8e9cNvJecO+OP+ee3p62YGv3d
+lf/r23Z5ZMdv9orqyojH0WP3kQc78IOflHV2REqXLhYPTLs3ah26TbyfW5f6SuzD
+vCNfbbX5I6qnEmecn2xLCWjtfSeOTEaWzttXVFt/5Zv8/tQ2u2V86PGtxKruZ4fF
+4MrlapRvLO5a7jNxZWHhzdnRwoLLeV2J7cXNVyM6Am9koYtrjy8pv8kHH84NNeYM
+Xx+I8bd4Gsa78EtCbNA/kjFP2GU5k/hXcoVJ6Z6pbVO/Sx/cub2tO/OQn383pn5K
+UOpbm9p2teTPzAvXyg63Lmy2lyx+/eafUVVDE+cUck/H4AaxOpT+7fOQbEwIqVsm
+e8vSHBtvpO8uz6x57Wp8D3nOe3vLfOu9UMtz10OFn8055r2z6YB3ScwDnlw63KBm
+Xk48lXQra+K+J9pMaD/Ur57omVspZfTYHEtXT49alHbqZdwZ+1P5hkfZrRdrJjfd
+/dCfK7FXsqqOHd//ddXe/UF+2bWSQbLm4z0/dm57MX7CWjfWv65yImAJutPWWMMz
+HDf6mld9eeLo2JyTCRxcu77J+lbc+N8f4cVg
+=UoSw
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/davetron5000
+
+==================================================================
+
