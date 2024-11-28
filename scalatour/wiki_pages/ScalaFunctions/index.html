@@ -19,17 +19,17 @@
 <h2>My Interpretation</h2>
 <p>Scala is more than just an object-oriented language with a compact syntax; it has extensive support for functional programming. As such, functions are first-class objects.</p>
 <p>Suppose you have a list of U.S. States and wish to search by postal abbreviation. In Java, you’d do something like this:</p>
-<script src="http://gist.github.com/152429.js">
+<script src="https://gist.github.com/152429.js">
 </script>
 <p>While this is reasonably clear, in Java you tend to write a lot of code like this, where you iterate over a list and “do something”. The main problem is that when you find out later you need to search by some other attribute, you write essentially the same looping and early-return structure.</p>
 <p>Scala inverts this by allow you to pass in just the comparison function:</p>
-<script src="http://gist.github.com/152432.js">
+<script src="https://gist.github.com/152432.js">
 </script>
 <p>The expression given to the <code>find</code> method is a function literal, or <strong>anonymous function</strong>. The argument to the <code>find</code> method is declared to have the type <code>(T) =&gt; Boolean</code>, which is to say “A function that takes one argument of type ‘T’, where ‘T’ is the type of elements in the list, and returns a boolean.”</p>
 <p>In our case, since the list is a list of <code>State</code> objects, the type of the function is <code>(State) =&gt; Boolean</code>, or “A function that takes one argument of type <code>State</code> and returns a <code>Boolean</code>.” Note that this entire expression is the type, the same as <code>int</code> or <code>List&lt;String&gt;</code> would be in Java. Also note that the expression <code>(state)</code> is a way in which we name the argument that would be passed to the function (Scala understands the type of this argument based on the context in which it is called).</p>
 <p>That type is actually shorthand for <code>Function1[State,Boolean]</code>, where the method <code>apply</code> is what is called when the function is called. The Scala compiler translates the shorthand for you.</p>
 <p>Further, you can pass functions around just like variables and other values.</p>
-<script src="http://gist.github.com/152430.js">
+<script src="https://gist.github.com/152430.js">
 </script>
 <p>A few more interesting things about functions in Scala:</p>
 <ul>

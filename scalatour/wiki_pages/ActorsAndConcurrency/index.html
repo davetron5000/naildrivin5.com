@@ -23,7 +23,7 @@
 <p>Naturally, you separate your user interface code from your processing code, and send all requests to the background, allowing the user to continue interacting with the application. This is how the web works and how Swing is supposed to work (if you are kind enough to implement your <code>Actions</code> that way :). When commands are done, you want the user interface to be notified so that the user can have an idea of what’s going on.</p>
 <p>In Java, this would be somewhat complex. The <code>Thread</code> interface is very basic, so you’d need to design a “worker thread” class to handle requests and maintain a “user interface thread” to interact with the user. You’d have to provide for a way for the threads to talk. This might be via some shared structure or some shared references to one another.</p>
 <p>Here’s the Scala version:</p>
-<script src="http://gist.github.com/176736.js">
+<script src="https://gist.github.com/176736.js">
 </script>
 <p>We see that both <code>Actor</code> implementations define the method <code>act</code> and that both basically loop forever around the <code>receive</code> construct. This code is triggered whenever the actor in question receives a message. In the <code>Worker</code> object, we do our work and send the sender of the message a response. <code>sender</code> is an API call in <code>Actor</code>, as is <code>!</code>. The <code>!</code> is used to send <code>sender</code> a message.</p>
 <p>In the first case, we send the sender the <code>Exit</code> object. In the other two cases, we create a new version of <code>Done</code> that indicates which command had completed (we sleep for a second when we get an <code>scp</code> just to make sure things are happening concurrently).</p>

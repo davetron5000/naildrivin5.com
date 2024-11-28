@@ -21,14 +21,14 @@
 <p>In Java, you might create a class hierarchy like so:</p>
 <p><img src="/scalatour/diagrams/1768649.png" alt="" /></p>
 <p>Here we have a generic notification interface, with two implementations. One takes a prefix that you configure on object creation and the other upper cases the messages it gets. Your application might configure, at runtime, which of these two to use (and which prefix to use for the prefix notifier). Your code might look like this:</p>
-<script src="http://gist.github.com/153760.js">
+<script src="https://gist.github.com/153760.js">
 </script>
 <p>This isn’t bad, but we already know that some <a href="/scalatour/wiki_pages/ScalaFunctions/index.html">ScalaFunctions</a> can reduce the line count a lot:</p>
-<script src="http://gist.github.com/153765.js">
+<script src="https://gist.github.com/153765.js">
 </script>
 <p>However, we still have some repetition with the two prefix notifiers (repetition we <strong>don’t</strong> have with the Java implementation, even though the overall implementation is longer)</p>
 <p>It turns we can further parameterize functions via <strong>function currying</strong>. We can create a function that has received some of its parameters already and send it off to someone expecting a function that takes the remaining number of parameters:</p>
-<script src="http://gist.github.com/153762.js">
+<script src="https://gist.github.com/153762.js">
 </script>
 <p>The trick is the <code>(prefix:String)(message:String)</code> syntax. This says that we can give the function <code>prefixNotifier</code> only one argument and, in doing so, we will receive a function back that is expecting one more argument and has access to the first argument we provided.</p>
 <p>This may seem a bit convoluted, however the ability to parametrize functions this way allows for simple re-use and a significant reduction in code and design.</p>

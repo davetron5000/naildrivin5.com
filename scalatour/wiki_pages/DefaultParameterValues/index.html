@@ -18,15 +18,15 @@
 <p>This isn’t covered by the tour, however it is discussed in the <a href="http://www.scala-lang.org/node/2075">taste of 2.8</a>.</p>
 <h2>My Interpretation</h2>
 <p>In Java, one tends to see a lot of overloaded methods that only serve to provide default values for certain parameters of a large method. This is especially true with constructors:</p>
-<script src="http://gist.github.com/478734.js?file=HashMap.java">
+<script src="https://gist.github.com/478734.js?file=HashMap.java">
 </script>
 <p>There’s really only two constructors here; one that takes another map, and one that takes a capacity and load factor. The other two constructors are there to allow users of <code>HashMap</code> to create instances with the probably-good-for-most-cases defaults of both load factor and capacity.</p>
 <p>More problematic is that the values used for defaults are in both the Javadoc <strong>and</strong> the code. Keeping this up to date is easily forgotten. A typical pattern around this would be to add public constants whose values will show up in the Javadoc:</p>
-<script src="http://gist.github.com/478734.js?file=HashMapWithDefaults.java">
+<script src="https://gist.github.com/478734.js?file=HashMapWithDefaults.java">
 </script>
 <p>While this keeps us from repeating ourselves, it’s less than expressive.</p>
 <p>Scala adds direct support for this:</p>
-<script src="http://gist.github.com/478734.js?file=DefaultArguments.scala">
+<script src="https://gist.github.com/478734.js?file=DefaultArguments.scala">
 </script>
 <p>Note how we can take advantage of <strong>any</strong> default value by using <a href="/scalatour/wiki_pages/NamedParameters/index.html">NamedParameters</a> (something C++ and Ruby do not support!)</p>
 <h2>My Thoughts on This Feature</h2>

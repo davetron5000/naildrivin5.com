@@ -20,7 +20,7 @@
 <p>Just as with Java, in Scala you can put bounds on the generic types allowed to a generic class or method.</p>
 <p>Suppose we have an object hierarchy of entities. We have a root entity that all must extend, and then a special secondary entity for reference data (data that is a code and a description and only aggregated by other entities).</p>
 <p>Further, we wish to define a sorting class that we can apply to all reference data.</p>
-<script src="http://gist.github.com/154920.js">
+<script src="https://gist.github.com/154920.js">
 </script>
 <p>We <strong>could</strong> have created the sorter class to just take <code>ReferenceData</code>, but the <code>regular</code> and <code>sorted</code> methods would not return properly typed <code>Lists</code>, they would return lists of <code>ReferenceData</code> and not, say <code>List[Gender]</code>, which would be more useful.</p>
 <p>This is essentially the same concept as <code>List&lt;T extends Foo&gt;</code> that you have in java, though more concise.</p>

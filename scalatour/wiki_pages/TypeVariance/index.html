@@ -15,13 +15,13 @@
 <article>
 <h1>TypeVariance</h1>
 <h2>The Gist</h2>
-<p><a href="http://www.scala-lang.org/node/129">Variances</a> gives a very high-level overview of implementing contravariance and covariance with respect to Generics. Examples and definitions below.</p>
+<p><a href="https://www.scala-lang.org/node/129">Variances</a> gives a very high-level overview of implementing contravariance and covariance with respect to Generics. Examples and definitions below.</p>
 <h2>My Interpretation</h2>
 <p>Scala allows more flexible use of generics than Java. Specifically, you can decide that if <code>Child</code> extends <code>Parent</code>, then <code>Foo[Child]</code> is a subtype of <code>Foo[Parent]</code> (called <strong>covariance</strong>). You can also decide that <code>Foo[Child]</code> is, instead, a <strong>supertype</strong> of <code>Foo[Parent]</code> (called <strong>contravariance</strong>).</p>
 <p><img src="/scalatour/diagrams/1792969.png" alt="" /></p>
 <h3>Covariance</h3>
 <p>As mentioned in <a href="/scalatour/wiki_pages/ScalaGenerics/index.html">ScalaGenerics</a> , if we have a generic type <code>ConfigurationOption[T]</code>, and two classes, <code>Child</code> which extends <code>Parent</code>, the class <code>ConfigurationOption[Child]</code> <strong>is not</strong> a subclass of <code>ConfigurationOption[Parent]</code>. Scala provides a way to make this happen, however:</p>
-<script src="http://gist.github.com/154891.js">
+<script src="https://gist.github.com/154891.js">
 </script>
 <p>In the definition of class <code>Configuration</code>, we use the <code>+T</code> to indicate that that <code>T</code> is a <strong>covariant</strong> type. This means that, in our example, <code>Configuration[AdvancedStringValue]</code> <strong>is a proper subclass</strong> of <code>Configuration[StringValue]</code>. If the <code>+T</code> were changed to a simple <code>T</code>, this code would not compile.</p>
 <h3>Contravariance</h3>
@@ -31,13 +31,13 @@
 <p>An example should illuminate why. It’s a bit long, so bear with me (this is a more complicated concept than some of the others being discussed).</p>
 <p>Suppose we have a set of classes for dealing with lookup data, such as a list of U.S. States (defined by a code, a description, and an ‘area of the country’) and a list of Countries (defined by a code, a description, and an official postal abbreviation).</p>
 <p>Since both expose a code and a description, we pull these up into a superclass called <code>Lookup</code>. Further, we also have a class that creates HTML <code>&lt;SELECT&gt;</code> controls based upon a list of <code>Lookup</code> objects and <strong>it</strong> exposes a <code>render</code> method that allows us to pass in a function to control the human-readable value for any given <code>Lookup</code> instance.</p>
-<script src="http://gist.github.com/167851.js">
+<script src="https://gist.github.com/167851.js">
 </script>
 <p>This code doesn’t compile, even though you might thing it should.</p>
 <p>You might think that since <code>Country</code> is a subclass of <code>Lookup</code>, then the function <code>countryValue</code> should be a subtype of the function <code>lookupValue</code> and that you should, therefore, be able to pass it in to <code>render</code>. Especially since <code>selector</code> was created around a list of <code>Country</code> objects!</p>
 <p>So, why can’t you?</p>
 <p>Consider a slight change to our main application code to the following:</p>
-<script src="http://gist.github.com/172803.js">
+<script src="https://gist.github.com/172803.js">
 </script>
 <p>The code still won’t compile, but it makes more sense now why it shouldn’t: you wouldn’t want to use <code>countrySelector</code> on a <code>USState</code>, because <code>USState</code> has no <code>postCode</code> attribute.</p>
 <p>So, what’s going on here? Let’s look at the definition of the function type. Our function</p>
@@ -46,7 +46,7 @@
 <pre>valueMaker:Function1[Lookup,String]</pre>
 <p><code>Function1</code> is declared as <code>Function1[-P,+R]</code>, meaning that <code>Function1[Lookup,String]</code> is actually a subtype of <code>Function1[Country,String]</code>.</p>
 <p>Now, consider this code:</p>
-<script src="http://gist.github.com/167854.js">
+<script src="https://gist.github.com/167854.js">
 </script>
 <p>This code compiles.</p>
 <p>Here, we’ve created a special <code>CountrySelect</code> that operates just on <code>Country</code> objects. Of course, <code>countryValue</code> works, but notice how <code>lookupValue</code> <strong>also</strong> can be passed. Since <code>lookupValue</code> is a subtype of <code>countryValue</code>, we can safely pass it in.</p>

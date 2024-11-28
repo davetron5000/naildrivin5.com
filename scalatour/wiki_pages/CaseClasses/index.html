@@ -19,11 +19,11 @@
 <h2>My Interpretation</h2>
 <p>Suppose you are creating a logging system like log4j that can log a <code>String</code>, an <code>Exception</code>, or both. Suppose further that you wish to keep stack traces to a minimum and only output them for <code>Error</code> exceptions that are logged, or for any exception logged at the <code>error</code> level.</p>
 <p>There are several possible means of implementing this in Java. Here is one such implementation:</p>
-<script src="http://gist.github.com/153795.js">
+<script src="https://gist.github.com/153795.js">
 </script>
 <p>There’s a lot of repetition here, and the conciseness of the <code>log</code> method can make it a bit hard to grok at first.</p>
 <p>Scala’s <strong>case classes</strong> provide a lot of features to help. Here’s a possible implementation in Scala:</p>
-<script src="http://gist.github.com/153798.js">
+<script src="https://gist.github.com/153798.js">
 </script>
 <p>The simple addition of the <code>case</code> keyword before the three extenders of the log message class does a whole lot:</p>
 <ul>

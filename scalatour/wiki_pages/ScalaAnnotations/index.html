@@ -20,10 +20,10 @@
 <p>Annotations in Scala are conceptually the same as they are in Java. Many of the Java keyword modifiers are annotations in Scala (as opposed to language constructs). For example, <code>native</code> in Java is the annotation <code>scala.native</code>.</p>
 <p>For the purposes of interacting with Java, Scala classes may annotate methods with the <code>throws</code> annotation. This is the equivalent of the <code>throws</code> keyword in Java and lets the Java compiler know what exceptions must be caught.</p>
 <p>Java Annotations, when used in Scala, are specified using one of two types of syntax:</p>
-<script src="http://gist.github.com/155925.js">
+<script src="https://gist.github.com/155925.js">
 </script>
 <p>One way in which Scala uses annotations is to bridge Scala’s way of dealing with properties and Java’s way:</p>
-<script src="http://gist.github.com/252522.js">
+<script src="https://gist.github.com/252522.js">
 </script>
 <p>The <code>BeanProperty</code> annotation basically creates these methods for us. This lets Scala code work with systems like Spring (that expect the get/set style) without having duplicated code in our Scala source.</p>
 <h2>My Thoughts on this Feature</h2>

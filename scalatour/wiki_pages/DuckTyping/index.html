@@ -18,15 +18,15 @@
 <p>This isn’t covered by the tour, but is too cool to not mention.</p>
 <h2>My Interpretation</h2>
 <p>In many enterprise Java systems based on Java 1.5 or higher, it is common to see a top-level abstract DAO implemented as follows:</p>
-<script src="http://gist.github.com/172969.js">
+<script src="https://gist.github.com/172969.js">
 </script>
 <p>Suppose your application must integrate with a new database, and that the database is currently accessible by some Java code created in a similar manner:</p>
-<script src="http://gist.github.com/172971.js">
+<script src="https://gist.github.com/172971.js">
 </script>
 <p>It’s great that you have your database access code already done, and it’s even better that both class hierarchies have the same interface.</p>
 <p>The problem is that they do not actually implement the same interface. This means that any code you already have that works with <code>GenericDAO</code> will not work with your new database access DAOs without formally extracting a common interface. This could be a painful refactoring.</p>
 <p>With Ruby, you can ignore this fact and just call methods you know are there; that’s dynamic typing. Scala, being statically typed, doesn’t provide an obvious means of doing this. But you <strong>can</strong> actually do it.</p>
-<script src="http://gist.github.com/172974.js">
+<script src="https://gist.github.com/172974.js">
 </script>
 <p>Note the type of the <code>dao</code> argument to <code>showName</code>. It’s type is <code>{ def getById(id:Int):{var name:String} }</code>, which is to say “a class that has a public method called <code>getById</code> that takes an <code>Int</code> as its one argument and returns an object that has a publicly accessible <code>var</code> called <code>name</code>”.</p>
 <p>In my haste, I actually forgot to put a dummy implementation of <code>save</code> in <code>EmployeeJDBCDAO</code>. It doesn’t matter; this code is statically checked and compiles fine.</p>

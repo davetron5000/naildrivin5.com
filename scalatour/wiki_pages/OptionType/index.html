@@ -19,19 +19,19 @@
 <h2>My Interpretation</h2>
 <p>Often you have the need to perform an operation that returns a value, but that might need to <em>not</em> return a value in some cases. An example is getting the value from a map using a key. If the key isn’t in the map, you need to return “no value”. In Java, you would use null. This tends to lead to a lot of null checking.</p>
 <p>Consider a method that saves some data about a person to a database. The name and age of the person are required, but the ethnicity isn’t. In this case, you wish to store a “U” in the database, but want to allow the caller to indicate “no value”. In Java, this might look like this:</p>
-<script src="http://gist.github.com/283068.js?file=NullChecking.java">
+<script src="https://gist.github.com/283068.js?file=NullChecking.java">
 </script>
 <p>You would need to make sure you document which parameters allow null (and this doesn’t always happen).</p>
 <p>In Scala, you can use the <code>Option[T]</code> class, which has two subclasses: <code>Some[T]</code>, which means a value was provided (of type <code>T</code>) and <code>None</code>, which means no value was provided. Our method in Scala might look like this:</p>
-<script src="http://gist.github.com/283068.js?file=NullChecking.scala">
+<script src="https://gist.github.com/283068.js?file=NullChecking.scala">
 </script>
 <p><code>Option[T]</code> has a method, <code>getOrElse</code> which means “get the value if we are a <code>Some</code>, otherwise, return the value provided”. This is similar in concept to the Java construct <code>x == null ? &quot;U&quot; : x</code>.</p>
 <p>Here, your types document that requirements; with this convention, you can know, without documentation, that <code>name</code> and <code>age</code> are required, but that <code>ethnicity</code> is optional.</p>
 <p>Suppose further that you wish (or need) to update each field individually, and that you wish to allow the caller to pass in only the values to be updated, using “no value” to mean that no update is needed. In Java:</p>
-<script src="http://gist.github.com/283068.js?file=LotsOfChecking.java">
+<script src="https://gist.github.com/283068.js?file=LotsOfChecking.java">
 </script>
 <p>In Scala, you can treat <code>Option</code> as a collection, and iterate over it. If the <code>Option</code> is a <code>None</code>, no iteration happens, and you avoid a lot of null checks:</p>
-<script src="http://gist.github.com/283068.js?file=NotCaring.scala">
+<script src="https://gist.github.com/283068.js?file=NotCaring.scala">
 </script>
 <p>Granted, these are somewhat contrived, but an implementation of the NullObject pattern, coupled with some of Scala’s other niceties can help clean up code and make intent clear</p>
 <h2>My Thoughts on This Feature</h2>

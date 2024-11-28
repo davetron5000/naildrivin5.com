@@ -20,10 +20,10 @@
 <p>Scala’s <code>match</code> keyword is akin to Java’s <code>switch</code> statement, however it is <strong>far</strong> more powerful.</p>
 <p>Suppose you wish to examine a URL to determine, by extension, how to render an object you’ve looked up. So a url like <code>/people/dave.xml</code> would find a person named “dave” and return the data as XML. Similarly, <code>/people/dave.json</code> would return the data as JSON.</p>
 <p>In Java, you would do something like this:</p>
-<script src="http://gist.github.com/177701.js">
+<script src="https://gist.github.com/177701.js">
 </script>
 <p>Now, you can certainly factor that horrible <code>if-then-else-if</code> structure out, but it seems a shame to have to do that. Also, the null checking and temporary variables are a bit noisy. Here’s the same thing in Scala:</p>
-<script src="http://gist.github.com/154841.js">
+<script src="https://gist.github.com/154841.js">
 </script>
 <p>We are using two case statements here. In the first one, we combine the search for the <code>'.'</code> character with the substring to get the extension. The result is an instance of Scala’s <code>Option</code> class, which is better way of encapsulating “no value” than null is.</p>
 <p>Essentially what this statement means is &quot;if the rest of <code>lastIndexOf</code> was <del>1, set <code>extension</code> to <code>None</code> , otherwise, set it to the substring following the <code>'.'</code>“.
@@ -31,7 +31,7 @@
 <br />Finally, note that the expression <code>case _</code> is akin to <code>default</code> in a Java <code>switch</code> statement.
 <br />This just touches the surface of Scala’s pattern matching.
 <br />Suppose you wish to add rendering of your object’s encoding after the <code>handleOutput</code> call. Suppose that you wish to handle anything, not just instances of <code>Entity</code>, and you also wish to hide the names of any <code>Person</code> who is under 18 years old.
-<br />&lt;script src=“http://gist.github.com/154843.js”&gt;&lt;/script&gt;
+<br />&lt;script src=“https://gist.github.com/154843.js”&gt;&lt;/script&gt;
 <br />Note that we aren’t just switching based on the value of <code>obj</code>, but also on it’s type, and it’s contents; the guard condition in the first <code>case</code> statement allows us to refine our match. Anyone under 18 will match this; anyone else who is a <code>Person</code> will match the second <code>case</code>, with any <strong>other</strong> <code>Entity</code> instance matching the third. Finally, we just <code>toString</code> non</del><code>Entity</code> objects that we receive.</p>
 <h2>My Thoughts on this Feature</h2>
 <p>I almost <strong>never</strong> use <code>switch</code> statements in Java, because they are essentially useless. Even if all it did here is get rid of annoying <code>if-then-else</code> blocks, I’d call it a win. As it stands, this is one of the coolest features of Scala and a <strong>really</strong> cool thing to have that takes advantage of the type information we get via static typing.</p>

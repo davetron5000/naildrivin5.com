@@ -19,7 +19,7 @@
 <h2>My Interpretation</h2>
 <p>Type Specialization is a feature that allows the Scala compiler to create type-specific versions of classes that take type parameters. For example, if you have a collection of type <code>Collection[T]</code>, and you specialize <code>T</code>, the compiler will create not just one class, but one for each primitive type as well as for the object type.</p>
 <p>This is entirely transparent to the programmer, and essentially is useful for optimizing code that is being slowed down by autoboxing.</p>
-<script src="http://gist.github.com/478674.js?file=TypeSpecialization.scala">
+<script src="https://gist.github.com/478674.js?file=TypeSpecialization.scala">
 </script>
 <p>Note that the more type parameters you specialize, the more specialized classes are created, because each combination of primitives must be created to full specialize.</p>
 <p>For a great overview, watch <a href="http://days2010.scala-lang.org/node/138/151">this talk</a> from ScalaDays 2010</p>

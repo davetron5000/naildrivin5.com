@@ -20,11 +20,11 @@
 <p>In Scala, one can convert between types implicitly by providing the conversion code. The simplest example of this is converting from strings to actual types. Suppose you are processing configuration data and wish to treat the strings as their actual types; numbers become numbers and “true” or “false” becomes a boolean.</p>
 <p>In Java, you would need a complex system of type analysis and conversion logic to figure out a) what the type to convert to is, and b) how to do the conversion.</p>
 <p>In Scala, you can define a function as <code>implicit</code> and it will be used to attempt a conversion:</p>
-<script src="http://gist.github.com/155063.js">
+<script src="https://gist.github.com/155063.js">
 </script>
 <p>Without the two <code>implicit</code> method definitions, Scala would raise compile errors when assigning strings to the non-string properties of <code>Configuration</code>.</p>
 <p>Instead, it looks for a method that takes what it has, and gives what it needs. In the case of the first assignment, Scala knows we need a <code>Boolean</code> and it knows we have a <code>String</code>. Since <code>str2bool</code> takes a <code>String</code> and returns a <code>Boolean</code>, it applies it to get the value. We could even get fancier:</p>
-<script src="http://gist.github.com/155075.js">
+<script src="https://gist.github.com/155075.js">
 </script>
 <p>Here, we implicitly convert from a string to our simple URL class; that conversion method takes advantage of our <code>str2int</code> method to set the port number.</p>
 <h2>My Thoughts on this Feature</h2>

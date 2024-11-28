@@ -18,18 +18,18 @@
 <p><a href="http://www.scala-lang.org/node/131">XML Processing</a> describes Scala’s native support for XML.</p>
 <h2>My Interpretation</h2>
 <p>Scala supports XML <strong>literals</strong>. Meaning that this program:</p>
-<script src="http://gist.github.com/154847.js">
+<script src="https://gist.github.com/154847.js">
 </script>
 <p>outputs this:</p>
-<script src="http://gist.github.com/154848.js">
+<script src="https://gist.github.com/154848.js">
 </script>
 <p>This syntax can do more than just save you a few quotes and backslashes, however. You can use curly braces to dynamically insert expressions, as such:</p>
-<script src="http://gist.github.com/154850.js">
+<script src="https://gist.github.com/154850.js">
 </script>
 <p>Note how we don’t quote the <code>title</code> or <code>href</code> attributes; Scala knows that we are assigning XML attributes to dynamic variables (i.e. this isn’t just blind templating; it’s XML-aware). Also note how the quoted string we pass to the function gets escaped inside the attribute value.</p>
 <h4>Making it more dynamic</h4>
 <p>Inside those curly braces, we can embed any Scala expression we want, so if we wanted to take a list and output it as a <code>ul</code>, this would work just fine:</p>
-<script src="http://gist.github.com/154851.js">
+<script src="https://gist.github.com/154851.js">
 </script>
 <p>Notice that inside our expression, we <code>map</code> our list of strings to a list of XML literals, themselves containing a dynamic expression.</p>
 <p>Also note that we can put literal curly braces in by either doubling them outside of an attribute, or quoting them as an attribute’s value.</p>
