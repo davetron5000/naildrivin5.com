@@ -82,7 +82,7 @@ def serve(drafts: false, watch: false)
   flags << "--drafts"     if drafts
   flags << "--watch"      if watch
   flags << "--livereload" if watch
-  sh "RUBYOPT=-W0 bundle exec jekyll serve --future #{flags.join(' ')}"
+  sh "RUBYOPT=-W0 bundle exec jekyll serve -H 0.0.0.0 --future #{flags.join(' ')}"
 end
 
 desc "Serve up the site locally"
