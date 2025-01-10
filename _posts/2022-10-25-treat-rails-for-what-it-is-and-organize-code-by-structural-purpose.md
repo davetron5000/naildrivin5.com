@@ -103,8 +103,8 @@ example, you might want `app/shopping` to contain all the code about purchasing 
 and `app/reporting` to contain all the reporting.
 
 To entirely organize your app this way requires quite the configuration feat with Rails and would
-obviate may of Rails' benefits.  It also creates a far more difficult-to-answer to the question of
-where code goes.  Is there an existing concept where this new code should go?  I there an
+obviate many of Rails' benefits.  It also creates a far more difficult-to-answer question of
+where code goes.  Is there an existing concept where this new code should go?  Is there an
 existing concept that is close, and if we rename it would this code go there?  Or, does adding
 this code to an existing concept make that concept too complex such that it requires splitting up
 into two smaller concepts?
