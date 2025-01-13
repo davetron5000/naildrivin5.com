@@ -86,7 +86,7 @@ def on_order_shipped(order)
 
   payment_intent = Stripe::PaymentIntent.create(args)
 
-  if payment_intent.charges.count != 0
+  if payment_intent.charges.count != 1
     # Imagine a more sophisticated error handling
     # strategy here...
     raise "Expected exactly one charge"
@@ -147,7 +147,7 @@ def charge_stripe(customer,
 
   payment_intent = Stripe::PaymentIntent.create(args)
 
-  if payment_intent.charges.count != 0
+  if payment_intent.charges.count != 1
     raise "Expected exactly one charge"
   end
 
@@ -238,7 +238,7 @@ class Stripe::ServiceWrapper
 
     payment_intent = Stripe::PaymentIntent.create(args)
 
-    if payment_intent.charges.count != 0
+    if payment_intent.charges.count != 1
       # Imagine a more sophisticated error handling
       # strategy here...
       raise "Expected exactly one charge"
