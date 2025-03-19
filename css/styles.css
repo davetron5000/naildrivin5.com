@@ -613,6 +613,138 @@ aside.promo {
   background-color: #dfdfdf;
   font-weight: bold; }
 
+table.comparison {
+  margin-left: auto;
+  margin-right: auto; }
+  table.comparison thead th {
+    font-size: 24.722px;
+    font-weight: bold;
+    text-align: left; }
+  table.comparison tbody tr:nth-child(odd) td {
+    background-color: #efefef; }
+  table.comparison tbody td {
+    padding: 12.6px; }
+  table.comparison tbody td:nth-child(1),
+  table.comparison tbody td:nth-child(2) {
+    white-space: nowrap;
+    font-size: 15.279px;
+    font-weight: bold;
+    max-width: 20ch; }
+  table.comparison tbody td.wrap-ok {
+    white-space: normal; }
+  table.comparison tbody td:nth-child(1) {
+    padding-left: 0; }
+  table.comparison tbody td:nth-last-child(1) {
+    padding-right: 0; }
+  table.comparison tbody td p {
+    max-width: 45ch;
+    line-height: 1.4; }
+
+kbd {
+  display: inline-block;
+  padding-left: 6.3px;
+  padding-right: 6.3px;
+  padding-top: 0.7875px;
+  padding-bottom: 0.7875px;
+  margin-bottom: 0.7875px;
+  font-family: "Courier New", "Courier", monospace;
+  border: solid thin black;
+  border-radius: 3.15px; }
+
+.comparison {
+  margin-bottom: 25.2px;
+  display: grid;
+  grid-template-areas: 'mac-icon   mac-name' 'linux-icon linux-name' 'desc       desc      ';
+  gap: 6.3px; }
+
+@media (min-width: 40em) {
+  .comparison {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    display: grid;
+    grid-template-areas: 'mac-icon mac-name linux-icon linux-name' 'desc     desc     desc       desc';
+    gap: 6.3px;
+    justify-items: start; } }
+.comparison .name {
+  font-weight: bold;
+  font-size: 1.5rem;
+  display: block; }
+
+.comparison .name strong {
+  font-weight: normal; }
+
+.comparison :nth-child(1 of img) {
+  grid-area: mac-icon;
+  height: 3lh; }
+
+@media (min-width: 40em) {
+  .comparison :nth-child(1 of img) {
+    height: 4lh; } }
+.comparison > :nth-child(1 of kbd) {
+  width: min-content;
+  grid-area: mac-icon;
+  white-space: nowrap;
+  height: min-content;
+  align-self: center;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; }
+
+.comparison > span.mac[role=img] {
+  grid-area: mac-icon;
+  font-size: 120%;
+  white-space: nowrap;
+  height: min-content;
+  align-self: center; }
+
+.comparison > :nth-child(1 of p) {
+  grid-area: mac-name; }
+
+.comparison :nth-child(2 of img) {
+  grid-area: linux-icon;
+  height: 3lh; }
+
+@media (min-width: 40em) {
+  .comparison :nth-child(2 of img) {
+    height: 4lh; } }
+.comparison > :nth-child(2 of kbd) {
+  width: min-content;
+  grid-area: linux-icon;
+  height: min-content;
+  align-self: center;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  white-space: nowrap; }
+
+@media (min-width: 40em) {
+  .comparison > :nth-child(1 of kbd),
+  .comparison > :nth-child(2 of kbd) {
+    font-size: 120%; } }
+.comparison > span.linux[role=img] {
+  grid-area: linux-icon;
+  font-size: 120%;
+  white-space: nowrap;
+  height: min-content;
+  align-self: center; }
+
+.comparison > :nth-child(2 of p) {
+  grid-area: linux-name; }
+
+.comparison :nth-child(1 of .description) {
+  grid-area: desc;
+  padding-left: 12.6px;
+  padding-right: 12.6px;
+  padding-top: 12.6px;
+  padding-bottom: 0;
+  display: flex;
+  align-items: top;
+  gap: 3.15px; }
+
+.comparison :nth-child(1 of .description) :nth-child(1 of p) {
+  margin-top: 0; }
+
+img.bordered {
+  padding: 12.6px;
+  border: solid thin #efefef;
+  border-radius: 6.3px; }
+
 .highlight .hll {
   background-color: #222; }
 
