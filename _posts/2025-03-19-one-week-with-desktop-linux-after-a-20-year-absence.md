@@ -90,19 +90,24 @@ connect. I'm fine with all of that.
 <div data-ad></div>
 
 The screen looked a lot better than I was expecting. It seems retina-quality, or at least
-nowhere near as bad as the $400 Lenovo Windows laptop I used for testing my book.
-
-The keyboard felt as good as the one on my Macbook Pro.  The trackpad…well…it's OK. It's not as
-big as I'd like, and the way Linux responds to it is not great. It ends up feeling very cheap
-and partially broken.  For what it's worth, the Apple Magic Trackpad feels the same way on
-Linux, so this is maybe not Framework's fault (see below).
-
-I don't use tap-to-click, and have spent well over a decade using Apple's trackpads.  If that's
-you, it will be annoying. If not, it's probably fine. I would say that, after a week of using
-it, the trackpad is serviceable, and I worked around its flaws.
+nowhere near as bad as the $400 Lenovo Windows laptop I used for testing my book. It's not as bright as my
+Mac's, but the only time I really noticed was when I was switching between the two computers.
 
 
-Battery life seems very good. Not Mac-level, but I have left it closed for 24 hours and the battery is still pretty well charged.  It seems to last several hours, and I didn't feel like I was in danger of losing work when out and about.
+The keyboard felt as good as the one on my Macbook Pro. My only quibbles are: 1) the placement of the
+why-is-there-always-an-unmappable-Fn-key, as it's where Control is on my Mac, 2) a fucking Windows key logo, which I am not
+kidding almost made me not buy this thing, and 2) The F9 key, whose function I would describe as "completely decimate your
+display setup and fuck up everything until you keep hitting it and eventually arrive at what you had before".
+
+The trackpad…well…it's OK. It's not as big as I'd like, but not as tiny as your average PC laptop's.  I find it extremely hard
+to use, but I also find the Magic Trackpad hard to use with Linux.  It's clear that Apple's driver does some stuff to avoid
+misclicks and other stuff.  You also cannot control the scrolling speed, so I found myself making a lot of mistakes using both
+Trackpads.
+
+Battery life seems very good. Not Mac-level, but I have left it closed for 24 hours and the battery is still pretty well charged.  As I type, it's at 88% and the OS is telling me it's got 5 hours left.
+
+No issues with WiFi; I was able to connect to my iPhone for tethering.  The fingerprint reader is more finicky than Apple's
+TouchID, but worked almost every time.
 
 ## The First Day Was Rough
 
@@ -432,10 +437,39 @@ Center and re-installed them on command line.
         </div>
     </div>
 </div>
+<div class="comparison">
+    <img src="/images/linux-desktop/keychron-192.png">
+    <p><span class="name">Reeder</span> on Mac</p>
+    <span class="linux" role="img" aria-description="Crying Emoji">😢</span>
+    <p><span class="name">Feedbin</span> on Linux (as a Firefox PWA)</p>
+    <div class="description">
+        <span role="img" aria-label="thumbs up"> 👍</span>
+        <div>
+            <p>
+            Reeder has always required an RSS back-end. I initially used David Smith's excellent Feed Wrangler, but he sold it
+            to Feedbin a few years back. I've never actually used the Feedbin web UI before, but it's pretty good!  Installed
+            as a PWA, it works great.
+            </p>
+        </div>
+    </div>
+</div>
+<div class="comparison">
+    <img src="/images/linux-desktop/keychron-192.png">
+    <p><span class="name">Preview</span> on Mac</p>
+    <span class="linux" role="img" aria-description="Crying Emoji">😢</span>
+    <p><span class="name">???</span> on Linux</p>
+    <div class="description">
+        <span role="img" aria-label="thumbs down">👎</span>
+        <div>
+            <p>
+            Preview is an underrated app. It's truly amazing and demonstrates what Apple is—or at least used to be—capable
+            of.  It views PDFs, lets you edit them, sign them, save them. It views images and lets you crop them, adjust their
+            colors, and do a lot of the 80 in 80/20 changes.
+            </p>
+        </div>
+    </div>
+</div>
 
-I realize there are alternatives to Pixelmator, Omnigraffle, and Lightroom, but they are just
-not as good.  I'm sure I could deal with whatever Linux alternatives there are, but I'm bought
-into those apps.
 
 ## How it Worked
 
