@@ -9,13 +9,13 @@ $f11: 5.836px;
 $f12: 4.250px;
 */
 .sans {
-  font-family: "Futura", "Avenir", "Helvetica", sans-serif; }
+  font-family: "Futura", "Avenir", "URW Gothic", "Helvetica", Corbel, source-sans-pro, sans-serif; }
 
 b, strong, .fw-bold {
   font-weight: 800; }
 
 .f-serif {
-  font-family: "Baskerville", serif !important; }
+  font-family: "Baskerville", "Palatino Linotype", "URW Palladio L", P052, serif !important; }
 
 .f1 {
   font-size: 64.72px; }
@@ -76,18 +76,18 @@ header li {
   display: block;
   text-align: center;
   font-size: 24.722px;
-  font-family: "Futura", "Avenir", "Helvetica", sans-serif; }
+  font-family: "Futura", "Avenir", "URW Gothic", "Helvetica", Corbel, source-sans-pro, sans-serif; }
 
 @media (min-width: 40em) {
   header li {
     display: inline-block;
     padding-right: 25.2px; } }
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Futura", "Avenir", "Helvetica", sans-serif;
-  font-weight: normal;
+  font-family: "Futura", "Avenir", "URW Gothic", "Helvetica", Corbel, source-sans-pro, sans-serif;
+  font-weight: 600;
   text-rendering: optimizeLegibility; }
   h1.fw-bold, h1 .fw-bold, h2.fw-bold, h2 .fw-bold, h3.fw-bold, h3 .fw-bold, h4.fw-bold, h4 .fw-bold, h5.fw-bold, h5 .fw-bold, h6.fw-bold, h6 .fw-bold {
-    font-weight: normal; }
+    font-weight: 600; }
   h1.wf-loading, h2.wf-loading, h3.wf-loading, h4.wf-loading, h5.wf-loading, h6.wf-loading {
     visibility: hidden; }
 
@@ -123,7 +123,7 @@ h4, h5, h6 {
   font-size: 18px; }
 
 body, p, li, td {
-  font-family: "Baskerville", serif;
+  font-family: "Baskerville", "Palatino Linotype", "URW Palladio L", P052, serif;
   font-size: 24.722px;
   line-height: 1.5;
   text-rendering: optimizeLegibility;
@@ -165,7 +165,7 @@ main {
     width: 720px;
     margin: 0 auto; } }
 pre, code {
-  font-family: "Courier New", "Courier", monospace; }
+  font-family: "Courier", ui-monospace, monospace; }
 
 pre {
   overflow-x: scroll; }
@@ -245,7 +245,7 @@ footer.related-posts .post-date {
   width: 80%;
   padding: 12.6px;
   font-size: 24.722px;
-  font-family: "Courier New", "Courier", monospace;
+  font-family: "Courier", ui-monospace, monospace;
   border: none;
   border-radius: 3.15px;
   background-color: #fffeff;
@@ -262,7 +262,7 @@ footer.related-posts .post-date {
   border-radius: 12.6px;
   background-color: #111;
   color: #ddd;
-  font-family: "Futura", "Avenir", "Helvetica", sans-serif;
+  font-family: "Futura", "Avenir", "URW Gothic", "Helvetica", Corbel, source-sans-pro, sans-serif;
   text-shadow: rgba(135, 251, 255, 0.68) 0px 0px 8px; }
 
 aside.promo {
@@ -568,7 +568,7 @@ hr {
 .pill {
   padding: 12.6px;
   background: #faf8fa;
-  font-family: "Futura", "Avenir", "Helvetica", sans-serif; }
+  font-family: "Futura", "Avenir", "URW Gothic", "Helvetica", Corbel, source-sans-pro, sans-serif; }
   .pill:hover {
     background: #eeeaee; }
 
