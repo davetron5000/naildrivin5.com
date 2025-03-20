@@ -53,11 +53,10 @@ three USB-C ports and a USB-A port.  I stuck with the boring black bezel.
 
 ### Assembly and Setup
 
-It was fun putting the laptop together - I haven't shoved RAM into a socket in quite a few
-years, so it was cool seeing all the parts and putting it all together. Framework's
-instructions were spot on and I had no real issues.  Most everything either went into a secure
-socket or was magnetically attached.  I did need to screw some tiny screws in, but they
-provided a nice screwdriver for their Torx screws.
+
+It was fun putting the laptop together - I haven't shoved RAM into a socket in quite a few years, so it was cool seeing all the parts and putting it all together. Framework's instructions were spot on and I had no real issues.  Most everything either went into a secure socket or was magnetically attached.  I did need to screw some tiny screws in, but they provided a nice screwdriver for their Torx screws.
+
+<aside class="pullquote">Framework's instructions were spot on</aside>
 
 The last time I did this, I was building a desktop PC and all the parts came in these
 anti-static foil thingies in very basic packaging.  Framework has gone the complete other way,
@@ -87,17 +86,23 @@ While the Framework is by no means a Macbook Pro, it does feel high quality.  Ye
 plastic and has holes for fans.  And yes, there are seams in it where the modular parts
 connect. I'm fine with all of that.
 
-<div data-ad></div>
+<aside class="pullquote">The screen looked a lot better than I was expecting…the keyboard felt as good as the one on my Macbook</aside>
 
 The screen looked a lot better than I was expecting. It seems retina-quality, or at least
 nowhere near as bad as the $400 Lenovo Windows laptop I used for testing my book. It's not as bright as my
 Mac's, but the only time I really noticed was when I was switching between the two computers.
 
+The keyboard felt as good as the one on my Macbook Pro. My only quibbles are: 1) the placement of the why-is-there-always-an-unmappable-Fn-key, as it's where Control is on my Mac, 2) a fucking Windows key logo, which I am not kidding almost made me not buy this thing, and 2) The F9 key, whose function I would describe as "completely decimate your display setup and fuck up everything until you keep hitting it and eventually arrive at what you had before".
 
-The keyboard felt as good as the one on my Macbook Pro. My only quibbles are: 1) the placement of the
-why-is-there-always-an-unmappable-Fn-key, as it's where Control is on my Mac, 2) a fucking Windows key logo, which I am not
-kidding almost made me not buy this thing, and 2) The F9 key, whose function I would describe as "completely decimate your
-display setup and fuck up everything until you keep hitting it and eventually arrive at what you had before".
+<figure class="two-shots">
+    <div>
+        <img src="/images/linux-desktop/framework-keyboard-1200.jpg" alt="Photo of the left side of the Framework laptop's keyboard.  The bottom row where modifiers are, from left to right is: Control, Fn, Windows/Super, Alt, Spacebar.  There are arrows calling out the location of Control and Fn">
+        <img src="/images/linux-desktop/mac-keyboard-1200.jpg" alt="Photo of the left side of a Mac laptop's keyboard.  The bottom row where modifiers are, from left to right is: Fn, Control, Option, Cmd, Spacebar.  There are arrows calling out the location of Control and Fn">
+    </div>
+    <figcaption>
+    The location of the Fn and Control keys are swapped. And, of course, neither computer allows re-mapping the Fn key.
+    </figcaption>
+</figure>
 
 The trackpad…well…it's OK. It's not as big as I'd like, but not as tiny as your average PC laptop's.  I find it extremely hard
 to use, but I also find the Magic Trackpad hard to use with Linux.  It's clear that Apple's driver does some stuff to avoid
@@ -162,10 +167,13 @@ I quickly learned that the Ubuntu "App Center" should never be used unless the p
 the software say to use it.  Several apps did not work until I uninstalled them via App
 Center and re-installed them on command line.
 
+Below is a breakdown of which Mac app I use and what I used on Linux as a replacement.
+
 <div class="comparison">
-    <img src="/images/linux-desktop/terminal-192.png">
+    <h6>Terminal Emulator</h6>
+    <img src="/images/linux-desktop/terminal-192.png" role="none">
     <p><span class="name">Terminal.app</span> on Mac</p>
-    <img src="/images/linux-desktop/ghostty-192.png">
+    <img src="/images/linux-desktop/ghostty-192.png" role="none">
     <p><span class="name">Ghostty</span> on Linux</p>
     <div class="description">
             <span role="img" aria-label="thumbs up"> 👍</span>
@@ -175,9 +183,10 @@ Center and re-installed them on command line.
     </div>
 </div>
 <div class="comparison">
-    <img src="/images/linux-desktop/vimr-app-icon-192.png">
+    <h6>Vim GUI</h6>
+    <img src="/images/linux-desktop/vimr-app-icon-192.png" role="none">
     <p><span class="name">VimR</span> on Mac</p>
-    <img src="/images/linux-desktop/neovide-128x128.png">
+    <img src="/images/linux-desktop/neovide-128x128.png" role="none">
     <p><span class="name">Neovide</span> on Linux</p>
     <div class="description">
         <span role="img" aria-label="handing facing right">🫱</span>
@@ -194,10 +203,11 @@ Center and re-installed them on command line.
     </div>
 </div>
 <div class="comparison">
-    <img src="/images/linux-desktop/docker-mark-blue-192.png">
-    <p><span class="name">Docker</span> on Mac</p>
-    <img src="/images/linux-desktop/docker-mark-blue-192.png">
-    <p><span class="name">Docker</span> on Linux</p>
+    <h6>Docker</h6>
+    <img src="/images/linux-desktop/docker-mark-blue-192.png" role="none">
+    <p><span class="name">Docker Desktop</span> on Mac</p>
+    <img src="/images/linux-desktop/docker-mark-blue-192.png" role="none">
+    <p><span class="name">Docker Daemon</span> on Linux</p>
     <div class="description">
         <span role="img" aria-label="thumbs up"> 👍</span>
         <div>
@@ -214,9 +224,10 @@ Center and re-installed them on command line.
     </div>
 </div>
 <div class="comparison">
-    <img src="/images/linux-desktop/alfred-192.png">
+    <h6>App Launcher</h6>
+    <img src="/images/linux-desktop/alfred-192.png" role="none">
     <p><span class="name">Alfred</span> on Mac</p>
-    <img src="/images/linux-desktop/albert-192.png">
+    <img src="/images/linux-desktop/albert-192.png" role="none">
     <p><span class="name">Albert</span> on Linux</p>
     <div class="description">
         <span role="img" aria-label="handing facing right">🫱</span>
@@ -236,9 +247,10 @@ Center and re-installed them on command line.
     </div>
 </div>
 <div class="comparison">
-    <img src="/images/linux-desktop/1password-192.png">
+    <h6>Password Manager</h6>
+    <img src="/images/linux-desktop/1password-192.png" role="none">
     <p><span class="name">1Password</span> on Mac</p>
-    <img src="/images/linux-desktop/1password-192.png">
+    <img src="/images/linux-desktop/1password-192.png" role="none">
     <p><span class="name">1Password</span> on Linux</p>
     <div class="description">
         <span role="img" aria-label="thumbs up"> 👍</span>
@@ -264,6 +276,7 @@ Center and re-installed them on command line.
     </div>
 </div>
 <div class="comparison">
+    <h6>App and Window Switching</h6>
     <kbd>Cmd-Tab</kbd>
     <p><span class="name">Switch apps</span> on Mac</p>
     <kbd>Cmd-Tab</kbd>
@@ -282,9 +295,10 @@ Center and re-installed them on command line.
     </div>
 </div>
 <div class="comparison">
-    <img src="/images/linux-desktop/dash-192.png">
+    <h6>Fast API Doc Lookup</h6>
+    <img src="/images/linux-desktop/dash-192.png" role="none">
     <p><span class="name">Dash</span> on Mac</p>
-    <img src="/images/linux-desktop/mess-192.png"
+    <img src="/images/linux-desktop/mess-192.png" role="none"
          itemref="mess-icon-acd-version mess-icon-acd-level mess-icon-acd-ai-name mess-icon-acd-details">
     <p><span class="name">A Mess</span> on Linux</p>
     <div class="description">
@@ -302,9 +316,10 @@ Center and re-installed them on command line.
 <data id="mess-icon-acd-ai-name" itemprop="ai-content-declaration:ai-name" content="ChatGPT"></data>
 <data id="mess-icon-acd-details" itemprop="ai-content-declaration:details" content="create me an app icon of a mess"></data>
 <div class="comparison">
-    <img src="/images/linux-desktop/fastmail-192.png">
+    <h6>Fastmail</h6>
+    <img src="/images/linux-desktop/fastmail-192.png" role="none">
     <p><span class="name">FastMail</span> on Mac (as Safari Web App)</p>
-    <img src="/images/linux-desktop/fastmail-192.png">
+    <img src="/images/linux-desktop/fastmail-192.png" role="none">
     <p><span class="name">FastMail</span> on Linux (as Firefox PWA)</p>
     <div class="description">
         <span role="img" aria-label="thumbs up"> 👍</span>
@@ -316,9 +331,10 @@ Center and re-installed them on command line.
     </div>
 </div>
 <div class="comparison">
-    <img src="/images/linux-desktop/fantastical-mac-icon-192.png">
+    <h6>Calendar</h6>
+    <img src="/images/linux-desktop/fantastical-mac-icon-192.png" role="none">
     <p><span class="name">Fantastical</span> on Mac</p>
-    <img src="/images/linux-desktop/fastmail-192.png">
+    <img src="/images/linux-desktop/fastmail-192.png" role="none">
     <p><span class="name">Fastmail</span> on Linux (as Firefox PWA)</p>
     <div class="description">
         <span role="img" aria-label="thumbs up"> 👍</span>
@@ -331,9 +347,10 @@ Center and re-installed them on command line.
     </div>
 </div>
 <div class="comparison">
-    <img src="/images/linux-desktop/ivory-192.png">
+    <h6>Mastodon Client</h6>
+    <img src="/images/linux-desktop/ivory-192.png" role="none">
     <p><span class="name">Ivory</span> on Mac</p>
-    <img src="/images/linux-desktop/mastodon-192.png">
+    <img src="/images/linux-desktop/mastodon-192.png" role="none">
     <p><span class="name">Mastodon.com</span> on Linux (as Firefox PWA)</p>
     <div class="description">
         <span role="img" aria-label="handing facing right">🫱</span>
@@ -346,9 +363,10 @@ Center and re-installed them on command line.
     </div>
 </div>
 <div class="comparison">
-    <img src="/images/linux-desktop/Bluesky_Logo-192.png">
+    <h6>Bluesky Client</h6>
+    <img src="/images/linux-desktop/Bluesky_Logo-192.png" role="none">
     <p><span class="name">Bluesky</span> on Mac (as Safari Web App)</p>
-    <img src="/images/linux-desktop/Bluesky_Logo-192.png">
+    <img src="/images/linux-desktop/Bluesky_Logo-192.png" role="none">
     <p><span class="name">Bluesky</span> on Linux (as Firefox PWA)</p>
     <div class="description">
         <span role="img" aria-label="handing facing right">🫱</span>
@@ -360,9 +378,10 @@ Center and re-installed them on command line.
     </div>
 </div>
 <div class="comparison">
-    <img src="/images/linux-desktop/plex-192.png">
+    <h6>Plex</h6>
+    <img src="/images/linux-desktop/plex-192.png" role="none">
     <p><span class="name">Plex</span> on Mac (as Safari Web App)</p>
-    <img src="/images/linux-desktop/plex-192.png">
+    <img src="/images/linux-desktop/plex-192.png" role="none">
     <p><span class="name">Plex</span> on Linux (as Firefox PWA)</p>
     <div class="description">
         <span role="img" aria-label="thumbs up"> 👍</span>
@@ -374,9 +393,10 @@ Center and re-installed them on command line.
     </div>
 </div>
 <div class="comparison">
-    <img src="/images/linux-desktop/apple-music-192.png">
+    <h6>Streaming Music</h6>
+    <img src="/images/linux-desktop/apple-music-192.png" role="none">
     <p><span class="name">Apple Music</span> on Mac</p>
-    <img src="/images/linux-desktop/apple-music-192.png">
+    <img src="/images/linux-desktop/apple-music-192.png" role="none">
     <p><span class="name">Apple Music</span> on Linux (as Firefox PWA)</p>
     <div class="description">
         <span role="img" aria-label="handing facing right">🫱</span>
@@ -391,7 +411,8 @@ Center and re-installed them on command line.
     </div>
 </div>
 <div class="comparison">
-    <img src="/images/linux-desktop/messages-192.png">
+    <h6>Messaging</h6>
+    <img src="/images/linux-desktop/messages-192.png" role="none">
     <p><span class="name">Messages</span> on Mac</p>
     <span class="linux" role="img" aria-description="Crying Emoji">😢</span>
     <p><span class="name">Nothing</span> on Linux</p>
@@ -406,10 +427,11 @@ Center and re-installed them on command line.
     </div>
 </div>
 <div class="comparison">
-    <img src="/images/linux-desktop/maps-192.png">
+    <h6>Maps</h6>
+    <img src="/images/linux-desktop/maps-192.png" role="none">
     <p><span class="name">Maps</span> on Mac</p>
-    <img src="/images/linux-desktop/wego-192.png">
-    <p><span class="name">Wego Here</span> on Linux (as a Firefox PWA)</p>
+    <img src="/images/linux-desktop/wego-192.png" role="none">
+    <p><span class="name">Wego Here</span> on Linux (as Firefox PWA)</p>
     <div class="description">
         <span role="img" aria-label="handing facing right">🫱</span>
         <div>
@@ -421,8 +443,9 @@ Center and re-installed them on command line.
     </div>
 </div>
 <div class="comparison">
-    <img src="/images/linux-desktop/keychron-192.png">
-    <p><span class="name">Keychron Launcher</span> on Mac (to customize my keyboard)</p>
+    <h6>Keyboard Configurator</h6>
+    <img src="/images/linux-desktop/keychron-192.png" role="none">
+    <p><span class="name">Keychron Launcher</span> on Mac</p>
     <span class="linux" role="img" aria-description="Crying Emoji">😢</span>
     <p><span class="name">Nothing</span> on Linux</p>
     <div class="description">
@@ -438,10 +461,11 @@ Center and re-installed them on command line.
     </div>
 </div>
 <div class="comparison">
-    <img src="/images/linux-desktop/keychron-192.png">
+    <h6>RSS</h6>
+    <img src="/images/linux-desktop/reeder-192.png" role="none">
     <p><span class="name">Reeder</span> on Mac</p>
-    <span class="linux" role="img" aria-description="Crying Emoji">😢</span>
-    <p><span class="name">Feedbin</span> on Linux (as a Firefox PWA)</p>
+    <img src="/images/linux-desktop/feedbin-192.png" role="none">
+    <p><span class="name">Feedbin</span> on Linux (as Firefox PWA)</p>
     <div class="description">
         <span role="img" aria-label="thumbs up"> 👍</span>
         <div>
@@ -454,10 +478,11 @@ Center and re-installed them on command line.
     </div>
 </div>
 <div class="comparison">
-    <img src="/images/linux-desktop/keychron-192.png">
+    <h6>Light Image Editing</h6>
+    <img src="/images/linux-desktop/preview-192.png" role="none">
     <p><span class="name">Preview</span> on Mac</p>
-    <span class="linux" role="img" aria-description="Crying Emoji">😢</span>
-    <p><span class="name">???</span> on Linux</p>
+    <img src="/images/linux-desktop/krita-192.png" role="none">
+    <p><span class="name">Krita</span> on Linux</p>
     <div class="description">
         <span role="img" aria-label="thumbs down">👎</span>
         <div>
@@ -466,17 +491,23 @@ Center and re-installed them on command line.
             of.  It views PDFs, lets you edit them, sign them, save them. It views images and lets you crop them, adjust their
             colors, and do a lot of the 80 in 80/20 changes.
             </p>
+            <p>
+            Krita is more like a Pixelmator or Photoshop.  I had to consult the documentation to figure out how
+            to crop an image.  It's coloring didn't respect my desktop light/dark mode, and it made me miss a
+            hugely helpful thing almost every mac has: keyword search of menus.
+            </p>
         </div>
     </div>
 </div>
 
-
 ## How it Worked
 
-To toot my own horn, every single dev environment worked without any changes. I pulled down a
+To toot my own horn, every single dev environment built and passed tests without any changes. I pulled down a
 repo, ran <code>dx/build</code> to build images, ran <code>dx/start</code> to start containers,
 <code>dx/exec bin/setup</code> to set up the app inside the container and <code>dx/exec
 bin/ci</code> to run all tests, which all passed.
+
+<aside class="pullquote">Every single dev environment built and passed tests without any changes</aside>
 
 Once I started actually making changes to my code, I <strong>did</strong> run into issues running all containers as root. I have sorted that out and <a href="https://devbox.computer">the book will be updated</a> to reflect this.
 
@@ -500,6 +531,8 @@ stream of confusion about the clipboard situation on Linux.  I mean, just <a hre
 On Mac (and on Windows, I believe), there is a single system-wide clipboard. When you copy
 something into it, it becomes available to paste anywhere. You can run an optional clipboard
 manager that stores the history of stuff you have copied and allow you to paste it.
+
+<aside class="pullquote">On Linux, the clipboard absolutely does not work this way</aside>
 
 On Linux, it absolutely does not work this way.  There is a clipboard that's filled when you
 select text (and there may be one for X11 apps and one for Wayland apps?). There's a system
@@ -531,11 +564,20 @@ when you want to invoke a shortcut.
 On a Mac, this has historically been either the "Apple Key" or now the Command (Cmd) key.  This
 key not only is irrelevant to any terminal emulator, it also is right under your left thumb.
 
-IMAGES
+
+<figure>
+  <img src="/images/linux-desktop/hand-on-mac-1200.jpg" alt="Photo of my left hand on the keyboard of a MacBook Pro.  My forefingers are on the homerow and my thumb is moved slightly under my hand to be on top of the Cmd key" >
+  <figcaption>
+  The Cmd key is within easy reach of your thumb.
+  </figcaption>
+</figure>
 
 This makes it ergonomically easy to use, even with other modifiers.  <kbd>Cmd-Shift</kbd> or <kbd>Cmd-Option</kbd> are far easier to use than <kbd>Control-Shift</kbd> or <kbd>Control-Alt</kbd>.
 
+
 I have a ton of muscle memory built up using the key under my thumb. On Mac, that key is Cmd or Super. On the Framework laptop, it's Alt.  I rarely use Control, since it's almost never a modifier on Mac.  I also have Caps Lock mapped as Escape, since I have not had a keyboard with Escape on it in quite a while (thus, I cannot use that for Control, which would be slightly better, ergonomically).
+
+<aside class="pullquote"> Apps on Linux do not have consistent keyboard shortcuts…Firefox provides no way to customize keyboard shortcuts </aside>
 
 To make matters worse, apps on Linux do not have consistent keyboard shortcuts.  Copying and
 Pasting in Gnome-Terminal is different than in Firefox.  And to make matters <strong>even
@@ -554,6 +596,15 @@ To try to deal with this situation, I accepted that Linux uses <kbd>Alt</kbd> wa
 <kbd>Super</kbd>, so I set the "Windows Mode" of my Keychron keyboard to have <kbd>Alt</kbd> as
 the "key under my thumb" (which is the left space bar).
 
+<figure>
+  <img src="/images/linux-desktop/keychron-keyboard-1200.png" alt="Photo of the left side of a Keychron Alice
+  layout keyboard.  The left space bar, under the 'C' and 'V' is labeled 'Cmd(Mac) Alt(Linux)'. There are two
+  identical modifiers to the left of it that are labeled 'Option(Mac) Super(Linux)'" >
+  <figcaption>
+  The thumb key is easy to reach and my muscle memory can be re-used.
+  </figcaption>
+</figure>
+
 This meant switching from my desktop keyboard to the laptop wasn't so jarring.  It also meant, a few default shortcuts worked like on Mac.
 
 For Firefox, the situation is dire, but I did find an extension that gave me some ability to
@@ -570,35 +621,24 @@ last on the clipboard.
 
 For my entire career, I'm used to being able to quickly go from a symbol in my editor (which has always been some form of vi) to API documentation. Yes, [I wrote a Java Doclet that generates vimdoc for the Java Standard Library](https://github.com/davetron5000/vimdoclet).  Nowadays, I use Dash.
 
-I use it in two ways.  First, I can use Alfred to lookup something in Dash, say "max-height":
+I use it in two ways.  First, I can use Alfred to lookup something in Dash, say "max-height", hit return, and
+have Dashs show me the docs directly:
 
 <figure>
-  <img src="/images/linux-desktop/alfred-dash.png" alt="Screenshot of Alfred with 'max-height' typed into it, doing a Dash lookup" />
+  <img src="/images/linux-desktop/alfred-dash.gif" alt="Animated gif showing Alfred pop up as a text field above Dash, 'min-height' being typed in, and Dash showing the MDN documentation for 'min-height'" />
 </figure>
 
-Hitting return shows the docs in MDN for this property:
+I can do this directly from vim by placing the cursor on a symbol and hitting <kbd>K</kbd>. This brings up Dash, performing a search in the context of only Ruby documentation:
 
 <figure>
-  <img src="/images/linux-desktop/dash-max-height-600.png" class="bordered" alt="Screenshot of Dash, showing MDN's documentation for max-height">
-  <figcaption>
-  <a href="/images/linux-desktop/dash-max-height.jpg" target="_blank">View the full size image.</a>
-  </figcaption>
+  <img src="/images/linux-desktop/vim-dash.gif" alt="Animated gif showing vim editing Ruby code. The cursor
+  moves to the class KeyError, then hits 'K'. Dash shows up showing a search result for all Ruby libraries that
+  have KeyError listed">
 </figure>
 
-I can do this directly from vim by placing the cursor on a symbol and hitting <kbd>K</kbd>.
-
-<figure>
-  <img src="/images/linux-desktop/vim-dash.png" alt="Screenshot of Vim showing Ruby source code, with the cursor on the symbol 'File'">
-</figure>
-
-This brings up Dash, perform a search in the context of only Ruby documentation:
-
-<figure>
-  <img src="/images/linux-desktop/dash-file-600.png" class="bordered" alt="Screenshot of Dash, showing the results for searching Ruby documentation for 'File'">
-  <figcaption>
-  <a href="/images/linux-desktop/dash-max-height.jpg" target="_blank">View the full size image.</a>
-  </figcaption>
-</figure>
+As you can see, it's very fast, and easy to get used to.  It's nice to have docs at your fingertips, and it's
+nice having them in another app/window.  I find a documentation-reading-based approach encourages exploration of
+the docs, which can be a great way to learn new stuff you can do with your existing libraries.
 
 One bit that you can't see from these examples is that Dash allows you to install documentation
 for pretty much any Ruby Gem (or other code library).  That means I can have esoteric stuff
@@ -644,6 +684,8 @@ reasoning for this.
 * No ApplePay on websites means using PayPal or swtiching to my phone.
 * Cannot copy on iPhone and paste on Linux or vice-versa.
 * Web-only access to iCloud. Apple is not good at web apps.
+* Entering non-ASCII characters is either really weird or something I have to learn. <kbd>Control-Shift-U-2026-Enter</kbd> to type an ellipsis just…sucks. I think there's a better way, so to be researched.
+
 
 ### Pleasantries
 
@@ -653,9 +695,9 @@ looking to get promoted.  While Apple is great at hardware, and good at software
 integration, their software has gotten much worse over the last 10 years, often foisting
 zero-value features on users.
 
-The other thing that surprised  me was just how many apps I use are web apps, and that those
-apps are pretty good, especially when run as a standalone "web app" and not as a tab in
-Firefox.
+<aside class="pullquote">Many apps I use are web apps, and that those apps are pretty good</aside>
+
+The other thing that surprised  me was just how many apps I use are web apps, and that those apps are pretty good, especially when run as a standalone "web app" and not as a tab in Firefox.
 
 Ironically, Apple provides a great UI for doing this via Safari Web Apps (it's too bad they also hamstring what a PWA can do on iOS). The situation on Linux is rather dire. Chrome supports it, but it's cumbersome, and Firefox, of all browsers, provides zero support for it.  But, [FirefoxPWA](https://addons.mozilla.org/en-US/firefox/addon/pwas-for-firefox/) to the rescue!
 
@@ -699,6 +741,8 @@ and load the given URL.  This was somewhat tricky.
 First, I had to change `firefoxpwa.launchType` for DevDocs to "2", which replaces the existing
 tab with whatever the URL is.  This requires setting "Launch this web app on matching website"
 for DevDocs and setting automatic app launching for the extension.
+
+<div data-ad></div>
 
 The result is that `open devdocs.io/#q=ruby keywdord` will open that URL in regular Firefox,
 which triggers Firefox PWA to open that URL in the DevDocs web app.  And this works about

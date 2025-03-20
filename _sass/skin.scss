@@ -198,19 +198,29 @@ kbd {
   border-radius: $sz5;
 }
 .comparison {
-    margin-bottom: $sz2;
     display: grid;
-    grid-template-areas: 'mac-icon   mac-name'
+    grid-template-areas: 'title      title'
+                         'mac-icon   mac-name'
                          'linux-icon linux-name'
                          'desc       desc      ';
     gap: $sz4;
+
+    h6 {
+      grid-area: title;
+      width: 100%;
+      margin-bottom: $sz3;
+      margin-top: $sz3;
+      font-size: $f4;
+      text-align: center;
+    }
 }
 @media (min-width: 40em) {
   .comparison {
     padding-left: 2rem;
     padding-right: 2rem;
     display: grid;
-    grid-template-areas: 'mac-icon mac-name linux-icon linux-name'
+    grid-template-areas: 'title    title    title      title'
+                         'mac-icon mac-name linux-icon linux-name'
                          'desc     desc     desc       desc';
     gap: $sz4;
     justify-items: start;
@@ -218,7 +228,7 @@ kbd {
 }
 .comparison .name {
     font-weight: bold;
-    font-size: 1.5rem;
+    font-size: $f5;
     display: block;
 }
 .comparison .name strong {
@@ -305,4 +315,23 @@ img.bordered {
   padding: $sz3;
   border: solid thin #efefef;
   border-radius: $sz4;
+}
+
+
+figure.two-shots div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $sz3;
+}
+@media (min-width: 40em) {
+  figure.two-shots div {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    gap: $sz3;
+  }
+  figure.two-shots img {
+    width: 50%;
+  }
 }
