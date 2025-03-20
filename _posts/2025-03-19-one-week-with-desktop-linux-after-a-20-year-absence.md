@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "One Week With Desktop Linux After a 20 Year Absence"
-date: 2025-03-19 9:00
+date: 2025-03-21 9:00
 ad:
   title: "Fix Your Dev Environment for Good"
   subtitle: "Stop Re-installing and Start Coding"
@@ -718,7 +718,7 @@ Once you've created your app and relaunched it, it will use the Web Manifest to 
 names.  It does not respect the `scope` attribute, so by default all links open in the PWA and not Firefox.  By default, when a PWA is launched or activated by the OS, it will reload the start page. It also won't allow you to override icons.  Well, it will, it just doesn't work.
 
 Fortunately, the author(s) of FirefoxPWA have done a good job with configuration and
-documentation.  In any app, you can do <kbd>Control-K</kbd> to go to a URL and type
+documentation.  In any app, you can do <kbd>Control-L</kbd> to go to a URL and type
 `about:config` to get into the settings.
 
 From there, to fix app activation, set `firefoxpwa.launchType` to "3".  To ensure URLs outside the app are opened in Firefox, set `firefoxpwa.openOutOfScopeInDefaultBrowser` to true, and set
