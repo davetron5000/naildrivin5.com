@@ -541,10 +541,9 @@ it.
 
 In Neovim, I could not tell what was happening.  Usually <kbd>:*p</kbd> will paste and
 <kbd>:*y</kbd> will yank. Neither seemed to do what I expected.  I ended up mapping
-<kbd>Alt-C</kbd> and <kbd>Alt-V</kbd> in NeoVim's configuration to do copy and paste. It worked
-better, but not 100% of the time.
+<kbd>Alt-C</kbd> and <kbd>Alt-V</kbd> in NeoVim's configuration to do copy and paste. It worked better, but not 100% of the time. **Update** I also realized that `+` is a better option than `*` because unlike on Mac, `*` on Linux is the "whatever you had selected in X11" and not "the system clipboard", which is `+`. FML.
 
-I'm sure the way copy and paste on Linux can be learned, but I found myself failing to successfully copy and/or paste on numerous occasions.  Eventually, I learned to always type <kbd>#</kbd> in the terminal before pasting, because I never knew exactly what was going to be pasted there.
+I'm sure the way copy and paste works on Linux can be learned, but I found myself failing to successfully copy and/or paste on numerous occasions.  Eventually, I learned to always type <kbd>#</kbd> in the terminal before pasting, because I never knew exactly what was going to be pasted there.
 
 Albert's clipboard manager didn't allow pasting in all apps, and it didn't store an accurate
 history of stuff I had copied (and pasted). I'm not sure how it works, but I just stopped using
@@ -622,13 +621,13 @@ last on the clipboard.
 For my entire career, I'm used to being able to quickly go from a symbol in my editor (which has always been some form of vi) to API documentation. Yes, [I wrote a Java Doclet that generates vimdoc for the Java Standard Library](https://github.com/davetron5000/vimdoclet).  Nowadays, I use Dash.
 
 I use it in two ways.  First, I can use Alfred to lookup something in Dash, say "max-height", hit return, and
-have Dashs show me the docs directly:
+have Dash show me the docs directly:
 
 <figure>
   <img src="/images/linux-desktop/alfred-dash.gif" alt="Animated gif showing Alfred pop up as a text field above Dash, 'min-height' being typed in, and Dash showing the MDN documentation for 'min-height'" />
 </figure>
 
-I can do this directly from vim by placing the cursor on a symbol and hitting <kbd>K</kbd>. This brings up Dash, performing a search in the context of only Ruby documentation:
+Second, I can do this directly from vim by placing the cursor on a symbol and hitting <kbd>K</kbd>. This brings up Dash, performing a search in the context of only Ruby documentation:
 
 <figure>
   <img src="/images/linux-desktop/vim-dash.gif" alt="Animated gif showing vim editing Ruby code. The cursor
