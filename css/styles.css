@@ -9,13 +9,13 @@ $f11: 5.836px;
 $f12: 4.250px;
 */
 .sans {
-  font-family: "Futura", "Avenir", "Helvetica", sans-serif; }
+  font-family: "Futura", "Avenir", "URW Gothic", "Helvetica", Corbel, source-sans-pro, sans-serif; }
 
 b, strong, .fw-bold {
   font-weight: 800; }
 
 .f-serif {
-  font-family: "Baskerville", serif !important; }
+  font-family: "Baskerville", "Palatino Linotype", "URW Palladio L", P052, serif !important; }
 
 .f1 {
   font-size: 64.72px; }
@@ -76,18 +76,18 @@ header li {
   display: block;
   text-align: center;
   font-size: 24.722px;
-  font-family: "Futura", "Avenir", "Helvetica", sans-serif; }
+  font-family: "Futura", "Avenir", "URW Gothic", "Helvetica", Corbel, source-sans-pro, sans-serif; }
 
 @media (min-width: 40em) {
   header li {
     display: inline-block;
     padding-right: 25.2px; } }
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Futura", "Avenir", "Helvetica", sans-serif;
-  font-weight: normal;
+  font-family: "Futura", "Avenir", "URW Gothic", "Helvetica", Corbel, source-sans-pro, sans-serif;
+  font-weight: 600;
   text-rendering: optimizeLegibility; }
   h1.fw-bold, h1 .fw-bold, h2.fw-bold, h2 .fw-bold, h3.fw-bold, h3 .fw-bold, h4.fw-bold, h4 .fw-bold, h5.fw-bold, h5 .fw-bold, h6.fw-bold, h6 .fw-bold {
-    font-weight: normal; }
+    font-weight: 600; }
   h1.wf-loading, h2.wf-loading, h3.wf-loading, h4.wf-loading, h5.wf-loading, h6.wf-loading {
     visibility: hidden; }
 
@@ -123,7 +123,7 @@ h4, h5, h6 {
   font-size: 18px; }
 
 body, p, li, td {
-  font-family: "Baskerville", serif;
+  font-family: "Baskerville", "Palatino Linotype", "URW Palladio L", P052, serif;
   font-size: 24.722px;
   line-height: 1.5;
   text-rendering: optimizeLegibility;
@@ -165,7 +165,7 @@ main {
     width: 720px;
     margin: 0 auto; } }
 pre, code {
-  font-family: "Courier New", "Courier", monospace; }
+  font-family: "Courier", ui-monospace, monospace; }
 
 pre {
   overflow-x: scroll; }
@@ -245,7 +245,7 @@ footer.related-posts .post-date {
   width: 80%;
   padding: 12.6px;
   font-size: 24.722px;
-  font-family: "Courier New", "Courier", monospace;
+  font-family: "Courier", ui-monospace, monospace;
   border: none;
   border-radius: 3.15px;
   background-color: #fffeff;
@@ -262,7 +262,7 @@ footer.related-posts .post-date {
   border-radius: 12.6px;
   background-color: #111;
   color: #ddd;
-  font-family: "Futura", "Avenir", "Helvetica", sans-serif;
+  font-family: "Futura", "Avenir", "URW Gothic", "Helvetica", Corbel, source-sans-pro, sans-serif;
   text-shadow: rgba(135, 251, 255, 0.68) 0px 0px 8px; }
 
 aside.promo {
@@ -568,7 +568,7 @@ hr {
 .pill {
   padding: 12.6px;
   background: #faf8fa;
-  font-family: "Futura", "Avenir", "Helvetica", sans-serif; }
+  font-family: "Futura", "Avenir", "URW Gothic", "Helvetica", Corbel, source-sans-pro, sans-serif; }
   .pill:hover {
     background: #eeeaee; }
 
@@ -613,6 +613,159 @@ aside.promo {
   background-color: #dfdfdf;
   font-weight: bold; }
 
+table.comparison {
+  margin-left: auto;
+  margin-right: auto; }
+  table.comparison thead th {
+    font-size: 24.722px;
+    font-weight: bold;
+    text-align: left; }
+  table.comparison tbody tr:nth-child(odd) td {
+    background-color: #efefef; }
+  table.comparison tbody td {
+    padding: 12.6px; }
+  table.comparison tbody td:nth-child(1),
+  table.comparison tbody td:nth-child(2) {
+    white-space: nowrap;
+    font-size: 15.279px;
+    font-weight: bold;
+    max-width: 20ch; }
+  table.comparison tbody td.wrap-ok {
+    white-space: normal; }
+  table.comparison tbody td:nth-child(1) {
+    padding-left: 0; }
+  table.comparison tbody td:nth-last-child(1) {
+    padding-right: 0; }
+  table.comparison tbody td p {
+    max-width: 45ch;
+    line-height: 1.4; }
+
+kbd {
+  display: inline-block;
+  padding-left: 6.3px;
+  padding-right: 6.3px;
+  padding-top: 0.7875px;
+  padding-bottom: 0.7875px;
+  margin-bottom: 0.7875px;
+  font-family: "Courier", ui-monospace, monospace;
+  border: solid thin black;
+  border-radius: 3.15px; }
+
+.comparison {
+  display: grid;
+  grid-template-areas: 'title      title' 'mac-icon   mac-name' 'linux-icon linux-name' 'desc       desc      ';
+  gap: 6.3px; }
+  .comparison h6 {
+    grid-area: title;
+    width: 100%;
+    margin-bottom: 12.6px;
+    margin-top: 12.6px;
+    font-size: 29.124px;
+    text-align: center; }
+
+@media (min-width: 40em) {
+  .comparison {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    display: grid;
+    grid-template-areas: 'title    title    title      title' 'mac-icon mac-name linux-icon linux-name' 'desc     desc     desc       desc';
+    gap: 6.3px;
+    justify-items: start; } }
+.comparison .name {
+  font-weight: bold;
+  font-size: 24.722px;
+  display: block; }
+
+.comparison .name strong {
+  font-weight: normal; }
+
+.comparison :nth-child(1 of img) {
+  grid-area: mac-icon;
+  height: 3lh; }
+
+@media (min-width: 40em) {
+  .comparison :nth-child(1 of img) {
+    height: 4lh; } }
+.comparison > :nth-child(1 of kbd) {
+  width: min-content;
+  grid-area: mac-icon;
+  white-space: nowrap;
+  height: min-content;
+  align-self: center;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; }
+
+.comparison > span.mac[role=img] {
+  grid-area: mac-icon;
+  font-size: 120%;
+  white-space: nowrap;
+  height: min-content;
+  align-self: center; }
+
+.comparison > :nth-child(1 of p) {
+  grid-area: mac-name; }
+
+.comparison :nth-child(2 of img) {
+  grid-area: linux-icon;
+  height: 3lh; }
+
+@media (min-width: 40em) {
+  .comparison :nth-child(2 of img) {
+    height: 4lh; } }
+.comparison > :nth-child(2 of kbd) {
+  width: min-content;
+  grid-area: linux-icon;
+  height: min-content;
+  align-self: center;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  white-space: nowrap; }
+
+@media (min-width: 40em) {
+  .comparison > :nth-child(1 of kbd),
+  .comparison > :nth-child(2 of kbd) {
+    font-size: 120%; } }
+.comparison > span.linux[role=img] {
+  grid-area: linux-icon;
+  font-size: 120%;
+  white-space: nowrap;
+  height: min-content;
+  align-self: center; }
+
+.comparison > :nth-child(2 of p) {
+  grid-area: linux-name; }
+
+.comparison :nth-child(1 of .description) {
+  grid-area: desc;
+  padding-left: 12.6px;
+  padding-right: 12.6px;
+  padding-top: 12.6px;
+  padding-bottom: 0;
+  display: flex;
+  align-items: top;
+  gap: 3.15px; }
+
+.comparison :nth-child(1 of .description) :nth-child(1 of p) {
+  margin-top: 0; }
+
+img.bordered {
+  padding: 12.6px;
+  border: solid thin #efefef;
+  border-radius: 6.3px; }
+
+figure.two-shots div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12.6px; }
+
+@media (min-width: 40em) {
+  figure.two-shots div {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    gap: 12.6px; }
+
+  figure.two-shots img {
+    width: 50%; } }
 .highlight .hll {
   background-color: #222; }
 

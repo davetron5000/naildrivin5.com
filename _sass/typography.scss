@@ -1,13 +1,15 @@
 // Font Assignments
-$serif: "Baskerville", serif;
+$serif: "Baskerville", "Palatino Linotype", "URW Palladio L", P052, serif;
+
 $serif-normal-weight: normal;
 $serif-bold-weight: 800;
 
-$sans: "Futura", "Avenir", "Helvetica", sans-serif;
-$sans-normal-weight: normal;
-$sans-bold-weight: normal;
+$sans: "Futura", "Avenir", "URW Gothic", "Helvetica", Corbel, source-sans-pro, sans-serif;
 
-$monospace: "Courier New", "Courier", monospace;
+$sans-normal-weight: normal;
+$sans-bold-weight: 600;
+
+$monospace: "Courier", ui-monospace, monospace;
 
 // Font Choices
 $header-font: $sans;
