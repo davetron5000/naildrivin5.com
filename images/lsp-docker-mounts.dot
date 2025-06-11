@@ -1,0 +1,22 @@
+digraph G {
+  
+  rankdir="LR"
+  subgraph cluster_docker {
+      label = "Docker Container"
+      fontname="Avenir"
+      
+      MountedDir
+  }
+  subgraph cluster_host {
+      label = "Your Computer"
+      fontname="Avenir"
+      
+      SourceDir
+  }
+ 
+  MountedDir -> SourceDir [dir=both label="Volume Mount" fontname="Avenir"]
+  MountedDir[shape=folder fontname="Courier New" label="/home/appuser/app"]
+  SourceDir[shape=folder  fontname="Courier New" label="/home/davec/Projects/my-awesome-app"]
+ 
+ 
+}

@@ -1,0 +1,21 @@
+digraph G {
+  
+  rankdir="LR"
+  subgraph cluster_docker {
+      label = "Docker Container"
+      fontname="Avenir"
+      
+      MountedDir
+  }
+  subgraph cluster_host {
+      label = "Your Computer"
+      fontname="Avenir"
+      
+      SourceDir
+  }
+ 
+  SourceDir -> MountedDir [ label="docker compose exec" fontname="Courier New"]
+  MountedDir[shape=box fontname="Courier New" label="lsp-ruby # e.g."]
+  SourceDir[shape=box  label="Neovim"]
+ 
+}
