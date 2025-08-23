@@ -23,7 +23,7 @@ any sort of logging telling me if it tried to sync and failed or didn't try and 
 
 We all experience these failures where we get an error message that's not helpful and then no real way to get more information about the problem.
 
-Creating a debuggable system is critical for managing software, especially now that more and more code is not written be a real person.  To create such a system, it must provide two capabilities:
+Creating a debuggable system is critical for managing software, especially now that more and more code is not written by a real person.  To create such a system, it must provide two capabilities:
 
 * Helpful and descriptive error messages
 * The ability to ask the system for much more detailed information
