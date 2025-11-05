@@ -95,32 +95,6 @@ task "serve:drafts" => :build do
   serve(drafts: true, watch: true)
 end
 
-desc "Deploy to prod"
-task :deploy => :build do
-
-task :deploy => :build do
-  fail "Must be run from root" unless Dir.exist?("_site")
-  [
-    "--cache-control=\"max-age=3600\"",
-  ].each do |args|
-    command = "aws s3 sync #{args} _site/ s3://naildrivin5.com --profile personal"
-    puts command
-    sh(command) do |ok,res|
-      fail res.inspect unless ok
-    end
-  end
-  [
-    "index.html",
-    "atom.xml",
-    "css/styles.css",
-    "blm.html",
-    "books/index.html",
-  ].each do |file_to_invalidate|
-    sh "aws cloudfront create-invalidation --distribution-id=E19I9AKMQP8NDQ --paths=/#{file_to_invalidate} --profile personal"
-  end
-  puts "Site is up on http://naildrivin5.com"
-end
-
 desc "Generate SWOTs"
 task :swot do
   require "erb"

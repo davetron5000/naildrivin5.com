@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+set -e
+
+echo " [ $0 ] Syncing to S3"
+aws s3 sync --cache-control="max-age=3600" _site/ s3://naildrivin5.com --profile personal
+aws cloudfront create-invalidation --distribution-id=E19I9AKMQP8NDQ --paths=/index.html,/atom.xml,/styles.css --profile personal
