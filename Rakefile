@@ -90,34 +90,20 @@ task serve: :build do
   serve(drafts: false, watch: true)
 end
 
-desc "Serve up the site locally"
+desc "Serve up the site locally with drafts"
 task "serve:drafts" => :build do
   serve(drafts: true, watch: true)
 end
 
+desc "Deploy to prod"
+task :deploy => :build do
 
-deploy_task = if ENV["CIRCLE_BRANCH"] == "main"
-                :deploy
-              elsif ENV["CIRCLE_BRANCH"].to_s.strip != ""
-                :preview
-              else
-                :not_on_ci
-              end
-
-desc "Deploy to prod or preview from CI"
-task "ci:deploy" => deploy_task
-
-task :not_on_ci do
-  fail "You are not on CI so cannot deploy"
-end
-
-desc "Deploy to AWS"
 task :deploy => :build do
   fail "Must be run from root" unless Dir.exist?("_site")
   [
     "--cache-control=\"max-age=3600\"",
   ].each do |args|
-    command = "aws s3 sync #{args} _site/ s3://naildrivin5.com"
+    command = "aws s3 sync #{args} _site/ s3://naildrivin5.com --profile personal"
     puts command
     sh(command) do |ok,res|
       fail res.inspect unless ok
@@ -130,20 +116,9 @@ task :deploy => :build do
     "blm.html",
     "books/index.html",
   ].each do |file_to_invalidate|
-    sh "aws cloudfront create-invalidation --distribution-id=E19I9AKMQP8NDQ --paths=/#{file_to_invalidate}"
+    sh "aws cloudfront create-invalidation --distribution-id=E19I9AKMQP8NDQ --paths=/#{file_to_invalidate} --profile personal"
   end
   puts "Site is up on http://naildrivin5.com"
-end
-
-desc "Preview on S3"
-task :preview => :build do
-  fail "Must be run from root" unless Dir.exist?("_site")
-  command = "aws s3 sync _site/ s3://naildrivin5.com-preview"
-  puts command
-  sh(command) do |ok,res|
-    fail res.inspect unless ok
-  end
-  puts "Site is up on http://naildrivin5.com-preview.s3.amazonaws.com/index.html"
 end
 
 desc "Generate SWOTs"
