@@ -3,11 +3,7 @@ layout: post
 title: "Announcing Rails 6: An Imagined Keynote"
 date: 2016-05-17 12:00
 ad:
-  title: "A Ready-Made Toolchain"
-  subtitle: "Ruby on Rails Lets You Focus"
-  link: "http://bit.ly/sus-rails"
-  image: "/images/sustainable-rails-cover.png"
-  cta: "Buy Now $49.95"
+  id: "sweng"
 ---
 
 Just got back from RailsConf.  It was a great Ruby & Rails conference, but I was struck by the dearth of talks about new features of Rails 5—because there just aren't many.  I thought back to what excited me about Rails in the first place—the baked-in conventions, convenience, encouragement of good practices.

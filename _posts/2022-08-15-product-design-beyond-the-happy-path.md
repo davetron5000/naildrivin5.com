@@ -6,11 +6,7 @@ description: "User problems get addressed via the happy path, edge cases, custom
 support, the engineering team, or not at all"
 card_image: "/images/ProductDevFlow-og.jpeg"
 ad:
-  title: "Rails Makes a Great Customer Support Platform"
-  subtitle: "A Deep Dive into Sustainability"
-  link: "http://bit.ly/sus-rails"
-  image: "/images/sustainable-rails-cover.png"
-  cta: "Buy Now $49.95"
+  id: "sweng"
 ---
 
 Product design—really all of design—is about how the user's problem is solved. It's

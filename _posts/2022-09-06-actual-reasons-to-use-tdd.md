@@ -6,11 +6,7 @@ about good design or productivity"
 card_image: /images/lots-of-testers.png
 date: 2022-09-06 9:00
 ad:
-  title: "Get the Most out of Rails"
-  subtitle: "A Deep Dive into Sustainability"
-  link: "http://bit.ly/sus-rails"
-  image: "/images/sustainable-rails-cover.png"
-  cta: "Buy Now $49.95"
+  id: "sweng"
 related:
  - "The Four Stages of Testing That Help Your Focus"
  - "Four Reasons Developers are Unproductive"

@@ -4,11 +4,7 @@ title: "Re-use in OO: Inheritance, Composition and Mixins"
 date: 2012-12-19 09:30
 comments: true
 ad:
-  title: "Get the Most out of Rails"
-  subtitle: "Clean Web Architecture"
-  link: "http://bit.ly/sus-rails"
-  image: "/images/sustainable-rails-cover.png"
-  cta: "Buy Now $49.95"
+  id: "solid"
 ---
 Over the past several months, the Rails community, at least to my eyes, has become increasingly concerned with managing the
 complexity that appears when following the "fat model, skinny controller" advice prescribed by many Rails experts.  The real

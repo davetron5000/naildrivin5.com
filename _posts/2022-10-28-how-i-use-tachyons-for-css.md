@@ -3,11 +3,7 @@ layout: post
 title: "How I Use Tachyons for CSS"
 date: 2022-10-28 9:00
 ad:
-  title: "Get the Most out of Rails"
-  subtitle: "A Deep Dive into Sustainability"
-  link: "http://bit.ly/sus-rails"
-  image: "/images/sustainable-rails-cover.png"
-  cta: "Buy Now $49.95"
+  id: "sus-dev"
 ---
 
 I've long come to prefer the "functional" style of CSS, where each class represents a single CSS property set to a single value. I learned this from [Adam Morse](https://mrmrs.cc), author of [Tachyons](http://tachyons.io), which is a older framework, but it still checks out.  I'm not here to advocate for this style (read [Adam's post](https://mrmrs.cc/writing/scalable-css) for that), but to talk about how I use SASS to create higher-level re-usable styles with Tachyons, achieve the best of all worlds when managing CSS, all without some unstable, unfriendly JavaScript toolchain.

@@ -1,5 +1,6 @@
 inprint:
   - title: "Sustainable Dev Environments with Docker and Bash"
+    ad_id: "sus-dev"
     subtitle: "Build a Stable and Maintainable Place to Code"
     image: /images/docker-book-cover.jpg
     site: "https://devbox.computer"
@@ -9,7 +10,10 @@ inprint:
     publication_date: "Apr 2024"
     length: 70 pages
     style: Expert Tutorial with Sample App and Code; neutral opinions
+    price: "$19.99"
+    cta: "Reliable Dev Environments That Last"
   - title: "Ruby on Rails Background Jobs with Sidekiq"
+    ad_id: "sidekiq"
     subtitle: "Run Code Later without Complicating Your App"
     image: /images/sidekiq-rails-cover.jpg
     site: "https://sidekiqrails.com"
@@ -19,6 +23,29 @@ inprint:
     publication_date: "Oct 2023"
     length: 70 pages
     style: Expert Tutorial with Sample App and Code; neutral opinions
+    cta: "Level up your background job skills"
+    price: "$9.99"
+  - title: "SOLID is not Solid"
+    ad_id: "solid"
+    subtitle: "Five Object-Oriented Principles to Create a Codebase Everyone will Hate"
+    image: /images/not-solid-cover.png
+    site: "http://bit.ly/not-solid"
+    buy_link: "http://bit.ly/buy-not-solid"
+    self_published: true
+    publication_date: "Aug 2019"
+    length: 100 pages
+    cta: "Learn why some OO principles are just not that great"
+    price: "$5.99"
+  - title: "The Senior Software Engineer"
+    ad_id: "sweng"
+    subtitle: "11 Practices of an Effective Technical Leader"
+    buy_link: "http://transactions.sendowl.com/products/24086/D8D2ED13/add_to_cart"
+    image: /images/sweng-cover.png
+    site: "http://theseniorsoftwareengineer.com/"
+    self_published: true
+    cta: "Be a better engineer by working better with others"
+    price: "$25"
+outofprint:
   - title: "Sustainable Web Development with Ruby on Rails"
     subtitle: "Practical Tips for Building Web Applications that Last"
     image: /images/sustainable-rails-cover.png
@@ -29,27 +56,12 @@ inprint:
     publication_date: "Jan 2020"
     length: 470 pages
     style: Intermediate Tips with Running Example; moderately opinionated
-  - title: "SOLID is not Solid"
-    subtitle: "Five Object-Oriented Principles to Create a Codebase Everyone will Hate"
-    image: /images/not-solid-cover.png
-    site: "http://bit.ly/not-solid"
-    buy_link: "http://bit.ly/buy-not-solid"
-    self_published: true
-    publication_date: "Aug 2019"
-    length: 100 pages
   - title: "Agile Web Development With <span class='nowrap'>Rails 6</span>"
     subtitle: "New edition of this seminal classic"
     image: /images/rails6.jpg
     site: "https://pragprog.com/book/rails6"
     buy_link: "https://pragprog.com/titles/rails6/agile-web-development-with-rails-6/"
     self_published: false
-  - title: "The Senior Software Engineer"
-    subtitle: "11 Practices of an Effective Technical Leader"
-    buy_link: "http://transactions.sendowl.com/products/24086/D8D2ED13/add_to_cart"
-    image: /images/sweng-cover.png
-    site: "http://theseniorsoftwareengineer.com/"
-    self_published: true
-outofprint:
   - title: "Build Awesome Command-Line Apps in <span class='nowrap'>Ruby 2</span>"
     subtitle: "Control Your Computer, Simplify Your Life"
     buy_link: "https://pragprog.com/cart/add/skus?sku_id=693_694"

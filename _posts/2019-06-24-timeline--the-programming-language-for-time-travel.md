@@ -3,11 +3,7 @@ layout: post
 title: "Timeline: the programming language for time travel"
 date: 2019-06-24 8:00
 ad:
-  title: "Be Productive With Rails"
-  subtitle: "Rails Just Works"
-  link: "http://bit.ly/sus-rails"
-  image: "/images/sustainable-rails-cover.png"
-  cta: "Buy Now $49.95"
+  id: "sus-dev"
 related:
   - "Coding without (many) Expressions"
   - "Four Better Rules for Software Design"

@@ -3,11 +3,7 @@ layout: post
 title: "Getting 'Save to Home Screen' to Kinda Work on iOS"
 date: 2023-08-24 9:00
 ad:
-  title: "Your PWA starts with Rails"
-  subtitle: "The best way to build a web-app"
-  link: "http://bit.ly/sus-rails"
-  image: "/images/sustainable-rails-cover.png"
-  cta: "Buy Now $49.95"
+  id: "sus-dev"
 ---
 
 iOS has a feature on any website called "Save to Home Screen", which creates an icon that then goes to that site.  If you

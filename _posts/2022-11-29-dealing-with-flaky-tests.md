@@ -3,11 +3,7 @@ layout: post
 title: "Dealing with Flaky Tests"
 date: 2022-11-29 9:00
 ad:
-  title: "Stable and Sustainable Web Development"
-  subtitle: "A Deep Dive into Ruby on Rails"
-  link: "http://bit.ly/sus-rails"
-  image: "/images/sustainable-rails-cover.png"
-  cta: "Buy Now $49.95"
+  id: "sweng"
 ---
 
 Jason Swett [asked on Twitter](https://twitter.com/JasonSwett/status/1593653078829457409) if anyone has an app with 2000+ tests that does not have a severe flaky test problem.  I have two such apps, and I want to share the lengths I've gone to to make the tests not flaky.

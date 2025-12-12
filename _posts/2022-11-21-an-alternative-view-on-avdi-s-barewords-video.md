@@ -3,11 +3,7 @@ layout: post
 title: "An Alternative View on Avdi's Barewords Video"
 date: 2022-11-21 13:00
 ad:
-  title: "Get the Most out of Rails"
-  subtitle: "A Deep Dive into Sustainability"
-  link: "http://bit.ly/sus-rails"
-  image: "/images/sustainable-rails-cover.png"
-  cta: "Buy Now $49.95"
+  id: "solid"
 ---
 
 Avdi Grimm has created great videos about Ruby called Ruby Tapas, and put up an older one

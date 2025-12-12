@@ -3,11 +3,7 @@ layout: post
 title: "Wrap Third Party APIs in Service Wrappers to Simplify Your Code"
 date: 2022-10-31 9:00
 ad:
-  title: "Get the Most out of Rails"
-  subtitle: "A Deep Dive into Sustainability"
-  link: "http://bit.ly/sus-rails"
-  image: "/images/sustainable-rails-cover.png"
-  cta: "Buy Now $49.95"
+  id: "sweng"
 ---
 
 

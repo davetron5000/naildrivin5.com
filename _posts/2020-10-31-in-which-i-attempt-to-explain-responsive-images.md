@@ -3,11 +3,7 @@ layout: post
 title: "In Which I Attempt to Explain Responsive Images"
 date: 2020-10-31 9:00
 ad:
-  title: "Sustainable Web Development"
-  subtitle: "A Deep Dive into Ruby on Rails"
-  link: "https://sustainable-rails.com"
-  image: "/images/sustainable-rails-cover.png"
-  cta: "Buy for $49.95"
+  id: "sweng"
 ---
 
 Getting responsive images to work via the `srcset` and `size` attributes to `img` is not easy, especially because

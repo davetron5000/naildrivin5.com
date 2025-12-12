@@ -66,6 +66,22 @@ single: true
 {% if page.ad %}
 <aside class="promo" id="promo">
   <div class="banner">Promotion</div>
+  {% if page.ad.id %}
+    {% for book in site.data.books.inprint %}
+      {% if book.ad_id == page.ad.id %}
+        <h1>{{ book.title }}</h1>
+        <h2>{{ book.cta }}</h2>
+        <a href="{{ book.buy_link }}">
+          <img src="{{book.image}}" width="200">
+        </a>
+        <h3>
+          <a href="{{ book.buy_link }}">
+            Buy Now {{ book.price }}
+          </a>
+        </h3>
+      {% endif %}
+    {% endfor %}
+  {% else %}
   <h1>{{ page.ad.title }}</h1>
   <h2>{{ page.ad.subtitle }}</h2>
   <a href="{{ page.ad.link }}">
@@ -76,6 +92,7 @@ single: true
       {{ page.ad.cta }}
     </a>
   </h3>
+  {% endif %}
 </aside>
 {% endif %}
 <script>

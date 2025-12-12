@@ -3,11 +3,7 @@ layout: post
 title: "Building a Sub-command Ruby CLI with just OptionParser"
 date: 2025-10-07 9:00
 ad:
-  title: "Fix Your Dev Environment for Good"
-  subtitle: "Stop Re-installing and Start Coding"
-  link: "https://sowl.co/bhKWwy"
-  image: "/images/docker-book-cover.jpg"
-  cta: "Buy Now $19.95"
+  id: sus-dev
 ---
 
 I've [thought deeply about building CLIs](https://www.amazon.com/Build-Awesome-Command-Line-Applications-Ruby/dp/1934356913) and built a

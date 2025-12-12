@@ -3,11 +3,7 @@ layout: post
 title: "Treat Rails for What it Is and Organize Code By Structural Purpose"
 date: 2022-10-25 9:00
 ad:
-  title: "Sustainable Development with Rails"
-  subtitle: "Build for the Long Haul"
-  link: "http://bit.ly/sus-rails"
-  image: "/images/sustainable-rails-cover.png"
-  cta: "Buy Now $49.95"
+  id: "sweng"
 related:
   - "Ruby on Rails: Still the Best Web App Framework for Most Teams"
   - "Creating a Culture of Consistency"

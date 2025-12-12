@@ -3,11 +3,7 @@ layout: post
 title: "At a Startup? Write as Little Software as you Can"
 date: 2021-03-31 9:00
 ad:
-  title: "Get the Most out of Rails"
-  subtitle: "A Deep Dive into Sustainability"
-  link: "http://bit.ly/sus-rails"
-  image: "/images/sustainable-rails-cover.png"
-  cta: "Buy Now $49.95"
+  id: "sus-dev"
 ---
 
 Since May of last year, I've been CTO of [Mood Health](https://moodhealth.com), which is a pre-Series-A startup providing

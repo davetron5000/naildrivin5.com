@@ -3,11 +3,7 @@ layout: post
 title: "Names matter"
 date: 2020-06-11 09:00
 ad:
-  title: "Sustainable Rails"
-  subtitle: "Build Apps to Last for Years"
-  link: "http://bit.ly/sus-rails"
-  image: "/images/sustainable-rails-cover.png"
-  cta: "Buy Now $49.95"
+  id: "sus-dev"
 ---
 Names of things matter.  How we react to the realization that some names of some things offend some people is
 important.  Unlike the names of countries, towns, or Army forts, computer software can actually be renamed

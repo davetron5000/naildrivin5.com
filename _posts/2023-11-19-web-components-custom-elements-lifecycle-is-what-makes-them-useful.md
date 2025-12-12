@@ -3,11 +3,7 @@ layout: post
 title: "Web Components Custom Elements Lifecycle is What Makes Them Useful"
 date: 2023-11-19 9:00
 ad:
-  title: "Get the Most out of Rails"
-  subtitle: "A Deep Dive into Sustainability"
-  link: "http://bit.ly/sus-rails"
-  image: "/images/sustainable-rails-cover.png"
-  cta: "Buy Now $49.95"
+  id: "sus-dev"
 related:
   - "What is WebComponents Buying Us?"
   - "Web Components: Templates, Slots, and Shadow DOM Aren't Great"

@@ -3,11 +3,7 @@ layout: post
 title: "Your Rails and Ruby Versioning and Gemfile Policy"
 date: 2022-11-17 18:00
 ad:
-  title: "Get the Most out of Rails"
-  subtitle: "A Deep Dive into Sustainability"
-  link: "http://bit.ly/sus-rails"
-  image: "/images/sustainable-rails-cover.png"
-  cta: "Buy Now $49.95"
+  id: "sus-dev"
 ---
 
 One of the lowest-effort, highest-value practices you can adopt for sustainable development is to keep your dependencies updates frequently.  The foundation for doing so is to have a clear and reasonable versioning policy.  This post includes one for Rails apps that I have used for years and has served me and my co-workers well.  It has some implications for specific procedures you will adopt as well.

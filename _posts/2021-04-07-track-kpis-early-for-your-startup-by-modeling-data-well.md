@@ -3,11 +3,7 @@ layout: post
 title: "Start Tracking KPIs Early in Your Startup"
 date: 2021-04-07 8:00
 ad:
-  title: "Sustainable Web Development"
-  subtitle: "Rely on Ruby on Rails"
-  link: "http://bit.ly/sus-rails"
-  image: "/images/sustainable-rails-cover.png"
-  cta: "Buy Now $49.95"
+  id: "sweng"
 ---
 
 [Previously][startup-post], I gave an overview of getting started as CTO of a startup.  I'd like to expand on the first part, "Understand How the Business Works" by talking about surfacing business metrics or *key performance indicators* as early as you can to keep everyone aligned.  This is a great way for *you* to understand the business and motivates good data modeling from the start, which is a great way to manage carrying costs.

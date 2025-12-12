@@ -3,11 +3,7 @@ layout: post
 title: "Choosing Technology"
 date: 2019-08-08 8:30
 ad:
-  title: "Low Opportunity Cost"
-  subtitle: "Ruby on Rails Has You Covered"
-  link: "http://bit.ly/sus-rails"
-  image: "/images/sustainable-rails-cover.png"
-  cta: "Buy Now $49.95"
+  id: "sweng"
 related:
   - "Creating a Culture of Consistency"
   - "The Frightening State of Security Around NPM Package Management"

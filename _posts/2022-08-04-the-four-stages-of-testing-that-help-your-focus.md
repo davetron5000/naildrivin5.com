@@ -3,11 +3,7 @@ layout: post
 title: "The Four Stages of Testing That Help Your Focus"
 date: 2022-08-04 7:30
 ad:
-  title: "Get the Most out of Rails"
-  subtitle: "A Deep Dive into Sustainability"
-  link: "http://bit.ly/sus-rails"
-  image: "/images/sustainable-rails-cover.png"
-  cta: "Buy Now $49.95"
+  id: "sweng"
 related:
   - "Four Better Rules for Software Design"
   - "Four Reasons Developers are Unproductive"

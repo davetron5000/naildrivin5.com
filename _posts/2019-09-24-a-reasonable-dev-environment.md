@@ -3,11 +3,7 @@ layout: post
 title: "A Reasonable Development Environment"
 date: 2019-09-24 9:00
 ad:
-  title: "A Ready-Made Toolchain"
-  subtitle: "Ruby on Rails Lets You Focus"
-  link: "http://bit.ly/sus-rails"
-  image: "/images/sustainable-rails-cover.png"
-  cta: "Buy Now $49.95"
+  id: "sus-dev"
 related:
   - "Choosing Technology"
   - "Creating a Culture of Consistency"

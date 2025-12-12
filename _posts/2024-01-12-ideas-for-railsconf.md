@@ -3,11 +3,7 @@ layout: post
 title: "Ideas for RailsConf"
 date: 2024-01-12 9:00
 ad:
-  title: "500 Pages on Rails"
-  subtitle: "If You Don't have 30 Minutes for My Conference Talk :)"
-  link: "http://bit.ly/sus-rails"
-  image: "/images/sustainable-rails-cover.png"
-  cta: "Buy Now $49.95"
+  id: "sus-dev"
 ---
 
 Andy Croll [asked on Mastodon](https://ruby.social/@andycroll/111743302015824551) for good/bad/indifferent experiences at previous

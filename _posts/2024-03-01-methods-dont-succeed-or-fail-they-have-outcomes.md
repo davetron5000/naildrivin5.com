@@ -3,11 +3,7 @@ layout: post
 title: "Methods Don't Succeed our Fail: they Have Outcomes"
 date: 2024-03-01 9:00
 ad:
-  title: "Model Business Logic in Rails"
-  subtitle: "Leverage the Best of Rails, Sustainabily"
-  link: "http://bit.ly/sus-rails"
-  image: "/images/sustainable-rails-cover.png"
-  cta: "Buy Now $49.95"
+  id: "sus-dev"
 related:
   - "A Framework for Product Design Beyond the Happy Path"
   - "An Alternative View on Avdi's Barewords Video"

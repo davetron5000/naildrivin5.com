@@ -3,11 +3,7 @@ layout: post
 title: "Code Reviews—or not—at an Early Startup"
 date: 2021-04-27 9:00
 ad:
-  title: "Get the Most out of Rails"
-  subtitle: "A Deep Dive into Sustainability"
-  link: "http://bit.ly/sus-rails"
-  image: "/images/sustainable-rails-cover.png"
-  cta: "Buy Now $49.95"
+  id: "sus-dev"
 ---
 
 As mentioned in [a previous

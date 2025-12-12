@@ -3,11 +3,7 @@ layout: post
 title: "What is WebComponents Buying Us?"
 date: 2023-11-17 9:00
 ad:
-  title: "SIMPLIFY, MAN!"
-  subtitle: "A Modern Framework to Make Great Web Apps"
-  link: "http://bit.ly/sus-rails"
-  image: "/images/sustainable-rails-cover.png"
-  cta: "Buy Now $49.95"
+  id: "sus-dev"
 related:
   - "Web Components Custom Elements Lifecycle is What Makes Them Useful"
   - "Ruby on Rails: Still the Best Web App Framework for Most Teams"
