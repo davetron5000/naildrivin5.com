@@ -111,3 +111,10 @@ img {
     }
   }
 }
+@media (min-width: 40em) {
+.small-figure {
+  width: 33%;
+  &.left { float: left; }
+  &.right { float: right; }
+}
+}

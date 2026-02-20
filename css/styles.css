@@ -498,6 +498,13 @@ img {
   .responsive-post .w-50-ns {
     width: 50%; } }
 
+@media (min-width: 40em) {
+  .small-figure {
+    width: 33%; }
+    .small-figure.left {
+      float: left; }
+    .small-figure.right {
+      float: right; } }
 .list-inline {
   list-style: none; }
   .list-inline li {
