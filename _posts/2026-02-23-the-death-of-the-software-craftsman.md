@@ -11,13 +11,18 @@ date: 2026-02-23 9:00
 > You think quality is a common goal<br>
 > That goes to show how little you know
 
-Developers work hard over the years to cultivate tools and techniques to improve the quality of the construction of their software.  These tools and techniques are slowly becoming even more useless than they may already be. We must adapt, which could be simply opting-out.
+Developers work hard over the years to cultivate tools and techniques to improve the quality of the construction of their software.  These tools and techniques are slowly becoming even more useless than they may already be. We must adapt, by going all-in, opting-out, or tracking the AI craze to fill the gap as a hand-coding artisan.
 
 <!-- more -->
 
+<aside style="padding: 0.75rem; background-color: #eee; font-style: italic; font-size: 80%; margin-bottom: 1rem; border: solid thin black; border-radius: 0.25rem;">
+All content on this page was <a href="https://declare-ai.org/1.0.0/none.html">created without any assistance from a Generative AI</a>. My
+em-dashes are my own. I would also respectfully ask that you read it and not have an LLM summarize it.
+</aside>
+
 ## Software Quality Problems are People Problems
 
-All techniques for improving the quality of software construction are aimed at solving the problem of allowing a person to understand the system they are changing so they can safely and correctly make a change to it.  Solutions either prevent certain classes of bugs (e.g. static typing), or make it easier to manage complexity (e.g. object-orientation)<sup id="back-1"><a href="#1">1</a></sup>.
+All techniques for improving the quality of software construction attempt to solve one problem: allow a person to understand the system they are changing so they can safely and correctly make a change to it.  Techniques either prevent certain classes of bugs (e.g. static typing, code review), or make it easier to manage complexity (e.g. object-orientation)<sup id="back-1"><a href="#1">1</a></sup>.
 
 <figure>
   <a href="/images/tradprog.png">
@@ -28,7 +33,7 @@ All techniques for improving the quality of software construction are aimed at s
          sizes="(max-width: 320px) 320px,
                 (max-width: 500px) 500px,
                 629px"
-         alt="alt text here">
+         alt="A flow chart showing a software development process that starts with three inputs: 'Any System', 'Description of Change', and 'Tools and Techniques for Quality Software Construction'. These feed into 'Developer', which outputs to 'Proposed Change'. This then feeds to a choice of 'Review'. One path out of 'Review' is 'needs revision', which goes back to 'Developer'. The other path out of 'Review' is to 'Updated System with Change'. This then leads to 'Observable Outcome'. There is a note pointing to 'Observable Outcome' that says 'This is all that really matters'">
   </a>
   <figcaption class="">
     The Traditional Software Development Process (<a target="_new" href="/images/tradprog.png">Open bigger version in new window</a>)
@@ -57,7 +62,7 @@ Let's imagine a hypothetical tool that could take, as input, a software system a
          sizes="(max-width: 320px) 320px,
                 (max-width: 500px) 500px,
                 629px"
-         alt="alt text here">
+         alt="A flow chart showing a software development process that starts with 'Any System' and 'Description of Change'. These feed into 'Black Box', which then leads to 'Updated System with Change'. This then leads to 'Observable Outcome'. There is a note pointing to 'Observable Outcome' that says 'This is all that really matters'">
   </a>
   <figcaption class="">
     A Hypothetical Brave New Way to Make Software (<a target="_new" href="/images/aiblackbox.png">Open bigger version in new window</a>)
@@ -69,13 +74,13 @@ If software was created this way, would anyone know what, say, dependency inject
 They would not. There would be no reason to.  It literally would not matter what the code was like. Our hypothetical system could handle whatever it's given and produce the requested changes. 
 
 This hypothetical system isn't magic. Using it would certainly require skill, perhaps
-deep skill. While there might be overlap with the skills we've built up around quality software construction, most of those skills become obsolete.
+deep skill. While there might be overlap with the skills we've built up around quality software construction, most of those skills would become obsolete.
 
 This system is not so hypothetical.
 
 <blockquote class="pullquote">We know that in at least some cases, they do exactly what I described above.</blockquote>
 
-We've seen what AI code generation systems are capable of.  We know that in at least some cases, they do exactly what I described above.  In some cases, they can take an existing system, a description of a change, and produce a system with that change.  And they seem to be improving quickly.
+We've seen what AI code generation systems are capable of.  We know that in at least some cases, they do exactly what I described above.  In some cases, they can take an existing system, a description of a change, and produce a system with that change.  And they seem to be improving quickly, handling more and more cases.
 
 And yet.
 
@@ -92,39 +97,41 @@ My visceral reaction to these tools has a combination of disgust and boredom. He
 * A real programmer will still need to go into the code. Practices around software construction will always matter.
 * It's shit at anything that's not a popular technology applied to a common use case.
 
-As of this writing, these are all true.  But are they intrinsic problems?
+As of this writing, these are all true.  But are they intrinsic problems? *Must* they be true, always?
 
 <blockquote class="pullquote">AI code generation's problems aren't actually as intrinsic as they may seem</blockquote>
 
 Unlike crypto, which is literally made of intrinsic problems preventing it from widespread adoption (please don't email me), AI code generation's problems aren't actually as intrinsic as they may seem.
 
 * AI models *could* be created ethically. There could be (and perhaps are?) systems created that comply with the licenses of their training materials.
-* Systems that use AI models *could* be done with less power and resources.  DeepSeek demonstrated that even minimal performance tweaking can give real benefits. Not enough, but enough that I cannot say with certainty that these resource problems are unsolvable.
+* Systems that use AI models *could* be done with less power and resources.  DeepSeek demonstrated that even minimal performance tweaking can give real benefits. Not enough to fully ameliorate the issues, but enough that I cannot say with certainty that these resource problems are unsolvable.
 * AI code generation tools could be required to operate within a system of accountability.  We've all seen that CEOs will comply with the government when threatened.  And someday, we all might live under a functioning government that works for its people.
 * Their price *may* be bearable when investor money runs out. Uber still exists as a going concern, despite being more expensive than ever.
 * People are non-deterministic, too, so it's not clear me that AI coding agents are necessarily worse than people at producing results. Coding agents are already better at programming than the vast majority of the population. I can't say with certainty that every living programmer is the embodiment of [John Henry](https://en.wikipedia.org/wiki/John_Henry_(folklore)).
 * While AI coding agents may never be able to handle every imaginable task, it's not clear to me that there is a limit on what they can do or that any given limit is unreasonable. Most of us are putting spreadsheets in a web browser or wrapping a database in a front-end, so if all that work is automated, that doesn't seem necessarily bad to me.
 
-In other words, all the problems of this technology *could* be addressed.  I'm not saying they will be, or that it will happen on any particular timeline.  But, it seems entirely possible to have a tool that produces software by taking in an existing system and written request as input, but without the problems that currently exist.
+In other words, all the problems of this technology *could* be addressed.  I'm not saying they will be, or that it will happen on any particular timeline.  But, it seems entirely possible to have a tool that produces software by taking in an existing system and written request as input, all without producing the externalities they currently do.
 
 Not inevitable, but *possible*.
 
-This means it's worth considering a world where AI code generation is commonplace. In fact, one *must* consider such a world.
+This means it's worth considering a world where AI code generation is commonplace. In fact, professional software developers one *must* consider such a world, and think deeply about their place in it.
 
-As a thought experiment, imagine if all the issues above were addressed.  Who *wouldn't* use these systems to produce software, at least in the context where it actually works? It's just so obviously better than what we do now (assuming the identified problems are addressed).
+As a thought experiment, imagine if all the issues above were addressed.  We have AI code generation tools are ethical, use appropriate resources, etc.  Who *wouldn't* use these systems to produce software? At least in context where the quality of the output was sufficient (a low bar if we are being honest), why would anyone *not* use these tools?
+
+As much as I love coding, it would be really nice to produce results without fretting over variable names, modularity, OO purity, monads, or
+any of that stuff.  Having a system produce reliable code just seems better.
 
 <blockquote class="pullquote">Almost everyone in the orbit of software development only cares about outcomes</blockquote>
 
-Remember, almost everyone in the orbit of software development only cares about outcomes and results, not the process by which they were achieved.  It doesn't mean *you*
-can't care, but most people don't.
+Remember, almost everyone in the orbit of software development only cares about outcomes and results, not the process by which they were achieved.  It doesn't mean *you* are wrong to care, but most people don't.
 
 So what's a lonely programmer to do?
 
 ## Ce n'est Pas un Griefpost
 
-I've been a professional software developer for 30 years, and this technology basically obviates a big chunk the skills I've developed. But I *like* using those skills. I like writing code. How do I navigate a world that no longer values that?
+I've been a professional software developer for 30 years, and this technology basically obviates a big chunk the skills I've developed. But I *like* using those skills. I like writing code. I like the process of building software. How do I navigate a world that no longer values that?
 
-I like the process of building software. Yes, I'm results-oriented and am good at communicating with non-programmers. I can manage teams and projects, and keep focused on business outcomes.  I don't get lost in the process despite enjoying it. But, my least happy professional eras were when I wasn't involved with code.
+I'm results-oriented and am good at communicating with non-programmers. I can manage teams and projects, and keep people focused on business outcomes.  I don't get lost in the process despite enjoying it. But, my least happy professional eras were when I wasn't involved with code.
 
 Up until now, the never-ending need for programmers has given me a nice career.  Thankfully, I'm on the tail end of that career.  But I'm not retired yet.
 
@@ -138,12 +145,12 @@ This is how I felt initially. It's just easy to write this entire thing off as a
 software professional.
 
 In the short term, it's still possible to be gainfully employed in software while abstaining from AI.  There'll be fewer and fewer such jobs as time goes by, but there should be at least a few years of generally available jobs writing code by hand.
-Ultimately, however, a position of abstinence means exiting from professional software development.
+
+But these positions will become fewer and far between.  A position of AI abstinence means ultimately exiting from professional software development.
 
 <blockquote class="pullquote">A position of  abstinence means exiting from professional software development</blockquote>
 
-This might seem extreme, but be honest: not enough people are going to come around on
-the ethical issues. The country I live in is 350+ million people who tolerate the sexual exploitation and murder of children (as just one example).  I say this not to encourage you to give in or sell out, but just to understand that the world of software development as you know it is going to become very small very fast.
+This might seem extreme, but be honest: not enough people are going to come around on the ethical issues to slow or stop the adoption of these tools. The country I live in is 350+ million people who tolerate the sexual exploitation and murder of children (as just one example).  I say this not to encourage you to give in or sell out, but just to understand that the world of software development as you know it is going to become very small very fast.
 
 This is the consequence of the moral dilemma.  You *can* opt-out. Almost every job that ever was or ever will be is something other than writing software. Most people make a living without writing software.  But if you want to give AI a Hard Pass, you will eventually be giving your career as a programmer a hard pass, too (though please stick around for option three, below).
 
@@ -160,7 +167,7 @@ leave a lot of your existing skills behind.
 
 <blockquote class="pullquote">It's hard to live a life free of compromise</blockquote>
 
-It's hard to live a life free of compromise. Going All In is to compromise. It means you must tolerate the downsides of this technology, assuming you view them as downsides. I know I do, but I also know that tolerance is not support, and that everyone, everywhere, every day must weight their needs against what their conscience can bear.
+It's hard to live a life free of compromise. Going All In is to compromise. It means you must tolerate the downsides of this technology (assuming you view at least some of them as downsides). I know I do, but I also know that tolerance is not support, and that every one, every where, every day must weigh their needs against what their conscience can bear.
 
 If your priority is to stay working in software development, especially if you have a long career ahead of you, going All In is the safest, simplest, most practical option. The consequence is that aforementioned compromise.  
 
@@ -208,11 +215,11 @@ But what is a craftsman, really? Someone with deep skills honed over many years,
 
 <div class="cf"></div>
 
-There are still craftsmen being trained and employed to this day, across a wide variety of industries.  Although few people have hand-made furniture, you can still commission it if you like. And don't forget that even uninspiring chain restaurants like The Cheesecake Factory still make almost all their food from scratch.
+There are still craftsmen being trained and employed to this day, across a wide variety of industries.  Although few people have hand-made furniture, you can still commission it. And don't forget that even uninspiring chain restaurants like The Cheesecake Factory still make almost all their food from scratch.
 
 Thus, it's not unreasonable to think that such an industry will exist for writing software.  In the short term, there's still a ton that AI coding agents simply can't do very well.  And in the long term, there will be at least some demand for software written to a higher standard than what AI is producing.
 
-But AI is under constant change, which requires the new breed of Software Crafter<sup id="back-2"><a href="#2">2</a></sup> to stay knowledgable about AI.  To be marketable and make a living, you have to know what gap you are filling. And that gap is changing often.  Thus, you cannot avoid AI if this is the way you go.
+To live in this world as a Software Crafter<sup id="back-2"><a href="#2">2</a></sup> is to understand AI code generation…at least until it plateaus in capabilities. To be marketable and make a living, you have to know what gap you are filling. And that gap is changing often.  Thus, you cannot avoid AI if this is the way you go.  You may not use it to produce your results, but you will need to use it—not just read about—to understand it.
 
 We don't get to live our lives free of compromise.
 

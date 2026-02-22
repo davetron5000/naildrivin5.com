@@ -84,7 +84,7 @@ header li {
     padding-right: 25.2px; } }
 h1, h2, h3, h4, h5, h6 {
   font-family: "Futura", "Avenir", "URW Gothic", "Helvetica", Corbel, source-sans-pro, sans-serif;
-  font-weight: 600;
+  font-weight: normal;
   text-rendering: optimizeLegibility; }
   h1.fw-bold, h1 .fw-bold, h2.fw-bold, h2 .fw-bold, h3.fw-bold, h3 .fw-bold, h4.fw-bold, h4 .fw-bold, h5.fw-bold, h5 .fw-bold, h6.fw-bold, h6 .fw-bold {
     font-weight: 600; }

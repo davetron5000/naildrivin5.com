@@ -1,19 +1,21 @@
 digraph G {
 
-    node[fontname=baskerville]
+  node[fontname=futura]
+  nodesep=0.5
+  ranksep=0.5
 
-    ExistingSystem -> BlackBox
-    ChangeRequest  -> BlackBox
-    BlackBox       -> UpdatedSystem
-    UpdatedSystem  -> SomeOutcome
-    Note           -> SomeOutcome
+  ExistingSystem -> BlackBox
+  ChangeRequest  -> BlackBox
+  BlackBox       -> UpdatedSystem
+  UpdatedSystem  -> SomeOutcome
+  Note           -> SomeOutcome
 
-    ExistingSystem [ shape=octagon       label="Any System"]
-    ChangeRequest  [ shape=tab           label="Description of\lChange\l"]
-    BlackBox       [ shape=box3d         label="Black Box"]
-    UpdatedSystem  [ shape=doubleoctagon label="Updated System\nwith Change"]
-    SomeOutcome    [ shape=rect          label="Some Observable\nOutcome"]
-    Note           [ shape=note          label="This is all that\lreally matters\l" ]
+  ExistingSystem [ shape=octagon       label="Any System"]
+  ChangeRequest  [ shape=tab           label="Description of\lChange\l"]
+  BlackBox       [ shape=box3d         label="Black Box"]
+  UpdatedSystem  [ shape=doubleoctagon label="Updated System\nwith Change"]
+  SomeOutcome    [ shape=rect          label="Some Observable\nOutcome"]
+  Note           [ shape=note          label="This is all that\lreally matters\l" fontname=baskerville, fontsize=12 ]
 
-    { rank=same; SomeOutcome; Note }
+  { rank=same; SomeOutcome; Note }
 }

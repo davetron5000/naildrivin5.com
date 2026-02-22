@@ -1,26 +1,28 @@
 digraph G {
 
-  node[fontname=baskerville]
+  node[fontname=futura]
+  nodesep=0.5
+  ranksep=0.5
 
   ExistingSystem -> Developer
   ChangeRequest  -> Developer
   BestPractices  -> Developer
   Developer      -> ProposedChange
   ProposedChange -> Review
-  Review         -> Developer[label="need revision"]
-  Review         -> UpdatedSystem[label="looks good"]
+  Review         -> Developer[label="  needs revision", fontname=baskerville, fontsize=12]
+  Review         -> UpdatedSystem[label="   looks good", fontname=baskerville, fontsize=12]
   UpdatedSystem  -> SomeOutcome
   Note           -> SomeOutcome
   
   ExistingSystem [ shape=octagon       label="Any System"]
   ChangeRequest  [ shape=tab           label="Description of\lChange\l"]
-  BestPractices  [ shape=cylinder      label="Tools and Techniques\lfor Quality Software\lConstruction\l"]
+  BestPractices  [ shape=cylinder      label="\lTools and Techniques\lfor Quality Software\lConstruction\l"]
   Developer      [ shape=egg]
   ProposedChange [ shape=folder        label="Proposed Change"]
   Review         [ shape=diamond]
   UpdatedSystem  [ shape=doubleoctagon label="Updated System\nwith Change"]
   SomeOutcome    [ shape=rect          label="Some Observable\nOutcome"]
-  Note           [ shape=note          label="This is all that\lreally matters\l" ]
+  Note           [ shape=note          label="This is all that\lreally matters\l", fontname=baskerville, fontsize=12 ]
 
   { rank=same; SomeOutcome; Note }
 }
