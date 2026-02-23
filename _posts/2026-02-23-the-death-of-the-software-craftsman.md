@@ -1,7 +1,13 @@
 ---
 layout: post
 title: "The Death of the Software Craftsman"
-date: 2026-02-23 9:00
+date: 2026-02-23 12:30
+related:
+ - "Estimates are Fine. They Build Trust When You Provide Them And Deliver On Them"
+ - "Actual Reasons to Use Test-Driven Development"
+ - "Four Reasons Developers are Unproductive"
+ - "A Framework for Product Design Beyond the Happy Path"
+ - "Four Better Rules for Software Design"
 ---
 
 
@@ -11,18 +17,19 @@ date: 2026-02-23 9:00
 > You think quality is a common goal<br>
 > That goes to show how little you know
 
-Developers work hard over the years to cultivate tools and techniques to improve the quality of the construction of their software.  These tools and techniques are slowly becoming even more useless than they may already be. We must adapt, by going all-in, opting-out, or tracking the AI craze to fill the gap as a hand-coding artisan.
+Developers work hard over the years to cultivate tools and techniques to improve the quality of the construction of their software.  These tools and techniques are slowly becoming even more useless than they may already be. We must adapt by either going all-in, totally opting-out, or finding a middle ground by tracking the AI code-generation craze to fill the gap as a hand-coding artisan.
 
 <!-- more -->
 
 <aside style="padding: 0.75rem; background-color: #eee; font-style: italic; font-size: 80%; margin-bottom: 1rem; border: solid thin black; border-radius: 0.25rem;">
-All content on this page was <a href="https://declare-ai.org/1.0.0/none.html">created without any assistance from a Generative AI</a>. My
+All content on this page was <a href="https://declare-ai.org/1.0.0/none.html">created without any assistance from a Generative AI</a>
+(including the Graphviz diagrams!). My
 em-dashes are my own. I would also respectfully ask that you read it and not have an LLM summarize it.
 </aside>
 
 ## Software Quality Problems are People Problems
 
-All techniques for improving the quality of software construction attempt to solve one problem: allow a person to understand the system they are changing so they can safely and correctly make a change to it.  Techniques either prevent certain classes of bugs (e.g. static typing, code review), or make it easier to manage complexity (e.g. object-orientation)<sup id="back-1"><a href="#1">1</a></sup>.
+All techniques for improving the quality of software construction attempt to solve one problem: allow a person to understand the system they are changing so they can safely and correctly make a change to it.  Techniques either prevent certain classes of bugs (e.g. static typing, code review, web frameworks), or make it easier to manage complexity (e.g. object-orientation, microservices, function currying)<sup id="back-1"><a href="#1">1</a></sup>.
 
 <figure>
   <a href="/images/tradprog.png">
@@ -44,7 +51,7 @@ Although we debate and discuss various techniques amongst ourselves, no non-prog
 
 <blockquote class="pullquote">We tell ourselves that it's these skills that deliver those desired outcomes</blockquote>
 
-We tell ourselves that it's these skills that deliver those desired outcomes. I myself have a very particular set of skills.  Skills I've acquired over a very long career.  I write about them, I use them, and I am truly convinced that careful construction of software is the best way to reliably create systems that can be easily changed over their lifetimes. Even if no one knows or cares.
+Despite all that, we tell ourselves that these skills are critical in delivering those desired outcomes. I myself have a very particular set of skills.  Skills I've acquired over a very long career.  I write about them, I use them, and I am truly convinced that careful construction of software is the best way to reliably create systems that can be easily changed over their lifetimes. Even if no one knows or cares.
 
 However.
 
@@ -52,7 +59,8 @@ However.
 
 I may relish the solutions to building quality software, but the best solution to any problem is to eliminate the problem. [Don't bet against Mr Miyagai's wisdom](https://en.wikipedia.org/wiki/The_Karate_Kid). 
 
-Let's imagine a hypothetical tool that could take, as input, a software system and a description of a change. The system produces, as output, an updated system with that change incorporated.  This hypothetical system would not rely on any particular software construction technique.
+Let's imagine a hypothetical tool that could take, as input, any software system and a description of a change. The tool produces, as output, an updated system with that change incorporated.  This hypothetical system would not rely on any particular software construction technique—it works with any system you give it.
+
 <figure>
   <a href="/images/aiblackbox.png">
     <img src="/images/aiblackbox.png"
@@ -71,10 +79,10 @@ Let's imagine a hypothetical tool that could take, as input, a software system a
 
 If software was created this way, would anyone know what, say, dependency injection was?  Would anyone go to a conference to learn about the latest features of Ruby on Rails?  Would anyone buy a book about carefully designing database schemas?
 
-They would not. There would be no reason to.  It literally would not matter what the code was like. Our hypothetical system could handle whatever it's given and produce the requested changes. 
+They would not. There would be no reason to.  It literally would not matter what the code was like. Our hypothetical system could handle whatever it's given and produce the requested changes.  Sure, a small few would need to understand how code works, but the group would be quite small. 
 
-This hypothetical system isn't magic. Using it would certainly require skill, perhaps
-deep skill. While there might be overlap with the skills we've built up around quality software construction, most of those skills would become obsolete.
+This hypothetical tool isn't intended to be magic. Like any tool, there would be a skill to it, perhaps a difficult-to-master skill.  And
+while there might be *some* overlap with the skills we use today to create quality software, most of *those* skills would become obsolete.
 
 This system is not so hypothetical.
 
@@ -86,12 +94,12 @@ And yet.
 
 ## Soylent Green is People
 
-My visceral reaction to these tools has a combination of disgust and boredom. Here are the things I have told myself about why this technology can or should be ignored:
+My visceral reaction to these tools has been a combination of disgust and boredom. Here are the things I have told myself about why this technology can or should be ignored:
 
 * It was created unethically.
 * It consumes an unreasonable amount of resources (such as electricity and hard drives).
 * It is owned and sold by some of the worst people in the world.
-* Its true cost is hidden by investor money. Once its price must support its cost, no one could afford it.
+* Its true cost is hidden by investor money. Once its pricing is set in line with its true cost, no one could afford it.
 * Being non-deterministic, it can never be as a good as a person.
 * There's no way to hold anyone accountable for its output.
 * A real programmer will still need to go into the code. Practices around software construction will always matter.
@@ -114,12 +122,13 @@ In other words, all the problems of this technology *could* be addressed.  I'm n
 
 Not inevitable, but *possible*.
 
-This means it's worth considering a world where AI code generation is commonplace. In fact, professional software developers one *must* consider such a world, and think deeply about their place in it.
+This means it's worth considering a world where AI code generation is commonplace. In fact, professional software developers *must* consider such a world, and think deeply about their place in it.
 
-As a thought experiment, imagine if all the issues above were addressed.  We have AI code generation tools are ethical, use appropriate resources, etc.  Who *wouldn't* use these systems to produce software? At least in context where the quality of the output was sufficient (a low bar if we are being honest), why would anyone *not* use these tools?
+As a thought experiment, imagine if all the issues above were addressed.  We have AI code generation tools are ethical, use appropriate resources, etc.  Who *wouldn't* use these systems to produce software? At least in the context where the quality of the output was sufficient (a low bar if we are being honest), why would anyone *not* use these tools?
 
 As much as I love coding, it would be really nice to produce results without fretting over variable names, modularity, OO purity, monads, or
-any of that stuff.  Having a system produce reliable code just seems better.
+any of that stuff.  Having a system produce reliable code just seems better. And it's not like these tools are the first examples of code
+generation—we use code generation all the time.
 
 <blockquote class="pullquote">Almost everyone in the orbit of software development only cares about outcomes</blockquote>
 
@@ -129,11 +138,11 @@ So what's a lonely programmer to do?
 
 ## Ce n'est Pas un Griefpost
 
-I've been a professional software developer for 30 years, and this technology basically obviates a big chunk the skills I've developed. But I *like* using those skills. I like writing code. I like the process of building software. How do I navigate a world that no longer values that?
+I've been a professional software developer for 30 years, and these AI code generation tools basically obviates a big chunk the skills I've developed. But I *like* using those skills. I like writing code. I like the process of building software. How do I navigate a world that no longer values that?
 
-I'm results-oriented and am good at communicating with non-programmers. I can manage teams and projects, and keep people focused on business outcomes.  I don't get lost in the process despite enjoying it. But, my least happy professional eras were when I wasn't involved with code.
+I'm results-oriented and am good at communicating with non-programmers. I can manage teams and projects, and keep people focused on business outcomes.  These are all skills you need no matter how code is written. But my least happy professional eras were when I wasn't involved with code.
 
-Up until now, the never-ending need for programmers has given me a nice career.  Thankfully, I'm on the tail end of that career.  But I'm not retired yet.
+Up until now, the never-ending need for programmers has given me a nice career where I can balance all of this stuff.  Thankfully, I'm on the tail end of that career.  But I'm not retired yet.
 
 I see three paths in front of me: Hard Pass, All In, and Embrace Tradition.
 
@@ -146,11 +155,11 @@ software professional.
 
 In the short term, it's still possible to be gainfully employed in software while abstaining from AI.  There'll be fewer and fewer such jobs as time goes by, but there should be at least a few years of generally available jobs writing code by hand.
 
-But these positions will become fewer and far between.  A position of AI abstinence means ultimately exiting from professional software development.
+But these positions will become fewer and far between.  Choosing AI abstinence means ultimately exiting professional software development, at least at some point.
 
-<blockquote class="pullquote">A position of  abstinence means exiting from professional software development</blockquote>
+<blockquote class="pullquote">Choosing AI abstinence means exiting professional software development</blockquote>
 
-This might seem extreme, but be honest: not enough people are going to come around on the ethical issues to slow or stop the adoption of these tools. The country I live in is 350+ million people who tolerate the sexual exploitation and murder of children (as just one example).  I say this not to encourage you to give in or sell out, but just to understand that the world of software development as you know it is going to become very small very fast.
+This might seem extreme, but be honest: these tools will become far more prolific over the short term.  Not enough people are going to come around on the ethical issues to slow or stop their adoption. The country I live in is 350+ million people who tolerate the sexual exploitation and murder of children (as just one example).  I say this not to encourage you to give in or sell out, but just to understand that the world of software development as you know it is going to become very small very fast.
 
 This is the consequence of the moral dilemma.  You *can* opt-out. Almost every job that ever was or ever will be is something other than writing software. Most people make a living without writing software.  But if you want to give AI a Hard Pass, you will eventually be giving your career as a programmer a hard pass, too (though please stick around for option three, below).
 
@@ -167,11 +176,12 @@ leave a lot of your existing skills behind.
 
 <blockquote class="pullquote">It's hard to live a life free of compromise</blockquote>
 
-It's hard to live a life free of compromise. Going All In is to compromise. It means you must tolerate the downsides of this technology (assuming you view at least some of them as downsides). I know I do, but I also know that tolerance is not support, and that every one, every where, every day must weigh their needs against what their conscience can bear.
+It's hard to live a life free of compromise. Going All In is to compromise. It means you must tolerate the downsides of this technology (assuming you believe there *are* at least some downsides). Of course, tolerance is not the same thing as support. Every one, every where, every day must weigh their needs against what their conscience can bear.
 
-If your priority is to stay working in software development, especially if you have a long career ahead of you, going All In is the safest, simplest, most practical option. The consequence is that aforementioned compromise.  
+If your priority is to stay working in software development, especially if you have a long career ahead of you, going All In is the safest, simplest, most practical option. You just have to be able to live with yourself.
 
-Beyond that ethical compromise, I find this option depressing for two reasons.
+There are two reasons I find this option depressing, beyond having to tolerate the ethical problems.
+
 <figure class="small-figure left">
   <a href="/images/prettyplease.jpg">
     <img src="/images/prettyplease.jpg"
@@ -190,7 +200,7 @@ One is as I mentioned above: I *like* coding. I like writing code and everything
   </a>
 </figure>
 
-Two is related to the "common technology" problem.  These tools produce code using the popular frameworks, techniques, and libraries.  While it's possible I won't have to review or modify the code these tools produce, that is not the state of the art. And I just really, really don't want to write React or Tailwind.  I don't really want to learn Python.  And the creator of Rails can go fuck himself.
+Two is related to the "common technology" problem.  These tools produce code using the popular frameworks, techniques, and libraries.  While it's possible I won't have to review or modify the code these tools produce some day, today is not that day. And I just really, really don't want to write React or Tailwind.  I don't really want to learn Python.  And the creator of Rails can go fuck himself.
 
 <div class="cf"></div>
 
@@ -202,7 +212,7 @@ All this being said, flat-pack furniture made of fiberboard did not eliminate th
 
 ## Reject Modernity, Embrace Tradition
 
-I always though the "software craftsman" movement was dumb. Uncle Bob is a terrible person with bad ideas, and Agile Thought Leaders seem more focused on their billable rate than improving outcomes for users.  And, really, effective developers shouldn't spend so much time navel-gazing - results really *do* matter!
+I always though the "software craftsman" movement was dumb. Uncle Bob is a terrible person with bad ideas, and Agile Thought Leaders seem more focused on their billable rate than improving outcomes for users.  Their collective disrepsect for anyone not a programmer is galling.  But most of all, it just seemed like navel-gazing.  Results and outcomes *really do* matter!
 
 <figure class="small-figure left image-border">
   <a href="/images/tradition.jpg">
@@ -217,9 +227,9 @@ But what is a craftsman, really? Someone with deep skills honed over many years,
 
 There are still craftsmen being trained and employed to this day, across a wide variety of industries.  Although few people have hand-made furniture, you can still commission it. And don't forget that even uninspiring chain restaurants like The Cheesecake Factory still make almost all their food from scratch.
 
-Thus, it's not unreasonable to think that such an industry will exist for writing software.  In the short term, there's still a ton that AI coding agents simply can't do very well.  And in the long term, there will be at least some demand for software written to a higher standard than what AI is producing.
+Thus, it's not unreasonable to think that such an industry will exist for writing software.  In the short term, there's still a ton that AI coding agents simply can't do very well.  And in the long term, there will be at least some demand for software written to a higher standard than what AI is producing. Of course, there will always be the need to pay a high price to have real programmer pop the hood on your vibe-coded mess to figure out what's actually wrong.
 
-To live in this world as a Software Crafter<sup id="back-2"><a href="#2">2</a></sup> is to understand AI code generation…at least until it plateaus in capabilities. To be marketable and make a living, you have to know what gap you are filling. And that gap is changing often.  Thus, you cannot avoid AI if this is the way you go.  You may not use it to produce your results, but you will need to use it—not just read about—to understand it.
+However, to live in this world as a Software Crafter<sup id="back-2"><a href="#2">2</a></sup> is to understand AI code generation…at least until it plateaus in capabilities. To be marketable and make a living, you have to know what gap you are filling. And that gap is changing often.  Thus, you cannot abstain entirely from AI if this is the way you go.  You may not use it to produce your results, but you will need to use it—not just read about it—to understand it.
 
 We don't get to live our lives free of compromise.
 
@@ -230,7 +240,7 @@ Maybe in the next world.
 <footer class='footnotes'>
 <ol>
 <li id="1">
-<sup>1</sup>I'm not saying static typing and object-orientation achieve the results they think promise they do, especially in a general sense, but they do exist to prevent bugs and manage complexity, respectively.<a href='#back-1'>↩</a>
+<sup>1</sup>I'm not saying stuff like static typing and object-orientation achieve the results they think promise they do, especially in a general sense, but they intend to prevent bugs, manage complexity, and allow easier changes to software.<a href='#back-1'>↩</a>
 </li>
 <li id="2">
 <sup>2</sup>In  this new era, we can ditch the gendered language. "Craftsperson" is cumbersome, but would also work. "Maker" can go straight to hell.<a href='#back-2'>↩</a>
