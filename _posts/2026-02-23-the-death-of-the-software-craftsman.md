@@ -212,7 +212,7 @@ All this being said, flat-pack furniture made of fiberboard did not eliminate th
 
 ## Reject Modernity, Embrace Tradition
 
-I always though the "software craftsman" movement was dumb. Uncle Bob is a terrible person with bad ideas, and Agile Thought Leaders seem more focused on their billable rate than improving outcomes for users.  Their collective disrepsect for anyone not a programmer is galling.  But most of all, it just seemed like navel-gazing.  Results and outcomes *really do* matter!
+I always thought the "software craftsman" movement was dumb. Uncle Bob is a terrible person with bad ideas, and Agile Thought Leaders seem more focused on their billable rate than improving outcomes for users.  Their collective disrepsect for anyone not a programmer is galling.  But most of all, it just seemed like navel-gazing.  Results and outcomes *really do* matter!
 
 <figure class="small-figure left image-border">
   <a href="/images/tradition.jpg">
