@@ -2,7 +2,9 @@
 
 set -e
 
-echo " [ $0 ] Syncing to S3"
-aws s3 sync --cache-control="max-age=3600" _site/ s3://naildrivin5.com --profile personal
+profile=${1:-personal}
+
+echo " [ $0 ] Syncing to S3 via AWS profile '${profile}'"
+aws s3 sync --cache-control="max-age=3600" _site/ s3://naildrivin5.com --profile "${profile}"
 echo " [ $0 ] Invalidating CloudFront cache" 
-aws cloudfront create-invalidation --distribution-id=E19I9AKMQP8NDQ --profile personal --paths /index.html /atom.xml /css/styles.css
+aws cloudfront create-invalidation --distribution-id=E19I9AKMQP8NDQ --profile "${profile}" --paths /index.html /atom.xml /css/styles.css
