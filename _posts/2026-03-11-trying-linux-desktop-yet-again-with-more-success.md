@@ -84,7 +84,7 @@ I tried a lot of clipboard managers, and ended up using [GPaste](https://github.
 snippets on the clipoboard, select one, it is inserted into the text field.
 This is how all clipboard management works on the Mac.
 
-**How Clipboard Mac works on Linux:** Focus a text field in any app, but you
+**How Clipboard Management works on Linux:** Focus a text field in any app, but you
 can't have a global keyboard shortcut for whatever reason, so using the mouse
 invoke the app and using the mouse select the snippet to paste, then use the
 mouse to focus the text field again, then paste.  This sucks, but is workable.
