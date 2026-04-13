@@ -4,7 +4,7 @@ title: "pwa.support and the Mediocre State of PWAs"
 date: 2026-03-09 9:00
 ---
 
-I created [pwa.support](https://pwa.support) as a way to both examine any website to see if it can be isntalled as
+I created [pwa.support](https://pwa.support) as a way to both examine any website to see if it can be installed as
 a progressive web app, but also to capture in some detail the depressing state of support for this concept across
 major browsers and operating systems.
 
