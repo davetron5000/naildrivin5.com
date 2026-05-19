@@ -14,9 +14,12 @@ Working on an update to [my Docker-based Dev Environment Book](https://devbox.co
 
 <!-- more -->
 
+**Updated May 19, 2026** to deal with NeoVim 0.11 having incorporated its own LSP configuration that works
+differently from the now-deprecated lsp-config.
+
 ## The Problem
 
-Microsoft created the Language Server Protocol (LSP), and so it's baked into VSCode pretty well.  If you require a more sophisticated and powerful editing experience, however, you are using Vim and it turns out, Neovim (a Vim fork) can interact with an LSP via the lsp-config plugin.
+Microsoft created the Language Server Protocol (LSP), and so it's baked into VSCode pretty well.  If you require a more sophisticated and powerful editing experience, however, you are using Vim and it turns out, Neovim (a Vim fork) can interact with an LSP.
 
 Getting this all to work requires solving several problems:
 
@@ -76,11 +79,9 @@ There is more that can be done per language and tons of extensions.  I have had 
 
 ## Getting an LSP Server To Work with Neovim
 
-Getting an LSP server to work requires figuring out how install the server, then configuring Neovim to use it via the [lsp-config plugin](https://github.com/neovim/nvim-lspconfig).  This creates the meta-problem of how to set up that plugin, because Neovim has a lot of plugin management systems.
+Getting an LSP server to work requires figuring out how install the server, then configuring Neovim to use it via `vim.lsp` in Lua (previously you were required to use the [lsp-config plugin](https://github.com/neovim/nvim-lspconfig))
 
-I use a system that allows me to clone plugins from a Git repo inside `~/.vim` (for Vim) and `~/.local/share/nvim/site` (for Neovim) and restart Vim and stuff works. It's been so long I don't know what this is called.
-
-After you've installed `lsp-config` however you install Neovim plugins, the next issue is that most of the configuration is documented in Lua. Because I am old, all my configuration is in VimScript.  Getting some Lua configuration is a single line of code, inside `~/.config/nvim/init.vim`:
+Once you realize LSP configuration is built in, the next issue is that most of the configuration is documented in Lua. Because I am old, all my configuration is in VimScript.  Getting some Lua configuration is a single line of code, inside `~/.config/nvim/init.vim`:
 
 ```
 lua require('config')
@@ -89,27 +90,63 @@ lua require('config')
 This assumes that `~/.config/nvim/lua/config.lua` exists, and then runs that configuration as normal.  With that in place, here's an outline of the configuration needed to use Shopify's Ruby LSP server and Microsoft's CSS and Typescript LSP servers.  These aren't complete, yet, but this gives you an idea:
 
 ```lua
-local lspconfig = require('lspconfig')
-
 -- Set up Shopify's LSP server. The string
--- "ruby_lsp" is magic and you must consult lsp-config's
+-- "ruby_lsp" is magic and you must consult some
 -- documentation to figure out what string to use for
 -- what LSP server.
-lspconfig.ruby_lsp.setup({
+vim.lsp.config('ruby_lsp', {
   -- To be filled in
 })
 
 -- Set up Microsoft's CSS LSP server (again, "cssls" is magic)
-lspconfig.cssls.setup({
+vim.lsp.config('cssls', {
   -- To be filled in
 })
 
 -- Set up Microsoft's TypeScript/JavaScript
--- server, "ts_ls" being magic.
-lspconfig.ts_ls.setup({
+-- server, "ts_ls" being magic and no I have no idea why it has
+-- an underscore and CSS does not.
+vim.lsp.config('ts_ls', {
   -- To be filled in
 })
+
+-- enable them
+vim.lsp.enable({ 'ruby_lsp', 'cssls', 'ts_ls' })
 ```
+
+By default, some LSP servers will attempt to run on all files, so the TypeScript LSP server will generate a lot
+of errors for your `.css` files.  Cool.  You must tell each LSP which vim filetypes it should apply to.
+
+```lua
+  -- Set up Shopify's LSP server. The string
+  -- "ruby_lsp" is magic and you must consult some
+  -- documentation to figure out what string to use for
+  -- what LSP server.
+  vim.lsp.config('ruby_lsp', {
+→   filetypes = { 'ruby' },
+    -- To be filled in
+  })
+
+  -- Set up Microsoft's CSS LSP server (again, "cssls" is magic)
+  vim.lsp.config('cssls', {
+→   filetypes = { 'css' },
+    -- To be filled in
+  })
+
+  -- Set up Microsoft's TypeScript/JavaScript
+  -- server, "ts_ls" being magic and no I have no idea why it has
+  -- an underscore and CSS does not.
+  vim.lsp.config('ts_ls', {
+→   filetypes = { 'typescript', 'javascript' },
+    -- To be filled in
+  })
+
+  -- enable them
+  vim.lsp.enable({ 'ruby_lsp', 'cssls', 'ts_ls' })
+```
+
+To add additional filetypes, open a file you think the LSP should be using and do `:set filetype?` and it will
+show you what NeoVim thinks the file type is.  Add that string to the `filetypes` array for the appropriate LSP.
 
 With this configuration, Neovim will attempt to use these LSP servers for Ruby, CSS, TypeScript, and JavaScript files.  Without those servers installed, you will get an error each time you load a file.
 
@@ -121,12 +158,13 @@ In  most cases, installing LSP servers can be done by installing a package with 
 * CSS: `npm install --save-dev vscode-langservers-extracted`
 * TypeScript/JavaScript: `npm install --save-dev typescript typescript-language-server` (Note: you may have `typescript` installed already if you are using it elsewhere in your project)
 
-The lsp-config plugin assumes that the servers can be run as bare commands, e.g. `ruby-lsp` or `typescript-language-server`. In most cases, these don't work this way (e.g. you must use `npx` or `bundle exec`). When running them in Docker, they *definitely* won't work from the perspective of Neovim running outside Docker.
+The LSP config assumes that the servers can be run as bare commands, e.g. `ruby-lsp` or `typescript-language-server`. In most cases, these don't work this way (e.g. you must use `npx` or `bundle exec`). When running them in Docker, they *definitely* won't work from the perspective of Neovim running outside Docker.
 
 When the LSP Server and Neovim are running on the same machine, you can get it working easily by tweaking the `cmd` configuration option:
 
 ```lua
-lspconfig.ts_ls.setup({
+vim.lsp.config('ts_ls', {
+  filetypes = { 'typescript', 'javascript' },
   cmd = { 'npx', 'typescript-language-server', '--stdio' },
 })
 ```
@@ -162,14 +200,14 @@ To do this, you want Neovim to run `docker compose exec bash -lc «LSP Server co
 Given that I have `dx/exec` to wrap `docker compose exec`, here is what my configuration looks like:
 
 ```lua
-local lspconfig = require('lspconfig')
-
-lspconfig.ruby_lsp.setup({
+vim.lsp.config('ruby_lsp', {
+  filetypes = { 'ruby' },
   cmd = { 'dx/exec', 'bash', '-lc', 'ruby-lsp', },
   -- More to come
 })
 
-lspconfig.cssls.setup({
+vim.lsp.config('cssls', {
+  filetypes = { 'css' },
   cmd = { 'dx/exec',
           'bash',
           '-lc',
@@ -177,11 +215,13 @@ lspconfig.cssls.setup({
   -- More to come
 })
 
-lspconfig.ts_ls.setup({
+vim.lsp.config('ts_ls', {
+  filetypes = { 'typescript', 'javascript' },
   cmd = { 'dx/exec',
           'bash',
           '-lc',
           'npx typescript-language-server --stdio' },
+  -- More to come
 })
 ```
 
@@ -290,20 +330,49 @@ export PATH=${PATH}:${GEM_HOME}/bin
 
 You'll want to ignore `local-gems` in your version control system, the same as you would `node_modules`.
 
+### Ignoring Files the LSP will Try to Open
+
+The LSPs do not use Vim's `wildignore` to ignore files when e.g. jumping to a definition.  This is intentional, because you *want* to open the file of a gem or Node module you are using.  However, you still may want files to be ignored.
+
+For example, [Brut](https://brutrb.com)'s gem contains a `/templates/` folder that has the files used to create a
+new Brut-powered app.  When you jump to the definition of `AppPage` in your  Brut app, the LSP will offer both
+your app's `app_page.rb`, but also the `app_page.rb` inside the Brut gem's `/templates/` folder. No good.
+
+I could not find a feature  to control this behavior, and had to use an LLM to come up with the following
+incantation.  This appears to be a callback whenever a definition is requested and it filters the list of
+potential files to remove those  that match the directory I want to ignore.
+
+```lua
+vim.lsp.handlers["textDocument/definition"] = function(err, result, ctx, config)
+  if result then
+    local locations = vim.islist(result) and result or { result }
+    locations = vim.tbl_filter(function(loc)
+      local uri = loc.uri or loc.targetUri
+      return not uri:match("local%-gems/gem%-home/gems/brut%-[^/]+/templates/")
+    end)
+    if #locations == 1 then
+      result = locations[1]
+    else
+      result = locations
+    end
+  end
+  vim.lsp.handlers["textDocument/definition"](err, result, ctx, config)
+end
+```
+
 *Now*, re-install your gems and jumping to definitions will work great.
 
 This leads to an obvious question: how **do you** jump to a definition?!
 
 ## Configuring Neovim to use LSP Commands
 
-lsp-config does set up a few shortcuts, which you can read [in their docs](https://neovim.io/doc/user/lsp.html#_defaults). This isn't sufficient to take advantage of all the features.  You also can't access all the features simply by creating keymappings. Some features must be explicitly enabled or started up.
+vim.lsp.config does set up a few shortcuts, which you can read [in their docs](https://neovim.io/doc/user/lsp.html#_defaults). This isn't sufficient to take advantage of all the features.  You also can't access all the features simply by creating keymappings. Some features must be explicitly enabled or started up.
 
 Of course, you don't want to set any of this up if you aren't using an LSP server. This can be addressed by putting all setup code in a Lua function that is called when the LSP "attaches".  This function will be called `on_attach` and we'll see it in a minute (note that I'm adding some configuration for Ruby LSP to make inlay hints work, as I couldn't find a better place to do that in this blog post :).
 
 ```lua
-  local lspconfig = require('lspconfig')
-
-  lspconfig.ruby_lsp.setup({
+  vim.lsp.config('ruby_lsp', {
+    filetypes = { 'ruby' },
     cmd = { 'dx/exec', 'bash', '-lc', 'ruby-lsp', },
 →   on_attach = on_attach,
 →   init_options = {
@@ -315,13 +384,15 @@ Of course, you don't want to set any of this up if you aren't using an LSP serve
     }
   })
 
-  lspconfig.cssls.setup({
+  vim.lsp.config('cssls', {
+    filetypes = { 'css' },
     cmd = { 'dx/exec', 'bash', '-lc', 'npx vscode-css-language-server --stdio' },
 →   on_attach = on_attach,
     -- More to come
   })
 
-  lspconfig.ts_ls.setup({
+  vim.lsp.config('ts_ls', {
+    filetypes = { 'typescript', 'javascript' },
     cmd = { 'dx/exec', 'bash', '-lc', 'npx typescript-language-server --stdio' },
 →   on_attach = on_attach,
     -- More to come
@@ -397,7 +468,7 @@ end
 vim.cmd[[set completeopt+=menuone,noselect,popup]]
 ```
 
-Whew!  The lsp-config documentation can help you know what other functions might exist, but the setup above seems to use most of them, at least the ones for Ruby that I think are useful.
+Whew!  I'm not su re how to find out what other functions exist.
 
 Once this is all set up, you will find that the CSS and JavaScript LSP Servers still don't work.
 
@@ -405,10 +476,11 @@ Once this is all set up, you will find that the CSS and JavaScript LSP Servers s
 
 Once I had Ruby working, I installed CSS and TypeScript and found that they would happily complete any single request and then crash.  Apparently, they assume the editor and server are running on the same computer and use a process identifier to know if everything is running normally.
 
-Since this would not work with Docker (the process IDs would be different or not available), you need to configure both LSP servers in lsp-config to essentially not care about process IDs.
+Since this would not work with Docker (the process IDs would be different or not available), you need to configure both LSP servers to essentially not care about process IDs.
 
 ```lua
-   lspconfig.cssls.setup({
+  vim.lsp.config('cssls', {
+    filetypes = { 'css' },
      cmd = { 'dx/exec',
              'bash',
              '-lc',
@@ -418,7 +490,8 @@ Since this would not work with Docker (the process IDs would be different or not
 →      params.processId = vim.NIL
 →    end,
    })
-   lspconfig.ts_ls.setup({
+   vim.lsp.config('ts_ls', {
+     filetypes = { 'typescript', 'javascript' },
      cmd = { 'dx/exec',
              'bash',
              '-lc',
@@ -456,3 +529,20 @@ end
 ## And Now We Can Work!
 
 I've been using this configuration for a few days and to be honest, I can't quite tell how well it's working.  But it doesn't seem that fragile, and it seems useful to have setup in case other extensions or LSP servers become very useful.
+
+## Update on May 19, 2026
+
+I've updated this post since, as of NeoVim 0.11, nvim-lspconfig is no longer needed.  Over time I have found the use of these LSP servers to be a bit of a wash.  They do work, but at one point, the Ruby LSP just stopped working.
+
+Shopify's Ruby LSP [is not a debuggable system](/blog/2025/08/06/please-create-debuggable-systems.html), so I
+just stopped using it as GitHub CoPilot provided enough completion that it was fine.  And then CoPilot just
+stopped working (I think M$ requires you to pay for it now, and I'm not gonna pay for it).  Still, everything was
+fine for me becuase I'm used to working by learning the APIs and typing them out and using Vim's normal
+completion.
+
+But, I figured I'd try again, and the Shopify Ruby LSP is now working for me again.  Cool, I guess.
+
+I would strongly encourage you, dear reader, to learn how to program without an LSP.  I've never felt like I
+worked slowly.  The LSP is a nice to have, but you would be wise to develop the skills to write code without it.
+
+
