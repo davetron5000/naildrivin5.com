@@ -5,7 +5,7 @@ layout: post
 ad:
   title: "Learn Technical Writing"
   subtitle: "And 10 other Engineering Practices"
-  link: "http://bit.ly/dcsweng"
+  link: "http://transactions.sendowl.com/products/24086/D8D2ED13/add_to_cart"
   image: "/images/sweng-cover.png"
   cta: "Buy Now $25"
 related:

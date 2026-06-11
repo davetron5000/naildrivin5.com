@@ -5,7 +5,7 @@ date: 2019-12-02 9:00
 ad:
   title: "Miss XML?"
   subtitle: "I'll Remind you Why You Don't"
-  link: "http://bit.ly/buy-not-solid"
+  link: "https://transactions.sendowl.com/products/78171065/D912B8A8/add_to_cart"
   image: "/images/not-solid-cover.png"
   cta: "Buy Now $5.99"
 related:

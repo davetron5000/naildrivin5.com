@@ -3,12 +3,6 @@ wordpress_id: 35
 title: "REST Security: Signing requests with secret key, but does it work?"
 wordpress_url: http://www.naildrivin5.com/daveblog5000/?p=35
 layout: post
-ad:
-  title: "Rails is truly full-stack"
-  subtitle: "Create SPAs backed by APIs with Rails"
-  link: "http://bit.ly/dcbang2"
-  image: "/images/dcbang2.jpg"
-  cta: "Buy Now $24.95"
 ---
 Both <a href="http://docs.amazonwebservices.com/AmazonS3/2006-03-01/gsg/?ref=get-started">Amazon Web Services</a> and the <a href="http://www.flickr.com/services/api/auth.howto.web.html">Flickr Services</a> provide <a href="http://en.wikipedia.org/wiki/Representational_State_Transfer">REST</a> APIs to their services.  I'm currently working on developing such a service, and noticed that both use signatures based on a shared secret to provide security (basically using a <a href="http://en.wikipedia.org/wiki/HMAC">Hash Message Authentication Code</a>).
 
@@ -46,8 +40,6 @@ Authentication can be avoided by using the shared secret to establish a token, u
 1. Client creates a second request, as above, for the resource, including the token in the request
 1. Service Provider checks not just for a valid signature, but also that the provided token is associated with the given resource
 1. If so, the token is retired, and the resource data is returned
-
-<div data-ad></div>
 
 Here, the URL constructed in step 3 can be used only once.  Anyone intercepting the request can't make it again, without constructing a new one, which they would be unable to do without the shared secret.  Further, this doesn't preclude caching.  The main issue here is that since two requests are required, simultaneous access to one resource could result in false errors: if Client A acquires a token, and Client B requests one before Client A <b>uses</b> the token, Client A's token could be squashed, resulting in an error when he makes his request.  The service provider can alleviate this by allowing the issuance of multiple active tokens per resource.
 

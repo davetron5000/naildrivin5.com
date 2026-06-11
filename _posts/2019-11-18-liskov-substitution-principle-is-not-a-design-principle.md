@@ -5,7 +5,7 @@ date: 2019-11-18 12:00
 ad:
   title: "Need more Snark?"
   subtitle: "70 Pages You Won't Regret"
-  link: "http://bit.ly/buy-not-solid"
+  link: "https://transactions.sendowl.com/products/78171065/D912B8A8/add_to_cart"
   image: "/images/not-solid-cover.png"
   cta: "Buy Now $5.99"
 related:

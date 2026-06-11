@@ -339,10 +339,9 @@ Each method called on `string` is a method provided by Rainbow.  These methods r
 
 ## In Conclusion
 
-Hopefully, you've seen that it's really *not that hard* to make an awesome command-line app.  I was able to write `hl` in just a few hours, using TDD and the end result is a highly polished, well-documented, easily installable and maintainable piece of software that will be a part of my command-line arsenal for quite a while.  You can do this, too.  There's a lot more detail and in-depth explanations [in my book][clibook], which you should buy right now :)
+Hopefully, you've seen that it's really *not that hard* to make an awesome command-line app.  I was able to write `hl` in just a few hours, using TDD and the end result is a highly polished, well-documented, easily installable and maintainable piece of software that will be a part of my command-line arsenal for quite a while.  You can do this, too.
 
 
-[clibook]: http://bit.ly/cli-hl-blog-post
 [work]: http://www.livingsocial.com
 [hl]: https://github.com/davetron5000/hl
 [toc]: http://www.awesomecommandlineapps.com

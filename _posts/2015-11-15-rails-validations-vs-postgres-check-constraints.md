@@ -2,12 +2,6 @@
 layout: post
 title: "Rails Validations vs Postgres Check Constraints"
 date: 2015-11-15
-ad:
-  title: "Use DB Constraints with Rails and Postgres"
-  subtitle: "Never Worry about Your Data"
-  link: "http://bit.ly/dcbang2"
-  image: "/images/dcbang2.jpg"
-  cta: "Buy Now $24.95"
 ---
 Before using Postgres, I would have to rely heavily on Rails validations to ensure data integrity—MySQL simply doesn't provide the tools
 to do this.  This always felt wrong.  Outside of rogue processes connecting to the database, there's also application bugs
@@ -145,8 +139,6 @@ which will create some duplication.
 If we use both the ActiveRecord validation *and* the check constraint, we achieve what we need: a good user experience, and ther
 assurance of data integrity.  The *problem* is that this creates duplication.  We have the same regexp in two places and they both have
 to be changed together.
-
-<div data-ad></div>
 
 While I could imagine a more sophisticated data layer handling this, we don't have one.  That means we have to live with the duplication
 or sacrifice our system requirements.  For me, the job of a programmer is to make the system work properly, even if that means that the

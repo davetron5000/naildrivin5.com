@@ -5,7 +5,7 @@ date: 2019-07-25 9:00
 ad:
   title: "SOLID Ain't Solid"
   subtitle: "These five rules will make it worse"
-  link: "http://bit.ly/not-solid"
+  link: "https://transactions.sendowl.com/products/78171065/D912B8A8/add_to_cart"
   image: "/images/not-solid-cover.png"
   cta: "Buy Now $5.99"
 related:

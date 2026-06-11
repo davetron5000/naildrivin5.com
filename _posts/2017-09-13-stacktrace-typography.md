@@ -2,12 +2,6 @@
 layout: post
 title: "Stacktrace Typography"
 date: 2017-09-13 9:00
-ad:
-  title: "Full Stacktrace Development"
-  subtitle: "Rails + a real Database == Productivity"
-  link: "http://bit.ly/dcbang2"
-  image: "/images/dcbang2.jpg"
-  cta: "Buy Now $24.95"
 ---
 
 I'm not obsessed with typography, but I have a healthy respect for it.  I talked about [typography and source code](/blog/2013/05/17/source-code-typography.html) a while back and I'd like to revisit the subject, but focus on dreaded _stack traces_.  Stack traces happen when your code hits a situation it can't handle, and most programming languages give you a giant vomit of files and locations that are nigh unreadable.  Can we apply typographic principals to them to help us better understand why our code fails?
@@ -66,8 +60,6 @@ Here's a typical stack trace from Ruby:
  bin/rspec:17:in `load'
  bin/rspec:17:in `<main>'
 ```
-
-<div data-ad></div>
 
 Blech.  This is from a test failure.  We can see that the stack trace is formatted in a vague attempts at being useful: each frame of the
 stack is on one line, we can see the line numbers, full path, and name of the method.  In an attempt to make more sense of this,

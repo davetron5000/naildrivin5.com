@@ -5,7 +5,7 @@ date: 2019-11-14 9:00
 ad:
   title: "Is It all Too Serious?"
   subtitle: "Read The Snarky Take"
-  link: "http://bit.ly/buy-not-solid"
+  link: "https://transactions.sendowl.com/products/78171065/D912B8A8/add_to_cart"
   image: "/images/not-solid-cover.png"
   cta: "Buy Now $5.99"
 related:

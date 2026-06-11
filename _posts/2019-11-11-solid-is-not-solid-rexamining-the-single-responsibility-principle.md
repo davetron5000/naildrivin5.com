@@ -5,7 +5,7 @@ date: 2019-11-11 10:30
 ad:
   title: "Want a Sillier Take?"
   subtitle: "More Snark, Less Code"
-  link: "http://bit.ly/buy-not-solid"
+  link: "https://transactions.sendowl.com/products/78171065/D912B8A8/add_to_cart"
   image: "/images/not-solid-cover.png"
   cta: "Buy Now $5.99"
 related:

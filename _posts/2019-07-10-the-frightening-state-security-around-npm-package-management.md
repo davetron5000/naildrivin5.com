@@ -5,7 +5,7 @@ date: 2019-07-10 9:00
 ad:
   title: "Focus on Results"
   subtitle: "11 Practices You Can Start Doing Now"
-  link: "http://bit.ly/dcsweng"
+  link: "http://transactions.sendowl.com/products/24086/D8D2ED13/add_to_cart"
   image: "/images/sweng-cover.png"
   cta: "Buy Now $25"
 related:

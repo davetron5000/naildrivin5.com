@@ -5,7 +5,7 @@ date: 2020-01-22 9:00
 ad:
   title: "SOLID is Also Problematic"
   subtitle: "More Rules to Myopically Follow To Get Horrible Code"
-  link: "http://bit.ly/buy-not-solid"
+  link: "http://transactions.sendowl.com/products/24086/D8D2ED13/add_to_cart"
   image: "/images/not-solid-cover.png"
   cta: "Buy Now $5.99"
 related:
@@ -23,7 +23,7 @@ Writing [SOLID is not Solid][solidbook], I found the backstory and history of th
 They were far flimsier than I had expected, and much more vague in their prescription. The problem was in their
 couching as "principles" and the overcomplex code that resulted from their oversimplification.  Demeter is no different. It aims to help us manage coupling between classes, but when blindly applied to core classes and data structures, it leads to convoluted, over-de-coupled code that obscures behavior.
 
-[solidbook]: https://bit.ly/not-solid
+[solidbook]: https://solid-is-not-solid.com
 
 ## What *is* this Law of Demeter?
 

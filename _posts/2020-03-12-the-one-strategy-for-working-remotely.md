@@ -5,7 +5,7 @@ date: 2020-03-12 9:00
 ad:
   title: "Get Things Done"
   subtitle: "11 Practices You Can Start Doing Now"
-  link: "http://bit.ly/dcsweng"
+  link: "http://transactions.sendowl.com/products/24086/D8D2ED13/add_to_cart"
   image: "/images/sweng-cover.png"
   cta: "Buy Now $25"
 related:

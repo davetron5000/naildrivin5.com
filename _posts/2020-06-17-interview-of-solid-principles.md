@@ -18,4 +18,4 @@ much as I can to avoid it being mis-applied.  It's not easy and I don't always d
 of it. Even if my advice boils down to "it worked for me, anyway", that's better than "I haven't tried it, but it seems neat".
 
 [link]: https://dmv.myhatchpad.com/insight/what-coding-patterns-should-you-actually-pay-attention-to/
-[solid-book]: http://bit.ly/not-solid
+[solid-book]: https://solid-is-not-solid.com

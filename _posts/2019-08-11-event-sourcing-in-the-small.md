@@ -5,7 +5,7 @@ date: 2019-08-14 8:00
 ad:
   title: "Make the Right Decisions"
   subtitle: "11 Practices to Help You Evaluate Technology"
-  link: "http://bit.ly/dcsweng"
+  link: "http://transactions.sendowl.com/products/24086/D8D2ED13/add_to_cart"
   image: "/images/sweng-cover.png"
   cta: "Buy Now $25"
 related:

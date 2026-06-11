@@ -4,7 +4,7 @@ layout: post
 ad:
   title: "SOLID Doesn't Help"
   subtitle: "Learn how much worse it makes things"
-  link: "http://bit.ly/not-solid"
+  link: "https://transactions.sendowl.com/products/78171065/D912B8A8/add_to_cart"
   image: "/images/not-solid-cover.png"
   cta: "Buy Now $5.99"
 ---

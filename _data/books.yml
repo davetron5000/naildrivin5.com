@@ -29,8 +29,8 @@ inprint:
     ad_id: "solid"
     subtitle: "Five Object-Oriented Principles to Create a Codebase Everyone will Hate"
     image: /images/not-solid-cover.png
-    site: "http://bit.ly/not-solid"
-    buy_link: "http://bit.ly/buy-not-solid"
+    site: "https://solid-is-not-solid.com"
+    buy_link: "https://transactions.sendowl.com/products/78171065/D912B8A8/add_to_cart"
     self_published: true
     publication_date: "Aug 2019"
     length: 100 pages
