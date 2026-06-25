@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume of David Copeland</title>
+    <meta name="description" content="Resume of David Copeland">
+    <meta name="color-scheme" content="light dark">
+    <meta property="og:title" content="Resume of David Copeland">
+    <meta property="og:description" content="Experienced Hands-on Technical Leader Focused on Results and Outcomes">
+    <meta property="og:type" content="profile">
+    <meta property="og:url" content="https://yourdomain.com/">
+    <meta property="og:image" content="https://yourdomain.com/preview.png">
+    <link rel="stylesheet" href="brut.css">
+    <style>
+
+@font-face {
+  font-family: "Fraunces";
+  src: url("fonts/Fraunces-VariableFont.ttf") format("truetype-variations");
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Fraunces";
+  src: url("fonts/Fraunces-Italic-VariableFont.ttf") format("truetype-variations");
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inconsolata";
+  src: url("fonts/Inconsolata-VariableFont.ttf") format("truetype-variations");
+  font-display: swap;
+}
+
+
+:root {
+  /* Fraunces ideally, but falling back to the modernfontstacks.com "Antique" stack */
+  --ff-sans: Fraunces, 'Bookman Old Style', 'URW Bookman', 'URW Bookman L', 'Georgia Pro', Georgia, serif; 
+  --ff-mono:  Inconsolata, 'Nimbus Mono PS', 'Courier New', monospace;
+
+  --background-color: #FEFEF9;
+  --color: #141303;
+  --link-color: var(--blue-400);
+  --link-hover-color: var(--blue-500);
+  --link-active-color: var(--red-400);
+  --link-alt-color: var(--orange-300);
+  --de-emphasized-color: var(--gray-400);
+  --de-de-emphasized-color: var(--gray-600);
+  --font-weight-bold: 900;
+  --font-weight-semibold: 700;
+  --font-weight-semibold-ish: 600;
+  --font-weight-light: 300;
+  --nav-border-color: var(--gray-600);
+  --link-color-muted: var(--gray-200);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color: #FEFEF9;
+    --background-color: #141303;
+    --link-color: var(--blue-700);
+    --link-hover-color: var(--blue-600);
+    --link-active-color: var(--red-400);
+    --link-alt-color: var(--orange-700);
+    --de-emphasized-color: var(--gray-600);
+    --de-de-emphasized-color: var(--gray-400);
+    --font-weight-bold: 900;
+    --font-weight-semibold: 700;
+    --font-weight-semibold-ish: 600;
+    --font-weight-light: 300;
+    --nav-border-color: var(--gray-400);
+    --link-color-muted: var(--gray-700);
+  }
+}
+@media (prefers-contrast: more) {
+  :root {
+    --font-weight-light: 400;
+    --background-color: #FFFFFA;
+    --color: #101000;
+    --de-de-emphasized-color: var(--gray-500);
+  }
+}
+@media (prefers-contrast: more) and (prefers-color-scheme: dark) {
+  :root {
+    --background-color: #101000;
+    --color: #FFFFFA;
+    --de-de-emphasized-color: var(--gray-500);
+  }
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--color);
+}
+
+h1, h2, h3, h4, h5, h6, dl, dt, dd {
+  margin: 0;
+  font-weight: normal;
+}
+ul {
+  padding: 0;
+}
+a, a:visited {
+  color: var(--link-color);
+}
+a:hover {
+  color: var(--link-hover-color);
+}
+a:active {
+  color: var(--link-active-color);
+}
+p {
+  margin-top: var(--sp-3);
+  margin-bottom: var(--sp-3);
+}
+h2 {
+  font-size: var(--fs-3);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-tracked);
+  font-weight: var(--font-weight-semibold);
+  &:before {
+    content: "§ ";
+    font-weight: var(--font-weight-light);
+    color: var(--de-emphasized-color);
+  }
+}
+body > header {
+  margin-top: var(--fs-3);
+  margin-bottom: var(--fs-3);
+  border-bottom: solid thin var(--de-de-emphasized-color);
+  h1 {
+    font-size: var(--fs-6);
+    font-weight: var(--font-weight-semibold);
+  }
+  > p {
+    font-size: var(--fs-4);
+    font-style: italic;
+    font-weight: var(--font-weight-light);
+    margin-bottom: 0;
+    margin-top: var(--sp-1);
+  }
+  address {
+    font-style: normal;
+    ul {
+      display: flex;
+      align-items: baseline;
+      flex-wrap: wrap;
+      list-style-type: none;
+      column-gap: var(--sp-3);
+      row-gap: var(--sp-1);
+      li:first-of-type {
+        flex-basis: 100%;
+      }
+    }
+    a {
+      font-family: var(--ff-mono);
+    }
+  }
+  nav ul {
+    list-style-type: none;
+    display: flex;
+    align-items: baseline;
+    width: max-content;
+    gap: var(--sp-3);
+    li {
+      text-transform: uppercase;
+      letter-spacing: var(--ls-tracked);
+      font-size: var(--fs-0);
+      a {
+        color: var(--link-color-muted);
+      }
+      &:before {
+        content: "§ ";
+        color: var(--de-de-emphasized-color);
+      }
+    }
+  }
+}
+footer {
+  padding-top: var(--sp-8);
+}
+dbc-experience {
+  display: block;
+  padding-top: var(--sp-3);
+  nav {
+    max-width: var(--tw-wide);
+    ul { 
+      list-style-type: none;
+      display: flex;
+      flex-wrap: wrap;
+      column-gap: var(--sp-2);
+      row-gap: var(--sp-1);
+      li {
+        a {
+          font-size: var(--fs-1);
+          color: var(--link-alt-color);
+        }
+        a:visited {
+          color: var(--link-alt-color);
+        }
+      }
+    }
+  }
+  article {
+    padding-bottom: var(--sp-4);
+    margin-left: var(--sp-3);
+    header {
+      dl {
+        dt { 
+          position: absolute;
+          left: -10000px;
+          top: auto;
+          width: 1px;
+          height: 1px;
+          overflow: hidden;
+        }
+        dd {
+          font-weight: var(--font-weight-light);
+          a {
+            font-family: var(--ff-mono);
+            font-weight: normal;
+          }
+        }
+      }
+
+      h3 {
+        font-size: var(--fs-5);
+        font-weight: var(--font-weight-semibold-ish);
+        margin-bottom: var(--sp-2);
+        line-height: var(--lh-solid);
+      }
+    }
+    > ul {
+      list-style-type: none;
+      h4 {
+        font-size: var(--fs-4);
+        font-weight: var(--font-weight-bold);
+        letter-spacing: calc(var(--ls-tracked) / 2);
+        margin-top: var(--sp-4);
+      }
+      li > p {
+        font-size: var(--fs-3);
+        max-width: var(--tw);
+        line-height: 1.4;
+      }
+      li > p:first-of-type {
+        margin-top: 0;
+        color: var(--de-emphasized-color);
+        font-size: var(--fs-1);
+      }
+      li ul li summary, li ul li {
+        max-width: var(--tw);
+        line-height: 1.4;
+        font-size: var(--fs-2);
+      }
+      li ul {
+        list-style-position: inside;
+        li {
+          margin-bottom: var(--sp-1);
+        }
+      }
+      li ul:has(li details) {
+        list-style-position: outside;
+        list-style-type: none;
+      }
+      li ul details p {
+        margin-left: var(--sp-3);
+        font-size: var(--fs-1);
+        font-weight: var(--font-weight-light);
+      }
+      li ul details summary {
+        cursor: pointer;
+      }
+    }
+    &:after {
+      content: "❧";
+      display: block;
+      font-size: var(--fs-4);
+      color: var(--de-emphasized-color);
+    }
+  }
+}
+@media screen and (min-width: 30em) {
+  dbc-experience {
+    article {
+      header {
+        display: flex;
+        align-items: baseline;
+        gap: var(--sp-3);
+        h3 {
+          margin-bottom: var(--sp-1);
+        }
+        dl {
+          display: flex;
+          align-items: baseline;
+          gap: var(--sp-3);
+        }
+      }
+    }
+  }
+}
+
+#books {
+  padding-top: var(--sp-3);
+  ul {
+    list-style-type: none;
+    padding-left: var(--sp-3);
+    h3 {
+      padding-top: var(--sp-2);
+      font-size: var(--fs-4);
+      font-style: italic;
+      font-weight: var(--font-weight-light);
+      color: var(--de-emphasized-color);
+      margin-bottom: var(--sp-1);
+      line-height: var(--lh-solid);
+    }
+    [role=none] {
+      display: none;
+    }
+    li > p {
+      margin-top: 0;
+      color: var(--de-emphasized-color);
+      font-size: var(--fs-2);
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-2);
+      line-height: 1;
+      time {
+        margin-bottom: var(--sp-1);
+      }
+      a {
+        font-family: var(--ff-mono);
+        font-weight: normal;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 30em) {
+  #books {
+    ul {
+      [role=none] {
+        display: inline;
+      }
+      li > p {
+        flex-direction: row;
+      }
+    }
+  }
+}
+
+#skills {
+  padding-top: var(--sp-3);
+  h3 {
+    font-size: var(--fs-4);
+    font-style: italic;
+    font-weight: var(--font-weight-semibold-ish);
+    margin-left: var(--sp-3);
+    margin-top: var(--sp-3);
+    margin-bottom: var(--sp-1);
+    line-height: var(--lh-solid);
+  }
+
+  ul {
+    list-style-type: none;
+    margin-left: var(--sp-3);
+  }
+  ul:first-of-type {
+    columns: 2;
+    column-gap: var(--sp-4);
+    font-size: var(--fs-2);
+    li {
+      line-height: 1.2;
+      margin-bottom: var(--sp-3);
+    }
+  }
+  ul:last-of-type {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: var(--sp-3);
+    row-gap: var(--sp-2);
+    max-width: var(--tw-wide);
+    li {
+      font-family: var(--ff-mono);
+      font-size: var(--fs-1);
+      border: solid thin var(--de-emphasized-color);
+      border-radius: var(--bw-2);
+      padding-left: var(--sp-2);
+      padding-right: var(--sp-2);
+      padding-top: var(--sp-1);
+      padding-bottom: var(--sp-1);
+      &[is-strong] {
+        border-width: var(--bw-1);
+        font-weight: var(--font-weight-semibold);
+      }
+      &[is-old] {
+        border-color: var(--de-de-emphasized-color);
+        font-weight: var(--font-weight-light);
+      }
+      &:last-of-type {
+        font-family: var(--ff-sans);
+        border: none;
+        font-style: italic;
+        flex-basis: 100%;
+        padding-top: 0;
+          &:before {
+            content: "☞ ";
+            font-size: var(--fs-2);
+          }
+      }
+    }
+  }
+}
+@media screen and (min-width: 30em) {
+  #skills {
+    ul:first-of-type {
+      column-gap: var(--sp-6);
+      li {
+        margin-bottom: var(--sp-2);
+      }
+    }
+  }
+}
+#education {
+  padding-top: var(--sp-3);
+  h3 {
+    font-size: var(--fs-4);
+    font-style: italic;
+    font-weight: var(--font-weight-semibold-ish);
+    margin-top: var(--sp-3);
+    line-height: var(--lh-solid);
+  }
+
+  ul {
+    list-style-type: none;
+    li {
+      margin-left: var(--sp-3);
+      > p:first-of-type {
+        font-size: var(--fs-2);
+        margin: 0;
+        margin-top: var(--sp-1);
+      }
+      > p:last-of-type {
+        margin-top: 0;
+        color: var(--de-emphasized-color);
+        font-size: var(--fs-1);
+      }
+    }
+  }
+}
+
+@media print {
+  :root {
+    --link-color: var(--gray-200);
+    --link-alt-color: var(--gray-200);
+    --fs-0:0.575rem;
+    --fs-1:0.675rem;
+    --fs-2:0.875rem;
+    --fs-3:1rem;
+    --fs-4:1.25rem;
+    --fs-5:1.5rem;
+    --fs-6:2.25rem;
+    --fs-7:3rem;
+    --fs-8:4.25rem;
+    --fs-9:5rem;
+    --sp-1:0.125rem;
+    --sp-2:0.25rem;
+    --sp-3:0.5rem;
+    --sp-4:1rem;
+    --sp-5:2rem;
+    --sp-6:4rem;
+    --sp-7:8rem;
+    --sp-8:12rem;
+    --tw:60ch;
+    --tw-wide:75ch;
+    --tw-narrow:50ch;
+    --lh-solid:1;
+    --lh-title:1.25;
+    --lh-copy:1.5
+  }
+  nav {
+    display: none;
+  }
+  dbc-experience {
+    article header, article > ul li {
+      break-inside: avoid;
+    }
+    article {
+      header {
+        h3 {
+          font-size: var(--fs-6);
+          margin-bottom: var(--sp-4);
+        }
+      }
+      > ul > li {
+        margin-left: var(--sp-5);
+      }
+      &:after {
+        display: none;
+      }
+    }
+  }
+  #skills {
+    break-inside: avoid;
+    h3 {
+      font-size: var(--fs-3);
+    }
+  }
+  #books, #education {
+    > ul li {
+      break-inside: avoid;
+    }
+  }
+}
+@page {
+  size: letter;
+  margin: 0.25in;
+}
+    </style>
+  </head>
+  <body class="ff-sans mh-auto w-90 w-70-ns">
+    <header>
+      <h1>David Bryant Copeland</h1>
+      <p>Experienced Hands-on Technical Leader</p>
+
+      <address>
+        <ul>
+          <li>Washington, DC</li>
+          <li><a href="mailto:davec@naildrivin5.com">davec@naildrivin5.com</a></li>
+          <li role="none">•</li>
+          <li><a href="https://linkedin.com/in/davidcopeland">linkedin.com/in/davidcopeland</a></li>
+          <li role="none">•</li>
+          <li><a href="https://github.com/davetron5000">github.com/davetron5000</a></li>
+          <li role="none">•</li>
+          <li><a href="https://naildrivin5.com">naildrivin5.com</a></li>
+        </ul>
+      </address>
+      <nav>
+        <ul>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#books">Books</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#education">Education</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <dbc-experience id="experience">
+        <h2>Experience</h2>
+        <nav id="jobs"></nav>
+
+        <article id="experience-Mood" >
+          <header>
+            <h3>Mood Health</h3>
+            <dl>
+              <dt>Location</dt>
+              <dd>Remote</dd>
+
+              <dt>URL</dt>
+              <dd><a href="https://moodhealth.com">moodhealth.com</a></dd>
+            </dl>
+          </header>
+          <ul>
+            <li>
+              <h4>Chief Technology Officer and Co-Founder</h4>
+              <p>
+                <time datetime="2020-05">May 2020</time>
+                –
+                <time datetime="2023-02">February 2023</time>
+              </p>
+              <p>
+                Oversaw all technology and product development for a HIPAA-compliant, remote mental health business. Technical portfolio included practice and prescription management SAAS, patient support portal, custom appointment management back-end, HQ and provider hardware, and custom integration with major health insurance companies.
+              </p>
+              <ul>
+                <li>
+                  <details>
+                    <summary>Integrated health-insurance billing to vastly increase customer acquisition, customer retention, and revenue</summary>
+                    <p>
+                      Mood was initially conceived as a private pay service, however this made customer acquisition and retention extremely difficult.  Working with a third party API (Candid Health), we were able to launch a full integration with major insurance companies in four months. 
+                    </p>
+                    <p>
+                      Since we owned the patient experience <strong>and</strong> the patient support side of things, we were able to dial in internal processes for a good patient experience without creating a large burden on support staff.
+                    </p>
+                  </details>
+                </li>
+                <li>
+                  <details>
+                    <summary>Increased appointment attendance with custom email and SMS reminder system.</summary>
+                    <p>Our existing practice management system had only rudimentary logic for appointment reminders.  We were able to use a custom back-end to send reminders on a different schedule (based on testing with our patients), as well as to use different channels and messaging, depending on the patient's situation. For example, new patients who didn't engage with reminders resulted in a patient support ticket to trigger a manual contact to make sure the patient understood what was going on.
+                    </p>
+                    <p>
+                      This reduced our no-show rates significantly. No-shows for first visits are quite expensive since they are long visits and hard to fill at the last minute.  Further, some insurances forbid charging missed appointment fees, so we focused on getting patients to their appointments, not using late fees as a revenue source.
+                    </p>
+                  </details>
+                </li>
+                <li>
+                  <details>
+                    <summary>Increased patient support efficiency and revenue with custom credit card decline resolution and automated patient support outreach.</summary>
+                    <p>While we used Stripe to store cards and automate charges for service (or for co-pays), handling declines required a more customized approach.  Working with patient support to understand patient behavior, we built a system that balanced automatic retries with patient outreach.</p>
+                    <p>
+                      We wanted to ensure no one was cancelled by an automated system without a real person trying to contact them, but we didn't want the billing team to have to manually triage all declines.  We ultimately devised a process with some automation and some manual intervention that reduced billing team burden while increasing revenue and avoiding churn.
+                    </p>
+                  </details>
+                </li>
+                <li>
+                  <details>
+                    <summary>Decreased billing and insurance specialist burden with custom insurance integration logic.</summary>
+                    <p>It's extremely difficult to determine if the insurance info someone has provided actually covered the care we provided. Each insurance company works differently, and the system that provides feedback on who is covered for what is not well-documented, nor well-behaved.</p>
+                    <p>Rather than have our insurance specialists call the insurance companies for every new patient before every appointment, we created a system to automate coverage checks and analyze the results for confidence.  Some patients were obviously covered, so could proceed to their first appointment with no intervention.  Others produced nebulous results requiring manual intervention.</p>
+                    <p>The process we built reduced manual interventions significantly, and surfaced problems (patients who were not covered) quickly to avoid a bad patient experience.</p>
+                  </details>
+                </li>
+                <li>
+                  <details>
+                    <summary>HIPAA-compliance achieved early by judicious use of simple controls and processes while allowing the team to remain agile.</summary>
+                    <p>Despite our small size, we wanted to set the foundation for good security and privacy practices early on.  We engaged with an outside firm to analyze our IT systems and plan out changes to reduce the risks of HIPAA violations.</p>
+                    <p>
+                      Much of the work was documenting processes and procedures for existing staff, however our custom IT systems I was building also needed addressing.  As a team of one, I automated as much as I could through static analysis and scaffolding scripts, as well as lightweight documentation.
+                    </p>
+                    <p>
+                      I reviewed our systems quarterly with the COO, and yearly with the CEO.  The overall effort was minimal for the impact and risk-reduction we achieved.  We avoided onerous approval processes, and flagged solutions that would be affected by scale for yearly review.
+                    </p>
+                  </details>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </article>
+        <article id="experience-ThirdTank" >
+          <header>
+            <h3>Third Tank, LLC (Self)</h3>
+            <dl>
+              <dt>Location</dt>
+              <dd>Remote</dd>
+
+              <dt>URL</dt>
+              <dd><a href="https://thirdtank.com">thirdtank.com</a></dd>
+            </dl>
+          </header>
+          <ul>
+            <li>
+              <h4>Consulting CTO</h4>
+              <p>
+                <time datetime="2019-06">June 2019</time>
+                –
+                <time datetime="2020-05">May 2020</time>
+              </p>
+              <p>
+                Consulted with startups and founders on technical &amp; product strategy. Helped with technical architecture, hiring plans, interviewing, and roadmap planning.
+              </p>
+              <ul>
+                <li>
+                  Designed high-level architecture to facilitate technology choice and hiring for a pre-revenue healthcare startup.
+                </li>
+                <li>
+                  Analyzed software architectural and database design for a Series-B consumer products startup.
+                </li>
+                <li>
+                  Created hiring plan &amp; interview rubrics and performed interviewing for a Series-B consumer products startup.
+                </li>
+                <li>
+                  Design and build finance and accounting subsystem for a pre-revenue philanthropic startup.
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </article>
+        <article id="experience-StitchFix" >
+          <header>
+            <h3>Stitch Fix</h3>
+            <dl>
+              <dt>Location</dt>
+              <dd>Remote</dd>
+
+              <dt>URL</dt>
+              <dd><a href="https://stitchfix.com">stitchfix.com</a></dd>
+            </dl>
+          </header>
+          <ul>
+            <li>
+              <h4>Chief Software Architect</h4>
+              <p>
+                <time datetime="2016-11">November 2016</time>
+                –
+                <time datetime="2019-06">May 2019</time>
+              </p>
+              <p>
+                Owned technical portfolio of 100+ person engineering team, set technical direction, drove development practices, and led company-wide technical changes such as SOX compliance, GDPR, and international expansion.
+              </p>
+              <ul>
+                <li>
+                  <details>
+                    <summary>Technical Lead on SOX Compliance in preparation for IPO. Led change across entire engineering org to maintain agile delivery but comply with regulations for a public company.</summary>
+                    <p>
+                      In the lead up to our IPO, we engaged with a consulting firm to analyze all systems, processes, and practices in the company to then change them to comply with SOX. Most of the engineering team's systems were considered in-scope and some changes would be required.
+                    </p>
+                    <p>
+                      Further, the source of truth for much of our financial data lived in these systems and was inconsistently consumed and interpreted by downstream members of finance, planning, merchandising, and operations.
+
+                    </p>
+                    <p>
+                      My job was to understand the requirements for SOX and propose, then manage, a series of projects to make changes in our systems and update our ways of working.  Technically, this was not a huge challenge. The hard part was addressing the underlying issues SOX-compliance seeks to solve without saddling the teams with onerous manual reviews and approvals for system changes.
+                    </p>
+                    <p>
+                      This also required a deep understanding of the finance and accounting parts of the business to ensure that the facts they needed to follow proper accounting principles were unambiguously available from our systems, changing them to do so if needed.
+                    </p>
+                    <p>
+                      We IPO'ed generally without incident.  The only material weaknesses relevant to this work were financial controls from before IPO that were still being remediate. All software engineering and data management practices were compliant by IPO and affected teams were not sufficiently slowed down by additional process.
+                    </p>
+                  </details>
+                </li>
+                <li>
+                  <details>
+                    <summary>Technical Lead on UK expansion and GDPR compliance. Delivered on time without incident, and without a death march.</summary>
+                    <p>
+                      After IPO, the company decided to expand into the UK.  Due to the way the fashion industry works, we had to launch at the start of Spring or Winter.  The change required accepting multiple currencies, adding new logistics providers for the UK, and GDPR compliance.
+                    </p>
+                    <p>
+                      At this point in company history, we had over 100 engineers, and a microservices architecture of nearly 100 services.  Many of them required changes to account for multiple currencies and the concept of customers being bifurcated by country - US clothes would not be shipped to the UK or vice-versa.
+                    </p>
+                    <p>
+                      I was given a team of 10 engineers plus a mandate to insert projects onto other teams roadmaps to get this done in time for a Spring launch.  This required significant management of technical change. I had to balance getting changes made by my team against allowing other teams to maintain ownership of changes to their systems.
+                    </p>
+                    <p>
+                      Since there was a hard deadline, I also spent a lot of time setting expectations with non-engineering functions about what would and would not be completed at launch. This was a collaborative process where each department worked with me on prioritizing the changes they needed.  We worked in priority order and launched what we had in the spring.
+                    </p>
+                    <p>
+                      The project was well over a year long and was completed largely without incident.  Everyone was happy with what was completed for lauch. Engineering teams didn't feel we'd dropped a ton of code on them to own, and the dedicated 10 person team never had to do the dreaded death march or crunch time.
+                    </p>
+                  </details>
+                </li>
+                <li>
+                  <details>
+                    <summary>Fostered development and implementation of engineering practices for a growing team. This included post-mortem/incident reviews, formalized process around design reviews, and the migration to a messaging-based architecture.</summary>
+                    <p>
+                      With several teams made up of engineers from diverse backgrounds and levels of experience, it was clear that implicit processes and leading by example would only go so far.  As the highest-level non-manager, I was able to coordinate people around areas where we needed improvement, and get those improvements made.
+                    </p>
+                    <p>
+                      For example, not everyone wrote design documents or reviewed them consistently.  Not everyone knew <strong>when</strong> to write one or not.  Rather than dictating the answer to the team, I built consensus across the senior individual contributors and managers to add small changes, then roll them out to other teams.
+                    </p>
+                    <p>
+                      I kept a list of issues like this and worked on them constantly while other work was going on.  My approach was to identify problems and goals while providing political cover (and occasional expertise) so teams could devise and roll out solutions.
+                    </p>
+                  </details>
+                </li>
+                <li>
+                  <details>
+                    <summary>Technical sponsor for migration from Heroku (PAAS) to AWS (IAAS). Migration was done without any downtime and no change to the developer experience.</summary>
+                    <p>
+                      We were outgrowing Heroku, but benefited greatly from the consistency resulting from its constraints and the richness of its tooling.  I hired a senior Platform Engineer and he and I worked to build a team of only three platform engineers to move us onto AWS.
+                    </p>
+                    <p>
+                      Our goal was to provide the same (or better) developer experience, and create the foundation for a Heroku-like experience, but backed by AWS (to allow for better control over scalability and performance).  The team designed and built a system based on ECS and RDS that worked almost exactly like Heroku from the developer perspective.
+                    </p>
+                    <p>
+                      At the time, we had about 30 apps and microservices, a large shared database, and many private databases.  The team created checklists for migrating each type of infrastructure, building support internally when needed.  They built a command-line app to provide access to the running systems.
+                    </p>
+                    <p>
+                      The last migration was www.stitchfix.com.  This was done without any downtime.  No developer complained about the tooling changes - some probably never really noticed at all.  The foundation that was built as part of this project allowed huge gains in developer productivity and drove consistency across our systems that made future projects such as SOX compliance, far simpler than they might have been.
+                    </p>
+                  </details>
+                </li>
+                <li>
+                  <details>
+                    <summary>Planned and executed bi-annual engineering summits that brought together our remote workforce for teambuilding, knowledge sharing, and planning.</summary>
+                    <p>
+                      Building a remote team solved tons of problems around hiring, diversity, and expertise.  But there are only some things that work in-person.  As the remote engineer with the most seniority (and thus a vested interest in remote work), I took the lead on engineering summits twice a year.
+                    </p>
+                    <p>
+                      While I didn't do it alone, I drove the organization, content, and activities to balance a diverse teams' needs against the company's budget-sensitivity.  Events were highly reviewed in post-attendance surveys, and I established a pattern of trust in keeping these events relevant, welcoming, valuable, and fun. It didn't require much programming skill, but did require empathy, active listening, and leading through influence.
+                    </p>
+                  </details>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <h4>Director of Engineering</h4>
+              <p>
+                <time datetime="2014-04">July 2014</time>
+                –
+                <time datetime="2016-11">November 2016</time>
+              </p>
+              <p>
+                Led engineering teams for distribution/logistics, finance, and platform engineering.  Ensured product roadmaps met business goals while developing managers and the engineers below them as the business grew 10X.  Worked to scale best practices established when we were smaller to a now larger team and larger technical portfolio.
+              </p>
+            </li>
+            <li>
+              <h4>Lead Software Engineer</h4>
+              <p>
+                <time datetime="2013-02">February 2013</time>
+                –
+                <time datetime="2014-04">July 2014</time>
+              </p>
+              <p>
+                Starting from scratch, built custom warehouse management system that accomodated our unusual logistics and customer experience.  The system was built with Ruby, Rails, Postgres, and AngularJS.  It powered all shipments, inventory management, and returns.  It scaled from a 20 person operation in downtown San Francisco to over 1 million square feet of warehouse space across the country.
+              </p>
+              <p>
+                I designed, built, and maintained this system, acting as lead engineer and product manager.  I worked closely with the operations team, warehouse associates, and customer service specialists to meet business goals, improve accuracy of inventory data, and provide a smooth internal customer experience.
+              </p>
+            </li>
+          </ul>
+        </article>
+        <article id="experience-LivingSocial" >
+          <header>
+            <h3>LivingSocial</h3>
+            <dl>
+              <dt>Location</dt>
+              <dd>Washington, DC</dd>
+            </dl>
+          </header>
+          <ul>
+            <li>
+              <h4>Lead Software Engineer</h4>
+              <p>
+                <time datetime="2011-10">Oct 2011</time>
+                –
+                <time datetime="2013-01">January 2013</time>
+              </p>
+              <p>
+                Lead engineer on payments systems and purchase flow.  Using JRuby and Resque, extracted credit card authorization and charging flow to a separate REST-based microservice.  Performance improved 100x in order to handle Black Friday 2011.  The system had near zero failures and no downtime during the event.  Managed a team of three on purchase flow optimizations.
+              </p>
+            </li>
+          </ul>
+        </article>
+        <article id="experience-OPOWER" >
+          <header>
+            <h3>OPOWER</h3>
+            <dl>
+              <dt>Location</dt>
+              <dd>Arlington, VA</dd>
+
+              <dt>URL</dt>
+              <dd><a href="https://opower.com">opower.com</a> (now part of Oracle)</dd>
+            </dl>
+          </header>
+          <ul>
+            <li>
+              <h4>Principal Engineer</h4>
+              <p>
+                <time datetime="2011-04">April 2011</time>
+                –
+                <time datetime="2011-10">October 2011</time>
+              </p>
+              <p>
+                Tech lead for Rails-based social app and API to help energy customers engage with their data in support of the company's behavior science methodology.
+              </p>
+            </li>
+            <li>
+              <h4>Engineering Lead</h4>
+              <p>
+                <time datetime="2009">2009</time>
+                –
+                <time datetime="2011-04">April 2011</time>
+              </p>
+              <p>
+                Tech lead for web product aimed at energy customers of partner energy companies.  Led team of three engineers and two QA analysts to establish development practices while meeting product design requirements as well as business development needs.  System used Java, Spring, and Hibernate to integrate with existing back-end energy data and analysis.
+              </p>
+            </li>
+            <li>
+              <h4>Senior Java Engineer</h4>
+              <p>
+                <time datetime="2008">2008</time>
+                –
+                <time datetime="2009">2009</time>
+              </p>
+              <p>
+                Designed and developed new features for our energy-efficiency product, as well as the infrastructure to load and analyze fine-grained energy usage readings for millions of utility company customers.
+              </p>
+            </li>
+          </ul>
+        </article>
+        <article id="experience-Gliffy" >
+          <header>
+            <h3>Gliffy</h3>
+            <dl>
+              <dt>Location</dt>
+              <dd>Remote</dd>
+
+              <dt>URL</dt>
+              <dd><a href="https://gliffy.com">gliffy.com</a></dd>
+            </dl>
+          </header>
+          <ul>
+            <li>
+              <h4>Senior Software Engineer (consultant)</h4>
+              <p>
+                <time datetime="2007">2007</time>
+                –
+                <time datetime="2008">2008</time>
+              </p>
+              <p>
+                Developed REST API for Gliffy.com as well as various features and improvements.
+              </p>
+            </li>
+          </ul>
+        </article>
+        <article id="experience-PAC" >
+          <header>
+            <h3>Provident Analysis Corporation</h3>
+            <dl>
+              <dt>Location</dt>
+              <dd>Washington, DC</dd>
+            </dl>
+          </header>
+          <ul>
+            <li>
+              <h4>Technical Architect</h4>
+              <p>
+                <time datetime="2006">2006</time>
+                –
+                <time datetime="2007">2007</time>
+              </p>
+              <p>
+                Worked with Maritime Administration (MARAD) at the Department of Transportation (DOT) to provide enterprise architecture analysis.
+              </p>
+            </li>
+            <li>
+              <h4>Senior Software Engineer</h4>
+              <p>
+                <time datetime="2002">2002</time>
+                –
+                <time datetime="2006">2006</time>
+              </p>
+              <p>
+                Development lead and senior engineer on a system for the US Marshals Service to manage databases and processes across all districts.  Designed and built la system for the Department of State to manage Visa waivers.
+              </p>
+            </li>
+          </ul>
+        </article>
+        <article id="experience-NOVO" >
+          <header>
+            <h3>Semaphore Partners / NOVO / Publicis</h3>
+            <dl>
+              <dt>Location</dt>
+              <dd>San Francisco, CA</dd>
+            </dl>
+          </header>
+          <ul>
+            <li>
+              <h4>Software Engineering Director / Software Engineer</h4>
+              <p>
+                <time datetime="1997">1997</time>
+                –
+                <time datetime="2001">2001</time>
+              </p>
+              <p>
+                Software engineer on various client projects including Toyota.com and Avery Dennison. Managed the software engineering team to ensure consistent technical practices.
+              </p>
+            </li>
+          </ul>
+        </article>
+        <article id="experience-Evergreen" >
+          <header>
+            <h3>Evergreen Internet</h3>
+            <dl>
+              <dt>Location</dt>
+              <dd>Phoenix, AZ</dd>
+            </dl>
+          </header>
+          <ul>
+            <li>
+              <h4>Software Engineer</h4>
+              <p>
+                <time datetime="1997">1997</time>
+              </p>
+              <p>
+                Software engineer on company ecommerce platform.
+              </p>
+            </li>
+          </ul>
+        </article>
+        <article id="experience-RRI" >
+          <header>
+            <h3>Recognition Research</h3>
+            <dl>
+              <dt>Location</dt>
+              <dd>Phoenix, AZ</dd>
+            </dl>
+          </header>
+          <ul>
+            <li>
+              <h4>Software Engineer</h4>
+              <p>
+                <time datetime="1994">1994</time>
+                -
+                <time datetime="1996">1996</time>
+              </p>
+              <p>
+                Designed and maintained cross-platform build system for company's document processing/OCR platform.
+              </p>
+            </li>
+          </ul>
+        </article>
+      </section>
+      <section id="books">
+        <h2>Books</h2>
+        <ul>
+          <li>
+            <h3>Sustainable Dev Environments with Docker and Bash</h3>
+            <p>
+              <time datetime="2024-04">Apr 2024</time>
+              <span role="none">•</span>
+              <a href="https://devbox.computer">devbox.computer</a>
+              <span role="none">•</span>
+              (Self-published)
+            </p>
+          </li>
+
+          <li>
+            <h3>Ruby on Rails Background Jobs with Sidekiq</h3>
+            <p>
+              <time datetime="2023-10">Oct 2023</time> 
+              <span role="none">•</span>
+              <a href="https://sidekiqrails.com">sidekiqrails.com</a> 
+              <span role="none">•</span>
+              (Pragmatic Programmers)
+            </p>
+          </li>
+
+          <li>
+            <h3>Sustainable Web Development with Ruby on Rails</h3>
+            <p>
+              <time datetime="2020-01">Jan 2020</time> 
+              <span role="none">•</span>
+              <a href="https://sustainable-rails.com">sustainable-rails.com</a> 
+              <span role="none">•</span>
+              (Self-published)
+            </p>
+          </li>
+
+          <li>
+            <h3>SOLID is not Solid</h3>
+            <p>
+              <time datetime="2019-08">Aug 2019</time> 
+              <span role="none">•</span>
+              <a href="https://solid-is-not-solid.com">solid-is-not-solid.com</a> 
+              <span role="none">•</span>
+              (Self-published)
+            </p>
+          </li>
+          <li>
+            <h3>The Senior Software Engineer</h3>
+            <p><a href="http://theseniorsoftwareengineer.com/">theseniorsoftwareengineer.com</a> 
+              <span role="none">•</span>
+              (Self-published)
+            </p>
+          </li>
+
+          <li>
+            <h3>Agile Web Development With <span class="nowrap">Rails 6</span> (co-author)</h3>
+            <p>(Pragmatic Programmers) </p>
+          </li>
+
+          <li>
+            <h3>Build Awesome Command-Line Apps in <span class="nowrap">Ruby 2</span></h3>
+            <p>(Pragmatic Programmers)
+            </p>
+          </li>
+
+          <li>
+            <h3>Rails, Angular, Postgres, and Bootstrap</h3>
+            <p>(Pragmatic Programmers)
+            </p>
+          </li>
+
+          <li>
+            <h3>Agile Web Development With Rails 5.1 (co-author)</h3>
+            <p>(Pragmatic Programmers)
+            </p>
+          </li>
+        </ul>
+      </section>
+
+      <section id="skills">
+        <h2>Skills</h2>
+        <h3>Strategic</h3>
+        <ul>
+          <li>Agile Retrospectives</li>
+          <li>Career Management</li>
+          <li>Cybersecurity</li>
+          <li>Documentation</li>
+          <li>GDPR</li>
+          <li>HIPAA</li>
+          <li>Leading through Influence</li>
+          <li>Organization Design</li>
+          <li>Process Design</li>
+          <li>Product Management</li>
+          <li>Roadmap Planning</li>
+          <li>SOX</li>
+          <li>Team Management</li>
+        </ul>
+        <h3>Tactical</h3>
+        <ul>
+          <li>AWS</li> 
+          <li>Bash</li> 
+          <li is-strong>CSS</li> 
+          <li>Docker</li> 
+          <li is-strong>Heroku</li> 
+          <li is-strong>HTML</li> 
+          <li is-strong>HTTP</li> 
+          <li>Git</li> 
+          <li>GitHub</li> 
+          <li is-old>Java</li> 
+          <li is-strong>JavaScript</li> 
+          <li is-old>JEE</li> 
+          <li>LaTeX</li> 
+          <li is-strong>Markdown</li> 
+          <li>Microservices</li> 
+          <li is-old>Perl</li> 
+          <li is-strong>Postgres</li> 
+          <li>RabbitMQ</li> 
+          <li is-strong>Rails</li> 
+          <li>Redis/ValKey</li> 
+          <li>Resque</li> 
+          <li is-strong>REST</li> 
+          <li is-strong>Ruby</li> 
+          <li is-strong>Sidekiq</li> 
+          <li is-old>Spring</li> 
+          <li is-strong>SQL</li> 
+          <li is-old>Swing</li> 
+          <li is-strong>Technical Writing</li> 
+          <li>Web Components</li> 
+          <li>Probably more - I've been doing this for 30 years</li>
+        </ul>
+      </section>
+      <section id="education">
+        <h2>Education</h2>
+
+        <ul>
+          <li>
+            <h3>Arizona State University (ASU)</h3>
+            <p>MS, Computer Science</p>
+            <p>
+              <time datetime="1997">1997</time>
+            </p>
+          </li>
+
+          <li>
+            <h3>Virginia Polytechnic Institute and State University (Virginia Tech)</h3>
+            <p>BS, Computer Science</p>
+            <p>
+              <time datetime="1995">1995</time>
+            </p>
+          </li>
+
+          <li>
+            <h3>Thomas Jefferson High School for Science and Technology</h3>
+            <p>
+              <time datetime="1991">1991</time>
+            </p>
+          </li>
+        </ul>
+      </section>
+
+    </main>
+    <footer>
+    </footer>
+  </body>
+  <script>
+    class ExperienceElement extends HTMLElement {
+      connectedCallback() {
+        const nav = document.getElementById("jobs")
+        if (!nav) {
+          console.warn("No <nav> - nowhere to insert anything!")
+          return;
+        }
+
+        nav.innerHTML = ""
+        nav.setAttribute("aria-label", "Experience")
+
+        const list = document.createElement("ul")
+        this.#jobs.forEach( ({id,title}, index, array) => {
+
+          if (index != 0) {
+            list.appendChild(this.#dot())
+          }
+
+          list.appendChild(this.#navLink(id,title))
+
+        })
+
+        nav.appendChild(list)
+      }
+
+      get #jobs() {
+        const jobs = []
+        this.querySelectorAll("article").forEach( (article) => {
+          const h3 = article.querySelector("h3")
+          if (h3 && article.id) {
+            jobs.push({
+              id: article.id,
+              title: h3.textContent,
+            })
+          }
+          else {
+            console.warn("<article> without id or h3 found - can't use it: %o", article)
+          }
+        })
+        return jobs
+      }
+
+      #dot() {
+        const dot = document.createElement("li")
+        dot.setAttribute("role", "none")
+        dot.textContent = "•"
+        return dot;
+      }
+      #navLink(id,title) {
+        const li = document.createElement("li")
+        const a = document.createElement("a")
+        a.href = `#${id}`
+        a.textContent = title
+        li.appendChild(a)
+        return li
+      }
+    }
+
+    customElements.define("dbc-experience", ExperienceElement)
+
+  </script>
+</html>
+
