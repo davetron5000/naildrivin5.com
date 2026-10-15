@@ -96,6 +96,29 @@ hr {
 .light {
   color: lighten($ink,30%);
 }
+aside.please-be-aware::before {
+  content: "☞";
+  flex: none;
+}
+aside.please-be-aware {
+  display: flex;
+  align-items: center;
+  gap: $sz2;
+  padding-top: $sz3;
+  padding-bottom: $sz3;
+  padding-left: $sz2;
+  padding-right: $sz2;
+  border-radius: $sz3;
+  background-color: lighten($ink,15%);
+  color: $paper;  
+  p {
+    font-size: 90%;
+    a {
+      color: $paper;
+    }
+  }
+}
+
 aside.promo {
   border-radius: $sz4;
   border:solid thin;

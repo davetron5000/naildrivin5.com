@@ -582,6 +582,26 @@ hr {
 .light {
   color: #645264; }
 
+aside.please-be-aware::before {
+  content: "☞";
+  flex: none; }
+
+aside.please-be-aware {
+  display: flex;
+  align-items: center;
+  gap: 25.2px;
+  padding-top: 12.6px;
+  padding-bottom: 12.6px;
+  padding-left: 25.2px;
+  padding-right: 25.2px;
+  border-radius: 12.6px;
+  background-color: #3a2f3a;
+  color: #fffeff; }
+  aside.please-be-aware p {
+    font-size: 90%; }
+    aside.please-be-aware p a {
+      color: #fffeff; }
+
 aside.promo {
   border-radius: 6.3px;
   border: solid thin;
