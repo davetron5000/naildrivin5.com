@@ -1,12 +1,13 @@
 source "https://gem.coop"
 
-gem "github-pages"
 gem "foreman"
-gem "jekyll"#, "< 4.0.0"
+gem "jekyll"
+gem "jekyll-paginate"
 #gem "mcdouble"
 
 group :development do
   gem "webrick"
   gem "sass"
   gem "rake"
+  gem "activesupport"
 end
