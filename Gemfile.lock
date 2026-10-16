@@ -309,7 +309,7 @@ PLATFORMS
 DEPENDENCIES
   foreman
   github-pages
-  jekyll (< 4.0.0)
+  jekyll
   rake
   sass
   webrick
