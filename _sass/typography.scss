@@ -163,7 +163,7 @@ blockquote {
   margin: 0;
   padding-left: $sz3;
   font-style: italic;
-  border-left: 4px solid lighten($ink,75%);
+  border-left: 4px solid color-mix(in srgb, $ink 25%, white);
 }
 
 main {

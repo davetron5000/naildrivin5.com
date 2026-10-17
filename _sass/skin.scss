@@ -32,7 +32,7 @@ header.site-header {
   }
 }
 div.highlighter-rouge {
-  background: lighten($ink,5%);
+  background: color-mix(in srgb, $ink 95%, white);
   color: $paper;
   border-radius: $sz4;
   padding: $sz3;
@@ -70,7 +70,7 @@ table.border-rows {
   border-top: solid thin $ink;
 }
 .border-light {
-  border-color: lighten($ink,75%);
+  border-color: color-mix(in srgb, $ink 25%, white);
 }
 
 .button {
@@ -84,20 +84,20 @@ table.border-rows {
 }
 
 hr {
-  color: lighten($ink,75%);
+  color: color-mix(in srgb, $ink 25%, white);
 }
 
 .pill {
   padding: $sz3;
-  background: lighten($ink,92%);
+  background: color-mix(in srgb, $ink 8%, white);
   font-family: $sans;
   &:hover {
-    background: lighten($ink,87%);
+    background: color-mix(in srgb, $ink 13%, white);
   }
 }
 
 .light {
-  color: lighten($ink,30%);
+  color: color-mix(in srgb, $ink 70%, white);
 }
 aside.please-be-aware::before {
   content: "☞";
@@ -112,7 +112,7 @@ aside.please-be-aware {
   padding-left: $sz2;
   padding-right: $sz2;
   border-radius: $sz3;
-  background-color: lighten($ink,15%);
+  background-color: color-mix(in srgb, $ink 85%, white);
   color: $paper;  
   p {
     font-size: 90%;
@@ -136,7 +136,7 @@ aside.promo {
   }
 
   h2 {
-    color: lighten($ink,10%);
+    color: color-mix(in srgb, $ink 90%, white);
   }
 
   a {
@@ -158,8 +158,8 @@ aside.promo {
       border: solid thin grey;
       border-radius: $sz3;
       &:hover {
-        color: lighten($ink,20%);
-        background: darken($paper,1%);
+        color: color-mix(in srgb, $ink 80%, white);
+        background: color-mix(in srgb, $paper 99%, black);
       }
     }
   }

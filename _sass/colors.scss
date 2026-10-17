@@ -3,6 +3,6 @@ $ink: #100d10;
 $ink-light:  #665666;
 $background: #efffef;
 
-$background-gradient: lighten($background,5%);
+$background-gradient: color-mix(in srgb, $background 95%, white);
 
 $blue: rgb(180,197,221);
