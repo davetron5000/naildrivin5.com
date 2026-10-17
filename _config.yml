@@ -1,14 +1,14 @@
 title: naildrivin5.com - David Bryant Copeland's Website
 email: davec@naildrivin5.com
 description: >
-  This the website of programmer and author David Bryant Copeland.
+  This the the website of programmer and author David Bryant Copeland.
   It includes his blog, bio, talks, and other resources.
 baseurl: ""
 url: "https://naildrivin5.com"
-production_url: "https://naildrivin5.com"
+#production_url: "https://naildrivin5.com"
 twitter_username: davetron5000
-github_username:  davetron5000
-atom_path: "atom.xml"
+github_username: davetron5000
+#atom_path: "atom.xml"
 author: "David Bryant Copeland"
 subscribe_rss: /atom.xml
 
@@ -19,12 +19,10 @@ kramdown:
   hard_wrap: false
 
 highlighter: rouge
-date_format: "ordinal"
+#date_format: "ordinal"
 permalink: /blog/:year/:month/:day/:title.html
 plugins: [jekyll-paginate]
 paginate: 10          # Posts per page on the blog index
-pagination_dir: blog  # Directory base for pagination URLs eg. /blog/page/2/
-recent_posts: 5       # Posts in the sidebar Recent Posts section
-titlecase: true       # Converts page and post titles to tilecase
-Google_analytics_tracking_id: 'UA-10518541-5'
+#recent_posts: 5       # Posts in the sidebar Recent Posts section
+titlecase: true       # Converts page and post titles to titlecase
 excerpt_separator: '<!-- more -->'
