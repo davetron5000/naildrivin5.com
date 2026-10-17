@@ -28,43 +28,10 @@ GEM
       http_parser.rb (~> 0)
     eventmachine (1.2.7)
     ffi (1.17.4-aarch64-linux-gnu)
-    ffi (1.17.4-aarch64-linux-musl)
-    ffi (1.17.4-arm-linux-gnu)
-    ffi (1.17.4-arm-linux-musl)
-    ffi (1.17.4-arm64-darwin)
-    ffi (1.17.4-x86-linux-gnu)
-    ffi (1.17.4-x86-linux-musl)
-    ffi (1.17.4-x86_64-darwin)
-    ffi (1.17.4-x86_64-linux-gnu)
-    ffi (1.17.4-x86_64-linux-musl)
     foreman (0.90.0)
       thor (~> 1.4)
     forwardable-extended (2.6.0)
-    google-protobuf (4.36.2)
-      bigdecimal
-      rake (~> 13.3)
     google-protobuf (4.36.2-aarch64-linux-gnu)
-      bigdecimal
-      rake (~> 13.3)
-    google-protobuf (4.36.2-aarch64-linux-musl)
-      bigdecimal
-      rake (~> 13.3)
-    google-protobuf (4.36.2-arm64-darwin)
-      bigdecimal
-      rake (~> 13.3)
-    google-protobuf (4.36.2-x86-linux-gnu)
-      bigdecimal
-      rake (~> 13.3)
-    google-protobuf (4.36.2-x86-linux-musl)
-      bigdecimal
-      rake (~> 13.3)
-    google-protobuf (4.36.2-x86_64-darwin)
-      bigdecimal
-      rake (~> 13.3)
-    google-protobuf (4.36.2-x86_64-linux-gnu)
-      bigdecimal
-      rake (~> 13.3)
-    google-protobuf (4.36.2-x86_64-linux-musl)
       bigdecimal
       rake (~> 13.3)
     http_parser.rb (0.8.1)
@@ -105,6 +72,8 @@ GEM
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
     logger (1.7.0)
+    mcdouble (0.4.0)
+      jekyll (~> 4.3)
     mercenary (0.4.0)
     minitest (6.0.6)
       drb (~> 2.0)
@@ -122,24 +91,7 @@ GEM
     safe_yaml (1.0.5)
     sass (3.7.4)
       sass-listen (~> 4.0.0)
-    sass-embedded (1.105.2)
-      google-protobuf (~> 4.31)
-      rake (~> 13.3)
     sass-embedded (1.105.2-aarch64-linux-gnu)
-      google-protobuf (~> 4.31)
-    sass-embedded (1.105.2-aarch64-linux-musl)
-      google-protobuf (~> 4.31)
-    sass-embedded (1.105.2-arm-linux-gnueabihf)
-      google-protobuf (~> 4.31)
-    sass-embedded (1.105.2-arm-linux-musleabihf)
-      google-protobuf (~> 4.31)
-    sass-embedded (1.105.2-arm64-darwin)
-      google-protobuf (~> 4.31)
-    sass-embedded (1.105.2-x86_64-darwin)
-      google-protobuf (~> 4.31)
-    sass-embedded (1.105.2-x86_64-linux-gnu)
-      google-protobuf (~> 4.31)
-    sass-embedded (1.105.2-x86_64-linux-musl)
       google-protobuf (~> 4.31)
     sass-listen (4.0.0)
       rb-fsevent (~> 0.9, >= 0.9.4)
@@ -155,25 +107,15 @@ GEM
     webrick (1.9.2)
 
 PLATFORMS
+  aarch64-linux
   aarch64-linux-gnu
-  aarch64-linux-musl
-  arm-linux
-  arm-linux-gnu
-  arm-linux-musl
-  arm64-darwin
-  x86-linux
-  x86-linux-gnu
-  x86-linux-musl
-  x86_64-darwin
-  x86_64-linux
-  x86_64-linux-gnu
-  x86_64-linux-musl
 
 DEPENDENCIES
   activesupport
   foreman
   jekyll
   jekyll-paginate
+  mcdouble
   rake
   sass
   webrick

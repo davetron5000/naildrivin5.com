@@ -2,6 +2,15 @@
 layout: post
 title: "Trying Linux Desktop Yet Again with More Success"
 date: 2026-03-11 9:00
+mcdouble:
+  mastodon:
+    id: '117451126997259142'
+    url: https://mastodon.social/@davetron5000testing/117451126997259142
+    posted_at: '2026-10-16T14:46:12Z'
+  bluesky:
+    id: at://did:plc:aa4tz3ndk6icyssvigc4rz6x/app.bsky.feed.post/3mxyswwvwyh2x
+    url: https://bsky.app/profile/did:plc:aa4tz3ndk6icyssvigc4rz6x/post/3mxyswwvwyh2x
+    posted_at: '2026-10-16T14:46:13Z'
 ---
 
 
@@ -9,7 +18,12 @@ Almost a year ago, [I returned to the Linux Desktop][linux-post] after almost 20
 
 In the last few weeks, I've revisited it and had a lot more success.
 
-[linux-post]: /2025/03/21/one-week-with-desktop-linux-after-a-20-year-absence.html
+<article class="social-media-excerpt bluesky">
+I think I may have had more success with Linux recently, despite how actually unconfigurable and limiting
+Linux is.
+</article>
+
+[linux-post]: https://naildrivin5.com/2025/03/21/one-week-with-desktop-linux-after-a-20-year-absence.html
 
 <!-- more -->
 

@@ -4,11 +4,24 @@ title: "I'm Gonna Write About AI So I Can Process What is Going On"
 date: 2026-10-15 9:00
 related:
  - "The Death of the Software Craftsman"
+mcdouble:
+  mastodon:
+    id: '117450952228920233'
+    url: https://mastodon.social/@davetron5000testing/117450952228920233
+    posted_at: '2026-10-16T14:01:46Z'
+  bluesky:
+    id: at://did:plc:aa4tz3ndk6icyssvigc4rz6x/app.bsky.feed.post/3mxyqhhk3mi2n
+    url: https://bsky.app/profile/did:plc:aa4tz3ndk6icyssvigc4rz6x/post/3mxyqhhk3mi2n
+    posted_at: '2026-10-16T14:01:46Z'
 ---
 
 Beginning a job search, it's clear that to stay in technology means to be in the orbit of AI and
 AI-generated code, and I need to come to terms with this and figure out how to navigate it. As such, I'm
 going to start writing more about AI. I process information via writing, so here we are.
+
+<article class="social-media-excerpt">
+I need to come to terms with AI-coding being here to stay, at least for a while.  So, I'm going to start writing more about AI.
+</article>
 
 <!-- more -->
 

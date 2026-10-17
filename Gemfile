@@ -3,7 +3,7 @@ source "https://gem.coop"
 gem "foreman"
 gem "jekyll"
 gem "jekyll-paginate"
-#gem "mcdouble"
+gem "mcdouble"
 
 group :development do
   gem "webrick"
