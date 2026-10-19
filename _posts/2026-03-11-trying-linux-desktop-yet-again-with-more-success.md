@@ -2,15 +2,6 @@
 layout: post
 title: "Trying Linux Desktop Yet Again with More Success"
 date: 2026-03-11 9:00
-mcdouble:
-  mastodon:
-    id: '117451126997259142'
-    url: https://mastodon.social/@davetron5000testing/117451126997259142
-    posted_at: '2026-10-16T14:46:12Z'
-  bluesky:
-    id: at://did:plc:aa4tz3ndk6icyssvigc4rz6x/app.bsky.feed.post/3mxyswwvwyh2x
-    url: https://bsky.app/profile/did:plc:aa4tz3ndk6icyssvigc4rz6x/post/3mxyswwvwyh2x
-    posted_at: '2026-10-16T14:46:13Z'
 ---
 
 

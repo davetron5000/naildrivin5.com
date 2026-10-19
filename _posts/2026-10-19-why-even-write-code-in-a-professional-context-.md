@@ -5,6 +5,15 @@ date: 2026-10-19 9:00
 related:
  - "I'm Gonna Write About AI So I Can Process What is Going On"
  - "The Death of the Software Craftsman"
+mcdouble:
+  mastodon:
+    id: '117467941283412667'
+    url: https://ruby.social/@davetron5000/117467941283412667
+    posted_at: '2026-10-19T14:02:17Z'
+  bluesky:
+    id: at://did:plc:5qa544tzvkfohwvc34r37z2c/app.bsky.feed.post/3myabv5y3go2e
+    url: https://bsky.app/profile/did:plc:5qa544tzvkfohwvc34r37z2c/post/3myabv5y3go2e
+    posted_at: '2026-10-19T14:02:17Z'
 ---
 
 I wish I'd retired before the industrial revolution of computer programming happened, but I have not and cannot. So I must come to grips with

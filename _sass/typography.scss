@@ -223,6 +223,16 @@ sup a {
     text-decoration: underline;
   }
 }
+aside.discussion h2 {
+  font-size: 29.124px;
+  text-align: center;
+}
+aside.discussion ul {
+  list-style-type: none;
+}
+aside.discussion ul li {
+  text-align: center;
+}
 footer.footnotes {
   font-style: italic;
   li {
@@ -240,7 +250,7 @@ footer.footnotes {
 }
 
 footer.related-posts {
-  h1 {
+  h2 {
     font-size: $f4;
     text-align: center;
   }

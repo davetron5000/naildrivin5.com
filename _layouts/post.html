@@ -17,9 +17,25 @@ single: true
   <section class="blog-content">
     {{ content }}
   </section>
+  {% if page.mcdouble %}
+  <aside class="discussion">
+    <h2>Discuss this post</h2>
+    <ul>
+      {% if page.mcdouble.mastodon %}
+      <li><a href="{{ page.mcdouble.mastodon.url }}">Mastodon</a></li>
+      {% endif %}
+      {% if page.mcdouble.bluesky %}
+      <li><a href="{{ page.mcdouble.bluesky.url }}">Bluesky</a></li>
+      {% endif %}
+      {% if page.mcdouble.linkedin %}
+      <li><a href="{{ page.mcdouble.linkedin.url }}">LinkedIn (gross, I know)</a></li>
+      {% endif %}
+    </ul>
+  </aside>
+  {% endif %}
   <footer class="related-posts">
   {% if page.related.size > 0 %}
-    <h1>You Might Also Like</h1>
+    <h2>You Might Also Like</h2>
     <ul>
       <li>
         <a href="/mailing_list/index.html"><span role="img" aria-label="mailbox">📬 My Weekly Newsletter <span role="img" aria-label="manicule">&#x261E;</span></a>

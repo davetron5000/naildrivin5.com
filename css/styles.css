@@ -249,6 +249,19 @@ sup a:hover {
   text-decoration: underline;
 }
 
+aside.discussion h2 {
+  font-size: 29.124px;
+  text-align: center;
+}
+
+aside.discussion ul {
+  list-style-type: none;
+}
+
+aside.discussion ul li {
+  text-align: center;
+}
+
 footer.footnotes {
   font-style: italic;
 }
@@ -264,7 +277,7 @@ footer.footnotes li sup {
   padding-right: 6.3px;
 }
 
-footer.related-posts h1 {
+footer.related-posts h2 {
   font-size: 29.124px;
   text-align: center;
 }
