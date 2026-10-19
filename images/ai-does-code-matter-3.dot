@@ -1,0 +1,33 @@
+digraph G {
+
+  node[fontname=futura]
+  nodesep=0.5
+  ranksep=0.5
+
+  ExistingSystem -> BlackBox
+  ChangeRequest  -> BlackBox
+  BlackBox       -> UpdatedSystem
+  
+  ExistingSystem [ shape=octagon       label="Quality-Constructed\nSystem"]
+  ChangeRequest  [ shape=tab           label="Description of\lChange\l"]
+  BlackBox       [ shape=box3d         label="Black Box"]
+  UpdatedSystem  [ shape=doubleoctagon label="Updated System\nwith Change"]
+  
+  ExistingSystemWorse -> BlackBoxWorse
+  ChangeRequestWorse -> BlackBoxWorse
+  BlackBoxWorse       -> UpdatedSystemWorse
+  
+  ExistingSystemWorse [ shape=octagon       label="Poorly Built\nSystem"]
+  ChangeRequestWorse  [ shape=tab           label="Description of\lChange\l"]
+  BlackBoxWorse       [ shape=box3d         label="Black Box"]
+  UpdatedSystemWorse  [ shape=doubleoctagon label="Updated System\nwith Change"]
+
+  
+  BlackBox -> Note[dir=back]
+  Note -> BlackBoxWorse
+  
+	Note[ shape=note label="How different\nis the cost\nof these two operations?" fontname=baskerville fontsize=12 ]
+  
+  { rank=same; BlackBox; Note; BlackBoxWorse }
+
+}

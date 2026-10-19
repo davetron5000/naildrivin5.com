@@ -1,0 +1,14 @@
+digraph G {
+
+  node[fontname=futura]
+  nodesep=0.5
+  ranksep=0.5
+  rankdir=LR
+
+  Selection -> Scoping
+  Scoping   -> Delivery
+  
+  Selection [ shape=process ]
+  Scoping   [ shape=process ]
+  Delivery  [ shape=process ]
+}

@@ -1,0 +1,23 @@
+digraph G {
+
+  node[fontname=futura]
+  nodesep=0.5
+  ranksep=0.5
+
+  ExistingSystem  -> BlackBox
+  ChangeRequest   -> BlackBox
+  QualityRules    -> BlackBox
+  BlackBox        -> CandidateSystem
+  CandidateSystem -> QualityCheck
+  QualityCheck    -> UpdatedSystem[label="Checks passed"]
+  QualityCheck    -> BlackBox[label="Checks failed"]
+
+  ExistingSystem  [ shape=octagon       label="Any System"]
+  ChangeRequest   [ shape=tab           label="Description of\lChange\l"]
+  QualityRules    [ shape=tab           label="Code Quality Rules\l"]
+  BlackBox        [ shape=box3d         label="Black Box"]
+  UpdatedSystem   [ shape=doubleoctagon label="Updated System\nwith Change\nSatisfying Quality\nConstruction Rules\n"]
+  CandidateSystem [ shape=octagon       label="Updated System\nwith Change"]
+  QualityCheck    [ shape=diamond       label="Static\nQuality\nChecks\n"]
+
+}

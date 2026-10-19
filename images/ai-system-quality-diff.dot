@@ -1,0 +1,23 @@
+digraph G {
+
+  node[fontname=futura]
+  nodesep=0.5
+  ranksep=0.5
+  
+
+  Requirements    -> BlackBox
+  BlackBox        -> UpdatedSystemAI[label="fast"]
+  Requirements    -> Programmers
+  Programmers     -> UpdatedSystemProgrammers[label="slow"]
+  UpdatedSystemAI -> Note[dir=back]
+  Note            -> UpdatedSystemProgrammers
+  
+  Requirements             [ shape=tab           label="Requirements"]
+  BlackBox                 [ shape=box3d         label="Black Box of AI"]
+  Programmers              [ shape=house         label="Programmers"]
+  UpdatedSystemAI          [ shape=doubleoctagon label="Updated System\nAI-level of code quality"]
+  UpdatedSystemProgrammers [ shape=doubleoctagon label="Updated System\nHand-crafted-level\nof code quality"]
+  Note                     [ shape=note          label="Is the difference\lin these two systems\lactually significant?\l" fontname=Baskerville fontsize=10]
+
+  { rank=same; UpdatedSystemAI; UpdatedSystemProgrammers; Note }
+}

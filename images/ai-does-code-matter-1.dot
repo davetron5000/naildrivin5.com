@@ -1,0 +1,21 @@
+digraph G {
+
+  node[fontname=futura]
+    nodesep=0.5
+    ranksep=0.5
+
+    ExistingSystem -> BlackBox
+    ChangeRequest  -> BlackBox
+    BlackBox       -> UpdatedSystem
+    Note           -> UpdatedSystem
+
+    ExistingSystem [ shape=octagon       label="Any System"]
+    ChangeRequest  [ shape=tab           label="Description of\lChange\l"]
+    BlackBox       [ shape=box3d         label="Black Box"]
+    UpdatedSystem  [ shape=doubleoctagon label="Updated System\nwith Change"]
+    Note           [ shape=note          label="Does the code\lin here matter?\l" fontname=baskerville, fontsize=12 ]
+
+    { rank=same; Note; UpdatedSystem }
+}
+
+

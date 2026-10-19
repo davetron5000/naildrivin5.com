@@ -1,0 +1,36 @@
+digraph G {
+
+  node[fontname=futura]
+  nodesep=0.5
+  ranksep=0.5
+  rankdir=LR
+
+
+  Selection -> Project1
+  Selection -> Project2
+  Selection -> FeatureA
+  Selection -> FeatureB
+  
+  FeatureB  -> Scoping
+  Scoping   -> Requirements1
+  Scoping   -> Requirements2
+  Scoping   -> Requirements3
+  Scoping   -> Requirements4
+  Requirements1 -> Delivery
+  Requirements3 -> Delivery
+  
+  Selection [ shape=process ]
+  Scoping   [ shape=process ]
+  Delivery  [ shape=process ]
+  Project1  [ label="Project\n(rejected)" shape="tab"    style=filled fillcolor="#404040" color="#B0B0B0" fontcolor="#A7A7A7" fontsize=10]
+  Project2  [ label="Project\n(rejected)" shape="tab"    style=filled fillcolor="#404040" color="#B0B0B0" fontcolor="#A7A7A7" fontsize=10]
+  FeatureA  [ label="Feature\n(rejected)" shape="folder" style=filled fillcolor="#404040" color="#B0B0B0" fontcolor="#A7A7A7" fontsize=10]
+  FeatureB  [ label="Feature" shape="folder" style=filled fillcolor="#009329" color="#000000" fontcolor="#000000"]
+
+  Requirements1  [ label="Requirement" shape="note" style=filled fillcolor="#009329" color="#000000" fontcolor="#000000"]
+  Requirements2  [ label="Requirement\n(rejected)" shape="note" style=filled fillcolor="#404040" color="#B0B0B0" fontcolor="#A7A7A7" fontsize=10]
+  Requirements3  [ label="Requirement" shape="note" style=filled fillcolor="#009329" color="#000000" fontcolor="#000000"]
+  Requirements4  [ label="Requirement\n(rejected)" shape="note" style=filled fillcolor="#404040" color="#B0B0B0" fontcolor="#A7A7A7" fontsize=10]
+
+    
+}
