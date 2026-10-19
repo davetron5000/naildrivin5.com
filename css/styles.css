@@ -186,7 +186,7 @@ blockquote {
   margin: 0;
   padding-left: 12.6px;
   font-style: italic;
-  border-left: 4px solid rgb(82.6842461122%, 78.6883029074%, 82.6842461122%);
+  border-left: 4px solid color-mix(in srgb, #100d10 25%, white);
 }
 
 main {
@@ -685,7 +685,7 @@ header.site-header h2 {
   }
 }
 div.highlighter-rouge {
-  background: rgb(11.7917511832%, 9.5807978364%, 11.7917511832%);
+  background: color-mix(in srgb, #100d10 95%, white);
   color: #fffeff;
   border-radius: 6.3px;
   padding: 12.6px;
@@ -722,7 +722,7 @@ table.border-rows thead th, table.border-rows tbody th {
 }
 
 .border-light {
-  border-color: rgb(82.6842461122%, 78.6883029074%, 82.6842461122%);
+  border-color: color-mix(in srgb, #100d10 25%, white);
 }
 
 .button {
@@ -736,20 +736,20 @@ table.border-rows thead th, table.border-rows tbody th {
 }
 
 hr {
-  color: rgb(82.6842461122%, 78.6883029074%, 82.6842461122%);
+  color: color-mix(in srgb, #100d10 25%, white);
 }
 
 .pill {
   padding: 12.6px;
-  background: rgb(97.9256254226%, 97.446923597%, 97.9256254226%);
+  background: color-mix(in srgb, #100d10 8%, white);
   font-family: "Futura", "Avenir", "URW Gothic", "Helvetica", Corbel, source-sans-pro, sans-serif;
 }
 .pill:hover {
-  background: rgb(93.4428668019%, 91.9296822177%, 93.4428668019%);
+  background: color-mix(in srgb, #100d10 13%, white);
 }
 
 .light {
-  color: rgb(39.3779580798%, 31.9945909398%, 39.3779580798%);
+  color: color-mix(in srgb, #100d10 70%, white);
 }
 
 aside.please-be-aware::before {
@@ -766,7 +766,7 @@ aside.please-be-aware {
   padding-left: 25.2px;
   padding-right: 25.2px;
   border-radius: 12.6px;
-  background-color: rgb(22.8262339419%, 18.5463150778%, 22.8262339419%);
+  background-color: color-mix(in srgb, #100d10 85%, white);
   color: #fffeff;
 }
 aside.please-be-aware p {
@@ -789,7 +789,7 @@ aside.promo .banner {
   border: none;
 }
 aside.promo h2 {
-  color: rgb(17.3089925625%, 14.0635564571%, 17.3089925625%);
+  color: color-mix(in srgb, #100d10 90%, white);
 }
 aside.promo a {
   border-radius: 3.15px;
@@ -809,8 +809,8 @@ aside.promo h3 a {
   border-radius: 12.6px;
 }
 aside.promo h3 a:hover {
-  color: rgb(28.3434753212%, 23.0290736984%, 28.3434753212%);
-  background: rgb(100%, 97.6078431373%, 100%);
+  color: color-mix(in srgb, #100d10 80%, white);
+  background: color-mix(in srgb, #fffeff 99%, black);
 }
 
 .discount-code {
