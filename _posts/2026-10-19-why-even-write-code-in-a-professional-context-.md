@@ -12,6 +12,9 @@ the fact that in many cases, AI-powered tools can do a perfectly fine job of wri
 see them and I just can't see how in any professional workplace, it makes sense to write code by hand any more.
 
 <!-- more -->
+<article class="social-media-excerpt">
+This is the thought process that lead to me deciding to write about AI.  I hate the conclusions I've drawn here.
+</article>
 
 <aside class="please-be-aware">
 <p>
