@@ -54,7 +54,7 @@ tests really aren't written well.  How do we think about this?
 
 The solution isn't to jump in, day one, and start changing things.  Be honest about the level of inexperience you really have: you just don't know enough to decide that it's OK to modernize your test suite instead of solving a user problem.  By aggressively focusing on delivering results for users, you will gain valuable insight into the process of doing so on your team, in your new codebase.  Learn about the things you want to change before changing them.
 
-<div class="pullquote">
+<div class="pullquote" aria-hidden="true">
 Learn about the things you want to change before changing them
 </div>
 

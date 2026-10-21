@@ -4,6 +4,9 @@ title: "Getting 'Save to Home Screen' to Kinda Work on iOS"
 date: 2023-08-24 9:00
 ad:
   id: "sus-dev"
+related:
+  - "pwa.support and the Mediocre State of PWAs"
+  - "Trying Linux Desktop Yet Again with More Success"
 ---
 
 iOS has a feature on any website called "Save to Home Screen", which creates an icon that then goes to that site.  If you
@@ -203,5 +206,4 @@ Other links to support some of what is in this article:
 ## Final Thoughts
 
 There's more you can do with a PWA than just open it up full screen.  Based on `first.dev`'s site, you can probably make a
-decent app-like experience with just a web app.  But, you probably can't approach anything like what you'd get with true native app.  That said, it's nice that
-Apple is continuing to suppor this, even if slowly.
+decent app-like experience with just a web app.  But, you probably can't approach anything like what you'd get with true native app.  That said, it's nice that Apple is continuing to support this, even if slowly.

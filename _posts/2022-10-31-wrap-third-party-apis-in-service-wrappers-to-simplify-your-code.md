@@ -251,7 +251,7 @@ to charge a card in Stripe.  The argument names use Stripe's domain, save for `e
 
 `on_order_shipped` will now call `create_and_confirm_payment_intent`, but the job of mapping our domain to Stripe's will revert back to `on_order_shipped`:
 
-```ruby  
+```ruby
 def on_order_shipped(order)
   customer       = order.customer
   payment_method = customer.payment_methods.primary

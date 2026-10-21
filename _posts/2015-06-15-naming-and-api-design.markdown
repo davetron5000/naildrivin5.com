@@ -15,7 +15,7 @@ A tenet of design is that things that are the same should be obviously the same,
 Imagine the following programming language.  To define a function, we name it using a _dasherized_ scheme,
 with square brackets to offset the arguments:
 
-```
+```text
 define full-name[first-name,last-name]
   first-name + " " + last-name
 end-define
@@ -24,7 +24,7 @@ end-define
 Further imaging that in this programming language, to _invoke_ the function you use a camel-cased version
 of the function name, and use parenthesis to offset the arguments:
 
-```
+```text
 print fullName("Dave","Copeland")
 ```
 

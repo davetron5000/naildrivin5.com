@@ -45,9 +45,9 @@ this Docker container".  But Docker _Hub_ reduces the pain even further. It's a 
 images.  This hub allows vendors to share their images with the community as a clear indicator that "this is the way to run our
 service".
 
-<aside class="pullquote">
+<div class="pullquote" aria-hidden="true">
 Being able to install, start, and stop any complex piece of software with one command huge
-</aside>
+</div>
 
 Although it's not perfect (as we'll see next), it's a net positive all around, *especially* when managing a dev environment.
 While I can imagine that some production environments need customized installs of databases or message queues, your dev
@@ -67,9 +67,9 @@ page](https://github.com/docker-library/redis) for an organization called `docke
 
 Going to that organization's page tells us that it's the org for "Docker Official Images" and…that's it.  This sure looks official, but given that [it's possible to verify an organization on GitHub](https://docs.github.com/en/organizations/managing-organization-settings/verifying-or-approving-a-domain-for-your-organization) and Docker have not done so makes this look pretty sketchy to me.
 
-<aside class="pullquote">
+<div class="pullquote" aria-hidden="true">
 Given that it’s possible to verify an organization on GitHub, yet Docker have not done so, makes this look pretty sketchy
-</aside>
+</div>
 
 I guess I can try to figure out if the three actual humans listed as People actually work for Docker?  The [documentation on
 official images](https://docs.docker.com/trusted-content/official-images/) does not link to this.
@@ -116,7 +116,7 @@ If you look at any Docker Hub page, you'll see image names that kinda look like 
 
 Because of this image naming convention, there's no way to clearly indicate what version of a piece of software is contained within the image.  Most vendors have adopted a convention to how they name tags that will indicate what version is inside:
 
-```
+```text
 MAJ.MIN.PATCH-QUALIFIER
 -+-|-+-|--+--|---+----|
  |   |    |      |
@@ -141,9 +141,9 @@ This convention isn't documented anywhere, it's not supported on any level by Do
 works when the vendor makes sure their tag is formatted in a particular way. How many unique Bash scripts do you think exist to
 manage these tags?
 
-<aside class="pullquote">
+<div class="pullquote" aria-hidden="true">
 The notion that software is versioned has existed long before that…essentially forever
-</aside>
+</div>
 
 While I understand that a Docker image's purpose isn't just to wrap one piece of software, it is mind-boggling to me that there
 is no explicit way to version images. Semantic Versioning was first popularized *thirteen years ago*.  The notion that software

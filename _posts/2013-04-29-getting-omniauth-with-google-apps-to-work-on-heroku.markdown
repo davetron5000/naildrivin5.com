@@ -66,7 +66,7 @@ provider :google_apps, domain: 'your-domain.com', store: OpenID::Store::Memory.n
 For development, this seems reasonable - it doesn't require any setup - but for deployment, it's Just Wrong, which we can tell by
 reading the RubyDoc of the `OpenID::Store::Memory` class from `ruby-openid`:
 
-```
+```ruby
 # An in-memory implementation of Store.  This class is mainly used
 # for testing, though it may be useful for long-running single
 # process apps.  Note that this store is NOT thread-safe.
@@ -119,7 +119,7 @@ Of course, we can't just plop `store: OpenID::Store::Memcache.new` into our conf
 On Heroku, they recommend Dalli - strongly - so I went with that.  The interface that `OpenID::Store::Memcache` expects from the
 memcache client is supported by Dalli, so we're off to the races:
 
-```
+```shell
 $ heroku addons:add memcache
 ```
 

@@ -71,9 +71,9 @@ of issues, which is shadow processes using the IDs.
 
 A good rule of thumb is that any data you externalize—even to internal users—is likely to be input into another system or process that you may not control…or even know about.
 
-<aside class="pullquote">
+<div class="pullquote" aria-hidden="true">
 Any data you externalize is likely to be input into another system or process you don't control.
-</aside>
+</div>
 
 This means that the values you've set up to ensure referential integrity (i.e. keeping your database consistent and correct) are now coupled to systems and processes you may not be able to change.  I had a job once where primary keys were used in other systems and when our database's key ended up rolling over to a sixth digit, all hell broke loose in these heretofore unknown other systems.
 

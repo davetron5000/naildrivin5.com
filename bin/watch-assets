@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+cd "$(dirname "$0")/.."
+
+# Compatibility wrapper; the actual esbuild calls live in build-assets.
+
+exec ./bin/build-assets --watch

@@ -1818,7 +1818,7 @@ server, and it can run for dev or production (since this is hosted on GitHub Pag
 [`bin/dev`](https://github.com/davetron5000/ghola/blob/main/bin/dev) brings both `bin/run` and `bin/build` together.  It uses
 Chokidar to run `bin/build` if any file in `src` has changed:
 
-```
+```shell
 SHELL=/bin/bash npx chokidar -p "src/**/*" -c "bin/build"
 ```
 

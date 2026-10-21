@@ -28,7 +28,7 @@ end
 
 In Ruby, all non-nil, non-false values are "truthy".  Since `ENV#[]` will only ever return either `nil` or a String, the "Flag disabled" path wil never execute:
 
-```
+```console
 > SOME_FLAG=false ./test.rb
 Flag enabled!
 ```
@@ -45,7 +45,7 @@ end
 
 This is somewhat verbose, easy to mess up, and creates other problems when you have someone who prefers "0" and "1" instead of "true" and "false":
 
-```
+```console
 > SOME_FLAG=1 ./test.rb
 Flag disabled.
 ```
@@ -84,7 +84,7 @@ end
 
 It also works :)
 
-```
+```console
 > SOME_FLAG=1 ./test.rb
 Flag enabled!
 > SOME_FLAG=True ./test.rb

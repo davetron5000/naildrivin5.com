@@ -98,9 +98,9 @@ You might think we could fix this by depending directly on `string-compare` so w
 
 This won't work - the old version is still inside the `node_modules` of `quicksort`.
 
-<aside class="pullquote">
+<div class="pullquote" aria-hidden="true">
 A developer might think they have fixed the problem, not realizing that the insecure version is still there
-</aside>
+</div>
 
 This seems to be a serious problem, because a developer might think they have fixed the problem (a cursory check in `node_modules/string-compare` would show the latest version), not realizing that the insecure version is still there, brought in my whatever module needed it.  Nothing in the output of `yarn upgrade` or `npm ugprade` would indicate that you have an insecure version of a dependency still in your application, despite directly depending on the version with the fix (which makes sense, given that this behavior is viewed as a feature).
 

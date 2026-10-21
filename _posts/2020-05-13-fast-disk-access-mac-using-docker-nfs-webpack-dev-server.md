@@ -72,13 +72,13 @@ To make this work, you have to set up NFS on your Mac
 
 First, edit `/etc/exports`, which lists all the directories to export over NFS:
 
-```
+```shell
 sudo vim /etc/exports
 ```
 
 You can use any editor you like instead of `vim`.  Then add this line:
 
-```
+```text
 /Users/davec/Projects/NewCo -alldirs -mapall=501:20 localhost
 ```
 
@@ -91,7 +91,7 @@ Here's what's going on here (I will admit I cargo-culted this line and finding o
 
 Next, edit `/etc/nfs.confg` so it has this line:
 
-```
+```properties
 nfs.server.mount.require_resv_port = 0
 ```
 
@@ -101,7 +101,7 @@ means "allow any ports".  Bet you don't think YAML is so bad now, do you?
 
 Then, restart `nfsd` (which is running NFS) so all this config is read in:
 
-```
+```shell
 sudo nfsd restart
 ```
 

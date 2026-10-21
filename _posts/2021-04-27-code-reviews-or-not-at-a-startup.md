@@ -27,9 +27,9 @@ need the other person's technical input.  And, of course, we both find bugs in e
 We both highly value autonomy and did not want to create gates to shipping that weren't needed.  We are both comfortable with
 some risk and confident in our systems' monitoring to know when things go wrong and then fix them.
 
-<aside class="pullquote">
+<div class="pullquote" aria-hidden="true">
 It is sometimes worth delaying shipping to get feedback
-</aside>
+</div>
 
 But we also respect each other's expertise and roles to know that it is sometimes worth delaying shipping to get feedback.  Here is what we ended up coming up with:
 
@@ -63,9 +63,9 @@ Which leads to an obvious question about how to go from a two person team to a t
 The problem with a simplistic process like "always pair" or "always get a code review" is that it seems like it scales due to
 its simplicity, but it fails to truly solve the problem of balancing speed of delivery with volume of value delivered.  It's a type of command-and-control leadership that I have not seen to be particularly effective.
 
-<aside class="pullquote">
+<div class="pullquote" aria-hidden="true">
 [Always pairing or requiring code review] is a type of command-and-control leadership
-</aside>
+</div>
 
 To be honest, I'm not sure how the process above might scale. I could imagine that if each set of developers has clear areas of
 responsibility, the team understands proper feedback as well as how to build and maintain trust, the above process could work

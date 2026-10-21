@@ -101,9 +101,9 @@ If you've worked at a company subject to regulation, you've heard the phrase "se
 person who can write code that affects data in a particular database should not also have access to deploy code to production.  The idea
 being that, only through the collusion of two or more people could a problem be caused.
 
-<aside class="pullquote">
+<div class="pullquote" aria-hidden="true">
 Segregation of duties is rarely achieved through the honor system
-</aside>
+</div>
 
 Segregation of duties is rarely achieved through the honor system (officially called an "auditing control").  It is more commonly implemented
 by actually blocking the access of each party to do the things they aren't supposed to do.  For example, a developer will not be able to log
@@ -137,8 +137,6 @@ With this risk assessment system in place, you can have principled discussions a
 
 How can we trust AI agents?  While they may be capable and consistent in writing code for us, their utter lack of motivation means they
 cannot be fully trusted and *must* have actual guardrails put on them.  But, it also means we can actually decide if the risk is worth the reward.
-
-----
 
 <footer class='footnotes'>
 <ol>

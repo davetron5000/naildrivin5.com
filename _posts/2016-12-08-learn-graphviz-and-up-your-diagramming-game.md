@@ -18,7 +18,7 @@ is sufficient semantics to create most software diagrams you might need.
 
 Here's an example that shows a class hierarchy:
 
-```
+```dot
 digraph classes {
   rankdir=BT
   node[shape=record]
@@ -36,7 +36,7 @@ Running `dot -Tpng -oclasses.png classes.dot` produces:
 
 Graphviz can handle highly complex information.  Suppose you wish to diagram a complex user flow for an online checkout.
 
-```
+```dot
 digraph checkout {
   ProductPage  -> Checkout
   Checkout     -> CalculateTax
@@ -60,7 +60,7 @@ Begin able to quickly create a diagram like this reduces friction between your i
 Beyond figuring out how to layout a diagram, Graphviz allows you to highly customize the output.  Suppose you want a better font.  Or maybe you want the
 actions happening on a webpage to be boxes and not ovals.  Or you want the exceptional flows to be bright red dotted lines.  Graphviz has you covered.
 
-```
+```dot
 digraph checkout {
   node[fontname="Avenir"]
   edge[fontname="Avenir"]
@@ -103,7 +103,7 @@ microservices architecture diagram.
 In this diagram, any service that is dependent upon another is connected, and we use the _circo_ layout to arrange things radially.  We further hack the graph
 to lay out all services in a circle.
 
-```
+```dot
 digraph g1 {
   // Use the radial layout instead
   // of the hierarchical one

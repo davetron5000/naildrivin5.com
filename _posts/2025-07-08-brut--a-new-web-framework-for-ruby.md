@@ -46,7 +46,7 @@ Brut is built around low-abstraction and low-ceremony, but is not low-level like
 [Brut](https://brutrb.com) can be installed right now, and you can build and run an
 app in minutes. You don't even have to install Ruby.
 
-```
+```console
 > docker run \
         -v "$PWD":"$PWD" \
         -w "$PWD" \

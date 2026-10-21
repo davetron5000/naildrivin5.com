@@ -260,9 +260,9 @@ you still need to maintain and understand that model.
 
 This has two implications.  First, you need to have it documented somewhere, and kept up to date. Second, you have to have a good understanding of logical domain modeling, specifically identifying what the natural (or business) keys are.  For example, in my CRM app, a contact is uniquely identified by a name and an account.
 
-<aside class="pullquote">
+<div class="pullquote" aria-hidden="true">
 You have to have a good understanding of logical domain modeling, specifically identifying what the natural keys are.
-</aside>
+</div>
 
 The reason for this is that your projections aren't going to be a normalized relational model. The way you locate
 data isn't by a series of surrogate/synthetic keys, but by the natural keys. The events aren't going to have
@@ -298,9 +298,9 @@ had HTML-rendered meeting notes.
 
 In a CRUD-style application, you might pick and choose the data from your normalized model to use, and create abstractions like presenters or decorators to make that code simpler.  By using projections of events, you don't need that abstraction, because the projection itself *is* the presenter.  The controller is just sending data to a view.
 
-<aside class="pullquote-left">
+<div class="pullquote left" aria-hidden="true">
 By using projections of events, you don't need [presenters], because the projection itself <strong>is</strong> the presenter.
-</aside>
+</div>
 
 This means that projection could be easily replaced with a cache or other data store without affecting the
 controller or view logic. Although my application is small, I can definitely see the advantages to this sort of
@@ -352,9 +352,9 @@ Here, the data has to go through an event, then through a series of background j
 
 The core problem is that a UI can't always know what events might cause it to become out of date, and it's often unacceptable to the user experience to show out-of-date data.
 
-<aside class="pullquote">
+<div class="pullquote" aria-hidden="true">
 A UI can’t always know what events might cause it to become out of date, and it’s often unacceptable to…show out-of-date data.
-</aside>
+</div>
 The way I approached this was as follows:
 
 * There is a table called `projections` that stores all known projections and when they were last updated.

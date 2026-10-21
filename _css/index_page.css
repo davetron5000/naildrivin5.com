@@ -1,0 +1,107 @@
+main:has(.blog-index) {
+  max-inline-size: var(--tw-wide);
+  padding-block-start: var(--sp-4);
+  padding-block-end: var(--sp-3);
+  padding-inline: var(--sp-3);
+}
+
+.blog-index {
+  > article {
+    padding-block: calc(var(--sp-4) + var(--sp-3));
+    border-block-end: var(--bw-1) solid var(--nd-border);
+    &:first-child {
+      padding-block-start: 0;
+    }
+    &:last-of-type {
+      border-block-end: none;
+    }
+    > time {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      color: var(--nd-blue);
+      font-family: var(--ff-sans);
+      font-size: var(--fs-1);
+      font-weight: var(--button-fw);
+      gap: var(--sp-2) var(--sp-3);
+      letter-spacing: var(--nd-tracking-wide);
+      line-height: 1.4;
+      text-transform: uppercase;
+      a {
+        color: inherit;
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+    > h2 {
+      margin-block: var(--sp-2) var(--sp-3);
+      font-family: var(--ff-sans);
+      font-size: var(--fs-5);
+      line-height: 1.2;
+      letter-spacing: var(--ls-5);
+      font-weight: var(--header-fw);
+      a {
+        color: var(--color-text);
+        text-decoration: none;
+        &:hover {
+          color: var(--nd-teal);
+        }
+      }
+    }
+    > footer {
+      margin-block-start: var(--sp-3);
+      a[rel="full-article"] {
+        font-family: var(--ff-sans);
+        font-size: var(--fs-1);
+        font-weight: var(--button-fw);
+        color: var(--nd-teal);
+      }
+    }
+  }
+  > footer {
+    border-block: var(--bw-1) solid var(--nd-border);
+    padding-block: var(--sp-3);
+    nav {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      align-items: center;
+      inline-size: 100%;
+      gap: var(--sp-2);
+      font-family: var(--ff-sans);
+      font-size: var(--fs-1);
+      font-weight: var(--button-fw);
+    }
+    a,
+    .pager-disabled {
+      display: inline-flex;
+      align-items: center;
+      min-block-size: calc(var(--sp-4) + var(--sp-2));
+    }
+    a {
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    a[rel="prev"] {
+      grid-column: 1;
+      justify-self: start;
+    }
+    a[rel="index"] {
+      grid-column: 2;
+      justify-self: center;
+    }
+    a[rel="next"] {
+      grid-column: 3;
+      justify-self: end;
+    }
+  }
+}
+
+@media (min-width: 48em) {
+  main:has(.blog-index) {
+    padding-block: var(--sp-5) calc(var(--sp-4) + var(--sp-3));
+  }
+}

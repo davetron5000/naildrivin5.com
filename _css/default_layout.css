@@ -1,0 +1,91 @@
+body > header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-3);
+  min-block-size: var(--size-6);
+  margin-inline: auto;
+  padding-block: var(--sp-4);
+  padding-inline: var(--sp-3);
+  background-image: url(/images/flamenco.jpg);
+  background-color: var(--brand-500);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center 35%;
+  color: var(--nd-hero-text);
+  text-align: center;
+  a {
+    color: var(--gray-50);
+  }
+  h1 {
+    font-size: var(--fs-6);
+    font-weight: var(--header-fw);
+    letter-spacing: var(--nd-tracking-medium);
+    line-height: 1;
+    margin: 0;
+    text-shadow: 0 1px 12px rgba(0, 0, 0, 0.35);
+    a {
+      text-decoration: none;
+    }
+  }
+  h2 {
+    font-size: var(--fs-1);
+    font-weight: 400;
+    letter-spacing: var(--nd-tracking-tight);
+    margin: 0;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.45);
+    small {
+      display: none;
+    }
+  }
+  nav {
+    margin-block-start: 0;
+    ul {
+      list-style-type: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: var(--sp-2) var(--sp-4);
+      a {
+        text-decoration: none;
+        font-family: var(--ff-sans);
+        font-size: var(--fs-1);
+        font-weight: var(--button-fw);
+        letter-spacing: var(--nd-tracking-medium);
+        text-transform: uppercase;
+        text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+        &:hover {
+          text-decoration: underline;
+          color: var(--brand-200);
+        }
+      }
+    }
+  }
+}
+
+main {
+  max-inline-size: var(--tw);
+  margin-inline: auto;
+  padding-block: var(--sp-4);
+  padding-inline: var(--sp-3);
+}
+
+body > footer {
+  border-block-start: var(--bw-1) solid var(--nd-border);
+  padding-block: var(--sp-4);
+  padding-inline: var(--sp-3);
+  text-align: center;
+  background-color: var(--nd-cream);
+  color: var(--nd-aside-text);
+  p {
+    max-inline-size: var(--tw);
+    margin-inline: auto;
+    font-size: var(--fs-1);
+    line-height: 1.6;
+    &:last-child {
+      font-size: var(--fs-0);
+      color: var(--nd-muted);
+    }
+  }
+}

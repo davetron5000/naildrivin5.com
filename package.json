@@ -1,0 +1,17 @@
+{
+  "name": "naildrivin5.com",
+  "version": "1.0.0",
+  "description": "davetron5000's blog",
+  "license": "UNLICENSED",
+  "author": "David Copeland",
+  "type": "module",
+  "dependencies": {
+    "@brutrb/blok": "^0.3.1"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true
+  }
+}

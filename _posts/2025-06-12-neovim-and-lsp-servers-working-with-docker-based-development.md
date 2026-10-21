@@ -40,20 +40,16 @@ Traditional Vim plugins don't do this. They'd mangle `HTMLGenerator` to come up 
 
 With this core feature, an LSP server can allow features not possible in Neovim (or at least not possible beyond string manipulation):
 
-* Completion based on language and project.  When you enter a variable name and `.`, it will show a list
-of possible methods to call.  This works in non-dot-calls-a-method languages, too.
+* Completion based on language and project.  When you enter a variable name and `.`, it will show a list of possible methods to call.  This works in non-dot-calls-a-method languages, too.
 * Jump to the definition of a symbol, regardless of the filename where it's defined.
 * List all symbols in the current file to e.g. quickly jump to a method or variable.
-* Pop up a window inside Neovim to show the documentation for a symbol, based on the documentation in the
-source file you are using (i.e. and not fetching it from a website).
+* Pop up a window inside Neovim to show the documentation for a symbol, based on the documentation in the source file you are using (i.e. and not fetching it from a website).
 * See where the given symbol is being referenced.
 * Perform a project-wide rename of a symbol.
 * Show the method signature of a method you are calling
 * Show the type hierarchy of the class you are in.
-* Syntax highlighting based on language constructs and not regular expressions. For example, an LSP-based
-syntax highlight could show local variables and method calls differently, even though in Ruby they look the same.
-* "Inlay hints" which add context to the code where something implicit is going on.  The simplest example
-for Ruby is the somewhat new Hash syntax:
+* Syntax highlighting based on language constructs and not regular expressions. For example, an LSP-based syntax highlight could show local variables and method calls differently, even though in Ruby they look the same.
+* "Inlay hints" which add context to the code where something implicit is going on. The simplest example for Ruby is the somewhat new Hash syntax:
 
   ```ruby
   foo = "bar"
@@ -83,7 +79,7 @@ Getting an LSP server to work requires figuring out how install the server, then
 
 Once you realize LSP configuration is built in, the next issue is that most of the configuration is documented in Lua. Because I am old, all my configuration is in VimScript.  Getting some Lua configuration is a single line of code, inside `~/.config/nvim/init.vim`:
 
-```
+```lua
 lua require('config')
 ```
 
@@ -176,20 +172,12 @@ If we want the servers to be run inside a Docker development container, we'll ne
 Since the LSP servers will be installed inside the Docker container, but will need to be executed from your computer (AKA the host), you'll need to tell Neovim to basically use `docker compose exec` before running the LSP server's command.
 
 <figure>
-  <a href="/images/lsp-docker-exec.png">
-    <img src="/images/lsp-docker-exec.png"
-         srcset="/images/lsp-docker-exec.png 629w,
-                 /images/lsp-docker-exec-320.png 320w,
-                 /images/lsp-docker-exec-500.png 500w"
-         sizes="(max-width: 320px) 320px,
-                (max-width: 500px) 500px,
-                629px"
-         alt="Diagram showing your computer and a docker container. Inside your computer is Neovim. There's an arrow from it labeled 'docker compose exec' that is connected to a box inside the docker container. The box is labeled 'ruby-lsp # e.g.' in a code font.">
-  </a>
+  {% inline_svg images/lsp-docker-exec.svg "Diagram showing your computer and a docker container. Inside your computer is Neovim. There's an arrow from it labeled 'docker compose exec' that is connected to a box inside the docker container. The box is labeled 'ruby-lsp # e.g.' in a code font." %}
   <figcaption class="">
-    <a target="_new" href="/images/lsp-docker-exec.png">Open bigger version in new window</a>
+    <a target="_new" href="/images/lsp-docker-exec.svg">Open bigger version in new window</a>
   </figcaption>
 </figure>
+
 
 The way I set up my projects, I have a script called `dx/exec` that does just this.  `dx/exec bash` will run Bash, `dx/exec bin/setup` will run the setup script, etc.
 
@@ -242,18 +230,9 @@ vice-versa.  If the filenames and paths aren't identical, the LSP servers won't 
 Consider a setup where `/home/davec/Projects/my-awesome-app` is the path to the code is on my computer, but I've mounted it inside my development container at `/home/appuser/app`:
 
 <figure>
-  <a href="/images/lsp-docker-mounts.png">
-    <img src="/images/lsp-docker-mounts.png"
-         srcset="/images/lsp-docker-mounts.png 629w,
-                 /images/lsp-docker-mounts-320.png 320w,
-                 /images/lsp-docker-mounts-500.png 500w"
-         sizes="(max-width: 320px) 320px,
-                (max-width: 500px) 500px,
-                629px"
-         alt="A diagram showing your computer and a Docker container. Inside your computer is a folder labeled /home/davec/Projects/my-awesome-app. It has a bi-directional line to a folder inside the Docker container labeled /home/appuser/app.">
-  </a>
-  <figcaption class="">
-    <a target="_new" href="/images/lsp-docker-mounts.png">Open bigger version in new window</a>
+  {% inline_svg images/lsp-docker-mounts.svg "A diagram showing your computer and a Docker container. Inside your computer is a folder labeled /home/davec/Projects/my-awesome-app. It has a bi-directional line to a folder inside the Docker container labeled /home/appuser/app." %}
+  <figcaption>
+    <a target="_new" href="/images/lsp-docker-mounts.svg">Open bigger version in new window</a>
   </figcaption>
 </figure>
 
@@ -265,20 +244,12 @@ When the LSP Server tells NeoVim that a symbol is defined in `/home/appuser/app/
 What you want is for them to be mounted in the same location.
 
 <figure>
-  <a href="/images/lsp-docker-mounts-same.png">
-    <img src="/images/lsp-docker-mounts-same.png"
-         srcset="/images/lsp-docker-mounts-same.png 629w,
-                 /images/lsp-docker-mounts-same-320.png 320w,
-                 /images/lsp-docker-mounts-same-500.png 500w"
-         sizes="(max-width: 320px) 320px,
-                (max-width: 500px) 500px,
-                629px"
-         alt="A diagram showing your computer and a Docker container. Inside your computer is a folder labeled /home/davec/Projects/my-awesome-app. It has a bi-directional line to a folder inside the Docker container also labeled /home/davec/Projects/my-awesome-app.">
-  </a>
-  <figcaption class="">
-    <a target="_new" href="/images/lsp-docker-mounts-same.png">Open bigger version in new window</a>
+  {% inline_svg images/lsp-docker-mounts-same.svg "A diagram showing your computer and a Docker container. Inside your computer is a folder labeled /home/davec/Projects/my-awesome-app. It has a bi-directional line to a folder inside the Docker container also labeled /home/davec/Projects/my-awesome-app." %}
+  <figcaption>
+    <a target="_new" href="/images/lsp-docker-mounts-same.svg">Open bigger version in new window</a>
   </figcaption>
 </figure>
+
 
 In my case, I use Docker Compose to configure the volume mapping, so here's what it should look like:
 
@@ -323,7 +294,7 @@ The solution is to set `GEM_HOME` so that Ruby will install gems inside your pro
 
 This configuration must be done in **both** `~/.profile` and `~/.bashrc` inside the Docker container, since there is not a normal invocation of Bash that would source both files. I have this as `bash_customizations` which is sourced in both files. `bash_customizations` looks like so:
 
-```
+```shell
 export GEM_HOME=/home/davec/Projects/my-awesome-app/local-gems/gem-home
 export PATH=${PATH}:${GEM_HOME}/bin
 ```
@@ -545,4 +516,7 @@ But, I figured I'd try again, and the Shopify Ruby LSP is now working for me aga
 I would strongly encourage you, dear reader, to learn how to program without an LSP.  I've never felt like I
 worked slowly.  The LSP is a nice to have, but you would be wise to develop the skills to write code without it.
 
+## Update on Oct 22, 2026
+
+I can't see how these LSPs are relevant if an [AI agent is writing the code](/blog/2026/10/19/why-even-write-code-in-a-professional-context.html). I've stopped bothering to use them as my experience is that the Shopify LSP just randomly doesn't work and it doesn't seem like an AI agent actually cares about it.
 

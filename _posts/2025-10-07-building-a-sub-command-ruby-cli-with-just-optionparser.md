@@ -16,7 +16,7 @@ Ruby's standard library—is the best choice for scripting and sub-command (git-
 
 At first glance, `OptionParser` doesn't seem to support a sub-command CLI, like so (I'll explain what each part is below):
 
-```
+```console
 > bin/test --verbose audit --type Component specs/front_end
 ```
 
@@ -29,7 +29,7 @@ it doesn't understand.  How does this help?
 Consider the command above.  It's made up of five parts: the app name (`bin/test`), the globally-applicable options (`--verbose`), the sub
 command (`audit`), command-scoped options (`--type Component`) and the arguments (`specs/front_end`):
 
-```
+```text
 > bin/test --verbose audit --type Component specs/front_end
    ---+--     ---+-- --+--   ----------+---  ----+------
       |          |     |               |         |

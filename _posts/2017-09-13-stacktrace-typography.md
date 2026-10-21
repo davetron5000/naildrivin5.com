@@ -10,7 +10,7 @@ I'm not obsessed with typography, but I have a healthy respect for it.  I talked
 
 Here's a typical stack trace from Ruby:
 
-```
+```text
  NoMethodError:
  undefined method `xnotify' for #<AwsAutomation::MessageFormatter:0x007f8051d4a2f0>
  Did you mean?  notify
@@ -79,7 +79,7 @@ paste to edit a specific file.
 Let's try some light formatting and see where that gets us.  We'll also make some assumptions about files in our project and
 those elsewhere to compress some of the horizontal width.
 
-```
+```text
  NoMethodError:
  undefined method `xnotify' for #<AwsAutomation::MessageFormatter:0x007f8051d4a2f0>
  Did you mean?  notify
@@ -155,7 +155,7 @@ bolded each directory as if it were a header, and then put the method names in o
 
 That's actually not bad.  Let's look at another stack trace from a Node app to see if we can apply any lessons:
 
-```
+```text
 /Users/davec/Projects/Personal/faas/work/work/js/server.js:10
   res.end(app());
           ^
@@ -171,7 +171,7 @@ TypeError: app is not a function
 This is generally less helpful, because we don't have access to the Node source files.  Let's provide URLs to them and apply the
 formatting from above:
 
-```
+```text
 /Users/davec/Projects/Personal/faas/work/work/js/server.js:10
   res.end(app());
           ^
@@ -208,7 +208,7 @@ of me is a command-line purist (I even [wrote a book about](https://pragprog.com
 We'll put a symbol in front of each line to try to anchor the user as to what it's for and hope that this provides the right
 visual cues needed to navigate the information without sacrificing screen real estate.
 
-```
+```text
 ⚠️ /Users/davec/Projects/Personal/faas/work/work/js/server.js:10
     res.end(app());
             ⬆️

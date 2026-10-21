@@ -1,6 +1,6 @@
 digraph G {
 
-  node[fontname=futura]
+  node[fontname="Jost" class="shape"]
   nodesep=0.5
   ranksep=0.5
   rankdir=LR

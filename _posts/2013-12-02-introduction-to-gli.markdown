@@ -78,7 +78,7 @@ These are problems solvable by a framework more sophisticated than `OptionParser
 
 Typically, a new GLI app is generated for you by the `gli` command-line app:
 
-```
+```console
 > gem install gli
 Fetching: gli-2.8.1.gem (100%)
 Successfully installed gli-2.8.1
@@ -190,7 +190,7 @@ Since we specified `new done list` on the command line to `gli init`, it went ah
 that each command block is configured in the style of rake - we describe the command, document its arguments, and declare that
 it exists.  You'll notice that each command has a generic `puts` in it, so we can see how our new app works right now:
 
-```
+```console
 > bundle exec bin/todo list
 list command ran
 
@@ -200,7 +200,7 @@ done command ran
 
 We can also get help for particular commands already:
 
-```
+```console
 > bundle exec bin/todo help list
 NAME
     list - Describe list here
@@ -261,7 +261,7 @@ example flags and switches and replaced them with the ones we'll actually need.
 
 Notice that we specified `--file` outside of any command block, thus making it a global flag.  This is because all commands need access to the todo file.  Note also that the options `--long` and `--all`, which are specified inside the `list` command block, will only be available for the `list` command.
 
-```
+```console
 > bundle exec bin/todo help 
 NAME
     todo - Describe your application here
@@ -310,7 +310,7 @@ interface isn't OO, it's declarative and command-oriented, so it makes sense to 
 Also notice the structure of the command line.  In a Thor app, all command-line options must come at the end of the command line.
 In a GLI app, the position of the switches determines their interpretation.
 
-```
+```console
 > bin/todo -f ~/.todo.txt -l list
 error: Unknown options -l
 > bin/todo list -l -f ~/.todo.txt

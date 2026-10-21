@@ -23,7 +23,7 @@ storing them in a database.
 
 Consider this series of SQL statements:
 
-```
+```console
 db=# create temp table no_tz(recorded_at timestamp);
 CREATE TABLE
 db=# insert into no_tz(recorded_at) values (now());
@@ -37,7 +37,7 @@ adrpg_development=# select * from no_tz;
 
 The value for `recorded_at` is a SQL `timestamp` which does not encode timezone information (and thus, I would argue, is not an actual time stamp).  Thus, to interpret this value, there must be some reference.  In this case, Postgres uses whatever its currently configured timezone is.  While this is often UTC, it is not guaranteed to be UTC.
 
-```
+```console
 db=# show timezone;
  TimeZone 
 ----------
@@ -47,14 +47,14 @@ db=# show timezone;
 
 This value can be changed in many ways.  We can change it per session with `set session timezone`:
 
-```
+```console
 db=# set session timezone to 'America/New_York';
 SET
 ```
 
 Once we've done that, the value in `no_tz` is, technically, different:
 
-```
+```console
 db=# select * from no_tz;
          recorded_at          
 ----------------------------
@@ -81,7 +81,7 @@ CREATE TEMP TABLE
 
 We can see that, by default, the Postgres server I'm running is set to UTC:
 
-```
+```console
 db=# show timezone;
  TimeZone 
 ----------
@@ -105,7 +105,7 @@ INSERT INTO
 
 The same timestamp should be stored:
 
-```
+```console
 db=# select * from tz_test;
            with_tz            |        without_tz         
 ------------------------------+---------------------------
@@ -116,7 +116,7 @@ db=# select * from tz_test;
 
 Note the difference in how these values are presented.  `with_tz` is showing us the time zone offset—`+00`.  Let's change to eastern time and run the query again:
 
-```
+```console
 db=# set session timezone to 'America/New_York';
 SET
 db=# select * from tz_test;

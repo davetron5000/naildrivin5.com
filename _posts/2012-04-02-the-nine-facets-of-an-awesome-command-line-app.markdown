@@ -39,7 +39,7 @@ The best way to have a clear & concise purpose is to do one thing, and one thing
 
 This is a *big* topic, but here's an example of using `hl`:
 
-```
+```console
 $ grep 987876736 my_logs.log | hl credit_card_token
 ```
 
@@ -50,7 +50,7 @@ need to worry about them in most cases.  Of course, if you *are* curious about t
 
 `hl` is based on [methadone][methadone], which is a proxy to [OptionParser][optionparser], which is *the* tool to use for parsing the command-line in Ruby.  It's very powerful, and generates a canonical, documented UI for your app:
 
-```
+```console
 $ bin/hl --help
 Usage: hl [options] [search_term] [filename]
 
@@ -123,7 +123,7 @@ Methods like `arg`, `version`, and `description` are helpers from methadone (see
 
 The second part of a helpful app is to include more detailed documentation.  For a command-line app, this is expected to be in the form of a man page.  If you installed `hl` with RubyGems, try this:
 
-```sh
+```shell
 $ gem man hl
 ```
 
@@ -253,7 +253,7 @@ That is all.
 
 I wrote `hl` entirely using [TDD][tdd] and entirely using [aruba][aruba].  Here's a sampling:
 
-```cucumber
+```gherkin
   Scenario: Highlights with case insensitivity
     Given a file named "test_file" with the word "FOO bar foo" in it
     When I successfully run `hl -i foo ../../test_file`

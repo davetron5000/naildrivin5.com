@@ -152,7 +152,7 @@ public class Client {
 
 Then, whenever we create `Client` instances, we pass in the concrete implementation:
 
-```java 
+```java
 Client client = new Client(new Server())
 ```
 

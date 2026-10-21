@@ -125,7 +125,7 @@ private static List<Integer> take(int numToTake, Iterable<Integer> seq) {
 
 Running this code sure enough works quickly and without incident (full listing [here][functional1]):
 
-```
+```console
 > java -cp . Functional
 [0, 1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144, 169, 196, 225, 256, 289, 324, \
 361, 400, 441, 484, 529, 576]
@@ -153,7 +153,7 @@ Think of `A` is "argument" and `R` as "return value".
 With this, we can genericize our `SquaringIterator` into a `TransformingIterator` that takes a function for transformation and
 the `Iterator` to transform:
 
-```
+```java
 private static class TransformingIterator<A,R> implements Iterator<R> {
   private Iterator<A> original;
   private Function1<A,R> function;
@@ -266,7 +266,7 @@ public static void main(String args[]) {
 
 And, it still runs great (updated source [here][functional2]):
 
-```
+```console
 > java -cp . Functional
 [0, 1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144, 169, 196, 225, 256, 289, 324, \
 361, 400, 441, 484, 529, 576]

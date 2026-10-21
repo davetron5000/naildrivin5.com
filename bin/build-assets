@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+cd "$(dirname "$0")/.."
+
+# Canonical asset build. Keep all esbuild invocations in this file.
+
+watch=false
+case "${1:-}" in
+  "")
+    ;;
+  -w|--watch)
+    watch=true
+    ;;
+  *)
+    echo "usage: $0 [--watch]" >&2
+    exit 2
+    ;;
+esac
+
+ESBUILD=./node_modules/.bin/esbuild
+CSS_FLAGS=(--bundle --sourcemap --external:/images/* --external:/fonts/*)
+JS_FLAGS=(--bundle --format=esm --sourcemap)
+
+build_css() {
+  "$ESBUILD" _css/index.css "${CSS_FLAGS[@]}" --outfile=css/styles.css "$@"
+}
+
+build_js() {
+  "$ESBUILD" _js/index.js "${JS_FLAGS[@]}" --outfile=js/bundle.js "$@"
+}
+
+if [ "$watch" = false ]; then
+  build_css
+  build_js
+  exit 0
+fi
+
+pids=()
+cleanup() {
+  trap - EXIT INT TERM
+  if [ ${#pids[@]} -gt 0 ]; then
+    kill "${pids[@]}" 2>/dev/null || true
+    wait "${pids[@]}" 2>/dev/null || true
+  fi
+}
+trap cleanup EXIT INT TERM
+
+build_css --watch=forever &
+pids+=($!)
+
+build_js --watch=forever &
+pids+=($!)
+
+wait

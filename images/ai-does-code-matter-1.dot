@@ -1,6 +1,6 @@
 digraph G {
 
-  node[fontname=futura]
+  node[fontname="Jost" class="shape"]
     nodesep=0.5
     ranksep=0.5
 
@@ -13,7 +13,7 @@ digraph G {
     ChangeRequest  [ shape=tab           label="Description of\lChange\l"]
     BlackBox       [ shape=box3d         label="Black Box"]
     UpdatedSystem  [ shape=doubleoctagon label="Updated System\nwith Change"]
-    Note           [ shape=note          label="Does the code\lin here matter?\l" fontname=baskerville, fontsize=12 ]
+    Note           [ shape=note          label="Does the code\lin here matter?\l" fontname="Source Serif 4", fontsize=12, class="shape note" ]
 
     { rank=same; Note; UpdatedSystem }
 }

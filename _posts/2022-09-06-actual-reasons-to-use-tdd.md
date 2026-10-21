@@ -38,7 +38,7 @@ Set aside "correctness" (a meaningless term if I've ever heard one). Don't worry
 question we had from our first moment of coding, and that we still ask as we do our jobs
 today: is the software doing what I expect?
 
-<aside class="pullquote">Is the software doing what I expect?</aside>
+<div class="pullquote" aria-hidden="true">Is the software doing what I expect?</div>
 
 The most obvious way to answer this question is to run the software and use it.  See if
 it's doing what you were trying to get it to do. If it does, well, that's something.
@@ -99,7 +99,7 @@ You need managers for everyone and managers for those managers.  Everything has 
 * **Coverage**: are we checking everything that's being developed?  When all the checks come back as passing, how do we know that we actually checked the new changes?
 * **Scaling**: can we manage an increase in the size and complexity of the software without an exponential increase in time and people to check it?
 
-<aside class="pullquote">The testers and the developers have to constantly try to align on what is being done and how.</aside>
+<div class="pullquote" aria-hidden="true">The testers and the developers have to constantly try to align on what is being done and how.</div>
 
 This is how you end up with big QA teams and quarterly releases.  It's so much effort to
 even check the existing features of the software that you have to only do it four times
@@ -182,9 +182,9 @@ the code is written.  That's because in many ways we *are* done.  We could ship 
 code without any tests.  To provide test coverage we have to remember to do it and also
 feel like doing it.
 
-<aside class="pullquote">
+<div class="pullquote" aria-hidden="true">
 You cannot underestimate how well a process works where being done is the final step, not the first step.
-</aside>
+</div>
 
 Granted, we have to remember to write tests first and feel like doing *that*, but writing
 the tests first is much easier muscle to build because it always puts being done as the last step.  You cannot underestimate how well a process works where being done is the final step, not the first step.
@@ -238,7 +238,7 @@ before you write it. There are many ways to write code to solve some problem, bu
 you write the tests first, you kinda have to write that code in a way that affords
 testing. This is not the same as "good design".
 
-<aside class="pullquote">You can discuss the issues making it hard to write a test before code is written.</aside>
+<div class="pullquote" aria-hidden="true">You can discuss the issues making it hard to write a test before code is written.</div>
 
 When writing tests first, if you come across a feature that is hard to test, it's much
 easier to discuss it. You can discuss the issues before any code is written. Perhaps the
@@ -280,7 +280,7 @@ managers to get a team following a test-first process than to manage a sea of QA
 engineers, it still requires someone to ensure that the team agrees to follow the
 practice and then actually does it.
 
-<aside class="pullquote">To get the entire team doing TDD is a management problem.</aside>
+<div class="pullquote" aria-hidden="true">To get the entire team doing TDD is a management problem.</div>
 
 Pair programming, code reviews, retrospectives, and post-incident reviews are all ways
 to manage this, and you may need to be doing some form of all of them. You can't have

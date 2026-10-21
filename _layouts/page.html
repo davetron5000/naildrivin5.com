@@ -2,13 +2,14 @@
 layout: default
 ---
 <div>
-<article role="article">
+<article class="page">
   {% if page.title %}
   <header>
     <h1>{% if site.titlecase %}{{ page.title | titlecase }}{% else %}{{ page.title }}{% endif %}</h1>
-    {% if page.date %}<p class="meta">{% include date.html %}{{ time }}</p>{% endif %}
   </header>
   {% endif %}
-  {{ content }}
+  <section>
+    {{ content }}
+  </section>
 </article>
 </div>

@@ -186,8 +186,6 @@ In the next article, I'll tackle the [Open/Closed Principle][ocpost], which is s
 
 [ocpost]: /blog/2019/11/14/open-closed-principle-is-confusing-and-well-wrong.html#more
 
----
-
 <footer class='footnotes'>
 <ol>
 <li>

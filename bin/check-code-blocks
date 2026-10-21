@@ -1,0 +1,66 @@
+#!/usr/bin/env ruby
+
+require "rouge"
+
+ROOT = File.expand_path("..", __dir__)
+RAW_PRE_ALLOWLIST = ["2024-01-24-web-components-in-earnest.md"] # live demo uses <pre> as component source
+
+errors = []
+files = Dir[File.join(ROOT, "{_posts,_drafts}/*")].sort
+
+files.each do |path|
+  relative_path = path.delete_prefix("#{ROOT}/")
+  basename = File.basename(path)
+  text = File.read(path)
+
+  if text.match?(/\{%\s*(?:end)?highlight\b/)
+    errors << "#{relative_path}: legacy {% highlight %} tag"
+  end
+
+  if path.end_with?(".html") && text.match?(/^```/)
+    errors << "#{relative_path}: Markdown fence in an .html post"
+  end
+
+  in_fence = false
+  fence_start = nil
+  text.each_line.with_index(1) do |line, lineno|
+    next unless line =~ /^```(.*?)(?:\r?\n)?$/
+
+    info = $1
+    if in_fence
+      in_fence = false
+      next
+    end
+
+    in_fence = true
+    fence_start = lineno
+
+    if info != info.strip
+      errors << "#{relative_path}:#{lineno}: language has leading/trailing whitespace"
+    elsif info.empty?
+      errors << "#{relative_path}:#{lineno}: fence has no language"
+    elsif !Rouge::Lexer.find(info)
+      errors << "#{relative_path}:#{lineno}: unknown Rouge language #{info.inspect}"
+    end
+  end
+
+  if in_fence
+    errors << "#{relative_path}:#{fence_start}: unclosed fence"
+  end
+
+  without_fences = text.gsub(/^```.*?^```\s*$/m, "")
+  without_fences.each_line.with_index(1) do |line, lineno|
+    next unless line.match?(/<pre\b/i)
+    next if RAW_PRE_ALLOWLIST.include?(basename)
+
+    errors << "#{relative_path}:#{lineno}: raw <pre> block"
+  end
+end
+
+if errors.empty?
+  puts "Code listings OK (#{files.size} files checked)"
+else
+  warn "Code listing problems:"
+  errors.each { |error| warn "  #{error}" }
+  exit 1
+end

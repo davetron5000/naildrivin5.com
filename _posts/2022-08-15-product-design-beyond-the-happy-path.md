@@ -31,8 +31,8 @@ collaborate. This group included engineering and customer support, which meant w
 discuss the *entire* user experience, all the way to getting an engineer to fix
 something.
 
-<aside class="pullquote">Any user problem—no matter how insignificant—had a way to be
-solved</aside>
+<div class="pullquote" aria-hidden="true">Any user problem—no matter how insignificant—had a way to be
+solved</div>
 
 The result was that any user problem—no matter how insignificant or unusual—had a way to
 be solved, and the team had a way to push solutions from the engineering team, through
@@ -93,7 +93,7 @@ environment with terrible internet connectivity.  Simply assuming the user would
 their browser was not sufficient. The software had to handle the case where the network
 was slow or temporarily offline. This edge case not only informed the product design, but even the choice of technical implementation!
 
-<aside class='pullquote'>The bulk of the design work should be around edge cases</aside>
+<div class='pullquote' aria-hidden="true">The bulk of the design work should be around edge cases</div>
 
 The bulk of the design work should be around edge cases.  The reason is that the happy
 path design can create edge cases that need to be handled.  This must inform the happy
@@ -146,7 +146,7 @@ designs.  You can tell when you contact a company. If the support agent can quic
 solve what seems to be a pretty basic problem, they have good tooling and likely someone
 somewhere in the org made sure the user's needs could be met through customer support.
 
-<aside class="pullquote">The customer support experience and tooling is often the most lacking from product designs</aside>
+<div class="pullquote" aria-hidden="true">The customer support experience and tooling is often the most lacking from product designs</div>
 
 If, however, you are waiting on the phone for a long time, or the agent has to
 constantly put you on hold, it's likely the tooling available to the customer support

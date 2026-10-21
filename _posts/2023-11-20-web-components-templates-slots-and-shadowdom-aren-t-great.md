@@ -92,7 +92,7 @@ figure figcaption {
 This isn't what most web developers think of as a template.  For as long as I can remember, templates for web apps provided a
 more direct way to insert dynamic elements.  If we created a Rails version of this template, it might look like so:
 
-```rhtml
+```erb
 <!-- views/partials/_pic.html -->
 <figure>
   <img width="64" 
@@ -569,8 +569,6 @@ Presumably, existing frameworks will refactor their internals to use these APIs 
 frameworks will continue to be built using these APIs.  But there is no world in which "Web Components" are the alternative
 to stuff like React, Vue, or Angular. Building re-usable code using only the APIs provided by the browser will still leave
 you wanting more.  Which means the continuation of internal and open source frameworks.
-
-----
 
 <footer class='footnotes'>
 <ol>

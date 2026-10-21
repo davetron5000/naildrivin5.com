@@ -484,8 +484,6 @@ benefit over the browser's existing DOM-manipualtion APIs.
     <strong style="color: #770000">Update on Nov 19, 2023:</strong> Based on reader feedback, I don't think custom elements are completely useless. See <a href="/blog/2023/11/19/web-components-custom-elements-lifecycle-is-what-makes-them-useful.html"> the follow up</a> for more details. Leaving this post as-is for posterity.
 </aside>
 
-----
-
 <footer class='footnotes'>
 <ol>
 <li id="1">

@@ -30,7 +30,7 @@ use, and easy to maintain.
 
 ## Get Started
 
-```sh
+```shell
 > gem install gli
 > gli init your-new-app
 ```

@@ -1,21 +1,22 @@
 digraph G {
   
   rankdir="LR"
+  node[fontname="Jost"]
   subgraph cluster_docker {
       label = "Docker Container"
-      fontname="Avenir"
+      fontname="Jost"
       
       MountedDir
   }
   subgraph cluster_host {
       label = "Your Computer"
-      fontname="Avenir"
+      fontname="Jost"
       
       SourceDir
   }
  
-  SourceDir -> MountedDir [ label="docker compose exec" fontname="Courier New"]
-  MountedDir[shape=box fontname="Courier New" label="lsp-ruby # e.g."]
-  SourceDir[shape=box  label="Neovim"]
+  MountedDir              [ shape=component class="shape purple" fontname="Monaspace Krypton Var" label="lsp-ruby # e.g."]
+  SourceDir               [ shape=tab       class="shape amber"                     label="Neovim"]
+  SourceDir -> MountedDir [ label="docker compose exec" fontname="Monaspace Krypton Var"]
  
 }

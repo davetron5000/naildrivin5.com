@@ -166,8 +166,6 @@ I would suggest answering the questions in the first two parts of the rubric bef
 keeping the answers in mind as you work. A system that is easy to document is likely to be easy to use. That means
 you can spend less time on helping users and more time maintaining and enhancing the system.
 
-----
-
 <footer class='footnotes'>
 <ol>
 <li>

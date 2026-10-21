@@ -57,7 +57,7 @@ everything else can be scripted with Terraform.  Time to set it up.
 
 First, [install Terraform](https://www.terraform.io/intro/getting-started/install.html).  I'm on OS X, so I use Homebrew:
 
-```
+```shell
 > brew install terraform
 ```
 
@@ -71,7 +71,7 @@ will live.
 
 Now, we have to create some files so that Terraform knows our API keys.  Create the file `terraform.tfvars` like so:
 
-```
+```ini
 access_key="«your access key»"
 secret_key="«your secret key»"
 ```
@@ -79,7 +79,7 @@ secret_key="«your secret key»"
 Terraform also requires that you explicitly define any variables, apart from setting their values.  Declare this in
 `variables.tf` by making that file look like so:
 
-```
+```terraform
 variable "access_key" {}
 variable "secret_key" {}
 
@@ -93,7 +93,7 @@ used, but it's default value is `us-east-1`.
 
 Now create a file to set up your AWS credentials.  I call mine `aws.tf`, and it looks like so:
 
-```
+```terraform
 provider "aws" {
   access_key = "${var.access_key}"
   secret_key = "${var.secret_key}"
@@ -108,7 +108,7 @@ just set up.  The Terraform syntax for that is `${var.«var name»}`.
 Now, to test all this, let's create an S3 bucket.  Create a file called `s3_bucket_test.tf` like so (note that the value for
 `bucket` must be unique to all of AWS, so replace `«hyourname»` with something unique like your name):
 
-```
+```terraform
 resource "aws_s3_bucket" "my-test-s3-bucket" {
   bucket = "«yourname»-test-s3-bucket"
   acl    = "authenticated-read"
@@ -119,7 +119,7 @@ Log into the AWS console in your browser, and navigate to your S3 buckets.  It s
 
 Back in the terminal, check the plan:
 
-```
+```shell
 > terraform plan
 ```
 
@@ -128,7 +128,7 @@ and check everything.
 
 When you are ready, apply these changes:
 
-```
+```shell
 > terraform apply
 ```
 
@@ -154,7 +154,7 @@ Terraform, but first a bit of info about how Terraform works that I found confus
 
 Above, we created an S3 bucket like so:
 
-```
+```terraform
 resource "aws_s3_bucket" "my-test-s3-bucket" {
   bucket = "«yourname»-test-s3-bucket"
   acl    = "authenticated-read"
@@ -176,7 +176,7 @@ With that out of the way, let's see the configuration.  I put all of the code we
 (Terraform sucks in all `.tf` files when you run it).  I've added comments for what each thing does, but you can look at AWS's
 documentation to understand these as well.
 
-```
+```terraform
 resource "aws_s3_bucket" "«your site»-com-s3" {
   # Unique name of the bucket in all of AWS
   bucket = "«your site».com"
@@ -217,7 +217,7 @@ resource "aws_s3_bucket" "«your site»-com-s3" {
 The syntax for `target_bucket` is a demonstration of referencing another Terraform-managed resource.  It's verbose.  Let's see
 how it gets defined by creating our logging S3 bucket:
 
-```
+```terraform
 resource "aws_s3_bucket" "logs-«your site»-com-s3" {
   bucket = "logs.«your site».com"
   region = "us-east-1"
@@ -238,7 +238,7 @@ Because we gave this resource the ID `logs-«your site»-com-s3`, we can refer t
 
 Finally, create the S3 bucket to redirect `www`:
 
-```
+```terraform
 resource "aws_s3_bucket" "www-«your site»-com-s3" {
   bucket = "www.«your site».com"
   region = "us-east-1"
@@ -259,7 +259,7 @@ The value for `redirect_all_requests_to` looks similar to what we saw earlier, b
 Now, we have to make a Policy file.  This can't be done directly in Terraform for whatever reason, so you have to create a JSON
 document.  We referenced it above, and it looks like so:
 
-```
+```json
 {
   "Version":"2012-10-17",
   "Statement": [{
@@ -286,7 +286,7 @@ Next, we need to make a CloudFront distribution so that our site is served up fr
 Get ready for a big blob of configuration.  I'll comment each bit as to what it's for, but again, you can refer to AWS's
 documentation for what all this is.
 
-```
+```terraform
 # This is a _data source_ which allows us to get the internal
 # ID (which AWS calls an "ARN") from AWS
 data "aws_acm_certificate" "«your site»-com" {
@@ -383,7 +383,7 @@ You need to set up DNS so that your apex domain redirects to www, and for www to
 
 If you are using DNSimple, you'll need to get an API key and place it in `terraform.tfvars`:
 
-```
+```ini
 access_key="«aws access key»"
 secret_key="«aws secret key»"
 dnsimple_account = "«account number»"
@@ -392,7 +392,7 @@ dnsimple_v2_token = "«api token»"
 
 Then add some variables to `variables.tf`:
 
-```
+```terraform
 variable "access_key" {}
 variable "secret_key" {}
 
@@ -406,7 +406,7 @@ variable "dnsimple_account" {}
 
 And finally, create `dnsimple.tf`:
 
-```
+```terraform
 provider "dnsimple" {
   token   = "${var.dnsimple_v2_token}"
   account = "${var.dnsimple_account}"
@@ -415,7 +415,7 @@ provider "dnsimple" {
 
 Now, you can create your DNS records like so:
 
-```
+```terraform
 resource "dnsimple_record" "www-«your site»-com-dns" {
   domain = "«your site».com"
   name   = "www"
@@ -444,7 +444,7 @@ OK, so there are two more things to know.  First, is how to get your files up to
 
 I use the AWS CLI to do this.  You'll need to install it and put your keys in `~/.aws/credentials` like so:
 
-```
+```ini
 [personal]
 aws_access_key_id = «your access key»
 aws_secret_access_key = «your secret key»
@@ -454,7 +454,7 @@ You can use the same values you used above.
 
 Now, you can use the AWS CLI to sync files to your S3 bucket.  Suppose you have your site's files in `site/`.
 
-```
+```shell
 aws s3 sync --profile=personal site/ s3://«your site».com
 ```
 
@@ -470,13 +470,13 @@ want to see the changes immediately, we have to invalidate the cache.
 The most common case is if you host a blog, your main `index.html` page will need to be updated to reflect a newly-added entry.
 You can invalidate that page like so:
 
-```
+```shell
 aws cloudfront create-invalidation --profile-personal --distribution-id=«Distribution ID» --paths=/index.html
 ```
 
 To get your distribution ID, run `terraform plan`.  You should see it output like so:
 
-```
+```text
 aws_cloudfront_distribution.«your site»-com-cf_distribution: Refreshing state... (ID: XKi345904e54)
 ```
 

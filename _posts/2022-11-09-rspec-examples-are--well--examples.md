@@ -70,13 +70,13 @@ expect(order.sent?).to eq(true)
 
 A commonly-cited benefit of the predict matcher form is that it produces a better error message, something like
 
-```
+```text
 expected order.sent? to be truthy
 ```
 
 The more explicit version would produce this:
 
-```
+```text
 expected false to be true
 ```
 

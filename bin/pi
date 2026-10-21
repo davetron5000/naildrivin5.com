@@ -1,0 +1,67 @@
+#!/usr/bin/env bash
+# frozen_string_literal: true
+
+set -euo pipefail
+
+if ! command -v pi > /dev/null 2>&1; then
+  echo "[ bin/pi ] pi is not installed here - this must run inside the dx container"
+  echo "[ bin/pi ] Rebuild the image (dx/build) and start it (dx/start), then try again"
+  exit 1
+fi
+
+pi_web_url="http://127.0.0.1:8192"
+
+pi_web_is_running() {
+  curl -sS -m 1 -o /dev/null "${pi_web_url}/" > /dev/null 2>&1
+}
+
+# Start pi-web in the background, owned by this script, and arrange for it
+# to be stopped when the script exits. If pi-web is already running, it is
+# left alone (and left running when this script exits). A failure to start
+# pi-web is reported, but never blocks the coding agent.
+start_pi_web() {
+  if pi_web_is_running; then
+    echo "[ bin/pi ] pi-web is already running - open ${pi_web_url}"
+    return
+  fi
+  # pi-web defaults to binding 127.0.0.1, which the host cannot reach
+  # through the container. Bind all interfaces inside the container:
+  # host access is still loopback-only via the port mapping in
+  # docker-compose.dx.yml.
+  echo "[ bin/pi ] Starting pi-web in the background - open ${pi_web_url}"
+  # setsid gives pi-web its own process group, so a Ctrl-C aimed at the
+  # interactive agent does not also kill it. We stop it via the EXIT trap.
+  setsid pi-web --no-open --port 8192 --hostname 0.0.0.0 > /tmp/pi-web.log 2>&1 < /dev/null &
+  pi_web_pid=$!
+  cleanup_pi_web() {
+    if kill -- "-${pi_web_pid}" > /dev/null 2>&1; then
+      echo "[ bin/pi ] Stopped pi-web"
+    fi
+  }
+  trap cleanup_pi_web EXIT
+  # Give pi-web a moment to come up so a failed startup gets reported,
+  # but never block the agent on it.
+  for _ in 1 2 3; do
+    if pi_web_is_running; then
+      return
+    fi
+    if ! kill -0 "${pi_web_pid}" 2> /dev/null; then
+      echo "[ bin/pi ] pi-web failed to start - see /tmp/pi-web.log"
+      return
+    fi
+    sleep 1
+  done
+}
+
+if [ "${1:-}" == "web" ]; then
+  shift
+  if pi_web_is_running; then
+    echo "[ bin/pi ] pi-web is already running at ${pi_web_url} - not starting a second one"
+    exit 1
+  fi
+  echo "[ bin/pi ] Starting pi-web on port 8192 (open http://127.0.0.1:8192)"
+  exec pi-web --host 0.0.0.0 "${@}"
+fi
+
+start_pi_web
+pi "${@}"

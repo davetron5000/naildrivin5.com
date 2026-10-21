@@ -318,8 +318,6 @@ managing re-usable markup.  We'll dig into that in a future post.
 
 I think the real approach is to not judge Web Components on a problem *I think they should solve*, but against the problem they were *designed to solve*. And that problem is a very tiny subset of the problems facing web developers.  It's almost too small to notice.
 
-----
-
 <footer class='footnotes'>
 <ol>
 <li id="1">

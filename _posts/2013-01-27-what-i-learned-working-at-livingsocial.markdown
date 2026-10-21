@@ -56,7 +56,7 @@ was initially a mask of my lingering bad attitude.
 
 After a while, I started to notice that the stereotypical programmer attitude was not *nearly* as strong at LivingSocial as anywhere else I had worked.  The relationships between the developers and every other part of the company - customer service, IT, product, accounting - were far healthier than I'd ever experienced.
 
-<div class='pullquote'>Everyone's default assumption was that every member of the team was skilled, useful, and dependable</div>
+<div class='pullquote' aria-hidden="true">Everyone's default assumption was that every member of the team was skilled, useful, and dependable</div>
 
 The result was a high functioning team that made decisions rationally, not politically.  Developers were not rude nor disrespectful to their "non-techie" counterparts, and, surprise surprise, were treated with respect themselves.  I don't know how this evolved, but it seemed that  everyone's default assumption was that every member of the team was skilled, useful, and dependable  - innocent until proven guilty.
 

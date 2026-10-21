@@ -23,13 +23,13 @@ finally
 }
 ```
 
-Pretty ugly, and seriously annoying to have to add <b>13 lines of code</b> to any method that needs to interact with the database.  The Hibernate docs suggest using <tt>ThreadLocal</tt> variables to provide access to the EntityManager throughout the life of a request (which wouldn't really work for a Swing app, but since this is servlet-based, it should work fine).    The <tt>ThreadLocal</tt> javadocs contain possibly the most annoying example ever, and I didn't follow how to use it.
+Pretty ugly, and seriously annoying to have to add <b>13 lines of code</b> to any method that needs to interact with the database.  The Hibernate docs suggest using <code>ThreadLocal</code> variables to provide access to the EntityManager throughout the life of a request (which wouldn't really work for a Swing app, but since this is servlet-based, it should work fine).    The <code>ThreadLocal</code> javadocs contain possibly the most annoying example ever, and I didn't follow how to use it.
 
 Anyway, I finally got around to it, and also solved the close problem as well, by using a Servlet Filter.  I guess this type of thing would normally be solvable by Spring or Guice, but I didn't want to drag all of that into the application to refactor this one thing; I would've easily spent the rest of the day dealing with XML configuration and deployment.
 
 The solution was quite simple:
 
-```java 
+```java
 /** Provides access to the entity manager.  */
 public class EntityManagerUtil 
 {
@@ -87,4 +87,4 @@ public class EntityManagerFilter implements Filter
 }
 ```
 
-So, when the web app gets deployed, the entity manager factory is created (and closed when the web app is removed).  Each thread that calls <tt>EntityManagerUtil</tt> to get an EntityManager gets a fresh one that persists for the duration of the request.  When the request is completed, the entity manager is closed automatically.
+So, when the web app gets deployed, the entity manager factory is created (and closed when the web app is removed).  Each thread that calls <code>EntityManagerUtil</code> to get an EntityManager gets a fresh one that persists for the duration of the request.  When the request is completed, the entity manager is closed automatically.

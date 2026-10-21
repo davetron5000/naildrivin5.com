@@ -159,7 +159,7 @@ questions to build alignment, such as:
 
 You want to build alignment with everyone on exactly what is being proposed.  You must lead this, because product managers, designers, and "stakeholders" are often very wrong about what parts of a project are time consuming and which are not.  With no-code and AI-driven products, this problem is worse.
 
-<aside class="pullquote">It’s your job to make them understand what is time consuming and why.</aside>
+<div class="pullquote" aria-hidden="true">It’s your job to make them understand what is time consuming and why.</div>
 
 It's your job to make *them* understand what is time consuming and why.  *You* are responsible for identifying areas of
 uncertainty to explore more deeply. It's also your job to discover other dependencies outside the software that you need to be
@@ -173,7 +173,7 @@ There's no formula for coming up with an estimate. Many have tried<sup id="back-
 outline some techniques, but it boils down to experience.  This experience is a combination of repeated delivery of software and
 mentoring by those who have more experience estimating delivery.  Keep in mind that *no* amount of experience can allow you to accurately estimate any project.
 
-<aside class='pullquote'>Keep in mind that <strong>no</strong> amount of experience can allow you to…estimate any project.</aside>
+<div class='pullquote' aria-hidden="true">Keep in mind that <strong>no</strong> amount of experience can allow you to…estimate any project.</div>
 
 You will need to combine three basic strategies:
 
@@ -241,7 +241,7 @@ I know this will feel like giving a deadline, and the `#NoEstimates` people are 
 software engineers.  Other people will need to coordinate with whatever it is you are building, and it's extremely hard to
 coordinate around weekly deliveries of whatever.  Dates are the simplest way to coordinate across many teams.
 
-<div class='pullquote'>The world does not revolve around software engineers.</div>
+<div class='pullquote' aria-hidden="true">The world does not revolve around software engineers.</div>
 
 The way to manage this is to run the project in a way that constantly reminds everyone that this date is a projection and not a
 deadline.
@@ -259,7 +259,7 @@ you will manage this risk.
 
 You manage the risk of not completing everything on the projected date by working on the most important or most uncertain things first. This way, your projection can be improved over time, and you are always sitting on the most valuable features, fully completed.
 
-<aside class="pullquote">We will work in order. I’m happy to choose the order in which we work.</aside>
+<div class="pullquote" aria-hidden="true">We will work in order. I’m happy to choose the order in which we work.</div>
 
 Inexperienced stakeholders will not usually agree to put everything into a hard-prioritized list.  They will want buckets and
 they will put everything in the "high" or "medium" priority bucket.  This is not what any reasonable person would call
@@ -281,7 +281,7 @@ delivery and communicate its status.
 Each week, you will deliver working software that can be demonstrated to the stakeholders in a way that they can understand what
 you've done. If this can be delivered to real users, that's great, too.
 
-<aside class="pullquote">Each week…deliver software that can be demonstrated to the stakeholders in a way…they can understand.</aside>
+<div class="pullquote" aria-hidden="true">Each week…deliver software that can be demonstrated to the stakeholders in a way…they can understand.</div>
 
 If the most important task cannot be completely
 delivered in a week, you must break it down into at least two tasks such that one of those tasks *can* be delivered in a week. You must maintain a clear mapping between your breakdown and the original list.
@@ -317,7 +317,7 @@ You will then need to manage suggestions on how to get the project "back on trac
 team to "work harder". You will need to explain that each additional hour worked does not move the project's delivery date
 forward an hour.  You will need to explain that, over time, this will make the project later due to team burnout.
 
-<aside class="pullquote">You will then need to manage suggestions on how to get the project “back on track”.</aside>
+<div class="pullquote" aria-hidden="true">You will then need to manage suggestions on how to get the project “back on track”.</div>
 
 You will also be asked to add more engineers to the project.  Rather than simply quote Fred Brooks' Mythical Man Month, I'd
 suggest you actually itemize out what you think is required to onboard a new person and add them to the team.  Show the
@@ -344,7 +344,7 @@ _(I would agree that estimating <del>stories</del>individual features is not as 
  need to be able to figure out how big something is to determine if it needs to be broken down into smaller parts. That's
  estimation!)_
 
-<aside class="pullquote">[If you] don’t provide an estimate, one will be provided for you.</aside>
+<div class="pullquote" aria-hidden="true">[If you] don’t provide an estimate, one will be provided for you.</div>
 
 The reality is that we are paid to do work, and the people paying us have every right to ask what might be involved in doing that
 work.  And, the reality is also that if your team's work must be coordinated with others, and you don't provide an estimate, one
@@ -352,8 +352,6 @@ will be provided for you.
 
 Despite what the [`#NoAccountability`](https://holub.com/noaccountability/) people say, you *will* be held accountable.  My
 recommendation is to start acting like it.
-
----
 
 <footer class='footnotes'>
 <ol>

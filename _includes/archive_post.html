@@ -1,9 +1,8 @@
 <article>
-  <h1 class="f4 mbnone">
-    <a class="no-ul ul-hover" href="{{ root_url }}{{ post.url }}">{{post.title}}</a>
-  </h1>
-  <h2 class="f6 ls2 uc ib">
+  <h3>
+    <a href="{{ root_url }}{{ post.url }}">{{post.title}}</a>
+  </h3>
+  <time datetime="{{ post.date | date_to_xmlschema }}">
     {{ post.date | date: '%B %d, %Y' }}
-  </h2>
-  <hr>
+  </time>
 </article>

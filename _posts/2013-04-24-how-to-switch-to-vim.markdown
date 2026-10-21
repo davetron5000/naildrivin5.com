@@ -74,7 +74,7 @@ Pathogen solves this by allowing each extension to have its own Vim-like directo
 
 Here's how to set it up:
 
-```
+```shell
 > mkdir -p ~/.vim/autoload ~/.vim/bundle
 > curl -Sso ~/.vim/autoload/pathogen.vim \
     https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim
@@ -82,7 +82,7 @@ Here's how to set it up:
 
 Put this at the top of `~/.vimrc`:
 
-```
+```vim
 execute pathogen#infect()
 syntax on
 filetype plugin indent on
@@ -90,7 +90,7 @@ filetype plugin indent on
 
 This gives you a system in which to manage extensions.  Test it by doing this:
 
-```
+```shell
 > cd ~/.vim/bundle
 > git clone git://github.com/nanotech/jellybeans.vim.git jellybeans.vim
 > vim some_file

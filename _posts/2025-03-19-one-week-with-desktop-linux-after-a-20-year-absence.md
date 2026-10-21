@@ -56,7 +56,7 @@ three USB-C ports and a USB-A port.  I stuck with the boring black bezel.
 
 It was fun putting the laptop together - I haven't shoved RAM into a socket in quite a few years, so it was cool seeing all the parts and putting it all together. Framework's instructions were spot on and I had no real issues.  Most everything either went into a secure socket or was magnetically attached.  I did need to screw some tiny screws in, but they provided a nice screwdriver for their Torx screws.
 
-<aside class="pullquote">Framework's instructions were spot on</aside>
+<div class="pullquote" aria-hidden="true">Framework's instructions were spot on</div>
 
 The last time I did this, I was building a desktop PC and all the parts came in these
 anti-static foil thingies in very basic packaging.  Framework has gone the complete other way,
@@ -86,7 +86,7 @@ While the Framework is by no means a Macbook Pro, it does feel high quality.  Ye
 plastic and has holes for fans.  And yes, there are seams in it where the modular parts
 connect. I'm fine with all of that.
 
-<aside class="pullquote">The screen looked a lot better than I was expecting…the keyboard felt as good as the one on my Macbook</aside>
+<div class="pullquote" aria-hidden="true">The screen looked a lot better than I was expecting…the keyboard felt as good as the one on my Macbook</div>
 
 The screen looked a lot better than I was expecting. It seems retina-quality, or at least
 nowhere near as bad as the $400 Lenovo Windows laptop I used for testing my book. It's not as bright as my
@@ -507,7 +507,7 @@ repo, ran <code>dx/build</code> to build images, ran <code>dx/start</code> to st
 <code>dx/exec bin/setup</code> to set up the app inside the container and <code>dx/exec
 bin/ci</code> to run all tests, which all passed.
 
-<aside class="pullquote">Every single dev environment built and passed tests without any changes</aside>
+<div class="pullquote" aria-hidden="true">Every single dev environment built and passed tests without any changes</div>
 
 Once I started actually making changes to my code, I <strong>did</strong> run into issues running all containers as root. I have sorted that out and <a href="https://devbox.computer">the book will be updated</a> to reflect this.
 
@@ -532,7 +532,7 @@ On Mac (and on Windows, I believe), there is a single system-wide clipboard. Whe
 something into it, it becomes available to paste anywhere. You can run an optional clipboard
 manager that stores the history of stuff you have copied and allow you to paste it.
 
-<aside class="pullquote">On Linux, the clipboard absolutely does not work this way</aside>
+<div class="pullquote" aria-hidden="true">On Linux, the clipboard absolutely does not work this way</div>
 
 On Linux, it absolutely does not work this way.  There is a clipboard that's filled when you
 select text (and there may be one for X11 apps and one for Wayland apps?). There's a system
@@ -576,7 +576,7 @@ This makes it ergonomically easy to use, even with other modifiers.  <kbd>Cmd-Sh
 
 I have a ton of muscle memory built up using the key under my thumb. On Mac, that key is Cmd or Super. On the Framework laptop, it's Alt.  I rarely use Control, since it's almost never a modifier on Mac.  I also have Caps Lock mapped as Escape, since I have not had a keyboard with Escape on it in quite a while (thus, I cannot use that for Control, which would be slightly better, ergonomically).
 
-<aside class="pullquote"> Apps on Linux do not have consistent keyboard shortcuts…Firefox provides no way to customize keyboard shortcuts </aside>
+<div class="pullquote" aria-hidden="true"> Apps on Linux do not have consistent keyboard shortcuts…Firefox provides no way to customize keyboard shortcuts </div>
 
 To make matters worse, apps on Linux do not have consistent keyboard shortcuts.  Copying and
 Pasting in Gnome-Terminal is different than in Firefox.  And to make matters <strong>even
@@ -694,7 +694,7 @@ looking to get promoted.  While Apple is great at hardware, and good at software
 integration, their software has gotten much worse over the last 10 years, often foisting
 zero-value features on users.
 
-<aside class="pullquote">Many apps I use are web apps, and that those apps are pretty good</aside>
+<div class="pullquote" aria-hidden="true">Many apps I use are web apps, and that those apps are pretty good</div>
 
 The other thing that surprised  me was just how many apps I use are web apps, and that those apps are pretty good, especially when run as a standalone "web app" and not as a tab in Firefox.
 

@@ -12,7 +12,7 @@ One of my fellow developers asked me the other day if I had any good dotfiles fo
 
 Here's what I have aliased in `bash`:
 
-```sh
+```shell
 alias vi='mvim'
 alias ps='ps auxwwwwwwww'
 alias ls='ls -FG'
@@ -32,7 +32,7 @@ Similarly, my global `git` config contains only one alias: `lol`, which shows lo
 My `.vimrc` is a bit of an exception, as I have a fair amount of default configuration overridden, but in terms of mappings, I still don't have that much set up.  I use [pathogen] plugins and know the shortcuts many of them provide (like the amazing [rails.vim][railsvim]), but I don't tend to customize them that much.  Here's all the
 mappings I have setup:
 
-```
+```vim
 " cd to directory of current file
 map c :cd %:p:h
 " open buffer list

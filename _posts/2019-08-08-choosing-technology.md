@@ -78,7 +78,7 @@ production?  Do you prefer generalists or specialists, or a mix of both? How do 
 
 The answers to these then inform your technology choices.  Choose technologies that model your values, otherwise you'll be fighting your development environment constantly.
 
-<div class="pullquote">
+<div class="pullquote" aria-hidden="true">
 Choose technologies that model your values
 </div>
 
@@ -95,7 +95,7 @@ An _Opportunity Cost_ is a one-time cost you bear as a result of your decision. 
 
 A simple way to understand opportunity cost is to ask yourself what else you could be doing, and would that be more valuable? There are *always* more things to do than people to do them, so of all those other tasks, which ones can you do *right now*? Are those tasks more valuable than what you are considering spending time on?
 
-<div class="pullquote-left">
+<div class="pullquote left" aria-hidden="true">
 Ask yourself what else you could be doing, and would that be more valuable?
 </div>
 
@@ -146,7 +146,7 @@ There are tons more:
 * Increased scale of data, traffic, or team
 * Integration with third party services and keeping those integrations working
 
-<div class="pullquote">
+<div class="pullquote" aria-hidden="true">
 When you understand carrying costs, you'll…stop having discussions about…technical merits and start discussing using that technology in earnest.
 </div>
 

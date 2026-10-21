@@ -223,8 +223,6 @@ confident in trying another window manager or distro<sup id="back-2"><a href="#2
 
 For now, Desktop Linux *is* working well as a dev machine, despite my many complaints above.
 
----
-
 <footer class='footnotes'>
 <ol>
 <li id="1">

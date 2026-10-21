@@ -11,3 +11,8 @@ _drafts
 bluesky.png
 mastodon.png
 vendor
+dx/state/.pi
+node_modules
+
+/css/
+/js/

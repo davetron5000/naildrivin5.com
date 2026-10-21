@@ -46,38 +46,60 @@
 
   <link href="{{ root_url }}/favicon.png" rel="icon">
   <link href="{{ site.subscribe_rss }}" rel="alternate" title="{{site.title}}" type="application/atom+xml">
-  <link href="/css/styles.css" rel="stylesheet">
+  <link href="/css/styles.css?v={{ 'css/styles.css' | asset_digest }}" rel="stylesheet">
   <meta name="google-site-verification" content="h_yTpXa6N3ebHj8DYmgX4lIFGHBW1NtGMVHfXuu7i_4" />
   <script defer data-domain="naildrivin5.com" src="https://plausible.io/js/script.js"></script>
 </head>
-<body>
-  <header class="site-header pb2 mb2 center">
-    <aside style="background: black; color: white; padding: 10px; font-family: futura">Black Lives Matter. <a style="font-family: futura; color: white" href="/blm.html">See post</a></aside>
-    <h1 class="uc ls2 f1"><a href="/">naildrivin5.com</a></h1>
-    <h2 class="ls1"><small class="uc h4">Website of</small> David Bryant Copeland</h2>
+<body class="BLOK">
+  <header class="prose">
+    <h1><a href="/">naildrivin5.com</a></h1>
+    <h2><small>Website of</small> David Bryant Copeland</h2>
     <nav>
       <ul>
-        <li class="text-c w-1-3"><a class="ib w-100 button" href="/">Blog</a></li>
-        <li class="text-c w-1-3"><a class="ib w-100 button" href="/bio/index.html">About</a></li>
-        <li class="text-c w-1-3"><a class="ib w-100 button" href="/books/index.html">Books</a></li>
-        <li class="text-c w-1-3"><a class="ib w-100 button" href="/talks/index.html">Talks</a></li>
-        <li class="text-c w-1-3"><a class="ib w-100 button" href="{{site.subscribe_rss }}">RSS</a></li>
+        <li ><a href="/">Blog</a></li>
+        <li ><a href="/bio/index.html">About</a></li>
+        <li ><a href="/books/index.html">Books</a></li>
+        <li ><a href="/talks/index.html">Talks</a></li>
+        <li ><a href="{{site.subscribe_rss }}">RSS</a></li>
       </ul>
-      <div style="clear: both"></div>
     </nav>
   </header>
-  <main>
+  <main class="prose">
     <section>
       {{ content }}
     </section>
   </main>
-  <footer class="center" style="border-top: solid thin #aaa; padding-top: 1rem; padding-bottom: 2rem;">
-    <p class="f6 readable pb3">
+  <footer class="prose">
+    <p>
       Copyright &copy; 2006-{{ site.time | date: '%Y' }}, by David Bryant Copeland, All Rights Reserved.
       Unless otherwise stated, all content on this page was <a href="https://declare-ai.org/1.0.0/none.html">created without any assistance from a Generative AI</a>.
     </p>
-    <p class="readable f7">
-      Typos or other issues? Feel free to <a rel=me href="https://ruby.social/@davetron5000">reach out on Mastodon</a>, or <a href="mailto:davec@naildrivin5.com">email me</a> (yes, I read and respond to all my email). To discuss the content, consider doing so on Hacker News, Reddit, Mastodon, or lobste.rs
+    <p>
+      Typos or other issues? Feel free to <a rel="me" href="https://ruby.social/@davetron5000">reach out on Mastodon</a>, or <a href="mailto:davec@naildrivin5.com">email me</a> (yes, I read and respond to all my email). To discuss the content, consider doing so on Hacker News, Reddit, Mastodon, or lobste.rs
     </p>
   </footer>
+  <script type="module" src="/js/bundle.js?v={{ 'js/bundle.js' | asset_digest }}"></script>
+  {% if site.serving %}
+  <script>
+    (() => {
+      let seen = "{{ site.reload_token }}";
+
+      const poll = async () => {
+        try {
+          const res = await fetch("/__reload?t=" + Date.now(), { cache: "no-store" });
+          if (res.ok) {
+            const id = await res.text();
+            if (id !== seen) {
+              location.reload();
+              return;
+            }
+          }
+        } catch (_) {}
+        setTimeout(poll, 750);
+      };
+
+      poll();
+    })();
+  </script>
+  {% endif %}
 </body></html>

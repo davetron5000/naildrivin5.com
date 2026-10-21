@@ -1,0 +1,78 @@
+@import "palette.css";
+
+@font-face {
+  font-family: "Jost";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("/fonts/jost-latin.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Source Serif 4";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("/fonts/source-serif-4-latin.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Source Serif 4";
+  font-style: italic;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("/fonts/source-serif-4-italic-latin.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Monaspace Krypton";
+  font-style: normal;
+  font-display: swap;
+  src: url("/fonts/Monaspace Krypton Var.woff") format("woff2");
+}
+
+:root {
+  --ff-sans: "Jost", "Avenir", "URW Gothic", "Helvetica", Corbel, source-sans-pro, sans-serif;
+  --ff-serif: "Source Serif 4", "Baskerville", "Palatino Linotype", "URW Palladio L", P052, serif;
+  /* NOTE: this string is used in post.css to help style graphvis images that uses monospace fonts.
+   *       If you change this, go there and change it after rebuilding all svgs
+   */
+  --ff-mono: "Monaspace Krypton", ui-monospace, monospace;
+  --fs-base: 1.1875rem;
+  --fs-ratio: 1.2;
+
+  --tw-wide: 42.5rem;
+
+  --nd-tracking-wide: 0.08em;
+  --nd-tracking-medium: 0.04em;
+  --nd-tracking-tight: 0.02em;
+  --nd-lh-code: 1.1;
+
+  --nd-blue: light-dark(var(--brand-secondary-700), var(--brand-secondary-300));
+  --nd-teal: light-dark(var(--brand-700), var(--brand-300));
+  --nd-green: light-dark(var(--green-700), var(--green-300));
+  --nd-green-ink: light-dark(var(--green-900), var(--green-100));
+  --nd-green-muted: light-dark(var(--green-800), var(--green-200));
+  --nd-green-surface: light-dark(var(--green-50), var(--green-900));
+  --nd-blue-ink: light-dark(var(--brand-secondary-900), var(--brand-secondary-100));
+  --nd-blue-muted: light-dark(var(--brand-secondary-800), var(--brand-secondary-200));
+  --nd-blue-surface: light-dark(var(--brand-secondary-50), var(--brand-secondary-900));
+  --nd-cream: light-dark(var(--gray-100), var(--gray-950));
+  --nd-cream-bright: light-dark(var(--gray-50), var(--gray-900));
+  --nd-border: light-dark(var(--gray-200), var(--gray-800));
+  --nd-muted: light-dark(var(--gray-700), var(--gray-400));
+  --nd-aside-text: light-dark(var(--gray-800), var(--gray-300));
+  --nd-discuss-border: light-dark(var(--brand-200), var(--brand-800));
+  --nd-hero-text: var(--gray-50);
+  --nd-hero-overlay: light-dark(
+    color-mix(in srgb, var(--brand-secondary-950) 28%, transparent),
+    color-mix(in srgb, var(--gray-950) 55%, transparent)
+  );
+}
+
+body {
+  --color-text: light-dark(var(--brand-secondary-950), var(--brand-secondary-100));
+  --color-background: light-dark(#FFFFFF, var(--brand-secondary-950));
+  --color-link: light-dark(var(--brand-700), var(--brand-300));
+  --color-link-active: light-dark(var(--brand-800), var(--brand-200));
+}

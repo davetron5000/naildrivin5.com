@@ -5,14 +5,12 @@ single: true
 
 <div>
 <article role="article" class="blog-post">
-  <header class="border-bottom border-light">
-    <h1>{{ page.title }}</h1>
-    <h2 class="f5 ls2 fw-bold mtnone ib" style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 1rem;">
-      <span class="uc">
+  <header>
+    <time datetime="{{ page.date | date_to_xmlschema }}">
       {{ page.date | date: '%B %d, %Y' }}
-      </span>
-      <a class="f6 fw-normal" style="color: #555;" href="/mailing_list/index.html"><span role="img" aria-label="mailbox">📬 Get My Weekly Newsletter <span role="img" aria-label="manicule">&#x261E;</span></a>
-    </h2>
+    </time>
+    <h1>{{ page.title }}</h1>
+    <a href="/mailing_list/index.html">Get my weekly newsletter <span aria-hidden="true">&rarr;</span></a>
   </header>
   <section class="blog-content">
     {{ content }}
@@ -22,14 +20,45 @@ single: true
     <h2>Discuss this post</h2>
     <ul>
       {% if page.mcdouble.mastodon %}
-      <li><a href="{{ page.mcdouble.mastodon.url }}">Mastodon</a></li>
+      <li>
+        <a href="{{ page.mcdouble.mastodon.url }}">
+          <img src="/images/mastodon-logo.png" width="18">
+          <span>Mastodon</span>
+        </a>
+      </li>
       {% endif %}
       {% if page.mcdouble.bluesky %}
-      <li><a href="{{ page.mcdouble.bluesky.url }}">Bluesky</a></li>
+      <li>
+        <a href="{{ page.mcdouble.bluesky.url }}">
+          <img src="/images/bluesky-logo.png" width="18">
+          <span>Bluesky</span>
+        </a>
+      </li>
       {% endif %}
       {% if page.mcdouble.linkedin %}
       <li><a href="{{ page.mcdouble.linkedin.url }}">LinkedIn (gross, I know)</a></li>
+      {% else %}
+      <li><a class="deemphasized" href="https://www.linkedin.com/sharing/share-offsite/?url={{ page.url | absolute_url | url_encode }}">Share on LinkedIn</a></li>
       {% endif %}
+    </ul>
+  </aside>
+  {% else %}
+  <aside class="discussion">
+    <h2>Share this post</h2>
+    <ul>
+      <li>
+        <a href="https://mastodonshare.com/share">
+          <img src="/images/mastodon-logo.png" width="18">
+          <span>Mastodon</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://bsky.app/intent/compose?text={{ page.url | absolute_url | url_encode }}">
+          <img src="/images/bluesky-logo.png" width="18">
+          <span>Bluesky</span>
+        </a>
+      </li>
+      <li><a href="https://www.linkedin.com/sharing/share-offsite/?url={{ page.url | absolute_url | url_encode }}">LinkedIn</a></li>
     </ul>
   </aside>
   {% endif %}
@@ -37,40 +66,38 @@ single: true
   {% if page.related.size > 0 %}
     <h2>You Might Also Like</h2>
     <ul>
-      <li>
-        <a href="/mailing_list/index.html"><span role="img" aria-label="mailbox">📬 My Weekly Newsletter <span role="img" aria-label="manicule">&#x261E;</span></a>
-          <span class="post-date">
-            Short-form, Quick Reads on Tech
-          </span>
-      </li>
       {% for title in page.related %}
       {% assign posts = site.posts | where: "title", title %}
       {% for related_post in posts %}
       <li>
-        <a href="{{ related_post.url }}">{{ related_post.title }}</a>
-        <span class="post-date">
-          {{ related_post.date | date: "%B %d, %Y" }}
-        </span>
+        <a href="{{ related_post.url }}">
+          <span>{{ related_post.title }}</span>
+          <time datetime="{{ related_post.date | date_to_xmlschema }}">
+            {{ related_post.date | date: "%B %d, %Y" }}
+          </time>
+        </a>
       </li>
       {% endfor %}
       {% endfor %}
+      <li class="mailing-list">
+        <a href="/mailing_list/index.html">
+          <span>My Newsletter</span>
+          <small>Short-form, Quick Reads on Tech</small>
+        </a>
+      </li>
     </ul>
   {% else %}
-    <h1>Latest Posts</h1>
+    <h2>Latest Posts</h2>
     <ul>
-      <li>
-        <a href="/mailing_list/index.html"><span role="img" aria-label="mailbox">📬 My Weekly Newsletter <span role="img" aria-label="manicule">&#x261E;</span></a>
-          <span class="post-date">
-            Short-form, Quick Reads on Tech
-          </span>
-      </li>
-      {% for latest_post in site.posts limit:3 %}
+      {% for latest_post in site.posts limit:6 %}
         {% if latest_post.url != page.url %}
           <li>
-            <a href="{{ latest_post.url }}">{{ latest_post.title }}</a>
-            <span class="post-date">
-              {{ latest_post.date | date: "%B %d, %Y" }}
-            </span>
+            <a href="{{ latest_post.url }}">
+              <span>{{ latest_post.title }}</span>
+              <time datetime="{{ latest_post.date | date_to_xmlschema }}">
+                {{ latest_post.date | date: "%B %d, %Y" }}
+              </time>
+            </a>
           </li>
         {% endif %}
       {% endfor %}
@@ -101,7 +128,7 @@ single: true
   <h1>{{ page.ad.title }}</h1>
   <h2>{{ page.ad.subtitle }}</h2>
   <a href="{{ page.ad.link }}">
-    <img src="{{page.ad.image}}" width="200">
+    <img src="{{page.ad.image}}">
   </a>
   <h3>
     <a href="{{ page.ad.link }}">

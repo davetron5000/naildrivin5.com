@@ -68,21 +68,26 @@ def build(future: false, drafts: false)
   flags << "--future"     if future
   flags << "--drafts"     if drafts
 
-  sh "RUBYOPT=-W0 bundle exec jekyll build #{flags.join(' ')}"
-  sh "RUBYOPT=-W0 bundle exec sass _sass/styles.scss:css/styles.css"
+  sh "./bin/build-assets"
+  sh "RUBYOPT=-W0 jekyll build #{flags.join(' ')}"
+end
+
+desc "Check that all code listings use build-time-highlighted fenced blocks"
+task :check_code do
+  ruby "-W0", "bin/check-code-blocks"
 end
 
 desc "Build the site into _site"
-task :build => :swot do
+task :build => [:swot, :check_code] do
   build(future: ENV["CI"] && ENV["CIRCLE_BRANCH"] != "main")
 end
 
 def serve(drafts: false, watch: false)
   flags = []
-  flags << "--drafts"     if drafts
-  flags << "--watch"      if watch
-  flags << "--livereload" if watch
-  sh "RUBYOPT=-W0 bundle exec jekyll serve -H 0.0.0.0 --future #{flags.join(' ')}"
+  flags << "--drafts"        if drafts
+  flags << "--watch"         if watch
+  flags << "--force_polling" if watch
+  sh "RUBYOPT=-W0 jekyll serve -H 0.0.0.0 --future #{flags.join(' ')}"
 end
 
 desc "Serve up the site locally"

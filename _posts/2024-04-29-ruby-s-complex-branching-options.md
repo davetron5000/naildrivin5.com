@@ -248,8 +248,6 @@ For science, I'm going to try the deconstruction-based approach and see what it'
 
 
 
----
-
 <footer class='footnotes'>
 <ol>
 <li>

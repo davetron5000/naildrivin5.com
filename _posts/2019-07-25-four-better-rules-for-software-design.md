@@ -187,8 +187,6 @@ concepts to an absolute minimum.
 
 
 
-----
-
 <footer class='footnotes'>
 <ol>
 <li>

@@ -94,7 +94,7 @@ of that change would be applied all the way to the final chapter.
 
 But, like all good beautiful hacks (especially those built and run by a single person over many years), it was a bit rough around the edges. Even though it was maddening at times, it was a net positive and made it possible to maintain the book. It worked and allowed the book to maintain its relevance for many years.  It even provided useful feedback to the Rails team: Sam could checkout edge Rails, run the book, and tell the team what broke.
 
-<aside class='pullquote'>I knew that any programming book I wrote would use a toolchain to automate everything.</aside>
+<div class='pullquote' aria-hidden="true">I knew that any programming book I wrote would use a toolchain to automate everything.</div>
 
 At that point, I knew that any programming book I wrote after this would use a toolchain like what Sam had built.  It removed a big chunk of friction that I absolutely hated having to deal with.  Sam's system worked for him, but was designed to interoperate with the Pragmatic Programmers toolchain. That toolchain largely handled building the book and typesetting, so Sam's automation really was about maintaining the running example<a name="back-1"></a><sup><a href="#1">1</a></sup>.
 
@@ -210,7 +210,7 @@ The idea is that when the file containing this directive is processed, the setup
 then the command is executed and its output captured.  Then, the directive is replaced with the command
 invocation and, optionally, the output itself:
 
-```
+```markdown
 Since we're using Postgres as our database, we can specify that
 to `rails new` so we have the right gems and configuration.
 This gives the following invocation to create our app:
@@ -318,7 +318,7 @@ First, we'll install dotenv by adding `dotenv-rails` it to our `Gemfile`:
 
 This produced the following vanilla Markdown:
 
-```
+```markdown
 First, we'll install dotenv by adding `dotenv-rails` it to our `Gemfile`:
 
 
@@ -371,7 +371,7 @@ to rebuild the samples from chapter 1 each time.
 
 At the top of each markdown file is a caching directive:
 
-```
+```yaml
 snapshot: { "dir": "widgets", "restore": "10-03", "save": "11-01" }
 ```
 
@@ -503,7 +503,7 @@ Note that in the Markdown, I had to put a LaTeX cross referencing anchor (`\labe
 standard HTML one.  Pandoc didn't quite produce the cross-referencing I needed on its own.  Thus, to refer to this
 diagram required using both LaTeX and HTML:
 
-```
+```markdown
 Remember the [boundary diagram](#fig:structure-of-boundary-class)<span class="latex-only">on page
 \pageref{fig:structure-of-boundary-class</span>?
 ```
@@ -671,7 +671,7 @@ For the index, I put raw LaTeX in the Markdown. I couldn't find a better way to 
 relevant for a printed book anyway (since you can't search a physical book), so I was fine with that.  I did that at the end because it greatly disrupts the text. Here's a paragraph that is creating index entries for "database → lookup tables" and "lookup
 tables":
 
-```
+```tex
 \index{database!lookup tables}\index{lookup tables}When a column's value 
 should be one value from a static list of possible values, an `ENUM`
 can work as we discussed above.
@@ -732,8 +732,6 @@ encourage you to invest in a toolchain to automate as much of that as you can.  
 As for my Toolchain, I'm not quite able to make it open source, but the next book I do, I should be able to revist
 it more and make it more separate from the _Sustainable Rails_ book.
 
-
-----
 
 <footer class='footnotes'>
 <ol>

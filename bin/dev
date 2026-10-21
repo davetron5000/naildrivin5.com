@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+script_dir="$(cd "$(dirname "$0")" && pwd)"
+
+if [ "${1:-}" = "stop" ]; then
+  exec "$script_dir/dev-stop"
+fi
+
+cd "$script_dir/.."
+
+exec bundle exec foreman start "$@"

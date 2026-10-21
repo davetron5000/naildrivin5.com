@@ -1,5 +1,6 @@
 DOT_FILES = *.dot
 PNG_FILES = $(patsubst %.dot,%.png,$(DOT_FILES))
+SVG_FILES = $(patsubst %.dot,%.svg,$(DOT_FILES))
 
 %.png : %.dot
 	dot -Gdpi=300 -Tpng $< -o$@
@@ -17,22 +18,21 @@ PNG_FILES = $(patsubst %.dot,%.png,$(DOT_FILES))
 	@echo	"                629px\""
 	@echo "         alt=\"alt text here\">"
 	@echo	"  </a>"
-	@echo	"  <figcaption class=\"\">"
+	@echo	"  <figcaption>"
 	@echo	"    Caption goes here (<a target=\"_new\" href=\"/images/$@\">Open bigger version in new window</a>)"
 	@echo	"  </figcaption>"
 	@echo	"</figure>"
 
 %.svg : %.dot
-	dot -Gdpi=300 -Tsvg $< -o$@
+	dot -Tsvg $< -o$@
 	#@open $@:
 	@echo "<figure>"
-	@echo	"  <a href=\"/images/$@\">"
-	@echo	"    <img src=\"/images/$@\""
-	@echo "         alt=\"alt text here\">"
-	@echo	"  </a>"
-	@echo	"  <figcaption class=\"\">"
+	@echo	"  {% inline_svg images/$@ \"alt text here\" %}"
+	@echo	"  <figcaption>"
 	@echo	"    Caption goes here (<a target=\"_new\" href=\"/images/$@\">Open bigger version in new window</a>)"
 	@echo	"  </figcaption>"
 	@echo	"</figure>"
 
 all: $(PNG_FILES)
+
+svg: $(SVG_FILES)

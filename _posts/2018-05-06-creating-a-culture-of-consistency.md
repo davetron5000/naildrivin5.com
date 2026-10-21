@@ -37,7 +37,7 @@ grow the team and extends the time during which a single person can understand t
 
 A team that embraces this will basic practice be able to move quickly and maintain a focus on the specific business problems they solve. A team that continually re-solves problems or has to maintain many different methods of solving the same technological issue will be slower to deliver value.
 
-<div class="pullquote">
+<div class="pullquote" aria-hidden="true">
 A lack of consistency has long-term negative effects on a team's productivity
 </div>
 
@@ -57,9 +57,9 @@ I'm on a project now that requires touching all of the UIs in a minor way, and t
 there is no consistency.  These apps are all pretty similar in what they do, so there is no functional reason they aren't using
 the same framework<a name="back-1"></a><sup><a href="#1">1</a></sup>.
 
-<aside class="pullquote">
+<div class="pullquote" aria-hidden="true">
 Had I to do it over, I'd spend more time explicitly advocating for consistency
-</aside>
+</div>
 
 When I reflect back on struggles the team has had, many of them would've been prevented or made less drastic had I and others been more insistent on consistency in approach.  Had I to do it over, I'd spend more time explicitly advocating for consistency.
 
@@ -75,9 +75,9 @@ engineers you hire. The difference between a successful hire and an unsuccessful
 knowledge.  A junior Fortran programming who values consistency can be taught Ruby on Rails and distributed programming.  A
 mid-level developer who's only ever done agency work might never have experienced consistency, but they can learn.  A 20-year veteran expert on distributed systems who prioritizes their own way of doing things over team consistency is unlikely to change (and can tank your team's productivity).
 
-<aside class="pullquote">
+<div class="pullquote" aria-hidden="true">
 Be explicit and clear that consistency is a value
-</aside>
+</div>
 
 It's hard to assess for a value like this, so you also need to make sure that new hires understand that your team values
 consistency and what that means for them. Onboarding and new-hire training *must* involve setting these expectations. Be 
@@ -191,7 +191,7 @@ those with a problem and those tasked with solving it.
 
 I've experienced internal tools teams produce nothing of value for months, because they were unable to properly understand the needs of the developers and unable to prioritize delivering value (these teams tended to be over-interested in technology for its own sake).
 
-<div class="pullquote">
+<div class="pullquote" aria-hidden="true">
 The internal tools team must be the primary champion of consistency
 </div>
 
@@ -224,8 +224,6 @@ and can actively seek feedback.
 
 If you don't embrace a culture of consistency, you will eventually require a very large team with a lot of painful process and
 gate-keeping to deliver value.  It's not fun.
-
----
 
 <footer class='footnotes'>
 <ol>

@@ -22,9 +22,9 @@ What's more likely is that each person on the team will find a source of data pl
 to help make decisions.  Each spreadsheet ends up showing data that's *close*, but not the same.  In the short term, this can lead to distractions when these differences show up, but in the long term it can make it very hard to get everyone aligned on
 exactly how to measure the performance of the business.
 
-<aside class="pullquote">
+<div class="pullquote" aria-hidden="true">
 The engineering team is uniquely positioned to get everyone aligned.
-</aside>
+</div>
 
 The engineering team is uniquely positioned to address this problem and get everyone aligned.  This is because the engineering
 team is often at the center of every system in use and will often be managing the database that drives any custom-built
@@ -70,9 +70,9 @@ Your reports should initially be designed as CSVs of raw but clean data and spre
 reason is that the team will not initially trust automated reports produced from a computer, especially if they have been
 accustomed to their hand-crafted spreadsheets.
 
-<aside class="pullquote">
+<div class="pullquote" aria-hidden="true">
 Anyone can follow from a KPI to the data that produced it
-</aside>
+</div>
 
 By putting aggregation logic in a spreadsheet, anyone can follow from a KPI to the data that produced it and trust that it's
 correct.  It also allows them to diagnose bugs in the calculations or errors in the definitions.  For example, Mood calculates
@@ -111,9 +111,9 @@ Do not simply email the spreadsheet and hope for the best.  You need people to t
 reliable.  If you have access to the private sheets each person is using, show how your automated system produced identical
 results.  If it *doesn't*, be prepared to explain in detail why not and why your system is more correct.
 
-<aside class="pullquote">
+<div class="pullquote" aria-hidden="true">
 People will…not be convinced data is correct merely by an explantation of the methodology
-</aside>
+</div>
 
 People will definitely not be convinced data is correct merely by an explantation of the methodology. They will need to see real
 values and potentially run a few numbers by hand first.  Make it easy to do that and do it synchronously either in person or on

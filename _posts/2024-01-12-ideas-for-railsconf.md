@@ -150,8 +150,6 @@ about Ruby.
 
 Like I said at the start, I would recommend that every practicing Rubyist attend RailsConf at least once.
 
----
-
 <footer class='footnotes'>
 <ol>
 <li id="1">

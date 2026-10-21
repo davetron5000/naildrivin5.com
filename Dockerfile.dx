@@ -1,7 +1,14 @@
-FROM ruby:3.3
+FROM ruby:4.0
 
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get -y update
+
+# Install node the hacky way
+COPY --from=node:24-slim /usr/local /usr/local
+
+# From https://pi.dev/docs/latest
+RUN npm install -g --ignore-scripts @earendil-works/pi-coding-agent && \
+    npm install -g @agegr/pi-web@latest
 
 ENV EDITOR=vim
 RUN apt-get install -y vim graphviz && \

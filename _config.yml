@@ -26,3 +26,32 @@ paginate: 10          # Posts per page on the blog index
 #recent_posts: 5       # Posts in the sidebar Recent Posts section
 titlecase: true       # Converts page and post titles to titlecase
 excerpt_separator: '<!-- more -->'
+
+# Source entry points live in _css/ and _js/ and are bundled by esbuild into
+# css/styles.css and js/bundle.js. Excluding them keeps Jekyll from rebuilding
+# before esbuild has written the bundled assets.
+#
+# Also exclude build/dev-only files so they don't end up in _site.
+exclude:
+  - _css
+  - _js
+  - bin
+  - dx
+  - notes
+  - vendor
+  - AGENT.md
+  - Dockerfile.dx
+  - Gemfile
+  - Gemfile.lock
+  - Procfile
+  - README.markdown
+  - Rakefile
+  - docker-compose.dx.yml
+  - package.json
+  - package-lock.json
+  - mcdouble.json
+  - test-mcdouble.json
+  - bluesky.png
+  - mastodon.png
+  - swot/*.md
+  - swot/template.html.erb

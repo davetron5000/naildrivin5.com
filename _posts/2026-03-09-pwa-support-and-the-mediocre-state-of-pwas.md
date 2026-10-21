@@ -28,8 +28,6 @@ see what the experience was like directly.  Sweet solution, it was not.
 
 [linux-post]: /blog/2025/03/21/one-week-with-desktop-linux-after-a-20-year-absence.html
 
----
-
 <footer class='footnotes'>
 <ol>
 <li id="1">

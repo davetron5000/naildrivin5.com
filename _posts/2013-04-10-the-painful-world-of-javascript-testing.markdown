@@ -118,7 +118,7 @@ Next, we set up our fixture in a `beforeEach` block using CoffeeScript's handy m
 string syntax.  This keeps things fairly readable, despite the fact that we're building a
 giant string of HTML:
 
-``` coffeescript
+```coffeescript
 beforeEach ->
   fixture = """
   <div id="returns-fixture">
@@ -222,7 +222,7 @@ expect($("#item-id-field")).toHaveValue("foo")
 
 The test failure message is very nice:
 
-```
+```text
 Expected '<input type="text" id="item-id-field" name="item_id" autofocus="autofocus">' 
 to have value 'foobar'. (line ~36)
 ```
@@ -232,7 +232,7 @@ The failure message is accurate, as is the line number.  So far, so good.
 Now, let's introduce a typo.  It happens, and, while annoying, is usually an easy problem to fix.
 Not in the world of JavaScript unit testing:
 
-```
+```text
 (/Users/davec/Projects/spectre/spec/javascripts/returns_spec.coffee:33)
    TypeError: 'undefined' is not a function
 ```

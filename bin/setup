@@ -1,3 +1,9 @@
 #!/bin/sh
-
 bundle install
+npm install
+
+# Install the site's fonts so Graphviz measures text with the same
+# fonts the browser will use when rendering generated SVGs.
+mkdir -p "$HOME/.fonts"
+cp fonts/*.ttf "$HOME/.fonts/"
+fc-cache -f "$HOME/.fonts" >/dev/null

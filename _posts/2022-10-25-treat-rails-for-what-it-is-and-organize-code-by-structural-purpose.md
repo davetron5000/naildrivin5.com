@@ -55,9 +55,9 @@ The highlighted section is important.  The service layer *encapsulates* the busi
 "clients". In a Rails app, a client is a controller, mailbox, task, or background job.  They
 invoke business logic and interpret its results.  The service layer is where this happens.
 
-<aside class="pullquote">
+<div class="pullquote" aria-hidden="true">
 The service layer encapsulates the business logic.
-</aside>
+</div>
 
 This does *not* imply that the service layer contain all the logic.  It is just a boundary.  It encapsulate whatever the logic is.
 
@@ -105,9 +105,9 @@ existing concept that is close, and if we rename it would this code go there?  O
 this code to an existing concept make that concept too complex such that it requires splitting up
 into two smaller concepts?
 
-<aside class="pullquote">
+<div class="pullquote" aria-hidden="true">
 It creates a far more difficult-to-answer question of where code goes.
-</aside>
+</div>
 
 These questions can be hard to answer, especially if the app is undergoing rapid change. You may
 not know what concepts the app will need or if a concept will be developed beyond the initial

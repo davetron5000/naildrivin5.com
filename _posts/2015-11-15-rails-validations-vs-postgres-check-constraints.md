@@ -48,7 +48,7 @@ letter followed by a space, followed by another letter, somewhere in the string<
 
 Now, when we insert an invalid value, it won't work:
 
-```
+```sql
 > insert into users(id,name,email) values (1,'','bob@blah.com');
 ERROR:  new row for relation "users" violates 
         check constraint "users_name_must_look_like_a_name"
@@ -94,7 +94,7 @@ end
 
 Sure enough, this prevents us violating the validation:
 
-```
+```ruby
 > user = User.create(name: "bob", email: "bob@blah.com")
  => #<User id: nil, name: "bob", email: "bob@blah.com"> 
 > user.valid?
@@ -122,7 +122,7 @@ another letter, we can't simply hope for the best.  As developers, we have a dut
 
 Option 2 creates a poor user experience:
 
-```
+```ruby
 > User.create(name: "Bob", email: "bob@jones.com")
 ActiveRecord::StatementInvalid: PG::CheckViolation: ERROR:  
   new row for relation "users" violates 
@@ -191,7 +191,7 @@ end
 
 This works as advertised:
 
-```
+```ruby
 > i = InvoiceUser.new
  => #<InvoiceUser:0x007ff604d80b60> 
 > i.name = 'a b'
@@ -218,8 +218,6 @@ Often they are the same thing, but not always.  And don't fret about a bit of du
 
 _Read more in my new book [“Rails, Angular, Postgres, and Bootstrap
 Powerful, Effective, and Efficient Full-Stack Web Development”](https://pragprog.com/book/dcbang2_
-
----
 
 <footer class='footnotes'>
 <ol>

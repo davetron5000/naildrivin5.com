@@ -1,0 +1,71 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+script_dir="$(cd "$(dirname "$0")" && pwd)"
+cd "$script_dir/.."
+root="$(pwd -P)"
+
+process_cwd() {
+  local pid="$1"
+  if [ -e "/proc/$pid/cwd" ]; then
+    readlink "/proc/$pid/cwd" 2>/dev/null || true
+  elif command -v lsof >/dev/null 2>&1; then
+    lsof -a -p "$pid" -d cwd -Fn 2>/dev/null | sed -n 's/^n//p' | head -1
+  fi
+}
+
+dev_pids() {
+  local patterns=(
+    "foreman: main"
+    "bundle exec foreman start"
+    "rake serve"
+    "jekyll serve"
+    "esbuild _css"
+    "esbuild _js"
+  )
+  local pattern pid cwd cmd
+
+  for pattern in "${patterns[@]}"; do
+    while IFS= read -r pid; do
+      [ -z "$pid" ] && continue
+      [ "$pid" = "$$" ] && continue
+      cmd="$(ps -o args= -p "$pid" 2>/dev/null || true)"
+      case "$cmd" in
+        "foreman: main"*|"bundle exec foreman start"*|*/bin/rake\ serve*|*/bin/jekyll\ serve*|*node_modules/.bin/esbuild\ *)
+          cwd="$(process_cwd "$pid")"
+          [ "$cwd" = "$root" ] && printf '%s\n' "$pid"
+          ;;
+      esac
+    done < <(pgrep -f "$pattern" 2>/dev/null || true)
+  done | sort -u
+}
+
+pids=()
+while IFS= read -r pid; do
+  [ -n "$pid" ] && pids+=("$pid")
+done < <(dev_pids)
+
+if [ ${#pids[@]} -eq 0 ]; then
+  echo "No dev server is running for ${root}."
+  exit 0
+fi
+
+echo "Stopping dev server process(es): ${pids[*]}"
+kill -TERM "${pids[@]}" 2>/dev/null || true
+
+for _ in {1..5}; do
+  sleep 1
+  remaining=()
+  while IFS= read -r pid; do
+    [ -n "$pid" ] && remaining+=("$pid")
+  done < <(dev_pids)
+  if [ ${#remaining[@]} -eq 0 ]; then
+    echo "Dev server stopped."
+    exit 0
+  fi
+  pids=("${remaining[@]}")
+done
+
+echo "Dev server did not stop cleanly; forcing."
+kill -KILL "${pids[@]}" 2>/dev/null || true
+echo "Dev server stopped."

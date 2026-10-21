@@ -1,2 +1,2 @@
-web: bundle exec jekyll serve --future --watch #--limit_posts=10
-sass: bundle exec sass --watch _sass/styles.scss:css/styles.css
+web: bundle exec rake serve
+assets: ./bin/watch-assets

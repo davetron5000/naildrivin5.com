@@ -44,7 +44,7 @@ He had created a way to write Scala code and turn it into JavaScript, much like 
 <h3>Scala Parallel Collections</h3>
 <h4>by Aleksander Prokopec</h4>
 <p>
-This was a preview of a Scala 2.8.1 (or later) feature, where a subpackage of the new 2.8 collections library was created that could perform the collection operations in parallel.  Consider a <tt>filter</tt> on a collection; this is highly parallelizable.  This library is being created to basically implement that in a transparent fashion.  Really interesting stuff.  They had even considered load balancing, via some interesting work-stealing mechanisms.  In only 30 minutes, there wasn't a <b>huge</b> amount of detail, but this seems to be another way in which parallel computation could be done very easily.
+This was a preview of a Scala 2.8.1 (or later) feature, where a subpackage of the new 2.8 collections library was created that could perform the collection operations in parallel.  Consider a <code>filter</code> on a collection; this is highly parallelizable.  This library is being created to basically implement that in a transparent fashion.  Really interesting stuff.  They had even considered load balancing, via some interesting work-stealing mechanisms.  In only 30 minutes, there wasn't a <b>huge</b> amount of detail, but this seems to be another way in which parallel computation could be done very easily.
 </p>
 <h3>Developing the Scala Bindings to the Fly Object Space</h3>
 <h4>by Channing Walton, Nigel Warren, Simon Kent</h4>
@@ -101,7 +101,7 @@ I went to this purely for my co-workers.  I hate IDEs in general, and Eclipse do
 <h3>sbt Design and Implementation</h3>
 <h4>by Mark Harrah</h4>
 <p>
-While sbt isn't my ideal build tool, but it's a billion times better than Maven and Mark's talk actually made me appreciate it a lot more.  He is unabashedly in favor of terse symbols over long method names, and he spent some time explaining the rational behind them (thus making things make a bit more sense). His assertion is that you will eventually internalize the symbols and achieve productivity gains at a cost of a slight bump at the start.  I tend to disagree with this, because how often is one modifying their build?  This is why learning and retaining Ant and Maven is so difficult (I can't write a <tt>copy</tt> in Ant without a trip to the docs).  At any rate, this was a good talk and great overview of sbt, and, despite me not being into the crazy symbols, I will take it over Maven or Ant any day.  At least it's based in a real programming language and not some XML nonsense.
+While sbt isn't my ideal build tool, but it's a billion times better than Maven and Mark's talk actually made me appreciate it a lot more.  He is unabashedly in favor of terse symbols over long method names, and he spent some time explaining the rational behind them (thus making things make a bit more sense). His assertion is that you will eventually internalize the symbols and achieve productivity gains at a cost of a slight bump at the start.  I tend to disagree with this, because how often is one modifying their build?  This is why learning and retaining Ant and Maven is so difficult (I can't write a <code>copy</code> in Ant without a trip to the docs).  At any rate, this was a good talk and great overview of sbt, and, despite me not being into the crazy symbols, I will take it over Maven or Ant any day.  At least it's based in a real programming language and not some XML nonsense.
 <h3>Processing with Spde</h3>
 <h4>by Nathan Hamblen</h4>
 <p>

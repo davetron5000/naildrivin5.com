@@ -32,24 +32,15 @@ em-dashes are my own. I would also respectfully ask that you read it and not hav
 All techniques for improving the quality of software construction attempt to solve one problem: allow a person to understand the system they are changing so they can safely and correctly make a change to it.  Techniques either prevent certain classes of bugs (e.g. static typing, code review, web frameworks), or make it easier to manage complexity (e.g. object-orientation, microservices, function currying)<sup id="back-1"><a href="#1">1</a></sup>.
 
 <figure>
-  <a href="/images/tradprog.png">
-    <img src="/images/tradprog.png"
-         srcset="/images/tradprog.png 629w,
-                 /images/tradprog-320.png 320w,
-                 /images/tradprog-500.png 500w"
-         sizes="(max-width: 320px) 320px,
-                (max-width: 500px) 500px,
-                629px"
-         alt="A flow chart showing a software development process that starts with three inputs: 'Any System', 'Description of Change', and 'Tools and Techniques for Quality Software Construction'. These feed into 'Developer', which outputs to 'Proposed Change'. This then feeds to a choice of 'Review'. One path out of 'Review' is 'needs revision', which goes back to 'Developer'. The other path out of 'Review' is to 'Updated System with Change'. This then leads to 'Observable Outcome'. There is a note pointing to 'Observable Outcome' that says 'This is all that really matters'">
-  </a>
-  <figcaption class="">
-    The Traditional Software Development Process (<a target="_new" href="/images/tradprog.png">Open bigger version in new window</a>)
-  </figcaption>
+{% inline_svg images/tradprog.svg "A flow chart showing a software development process that starts with three inputs: 'Any System', 'Description of Change', and 'Tools and Techniques for Quality Software Construction'. These feed into 'Developer', which outputs to 'Proposed Change'. This then feeds to a choice of 'Review'. One path out of 'Review' is 'needs revision', which goes back to 'Developer'. The other path out of 'Review' is to 'Updated System with Change'. This then leads to 'Observable Outcome'. There is a note pointing to 'Observable Outcome' that says 'This is all that really matters'" %}
+<figcaption>
+    The Traditional Software Development Process (<a target="_new" href="/images/tradprog.svg">Open bigger version in new window</a>)
+</figcaption>
 </figure>
 
 Although we debate and discuss various techniques amongst ourselves, no non-programmer cares about them. They can't even conceptualize how software is made, so they have no way to know what quality construction is, how to value it, or even how to identify it. They just care about outcomes.
 
-<blockquote class="pullquote">We tell ourselves that it's these skills that deliver those desired outcomes</blockquote>
+<div class="pullquote" aria-hidden="true">We tell ourselves that it's these skills that deliver those desired outcomes</div>
 
 Despite all that, we tell ourselves that these skills are critical in delivering those desired outcomes. I myself have a very particular set of skills.  Skills I've acquired over a very long career.  I write about them, I use them, and I am truly convinced that careful construction of software is the best way to reliably create systems that can be easily changed over their lifetimes. Even if no one knows or cares.
 
@@ -62,20 +53,12 @@ I may relish the solutions to building quality software, but the best solution t
 Let's imagine a hypothetical tool that could take, as input, any software system and a description of a change. The tool produces, as output, an updated system with that change incorporated.  This hypothetical system would not rely on any particular software construction technique—it works with any system you give it.
 
 <figure>
-  <a href="/images/aiblackbox.png">
-    <img src="/images/aiblackbox.png"
-         srcset="/images/aiblackbox.png 629w,
-                 /images/aiblackbox-320.png 320w,
-                 /images/aiblackbox-500.png 500w"
-         sizes="(max-width: 320px) 320px,
-                (max-width: 500px) 500px,
-                629px"
-         alt="A flow chart showing a software development process that starts with 'Any System' and 'Description of Change'. These feed into 'Black Box', which then leads to 'Updated System with Change'. This then leads to 'Observable Outcome'. There is a note pointing to 'Observable Outcome' that says 'This is all that really matters'">
-  </a>
-  <figcaption class="">
-    A Hypothetical Brave New Way to Make Software (<a target="_new" href="/images/aiblackbox.png">Open bigger version in new window</a>)
+  {% inline_svg images/aiblackbox.svg "A flow chart showing a software development process that starts with 'Any System' and 'Description of Change'. These feed into 'Black Box', which then leads to 'Updated System with Change'. This then leads to 'Observable Outcome'. There is a note pointing to 'Observable Outcome' that says 'This is all that really matters'" %}
+  <figcaption>
+    A Hypothetical Brave New Way to Make Software (<a target="_new" href="/images/aiblackbox.svg">Open bigger version in new window</a>)
   </figcaption>
 </figure>
+
 
 If software was created this way, would anyone know what, say, dependency injection was?  Would anyone go to a conference to learn about the latest features of Ruby on Rails?  Would anyone buy a book about carefully designing database schemas?
 
@@ -86,7 +69,7 @@ while there might be *some* overlap with the skills we use today to create quali
 
 This system is not so hypothetical.
 
-<blockquote class="pullquote">We know that in at least some cases, they do exactly what I described above.</blockquote>
+<div class="pullquote" aria-hidden="true">We know that in at least some cases, they do exactly what I described above.</div>
 
 We've seen what AI code generation systems are capable of.  We know that in at least some cases, they do exactly what I described above.  In some cases, they can take an existing system, a description of a change, and produce a system with that change.  And they seem to be improving quickly, handling more and more cases.
 
@@ -107,7 +90,7 @@ My visceral reaction to these tools has been a combination of disgust and boredo
 
 As of this writing, these are all true.  But are they intrinsic problems? *Must* they be true, always?
 
-<blockquote class="pullquote">AI code generation's problems aren't actually as intrinsic as they may seem</blockquote>
+<div class="pullquote" aria-hidden="true">AI code generation's problems aren't actually as intrinsic as they may seem</div>
 
 Unlike crypto, which is literally made of intrinsic problems preventing it from widespread adoption (please don't email me), AI code generation's problems aren't actually as intrinsic as they may seem.
 
@@ -130,7 +113,7 @@ As much as I love coding, it would be really nice to produce results without fre
 any of that stuff.  Having a system produce reliable code just seems better. And it's not like these tools are the first examples of code
 generation—we use code generation all the time.
 
-<blockquote class="pullquote">Almost everyone in the orbit of software development only cares about outcomes</blockquote>
+<div class="pullquote" aria-hidden="true">Almost everyone in the orbit of software development only cares about outcomes</div>
 
 Remember, almost everyone in the orbit of software development only cares about outcomes and results, not the process by which they were achieved.  It doesn't mean *you* are wrong to care, but most people don't.
 
@@ -157,7 +140,7 @@ In the short term, it's still possible to be gainfully employed in software whil
 
 But these positions will become fewer and far between.  Choosing AI abstinence means ultimately exiting professional software development, at least at some point.
 
-<blockquote class="pullquote">Choosing AI abstinence means exiting professional software development</blockquote>
+<div class="pullquote" aria-hidden="true">Choosing AI abstinence means exiting professional software development</div>
 
 This might seem extreme, but be honest: these tools will become far more prolific over the short term.  Not enough people are going to come around on the ethical issues to slow or stop their adoption. The country I live in is 350+ million people who tolerate the sexual exploitation and murder of children (as just one example).  I say this not to encourage you to give in or sell out, but just to understand that the world of software development as you know it is going to become very small very fast.
 
@@ -174,7 +157,7 @@ need to retrain yourself.  You'll leverage your experience and incorporate these
 tools in the same way as you would any other advance in the field. Except you may
 leave a lot of your existing skills behind.
 
-<blockquote class="pullquote">It's hard to live a life free of compromise</blockquote>
+<div class="pullquote" aria-hidden="true">It's hard to live a life free of compromise</div>
 
 It's hard to live a life free of compromise. Going All In is to compromise. It means you must tolerate the downsides of this technology (assuming you believe there *are* at least some downsides). Of course, tolerance is not the same thing as support. Every one, every where, every day must weigh their needs against what their conscience can bear.
 
@@ -234,8 +217,6 @@ However, to live in this world as a Software Crafter<sup id="back-2"><a href="#2
 We don't get to live our lives free of compromise.
 
 Maybe in the next world.
-
----
 
 <footer class='footnotes'>
 <ol>

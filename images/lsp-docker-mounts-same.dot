@@ -3,20 +3,20 @@ digraph G {
   rankdir="LR"
   subgraph cluster_docker {
       label = "Docker Container"
-      fontname="Avenir"
+      fontname="Jost"
       
       MountedDir
   }
   subgraph cluster_host {
       label = "Your Computer"
-      fontname="Avenir"
+      fontname="Jost"
       
       SourceDir
   }
  
-  MountedDir -> SourceDir [dir=both label="Volume Mount" fontname="Avenir"]
-  MountedDir[shape=folder fontname="Courier New" label="/home/davec/Projects/my-awesome-app"]
-  SourceDir[shape=folder  fontname="Courier New" label="/home/davec/Projects/my-awesome-app"]
+  SourceDir -> MountedDir [dir=both label="Volume Mount" fontname="Source Serif 4"]
+  MountedDir[shape=folder fontname="Monaspace Krypton Var" class="shape indigo" label="/home/davec/Projects/my-awesome-app"]
+  SourceDir[shape=folder  fontname="Monaspace Krypton Var" class="shape amber" label="/home/davec/Projects/my-awesome-app"]
  
  
 }

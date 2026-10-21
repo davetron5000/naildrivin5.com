@@ -377,7 +377,7 @@ get_new_person = -> {
 
 We can also add derived fields.  Suppose we want a saluation for the person that uses their title?  We can make that an attribute of the person:
 
-```
+```ruby
 new_person = ->(name,birthdate,gender,title,id) {
   return ->(attribute) {
     return id        if attribute == :id

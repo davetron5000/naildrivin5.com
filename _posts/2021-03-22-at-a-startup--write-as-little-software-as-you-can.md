@@ -69,7 +69,7 @@ can do to avoid over-building:
 automating only *some* of it result in an inexpensive yet reliable process?
 * Reframe all questions about what the software can do to questions about what is important to solve for and how much time are we willing to spend.  My collogues used to ask "can we make the system do X?". The answer is always "yes!".  I say this frequently: "We can make it do anything we want, it's just a matter of time, money, and maintenance.  What's the problem we are trying to solve?"  Now they ask "what's the effort in changing the system to do X?" which is a much better question.
 
-<div class="pullquote">
+<div class="pullquote" aria-hidden="true">
 Start by outlining a completely manual process that would solve the problem.
 </div>
 
@@ -98,7 +98,7 @@ on [meta-work](https://naildrivin5.com/blog/2018/01/19/work-vs-meta-work-deliver
 to use tools they understand and have already built any custom tooling they need to avoid slowness or confusion while working. I'll discuss our
 approach to this in a future post as well, but we are using Rails and Heroku, which we both deeply understand and can use effectively.
 
-<div class="pullquote">
+<div class="pullquote" aria-hidden="true">
 To work quickly, the team needs to have an environment where they can focus…
 </div>
 
@@ -122,7 +122,7 @@ For example, while building the above-mentioned customer service automation, we 
 hopefully improve conversions.   This happened several times with problems more critical than automating customer engagement. It took almost
 three months from start to finish before we had provided *all* the automations our customer service team needed.
 
-<div class="pullquote">
+<div class="pullquote" aria-hidden="true">
 The team was flexible and able to change focus by working in an organized way
 </div>
 
