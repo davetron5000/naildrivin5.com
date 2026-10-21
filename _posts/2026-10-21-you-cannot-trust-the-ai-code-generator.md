@@ -6,21 +6,6 @@ related:
  - "I'm Gonna Write About AI So I Can Process What is Going On"
  - "The Death of the Software Craftsman"
  - "Why Even Write Code in a Professional Context?"
-mcdouble:
-  bluesky:
-    id: at://did:plc:aa4tz3ndk6icyssvigc4rz6x/app.bsky.feed.post/3myd3ipcqgy2p
-    url: https://bsky.app/profile/did:plc:aa4tz3ndk6icyssvigc4rz6x/post/3myd3ipcqgy2p
-    posted_at: '2026-10-20T16:45:58Z'
-    cid: bafyreibx4zoa3euwrt37cq6djlukshbayscq5s533yxfxa2trgs65suvcm
-    image:
-      id: at://did:plc:aa4tz3ndk6icyssvigc4rz6x/app.bsky.feed.post/3myd3ipztlz2x
-      url: https://bsky.app/profile/did:plc:aa4tz3ndk6icyssvigc4rz6x/post/3myd3ipztlz2x
-      posted_at: '2026-10-20T16:45:58Z'
-      cid: bafyreih7e4bmtngw3abx2pzumqskdx2e4vid5zcfqme4zmdz5vvcwq3eme
-  mastodon:
-    id: '117474291423407726'
-    url: https://mastodon.social/@davetron5000testing/117474291423407726
-    posted_at: '2026-10-20T16:57:13Z'
 ---
 
 Allowing an AI to write code that you then ship without considerate review causes some anxiety. How do you know the code works? How do you
