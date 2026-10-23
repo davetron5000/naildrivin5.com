@@ -9,9 +9,6 @@ main:has(article.blog-post) {
 article.blog-post {
   p {
     max-inline-size: none;
-    &:last-of-type:after {
-      content: " ❺";
-    }
   }
   > header {
     margin-block-end: var(--sp-4);
@@ -44,6 +41,9 @@ article.blog-post {
   .blog-content {
     > p {
       margin-block: 0 var(--sp-4);
+      &:last-of-type:after {
+        content: " ❺";
+      }
     }
     > ul,
     > ol {
