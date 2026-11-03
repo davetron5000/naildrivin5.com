@@ -1,0 +1,39 @@
+digraph G {
+
+   node[
+     fontname="Jost"
+     class="shape"
+     margin="0.1,0.25"
+   ]
+
+   nodesep=0.5
+   ranksep=0.5
+
+   Prompt          -> AICoder
+   StaticAnalysis  -> AICoder         [ dir=back label="uses" fontsize=12 style=dotted]
+   AICoder         -> ChangeRequest
+   AICoder         -> CodeChanges
+   ChangeRequest   -> CodeChanges     [ dir=none style=dotted ]
+   ChangeRequest   -> HumanReview
+   CodeChanges     -> StaticAnalysis2
+   HumanReview     -> Production      [ label="human approves" fontsize=12 ]
+   StaticAnalysis2 -> Production      [ label="code passes" fontsize=12 ]
+   Production      -> ErrorAnalysis   [ label="production errors" fontsize=12 ]
+   ErrorAnalysis   -> Prompt          [ label="refine" fontsize=12 style=dashed ]
+   ErrorAnalysis   -> StaticAnalysis  [ label="refine" fontsize=12 style=dashed ]
+   ErrorAnalysis   -> StaticAnalysis2 [ label="refine" fontsize=12 style=dashed ]
+   
+   Prompt          [ shape=note      class="shape amber"                                                      ]
+   StaticAnalysis  [ shape=component class="shape indigo" label="Static Analysis"                             ]
+   StaticAnalysis2 [ shape=component class="shape indigo" label="Post-Code Static Analyzer\n(if needed)"      ]
+   AICoder         [ shape=box3d     class="shape gray"   label="AI Code Generator"                           ]
+   ChangeRequest   [ shape=tab       class="shape orange" label="Change Request\nconsumable by humans"        ]
+   CodeChanges     [ shape=box       class="shape orange" label="Code Changes"                                ]
+   HumanReview     [ shape=cds       class="shape pink"   label="Compliance Review\n(if required)"            ]
+   ErrorAnalysis   [ shape=cds       class="shape pink"   label="Human-driven Analysis\nof Production Errors" ]
+   Production      [ shape=house     class="shape green"                                                      ]
+   
+   { rank=same; ChangeRequest; CodeChanges }
+   { rank=same; StaticAnalysis; Prompt }
+   { rank=same; StaticAnalysis2; HumanReview }
+}
