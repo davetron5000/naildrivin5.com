@@ -7,6 +7,21 @@ related:
  - "Why Even Write Code in a Professional Context?"
  - "I'm Gonna Write About AI So I Can Process What is Going On"
  - "The Death of the Software Craftsman"
+mcdouble:
+  mastodon:
+    id: '117553287608434117'
+    url: https://ruby.social/@davetron5000/117553287608434117
+    posted_at: '2026-11-03T15:46:59Z'
+  bluesky:
+    id: at://did:plc:5qa544tzvkfohwvc34r37z2c/app.bsky.feed.post/3mzg6q6qfha2u
+    url: https://bsky.app/profile/did:plc:5qa544tzvkfohwvc34r37z2c/post/3mzg6q6qfha2u
+    posted_at: '2026-11-03T15:47:01Z'
+    cid: bafyreibl7rq735aylvmrwa3eobh4ab3vuxju2q7ab2pwtsny7ndi3zsnru
+    image:
+      id: at://did:plc:5qa544tzvkfohwvc34r37z2c/app.bsky.feed.post/3mzg6q7uvns2z
+      url: https://bsky.app/profile/did:plc:5qa544tzvkfohwvc34r37z2c/post/3mzg6q7uvns2z
+      posted_at: '2026-11-03T15:47:01Z'
+      cid: bafyreibvvqu5c5nqi2wx2ldvvizhdppr3myhbz5ecolbk5mpwj2d6mg6nq
 ---
 
 AI can generate a lot of code quickly.  There's a thought that we can catch its mistakes  or other issues by reviewing that code.  In theory, this may be true; code review *can* catch bugs.  In practice, it only works if the reviewer knows what to look for, has some context and, well, gives a shit.
