@@ -3,4 +3,8 @@ set -euo pipefail
 
 cd "$(dirname "$0")/.."
 
-exec bundle exec rake build
+echo "[ ${0} ] Checking code blocks"
+bin/check-code-blocks
+
+echo "[ ${0} ] Building Site"
+jekyll build 

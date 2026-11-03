@@ -1,0 +1,82 @@
+#!/usr/bin/env ruby
+
+require "date"
+require "optparse"
+
+options = {
+  date: Date.today,
+}
+OptionParser.new do |opts|
+  opts.banner = "Usage: #{$0} [options] Title of the post"
+  opts.separator ""
+  opts.separator "  #{$0} - Create the outline of a new post"
+  opts.separator ""
+  opts.separator "OPTIONS"
+  opts.separator ""
+  opts.on("--date DATE", "Date when the post is intended to go live, could be 'today' (default), 'tomorrow', or a YYYY-MM-DD format date") do |value|
+    if value == "today"
+      options[:date] = Date.today
+    elsif value == "tomorrow"
+      options[:date] = Date.today + 1
+    else
+      options[:date] = Date.parse(value)
+    end
+  end
+  opts.on("--link LINK", "Link to pose if this post is a link post") do |value|
+    options[:link] = value
+  end
+end.parse!
+
+title = ARGV.join(" ").strip
+date = options[:date]
+link = options[:link]
+
+if title == ""
+  $stderr.puts "You must include a title"
+  exit 1
+end
+
+formatted_date = date.strftime('%Y-%m-%d')
+
+slug = formatted_date + "-" + title.gsub(/[\s\W]/,"-").downcase
+
+post_filename =  "_posts/#{slug}.md"
+
+File.open(post_filename,"w") do |file|
+  file.puts "---"
+  file.puts "layout: post"
+  file.puts "title: \"#{title}\""
+  file.puts "date: #{formatted_date} 9:00"
+  if link
+    file.puts "link: #{link}"
+  else
+    file.puts "ad:"
+    file.puts "  title: \"Fix Your Dev Environment for Good\""
+    file.puts "  subtitle: \"Stop Re-installing and Start Coding\""
+    file.puts "  link: \"https://sowl.co/bhKWwy\""
+    file.puts "  image: \"/images/docker-book-cover.jpg\""
+    file.puts "  cta: \"Buy Now $19.95\""
+  end
+  file.puts "---"
+  file.puts
+  if link
+    file.puts "This is the intro and a reference to [the link][link], as well as a quote:"
+    file.puts
+    file.puts "> this is a quote from the article"
+    file.puts
+    file.puts "And a follow up quip if needed"
+    file.puts
+    file.puts "[link]: #{link}"
+  else
+    file.puts "This is the intro"
+    file.puts
+    file.puts "<!-- more -->"
+    file.puts
+    file.puts "This is some content"
+    file.puts
+    file.puts "<div data-ad></div>"
+    file.puts
+    file.puts "This is some more content"
+  end
+end
+puts post_filename
