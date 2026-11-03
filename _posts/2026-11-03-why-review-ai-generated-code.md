@@ -11,6 +11,9 @@ related:
 
 AI can generate a lot of code quickly.  There's a thought that we can catch its mistakes  or other issues by reviewing that code.  In theory, this may be true; code review *can* catch bugs.  In practice, it only works if the reviewer knows what to look for, has some context and, well, gives a shit.
 
+<article class="social-media-excerpt">
+There's a thought that we can catch mistakes in AI-generated code by reviewing it (or having an AI do that). This is short-sighted thinking, especially as developers lose the skill of code review entirely.  Better to use AI to create better tooling.
+</article>
 <!-- more -->
 
 <aside class="please-be-aware">
@@ -76,6 +79,7 @@ leaves again only one point of the code review: finding bugs.
 <figure class="small-figure right">
   <a href="/images/bernie-bugs.jpg">
     <img src="/images/bernie-bugs.jpg"
+         class="social-media-image"
          alt="A picture of politician Bernie Sanders, taken from one of his campaign ads where he is looking earnestly at the camera, wearing a parka.  The image has text on it that says 'I am once again asking you to find bugs I asked you not to write'">
   </a>
 </figure>
