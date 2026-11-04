@@ -45,7 +45,7 @@ In my experience, pre-AI, code review serves three purposes:
 * Provide a mentorship mechanism for less-experienced staff to learn (either about coding in general or the codebase in particular).
 * Understand and approve changes going to production.
 
-It's unclear how effective code review is at any of this.  It doesn't seem like hte *best* way to achieve any of these goals.  But, we do it because there is a low opportunity cost: we just start reviewing the changes.  It does *feel* wrong to let code go into production without someone else looking at it (in regulated environments, there *has* to be a second set of eyes).
+It's unclear how effective code review is at any of this.  It doesn't seem like the *best* way to achieve any of these goals.  But, we do it because there is a low opportunity cost: we just start reviewing the changes.  It does *feel* wrong to let code go into production without someone else looking at it (in regulated environments, there *has* to be a second set of eyes).
 
 <aside class="pullquote">
 Code review has a huge carrying cost
