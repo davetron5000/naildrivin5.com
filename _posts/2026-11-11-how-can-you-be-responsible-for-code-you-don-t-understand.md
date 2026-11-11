@@ -19,6 +19,18 @@ AI's primary purpose is to deskill its operators.
 The short answer is that programmers become responsible for outcomes, not code.  The longer answer is there are no programmers - AI is a
 replacement, not an assistant, since it's primary purpose is to deskill its operators.
 
+<article class="social-media-excerpt">
+If AI is writing all the code and no one is reviewing it, how the heck can anyone be responsible or accountable for code they not only don't understand and eventually *can never understand*?
+
+The short answer is that programmers become responsible for outcomes, not code.  The longer answer is there are no programmers, since AI exists to deskill them.
+</article>
+
+<article class="social-media-excerpt bluesky">
+If AI is writing all the code with no one reviewing it, how can anyone be accountable for code they not don't understand and may never understand?
+
+Short answer: programmers become responsible for outcomes, not code. Longer answer: there are no programmers, since AI exists to deskill them.
+</article>
+
 <!-- more -->
 
 ## Deskilling Before Our Very Eyes
@@ -101,6 +113,7 @@ With no programmers or ability to understand or even manage the code, things cha
 Accountability for a deskilled team using AI.
 </figcaption>
 </figure>
+<img src="/images/ai-pm-new.png" style="display: none;" class="social-media-image" alt="A graph showing the layers of software with System going to Modules or Bounded Contexts going to Classes or Components going to Lines of Code.  Alongside that are Managers who own the outcomes of the System and understand its Modules, Product Managers who understand the System but own the outcomes the Modules or Bounded Contexts. AI Operators/Programmers then own the outcomes of an AI Code Generator and understand the System, Bounded Contexts, and Classes/Components.  The AI Code Generator produces the Classes/Components and LOC, with no formal ownership of either">
 
 Notice how the areas of responsibility change.  The team managing the AI code generators can hardly be considered *programmers* since they
 aren't doing that much of it.  You can also see that the difference in skillsets of the Product Managers and AI Operators is far less
