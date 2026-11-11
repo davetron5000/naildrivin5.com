@@ -6,6 +6,9 @@ main:has(.blog-index) {
 }
 
 .blog-index {
+  .pullquote {
+    display: none;
+  }
   > article {
     padding-block: calc(var(--sp-4) + var(--sp-3));
     border-block-end: var(--bw-1) solid var(--nd-border);
