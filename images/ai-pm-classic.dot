@@ -1,0 +1,32 @@
+digraph G {
+  rankdir=LR
+  node[fontname="Jost" class="shape" shape=box]
+  edge[fontname="Source Serif 4" fontsize=12]
+
+  System -> Modules -> Components -> LOC
+
+  System      [ shape=box3d                                          class="shape gray" ]
+  Modules     [ shape=folder    label="Modules or\nBounded Contexts" class="shape indigo" ]
+  Components  [ shape=component label="Classes or Components"        class="shape purple" ]
+  LOC         [ shape=note      label="Lines of Code"                class="shape pink" ]
+  Managers    [                 label="Management Team"              class="shape gray" ]
+  PM          [                 label="Product Managers"             class="shape amber" ]
+  Engineering [                 label="Programmers"                  class="shape green" ]
+
+  Managers    -> System     [ label="Owns Outcomes" ]
+  Managers    -> Modules    [ label="Understands" style=dotted ]
+  PM          -> System     [ label="Understands" style=dotted ]
+  PM          -> Modules    [ label="Owns Outcomes" ]
+  Engineering -> System     [ label="Understands" style=dotted ]
+  Engineering -> Modules    [ label="Understands" style=dotted ]
+  Engineering -> Components [ label="Owns Outcomes" ]
+  Engineering -> LOC        [ label="Owns Outcomes" ]
+
+  {rank=same; System; Modules; Components; LOC }
+
+  // Force some better layout
+  Managers -> PM[style=invis]
+  PM       -> Engineering[style=invis]
+
+}
+
