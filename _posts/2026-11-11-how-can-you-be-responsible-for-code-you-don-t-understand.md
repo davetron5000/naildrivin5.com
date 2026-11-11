@@ -8,6 +8,21 @@ related:
  - "Why Even Write Code in a Professional Context?"
  - "I'm Gonna Write About AI So I Can Process What is Going On"
  - "The Death of the Software Craftsman"
+mcdouble:
+  mastodon:
+    id: '117598771269342104'
+    url: https://ruby.social/@davetron5000/117598771269342104
+    posted_at: '2026-11-11T16:34:04Z'
+  bluesky:
+    id: at://did:plc:5qa544tzvkfohwvc34r37z2c/app.bsky.feed.post/3n22f3qtw6c22
+    url: https://bsky.app/profile/did:plc:5qa544tzvkfohwvc34r37z2c/post/3n22f3qtw6c22
+    posted_at: '2026-11-11T16:34:06Z'
+    cid: bafyreihevv5stipjdfho5ngwbzokvxa45dtqseb3rz2sywwo4xhpgojboa
+    image:
+      id: at://did:plc:5qa544tzvkfohwvc34r37z2c/app.bsky.feed.post/3n22f3rgcvn2w
+      url: https://bsky.app/profile/did:plc:5qa544tzvkfohwvc34r37z2c/post/3n22f3rgcvn2w
+      posted_at: '2026-11-11T16:34:06Z'
+      cid: bafyreibzw3vhiqzud5yfuyoojqeiet2qdu2wtxjfcrl4woguz66oiyp5e4
 ---
 
 If [AI is writing all the code](/blog/2026/10/19/why-even-write-code-in-a-professional-context.html) and [no one is reviewing it](/blog/2026/11/03/why-review-ai-generated-code.html), how the heck can anyone be responsible or accountable for code they not only don't understand and eventually *can never understand*?
