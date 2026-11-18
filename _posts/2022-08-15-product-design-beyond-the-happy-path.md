@@ -124,7 +124,7 @@ customer support tooling to account for it.
 For example, an app might not want to allow you to change your email once you've signed
 up.  The team might feel this isn't going to happen often and the design and coding
 required to support it would necessitate additional security checks and validations.
-They way the team can get away with not supporting it is to build a way for the customer
+The way the team can get away with not supporting it is to build a way for the customer
 support team to.
 
 Unlike users, customer support is trusted to manipulate at least some internal data.
@@ -185,7 +185,7 @@ staffing mean that solvable problems get dropped.  Either way, oblivion is where
 unsolved problems end up.
 
 This isn't necessarily all bad.  A team can be tightly focused when everyone agrees on
-what problesm the team simply isn't in the business of solving. And a roadmap or backlog
+what problems the team simply isn't in the business of solving. And a roadmap or backlog
 can be much more easily built when there is objective data about solvable, supported
 problems being dropped due to understaffing or mismanagement.
 
