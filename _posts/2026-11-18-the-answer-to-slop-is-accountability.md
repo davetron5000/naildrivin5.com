@@ -8,6 +8,16 @@ related:
  - "Why Review AI-Generated Code?"
  - "You Cannot Trust the AI Code Generator"
  - "I'm Gonna Write About AI So I Can Process What is Going On"
+mcdouble:
+  mastodon:
+    id: '117638061576549629'
+    url: https://ruby.social/@davetron5000/117638061576549629
+    posted_at: '2026-11-18T15:06:07Z'
+  bluesky:
+    id: at://did:plc:5qa544tzvkfohwvc34r37z2c/app.bsky.feed.post/3n2ltgw5nzg2m
+    url: https://bsky.app/profile/did:plc:5qa544tzvkfohwvc34r37z2c/post/3n2ltgw5nzg2m
+    posted_at: '2026-11-18T15:06:07Z'
+    cid: bafyreihrcpwacunylt4rtkotzwxzjac22atafkql34oeb27ucpz455bgmm
 ---
 
 "Slop" is low-quality output from an LLM.  When slop is part of a user-facing product, it pulls down the quality of the product.  The way to
