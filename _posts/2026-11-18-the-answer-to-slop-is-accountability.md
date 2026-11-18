@@ -2,6 +2,12 @@
 layout: post
 title: "The Answer to Slop is Accountability"
 date: 2026-11-18 9:00
+related:
+ - "A Framework for Product Design Beyond the Happy Path"
+ - "How Can You Be Responsible for Code You Don't Understand, Especially When You Can No Longer Program?"
+ - "Why Review AI-Generated Code?"
+ - "You Cannot Trust the AI Code Generator"
+ - "I'm Gonna Write About AI So I Can Process What is Going On"
 ---
 
 "Slop" is low-quality output from an LLM.  When slop is part of a user-facing product, it pulls down the quality of the product.  The way to
