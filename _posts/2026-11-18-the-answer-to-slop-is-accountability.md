@@ -21,7 +21,7 @@ mcdouble:
 ---
 
 "Slop" is low-quality output from an LLM.  When slop is part of a user-facing product, it pulls down the quality of the product.  The way to
-fix this is by consequences to product owner.
+fix this is by consequences to the product owner.
 
 <!-- more -->
 
